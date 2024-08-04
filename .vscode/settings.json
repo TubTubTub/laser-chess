@@ -1,0 +1,6 @@
+{
+    "code-runner.executorMap": {
+        "python": "python run.py"
+    },
+    "code-runner.enableAppInsights": false
+}
