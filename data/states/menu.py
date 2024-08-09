@@ -1,9 +1,9 @@
 import pygame
-from .. import tools
+from data.tools import _State
 
-class Menu(tools._State):
+class Menu(_State):
     def __init__(self):
-        tools._State.__init__(self)
+        _State.__init__(self)
         self.next = 'game'
     
     def cleanup(self):
@@ -16,6 +16,9 @@ class Menu(tools._State):
         if event.type == pygame.KEYDOWN:
             print('key down')
             self.done = True
+    
+    def resize(self):
+        print('NOT IMPLEMENTED RESIZING YET BOY!')
     
     def draw(self, screen):
         screen.fill((255, 255, 0))
