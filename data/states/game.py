@@ -19,6 +19,8 @@ class Game(_State):
             self.done = True
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.board.process_mouse_press(event)
+        if event.type == pygame.VIDEORESIZE:
+            self.board.process_resize_finish()
     
     def resize(self):
         self.board.resize_board()

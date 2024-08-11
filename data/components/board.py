@@ -2,7 +2,8 @@ import pygame
 from data.settings import app_settings
 from data.components.cursor import Cursor
 from data.components.piece import Sphinx
-from data.tools import scale_and_cache
+from data.components.customspritegroup import CustomSpriteGroup
+from data.tools import smoothscale_and_cache
 
 class Board:
     def __init__(self, screen):
@@ -18,7 +19,7 @@ class Board:
         self._selected_square_object = None
 
     def initialize_square_group(self):
-        square_group = pygame.sprite.Group()
+        square_group = CustomSpriteGroup()
 
         for i in range(80):
             x = i % 10
@@ -74,12 +75,19 @@ class Board:
             self._selected_square_object.selected = True
         
         print(current_square_selected)
+    
+    def process_resize_finish(self):
+        self._square_group.draw_high_res_svg(self.screen)
 
 class Square(pygame.sprite.Sprite):
     '''self.drawing_index: Since the initialization loop starts drawing index(0, 0) from the top of the screen, and
     we want index (0, 0) to be drawn at the bottom-left corner, we will have to create a new index where the y-position
     is flipped so that the bottom-left square corresponds to index (0, 0)
-    self._size: Added 1 to original desired size to prevent flickering when updating screen size'''
+
+    self._size: Added 1 to original desired size to prevent flickering when updating screen size
+    
+    self._high_quality_svg_layer: Have to manually draw high resolution svg on self.image each type, as cannot scale self._high_quality_svg_layer directly because that will rasterize the svg and lose its vector quality
+    '''
     def __init__(self, index, size, colour, position):
         pygame.sprite.Sprite.__init__(self)
         self._index = index
@@ -88,14 +96,22 @@ class Square(pygame.sprite.Sprite):
         self._colour = colour
 
         self.selected = False
-        self.piece = Sphinx()
+        self.piece = Sphinx(size=self._size)
 
-        self.image = pygame.Surface((self._size, self._size))
-        self.image.fill(colour)
-        self.image_copy =  self.image.copy()
+        self._high_res_svg = self.piece.high_res_svg
+        self._low_res_png = self.piece.low_res_png
+
+        self._high_res_svg_layer = pygame.Surface((self._size, self._size))
+        self._high_res_svg_layer.fill(self._colour)
+
+        self._low_res_png_layer = pygame.Surface((self._size, self._size))
+        self._low_res_png_layer.fill(self._colour)
+        self._low_res_png_layer.blit(pygame.transform.scale(self.piece.low_res_png, (self._size, self._size)), (0, 0))
+
+        self.image = self._high_res_svg_layer
+        self.image.blit(pygame.transform.scale(self._high_res_svg, (self._size, self._size)), (0, 0))
         self.rect = self.image.get_rect()
         self.rect.topleft = (self._drawing_index[0] * self._size + position[0], self._drawing_index[1] * self._size + position[1])
-        self.image.blit(self.piece.image, (0, 0))
 
         self._outline = pygame.Surface((self._size + 1, self._size + 1), pygame.SRCALPHA)
         self._outline.fill((255, 0, 0, 128))
@@ -103,10 +119,10 @@ class Square(pygame.sprite.Sprite):
     def update(self, new_size, new_position):
         self._size = new_size
 
-        self.image = scale_and_cache(self.image_copy, (new_size + 1, new_size + 1))
+        self.image = smoothscale_and_cache(self._low_res_png_layer, (new_size + 1, new_size + 1))
         self.rect.topleft = (self._drawing_index[0] * self._size + new_position[0], self._drawing_index[1] * self._size + new_position[1])
-
-        self.piece.update(size=new_size)
-
-        self.image.fill(self._colour)
-        self.image.blit(self.piece.image, (0, 0))
+    
+    def draw_high_res_svg(self, screen):
+        self.image = pygame.transform.scale(self._high_res_svg_layer, (self._size, self._size))
+        piece_layer = pygame.transform.scale(self._high_res_svg, (self._size, self._size))
+        self.image.blit(piece_layer, (0, 0))

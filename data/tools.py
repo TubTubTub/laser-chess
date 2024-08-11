@@ -1,7 +1,7 @@
 import pygame
 from pygame._sdl2 import Window
 from pathlib import Path
-from functools import lru_cache
+from functools import cache
 
 class Control:
     def __init__(self):
@@ -95,11 +95,11 @@ class _State:
     def get_event(self, event):
         raise NotImplementedError
 
-@lru_cache(maxsize=128)
+@cache
 def scale_and_cache(image, target_size):
     return pygame.transform.scale(image, target_size)
 
-@lru_cache(maxsize=128)
+@cache
 def smoothscale_and_cache(image, target_size):
     return pygame.transform.smoothscale(image, target_size)
 
