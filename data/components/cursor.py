@@ -10,11 +10,11 @@ class Cursor(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
     
-    def select(self, mouse_pos, square_group):
+    def select_square(self, mouse_pos, square_group):
         self.rect.center = mouse_pos
-        sprite = (pygame.sprite.spritecollide(self, square_group, False))
+        sprite = pygame.sprite.spritecollide(self, square_group, False)
         
         if not (sprite):
             return None
-        
+
         return sprite[0]

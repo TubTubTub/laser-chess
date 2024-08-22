@@ -8,7 +8,7 @@ class Control:
         self.done = False
         self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
-        self.fps = 144
+        self.fps = 60
         """temp"""
         self.font = pygame.font.SysFont("Arial" , 18 , bold = True)
     
@@ -32,7 +32,6 @@ class Control:
         elif self.state.done:
             self.flip_state()
         
-        self.update_window_size()
         self.draw_fps()
         
         self.state.update()
@@ -45,6 +44,7 @@ class Control:
             self.update()
     
     def resize_window_event(self):
+        self.update_window_size()
         self.state.resize()
         self.update()
     
@@ -110,7 +110,12 @@ def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg"
         name, extension = file.stem, file.suffix
 
         if extension.lower() in accept:
-            image = pygame.image.load(Path(directory / file))
+            path = Path(directory / file)
+            image = pygame.image.load(path)
+
+            if extension.lower() == '.svg':
+                low_quality_image = pygame.image.load_sized_svg(path, (200, 200))
+                graphics[f'{name}_lq'] = low_quality_image
 
             if image.get_alpha():
                 image = image.convert_alpha()

@@ -1,1 +1,1 @@
-low_res_
+current_square_selected.to_bitboard() >> 1

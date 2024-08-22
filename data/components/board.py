@@ -1,22 +1,28 @@
 import pygame
+
 from data.settings import app_settings
 from data.components.cursor import Cursor
-from data.components.piece import Sphinx
 from data.components.customspritegroup import CustomSpriteGroup
-from data.tools import smoothscale_and_cache
+from data.components.square import Square
+
+from data.components.constants import Colour, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK
+from data.components import bitboard
+from data.components import bitboard_helpers as bb_helpers
 
 class Board:
-    def __init__(self, screen):
+    def __init__(self, screen, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.game_settings = app_settings
         self.screen = screen
         self.cursor = Cursor()
+
+        self.bitboards = bitboard.BitboardCollection(fen_string)
 
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
         self._square_size = self._board_size[0] / 10
         self._square_group = self.initialize_square_group()
 
-        self._selected_square_object = None
+        self._selected_square_bitboards = []
 
     def initialize_square_group(self):
         square_group = CustomSpriteGroup()
@@ -25,14 +31,44 @@ class Board:
             x = i % 10
             y = i // 10
 
+
             if (x + y) % 2 == 0:
-                square = Square(index=(x,y), size=self._square_size, colour=(self.game_settings.primaryBoardColour), position=self._board_origin_position)
+                square = Square(index=(x,y), size=self._square_size, board_colour=(self.game_settings.primaryBoardColour), anchor_position=self._board_origin_position)
             else:
-                square = Square(index=(x,y), size=self._square_size, colour=(self.game_settings.secondaryBoardColour), position=self._board_origin_position)
+                square = Square(index=(x,y), size=self._square_size, board_colour=(self.game_settings.secondaryBoardColour), anchor_position=self._board_origin_position)
 
             square_group.add(square)
+            square_group.square_list.append(square)
+
+            blue_piece_symbol = self.bitboards.get_piece_on(square.to_bitboard(), Colour.BLUE)
+            red_piece_symbol = self.bitboards.get_piece_on(square.to_bitboard(), Colour.RED)
+
+            if blue_piece_symbol is not None:
+                square.set_colour(Colour.BLUE)
+                square.set_piece(blue_piece_symbol)
+            elif red_piece_symbol is not None:
+                square.set_colour(Colour.RED)
+                square.set_piece(red_piece_symbol)
 
         return square_group
+    
+    def handle_events(self, event):
+        if event.type == pygame.KEYDOWN:
+            print('COLOUR TO MOVE:', self.bitboards.active_colour)
+            src, dest = self.get_move()
+            self.apply_move(src, dest)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self.process_mouse_press(event)
+        if event.type == pygame.VIDEORESIZE:
+            self._square_group.draw_resized_finish()
+    
+    def get_move(self):
+        try:
+            input1 = input("From: ")
+            input2 = input("To: ")
+            return (input1, input2)
+        except ValueError:
+            print('Board.py: Invalid inputs!')
 
     def draw_board(self):
         self.cursor.update()
@@ -60,69 +96,61 @@ class Board:
         board_x, board_y = board_size
 
         x = screen_x / 2 - (board_x / 2)
-        y = screen_y / 2 - (board_y / 2)
+        y = screen_y / 2 + (board_y / 2)
 
         return (x, y)
 
     def process_mouse_press(self, event):
-        current_square_selected = self.cursor.select(event.pos, self._square_group)
+        current_square_selected = self.cursor.select_square(event.pos, self._square_group)
 
-        if (current_square_selected):
-            if (self._selected_square_object):
-                self._selected_square_object.selected = False
+        if current_square_selected is None:
+            self._selected_square_bitboards = []
             
-            self._selected_square_object = current_square_selected
-            self._selected_square_object.selected = True
+        if len(self._selected_square_bitboards) == 0:
+            valid_squares = self.return_valid_squares(current_square_selected.to_bitboard())
+            # bb_helpers.print_bitboard(valid_squares)
+            # self._square_group.draw_valid_squares(valid_squares)
+
+        if len(self._selected_square_bitboards) == 1:
+            valid_squares = self.return_valid_squares(self._selected_square_bitboards[0].to_bitboard())
+
+            if (current_square_selected.to_bitboard() in valid_squares):
+                self.apply_move(self._selected_square_bitboards[0], self._selected_square_bitboards[1])
+                self._selected_square_bitboards = []
+    
+    def return_valid_squares(self, src_bitboard):
+        target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9
+        target_top_middle = (src_bitboard & EIGHT_RANK_MASK) << 10
+        target_top_right = (src_bitboard & J_FILE_MASK & EIGHT_RANK_MASK) << 11
+        target_middle_right = (src_bitboard & J_FILE_MASK) << 1
+
+        target_bottom_right = (src_bitboard & J_FILE_MASK & ONE_RANK_MASK) >> 9
+        target_bottom_middle = (src_bitboard & ONE_RANK_MASK) >> 10
+        target_bottom_left = (src_bitboard & A_FILE_MASK & ONE_RANK_MASK)>> 11
+        target_middle_left = (src_bitboard & A_FILE_MASK) >> 1
+
+        possible_moves = target_top_left | target_top_middle | target_top_right | target_middle_right |	target_bottom_right | target_bottom_middle | target_bottom_left | target_middle_left
+
+        valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
+        bb_helpers.print_bitboard(valid_possible_moves)
+        return valid_possible_moves
+    
+    def apply_move(self, src_square, dest_square):
+        piece_symbol = self.bitboards.get_piece_on(src_square.to_bitboard(), self.bitboards.active_colour)
+
+        if piece_symbol is None:
+            raise ValueError('Invalid move - no piece found on source square')
         
-        print(current_square_selected)
+        self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour)
+
+        self.bitboards.update_bitboard_move(src_square.to_bitboard(), dest_square.to_bitboard())
+        print('applied', src_square, dest_square)
+        self.bitboards.flip_colour()
     
-    def process_resize_finish(self):
-        self._square_group.draw_high_res_svg(self.screen)
-
-class Square(pygame.sprite.Sprite):
-    '''self.drawing_index: Since the initialization loop starts drawing index(0, 0) from the top of the screen, and
-    we want index (0, 0) to be drawn at the bottom-left corner, we will have to create a new index where the y-position
-    is flipped so that the bottom-left square corresponds to index (0, 0)
-
-    self._size: Added 1 to original desired size to prevent flickering when updating screen size
-    
-    self._high_quality_svg_layer: Have to manually draw high resolution svg on self.image each type, as cannot scale self._high_quality_svg_layer directly because that will rasterize the svg and lose its vector quality
-    '''
-    def __init__(self, index, size, colour, position):
-        pygame.sprite.Sprite.__init__(self)
-        self._index = index
-        self._drawing_index = (index[0], 7 - index[1])
-        self._size = size
-        self._colour = colour
-
-        self.selected = False
-        self.piece = Sphinx(size=self._size)
-
-        self._high_res_svg = self.piece.high_res_svg
-        self._low_res_png = self.piece.low_res_png
-
-        self._high_res_svg_layer = pygame.Surface((self._size, self._size))
-        self._high_res_svg_layer.fill(self._colour)
-
-        self._low_res_png_layer = pygame.Surface((self._size, self._size))
-        self._low_res_png_layer.fill(self._colour)
-        self._low_res_png_layer.blit(pygame.transform.scale(self.piece.low_res_png, (self._size, self._size)), (0, 0))
-
-        self.image = self._high_res_svg_layer
-        self.image.blit(pygame.transform.scale(self._high_res_svg, (self._size, self._size)), (0, 0))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (self._drawing_index[0] * self._size + position[0], self._drawing_index[1] * self._size + position[1])
-
-        self._outline = pygame.Surface((self._size + 1, self._size + 1), pygame.SRCALPHA)
-        self._outline.fill((255, 0, 0, 128))
-    
-    def update(self, new_size, new_position):
-        self._size = new_size
-
-        self.image = smoothscale_and_cache(self._low_res_png_layer, (new_size + 1, new_size + 1))
-        self.rect.topleft = (self._drawing_index[0] * self._size + new_position[0], self._drawing_index[1] * self._size + new_position[1])
-    
-    def draw_high_res_svg(self, screen):
-        self.image = pygame.transform.scale(self._high_res_svg_layer, (self._size, self._size))
-        piece_layer = pygame.transform.scale(self._high_res_svg, (self._size, self._size))
-        self.image.blit(piece_layer, (0, 0))
+    def notation_to_list_index(self, notation):
+        if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):
+            rank = int(notation[1]) - 1
+            file = int(File[notation[0].upper()])
+            return (rank * 10 + file)
+        else:
+            raise ValueError('Invalid input - cannot convert input into list index')
