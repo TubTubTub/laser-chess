@@ -1,5 +1,9 @@
-from enum import IntEnum
+import pygame
+from enum import IntEnum, StrEnum
 
+SCREEN_SIZE = (1000, 600)
+SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE #DONT USE SCALED
+STARTING_SQUARE_SIZE = SCREEN_SIZE[0] / 10
 PIECE_SYMBOLS = 'frpns'
 EMPTY_BB = 0
 A_FILE_MASK = 0b11111111101111111110111111111011111111101111111110111111111011111111101111111110
@@ -59,3 +63,8 @@ class Rotation(IntEnum):
     RIGHT = 1
     DOWN = 0
     LEFT = 0
+
+class IMAGE_TYPE(StrEnum):
+    HIGH_RES_PIECE = 'high'
+    LOW_RES_PIECE = 'low'
+    EMPTY_PIECE = 'empty'

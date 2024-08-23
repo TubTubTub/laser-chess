@@ -2,9 +2,9 @@ from data.components.constants import Colour, Rotation, PIECE_SYMBOLS
 
 def parse_fen_string(fen_string):
     #sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa r
-    piece_bitboards = [{char: 0 for char in PIECE_SYMBOLS}, {char: 0 for char in PIECE_SYMBOLS}]
-    rotation_bitboards = [0, 0]
-    combined_colour_bitboards = [0, 0]
+    piece_bitboards = [{char: 0b0 for char in PIECE_SYMBOLS}, {char: 0b0 for char in PIECE_SYMBOLS}]
+    rotation_bitboards = [0b0, 0b0]
+    combined_colour_bitboards = [0b0, 0b0]
     combined_all_bitboard = 0
     part_1, part_2 = fen_string.split(' ')
 

@@ -36,7 +36,7 @@ class BitboardCollection():
 
         self.piece_bitboards[colour][piece] = bb_helpers.clear_square(piece_bitboard, index)
         self.combined_colour_bitboards[colour] = bb_helpers.clear_square(colour_bitboard, index)
-        self.combined_all_bitbioard = bb_helpers.clear_square(all_bitboard, index)
+        self.combined_all_bitboard = bb_helpers.clear_square(all_bitboard, index)
     
     def set_square(self, index, piece, colour):
         piece_bitboard = self.get_piece_bitboard(piece, colour)

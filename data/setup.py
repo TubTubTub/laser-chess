@@ -4,9 +4,7 @@ import ctypes
 import sys
 from pathlib import Path
 from data.tools import load_all_gfx
-
-SCREEN_SIZE = (1000, 600)
-SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE #DONT USE SCALED
+from data.components.constants import SCREEN_SIZE, SCREEN_FLAGS
 
 pygame.init()
 pygame.display.set_mode(SCREEN_SIZE, SCREEN_FLAGS)

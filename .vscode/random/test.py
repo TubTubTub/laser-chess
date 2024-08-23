@@ -14,14 +14,15 @@ svg = pygame.image.load('C:/Users/Python/Documents/NEA/resources/graphics/sphinx
 svg_size = 48
 svg = pygame.transform.scale(svg, (svg_size, svg_size))
 size = 500
+pygame.draw.rect(screen, 'red', (0, 0, 100, 100))
 while (run):
     new_screen = pygame.transform.scale(surface, (size, size))
     screen.blit(new_screen, (0, 0))
     size += 1
 
-    svg_size += 1
-    scaled_svg = pygame.transform.scale(svg, (svg_size, svg_size))
-    screen.blit(scaled_svg, (0, 0))
+    # svg_size += 1
+    # scaled_svg = pygame.transform.scale(svg, (svg_size, svg_size))
+    # screen.blit(scaled_svg, (0, 0))
 
     for event in pygame.event.get():
         width = screen.get_width()

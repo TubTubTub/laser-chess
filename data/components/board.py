@@ -5,7 +5,7 @@ from data.components.cursor import Cursor
 from data.components.customspritegroup import CustomSpriteGroup
 from data.components.square import Square
 
-from data.components.constants import Colour, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK
+from data.components.constants import Colour, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
 from data.components import bitboard_helpers as bb_helpers
 
@@ -22,7 +22,7 @@ class Board:
         self._square_size = self._board_size[0] / 10
         self._square_group = self.initialize_square_group()
 
-        self._selected_square_bitboards = []
+        self._selected_square = None
 
     def initialize_square_group(self):
         square_group = CustomSpriteGroup()
@@ -49,18 +49,14 @@ class Board:
             elif red_piece_symbol is not None:
                 square.set_colour(Colour.RED)
                 square.set_piece(red_piece_symbol)
-
+        
         return square_group
     
     def handle_events(self, event):
-        if event.type == pygame.KEYDOWN:
-            print('COLOUR TO MOVE:', self.bitboards.active_colour)
-            src, dest = self.get_move()
-            self.apply_move(src, dest)
         if event.type == pygame.MOUSEBUTTONDOWN:
             self.process_mouse_press(event)
         if event.type == pygame.VIDEORESIZE:
-            self._square_group.draw_resized_finish()
+            self._square_group.handle_resize_end()
     
     def get_move(self):
         try:
@@ -72,14 +68,13 @@ class Board:
 
     def draw_board(self):
         self.cursor.update()
-
         self._square_group.draw(self.screen)
 
     def resize_board(self):
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
         self._square_size = self._board_size[0] / 10
-        self._square_group.update(new_size=self._square_size, new_position=self._board_origin_position)
+        self._square_group.handle_resize(new_size=self._square_size, new_position=self._board_origin_position)
 
     def calculate_board_size(self, screen):
         '''Returns board size based on screen parameter'''
@@ -101,22 +96,32 @@ class Board:
         return (x, y)
 
     def process_mouse_press(self, event):
-        current_square_selected = self.cursor.select_square(event.pos, self._square_group)
+        clicked_square = self.cursor.select_square(event.pos, self._square_group)
 
-        if current_square_selected is None:
-            self._selected_square_bitboards = []
+        if (clicked_square is None):
+            self._selected_squares = []
+            self._square_group.remove_valid_square_overlays()
             
-        if len(self._selected_square_bitboards) == 0:
-            valid_squares = self.return_valid_squares(current_square_selected.to_bitboard())
-            # bb_helpers.print_bitboard(valid_squares)
-            # self._square_group.draw_valid_squares(valid_squares)
+        elif self._selected_square is None:
+            if (clicked_square._piece is None) or not(self.check_valid_src(clicked_square.to_bitboard())):
+                return
+            else:
+                self._selected_square = clicked_square
+                valid_squares = self.return_valid_squares(clicked_square.to_bitboard())
+                self._square_group.add_valid_square_overlays(valid_squares)
+                self._square_group.draw_valid_square_overlays()
 
-        if len(self._selected_square_bitboards) == 1:
-            valid_squares = self.return_valid_squares(self._selected_square_bitboards[0].to_bitboard())
+        else:
+            valid_squares = self.return_valid_squares(self._selected_square.to_bitboard())
 
-            if (current_square_selected.to_bitboard() in valid_squares):
-                self.apply_move(self._selected_square_bitboards[0], self._selected_square_bitboards[1])
-                self._selected_square_bitboards = []
+            if (clicked_square.to_bitboard() & valid_squares != EMPTY_BB):
+                self.apply_move(self._selected_square, clicked_square)
+
+            self._square_group.remove_valid_square_overlays()
+            self._selected_square = None
+
+    def check_valid_src(self, src_square):
+        return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
     
     def return_valid_squares(self, src_bitboard):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9
@@ -132,7 +137,6 @@ class Board:
         possible_moves = target_top_left | target_top_middle | target_top_right | target_middle_right |	target_bottom_right | target_bottom_middle | target_bottom_left | target_middle_left
 
         valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
-        bb_helpers.print_bitboard(valid_possible_moves)
         return valid_possible_moves
     
     def apply_move(self, src_square, dest_square):
@@ -144,7 +148,6 @@ class Board:
         self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour)
 
         self.bitboards.update_bitboard_move(src_square.to_bitboard(), dest_square.to_bitboard())
-        print('applied', src_square, dest_square)
         self.bitboards.flip_colour()
     
     def notation_to_list_index(self, notation):
