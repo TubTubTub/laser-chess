@@ -15,11 +15,14 @@ class CustomSpriteGroup(pygame.sprite.Group):
         for sprite in self.sprites():
             sprite.handle_resize_end()
     
-    def update_squares_move(self, src, dest, new_piece_symbol, new_colour):
+    def update_squares_move(self, src, dest, new_piece_symbol, new_colour, rotation):
         self.square_list[src].clear_piece()
         self.square_list[dest].clear_piece()
-        self.square_list[dest].set_colour(new_colour)
-        self.square_list[dest].set_piece(new_piece_symbol)
+        self.square_list[dest].set_piece(piece_symbol=new_piece_symbol, colour=new_colour, rotation=rotation)
+    
+    def update_squares_rotate(self, src, piece_symbol, colour, new_rotation):
+        self.square_list[src].clear_piece()
+        self.square_list[src].set_piece(piece_symbol=piece_symbol, colour=colour, rotation=new_rotation)
     
     def add_valid_square_overlays(self, valid_bitboard):
         if valid_bitboard == EMPTY_BB:

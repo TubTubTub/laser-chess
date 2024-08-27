@@ -1,1 +1,0 @@
-pygame.transform.scale(self._piece.low_res_png, (self._size, self._size))

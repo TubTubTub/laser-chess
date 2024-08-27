@@ -19,6 +19,7 @@ class Square(pygame.sprite.Sprite):
         self._board_colour = board_colour
         self._colour = None
         self._piece = None
+        self._rotation = None
 
         self._empty_layer = pygame.Surface((self._size, self._size))
         self._empty_layer.fill(self._board_colour)
@@ -50,8 +51,9 @@ class Square(pygame.sprite.Sprite):
         return (self._index[0] * size + anchor_position[0], anchor_position[1] - size * (self._index[1] + 1))
     
     def initialize_piece_icons(self, piece):
-        self._high_res_icon = piece.high_res_svg
-        self._low_res_icon = pygame.transform.scale(piece.low_res_png, (STARTING_SQUARE_SIZE, STARTING_SQUARE_SIZE))
+        self._high_res_icon = pygame.transform.rotate(piece.high_res_svg, self._rotation.to_angle())
+        self._low_res_icon = pygame.transform.rotate(piece.low_res_png, self._rotation.to_angle())
+        self._low_res_icon = pygame.transform.scale(self._low_res_icon, (STARTING_SQUARE_SIZE, STARTING_SQUARE_SIZE))
 
         self._high_res_layer = self._empty_layer.copy()
 
@@ -86,7 +88,7 @@ class Square(pygame.sprite.Sprite):
     def set_square_image(self, type):
         match (type):
             case IMAGE_TYPE.LOW_RES_PIECE:
-                self.image = pygame.transform.scale(self._low_res_layer, (self._size + 1, self._size + 1))
+                self.image = pygame.transform.smoothscale(self._low_res_layer, (self._size + 1, self._size + 1))
                 return
 
             case IMAGE_TYPE.EMPTY_PIECE:
@@ -106,18 +108,17 @@ class Square(pygame.sprite.Sprite):
         self.image.blit(pygame.transform.scale(self._outline, (self._size + 1, self._size + 1)), (0, 0))
     
     def remove_overlay(self):
-        if self._piece is not None:
+        if (self._piece):
             self.set_square_image('high')
         else:
             self.set_square_image('empty')
-
-    def set_colour(self, colour):
-        self._colour = colour
     
-    def set_piece(self, piece_symbol):
-        piece = create_piece(piece_symbol, self._size, self._colour)
-        self._piece = piece
+    def set_piece(self, piece_symbol, colour, rotation):
+        self._piece = piece_symbol
+        self._colour = colour
+        self._rotation = rotation
 
+        piece = create_piece(piece_symbol, self._size, self._colour)
         self.initialize_piece_icons(piece)
     
     def clear_piece(self):

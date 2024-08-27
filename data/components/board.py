@@ -42,19 +42,17 @@ class Board:
 
             blue_piece_symbol = self.bitboards.get_piece_on(square.to_bitboard(), Colour.BLUE)
             red_piece_symbol = self.bitboards.get_piece_on(square.to_bitboard(), Colour.RED)
+            rotation = self.bitboards.get_rotation_on(square.to_bitboard())
 
-            if blue_piece_symbol is not None:
-                square.set_colour(Colour.BLUE)
-                square.set_piece(blue_piece_symbol)
-            elif red_piece_symbol is not None:
-                square.set_colour(Colour.RED)
-                square.set_piece(red_piece_symbol)
-        
+            if (blue_piece_symbol):
+                square.set_piece(piece_symbol=blue_piece_symbol, colour=Colour.BLUE, rotation=rotation)
+            elif (red_piece_symbol):
+                square.set_piece(piece_symbol=red_piece_symbol, colour=Colour.RED, rotation=rotation)
         return square_group
     
     def handle_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            self.process_mouse_press(event)
+            self.process_board_press(event)
         if event.type == pygame.VIDEORESIZE:
             self._square_group.handle_resize_end()
     
@@ -95,11 +93,11 @@ class Board:
 
         return (x, y)
 
-    def process_mouse_press(self, event):
+    def process_board_press(self, event):
         clicked_square = self.cursor.select_square(event.pos, self._square_group)
 
         if (clicked_square is None):
-            self._selected_squares = []
+            self._selected_square = None
             self._square_group.remove_valid_square_overlays()
             
         elif self._selected_square is None:
@@ -140,15 +138,42 @@ class Board:
         return valid_possible_moves
     
     def apply_move(self, src_square, dest_square):
-        piece_symbol = self.bitboards.get_piece_on(src_square.to_bitboard(), self.bitboards.active_colour)
+        src_bitboard = src_square.to_bitboard()
+        dest_bitboard = dest_square.to_bitboard()
+
+        piece_symbol = self.bitboards.get_piece_on(src_bitboard, self.bitboards.active_colour)
+        rotation = self.bitboards.get_rotation_on(src_bitboard)
 
         if piece_symbol is None:
             raise ValueError('Invalid move - no piece found on source square')
         
-        self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour)
+        self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
 
-        self.bitboards.update_bitboard_move(src_square.to_bitboard(), dest_square.to_bitboard())
+        self.bitboards.update_bitboard_move(src_bitboard, dest_bitboard)
+        self.bitboards.update_bitboard_rotation(src_bitboard, dest_bitboard, rotation)
         self.bitboards.flip_colour()
+    
+    def apply_rotation(self, src_square, new_rotation):
+        src_bitboard = src_square.to_bitboard()
+        src_list_position = src_square.to_list_position()
+        piece_symbol = self.bitboards.get_piece_on(src_bitboard, self.bitboards.active_colour)
+
+        self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
+        self.bitboards.update_bitboard_rotation(src_bitboard, src_bitboard, new_rotation)
+        self.bitboards.flip_colour()
+    
+    def rotate_piece(self, clockwise=True):
+        if self._selected_square is None:
+            print('No square selected to rotate (board.py)!')
+            return
+        
+        src_rotation = self.bitboards.get_rotation_on(self._selected_square.to_bitboard())
+        
+        if clockwise:
+            self.apply_rotation(self._selected_square, src_rotation.get_clockwise())
+        else:
+            self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
+        
     
     def notation_to_list_index(self, notation):
         if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):

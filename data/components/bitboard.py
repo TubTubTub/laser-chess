@@ -1,4 +1,4 @@
-from data.components.constants import PIECE_SYMBOLS, Colour
+from data.components.constants import Piece, Colour, Rotation, RotationIndex
 from data.components.fenparser import parse_fen_string
 from data.components import bitboard_helpers as bb_helpers
 
@@ -17,12 +17,22 @@ class BitboardCollection():
     
     def update_bitboard_move(self, src, dest):
         piece = self.get_piece_on(src, self.active_colour)
+
         self.clear_square(src, Colour.BLUE)
         self.clear_square(dest, Colour.BLUE)
         self.clear_square(src, Colour.RED)
         self.clear_square(dest, Colour.RED)
 
         self.set_square(dest, piece, self.active_colour)
+    
+    def update_bitboard_rotation(self, src, dest, new_rotation):
+        self.clear_rotation(src)
+        self.set_rotation(dest, new_rotation)
+    
+    def clear_rotation(self, index):
+        rotation_1, rotation_2 = self.rotation_bitboards
+        self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.clear_square(rotation_1, index)
+        self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.clear_square(rotation_2, index)
     
     def clear_square(self, index, colour):
         piece = self.get_piece_on(index, colour)
@@ -37,6 +47,25 @@ class BitboardCollection():
         self.piece_bitboards[colour][piece] = bb_helpers.clear_square(piece_bitboard, index)
         self.combined_colour_bitboards[colour] = bb_helpers.clear_square(colour_bitboard, index)
         self.combined_all_bitboard = bb_helpers.clear_square(all_bitboard, index)
+    
+    def set_rotation(self, index, rotation):
+        rotation_1, rotation_2 = self.rotation_bitboards
+        
+        match rotation:
+            case Rotation.UP:
+                return
+            case Rotation.RIGHT:
+                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, index)
+                return
+            case Rotation.DOWN:
+                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, index)
+                return
+            case Rotation.LEFT:
+                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, index)
+                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, index)
+                return
+            case _:
+                raise ValueError('Invalid rotation input (bitboard.py):', rotation)
     
     def set_square(self, index, piece, colour):
         piece_bitboard = self.get_piece_bitboard(piece, colour)
@@ -58,6 +87,19 @@ class BitboardCollection():
             return None
     
         return next(
-            (piece for piece in PIECE_SYMBOLS if 
+            (piece for piece in Piece if 
                 bb_helpers.is_occupied(self.get_piece_bitboard(piece, colour), index)),
             None)
+
+    def get_rotation_on(self, index):
+        rotationBits = [bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.SECONDBIT], index), bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.FIRSTBIT], index)]
+
+        match rotationBits:
+            case [False, False]:
+                return Rotation.UP
+            case [False, True]:
+                return Rotation.RIGHT
+            case [True, False]:
+                return Rotation.DOWN
+            case [True, True]:
+                return Rotation.LEFT

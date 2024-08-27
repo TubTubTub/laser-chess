@@ -2,9 +2,8 @@ import pygame
 from enum import IntEnum, StrEnum
 
 SCREEN_SIZE = (1000, 600)
-SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE #DONT USE SCALED
-STARTING_SQUARE_SIZE = SCREEN_SIZE[0] / 10
-PIECE_SYMBOLS = 'frpns'
+SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
+STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 #Board height divded by 8
 EMPTY_BB = 0
 A_FILE_MASK = 0b11111111101111111110111111111011111111101111111110111111111011111111101111111110
 J_FILE_MASK = 0b01111111110111111111011111111101111111110111111111011111111101111111110111111111
@@ -15,24 +14,12 @@ class Colour(IntEnum):
     BLUE = 0
     RED = 1
 
-class Piece(IntEnum):
-    SPHINX = 0
-    PYRAMID = 1
-    ANUBIS = 2
-    SCARAB = 3
-    PHAROAH = 4
-
-    def to_char(self):
-        if self == Piece.SPHINX:
-            return 's'
-        elif self == Piece.PYRAMID:
-            return 'p'
-        elif self == Piece.ANUBIS:
-            return 'n'
-        elif self == Piece.SCARAB:
-            return 'r'
-        elif self == Piece.PHAROAH:
-            return 'f'
+class Piece(StrEnum):
+    SPHINX = 's'
+    PYRAMID = 'p'
+    ANUBIS = 'n'
+    SCARAB = 'r'
+    PHAROAH = 'f'
 
 class Rank(IntEnum):
     ONE = 0
@@ -56,13 +43,45 @@ class File(IntEnum):
     I = 8
     J = 9
 
-class Rotation(IntEnum):
-    HORIZONTAL = 0
-    VERTICAL = 1
-    UP = 1
-    RIGHT = 1
-    DOWN = 0
-    LEFT = 0
+class Rotation(StrEnum):
+    UP = 'a'
+    RIGHT = 'b'
+    DOWN = 'c'
+    LEFT = 'd'
+
+    def to_angle(self):
+        if self == Rotation.UP:
+            return 0
+        elif self == Rotation.RIGHT:
+            return 270
+        elif self == Rotation.DOWN:
+            return 180
+        elif self == Rotation.LEFT:
+            return 90
+    
+    def get_clockwise(self):
+        if self == Rotation.UP:
+            return Rotation.RIGHT
+        elif self == Rotation.RIGHT:
+            return Rotation.DOWN
+        elif self == Rotation.DOWN:
+            return Rotation.LEFT
+        elif self == Rotation.LEFT:
+            return Rotation.UP
+
+    def get_anticlockwise(self):
+        if self == Rotation.UP:
+            return Rotation.LEFT
+        elif self == Rotation.RIGHT:
+            return Rotation.UP
+        elif self == Rotation.DOWN:
+            return Rotation.RIGHT
+        elif self == Rotation.LEFT:
+            return Rotation.DOWN
+
+class RotationIndex(IntEnum):
+    FIRSTBIT = 0
+    SECONDBIT = 1
 
 class IMAGE_TYPE(StrEnum):
     HIGH_RES_PIECE = 'high'

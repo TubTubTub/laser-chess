@@ -1,8 +1,8 @@
-from data.components.constants import Colour, Rotation, PIECE_SYMBOLS
+from data.components.constants import Colour, RotationIndex, Rotation, Piece
 
 def parse_fen_string(fen_string):
     #sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa r
-    piece_bitboards = [{char: 0b0 for char in PIECE_SYMBOLS}, {char: 0b0 for char in PIECE_SYMBOLS}]
+    piece_bitboards = [{char: 0b0 for char in Piece}, {char: 0b0 for char in Piece}]
     rotation_bitboards = [0b0, 0b0]
     combined_colour_bitboards = [0b0, 0b0]
     combined_all_bitboard = 0
@@ -14,7 +14,7 @@ def parse_fen_string(fen_string):
     for index, character in enumerate(part_1):
         square = rank * 10 + file
 
-        if character.lower() in PIECE_SYMBOLS:
+        if character.lower() in Piece:
             if character.isupper():
                 piece_bitboards[Colour.BLUE][character.lower()] |= 1 << square
 
@@ -23,14 +23,15 @@ def parse_fen_string(fen_string):
                 
             rotation = part_1[index + 1]
             match rotation:
-                case 'a':
-                    rotation_bitboards[Rotation.VERTICAL] |= Rotation.UP << square
-                case 'b':
-                    rotation_bitboards[Rotation.HORIZONTAL] |= Rotation.RIGHT << square
-                case 'c':
+                case Rotation.UP:
                     pass
-                case 'd':
-                    pass
+                case Rotation.RIGHT:
+                    rotation_bitboards[RotationIndex.FIRSTBIT] |= 1 << square
+                case Rotation.DOWN:
+                    rotation_bitboards[RotationIndex.SECONDBIT] |= 1 << square
+                case Rotation.LEFT:
+                    rotation_bitboards[RotationIndex.SECONDBIT] |= 1 << square
+                    rotation_bitboards[RotationIndex.FIRSTBIT] |= 1 << square
                 case _:
                     raise ValueError('Invalid FEN String - piece character not followed by rotational character')
             
@@ -40,10 +41,8 @@ def parse_fen_string(fen_string):
         elif character == '/':
             rank = rank - 1
             file = 0
-        elif character in 'abcd':
+        elif character in Rotation:
             continue
-        else:
-            print(character)
             raise ValueError('Invalid FEN String - invalid character found')
     
     if (part_2 == 'b'):
@@ -51,7 +50,7 @@ def parse_fen_string(fen_string):
     else:
         colour = Colour.RED
     
-    for piece in PIECE_SYMBOLS:
+    for piece in Piece:
         combined_colour_bitboards[Colour.BLUE] |= piece_bitboards[Colour.BLUE][piece]
         combined_colour_bitboards[Colour.RED] |= piece_bitboards[Colour.RED][piece]
     
