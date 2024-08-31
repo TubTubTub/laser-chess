@@ -77,7 +77,7 @@ class BitboardCollection():
         self.combined_all_bitboard = bb_helpers.set_square(all_bitboard, index)
     
     def flip_colour(self):
-        self.active_colour = int(self.active_colour == 0)
+        self.active_colour = self.active_colour.flip_colour()
     
     def get_piece_bitboard(self, piece, colour):
         return self.piece_bitboards[colour][piece]

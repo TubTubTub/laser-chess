@@ -1,6 +1,5 @@
 import pygame
 
-from data.settings import app_settings
 from data.components.cursor import Cursor
 from data.components.customspritegroup import CustomSpriteGroup
 from data.components.square import Square
@@ -10,12 +9,13 @@ from data.components import bitboard
 from data.components import bitboard_helpers as bb_helpers
 
 class Board:
-    def __init__(self, screen, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
+    def __init__(self, screen, app_settings, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.game_settings = app_settings
         self.screen = screen
         self.cursor = Cursor()
 
         self.bitboards = bitboard.BitboardCollection(fen_string)
+        self.status_text = self.bitboards.active_colour.name
 
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
@@ -23,6 +23,8 @@ class Board:
         self._square_group = self.initialize_square_group()
 
         self._selected_square = None
+        self._pressed_on_board = False
+        self._paused = False
 
     def initialize_square_group(self):
         square_group = CustomSpriteGroup()
@@ -52,9 +54,18 @@ class Board:
     
     def handle_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            self.process_board_press(event)
+            self._pressed_on_board = True
         if event.type == pygame.VIDEORESIZE:
             self._square_group.handle_resize_end()
+    
+    @property
+    def clicked(self):
+        return self._pressed_on_board and not self._paused
+    
+    def play_turn(self):
+        mouse_position = pygame.mouse.get_pos()
+        self.process_board_press(mouse_position)
+        self._pressed_on_board = False
     
     def get_move(self):
         try:
@@ -68,7 +79,7 @@ class Board:
         self.cursor.update()
         self._square_group.draw(self.screen)
 
-    def resize_board(self):
+    def handle_resize(self):
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
         self._square_size = self._board_size[0] / 10
@@ -93,8 +104,9 @@ class Board:
 
         return (x, y)
 
-    def process_board_press(self, event):
-        clicked_square = self.cursor.select_square(event.pos, self._square_group)
+    def process_board_press(self, mouse_position):
+        print('rng')
+        clicked_square = self.cursor.select_square(mouse_position, self._square_group)
 
         if (clicked_square is None):
             self._selected_square = None
@@ -114,6 +126,7 @@ class Board:
 
             if (clicked_square.to_bitboard() & valid_squares != EMPTY_BB):
                 self.apply_move(self._selected_square, clicked_square)
+                self.status_text = self.bitboards.active_colour.name
 
             self._square_group.remove_valid_square_overlays()
             self._selected_square = None
@@ -173,7 +186,6 @@ class Board:
             self.apply_rotation(self._selected_square, src_rotation.get_clockwise())
         else:
             self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
-        
     
     def notation_to_list_index(self, notation):
         if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):

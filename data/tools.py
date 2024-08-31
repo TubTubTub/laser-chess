@@ -45,7 +45,7 @@ class Control:
     
     def resize_window_event(self):
         self.update_window_size()
-        self.state.resize()
+        self.state.handle_resize()
         self.update()
     
     def draw_fps(self):
@@ -89,7 +89,7 @@ class _State:
     def update(self):
         raise NotImplementedError
 
-    def resize(self):
+    def handle_resize(self):
         raise NotImplementedError
     
     def get_event(self, event):

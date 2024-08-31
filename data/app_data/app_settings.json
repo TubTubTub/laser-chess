@@ -1,4 +1,5 @@
 {
     "primaryBoardColour": "0xB98766",
-    "secondaryBoardColour": "0xF3D8B8"
+    "secondaryBoardColour": "0xF3D8B8",
+    "primaryFont": "resources/fonts/NewAmsterdam-Regular.ttf"
 }

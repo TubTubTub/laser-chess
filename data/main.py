@@ -1,8 +1,6 @@
-import pygame
 import win32gui
 import win32con
 
-import data.setup
 from data.tools import Control
 from data.states.game import Game
 from data.states.menu import Menu
