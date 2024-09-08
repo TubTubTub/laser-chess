@@ -1,7 +1,7 @@
 import pygame
 from data.components.piece import create_piece
 from data.tools import smoothscale_and_cache
-from data.components.constants import STARTING_SQUARE_SIZE, IMAGE_TYPE
+from data.components.constants import STARTING_SQUARE_SIZE, ImageType
 
 class Square(pygame.sprite.Sprite):
     '''self.drawing_index: Since the initialization loop starts drawing index(0, 0) from the top of the screen, and
@@ -18,13 +18,15 @@ class Square(pygame.sprite.Sprite):
         self._size = size
         self._board_colour = board_colour
         self._colour = None
-        self._piece = None
+        self.piece = None
         self._rotation = None
 
         self._empty_layer = pygame.Surface((self._size, self._size))
         self._empty_layer.fill(self._board_colour)
         self._low_res_layer = None
         self._high_res_layer = None
+        self._high_res_icon = None
+        self._low_res_icon = None
 
         self.selected = False
 
@@ -65,7 +67,7 @@ class Square(pygame.sprite.Sprite):
     def handle_resize(self, new_size, new_position):
         self._size = new_size
 
-        if self._piece is None:
+        if self.piece is None:
             self.set_square_image('empty')
         else:
             self.set_square_image('low')
@@ -77,7 +79,7 @@ class Square(pygame.sprite.Sprite):
         self.rect.topleft = self.calculate_rect_position(new_size, new_position)
     
     def handle_resize_end(self):
-        if self._piece:
+        if self.piece:
             self.set_square_image('high')
         else:
             self.set_square_image('empty')
@@ -87,15 +89,15 @@ class Square(pygame.sprite.Sprite):
     
     def set_square_image(self, type):
         match (type):
-            case IMAGE_TYPE.LOW_RES_PIECE:
+            case ImageType.LOW_RES_PIECE:
                 self.image = pygame.transform.smoothscale(self._low_res_layer, (self._size + 1, self._size + 1))
                 return
 
-            case IMAGE_TYPE.EMPTY_PIECE:
+            case ImageType.EMPTY_PIECE:
                 self.image = pygame.transform.scale(self._empty_layer, (self._size + 1, self._size + 1))
                 return
 
-            case IMAGE_TYPE.HIGH_RES_PIECE:
+            case ImageType.HIGH_RES_PIECE:
                 self.image = pygame.transform.scale(self._high_res_layer, (self._size + 1, self._size + 1))
                 piece_layer = smoothscale_and_cache(self._high_res_icon, (self._size + 1, self._size + 1))
                 self.image.blit(piece_layer, (0, 0))
@@ -108,13 +110,13 @@ class Square(pygame.sprite.Sprite):
         self.image.blit(pygame.transform.scale(self._outline, (self._size + 1, self._size + 1)), (0, 0))
     
     def remove_overlay(self):
-        if (self._piece):
+        if (self.piece):
             self.set_square_image('high')
         else:
             self.set_square_image('empty')
     
     def set_piece(self, piece_symbol, colour, rotation):
-        self._piece = piece_symbol
+        self.piece = piece_symbol
         self._colour = colour
         self._rotation = rotation
 
@@ -122,9 +124,9 @@ class Square(pygame.sprite.Sprite):
         self.initialize_piece_icons(piece)
     
     def clear_piece(self):
-        self._piece = None
+        self.piece = None
         self.image = pygame.Surface((self._size, self._size))
         self.image.fill(self._board_colour)
     
     def has_piece(self):
-        return (self._piece is not None)
+        return (self.piece is not None)

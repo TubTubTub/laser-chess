@@ -2,7 +2,7 @@ import pygame
 from data.setup import GRAPHICS
 from data.components.constants import Colour
 
-class Piece(pygame.sprite.Sprite):
+class _Piece(pygame.sprite.Sprite):
     def __init__(self, size, high_res_svg, low_res_png, colour):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.transform.scale(high_res_svg, (size, size))
@@ -14,7 +14,7 @@ class Piece(pygame.sprite.Sprite):
 
         self.type = None
 
-class Sphinx(Piece):
+class Sphinx(_Piece):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
@@ -24,7 +24,7 @@ class Sphinx(Piece):
             
         self.type = "sphinx"
 
-class Anubis(Piece):
+class Anubis(_Piece):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
@@ -34,7 +34,7 @@ class Anubis(Piece):
             
         self.type = "anubis"
 
-class Pyramid(Piece):
+class Pyramid(_Piece):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
@@ -44,7 +44,7 @@ class Pyramid(Piece):
             
         self.type = "pyramid"
 
-class Scarab(Piece):
+class Scarab(_Piece):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
@@ -54,7 +54,7 @@ class Scarab(Piece):
             
         self.type = "scarab"
 
-class Pharoah(Piece):
+class Pharoah(_Piece):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:

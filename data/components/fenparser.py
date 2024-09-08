@@ -10,11 +10,14 @@ def parse_fen_string(fen_string):
 
     rank = 7
     file = 0
+
+    piece_count = {char.lower(): 0 for char in Piece} | {char.upper(): 0 for char in Piece}
     
     for index, character in enumerate(part_1):
         square = rank * 10 + file
 
         if character.lower() in Piece:
+            piece_count[character] += 1
             if character.isupper():
                 piece_bitboards[Colour.BLUE][character.lower()] |= 1 << square
 
@@ -43,7 +46,13 @@ def parse_fen_string(fen_string):
             file = 0
         elif character in Rotation:
             continue
+        else:
             raise ValueError('Invalid FEN String - invalid character found')
+    
+    if piece_count['s'] != 1 or piece_count['S'] != 1:
+        raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')
+    elif piece_count['f'] != 1 or piece_count['F'] != 1:
+        raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
     
     if (part_2 == 'b'):
         colour = Colour.BLUE

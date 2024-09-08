@@ -1,5 +1,6 @@
 import pygame
 from data.components.constants import EMPTY_BB
+from data.components import bitboard_helpers as bb_helpers
 
 class CustomSpriteGroup(pygame.sprite.Group):
     def __init__(self):
@@ -14,6 +15,10 @@ class CustomSpriteGroup(pygame.sprite.Group):
     def handle_resize_end(self):
         for sprite in self.sprites():
             sprite.handle_resize_end()
+
+    def clear_square(self, src_bitboard):
+        list_position = bb_helpers.bitboard_to_index(src_bitboard)
+        self.square_list[list_position].clear_piece()
     
     def update_squares_move(self, src, dest, new_piece_symbol, new_colour, rotation):
         self.square_list[src].clear_piece()
@@ -50,10 +55,8 @@ class CustomSpriteGroup(pygame.sprite.Group):
 
     def bitboard_to_list_positions(self, bitboard):
         list_positions = []
-        while (bitboard != EMPTY_BB):
-            lsb = bitboard & -bitboard
-            bitboard = bitboard ^ lsb
 
-            list_positions.append(lsb.bit_length() - 1)
+        for square in bb_helpers.occupied_squares(bitboard):
+            list_positions.append(bb_helpers.bitboard_to_index(square))
         
         return list_positions

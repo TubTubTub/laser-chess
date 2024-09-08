@@ -14,7 +14,7 @@ class Colour(IntEnum):
     BLUE = 0
     RED = 1
 
-    def flip_colour(self):
+    def get_flipped_colour(self):
         if self == Colour.BLUE:
             return Colour.RED
         elif self == Colour.RED:
@@ -84,12 +84,26 @@ class Rotation(StrEnum):
             return Rotation.RIGHT
         elif self == Rotation.LEFT:
             return Rotation.DOWN
+    
+    # def get_opposite(self):
+    #     return self.get_clockwise().get_clockwise()
 
 class RotationIndex(IntEnum):
     FIRSTBIT = 0
     SECONDBIT = 1
 
-class IMAGE_TYPE(StrEnum):
+class ImageType(StrEnum):
     HIGH_RES_PIECE = 'high'
     LOW_RES_PIECE = 'low'
     EMPTY_PIECE = 'empty'
+
+class LaserType(IntEnum):
+    END = 0
+    STRAIGHT = 1
+    CORNER = 2
+
+class LaserDirection(IntEnum):
+    FROM_TOP = 1
+    FROM_RIGHT = 2
+    FROM_BOTTOM = 3
+    FROM_LEFT = 4

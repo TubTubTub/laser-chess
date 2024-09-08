@@ -27,3 +27,20 @@ def set_square(bitboard, target_bitboard):
 
 def index_to_bitboard(index):
     return (1 << index)
+
+def bitboard_to_index(bitboard):
+    return bitboard.bit_length() - 1
+
+def bitboard_to_coords(bitboard):
+    list_position = bitboard_to_index(bitboard)
+    x = list_position % 10
+    y = list_position // 10
+
+    return x, y
+
+def occupied_squares(bitboard):
+    while bitboard != EMPTY_BB:
+        lsb_square = bitboard & -bitboard
+        bitboard = bitboard ^ lsb_square
+
+        yield lsb_square

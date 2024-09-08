@@ -3,8 +3,9 @@ import pygame
 from data.components.cursor import Cursor
 from data.components.customspritegroup import CustomSpriteGroup
 from data.components.square import Square
+from data.components.laser import Laser
 
-from data.components.constants import Colour, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.components.constants import Colour, Piece, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
 from data.components import bitboard_helpers as bb_helpers
 
@@ -12,15 +13,17 @@ class Board:
     def __init__(self, screen, app_settings, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.game_settings = app_settings
         self.screen = screen
-        self.cursor = Cursor()
 
         self.bitboards = bitboard.BitboardCollection(fen_string)
         self.status_text = self.bitboards.active_colour.name
+        self.has_moved_piece = False
 
+        self._cursor = Cursor()
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
         self._square_size = self._board_size[0] / 10
         self._square_group = self.initialize_square_group()
+        self._laser_shapes = []
 
         self._selected_square = None
         self._pressed_on_board = False
@@ -62,7 +65,7 @@ class Board:
     def clicked(self):
         return self._pressed_on_board and not self._paused
     
-    def play_turn(self):
+    def handle_click(self):
         mouse_position = pygame.mouse.get_pos()
         self.process_board_press(mouse_position)
         self._pressed_on_board = False
@@ -74,10 +77,17 @@ class Board:
             return (input1, input2)
         except ValueError:
             print('Board.py: Invalid inputs!')
+    
+    def check_win(self):
+        if self.return_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:
+            return self.bitboards.active_colour.get_flipped_colour()
+
+        return None
 
     def draw_board(self):
-        self.cursor.update()
+        self._cursor.update()
         self._square_group.draw(self.screen)
+        self.draw_laser()
 
     def handle_resize(self):
         self._board_size = self.calculate_board_size(self.screen)
@@ -105,17 +115,16 @@ class Board:
         return (x, y)
 
     def process_board_press(self, mouse_position):
-        print('rng')
-        clicked_square = self.cursor.select_square(mouse_position, self._square_group)
+        clicked_square = self._cursor.select_square(mouse_position, self._square_group)
 
         if (clicked_square is None):
             self._selected_square = None
             self._square_group.remove_valid_square_overlays()
             
         elif self._selected_square is None:
-            if (clicked_square._piece is None) or not(self.check_valid_src(clicked_square.to_bitboard())):
+            if (clicked_square.piece is None) or not (self.check_valid_src(clicked_square.to_bitboard())):
                 return
-            else:
+            elif clicked_square.piece != Piece.SPHINX:
                 self._selected_square = clicked_square
                 valid_squares = self.return_valid_squares(clicked_square.to_bitboard())
                 self._square_group.add_valid_square_overlays(valid_squares)
@@ -126,7 +135,6 @@ class Board:
 
             if (clicked_square.to_bitboard() & valid_squares != EMPTY_BB):
                 self.apply_move(self._selected_square, clicked_square)
-                self.status_text = self.bitboards.active_colour.name
 
             self._square_group.remove_valid_square_overlays()
             self._selected_square = None
@@ -150,6 +158,17 @@ class Board:
         valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
         return valid_possible_moves
     
+    def return_all_valid_squares(self, colour):
+        all_valid_squares = EMPTY_BB
+        for piece in Piece:
+            piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
+
+            for square in bb_helpers.occupied_squares(piece_bitboard):
+                valid_moves = self.return_valid_squares(square)
+                all_valid_squares = all_valid_squares | valid_moves
+            
+        return all_valid_squares
+    
     def apply_move(self, src_square, dest_square):
         src_bitboard = src_square.to_bitboard()
         dest_bitboard = dest_square.to_bitboard()
@@ -164,7 +183,9 @@ class Board:
 
         self.bitboards.update_bitboard_move(src_bitboard, dest_bitboard)
         self.bitboards.update_bitboard_rotation(src_bitboard, dest_bitboard, rotation)
-        self.bitboards.flip_colour()
+
+        self.has_moved_piece = True
+        self.status_text = self.bitboards.active_colour.name
     
     def apply_rotation(self, src_square, new_rotation):
         src_bitboard = src_square.to_bitboard()
@@ -173,7 +194,8 @@ class Board:
 
         self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
         self.bitboards.update_bitboard_rotation(src_bitboard, src_bitboard, new_rotation)
-        self.bitboards.flip_colour()
+        self.has_moved_piece = True
+        self.status_text = self.bitboards.active_colour.name
     
     def rotate_piece(self, clockwise=True):
         if self._selected_square is None:
@@ -187,6 +209,32 @@ class Board:
         else:
             self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
     
+    def capture_piece(self, square_bitboard):
+        self.bitboards.clear_square(square_bitboard, Colour.BLUE)
+        self.bitboards.clear_square(square_bitboard, Colour.RED)
+
+        self._square_group.clear_square(square_bitboard)
+    
+    def fire_laser(self):
+        if self.bitboards.active_colour == Colour.BLUE:
+            laser_colour = self.game_settings.laserColourBlue
+        else:
+            laser_colour = self.game_settings.laserColourRed
+        laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
+
+        captured_square, laser_shapes = laser.calculate_trajectory()
+        self._laser_shapes = laser_shapes
+        if captured_square:
+            print('captured_square:')
+            bb_helpers.print_bitboard(captured_square)
+            print(captured_square)
+            self.capture_piece(captured_square)
+    
+    def draw_laser(self):
+        for shape, index in self._laser_shapes:
+            position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
+            pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))
+
     def notation_to_list_index(self, notation):
         if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):
             rank = int(notation[1]) - 1
