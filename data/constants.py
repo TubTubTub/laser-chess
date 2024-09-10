@@ -92,6 +92,10 @@ class RotationIndex(IntEnum):
     FIRSTBIT = 0
     SECONDBIT = 1
 
+class MoveType(StrEnum):
+    MOVE = 'm'
+    ROTATE = 'r'
+
 class ImageType(StrEnum):
     HIGH_RES_PIECE = 'high'
     LOW_RES_PIECE = 'low'

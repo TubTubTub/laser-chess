@@ -1,6 +1,6 @@
 import pygame
-from data.components.constants import EMPTY_BB
-from data.components import bitboard_helpers as bb_helpers
+from data.constants import EMPTY_BB
+from data.utils import bitboard_helpers as bb_helpers
 
 class CustomSpriteGroup(pygame.sprite.Group):
     def __init__(self):

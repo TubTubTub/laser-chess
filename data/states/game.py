@@ -2,7 +2,7 @@ import pygame
 from data.tools import _State
 from data.components.board import Board
 from data.components.elements import Label, Button
-from data.settings import app_settings
+from data.utils.settings_helpers import app_settings
 
 from functools import partial
 

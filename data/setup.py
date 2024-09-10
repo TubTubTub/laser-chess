@@ -4,7 +4,7 @@ import ctypes
 import sys
 from pathlib import Path
 from data.tools import load_all_gfx
-from data.components.constants import SCREEN_SIZE, SCREEN_FLAGS
+from data.constants import SCREEN_SIZE, SCREEN_FLAGS
 
 pygame.init()
 pygame.display.set_mode(SCREEN_SIZE, SCREEN_FLAGS)

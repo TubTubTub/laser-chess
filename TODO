@@ -1,0 +1,5 @@
+Implement MVC
+Implement Move object with Move Type
+Make bitboards a dictionary
+Read app settings from json instead of making an instance
+Implement win condition

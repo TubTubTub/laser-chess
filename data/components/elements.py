@@ -1,6 +1,6 @@
 import pygame
 import pygame.freetype
-from data.settings import app_settings
+from data.utils.settings_helpers import app_settings
 
 class _GUIElement:
     def __init__(self):

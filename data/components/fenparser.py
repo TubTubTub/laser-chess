@@ -1,4 +1,4 @@
-from data.components.constants import Colour, RotationIndex, Rotation, Piece
+from data.constants import Colour, RotationIndex, Rotation, Piece
 
 def parse_fen_string(fen_string):
     #sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa r

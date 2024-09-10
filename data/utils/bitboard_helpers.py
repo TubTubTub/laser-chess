@@ -1,4 +1,4 @@
-from data.components.constants import Rank, File, EMPTY_BB
+from data.constants import Rank, File, EMPTY_BB
 
 def print_bitboard(bitboard):
     if (bitboard >= (2 ** 80)):

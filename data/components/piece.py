@@ -1,6 +1,6 @@
 import pygame
 from data.setup import GRAPHICS
-from data.components.constants import Colour
+from data.constants import Colour
 
 class _Piece(pygame.sprite.Sprite):
     def __init__(self, size, high_res_svg, low_res_png, colour):

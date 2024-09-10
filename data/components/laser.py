@@ -1,6 +1,6 @@
 import pygame
-from data.components import bitboard_helpers as bb_helpers
-from data.components.constants import Piece, Colour, Rotation, LaserType, LaserDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.utils import bitboard_helpers as bb_helpers
+from data.constants import Piece, Colour, Rotation, LaserType, LaserDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 
 class Laser:
     def __init__(self, screen, bitboards, laser_colour="ff0000"):

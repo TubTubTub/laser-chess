@@ -1,7 +1,7 @@
 import pygame
 from data.components.piece import create_piece
 from data.tools import smoothscale_and_cache
-from data.components.constants import STARTING_SQUARE_SIZE, ImageType
+from data.constants import STARTING_SQUARE_SIZE, ImageType
 
 class Square(pygame.sprite.Sprite):
     '''self.drawing_index: Since the initialization loop starts drawing index(0, 0) from the top of the screen, and
