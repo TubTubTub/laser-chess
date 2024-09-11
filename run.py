@@ -7,6 +7,7 @@ print('Running run.py...')
 
 board = Board()
 def test():
+    print('test 1')
     print(board)
     move = board.get_move()
     board.apply_move(move)

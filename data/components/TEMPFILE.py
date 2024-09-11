@@ -1,10 +1,15 @@
 from data.components.customspritegroup import CustomSpriteGroup
 from data.components.square import Square
 from data.components.cursor import Cursor
+from data.utils.settings_helpers import get_settings_json
 self._cursor = Cursor()
+        self.game_settings = get_settings_json()
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
 
+        self._square_size = self._board_size[0] / 10
+        self._square_group = self.initialize_square_group()
+        self.game_settings = get_settings_json()
 def initialize_square_group(self):
     square_group = CustomSpriteGroup()
 

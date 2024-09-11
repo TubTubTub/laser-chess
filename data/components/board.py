@@ -4,18 +4,14 @@ from data.components.move import Move
 from data.constants import Colour, Piece, Rank, File, MoveType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
-from data.utils.settings_helpers import get_settings_json
 from data.utils import input_helpers as ip_helpers
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
-        self.game_settings = get_settings_json()
         self.bitboards = bitboard.BitboardCollection(fen_string)
         self.status_text = self.bitboards.active_colour.name
         self.has_moved_piece = False
 
-        self._square_size = self._board_size[0] / 10
-        self._square_group = self.initialize_square_group()
         self._laser_shapes = []
         self._selected_square = None
         self._pressed_on_board = False
@@ -26,8 +22,8 @@ class Board:
         return self._pressed_on_board and not self._paused
     
     def __str__(self):
+        characters = ''
         for rank in reversed(Rank):
-            characters = ''
 
             for file in File:
                 mask = 1 << (rank * 10 + file)
@@ -35,14 +31,17 @@ class Board:
                 red_piece = self.bitboards.get_piece_on(mask, Colour.RED)
 
                 if blue_piece:
-                    characters += f'{blue_piece} '
+                    characters += f'{blue_piece}  '
                 elif red_piece:
-                    characters += f'{red_piece} '
+                    characters += f'{red_piece}  '
                 else:
-                    characters += '0 '
+                    characters += '0  '
 
-            print(characters + '\n')
-    
+            characters += '\n'
+        
+        characters += f'CURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}'
+        return characters
+
     def get_move(self):
         while True:
             try:
@@ -53,7 +52,7 @@ class Board:
 
                 return Move.input_from_notation(move_type, src_square, dest_square, rotation)
             except ValueError as error:
-                print(error)
+                print('Input error (Board.get_move): ' + str(error))
     
     def check_win(self):
         if self.return_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:

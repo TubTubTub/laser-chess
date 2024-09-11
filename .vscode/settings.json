@@ -1,4 +1,10 @@
 {
+    "code-runner.executorMap": {
+        "python": "python run.py"
+    },
+    "code-runner.enableAppInsights": false,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.ignoreSelection": true,
     "files.exclude": {
         "**/*.pyc": {"when": "$(basename).py"},
         "**/__pycache__": true
