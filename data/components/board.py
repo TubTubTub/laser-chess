@@ -1,9 +1,4 @@
-import pygame
-
-from data.components.cursor import Cursor
-from data.components.customspritegroup import CustomSpriteGroup
-from data.components.square import Square
-from data.components.laser import Laser
+# from data.components.laser import Laser
 from data.components.move import Move
 
 from data.constants import Colour, Piece, Rank, File, MoveType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
@@ -19,7 +14,6 @@ class Board:
         self.status_text = self.bitboards.active_colour.name
         self.has_moved_piece = False
 
-        self._cursor = Cursor()
         self._square_size = self._board_size[0] / 10
         self._square_group = self.initialize_square_group()
         self._laser_shapes = []
@@ -143,22 +137,22 @@ class Board:
 
         self._square_group.clear_square(square_bitboard)
     
-    def fire_laser(self):
-        if self.bitboards.active_colour == Colour.BLUE:
-            laser_colour = self.game_settings.laserColourBlue
-        else:
-            laser_colour = self.game_settings.laserColourRed
-        laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
+    # def fire_laser(self):
+    #     if self.bitboards.active_colour == Colour.BLUE:
+    #         laser_colour = self.game_settings.laserColourBlue
+    #     else:
+    #         laser_colour = self.game_settings.laserColourRed
+    #     laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
 
-        captured_square, laser_shapes = laser.calculate_trajectory()
-        self._laser_shapes = laser_shapes
-        if captured_square:
-            print('captured_square:')
-            bb_helpers.print_bitboard(captured_square)
-            print(captured_square)
-            self.capture_piece(captured_square)
+    #     captured_square, laser_shapes = laser.calculate_trajectory()
+    #     self._laser_shapes = laser_shapes
+    #     if captured_square:
+    #         print('captured_square:')
+    #         bb_helpers.print_bitboard(captured_square)
+    #         print(captured_square)
+    #         self.capture_piece(captured_square)
     
-    def draw_laser(self):
-        for shape, index in self._laser_shapes:
-            position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
-            pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))
+    # def draw_laser(self):
+    #     for shape, index in self._laser_shapes:
+    #         position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
+    #         pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))

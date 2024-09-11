@@ -1,4 +1,7 @@
-
+from data.components.customspritegroup import CustomSpriteGroup
+from data.components.square import Square
+from data.components.cursor import Cursor
+self._cursor = Cursor()
         self._board_size = self.calculate_board_size(self.screen)
         self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
 
