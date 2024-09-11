@@ -1,8 +1,9 @@
-from data.constants import MoveType, Rotation
+from data.constants import MoveType, Rotation, RotationIndex
 from data.utils.bitboard_helpers import index_to_bitboard
 
 class Move():
-    def __init__(self, src, dest=None, rotation=None):
+    def __init__(self, move_type, src, dest=None, rotation=None):
+        self.move_type = move_type
         self.src = src
         self.dest = dest
         self.rotation = rotation
@@ -15,27 +16,13 @@ class Move():
             
             elif move_type == MoveType.ROTATE:
                 src_bitboard = notation_to_bitboard(src)
-                rotation_bitboard = rotation_to_bitboard(rotation)
             
-            return move_cls(src_bitboard, dest_bitboard, rotation_bitboard)
+            return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
             print(error)
-        
-    
+
 def notation_to_bitboard(notation):
-    if not (97 <= ord(notation[0]) <= 106):
-        raise ValueError('Invalid notation - file is out of range!')
-    elif not (0 <= int(notation[1]) <= 10):
-        raise ValueError('Invalid notation - rank is out of range!')
-    
     index = (notation[0] - 1) * 10 + ord(notation[1]) - 97
+    print('CONVERTING NOTATION:', notation, index)
 
     return index_to_bitboard(index)
-
-def rotation_to_bitboard(rotation):
-    if rotation not in Rotation:
-        raise ValueError('Invalid notation - rotation is invalid!')
-
-    raise NotImplementedError
-    
-    return Rotation[rotation]

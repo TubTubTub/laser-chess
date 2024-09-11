@@ -15,7 +15,7 @@ class BitboardCollection():
         except ValueError:
             print('Please input a valid FEN string')
     
-    def update_bitboard_move(self, src, dest):
+    def update_move(self, src, dest):
         piece = self.get_piece_on(src, self.active_colour)
 
         self.clear_square(src, Colour.BLUE)
@@ -25,7 +25,7 @@ class BitboardCollection():
 
         self.set_square(dest, piece, self.active_colour)
     
-    def update_bitboard_rotation(self, src, dest, new_rotation):
+    def update_rotation(self, src, dest, new_rotation):
         self.clear_rotation(src)
         self.set_rotation(dest, new_rotation)
     
@@ -82,13 +82,13 @@ class BitboardCollection():
     def get_piece_bitboard(self, piece, colour):
         return self.piece_bitboards[colour][piece]
     
-    def get_piece_on(self, index, colour):
-        if not (bb_helpers.is_occupied(self.combined_colour_bitboards[colour], index)):
+    def get_piece_on(self, target_bitboard, colour):
+        if not (bb_helpers.is_occupied(self.combined_colour_bitboards[colour], target_bitboard)):
             return None
     
         return next(
             (piece for piece in Piece if 
-                bb_helpers.is_occupied(self.get_piece_bitboard(piece, colour), index)),
+                bb_helpers.is_occupied(self.get_piece_bitboard(piece, colour), target_bitboard)),
             None)
 
     def get_rotation_on(self, index):

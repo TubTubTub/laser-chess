@@ -1,3 +1,7 @@
+
+        self._board_size = self.calculate_board_size(self.screen)
+        self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
+
 def initialize_square_group(self):
     square_group = CustomSpriteGroup()
 

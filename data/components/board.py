@@ -6,22 +6,20 @@ from data.components.square import Square
 from data.components.laser import Laser
 from data.components.move import Move
 
-from data.constants import Colour, Piece, Rank, File, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB, APP_SETTINGS_URL
+from data.constants import Colour, Piece, Rank, File, MoveType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils.settings_helpers import get_settings_json
+from data.utils import input_helpers as ip_helpers
 
 class Board:
-    def __init__(self, screen, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
+    def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.game_settings = get_settings_json()
-        self.screen = screen
         self.bitboards = bitboard.BitboardCollection(fen_string)
         self.status_text = self.bitboards.active_colour.name
         self.has_moved_piece = False
 
         self._cursor = Cursor()
-        self._board_size = self.calculate_board_size(self.screen)
-        self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
         self._square_size = self._board_size[0] / 10
         self._square_group = self.initialize_square_group()
         self._laser_shapes = []
@@ -33,12 +31,35 @@ class Board:
     def clicked(self):
         return self._pressed_on_board and not self._paused
     
+    def __str__(self):
+        for rank in reversed(Rank):
+            characters = ''
+
+            for file in File:
+                mask = 1 << (rank * 10 + file)
+                blue_piece = self.bitboards.get_piece_on(mask, Colour.BLUE)
+                red_piece = self.bitboards.get_piece_on(mask, Colour.RED)
+
+                if blue_piece:
+                    characters += f'{blue_piece} '
+                elif red_piece:
+                    characters += f'{red_piece} '
+                else:
+                    characters += '0 '
+
+            print(characters + '\n')
+    
     def get_move(self):
-        move_type = input('Input move type (m/r): ')
-        src_square = input("From: ")
-        dest_square = input("To: ")
-        rotation = input("Enter rotation (a/b/c/d): ")
-        return (input1, input2)
+        while True:
+            try:
+                move_type = ip_helpers.parse_move_type(input('Input move type (m/r): '))
+                src_square = ip_helpers.parse_notation(input("From: "))
+                dest_square = ip_helpers.parse_notation(input("To: "))
+                rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
+
+                return Move.input_from_notation(move_type, src_square, dest_square, rotation)
+            except ValueError as error:
+                print(error)
     
     def check_win(self):
         if self.return_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:
@@ -46,8 +67,8 @@ class Board:
 
         return None
 
-    def check_valid_src(self, src_square):
-        return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
+    # def check_valid_src(self, src_square):
+    #     return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
     
     def return_valid_squares(self, src_bitboard):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9
@@ -76,33 +97,33 @@ class Board:
             
         return all_valid_squares
     
-    def apply_move(self, src_square, dest_square):
-        src_bitboard = src_square.to_bitboard()
-        dest_bitboard = dest_square.to_bitboard()
-
-        piece_symbol = self.bitboards.get_piece_on(src_bitboard, self.bitboards.active_colour)
-        rotation = self.bitboards.get_rotation_on(src_bitboard)
-
+    def apply_move(self, move):
+        piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
         if piece_symbol is None:
             raise ValueError('Invalid move - no piece found on source square')
-        
-        self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
 
-        self.bitboards.update_bitboard_move(src_bitboard, dest_bitboard)
-        self.bitboards.update_bitboard_rotation(src_bitboard, dest_bitboard, rotation)
+        if move == MoveType.MOVE:
+            if move.dest not in self.return_valid_squares(move.src):
+                raise ValueError('Invalid move - destination square is occupied')
+
+            piece_rotation = self.bitboards.get_rotation_on(move.src)
+            
+            # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
+
+            self.bitboards.update_move(move.src, move.dest)
+            self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
+
+        elif move == MoveType.ROTATE:
+            # src_bitboard = src_square.to_bitboard()
+            # src_list_position = src_square.to_list_position()
+
+            piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+
+            # self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
+            self.bitboards.update_rotation(move.src, move.src, move.rotation)
 
         self.has_moved_piece = True
-        self.status_text = self.bitboards.active_colour.name
-    
-    def apply_rotation(self, src_square, new_rotation):
-        src_bitboard = src_square.to_bitboard()
-        src_list_position = src_square.to_list_position()
-        piece_symbol = self.bitboards.get_piece_on(src_bitboard, self.bitboards.active_colour)
-
-        self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
-        self.bitboards.update_bitboard_rotation(src_bitboard, src_bitboard, new_rotation)
-        self.has_moved_piece = True
-        self.status_text = self.bitboards.active_colour.name
+        print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
     
     def rotate_piece(self, clockwise=True):
         if self._selected_square is None:
