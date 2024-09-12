@@ -14,12 +14,6 @@ class Colour(IntEnum):
     BLUE = 0
     RED = 1
 
-    def get_flipped_colour(self):
-        if self == Colour.BLUE:
-            return Colour.RED
-        elif self == Colour.RED:
-            return Colour.BLUE
-
 class Piece(StrEnum):
     SPHINX = 's'
     PYRAMID = 'p'

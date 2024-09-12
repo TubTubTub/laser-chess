@@ -17,6 +17,7 @@ class Move():
             
             elif move_type == MoveType.ROTATE:
                 src_bitboard = notation_to_bitboard(src)
+                dest_bitboard = src_bitboard
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:

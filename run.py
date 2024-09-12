@@ -11,6 +11,8 @@ def test():
         print(board)
         move = board.get_move()
         board.apply_move(move)
+        board.fire_laser()
+        board.flip_colour()
 
 if __name__ == '__main__':
     # main()

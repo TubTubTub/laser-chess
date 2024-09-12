@@ -1,5 +1,5 @@
-# from data.components.laser import Laser
 from data.components.move import Move
+from data.components.laser import Laser
 
 from data.constants import Colour, Piece, Rank, File, MoveType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
@@ -41,6 +41,12 @@ class Board:
         
         characters += f'CURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}'
         return characters
+    
+    def flip_colour(self):
+        if self.bitboards.active_colour == Colour.BLUE:
+            self.bitboards.active_colour = Colour.RED
+        elif self.bitboards.active_colour == Colour.RED:
+            self.bitboards.active_colour = Colour.BLUE
 
     def get_move(self):
         while True:
@@ -54,7 +60,7 @@ class Board:
                 print('Input error (Board.get_move): ' + str(error))
     
     def check_win(self):
-        if self.return_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:
+        if self.get_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:
             return self.bitboards.active_colour.get_flipped_colour()
 
         return None
@@ -62,7 +68,46 @@ class Board:
     # def check_valid_src(self, src_square):
     #     return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
     
-    def return_valid_squares(self, src_bitboard):
+    def apply_move(self, move):
+        bb_helpers.print_bitboard(move.src)
+        piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+
+        if piece_symbol is None:
+            raise ValueError('Invalid move - no piece found on source square')
+        elif piece_symbol == Piece.SPHINX:
+            raise ValueError('Invalid move - sphinx piece is immovable')
+
+        if move.move_type == MoveType.MOVE:
+            possible_moves = self.get_valid_squares(move.src)
+            if bb_helpers.is_occupied(move.dest, possible_moves) is False:
+                raise ValueError('Invalid move - destination square is occupied')
+
+            piece_rotation = self.bitboards.get_rotation_on(move.src)
+            
+            # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
+
+            self.bitboards.update_move(move.src, move.dest)
+            self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
+
+        elif move.move_type == MoveType.ROTATE:
+            # src_bitboard = src_square.to_bitboard()
+            # src_list_position = src_square.to_list_position()
+
+            piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+
+            # self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
+            self.bitboards.update_rotation(move.src, move.src, move.rotation)
+
+        self.has_moved_piece = True
+        print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
+    
+    def remove_piece(self, square_bitboard):
+        self.bitboards.clear_square(square_bitboard, Colour.BLUE)
+        self.bitboards.clear_square(square_bitboard, Colour.RED)
+
+        # self._square_group.clear_square(square_bitboard)
+    
+    def get_valid_squares(self, src_bitboard):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9
         target_top_middle = (src_bitboard & EIGHT_RANK_MASK) << 10
         target_top_right = (src_bitboard & J_FILE_MASK & EIGHT_RANK_MASK) << 11
@@ -78,89 +123,28 @@ class Board:
         valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
         return valid_possible_moves
     
-    def return_all_valid_squares(self, colour):
+    def get_all_valid_squares(self, colour):
         all_valid_squares = EMPTY_BB
         for piece in Piece:
             piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
 
             for square in bb_helpers.occupied_squares(piece_bitboard):
-                valid_moves = self.return_valid_squares(square)
+                valid_moves = self.get_valid_squares(square)
                 all_valid_squares = all_valid_squares | valid_moves
             
         return all_valid_squares
-    
-    def apply_move(self, move):
-        bb_helpers.print_bitboard(move.src)
-        piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
-        if piece_symbol is None:
-            raise ValueError('Invalid move - no piece found on source square')
-        elif piece_symbol == Piece.SPHINX:
-            raise ValueError('Invalid move - sphinx piece is immovable')
-
-        if move.move_type == MoveType.MOVE:
-            possible_moves = self.return_valid_squares(move.src)
-            if bb_helpers.is_occupied(move.dest, possible_moves) is False:
-                raise ValueError('Invalid move - destination square is occupied')
-
-            piece_rotation = self.bitboards.get_rotation_on(move.src)
-            
-            # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
-
-            self.bitboards.update_move(move.src, move.dest)
-            self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
-
-            bb_helpers.print_bitboard(move.src)
-            print('GAGHGAGAHAGH')
-            bb_helpers.print_bitboard(move.dest)
-
-        elif move.move_type == MoveType.ROTATE:
-            # src_bitboard = src_square.to_bitboard()
-            # src_list_position = src_square.to_list_position()
-
-            piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
-
-            # self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
-            self.bitboards.update_rotation(move.src, move.src, move.rotation)
-
-        self.has_moved_piece = True
-        self.bitboards.flip_colour()
-        print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
-    
-    def rotate_piece(self, clockwise=True):
-        if self._selected_square is None:
-            print('No square selected to rotate (board.py)!')
-            return
-        
-        src_rotation = self.bitboards.get_rotation_on(self._selected_square.to_bitboard())
-        
-        if clockwise:
-            self.apply_rotation(self._selected_square, src_rotation.get_clockwise())
-        else:
-            self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
-    
-    def capture_piece(self, square_bitboard):
-        self.bitboards.clear_square(square_bitboard, Colour.BLUE)
-        self.bitboards.clear_square(square_bitboard, Colour.RED)
-
-        self._square_group.clear_square(square_bitboard)
-    
-    # def fire_laser(self):
-    #     if self.bitboards.active_colour == Colour.BLUE:
-    #         laser_colour = self.game_settings.laserColourBlue
-    #     else:
-    #         laser_colour = self.game_settings.laserColourRed
-    #     laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
-
-    #     captured_square, laser_shapes = laser.calculate_trajectory()
-    #     self._laser_shapes = laser_shapes
-    #     if captured_square:
-    #         print('captured_square:')
-    #         bb_helpers.print_bitboard(captured_square)
-    #         print(captured_square)
-    #         self.capture_piece(captured_square)
-    
-    # def draw_laser(self):
-    #     for shape, index in self._laser_shapes:
-    #         position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
-    #         pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))
+    def fire_laser(self):
+        laser = Laser(self.bitboards)
+        print('LASER')
+        print('LASER')
+        bb_helpers.print_bitboard(laser.trajectory_bitboard)
+        print('LASER')
+        print('LASER')
+        if laser.hit_square_bitboard:
+            print('HIT')
+            print('HIT')
+            bb_helpers.print_bitboard(laser.hit_square_bitboard)
+            print('HIT')
+            print('HIT')
+            self.remove_piece(laser.hit_square_bitboard)
