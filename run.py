@@ -7,10 +7,10 @@ print('Running run.py...')
 
 board = Board()
 def test():
-    print('test 1')
-    print(board)
-    move = board.get_move()
-    board.apply_move(move)
+    while True:
+        print(board)
+        move = board.get_move()
+        board.apply_move(move)
 
 if __name__ == '__main__':
     # main()

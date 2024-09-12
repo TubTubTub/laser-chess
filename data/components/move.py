@@ -8,6 +8,7 @@ class Move():
         self.dest = dest
         self.rotation = rotation
     
+    @classmethod
     def input_from_notation(move_cls, move_type, src, dest=None, rotation=None):
         try:
             if move_type == MoveType.MOVE:
@@ -19,10 +20,9 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
-            print(error)
+            print('Error (Move.input_from_notation):', error)
 
 def notation_to_bitboard(notation):
-    index = (notation[0] - 1) * 10 + ord(notation[1]) - 97
-    print('CONVERTING NOTATION:', notation, index)
+    index = (int(notation[1]) - 1) * 10 + int(ord(notation[0])) - 97
 
     return index_to_bitboard(index)

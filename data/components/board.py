@@ -31,13 +31,13 @@ class Board:
                 red_piece = self.bitboards.get_piece_on(mask, Colour.RED)
 
                 if blue_piece:
-                    characters += f'{blue_piece}  '
+                    characters += f'{blue_piece.upper()}  '
                 elif red_piece:
                     characters += f'{red_piece}  '
                 else:
                     characters += '0  '
 
-            characters += '\n'
+            characters += '\n\n'
         
         characters += f'CURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}'
         return characters
@@ -49,7 +49,6 @@ class Board:
                 src_square = ip_helpers.parse_notation(input("From: "))
                 dest_square = ip_helpers.parse_notation(input("To: "))
                 rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
-
                 return Move.input_from_notation(move_type, src_square, dest_square, rotation)
             except ValueError as error:
                 print('Input error (Board.get_move): ' + str(error))
@@ -91,12 +90,17 @@ class Board:
         return all_valid_squares
     
     def apply_move(self, move):
+        bb_helpers.print_bitboard(move.src)
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+
         if piece_symbol is None:
             raise ValueError('Invalid move - no piece found on source square')
+        elif piece_symbol == Piece.SPHINX:
+            raise ValueError('Invalid move - sphinx piece is immovable')
 
-        if move == MoveType.MOVE:
-            if move.dest not in self.return_valid_squares(move.src):
+        if move.move_type == MoveType.MOVE:
+            possible_moves = self.return_valid_squares(move.src)
+            if bb_helpers.is_occupied(move.dest, possible_moves) is False:
                 raise ValueError('Invalid move - destination square is occupied')
 
             piece_rotation = self.bitboards.get_rotation_on(move.src)
@@ -106,7 +110,11 @@ class Board:
             self.bitboards.update_move(move.src, move.dest)
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
 
-        elif move == MoveType.ROTATE:
+            bb_helpers.print_bitboard(move.src)
+            print('GAGHGAGAHAGH')
+            bb_helpers.print_bitboard(move.dest)
+
+        elif move.move_type == MoveType.ROTATE:
             # src_bitboard = src_square.to_bitboard()
             # src_list_position = src_square.to_list_position()
 
@@ -116,6 +124,7 @@ class Board:
             self.bitboards.update_rotation(move.src, move.src, move.rotation)
 
         self.has_moved_piece = True
+        self.bitboards.flip_colour()
         print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
     
     def rotate_piece(self, clockwise=True):
