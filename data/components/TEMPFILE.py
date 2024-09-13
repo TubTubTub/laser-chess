@@ -3,46 +3,57 @@ from data.components.square import Square
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 self._cursor = Cursor()
-        self.game_settings = get_settings_json()
-        self._board_size = self.calculate_board_size(self.screen)
-        self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
+self.game_settings = get_settings_json()
+self._board_size = self.calculate_board_size(self.screen)
+self._board_origin_position = self.calculate_board_position(self.screen, self._board_size)
 
-        self._square_size = self._board_size[0] / 10
-        self._square_group = self.initialize_square_group()
-        self.game_settings = get_settings_json()
+self._square_size = self._board_size[0] / 10
+self._square_group = self.initialize_square_group()
+self.game_settings = get_settings_json()
 
-    
-    
-    def fire_laser(self):
-        if self.bitboards.active_colour == Colour.BLUE:
-            laser_colour = self.game_settings.laserColourBlue
-        else:
-            laser_colour = self.game_settings.laserColourRed
-        laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
 
-        captured_square, laser_shapes = laser.calculate_trajectory()
-        self._laser_shapes = laser_shapes
-        if captured_square:
-            print('captured_square:')
-            bb_helpers.print_bitboard(captured_square)
-            print(captured_square)
-            self.capture_piece(captured_square)
-    
-    def draw_laser(self):
-        for shape, index in self._laser_shapes:
-            position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
-            pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))
-    def rotate_piece(self, clockwise=True):
-        if self._selected_square is None:
-            print('No square selected to rotate (board.py)!')
-            return
-        
-        src_rotation = self.bitboards.get_rotation_on(self._selected_square.to_bitboard())
-        
-        if clockwise:
-            self.apply_rotation(self._selected_square, src_rotation.get_clockwise())
-        else:
-            self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
+
+def fire_laser(self):
+if self.bitboards.active_colour == Colour.BLUE:
+    laser_colour = self.game_settings.laserColourBlue
+else:
+    laser_colour = self.game_settings.laserColourRed
+laser = Laser(screen=self.screen, laser_colour=laser_colour, bitboards=self.bitboards)
+
+captured_square, laser_shapes = laser.calculate_trajectory()
+self._laser_shapes = laser_shapes
+if captured_square:
+    print('captured_square:')
+    bb_helpers.print_bitboard(captured_square)
+    print(captured_square)
+    self.capture_piece(captured_square)
+
+def draw_laser(self):
+for shape, index in self._laser_shapes:
+    position = (index[0] * self._square_size + self._board_origin_position[0], self._board_origin_position[1] - self._square_size * (index[1] + 1))
+    pygame.draw.rect(self.screen, 'red', (position[0], position[1], shape.width, shape.height))
+def rotate_piece(self, clockwise=True):
+if self._selected_square is None:
+    print('No square selected to rotate (board.py)!')
+    return
+
+src_rotation = self.bitboards.get_rotation_on(self._selected_square.to_bitboard())
+
+if clockwise:
+    self.apply_rotation(self._selected_square, src_rotation.get_clockwise())
+else:
+    self.apply_rotation(self._selected_square, src_rotation.get_anticlockwise())
+
+
+rotate_piece_clockwise = partial(self.board.rotate_piece, clockwise=True)
+rotate_piece_anticlockwise = partial(self.board.rotate_piece, clockwise=False)
+self._gui_elements = {
+    'label': Label(screen=screen, position=(10, 300), text="jamesdssdss", text_colour=(0, 0, 0), margin=15, label_colour=(20, 100, 1), border_radius=50, border_width=0),
+    'clockwise_button': Button(screen=screen, position=(30, 10), text="clockwise", func=rotate_piece_clockwise, text_colour=(255, 0, 0), label_colour=(0, 255, 255), width=100, height=50),
+    'anticlockwise_button': Button(screen=screen, position=(30, 100), text="anticlockwise", func=rotate_piece_anticlockwise, text_colour=(0, 0, 0), label_colour=(0, 255, 0), margin=50),
+}
+
+
 def initialize_square_group(self):
     square_group = CustomSpriteGroup()
 

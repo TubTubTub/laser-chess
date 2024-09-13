@@ -6,7 +6,6 @@ from functools import cache
 class Control:
     def __init__(self):
         self.done = False
-        self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
         self.fps = 60
         """temp"""
@@ -16,7 +15,7 @@ class Control:
         self.state_dict = state_dict
         self.state_name = start_state
         self.state = self.state_dict[self.state_name]
-        self.state.startup(self.screen)
+        self.state.startup()
     
     def flip_state(self):
         self.state.done = False

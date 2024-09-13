@@ -12,7 +12,7 @@ class Board:
         self.status_text = self.bitboards.active_colour.name
         self.has_moved_piece = False
 
-        self._laser_shapes = []
+        self._listeners = []
         self._selected_square = None
         self._pressed_on_board = False
         self._paused = False
@@ -20,6 +20,9 @@ class Board:
     @property
     def clicked(self):
         return self._pressed_on_board and not self._paused
+    
+    def register_listener(self, listener):
+        self._listeners.append(listener)
     
     def __str__(self):
         characters = ''

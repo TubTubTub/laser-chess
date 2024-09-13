@@ -2,6 +2,7 @@ import pygame
 from data.tools import _State
 from data.components.board import Board
 from data.components.elements import Label, Button
+from data.components.gameview import GameView
 from data.utils.settings_helpers import app_settings
 
 from functools import partial
@@ -15,17 +16,9 @@ class Game(_State):
     def cleanup(self):
         print('cleaning')
     
-    def startup(self, screen):
-        self.board = Board(app_settings=app_settings, screen=screen)
-
-        rotate_piece_clockwise = partial(self.board.rotate_piece, clockwise=True)
-        rotate_piece_anticlockwise = partial(self.board.rotate_piece, clockwise=False)
-        self._gui_elements = {
-            'label': Label(screen=screen, position=(10, 300), text="jamesdssdss", text_colour=(0, 0, 0), margin=15, label_colour=(20, 100, 1), border_radius=50, border_width=0),
-            'clockwise_button': Button(screen=screen, position=(30, 10), text="clockwise", func=rotate_piece_clockwise, text_colour=(255, 0, 0), label_colour=(0, 255, 255), width=100, height=50),
-            'anticlockwise_button': Button(screen=screen, position=(30, 100), text="anticlockwise", func=rotate_piece_anticlockwise, text_colour=(0, 0, 0), label_colour=(0, 255, 0), margin=50),
-        }
-        
+    def startup(self):
+        self.board = Board()
+        self.view = GameView()
         print('starting')
     
     def get_event(self, event):
