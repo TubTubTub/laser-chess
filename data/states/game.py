@@ -1,11 +1,7 @@
 import pygame
 from data.tools import _State
 from data.components.board import Board
-from data.components.elements import Label, Button
 from data.components.gameview import GameView
-from data.utils.settings_helpers import app_settings
-
-from functools import partial
 
 class Game(_State):
     def __init__(self):
@@ -18,7 +14,9 @@ class Game(_State):
     
     def startup(self):
         self.board = Board()
-        self.view = GameView()
+        self.view = GameView(self.board)
+
+        self.view.draw()
         print('starting')
     
     def get_event(self, event):
@@ -39,10 +37,7 @@ class Game(_State):
             element.handle_resize()
 
     def draw(self):
-        self.board.draw_board()
-
-        for element in self._gui_elements.values():
-            element.draw()
+        self.view.draw()
 
     def update(self):
         board_clicked = self.board.clicked

@@ -103,26 +103,6 @@ def handle_resize(self):
     self._square_size = self._board_size[0] / 10
     self._square_group.handle_resize(new_size=self._square_size, new_position=self._board_origin_position)
 
-
-def calculate_board_size(self, screen):
-    '''Returns board size based on screen parameter'''
-    screen_width, screen_height = screen.get_size()
-
-    target_height = screen_height * 0.64
-    target_width = target_height / 0.8
-
-    return (target_width, target_height)
-
-def calculate_board_position(self, screen, board_size):
-    '''Returns required board starting position to draw on center of the screen'''
-    screen_x, screen_y = screen.get_size()
-    board_x, board_y = board_size
-
-    x = screen_x / 2 - (board_x / 2)
-    y = screen_y / 2 + (board_y / 2)
-
-    return (x, y)
-
 def process_board_press(self, mouse_position):
     clicked_square = self._cursor.select_square(mouse_position, self._square_group)
 

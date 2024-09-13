@@ -24,6 +24,12 @@ class Board:
     def register_listener(self, listener):
         self._listeners.append(listener)
     
+    def alert_listener(self, event):
+        for listener in self._listeners:
+            match event.type:
+                case _: # Add filtering
+                    listener(event)
+    
     def __str__(self):
         characters = ''
         for rank in reversed(Rank):

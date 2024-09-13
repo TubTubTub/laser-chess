@@ -3,12 +3,15 @@ from pygame._sdl2 import Window
 from pathlib import Path
 from functools import cache
 
+pygame.init()
+
 class Control:
     def __init__(self):
         self.done = False
+        self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
         self.fps = 60
-        """temp"""
+        """temp for fps display counter"""
         self.font = pygame.font.SysFont("Arial" , 18 , bold = True)
     
     def setup_states(self, state_dict, start_state):
