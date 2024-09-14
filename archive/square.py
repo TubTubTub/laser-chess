@@ -1,5 +1,5 @@
 import pygame
-from data.components.piece import create_piece
+from archive.piece import create_piece
 from data.tools import smoothscale_and_cache
 from data.constants import STARTING_SQUARE_SIZE, ImageType
 

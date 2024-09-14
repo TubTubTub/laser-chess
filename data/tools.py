@@ -17,16 +17,19 @@ class Control:
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
         self.state_name = start_state
+
         self.state = self.state_dict[self.state_name]
         self.state.startup()
     
     def flip_state(self):
         self.state.done = False
-        previous, self.state_name = self.state_name, self.state.next
         self.state.cleanup()
+
+        previous, self.state_name = self.state_name, self.state.next
+
         self.state = self.state_dict[self.state_name]
-        self.state.startup(self.screen)
         self.state.previous = previous
+        self.state.startup(self.screen)
     
     def update(self):
         if self.state.quit:
@@ -38,15 +41,15 @@ class Control:
         
         self.state.update()
         pygame.display.update()
+        self.clock.tick(self.fps)
 
     def main_game_loop(self):
         while not self.done:
-            self.clock.tick(self.fps)
             self.event_loop()
             self.update()
     
-    def resize_window_event(self):
-        self.update_window_size()
+    def resize_window(self):
+        self.update_native_window_size()
         self.state.handle_resize()
         self.update()
     
@@ -55,7 +58,7 @@ class Control:
         fps_t = self.font.render(fps , 1, pygame.Color("RED"), True)
         self.screen.blit(fps_t,(0,0))
     
-    def update_window_size(self):
+    def update_native_window_size(self):
         x, y = self.screen.get_rect().size
 
         max_screen_x = 100000

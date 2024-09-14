@@ -1,5 +1,5 @@
-from data.components.customspritegroup import CustomSpriteGroup
-from data.components.square import Square
+from data.components.piecegroup import CustomSpriteGroup
+from archive.square import Square
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 self._cursor = Cursor()

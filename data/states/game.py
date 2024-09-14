@@ -32,29 +32,27 @@ class Game(_State):
             self.board.handle_events(event)
     
     def handle_resize(self):
-        self.board.handle_resize()
-        for element in self._gui_elements.values():
-            element.handle_resize()
+        self.view.handle_resize()
 
     def draw(self):
         self.view.draw()
 
     def update(self):
-        board_clicked = self.board.clicked
-        if board_clicked:
-            self.board.handle_click()
-            self._gui_elements['label'].text = self.board.status_text
+        # board_clicked = self.board.clicked
+        # if board_clicked:
+        #     self.board.handle_click()
+        #     self._gui_elements['label'].text = self.board.status_text
 
-        if self.board.has_moved_piece:
-            print('firing')
-            self.board.fire_laser()
+        # if self.board.has_moved_piece:
+        #     print('firing')
+        #     self.board.fire_laser()
 
-            game_won_by = self.board.check_win()
+        #     game_won_by = self.board.check_win()
 
-            if game_won_by:
-                print('quit', game_won_by)
+        #     if game_won_by:
+        #         print('quit', game_won_by)
 
-            self.board.bitboards.flip_colour()
+        #     self.board.bitboards.flip_colour()
             
-            self.board.has_moved_piece = False
+        #     self.board.has_moved_piece = False
         self.draw()

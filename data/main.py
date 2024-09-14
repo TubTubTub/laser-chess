@@ -21,7 +21,7 @@ def main():
             win32gui.RedrawWindow(hWnd, None, None, win32con.RDW_INVALIDATE | win32con.RDW_ERASE)
         return win32gui.CallWindowProc(oldWndProc, hWnd, message, wParam, lParam)
 
-    oldWndProc = win32gui.SetWindowLong(win32gui.GetForegroundWindow(), win32con.GWL_WNDPROC, lambda *args: wndProc(oldWndProc, app.resize_window_event, *args))\
+    oldWndProc = win32gui.SetWindowLong(win32gui.GetForegroundWindow(), win32con.GWL_WNDPROC, lambda *args: wndProc(oldWndProc, app.resize_window, *args))\
 
     app.setup_states(state_dict, 'game')
     app.main_game_loop()

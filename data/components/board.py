@@ -30,6 +30,9 @@ class Board:
                 case _: # Add filtering
                     listener(event)
     
+    def get_piece_list(self):
+        return self.bitboards.convert_to_piece_list()
+
     def __str__(self):
         characters = ''
         for rank in reversed(Rank):

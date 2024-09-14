@@ -1,9 +1,10 @@
 import pygame
 from data.constants import EventType, BG_COLOUR
+from data.components.piecegroup import PieceGroup
 from data.utils.settings_helpers import get_settings_json
 
 class GameView:
-    def __init__(self, model):
+    def __init__(self, model, fen_string=""):
         self.model = model
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
@@ -19,6 +20,13 @@ class GameView:
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
         self._board_surface = self.create_board()
+
+        self._piece_group = PieceGroup(self.model.get_piece_list())
+    
+    def handle_resize(self):
+        self._board_size = self.calculate_board_size()
+        self._board_position = self.calculate_board_position()
+        self._board_surface = pygame.transform.scale(self._board_surface, self._board_size)
 
     def handle_board_click(self, event):
         raise NotImplementedError
@@ -36,7 +44,7 @@ class GameView:
         self._screen.blit(self._board_surface, self._board_position)
 
     def draw_pieces(self):
-        raise NotImplementedError
+        self._piece_group.draw(self._screen)
 
     def draw_overlay(self):
         if self._overlay_index is None:
@@ -45,6 +53,7 @@ class GameView:
         raise NotImplementedError
     
     def draw(self):
+        print('drawing')
         self._screen.fill(BG_COLOUR)
         self.draw_board()
 
