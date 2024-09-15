@@ -4,7 +4,7 @@ from data.components.piecegroup import PieceGroup
 from data.utils.settings_helpers import get_settings_json
 
 class GameView:
-    def __init__(self, model, fen_string=""):
+    def __init__(self, model):
         self.model = model
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
@@ -56,6 +56,7 @@ class GameView:
         print('drawing')
         self._screen.fill(BG_COLOUR)
         self.draw_board()
+        self.draw_pieces()
 
     def process_model_event(self, event):
         try:

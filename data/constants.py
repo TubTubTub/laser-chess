@@ -97,9 +97,9 @@ class MoveType(StrEnum):
     ROTATE = 'r'
 
 class ImageType(StrEnum):
-    HIGH_RES_PIECE = 'high'
-    LOW_RES_PIECE = 'low'
-    EMPTY_PIECE = 'empty'
+    HIGH_RES = 'high'
+    LOW_RES = 'low'
+    EMPTY = 'empty'
 
 class LaserType(IntEnum):
     END = 0

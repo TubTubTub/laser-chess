@@ -100,3 +100,6 @@ class BitboardCollection():
                 return Rotation.DOWN
             case [True, True]:
                 return Rotation.LEFT
+    
+    def convert_to_piece_list(self):
+        return [(self.get_piece_on(1 << i, Colour.BLUE) or self.get_piece_on(1 << i, Colour.RED)) for i in range(80)]

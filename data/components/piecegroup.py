@@ -1,12 +1,29 @@
 import pygame
-from data.constants import EMPTY_BB
+from data.constants import EMPTY_BB, Colour
+from data.components.piecesprite import EmptyPiece, create_piece
 from data.utils import bitboard_helpers as bb_helpers
 
 class PieceGroup(pygame.sprite.LayeredUpdates):
-    def __init__(self):
+    def __init__(self, piece_list):
         # self.square_list = []
         # self.valid_square_list_positions = []
         pygame.sprite.LayeredUpdates.__init__(self)
+        self.initialise_pieces(piece_list)
+
+    def initialise_pieces(self, piece_list):
+        for index, piece_symbol in enumerate(piece_list):
+            x = index % 10
+            y = index // 10
+            if piece_symbol:
+                if piece_symbol.isupper():
+                    colour = Colour.BLUE
+                else:
+                    colour = Colour.RED
+
+                piece = create_piece(piece=piece_symbol, coords=(x, y), size=48, colour=colour)
+                self.add(piece)
+            else:
+                self.add(EmptyPiece())
     
     # def handle_resize(self, new_size, new_position):
     #     for sprite in self.sprites():
