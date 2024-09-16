@@ -3,7 +3,7 @@ from data.components.piecesprite import create_piece_images
 from data.tools import smoothscale_and_cache
 from data.constants import STARTING_SQUARE_SIZE, ImageType
 
-class Piece(pygame.sprite.Sprite):
+class Square(pygame.sprite.Sprite):
     '''self.drawing_index: Since the initialization loop starts drawing index(0, 0) from the top of the screen, and
     we want index (0, 0) to be drawn at the bottom-left corner, we will have to create a new index where the y-position
     is flipped so that the bottom-left square corresponds to index (0, 0)

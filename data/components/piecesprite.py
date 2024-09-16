@@ -10,9 +10,18 @@ class EmptyPiece(pygame.sprite.Sprite):
         self.image = pygame.Surface((1, 1))
         self.rect = self.image.get_rect()
         self.rect.topleft = (0, 0)
+    
+    def set_image(self, type):
+        pass
+
+    def set_rect(self):
+        pass
+    
+    def set_geometry(self, anchor_position, size):
+        pass
 
 class _PieceSprite(pygame.sprite.Sprite):
-    def __init__(self, size, coords, high_res_img, low_res_img, colour):
+    def __init__(self, coords, high_res_img, low_res_img, colour):
         super().__init__()
         self.type = None
         self.low_res_img = low_res_img
@@ -23,17 +32,16 @@ class _PieceSprite(pygame.sprite.Sprite):
 
         self.anchor_position = None
         self.size = None
-
-        self.set_image(ImageType.HIGH_RES)
-        self.set_rect()
     
     def set_image(self, type):
         match (type):
             case ImageType.LOW_RES:
                 self.image = pygame.transform.smoothscale(self.low_res_img, (self.size, self.size))
+                self.set_rect()
 
             case ImageType.HIGH_RES:
                 self.image = smoothscale_and_cache(self.high_res_img, (self.size, self.size))
+                self.set_rect()
 
             case _:
                 raise ValueError('Invalid type provided for square image')
@@ -41,9 +49,13 @@ class _PieceSprite(pygame.sprite.Sprite):
     def set_rect(self):
         self.rect = self.image.get_rect()
         self.rect.topleft = self.calculate_rect_position()
+    
+    def set_geometry(self, anchor_position, size):
+        self.anchor_position = anchor_position
+        self.size = size
 
     def calculate_rect_position(self):
-        return (self.coords[0] * self.size + self.anchor_position[0], self.anchor_position[1] - self.size * (self.coords[1] + 1))
+        return (self.coords[0] * self.size + self.anchor_position[0], self.anchor_position[1] + self.size * (7 - self.coords[1]))
 
 class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):
@@ -97,6 +109,6 @@ class PharoahImages(_PieceSprite):
 
 PIECE_DICTIONARY = {'f': PharoahImages, 'r': ScarabImages, 'p': PyramidImages, 'n': AnubisImages, 's': SphinxImages}
 
-def create_piece(piece, coords, size, colour):
-    target_piece_class = PIECE_DICTIONARY[piece]
-    return target_piece_class(size=size, colour=colour, coords=coords)
+def create_piece(piece, coords, colour):
+    target_piece_class = PIECE_DICTIONARY[piece.lower()]
+    return target_piece_class(colour=colour, coords=coords)

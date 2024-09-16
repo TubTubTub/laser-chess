@@ -1,17 +1,15 @@
 import pygame
-from data.constants import EMPTY_BB, Colour
+from data.constants import EMPTY_BB, Colour, ImageType
 from data.components.piecesprite import EmptyPiece, create_piece
 from data.utils import bitboard_helpers as bb_helpers
 
 class PieceGroup(pygame.sprite.LayeredUpdates):
-    def __init__(self, piece_list, board_position, board_size):
+    def __init__(self):
         # self.square_list = []
         # self.valid_square_list_positions = []
         super().__init__()
-        self.initialise_pieces(piece_list)
-        self.set_geometry(board_position, board_size)
 
-    def initialise_pieces(self, piece_list):
+    def initialise_pieces(self, piece_list, board_position, board_size):
         for index, piece_symbol in enumerate(piece_list):
             x = index % 10
             y = index // 10
@@ -22,21 +20,28 @@ class PieceGroup(pygame.sprite.LayeredUpdates):
                 else:
                     colour = Colour.RED
 
-                piece = create_piece(piece=piece_symbol, coords=(x, y), size=48, colour=colour)
+                piece = create_piece(piece=piece_symbol, coords=(x, y), colour=colour)
+                piece.set_geometry(board_position, board_size[0] / 10)
+                piece.set_image(ImageType.HIGH_RES)
+
                 self.add(piece)
             else:
                 self.add(EmptyPiece())
     
     def set_geometry(self, board_position, board_size):
         for sprite in self.sprites():
-            sprite.anchor_position = board_position
-            sprite.size = board_size[0] / 10
+            sprite.set_geometry(board_position, board_size[0] / 10)
     
-    def handle_resize(self, board_position, board_size):
+    def handle_resize(self, board_position, board_size, resize_end=False):
         self.set_geometry(board_position, board_size)
 
+        if resize_end:
+            image_res = 'high'
+        else:
+            image_res = 'low'
+
         for sprite in self.sprites():
-            sprite.set_image('low')
+            sprite.set_image(image_res)
             sprite.set_rect()
     
     # def handle_resize_end(self):

@@ -102,4 +102,14 @@ class BitboardCollection():
                 return Rotation.LEFT
     
     def convert_to_piece_list(self):
-        return [(self.get_piece_on(1 << i, Colour.BLUE) or self.get_piece_on(1 << i, Colour.RED)) for i in range(80)]
+        piece_list = []
+
+        for i in range(80):
+            if x := self.get_piece_on(1 << i, Colour.BLUE):
+                piece_list.append(x.upper())
+            elif y := self.get_piece_on(1 << i, Colour.RED):
+                piece_list.append(y)
+            else:
+                piece_list.append(None)
+        
+        return piece_list

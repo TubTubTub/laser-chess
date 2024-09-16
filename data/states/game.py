@@ -29,7 +29,7 @@ class Game(_State):
 
             self.board.handle_events(event)
         if event.type == pygame.VIDEORESIZE:
-            self.board.handle_events(event)
+            self.view.handle_resize(resize_end=True)
     
     def handle_resize(self):
         self.view.handle_resize()
