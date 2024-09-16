@@ -17,12 +17,15 @@ class _PieceSprite(pygame.sprite.Sprite):
         self.type = None
         self.low_res_img = low_res_img
         self.high_res_img = high_res_img
+
         self.colour = colour
-        self.size = size
         self.coords = coords
 
+        self.anchor_position = None
+        self.size = None
+
         self.set_image(ImageType.HIGH_RES)
-        self.set_rect((0, 0))
+        self.set_rect()
     
     def set_image(self, type):
         match (type):
@@ -35,12 +38,12 @@ class _PieceSprite(pygame.sprite.Sprite):
             case _:
                 raise ValueError('Invalid type provided for square image')
     
-    def set_rect(self, position):
+    def set_rect(self):
         self.rect = self.image.get_rect()
-        self.rect.topleft = position
+        self.rect.topleft = self.calculate_rect_position()
 
-    def calculate_rect_position(self, size, anchor_position):
-        return (self._index[0] * size + anchor_position[0], anchor_position[1] - size * (self._index[1] + 1))
+    def calculate_rect_position(self):
+        return (self.coords[0] * self.size + self.anchor_position[0], self.anchor_position[1] - self.size * (self.coords[1] + 1))
 
 class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):
