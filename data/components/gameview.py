@@ -20,6 +20,7 @@ class GameView:
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
         self._board_surface = self.create_board()
+        self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
 
         self._piece_group = PieceGroup()
         self._piece_group.initialise_pieces(self.model.get_piece_list(), self._board_position, self._board_size)
@@ -27,8 +28,7 @@ class GameView:
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
-        hi = self._board_surface.copy()
-        self._board_surface = pygame.transform.scale(hi, self._board_size) # surface glitches if scaling in place
+        self._board_surface = pygame.transform.scale(self._board_unscaled, self._board_size)
 
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
 

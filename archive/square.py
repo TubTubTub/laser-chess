@@ -34,16 +34,16 @@ class Square(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = self.calculate_rect_position(size, anchor_position)
 
-        # self._outline = pygame.Surface((self._size + 1, self._size + 1), pygame.SRCALPHA)
-        # self._outline.fill((255, 0, 0, 128))
+        self._outline = pygame.Surface((self._size + 1, self._size + 1), pygame.SRCALPHA)
+        self._outline.fill((255, 0, 0, 128))
     
-    # def to_bitboard(self):
-    #     list_position = self._index[0] + self._index[1] * 10
-    #     return (1 << list_position)
+    def to_bitboard(self):
+        list_position = self._index[0] + self._index[1] * 10
+        return (1 << list_position)
     
-    # def to_list_position(self):
-    #     list_position = self._index[0] + self._index[1] * 10
-    #     return (list_position)
+    def to_list_position(self):
+        list_position = self._index[0] + self._index[1] * 10
+        return (list_position)
 
     def calculate_rect_position(self, size, anchor_position):
         return (self._index[0] * size + anchor_position[0], anchor_position[1] - size * (self._index[1] + 1))
@@ -60,28 +60,28 @@ class Square(pygame.sprite.Sprite):
 
         self.set_square_image('high')
     
-    # def handle_resize(self, new_size, new_position):
-    #     self._size = new_size
+    def handle_resize(self, new_size, new_position):
+        self._size = new_size
 
-    #     if self.piece is None:
-    #         self.set_square_image('empty')
-    #     else:
-    #         self.set_square_image('low')
+        if self.piece is None:
+            self.set_square_image('empty')
+        else:
+            self.set_square_image('low')
         
-    #     if self.selected:
-    #         self.draw_overlay()
+        if self.selected:
+            self.draw_overlay()
 
-    #     self.rect = self.image.get_rect()
-    #     self.rect.topleft = self.calculate_rect_position(new_size, new_position)
+        self.rect = self.image.get_rect()
+        self.rect.topleft = self.calculate_rect_position(new_size, new_position)
     
-    # def handle_resize_end(self):
-    #     if self.piece:
-    #         self.set_square_image('high')
-    #     else:
-    #         self.set_square_image('empty')
+    def handle_resize_end(self):
+        if self.piece:
+            self.set_square_image('high')
+        else:
+            self.set_square_image('empty')
         
-    #     if self.selected is True:
-    #         self.draw_overlay()
+        if self.selected is True:
+            self.draw_overlay()
     
     def set_square_image(self, type):
         match (type):

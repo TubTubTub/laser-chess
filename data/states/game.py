@@ -2,11 +2,11 @@ import pygame
 from data.tools import _State
 from data.components.board import Board
 from data.components.gameview import GameView
+from data.components.gamecontroller import GameController
 
 class Game(_State):
     def __init__(self):
         super().__init__()
-        self._gui_elements = []
         self.next = 'menu'
     
     def cleanup(self):
@@ -15,21 +15,17 @@ class Game(_State):
     def startup(self):
         self.board = Board()
         self.view = GameView(self.board)
+        self.controller = GameController(self.board, self.view)
 
         self.view.draw()
         print('starting')
     
     def get_event(self, event):
         '''Handle gui events before board events because selected square gets cancelled in board events'''
-        if event.type == pygame.KEYDOWN:
-            self.board.handle_events(event)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            for element in self._gui_elements.values():
-                element.handle_events(event)
-
-            self.board.handle_events(event)
         if event.type == pygame.VIDEORESIZE:
             self.view.handle_resize(resize_end=True)
+        else:
+            self.controller.handle_event(event)
     
     def handle_resize(self):
         self.view.handle_resize()

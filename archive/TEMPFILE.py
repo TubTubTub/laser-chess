@@ -11,6 +11,7 @@ self._square_size = self._board_size[0] / 10
 self._square_group = self.initialize_square_group()
 self.game_settings = get_settings_json()
 
+self._gui_elements = []
 
 
 def fire_laser(self):

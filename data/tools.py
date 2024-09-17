@@ -37,9 +37,9 @@ class Control:
         elif self.state.done:
             self.flip_state()
         
-        self.draw_fps()
-        
         self.state.update()
+        
+        self.draw_fps()
         pygame.display.update()
         self.clock.tick(self.fps)
 
