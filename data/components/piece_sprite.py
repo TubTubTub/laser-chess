@@ -2,6 +2,7 @@ import pygame
 from data.setup import GRAPHICS
 from data.constants import Colour, Piece, ImageType
 from data.tools import smoothscale_and_cache
+from data.utils.board_helpers import coords_to_screen_pos
 
 class EmptyPiece(pygame.sprite.Sprite):
     def __init__(self):
@@ -48,14 +49,11 @@ class _PieceSprite(pygame.sprite.Sprite):
     
     def set_rect(self):
         self.rect = self.image.get_rect()
-        self.rect.topleft = self.calculate_rect_position()
+        self.rect.topleft = coords_to_screen_pos(self.coords, self.anchor_position, self.size)
     
     def set_geometry(self, anchor_position, size):
         self.anchor_position = anchor_position
         self.size = size
-
-    def calculate_rect_position(self):
-        return (self.coords[0] * self.size + self.anchor_position[0], self.anchor_position[1] + self.size * (7 - self.coords[1]))
 
 class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):

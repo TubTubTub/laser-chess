@@ -1,8 +1,8 @@
 import pygame
 from data.tools import _State
 from data.components.board import Board
-from data.components.gameview import GameView
-from data.components.gamecontroller import GameController
+from data.components.game_view import GameView
+from data.components.game_controller import GameController
 
 class Game(_State):
     def __init__(self):

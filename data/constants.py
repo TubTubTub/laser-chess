@@ -2,6 +2,7 @@ import pygame
 from enum import IntEnum, StrEnum
 
 BG_COLOUR = (0, 0, 0)
+OVERLAY_COLOUR = (255, 0, 0, 128)
 SCREEN_SIZE = (1000, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
 STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 #Board height divded by 8

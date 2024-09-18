@@ -1,17 +1,19 @@
 from data.constants import EventType
 
 class GameEvent():
-    def __init__(self):
+    def __init__(self, event_type, coords=None):
+        self.event_type = event_type
+        self.coords = coords
         pass
 
     @classmethod
     def create_event(event_cls, event_type, **kwargs):
         match event_type:
             case EventType.BOARD_CLICK:
-                if 'square_index' not in kwargs:
-                    raise ValueError('Square index required for BOARD_CLICK event (GameEvent.create_event)')
+                if 'coords' not in kwargs:
+                    raise ValueError("Argument 'coords' required for BOARD_CLICK event (GameEvent.create_event)")
                 
-                return event_cls(event_type, square_index=kwargs.get('square_index'))
+                return event_cls(event_type, coords=kwargs.get('coords'))
             
             case EventType.PIECE_CLICK:
                 raise NotImplementedError

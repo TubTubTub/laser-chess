@@ -1,5 +1,5 @@
 from data.constants import Piece, Colour, Rotation, RotationIndex
-from data.components.fenparser import parse_fen_string
+from data.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
 
 class BitboardCollection():

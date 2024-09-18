@@ -1,4 +1,4 @@
-from data.components.piecegroup import CustomSpriteGroup
+from data.components.piece_group import CustomSpriteGroup
 from archive.square import Square
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
