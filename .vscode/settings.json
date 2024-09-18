@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "python": "python3 run.py"
+        "python": "py run.py"
     },
     "code-runner.enableAppInsights": false,
     "code-runner.saveFileBeforeRun": true,

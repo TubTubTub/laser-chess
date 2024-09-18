@@ -37,7 +37,7 @@ class _PieceSprite(pygame.sprite.Sprite):
     def set_image(self, type):
         match (type):
             case ImageType.LOW_RES:
-                self.image = pygame.transform.smoothscale(self.low_res_img, (self.size, self.size))
+                self.image = pygame.transform.scale(self.low_res_img, (self.size, self.size))
                 self.set_rect()
 
             case ImageType.HIGH_RES:

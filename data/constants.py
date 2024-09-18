@@ -16,6 +16,7 @@ class EventType(IntEnum):
     BOARD_CLICK = 0
     PIECE_CLICK = 1
     WIDGET_CLICK = 2
+    EMPTY_CLICK = 3
 
 class Colour(IntEnum):
     BLUE = 0

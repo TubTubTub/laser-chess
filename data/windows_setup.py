@@ -16,7 +16,5 @@ def set_win_resize_func(resize_function):
 user32 = ctypes.windll.user32
 user32.SetProcessDPIAware() # To deal with Windows High Text Size / Low Display Resolution Settings
 
-print('SETTUP IN WIN DELETE DELETE...')
-
 if os.name != 'nt' or sys.getwindowsversion()[0] < 6:
     raise NotImplementedError("Incompatible OS!")
