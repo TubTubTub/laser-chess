@@ -25,14 +25,17 @@ class Board:
     def register_listener(self, listener):
         self._listeners.append(listener)
     
-    def alert_listener(self, event):
+    def alert_listeners(self, event):
         for listener in self._listeners:
             match event.type:
-                case EventType.UPDATE_BOARD:
+                case EventType.UPDATE_PIECES:
+                    listener(event)
+                
+                case EventType.REMOVE_PIECE:
                     listener(event)
 
                 case _:
-                    raise Exception('Unhandled alert type (Board.alert_listener)')
+                    raise Exception('Unhandled alert type (Board.alert_listeners)')
     
     def get_piece_list(self):
         return self.bitboards.convert_to_piece_list()
@@ -85,7 +88,6 @@ class Board:
     #     return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
     
     def apply_move(self, move):
-        bb_helpers.print_bitboard(move.src)
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
@@ -105,7 +107,7 @@ class Board:
             self.bitboards.update_move(move.src, move.dest)
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
 
-            self.alert_listener(GameEvent.create_event(EventType.UPDATE_BOARD))
+            self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
 
         elif move.move_type == MoveType.ROTATE:
             # src_bitboard = src_square.to_bitboard()
@@ -153,19 +155,14 @@ class Board:
         return all_valid_squares
     
     def get_all_active_pieces(self):
-        return self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]
+        active_pieces = self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]
+        sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, self.bitboards.active_colour)
+        return active_pieces ^ sphinx_bitboard
 
     def fire_laser(self):
         laser = Laser(self.bitboards)
-        print('LASER')
-        print('LASER')
-        bb_helpers.print_bitboard(laser.trajectory_bitboard)
-        print('LASER')
-        print('LASER')
+
         if laser.hit_square_bitboard:
-            print('HIT')
-            print('HIT')
-            bb_helpers.print_bitboard(laser.hit_square_bitboard)
-            print('HIT')
-            print('HIT')
             self.remove_piece(laser.hit_square_bitboard)
+            coords_to_remove = bb_helpers.bitboard_to_coords(laser.hit_square_bitboard)
+            self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))

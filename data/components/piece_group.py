@@ -3,7 +3,7 @@ from data.constants import EMPTY_BB, Colour, ImageType
 from data.components.piece_sprite import EmptyPiece, create_piece
 from data.utils import bitboard_helpers as bb_helpers
 
-class PieceGroup(pygame.sprite.LayeredUpdates):
+class PieceGroup(pygame.sprite.Group):
     def __init__(self):
         # self.square_list = []
         # self.valid_square_list_positions = []
@@ -11,23 +11,23 @@ class PieceGroup(pygame.sprite.LayeredUpdates):
 
     def initialise_pieces(self, piece_list, board_position, board_size):
         self.empty()
-        for index, piece_symbol in enumerate(piece_list):
+
+        for index, piece_and_rotation in enumerate(piece_list):
             x = index % 10
             y = index // 10
 
-            if piece_symbol:
-                if piece_symbol.isupper():
+            if piece_and_rotation:
+                if piece_and_rotation[0].isupper():
                     colour = Colour.BLUE
                 else:
                     colour = Colour.RED
 
-                piece = create_piece(piece=piece_symbol, coords=(x, y), colour=colour)
+                piece = create_piece(piece=piece_and_rotation[0], coords=(x, y), colour=colour)
                 piece.set_geometry(board_position, board_size[0] / 10)
+                piece.set_rotation(piece_and_rotation[1])
                 piece.set_image(ImageType.HIGH_RES)
 
                 self.add(piece)
-            else:
-                self.add(EmptyPiece())
     
     def set_geometry(self, board_position, board_size):
         for sprite in self.sprites():
@@ -44,6 +44,11 @@ class PieceGroup(pygame.sprite.LayeredUpdates):
         for sprite in self.sprites():
             sprite.set_image(image_res)
             sprite.set_rect()
+    
+    def remove_piece(self, coords):
+        for sprite in self.sprites():
+            if sprite.coords == coords:
+                sprite.kill()
     
     # def handle_resize_end(self):
     #     for sprite in self.sprites():

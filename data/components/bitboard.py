@@ -106,9 +106,11 @@ class BitboardCollection():
 
         for i in range(80):
             if x := self.get_piece_on(1 << i, Colour.BLUE):
-                piece_list.append(x.upper())
+                rotation = self.get_rotation_on(1 << i)
+                piece_list.append((x.upper(), rotation))
             elif y := self.get_piece_on(1 << i, Colour.RED):
-                piece_list.append(y)
+                rotation = self.get_rotation_on(1 << i)
+                piece_list.append((y, rotation))
             else:
                 piece_list.append(None)
         

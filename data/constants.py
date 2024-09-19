@@ -17,7 +17,8 @@ class EventType(IntEnum):
     PIECE_CLICK = 1
     WIDGET_CLICK = 2
     EMPTY_CLICK = 3
-    UPDATE_BOARD = 4
+    UPDATE_PIECES = 4
+    REMOVE_PIECE = 5
 
 class Colour(IntEnum):
     BLUE = 0

@@ -12,7 +12,8 @@ class GameView:
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
         self.event_to_func_map = {
-            EventType.UPDATE_BOARD: self.set_piece_group_list
+            EventType.UPDATE_PIECES: self.handle_update_pieces,
+            EventType.REMOVE_PIECE: self.handle_remove_piece
         }
 
         self.model.register_listener(self.process_model_event)
@@ -23,7 +24,7 @@ class GameView:
         self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
 
         self._piece_group = PieceGroup()
-        self.set_piece_group_list()
+        self.handle_update_pieces()
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -45,15 +46,12 @@ class GameView:
         self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (square_size, square_size))
         self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (square_size, square_size))
     
-    def set_piece_group_list(self):
+    def handle_update_pieces(self, event=None):
         piece_list = self.model.get_piece_list()
         self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
-
-    def handle_board_click(self, event):
-        raise NotImplementedError
     
-    def handle_piece_click(self, event):
-        raise NotImplementedError
+    def handle_remove_piece(self, event):
+        self._piece_group.remove_piece(event.coords_to_remove)
     
     def handle_widget_click(self, event):
         raise NotImplementedError
@@ -88,7 +86,7 @@ class GameView:
 
     def process_model_event(self, event):
         try:
-            self.event_to_func_map.get(event.type)()
+            self.event_to_func_map.get(event.type)(event)
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event)
 

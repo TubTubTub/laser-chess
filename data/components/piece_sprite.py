@@ -33,15 +33,18 @@ class _PieceSprite(pygame.sprite.Sprite):
 
         self.anchor_position = None
         self.size = None
+        self.rotation = None
     
     def set_image(self, type):
         match (type):
             case ImageType.LOW_RES:
-                self.image = pygame.transform.scale(self.low_res_img, (self.size, self.size))
+                rotated_img = pygame.transform.rotate(self.low_res_img, self.rotation.to_angle())
+                self.image = pygame.transform.scale(rotated_img, (self.size, self.size))
                 self.set_rect()
 
             case ImageType.HIGH_RES:
-                self.image = smoothscale_and_cache(self.high_res_img, (self.size, self.size))
+                rotated_img = pygame.transform.rotate(self.high_res_img, self.rotation.to_angle())
+                self.image = smoothscale_and_cache(rotated_img, (self.size, self.size))
                 self.set_rect()
 
             case _:
@@ -54,6 +57,9 @@ class _PieceSprite(pygame.sprite.Sprite):
     def set_geometry(self, anchor_position, size):
         self.anchor_position = anchor_position
         self.size = size
+    
+    def set_rotation(self, rotation):
+        self.rotation = rotation
 
 class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):

@@ -16,9 +16,18 @@ class GameEvent():
 
             case EventType.WIDGET_CLICK:
                 raise NotImplementedError
+                
             case EventType.EMPTY_CLICK:
                 return event_cls(event_type)
-            case EventType.UPDATE_BOARD:
+            
+            case EventType.UPDATE_PIECES:
                 return event_cls(event_type)
+            
+            case EventType.REMOVE_PIECE:
+                if 'coords_to_remove' not in kwargs:
+                    raise ValueError("Argument 'coords_to_remove' required for REMOVE_PIECE event (GameEvent.create_event)")
+                
+                return event_cls(event_type, coords_to_remove=kwargs.get('coords_to_remove'))
+            
             case _:
                 raise ValueError('Invalid event type (GameEvent.create_event)')
