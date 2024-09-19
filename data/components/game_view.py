@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, AlertType, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import EventType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.game_event import GameEvent
 from data.utils.settings_helpers import get_settings_json
@@ -12,7 +12,7 @@ class GameView:
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
         self.event_to_func_map = {
-            AlertType.UPDATE_BOARD: self.set_piece_group_list
+            EventType.UPDATE_BOARD: self.set_piece_group_list
         }
 
         self.model.register_listener(self.process_model_event)
@@ -88,8 +88,7 @@ class GameView:
 
     def process_model_event(self, event):
         try:
-            print(event == AlertType.UPDATE_BOARD, 'EVENT')
-            self.event_to_func_map.get(event)()
+            self.event_to_func_map.get(event.type)()
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event)
 

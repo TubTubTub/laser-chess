@@ -1,7 +1,8 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, AlertType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, EventType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
@@ -26,8 +27,8 @@ class Board:
     
     def alert_listener(self, event):
         for listener in self._listeners:
-            match event:
-                case AlertType.UPDATE_BOARD:
+            match event.type:
+                case EventType.UPDATE_BOARD:
                     listener(event)
 
                 case _:
@@ -104,7 +105,7 @@ class Board:
             self.bitboards.update_move(move.src, move.dest)
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
 
-            self.alert_listener(AlertType.UPDATE_BOARD)
+            self.alert_listener(GameEvent.create_event(EventType.UPDATE_BOARD))
 
         elif move.move_type == MoveType.ROTATE:
             # src_bitboard = src_square.to_bitboard()

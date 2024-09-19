@@ -1,9 +1,9 @@
 from data.constants import EventType
 
 class GameEvent():
-    def __init__(self, event_type, **kwargs):
+    def __init__(self, type, **kwargs):
         self.__dict__.update(kwargs)
-        self.event_type = event_type
+        self.type = type
 
     @classmethod
     def create_event(event_cls, event_type, **kwargs):
@@ -17,6 +17,8 @@ class GameEvent():
             case EventType.WIDGET_CLICK:
                 raise NotImplementedError
             case EventType.EMPTY_CLICK:
+                return event_cls(event_type)
+            case EventType.UPDATE_BOARD:
                 return event_cls(event_type)
             case _:
                 raise ValueError('Invalid event type (GameEvent.create_event)')

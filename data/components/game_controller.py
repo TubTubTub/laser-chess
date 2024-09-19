@@ -13,7 +13,7 @@ class GameController:
             print('MOUSEBUTTONDOWN:', event.pos)
             game_event = self._view.convert_mouse_pos(event.pos)
             
-            match game_event.event_type:
+            match game_event.type:
 
                 case EventType.BOARD_CLICK:
                     print('COORDS:', game_event.coords)
