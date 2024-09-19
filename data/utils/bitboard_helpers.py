@@ -32,6 +32,11 @@ def coords_to_bitboard(coords):
     index = coords[1] * 10 + coords[0]
     return index_to_bitboard(index)
 
+def notation_to_bitboard(notation):
+    index = (int(notation[1]) - 1) * 10 + int(ord(notation[0])) - 97
+
+    return index_to_bitboard(index)
+
 def bitboard_to_index(bitboard):
     return bitboard.bit_length() - 1
 

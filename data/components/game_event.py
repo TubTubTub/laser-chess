@@ -13,9 +13,7 @@ class GameEvent():
                     raise ValueError("Argument 'coords' required for BOARD_CLICK event (GameEvent.create_event)")
                 
                 return event_cls(event_type, coords=kwargs.get('coords'))
-            
-            case EventType.PIECE_CLICK:
-                raise NotImplementedError
+
             case EventType.WIDGET_CLICK:
                 raise NotImplementedError
             case EventType.EMPTY_CLICK:

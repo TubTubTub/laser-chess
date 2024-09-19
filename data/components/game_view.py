@@ -1,36 +1,38 @@
 import pygame
-from data.constants import EventType, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import EventType, AlertType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.game_event import GameEvent
 from data.utils.settings_helpers import get_settings_json
 from data.utils.board_helpers import coords_to_screen_pos
+from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay
 
 class GameView:
     def __init__(self, model):
         self.model = model
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
-        self._overlay_coords = []
         self.event_to_func_map = {
-            EventType.BOARD_CLICK: self.handle_board_click,
-            EventType.PIECE_CLICK: self.handle_piece_click,
-            EventType.WIDGET_CLICK: self.handle_widget_click,
+            AlertType.UPDATE_BOARD: self.set_piece_group_list
         }
 
         self.model.register_listener(self.process_model_event)
         
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
-        self._board_surface = self.create_board()
+        self._board_surface = create_board(self._board_size, self._app_settings['primaryBoardColour'], self._app_settings['secondaryBoardColour'])
         self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
 
         self._piece_group = PieceGroup()
-        self._piece_group.initialise_pieces(self.model.get_piece_list(), self._board_position, self._board_size)
+        self.set_piece_group_list()
+        
+        self._valid_overlay_coords = []
+        self._selected_overlay_coord = None
 
         square_size = self._board_size[0] / 10
-        self._overlay = pygame.Surface((square_size, square_size), pygame.SRCALPHA)
-        pygame.draw.circle(self._overlay, OVERLAY_COLOUR, (square_size / 2, square_size / 2), square_size / 4)
-        self._overlay_unscaled = self._overlay.copy()
+        self._circle_overlay = create_circle_overlay(square_size, OVERLAY_COLOUR)
+        self._square_overlay = create_square_overlay(square_size, OVERLAY_COLOUR)
+        self._circle_overlay_unscaled = self._circle_overlay.copy()
+        self._square_overlay_unscaled = self._square_overlay.copy()
     
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
@@ -39,7 +41,13 @@ class GameView:
 
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
 
-        self._overlay = pygame.transform.scale(self._overlay_unscaled, (self._board_size[0] / 10, self._board_size[0] / 10))
+        square_size = self._board_size[0] / 10
+        self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (square_size, square_size))
+        self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (square_size, square_size))
+    
+    def set_piece_group_list(self):
+        piece_list = self.model.get_piece_list()
+        self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
 
     def handle_board_click(self, event):
         raise NotImplementedError
@@ -60,14 +68,17 @@ class GameView:
         self._piece_group.draw(self._screen)
 
     def draw_overlay(self):
-        if not self._overlay_coords:
+        if not self._selected_overlay_coord:
             return
         
         square_size = self._board_size[0] / 10
+        
+        square_x, square_y = coords_to_screen_pos(self._selected_overlay_coord, self._board_position, square_size)
+        self._screen.blit(self._square_overlay, (square_x, square_y))
 
-        for coords in self._overlay_coords:
+        for coords in self._valid_overlay_coords:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
-            self._screen.blit(self._overlay, (square_x, square_y))
+            self._screen.blit(self._circle_overlay, (square_x, square_y))
     
     def draw(self):
         self._screen.fill(BG_COLOUR)
@@ -77,29 +88,10 @@ class GameView:
 
     def process_model_event(self, event):
         try:
-            self.event_to_func_map[event.type](event)
+            print(event == AlertType.UPDATE_BOARD, 'EVENT')
+            self.event_to_func_map.get(event)()
         except:
-            raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event.type)
-    
-    def create_board(self):
-        square_size = self._board_size[0] / 10
-        board_surface = pygame.Surface(self._board_size)
-
-        for i in range(80):
-            x = i % 10
-            y = i // 10
-
-            if (x + y) % 2 == 0:
-                square_colour = self._app_settings['primaryBoardColour']
-            else:
-                square_colour = self._app_settings['secondaryBoardColour']
-            
-            square_x = x * square_size
-            square_y = y * square_size
-
-            pygame.draw.rect(board_surface, square_colour, (square_x, square_y, square_size, square_size))
-        
-        return board_surface
+            raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event)
 
     def calculate_board_size(self):
         '''Returns board size based on screen parameter'''
@@ -120,11 +112,15 @@ class GameView:
 
         return (x, y)
     
-    def set_overlay_coords(self, coords_list):
-        self._overlay_coords = coords_list
+    def set_overlay_coords(self, possible_coords_list, selected_coord):
+        self._valid_overlay_coords = possible_coords_list
+        self._selected_overlay_coord = selected_coord
     
-    def get_overlay_coords(self):
-        return self._overlay_coords
+    def get_valid_overlay_coords(self):
+        return self._valid_overlay_coords
+    
+    def get_selected_overlay_coord(self):
+        return self._selected_overlay_coord
 
     def convert_mouse_pos(self, mouse_pos):
         mouse_x = mouse_pos[0]

@@ -10,6 +10,7 @@ class PieceGroup(pygame.sprite.LayeredUpdates):
         super().__init__()
 
     def initialise_pieces(self, piece_list, board_position, board_size):
+        self.empty()
         for index, piece_symbol in enumerate(piece_list):
             x = index % 10
             y = index // 10

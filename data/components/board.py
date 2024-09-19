@@ -1,7 +1,7 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, AlertType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
@@ -26,9 +26,12 @@ class Board:
     
     def alert_listener(self, event):
         for listener in self._listeners:
-            match event.type:
-                case _: # Add filtering
+            match event:
+                case AlertType.UPDATE_BOARD:
                     listener(event)
+
+                case _:
+                    raise Exception('Unhandled alert type (Board.alert_listener)')
     
     def get_piece_list(self):
         return self.bitboards.convert_to_piece_list()
@@ -67,7 +70,7 @@ class Board:
                 src_square = ip_helpers.parse_notation(input("From: "))
                 dest_square = ip_helpers.parse_notation(input("To: "))
                 rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
-                return Move.input_from_notation(move_type, src_square, dest_square, rotation)
+                return Move.instance_from_notation(move_type, src_square, dest_square, rotation)
             except ValueError as error:
                 print('Input error (Board.get_move): ' + str(error))
     
@@ -100,6 +103,8 @@ class Board:
 
             self.bitboards.update_move(move.src, move.dest)
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
+
+            self.alert_listener(AlertType.UPDATE_BOARD)
 
         elif move.move_type == MoveType.ROTATE:
             # src_bitboard = src_square.to_bitboard()
@@ -145,6 +150,9 @@ class Board:
                 all_valid_squares = all_valid_squares | valid_moves
             
         return all_valid_squares
+    
+    def get_all_active_pieces(self):
+        return self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]
 
     def fire_laser(self):
         laser = Laser(self.bitboards)
