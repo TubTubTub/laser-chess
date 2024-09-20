@@ -1,6 +1,7 @@
 import pygame
 from data.constants import EventType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
+from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
 from data.utils.settings_helpers import get_settings_json
 from data.utils.board_helpers import coords_to_screen_pos
@@ -25,6 +26,9 @@ class GameView:
 
         self._piece_group = PieceGroup()
         self.handle_update_pieces()
+
+        self._widget_group = WidgetGroup()
+        self._widget_group.initialise_widgets(self._screen.get_size())
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -41,6 +45,7 @@ class GameView:
         self._board_surface = pygame.transform.scale(self._board_unscaled, self._board_size)
 
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
+        self._widget_group.handle_resize(self._screen.get_size())
 
         square_size = self._board_size[0] / 10
         self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (square_size, square_size))
@@ -55,15 +60,15 @@ class GameView:
     
     def handle_widget_click(self, event):
         raise NotImplementedError
-    
-    def draw_widgets(self):
-        raise NotImplementedError
 
     def draw_board(self):
         self._screen.blit(self._board_surface, self._board_position)
 
     def draw_pieces(self):
         self._piece_group.draw(self._screen)
+    
+    def draw_widgets(self):
+        self._widget_group.draw(self._screen)
 
     def draw_overlay(self):
         if not self._selected_overlay_coord:
@@ -83,6 +88,7 @@ class GameView:
         self.draw_board()
         self.draw_pieces()
         self.draw_overlay()
+        self.draw_widgets()
 
     def process_model_event(self, event):
         try:

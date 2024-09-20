@@ -1,26 +1,65 @@
 import pygame
-import pygame.freetype
 from data.utils.settings_helpers import get_settings_json
 
-from functools import partial
+app_settings = get_settings_json()
 
-class _GUIElement:
+class _Widget(pygame.sprite.Sprite):
     def __init__(self):
+        super().__init__()
         pass
     
-    def draw(self):
-        raise NotImplementedError
+    # def draw(self):
+    #     raise NotImplementedError
     
     def handle_events(self, event):
         raise NotImplementedError
 
     def handle_resize(self):
         raise NotImplementedError
-    
 
-class Label(_GUIElement):
+class Text(_Widget): # Pure text
+    def __init__(self, screen_size, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
+        super().__init__()
+
+        self._text = text
+        self._text_colour = text_colour
+        self._font = pygame.freetype.Font(font_path)
+
+        self.rect = self._font.get_rect(self._text, size=font_size)
+        self.rect.topleft = position
+        
+        self._relative_position = (position[0] / screen_size[0], position[1] / screen_size[1])
+        self._relative_size = (self.rect.width / screen_size[0], self.rect.height / screen_size[1])
+        self._relative_font_size = font_size / screen_size[0]
+        
+        
+        self._text_surface = pygame.Surface((self.rect.width, self.rect.height))
+        self.set_geometry(screen_size)
+        self.set_image(screen_size)
+    
+    def set_geometry(self, new_screen_size):
+        font_size = self._relative_font_size * new_screen_size[0]
+        position = (self._relative_position[0] * new_screen_size[0], self._relative_position[1] * new_screen_size[1])
+        
+        self.rect = self._font.get_rect(self._text, size=font_size)
+        self.rect.topleft = position
+    
+    def set_image(self, new_screen_size):
+        width = self._relative_size[0] * new_screen_size[0]
+        height = self._relative_size[1] * new_screen_size[1]
+        font_size = self._relative_font_size * new_screen_size[0]
+
+        text_surface = pygame.transform.scale(self._text_surface, (width, height))
+        self.image = text_surface
+        self.image.fill((200, 0, 3))
+        self._font.render_to(self.image, (0, 0), self._text, fgcolor=self._text_colour, size=font_size)
+
+        print(width, height)
+        
+
+class Label(_Widget):
     '''Set 0 border width for filled rounded label'''
-    def __init__(self, screen, position, text, font_path=app_settings.primaryFont, font_size=30, text_colour=(0, 0, 0), label_colour=None, border_width=0, border_radius=0, margin=None, width=None, height=None):
+    def __init__(self, screen, position, text, font_path=app_settings['primaryFont'], font_size=30, text_colour=(0, 0, 0), label_colour=None, border_width=0, border_radius=0, margin=None, width=None, height=None):
         '''Font size as a percentage of screen height'''
         super().__init__()
         self._text = text
@@ -104,27 +143,3 @@ class Label(_GUIElement):
         elif self._draw_type == 'size':
             self._width = self._relative_width * screen_width
             self._height = self._relative_height * screen_height
-
-
-class Button(Label):
-    def __init__(self, screen, position, text, func, image=None, **kwargs):
-        super().__init__(screen, position, text, **kwargs)
-        self._image = image
-        self._func = func
-
-        if image:
-            self._draw_type = 'image'
-        if self._draw_type is None:
-            raise ValueError('Invalid arguments - no valid size argument provided (elements.py)')
-    
-    def draw(self):
-        if self._draw_type == 'image':
-            print('NOT IMPLEMENTED YET - DRAWING ICON')
-        else:
-            super().draw()
-    
-    def handle_events(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self._label_rect.collidepoint(event.pos):
-                print('CLICKING:', self.text)
-                self._func()
