@@ -23,6 +23,7 @@ class EventType(IntEnum):
     EMPTY_CLICK = 3
     UPDATE_PIECES = 4
     REMOVE_PIECE = 5
+    ROTATE_PIECE = 6
 
 class Colour(IntEnum):
     BLUE = 0
@@ -99,6 +100,10 @@ class Rotation(StrEnum):
 class RotationIndex(IntEnum):
     FIRSTBIT = 0
     SECONDBIT = 1
+
+class RotationDirection(StrEnum):
+    CLOCKWISE = 'cw'
+    ANTICLOCKWISE = 'acw'
 
 class MoveType(StrEnum):
     MOVE = 'm'

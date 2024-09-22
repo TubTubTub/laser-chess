@@ -3,6 +3,7 @@ from data.constants import EventType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
+from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 from data.utils.board_helpers import coords_to_screen_pos
 from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay
@@ -23,6 +24,8 @@ class GameView:
         self._board_position = self.calculate_board_position()
         self._board_surface = create_board(self._board_size, self._app_settings['primaryBoardColour'], self._app_settings['secondaryBoardColour'])
         self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
+
+        self._cursor = Cursor()
 
         self._piece_group = PieceGroup()
         self.handle_update_pieces()
@@ -135,5 +138,8 @@ class GameView:
 
             return GameEvent.create_event(EventType.BOARD_CLICK, coords=(int(x), int(y)))
 
+        elif collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
+            return collided.event
+        
         else:
             return GameEvent.create_event(EventType.EMPTY_CLICK)

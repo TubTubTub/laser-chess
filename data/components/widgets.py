@@ -8,8 +8,8 @@ class _Widget(pygame.sprite.Sprite):
         super().__init__()
         pass
     
-    # def draw(self):
-    #     raise NotImplementedError
+    def draw(self):
+        raise NotImplementedError
     
     def handle_events(self, event):
         raise NotImplementedError
@@ -18,8 +18,9 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class Text(_Widget): # Pure text
-    def __init__(self, screen_size, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
+    def __init__(self, event, screen_size, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
         super().__init__()
+        self.event = event
 
         self._text = text
         self._text_colour = text_colour
@@ -29,7 +30,6 @@ class Text(_Widget): # Pure text
         self.rect.topleft = position
         
         self._relative_position = (position[0] / screen_size[0], position[1] / screen_size[1])
-        self._relative_size = (self.rect.width / screen_size[0], self.rect.height / screen_size[1])
         self._relative_font_size = font_size / screen_size[0]
         
         
@@ -45,16 +45,12 @@ class Text(_Widget): # Pure text
         self.rect.topleft = position
     
     def set_image(self, new_screen_size):
-        width = self._relative_size[0] * new_screen_size[0]
-        height = self._relative_size[1] * new_screen_size[1]
         font_size = self._relative_font_size * new_screen_size[0]
 
-        text_surface = pygame.transform.scale(self._text_surface, (width, height))
+        text_surface = pygame.transform.scale(self._text_surface, self.rect.size)
         self.image = text_surface
         self.image.fill((200, 0, 3))
         self._font.render_to(self.image, (0, 0), self._text, fgcolor=self._text_colour, size=font_size)
-
-        print(width, height)
         
 
 class Label(_Widget):

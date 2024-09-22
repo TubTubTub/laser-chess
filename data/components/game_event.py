@@ -9,13 +9,14 @@ class GameEvent():
     def create_event(event_cls, event_type, **kwargs):
         match event_type:
             case EventType.BOARD_CLICK:
-                if 'coords' not in kwargs:
+                coords = kwargs.get('coords')
+                if coords is None:
                     raise ValueError("Argument 'coords' required for BOARD_CLICK event (GameEvent.create_event)")
                 
-                return event_cls(event_type, coords=kwargs.get('coords'))
+                return event_cls(event_type, coords=coords)
 
             case EventType.WIDGET_CLICK:
-                raise NotImplementedError
+                return event_cls(event_type)
                 
             case EventType.EMPTY_CLICK:
                 return event_cls(event_type)
@@ -24,10 +25,18 @@ class GameEvent():
                 return event_cls(event_type)
             
             case EventType.REMOVE_PIECE:
-                if 'coords_to_remove' not in kwargs:
+                coords_to_remove = kwargs.get('coords_to_remove')
+                if coords_to_remove is None:
                     raise ValueError("Argument 'coords_to_remove' required for REMOVE_PIECE event (GameEvent.create_event)")
                 
-                return event_cls(event_type, coords_to_remove=kwargs.get('coords_to_remove'))
+                return event_cls(event_type, coords_to_remove=coords_to_remove)
+            
+            case EventType.ROTATE_PIECE:
+                rotation_direction = kwargs.get('rotation_direction')
+                if rotation_direction is None:
+                    raise ValueError("Argument 'rotation_direction' required for REMOVE_PIECE event (GameEvent.create_event)")
+
+                return event_cls(event_type, rotation_direction=rotation_direction)
             
             case _:
                 raise ValueError('Invalid event type (GameEvent.create_event)')

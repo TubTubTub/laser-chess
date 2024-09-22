@@ -1,7 +1,7 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, EventType, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
@@ -11,7 +11,6 @@ class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.bitboards = bitboard.BitboardCollection(fen_string)
         self.status_text = self.bitboards.active_colour.name
-        self.has_moved_piece = False
 
         self._listeners = []
         self._selected_square = None
@@ -83,9 +82,6 @@ class Board:
             return self.bitboards.active_colour.get_flipped_colour()
 
         return None
-
-    # def check_valid_src(self, src_square):
-    #     return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
     
     def apply_move(self, move):
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
@@ -101,31 +97,28 @@ class Board:
                 raise ValueError('Invalid move - destination square is occupied')
 
             piece_rotation = self.bitboards.get_rotation_on(move.src)
-            
-            # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
 
             self.bitboards.update_move(move.src, move.dest)
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
 
-            self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
-
         elif move.move_type == MoveType.ROTATE:
-            # src_bitboard = src_square.to_bitboard()
-            # src_list_position = src_square.to_list_position()
 
             piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+            piece_rotation = self.bitboards.get_rotation_on(move.src)
 
-            # self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
-            self.bitboards.update_rotation(move.src, move.src, move.rotation)
+            if move.rotation_direction == RotationDirection.CLOCKWISE:
+                new_rotation = piece_rotation.get_clockwise()
+            elif move.rotation_direction == RotationDirection.ANTICLOCKWISE:
+                new_rotation = piece_rotation.get_anticlockwise()
 
-        self.has_moved_piece = True
+            self.bitboards.update_rotation(move.src, move.src, new_rotation)
+
+        self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
         print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
     
     def remove_piece(self, square_bitboard):
         self.bitboards.clear_square(square_bitboard, Colour.BLUE)
         self.bitboards.clear_square(square_bitboard, Colour.RED)
-
-        # self._square_group.clear_square(square_bitboard)
     
     def get_valid_squares(self, src_bitboard):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9

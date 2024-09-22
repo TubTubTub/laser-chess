@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, EMPTY_BB
+from data.constants import EventType, MoveType, EMPTY_BB
 from data.utils import bitboard_helpers as bb_helpers
 from data.components.move import Move
 
@@ -33,7 +33,7 @@ class GameController:
 
                         if game_event.coords in current_overlays:
                             src_coords = self._view.get_selected_overlay_coord()
-                            move = Move.instance_from_coords(src_coords, game_event.coords)
+                            move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
 
                             self._model.apply_move(move)
                             self._model.fire_laser()
@@ -42,8 +42,27 @@ class GameController:
                             self._view.set_overlay_coords([], None)
                         else:
                             self._view.set_overlay_coords([], None)
+                
+                case EventType.WIDGET_CLICK:
+                    print('widget clicked!')
                         
                 case EventType.EMPTY_CLICK:
                     self._view.set_overlay_coords([], None)
+                
+                case EventType.ROTATE_PIECE:
+                    src_coords = self._view.get_selected_overlay_coord()
+
+                    if src_coords is None:
+                        print('None')
+                        return
+
+                    move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=game_event.rotation_direction)
+
+                    self._model.apply_move(move)
+                    self._model.fire_laser()
+                    self._model.flip_colour()
+                    
+                    self._view.set_overlay_coords([], None)
+
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')

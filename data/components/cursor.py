@@ -2,7 +2,7 @@ import pygame
 
 class Cursor(pygame.sprite.Sprite):
     def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
         self.image = pygame.Surface((1, 1))
         self.image.fill((255, 0, 0))
         self.rect = self.image.get_rect()
@@ -10,11 +10,8 @@ class Cursor(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
     
-    def select_square(self, mouse_pos, square_group):
+    def get_sprite_collision(self, mouse_pos, square_group):
         self.rect.center = mouse_pos
-        sprite = pygame.sprite.spritecollide(self, square_group, False)
+        sprite = pygame.sprite.spritecollideany(self, square_group)
         
-        if not (sprite):
-            return None
-
-        return sprite[0]
+        return sprite

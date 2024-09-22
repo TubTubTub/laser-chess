@@ -130,10 +130,56 @@ def process_board_press(self, mouse_position):
         self._selected_square = None
 
 
-    def notation_to_list_index(self, notation):
-        if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):
-            rank = int(notation[1]) - 1
-            file = int(File[notation[0].upper()])
-            return (rank * 10 + file)
-        else:
-            raise ValueError('Invalid input - cannot convert input into list index')
+def notation_to_list_index(self, notation):
+    if (len(notation) == 2) and (notation[0].upper() in File._member_names_) and (notation[1] in [str(rank.value + 1) for rank in Rank]):
+        rank = int(notation[1]) - 1
+        file = int(File[notation[0].upper()])
+        return (rank * 10 + file)
+    else:
+        raise ValueError('Invalid input - cannot convert input into list index')
+# def check_valid_src(self, src_square):
+#     return (src_square & self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]) != EMPTY_BB
+
+def apply_move(self, move):
+    piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+
+    if piece_symbol is None:
+        raise ValueError('Invalid move - no piece found on source square')
+    elif piece_symbol == Piece.SPHINX:
+        raise ValueError('Invalid move - sphinx piece is immovable')
+
+    if move.move_type == MoveType.MOVE:
+        possible_moves = self.get_valid_squares(move.src)
+        if bb_helpers.is_occupied(move.dest, possible_moves) is False:
+            raise ValueError('Invalid move - destination square is occupied')
+
+        piece_rotation = self.bitboards.get_rotation_on(move.src)
+        
+        # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
+
+        self.bitboards.update_move(move.src, move.dest)
+        self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
+
+    elif move.move_type == MoveType.ROTATE:
+        # src_bitboard = src_square.to_bitboard()
+        # src_list_position = src_square.to_list_position()
+
+        piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
+        piece_rotation = self.bitboards.get_rotation_on(move.src)
+
+        if move.direction == RotationDirection.CLOCKWISE:
+            new_rotation = piece_rotation.get_clockwise()
+        elif move.direction == RotationDirection.ANTICLOCKISE:
+            new_rotation = piece_rotation.get_anticlockwise()
+
+        # self._square_group.update_squares_rotate(src_list_position, piece_symbol, self.bitboards.active_colour, new_rotation=new_rotation)
+        self.bitboards.update_rotation(move.src, move.src, new_rotation)
+
+    self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
+    print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
+
+def remove_piece(self, square_bitboard):
+    self.bitboards.clear_square(square_bitboard, Colour.BLUE)
+    self.bitboards.clear_square(square_bitboard, Colour.RED)
+
+    # self._square_group.clear_square(square_bitboard)

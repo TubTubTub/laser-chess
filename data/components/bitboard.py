@@ -88,8 +88,8 @@ class BitboardCollection():
                 bb_helpers.is_occupied(self.get_piece_bitboard(piece, colour), target_bitboard)),
             None)
 
-    def get_rotation_on(self, index):
-        rotationBits = [bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.SECONDBIT], index), bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.FIRSTBIT], index)]
+    def get_rotation_on(self, target_bitboard):
+        rotationBits = [bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.SECONDBIT], target_bitboard), bb_helpers.is_occupied(self.rotation_bitboards[RotationIndex.FIRSTBIT], target_bitboard)]
 
         match rotationBits:
             case [False, False]:
@@ -113,5 +113,5 @@ class BitboardCollection():
                 piece_list.append((y, rotation))
             else:
                 piece_list.append(None)
-        
+
         return piece_list
