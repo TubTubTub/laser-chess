@@ -32,6 +32,9 @@ class Board:
                 
                 case EventType.REMOVE_PIECE:
                     listener(event)
+                
+                case EventType.SET_LASER:
+                    listener(event)
 
                 case _:
                     raise Exception('Unhandled alert type (Board.alert_listeners)')
@@ -159,3 +162,7 @@ class Board:
             self.remove_piece(laser.hit_square_bitboard)
             coords_to_remove = bb_helpers.bitboard_to_coords(laser.hit_square_bitboard)
             self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
+        
+        active_colour = self.bitboards.active_colour
+
+        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser.laser_path, active_colour=active_colour))

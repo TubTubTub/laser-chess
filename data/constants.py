@@ -24,6 +24,7 @@ class EventType(IntEnum):
     UPDATE_PIECES = 4
     REMOVE_PIECE = 5
     ROTATE_PIECE = 6
+    SET_LASER = 7
 
 class Colour(IntEnum):
     BLUE = 0

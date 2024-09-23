@@ -37,6 +37,14 @@ class GameEvent():
                     raise ValueError("Argument 'rotation_direction' required for REMOVE_PIECE event (GameEvent.create_event)")
 
                 return event_cls(event_type, rotation_direction=rotation_direction)
+
+            case EventType.SET_LASER:
+                laser_path = kwargs.get('laser_path')
+                active_colour = kwargs.get('active_colour')
+                if (laser_path is None) or (active_colour is None):
+                    raise ValueError("Argument 'laser_path' required for REMOVE_PIECE event (GameEvent.create_event)")
+                
+                return event_cls(event_type, laser_path=laser_path, active_colour=active_colour)
             
             case _:
                 raise ValueError('Invalid event type (GameEvent.create_event)')

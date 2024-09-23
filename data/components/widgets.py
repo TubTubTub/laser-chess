@@ -32,7 +32,6 @@ class Text(_Widget): # Pure text
         self._relative_position = (position[0] / screen_size[0], position[1] / screen_size[1])
         self._relative_font_size = font_size / screen_size[0]
         
-        
         self._text_surface = pygame.Surface((self.rect.width, self.rect.height))
         self.set_geometry(screen_size)
         self.set_image(screen_size)
@@ -49,7 +48,7 @@ class Text(_Widget): # Pure text
 
         text_surface = pygame.transform.scale(self._text_surface, self.rect.size)
         self.image = text_surface
-        self.image.fill((200, 0, 3))
+        self.image.fill((50, 50, 50))
         self._font.render_to(self.image, (0, 0), self._text, fgcolor=self._text_colour, size=font_size)
         
 

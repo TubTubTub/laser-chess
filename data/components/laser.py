@@ -4,12 +4,13 @@ from data.constants import Piece, Colour, Rotation, LaserType, LaserDirection, A
 class Laser:
     def __init__(self, bitboards):
         self._bitboards = bitboards
-        self.trajectory_bitboard, self.hit_square_bitboard = self.get_trajectory()
+        self.hit_square_bitboard, self.laser_path = self.calculate_trajectory()
     
-    def get_trajectory(self):
+    def calculate_trajectory(self):
         current_square = self._bitboards.get_piece_bitboard(Piece.SPHINX, self._bitboards.active_colour)
         previous_direction = self._bitboards.get_rotation_on(current_square)
         trajectory_bitboard = 0b0
+        square_animation_states = []
 
         while current_square:
             blue_piece = self._bitboards.get_piece_on(current_square, Colour.BLUE)
@@ -20,13 +21,16 @@ class Laser:
             trajectory_bitboard |= current_square
             
             next_square, direction, piece_is_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
+            square_animation_states.append(direction)
 
             if next_square == EMPTY_BB:
                 hit_square_bitboard = None
                 if piece_is_hit:
                     hit_square_bitboard = current_square
+                
+                trajectory_list = bb_helpers.bitboard_to_coords_list(trajectory_bitboard)
 
-                return trajectory_bitboard, hit_square_bitboard
+                return hit_square_bitboard, list(zip(trajectory_list, square_animation_states))
 
             current_square = next_square
             previous_direction = direction

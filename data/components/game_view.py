@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import EventType, Colour, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
@@ -7,6 +7,9 @@ from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 from data.utils.board_helpers import coords_to_screen_pos
 from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay
+from data.utils.settings_helpers import get_settings_json
+
+app_settings = get_settings_json()
 
 class GameView:
     def __init__(self, model):
@@ -15,7 +18,8 @@ class GameView:
         self._app_settings = get_settings_json()
         self.event_to_func_map = {
             EventType.UPDATE_PIECES: self.handle_update_pieces,
-            EventType.REMOVE_PIECE: self.handle_remove_piece
+            EventType.REMOVE_PIECE: self.handle_remove_piece,
+            EventType.SET_LASER: self.handle_set_laser,
         }
 
         self.model.register_listener(self.process_model_event)
@@ -41,6 +45,10 @@ class GameView:
         self._square_overlay = create_square_overlay(square_size, OVERLAY_COLOUR)
         self._circle_overlay_unscaled = self._circle_overlay.copy()
         self._square_overlay_unscaled = self._square_overlay.copy()
+
+        self.laser_path = []
+        self.laser_start_ticks = 0
+        self.laser_colour = None
     
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
@@ -60,6 +68,17 @@ class GameView:
     
     def handle_remove_piece(self, event):
         self._piece_group.remove_piece(event.coords_to_remove)
+    
+    def handle_set_laser(self, event):
+        if event.active_colour == Colour.BLUE:
+            self.laser_colour = app_settings['laserColourBlue']
+        elif event.active_colour == Colour.RED:
+            self.laser_colour = app_settings['laserColourRed']
+
+        self.laser_path = event.laser_path
+        self.laser_start_ticks = pygame.time.get_ticks()
+        
+        direction_to_state = {}
     
     def handle_widget_click(self, event):
         raise NotImplementedError
@@ -86,12 +105,33 @@ class GameView:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
             self._screen.blit(self._circle_overlay, (square_x, square_y))
     
+    def draw_laser(self):
+        if not self.laser_path:
+            return
+        
+        elapsed_seconds = (pygame.time.get_ticks() - self.laser_start_ticks) / 1000
+
+        if elapsed_seconds >= 1.5:
+            self.laser_path = []
+            self.laser_start_ticks = 0
+            self.laser_colour = None
+            return
+         
+        square_size = self._board_size[0] / 10
+        square = pygame.Surface((30, 30))
+        square.fill(self.laser_colour)
+
+        for coords, direction, state in self.laser_path:
+            square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
+            self._screen.blit(square, (square_x, square_y))
+    
     def draw(self):
         self._screen.fill(BG_COLOUR)
         self.draw_board()
         self.draw_pieces()
         self.draw_overlay()
         self.draw_widgets()
+        self.draw_laser()
 
     def process_model_event(self, event):
         try:
