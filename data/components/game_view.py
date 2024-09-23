@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, Colour, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import EventType, Colour, LaserType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
@@ -7,9 +7,7 @@ from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 from data.utils.board_helpers import coords_to_screen_pos
 from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay
-from data.utils.settings_helpers import get_settings_json
-
-app_settings = get_settings_json()
+from data.setup import GRAPHICS
 
 class GameView:
     def __init__(self, model):
@@ -70,15 +68,27 @@ class GameView:
         self._piece_group.remove_piece(event.coords_to_remove)
     
     def handle_set_laser(self, event):
-        if event.active_colour == Colour.BLUE:
-            self.laser_colour = app_settings['laserColourBlue']
-        elif event.active_colour == Colour.RED:
-            self.laser_colour = app_settings['laserColourRed']
-
-        self.laser_path = event.laser_path
-        self.laser_start_ticks = pygame.time.get_ticks()
+        laser_types = [LaserType.END]
+        laser_rotation = [event.laser_path[0][1]]
         
-        direction_to_state = {}
+        for i in range(1, len(event.laser_path)):
+            previous_direction = event.laser_path[i-1][1]
+            current_direction = event.laser_path[i][1]
+
+            if current_direction == previous_direction:
+                laser_types.append(LaserType.STRAIGHT)
+            else:
+                if laser is below:
+                    laser_rotation.append(...)
+                laser_types.append(LaserType.CORNER)
+
+        if (event.laser_path[-1][0][0] > 9) or (event.laser_path[-1][0][0] > 7):
+            laser_types[-1] = LaserType.END
+            event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-1][1].get_opposite())
+
+        self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
+        self.laser_start_ticks = pygame.time.get_ticks()
+        self.laser_colour = event.active_colour
     
     def handle_widget_click(self, event):
         raise NotImplementedError
@@ -111,19 +121,30 @@ class GameView:
         
         elapsed_seconds = (pygame.time.get_ticks() - self.laser_start_ticks) / 1000
 
-        if elapsed_seconds >= 1.5:
-            self.laser_path = []
-            self.laser_start_ticks = 0
-            self.laser_colour = None
-            return
+        # if elapsed_seconds >= 5:
+        #     self.laser_path = []
+        #     self.laser_start_ticks = 0
+        #     self.laser_colour = None
+        #     return
          
         square_size = self._board_size[0] / 10
         square = pygame.Surface((30, 30))
         square.fill(self.laser_colour)
 
-        for coords, direction, state in self.laser_path:
+        type_to_image = {
+            LaserType.END: ['laser_end_1', 'laser_end_2'],
+            LaserType.STRAIGHT: ['laser_straight_1', 'laser_straight_2'],
+            LaserType.CORNER: ['laser_corner_1', 'laser_corner_2']
+        }
+
+        for coords, rotation, type in self.laser_path:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
-            self._screen.blit(square, (square_x, square_y))
+
+            image = GRAPHICS[type_to_image[type][self.laser_colour]]
+            scaled_image = pygame.transform.scale(image, (square_size, square_size))
+            rotated_image = pygame.transform.rotate(scaled_image, rotation)
+
+            self._screen.blit(rotated_image, (square_x, square_y))
     
     def draw(self):
         self._screen.fill(BG_COLOUR)

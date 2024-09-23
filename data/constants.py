@@ -95,8 +95,8 @@ class Rotation(StrEnum):
         elif self == Rotation.LEFT:
             return Rotation.DOWN
     
-    # def get_opposite(self):
-    #     return self.get_clockwise().get_clockwise()
+    def get_opposite(self):
+        return self.get_clockwise().get_clockwise()
 
 class RotationIndex(IntEnum):
     FIRSTBIT = 0
