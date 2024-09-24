@@ -76,17 +76,29 @@ class GameView:
             current_direction = event.laser_path[i][1]
 
             if current_direction == previous_direction:
+                print('WOW3', event.laser_path[i][0])
                 laser_types.append(LaserType.STRAIGHT)
-            else:
-                if laser is below:
-                    laser_rotation.append(...)
+                laser_rotation.append(current_direction)
+            elif current_direction == previous_direction.get_clockwise():
+                print('WOW2', event.laser_path[i][0])
                 laser_types.append(LaserType.CORNER)
+                laser_rotation.append(current_direction)
+            elif current_direction == previous_direction.get_anticlockwise():
+                print('WOW', event.laser_path[i][0])
+                laser_types.append(LaserType.CORNER)
+                laser_rotation.append(previous_direction.get_opposite())
+            
+            #WHY IS EVENT PATH NOT ORDERED?
 
         if (event.laser_path[-1][0][0] > 9) or (event.laser_path[-1][0][0] > 7):
             laser_types[-1] = LaserType.END
             event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-1][1].get_opposite())
+            laser_rotation[-1] = laser_rotation[-1].get_opposite()
+        
 
         self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
+        print(event.laser_path)
+        print(self.laser_path)
         self.laser_start_ticks = pygame.time.get_ticks()
         self.laser_colour = event.active_colour
     
@@ -142,7 +154,7 @@ class GameView:
 
             image = GRAPHICS[type_to_image[type][self.laser_colour]]
             scaled_image = pygame.transform.scale(image, (square_size, square_size))
-            rotated_image = pygame.transform.rotate(scaled_image, rotation)
+            rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
 
             self._screen.blit(rotated_image, (square_x, square_y))
     
