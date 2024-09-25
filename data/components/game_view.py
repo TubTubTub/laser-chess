@@ -76,29 +76,21 @@ class GameView:
             current_direction = event.laser_path[i][1]
 
             if current_direction == previous_direction:
-                print('WOW3', event.laser_path[i][0])
                 laser_types.append(LaserType.STRAIGHT)
                 laser_rotation.append(current_direction)
             elif current_direction == previous_direction.get_clockwise():
-                print('WOW2', event.laser_path[i][0])
                 laser_types.append(LaserType.CORNER)
                 laser_rotation.append(current_direction)
             elif current_direction == previous_direction.get_anticlockwise():
-                print('WOW', event.laser_path[i][0])
                 laser_types.append(LaserType.CORNER)
-                laser_rotation.append(previous_direction.get_opposite())
-            
-            #WHY IS EVENT PATH NOT ORDERED?
-
-        if (event.laser_path[-1][0][0] > 9) or (event.laser_path[-1][0][0] > 7):
-            laser_types[-1] = LaserType.END
-            event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-1][1].get_opposite())
-            laser_rotation[-1] = laser_rotation[-1].get_opposite()
+                laser_rotation.append(current_direction.get_anticlockwise())
         
+        if event.has_hit:
+            laser_types[-1] = LaserType.END
+            event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-2][1].get_opposite())
+            laser_rotation[-1] = laser_rotation[-2].get_opposite()
 
         self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
-        print(event.laser_path)
-        print(self.laser_path)
         self.laser_start_ticks = pygame.time.get_ticks()
         self.laser_colour = event.active_colour
     
@@ -133,12 +125,12 @@ class GameView:
         
         elapsed_seconds = (pygame.time.get_ticks() - self.laser_start_ticks) / 1000
 
-        # if elapsed_seconds >= 5:
-        #     self.laser_path = []
-        #     self.laser_start_ticks = 0
-        #     self.laser_colour = None
-        #     return
-         
+        if elapsed_seconds >= 1.5:
+            self.laser_path = []
+            self.laser_start_ticks = 0
+            self.laser_colour = None
+            return
+
         square_size = self._board_size[0] / 10
         square = pygame.Surface((30, 30))
         square.fill(self.laser_colour)

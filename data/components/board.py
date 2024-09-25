@@ -64,10 +64,7 @@ class Board:
         return characters
     
     def flip_colour(self):
-        if self.bitboards.active_colour == Colour.BLUE:
-            self.bitboards.active_colour = Colour.RED
-        elif self.bitboards.active_colour == Colour.RED:
-            self.bitboards.active_colour = Colour.BLUE
+        self.bitboards.active_colour = self.bitboards.active_colour.get_flipped_colour()
 
     def get_move(self):
         while True:
@@ -81,8 +78,11 @@ class Board:
                 print('Input error (Board.get_move): ' + str(error))
     
     def check_win(self):
-        if self.get_all_valid_squares(self.bitboards.active_colour) == EMPTY_BB:
-            return self.bitboards.active_colour.get_flipped_colour()
+        for colour in Colour:
+            if self.get_all_valid_squares(colour) == EMPTY_BB:
+                return colour.get_flipped_colour()
+            elif self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
+                return colour.get_flipped_colour()
 
         return None
     
@@ -164,5 +164,6 @@ class Board:
             self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
         
         active_colour = self.bitboards.active_colour
+        has_hit = laser.hit_square_bitboard != EMPTY_BB
 
-        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser.laser_path, active_colour=active_colour))
+        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser.laser_path, active_colour=active_colour, has_hit=has_hit))

@@ -10,6 +10,7 @@ class Laser:
         current_square = self._bitboards.get_piece_bitboard(Piece.SPHINX, self._bitboards.active_colour)
         previous_direction = self._bitboards.get_rotation_on(current_square)
         trajectory_bitboard = 0b0
+        trajectory_list = []
         square_animation_states = []
 
         while current_square:
@@ -18,20 +19,19 @@ class Laser:
             current_piece = blue_piece or red_piece
             current_rotation = self._bitboards.get_rotation_on(current_square)
             
-            trajectory_bitboard |= current_square
-            
             next_square, direction, piece_is_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
+            
+            trajectory_bitboard |= current_square
+            trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
             square_animation_states.append(direction)
 
             if next_square == EMPTY_BB:
-                hit_square_bitboard = None
+                hit_square_bitboard = 0b0
                 if piece_is_hit:
                     hit_square_bitboard = current_square
-                
-                trajectory_list = bb_helpers.bitboard_to_coords_list(trajectory_bitboard)
 
                 return hit_square_bitboard, list(zip(trajectory_list, square_animation_states))
-
+            
             current_square = next_square
             previous_direction = direction
     

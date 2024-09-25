@@ -4,8 +4,8 @@ def print_bitboard(bitboard):
     if (bitboard >= (2 ** 80)):
         raise ValueError('Invalid bitboard: too many bits')
 
+    characters = ''
     for rank in reversed(Rank):
-        characters = ''
 
         for file in File:
             mask = 1 << (rank * 10 + file)
@@ -14,7 +14,9 @@ def print_bitboard(bitboard):
             else:
                 characters += '0  '
 
-        print(characters + '\n')
+        characters += '\n\n'
+    
+    print('\n' + characters + '\n')
 
 def is_occupied(bitboard, target_bitboard):
     return (target_bitboard & bitboard) != EMPTY_BB

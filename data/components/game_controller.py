@@ -10,13 +10,13 @@ class GameController:
     
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print('MOUSEBUTTONDOWN:', event.pos)
+            # print('MOUSEBUTTONDOWN:', event.pos)
             game_event = self._view.convert_mouse_pos(event.pos)
             
             match game_event.type:
 
                 case EventType.BOARD_CLICK:
-                    print('COORDS:', game_event.coords)
+                    # print('COORDS:', game_event.coords)
 
                     clicked_bitboard = bb_helpers.coords_to_bitboard(game_event.coords)
                     current_selected = self._view.get_selected_overlay_coord()
@@ -35,14 +35,14 @@ class GameController:
                             src_coords = self._view.get_selected_overlay_coord()
                             move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
 
-                            self._model.apply_move(move)
-                            self._model.fire_laser()
-                            self._model.flip_colour()
-                            
-                            self._view.set_overlay_coords([], None)
+                            self.apply_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
-                
+                ##FIX SPHINX LASER###
+                ##FIX SPHINX LASER###
+                ##FIX SPHINX LASER###
+                ##FIX SPHINX LASER###
+                ##FIX SPHINX LASER###
                 case EventType.WIDGET_CLICK:
                     print('widget clicked!')
                         
@@ -58,11 +58,19 @@ class GameController:
 
                     move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=game_event.rotation_direction)
 
-                    self._model.apply_move(move)
-                    self._model.fire_laser()
-                    self._model.flip_colour()
-                    
-                    self._view.set_overlay_coords([], None)
+                    self.apply_move(move)
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')
+    
+    def apply_move(self, move):
+        self._model.apply_move(move)
+        self._model.fire_laser()
+        winner = self._model.check_win()
+
+        if winner is not None:
+            print(winner.name, 'WON')
+
+        self._model.flip_colour()
+        
+        self._view.set_overlay_coords([], None)

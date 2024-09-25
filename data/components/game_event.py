@@ -41,10 +41,11 @@ class GameEvent():
             case EventType.SET_LASER:
                 laser_path = kwargs.get('laser_path')
                 active_colour = kwargs.get('active_colour')
+                has_hit = kwargs.get('has_hit')
                 if (laser_path is None) or (active_colour is None):
                     raise ValueError("Argument 'laser_path' required for REMOVE_PIECE event (GameEvent.create_event)")
                 
-                return event_cls(event_type, laser_path=laser_path, active_colour=active_colour)
+                return event_cls(event_type, laser_path=laser_path, active_colour=active_colour, has_hit=has_hit)
             
             case _:
                 raise ValueError('Invalid event type (GameEvent.create_event)')
