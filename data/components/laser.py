@@ -20,10 +20,6 @@ class Laser:
             current_rotation = self._bitboards.get_rotation_on(current_square)
             
             next_square, direction, piece_is_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
-            
-            trajectory_bitboard |= current_square
-            trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
-            square_animation_states.append(direction)
 
             if next_square == EMPTY_BB:
                 hit_square_bitboard = 0b0
@@ -31,6 +27,10 @@ class Laser:
                     hit_square_bitboard = current_square
 
                 return hit_square_bitboard, list(zip(trajectory_list, square_animation_states))
+            
+            trajectory_bitboard |= current_square
+            trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
+            square_animation_states.append(direction)
             
             current_square = next_square
             previous_direction = direction
