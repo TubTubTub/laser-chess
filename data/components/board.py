@@ -145,10 +145,7 @@ class Board:
             piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
 
             for square in bb_helpers.occupied_squares(piece_bitboard):
-                valid_moves = self.get_valid_squares(square)
-                all_valid_squares = all_valid_squares | valid_moves
-            
-        return all_valid_squares
+                yield from self.get_valid_squares(square)
     
     def get_all_active_pieces(self):
         active_pieces = self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]

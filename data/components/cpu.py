@@ -13,7 +13,10 @@ class CPU:
     
     def evaluate_piece(self):
         return (
-            PieceScore.PYRAMID * self.piece_count_difference(Piece.PYRAMID)
+            PieceScore.SPHINX * self.piece_count_difference(Piece.SPHINX) +
+            PieceScore.PYRAMID * self.piece_count_difference(Piece.PYRAMID) +
+            PieceScore.ANUBIS * self.piece_count_difference(Piece.ANUBIS) +
+            PieceScore.SCARAB * self.piece_count_difference(Piece.SCARAB)
         )
 
     def evaluate_position(self):
