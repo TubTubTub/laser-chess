@@ -20,17 +20,17 @@ class Laser:
             current_rotation = self._bitboards.get_rotation_on(current_square)
             
             next_square, direction, piece_is_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
+            
+            trajectory_bitboard |= current_square
+            trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
+            square_animation_states.append(direction)
 
             if next_square == EMPTY_BB:
                 hit_square_bitboard = 0b0
                 if piece_is_hit:
                     hit_square_bitboard = current_square
-
+                print(list(zip(trajectory_list, square_animation_states)))
                 return hit_square_bitboard, list(zip(trajectory_list, square_animation_states))
-            
-            trajectory_bitboard |= current_square
-            trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
-            square_animation_states.append(direction)
             
             current_square = next_square
             previous_direction = direction
@@ -38,8 +38,11 @@ class Laser:
     def calculate_next_square(self, square, piece, rotation, previous_direction):
         match piece:
             case Piece.SPHINX:
-                next_square = self.next_square_bitboard(square, rotation)
+                sphinx_rotation = self._bitboards.get_rotation_on(self._bitboards.get_piece_bitboard(Piece.SPHINX, self._bitboards.active_colour))
+                if previous_direction != sphinx_rotation:
+                    return EMPTY_BB, previous_direction, False
 
+                next_square = self.next_square_bitboard(square, rotation)
                 return next_square, previous_direction, False
 
             case Piece.PYRAMID:

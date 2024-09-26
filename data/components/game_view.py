@@ -88,7 +88,7 @@ class GameView:
         if event.has_hit:
             laser_types[-1] = LaserType.END
             event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-2][1].get_opposite())
-            laser_rotation[-1] = laser_rotation[-2].get_opposite()
+            laser_rotation[-1] = event.laser_path[-2][1].get_opposite()
 
         self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
         self.laser_start_ticks = pygame.time.get_ticks()

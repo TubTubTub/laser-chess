@@ -43,6 +43,12 @@ class Piece(StrEnum):
     SCARAB = 'r'
     PHAROAH = 'f'
 
+class PieceScore(IntEnum):
+    SPHINX = 0
+    PYRAMID = 100
+    ANUBIS = 110
+    SCARAB = 200
+
 class Rank(IntEnum):
     ONE = 0
     TWO = 1

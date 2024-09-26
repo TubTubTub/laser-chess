@@ -38,11 +38,7 @@ class GameController:
                             self.apply_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
-                ##FIX SPHINX LASER###
-                ##FIX SPHINX LASER###
-                ##FIX SPHINX LASER###
-                ##FIX SPHINX LASER###
-                ##FIX SPHINX LASER###
+
                 case EventType.WIDGET_CLICK:
                     print('widget clicked!')
                         
