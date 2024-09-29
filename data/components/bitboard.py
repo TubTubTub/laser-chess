@@ -1,4 +1,4 @@
-from data.constants import Piece, Colour, Rotation, RotationIndex
+from data.constants import Piece, Colour, Rotation, RotationIndex, EMPTY_BB
 from data.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
 
@@ -101,6 +101,13 @@ class BitboardCollection():
             case [True, True]:
                 return Rotation.LEFT
     
+    def get_colour_on(self, target_bitboard):
+        for piece in Piece:
+            if self.get_piece_bitboard(piece, Colour.BLUE) & target_bitboard != EMPTY_BB:
+                return Colour.BLUE
+            elif self.get_piece_bitboard(piece, Colour.RED) & target_bitboard != EMPTY_BB:
+                return Colour.RED
+
     def get_piece_count(self, piece, colour):
         count = 0
         for piece in bb_helpers.occupied_squares(self.get_piece_bitboard(piece, colour)):

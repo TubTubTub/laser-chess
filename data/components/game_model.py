@@ -1,26 +1,20 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, Rotation, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
 
-class Board:
-    def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
-        self.bitboards = bitboard.BitboardCollection(fen_string)
-        self.status_text = self.bitboards.active_colour.name
-
+class GameModel:
+    def __init__(self):
         self._listeners = []
-        self._selected_square = None
-        self._pressed_on_board = False
-        self._paused = False
-    
-    @property
-    def clicked(self):
-        return self._pressed_on_board and not self._paused
-    
+        self._board = Board()
+        self.status_text = self._board.get_active_colour().name
+        self.laser_result = None
+        self.winner = None
+
     def register_listener(self, listener):
         self._listeners.append(listener)
     
@@ -37,10 +31,51 @@ class Board:
                     listener(event)
 
                 case _:
-                    raise Exception('Unhandled alert type (Board.alert_listeners)')
+                    raise Exception('Unhandled alert type (.alert_listeners)')
+
+    def get_move(self):
+        while True:
+            try:
+                move_type = ip_helpers.parse_move_type(input('Input move type (m/r): '))
+                src_square = ip_helpers.parse_notation(input("From: "))
+                dest_square = ip_helpers.parse_notation(input("To: "))
+                rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
+                return Move.instance_from_notation(move_type, src_square, dest_square, rotation)
+            except ValueError as error:
+                print('Input error (Board.get_move): ' + str(error))
     
+    def make_move(self, move):
+        laser_result = self._board.apply_move(move)
+        
+        self.winner = self._board.check_win()
+
+        self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
+        print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
+    
+        if laser_result.hit_square_bitboard:
+            coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
+            self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
+
+        active_colour = self._board.get_active_colour()
+        has_hit = laser_result.hit_square_bitboard != EMPTY_BB
+
+        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
+    
+    def get_clicked_coords(self, src_bitboard):
+        if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
+            return bb_helpers.bitboard_to_coords_list(self._board.get_valid_squares(src_bitboard))
+        
+        return []
+
     def get_piece_list(self):
-        return self.bitboards.convert_to_piece_list()
+        return self._board.get_piece_list()
+    
+    def get_board(self):
+        return self._board
+
+class Board:
+    def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
+        self.bitboards = bitboard.BitboardCollection(fen_string)
 
     def __str__(self):
         characters = ''
@@ -63,19 +98,14 @@ class Board:
         characters += f'CURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}'
         return characters
     
+    def get_piece_list(self):
+        return self.bitboards.convert_to_piece_list()
+
+    def get_active_colour(self):
+        return self.bitboards.active_colour
+    
     def flip_colour(self):
         self.bitboards.active_colour = self.bitboards.active_colour.get_flipped_colour()
-
-    def get_move(self):
-        while True:
-            try:
-                move_type = ip_helpers.parse_move_type(input('Input move type (m/r): '))
-                src_square = ip_helpers.parse_notation(input("From: "))
-                dest_square = ip_helpers.parse_notation(input("To: "))
-                rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
-                return Move.instance_from_notation(move_type, src_square, dest_square, rotation)
-            except ValueError as error:
-                print('Input error (Board.get_move): ' + str(error))
     
     def check_win(self):
         for colour in Colour:
@@ -86,7 +116,7 @@ class Board:
 
         return None
     
-    def apply_move(self, move):
+    def apply_move(self, move, fire_laser=True):
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
@@ -105,7 +135,6 @@ class Board:
             self.bitboards.update_rotation(move.src, move.dest, piece_rotation)
 
         elif move.move_type == MoveType.ROTATE:
-
             piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
             piece_rotation = self.bitboards.get_rotation_on(move.src)
 
@@ -115,9 +144,32 @@ class Board:
                 new_rotation = piece_rotation.get_anticlockwise()
 
             self.bitboards.update_rotation(move.src, move.src, new_rotation)
+        # bb_helpers.print_bitboard(self.bitboards.combined_all_bitboard)
+        laser = None
+        if fire_laser:
+            laser = self.fire_laser()
+        self.flip_colour()
+        
+        return laser
+    
+    def undo_move(self, move, laser_result):
+        self.flip_colour()
+        if laser_result.hit_square_bitboard:
+            src = laser_result.hit_square_bitboard
+            piece = laser_result.piece_hit
+            colour = laser_result.piece_colour
+            rotation = laser_result.piece_rotation
 
-        self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
-        print(f'PLAYER MOVE: {self.bitboards.active_colour.name}')
+            self.bitboards.set_square(src, piece, colour)
+            self.bitboards.update_rotation(src, src, rotation)
+
+        if move.move_type == MoveType.MOVE:
+            reversed_move = Move.instance_from_bitboards(MoveType.MOVE, move.dest, move.src)
+        elif move.move_type == MoveType.ROTATE:
+            reversed_move = Move.instance_from_bitboards(MoveType.ROTATE, move.src, move.src, move.rotation_direction.get_opposite())
+        
+        self.apply_move(reversed_move, fire_laser=False)
+        self.flip_colour()
     
     def remove_piece(self, square_bitboard):
         self.bitboards.clear_square(square_bitboard, Colour.BLUE)
@@ -140,13 +192,14 @@ class Board:
         return valid_possible_moves
     
     def get_all_valid_squares(self, colour):
-        all_valid_squares = EMPTY_BB
-        for piece in Piece:
-            piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
+        piece_bitboard = self.bitboards.combined_colour_bitboards[colour]
+        possible_moves = 0b0
 
-            for square in bb_helpers.occupied_squares(piece_bitboard):
-                yield from self.get_valid_squares(square)
-    
+        for square in bb_helpers.occupied_squares(piece_bitboard):
+            possible_moves |= self.get_valid_squares(square)
+        
+        return possible_moves
+
     def get_all_active_pieces(self):
         active_pieces = self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]
         sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, self.bitboards.active_colour)
@@ -156,11 +209,19 @@ class Board:
         laser = Laser(self.bitboards)
 
         if laser.hit_square_bitboard:
+            laser.piece_rotation = self.bitboards.get_rotation_on(laser.hit_square_bitboard)
+            laser.piece_colour = self.bitboards.get_colour_on(laser.hit_square_bitboard)
             self.remove_piece(laser.hit_square_bitboard)
-            coords_to_remove = bb_helpers.bitboard_to_coords(laser.hit_square_bitboard)
-            self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
         
-        active_colour = self.bitboards.active_colour
-        has_hit = laser.hit_square_bitboard != EMPTY_BB
+        return laser
+    
+    def generate_square_moves(self, src):
+        for dest in bb_helpers.occupied_squares(self.get_valid_squares(src)):
+            yield Move(MoveType.MOVE, src, dest)
+    
+    def generate_all_moves(self, colour):
+        for piece in (Piece.ANUBIS, Piece.PYRAMID, Piece.SCARAB, Piece.PHAROAH):
+            piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
 
-        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser.laser_path, active_colour=active_colour, has_hit=has_hit))
+            for square in bb_helpers.occupied_squares(piece_bitboard):
+                yield from self.generate_square_moves(square)

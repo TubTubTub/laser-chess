@@ -118,6 +118,12 @@ class RotationDirection(StrEnum):
     CLOCKWISE = 'cw'
     ANTICLOCKWISE = 'acw'
 
+    def get_opposite(self):
+        if self == RotationDirection.CLOCKWISE:
+            return RotationDirection.ANTICLOCKWISE
+        elif self == RotationDirection.ANTICLOCKWISE:
+            return RotationDirection.CLOCKWISE
+
 class MoveType(StrEnum):
     MOVE = 'm'
     ROTATE = 'r'

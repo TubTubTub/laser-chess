@@ -2,6 +2,7 @@ import pygame
 from data.constants import EventType, MoveType, EMPTY_BB
 from data.utils import bitboard_helpers as bb_helpers
 from data.components.move import Move
+from data.components.cpu import CPU
 
 class GameController:
     def __init__(self, model, view):
@@ -22,12 +23,10 @@ class GameController:
                     current_selected = self._view.get_selected_overlay_coord()
 
                     if not current_selected:
-                        if (clicked_bitboard & self._model.get_all_active_pieces()) != EMPTY_BB:
-                            possible_move_coords = bb_helpers.bitboard_to_coords_list(self._model.get_valid_squares(clicked_bitboard))
-                            self._view.set_overlay_coords(possible_move_coords, game_event.coords)
-                        else:
-                            return
+                        possible_move_coords = self._model.get_clicked_coords(clicked_bitboard)
 
+                        if possible_move_coords:
+                            self._view.set_overlay_coords(possible_move_coords, game_event.coords)
                     else:
                         current_overlays = self._view.get_valid_overlay_coords()
 
@@ -35,7 +34,7 @@ class GameController:
                             src_coords = self._view.get_selected_overlay_coord()
                             move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
 
-                            self.apply_move(move)
+                            self.apply_player_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
 
@@ -54,19 +53,25 @@ class GameController:
 
                     move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=game_event.rotation_direction)
 
-                    self.apply_move(move)
+                    self.apply_player_move(move)
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')
     
-    def apply_move(self, move):
-        self._model.apply_move(move)
-        self._model.fire_laser()
-        winner = self._model.check_win()
+    def apply_player_move(self, move):
+        self._model.make_move(move)
 
-        if winner is not None:
-            print(winner.name, 'WON')
-
-        self._model.flip_colour()
+        if self._model.winner is not None:
+            print(self._model.winner.name, 'WON')
+        
+        self.apply_cpu_move()
         
         self._view.set_overlay_coords([], None)
+    
+    def apply_cpu_move(self):
+        cpu = CPU(self._model.get_board(), depth=3)
+        print(cpu.evaluate(self._model.get_board()), 'evaluation')
+
+        move = cpu.find_best_move()
+        # print(move)
+        # self._model.make_move(move)

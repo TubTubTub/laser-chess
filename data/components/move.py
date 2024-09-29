@@ -1,5 +1,5 @@
 from data.constants import MoveType, Rotation, RotationIndex
-from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard
+from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords
 
 class Move():
     def __init__(self, move_type, src, dest=None, rotation_direction=None):
@@ -7,6 +7,9 @@ class Move():
         self.src = src
         self.dest = dest
         self.rotation_direction = rotation_direction
+    
+    def __str__(self):
+        return f'{self.move_type}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)} (Rotation: {self.rotation_direction})'
     
     @classmethod
     def instance_from_notation(move_cls, move_type, src, dest=None, rotation=None):
@@ -21,7 +24,7 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
-            print('Error (Move.input_from_notation):', error)
+            print('Error (Move.instance_from_notation):', error)
     
     @classmethod
     def instance_from_coords(move_cls, move_type, src_coords, dest_coords, rotation_direction=None):
@@ -31,4 +34,11 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
-            print('Error (Move.input_from_notation):', error)
+            print('Error (Move.instance_from_coords):', error)
+
+    @classmethod
+    def instance_from_bitboards(move_cls, move_type, src_bitboard, dest_bitboard, rotation_direction=None):
+        try:
+            return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
+        except Exception as error:
+            print('Error (Move.instance_from_bitboards):', error)

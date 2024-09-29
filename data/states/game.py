@@ -1,6 +1,6 @@
 import pygame
 from data.tools import _State
-from data.components.board import Board
+from data.components.game_model import GameModel
 from data.components.game_view import GameView
 from data.components.game_controller import GameController
 
@@ -13,9 +13,9 @@ class Game(_State):
         print('cleaning')
     
     def startup(self):
-        self.board = Board()
-        self.view = GameView(self.board)
-        self.controller = GameController(self.board, self.view)
+        self.model = GameModel()
+        self.view = GameView(self.model)
+        self.controller = GameController(self.model, self.view)
 
         self.view.draw()
         print('starting')

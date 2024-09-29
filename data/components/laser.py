@@ -4,7 +4,7 @@ from data.constants import Piece, Colour, Rotation, LaserType, LaserDirection, A
 class Laser:
     def __init__(self, bitboards):
         self._bitboards = bitboards
-        self.hit_square_bitboard, self.laser_path = self.calculate_trajectory()
+        self.hit_square_bitboard, self.piece_hit, self.laser_path = self.calculate_trajectory()
     
     def calculate_trajectory(self):
         current_square = self._bitboards.get_piece_bitboard(Piece.SPHINX, self._bitboards.active_colour)
@@ -19,7 +19,7 @@ class Laser:
             current_piece = blue_piece or red_piece
             current_rotation = self._bitboards.get_rotation_on(current_square)
             
-            next_square, direction, piece_is_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
+            next_square, direction, piece_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
             
             trajectory_bitboard |= current_square
             trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
@@ -27,10 +27,11 @@ class Laser:
 
             if next_square == EMPTY_BB:
                 hit_square_bitboard = 0b0
-                if piece_is_hit:
+
+                if piece_hit:
                     hit_square_bitboard = current_square
-                print(list(zip(trajectory_list, square_animation_states)))
-                return hit_square_bitboard, list(zip(trajectory_list, square_animation_states))
+                    
+                return hit_square_bitboard, piece_hit, list(zip(trajectory_list, square_animation_states))
             
             current_square = next_square
             previous_direction = direction
@@ -40,14 +41,14 @@ class Laser:
             case Piece.SPHINX:
                 sphinx_rotation = self._bitboards.get_rotation_on(self._bitboards.get_piece_bitboard(Piece.SPHINX, self._bitboards.active_colour))
                 if previous_direction != sphinx_rotation:
-                    return EMPTY_BB, previous_direction, False
+                    return EMPTY_BB, previous_direction, None
 
                 next_square = self.next_square_bitboard(square, rotation)
-                return next_square, previous_direction, False
+                return next_square, previous_direction, Piece.SPHINX
 
             case Piece.PYRAMID:
                 if previous_direction in [rotation, rotation.get_clockwise()]:
-                    return EMPTY_BB, previous_direction, True
+                    return EMPTY_BB, previous_direction, Piece.PYRAMID
                 
                 if previous_direction == rotation.get_anticlockwise():
                     new_direction = previous_direction.get_clockwise()
@@ -56,13 +57,13 @@ class Laser:
 
                 next_square = self.next_square_bitboard(square, new_direction)
                 
-                return next_square, new_direction, False
+                return next_square, new_direction, Piece.PYRAMID
 
             case Piece.ANUBIS:
                 if previous_direction == rotation.get_clockwise().get_clockwise():
-                    return EMPTY_BB, previous_direction, False
+                    return EMPTY_BB, previous_direction, None
 
-                return EMPTY_BB, previous_direction, True
+                return EMPTY_BB, previous_direction, Piece.ANUBIS
                 
             case Piece.SCARAB:
                 if previous_direction in [rotation.get_clockwise(), rotation.get_anticlockwise()]:
@@ -72,15 +73,15 @@ class Laser:
                 
                 next_square = self.next_square_bitboard(square, new_direction)
 
-                return next_square, new_direction, False
+                return next_square, new_direction, None
 
             case Piece.PHAROAH:
-                return EMPTY_BB, previous_direction, True
+                return EMPTY_BB, previous_direction, Piece.PHAROAH
 
             case None:
                 next_square = self.next_square_bitboard(square, previous_direction)
 
-                return next_square, previous_direction, False
+                return next_square, previous_direction, None
     
     def next_square_bitboard(self, src_bitboard, previous_direction):
         match previous_direction:

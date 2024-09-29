@@ -183,3 +183,11 @@ def remove_piece(self, square_bitboard):
     self.bitboards.clear_square(square_bitboard, Colour.RED)
 
     # self._square_group.clear_square(square_bitboard)
+
+    self._selected_square = None
+    self._pressed_on_board = False
+    self._paused = False
+
+@property
+def clicked(self):
+    return self._pressed_on_board and not self._paused
