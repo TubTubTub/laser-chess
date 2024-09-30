@@ -31,7 +31,7 @@ class GameModel:
                     listener(event)
 
                 case _:
-                    raise Exception('Unhandled alert type (.alert_listeners)')
+                    raise Exception('Unhandled alert type (GameModel.alert_listeners)')
 
     def get_move(self):
         while True:
@@ -71,7 +71,7 @@ class GameModel:
         return self._board.get_piece_list()
     
     def get_board(self):
-        return self._board
+        return deepcopy(self._board)
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
