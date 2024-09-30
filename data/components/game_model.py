@@ -162,6 +162,7 @@ class Board:
             rotation = laser_result.piece_rotation
 
             self.bitboards.set_square(src, piece, colour)
+            self.bitboards.clear_rotation(src)
             self.bitboards.set_rotation(src, rotation)
 
         if move.move_type == MoveType.MOVE:
