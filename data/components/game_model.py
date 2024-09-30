@@ -6,6 +6,7 @@ from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
+from copy import deepcopy
 
 class GameModel:
     def __init__(self):
@@ -71,7 +72,7 @@ class GameModel:
         return self._board.get_piece_list()
     
     def get_board(self):
-        return deepcopy(self._board)
+        return (self._board)
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
@@ -144,12 +145,12 @@ class Board:
                 new_rotation = piece_rotation.get_anticlockwise()
 
             self.bitboards.update_rotation(move.src, move.src, new_rotation)
-        # bb_helpers.print_bitboard(self.bitboards.combined_all_bitboard)
+
         laser = None
         if fire_laser:
             laser = self.fire_laser()
+
         self.flip_colour()
-        
         return laser
     
     def undo_move(self, move, laser_result):
@@ -161,7 +162,7 @@ class Board:
             rotation = laser_result.piece_rotation
 
             self.bitboards.set_square(src, piece, colour)
-            self.bitboards.update_rotation(src, src, rotation)
+            self.bitboards.set_rotation(src, rotation)
 
         if move.move_type == MoveType.MOVE:
             reversed_move = Move.instance_from_bitboards(MoveType.MOVE, move.dest, move.src)
@@ -174,6 +175,7 @@ class Board:
     def remove_piece(self, square_bitboard):
         self.bitboards.clear_square(square_bitboard, Colour.BLUE)
         self.bitboards.clear_square(square_bitboard, Colour.RED)
+        self.bitboards.clear_rotation(square_bitboard)
     
     def get_valid_squares(self, src_bitboard):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9

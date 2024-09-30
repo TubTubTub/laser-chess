@@ -25,6 +25,7 @@ class CPU:
     def minimax(self, board, depth):
         if depth == 0:
             return self.evaluate(board)
+
         is_maximiser = board.get_active_colour() == Colour.BLUE 
 
         if is_maximiser:
@@ -34,7 +35,6 @@ class CPU:
                 laser_result = board.apply_move(move)
                 
                 new_score = self.minimax(board, depth - 1)
-                print('hi', new_score, score)
 
                 if new_score >= score and depth == self._depth:
                     self._best_move = move
@@ -49,18 +49,22 @@ class CPU:
             score = 100000
             
             for move in board.generate_all_moves(board.get_active_colour()):
+                bef = board.bitboards.get_rotation_string()
 
                 laser_result = board.apply_move(move)
 
                 new_score = self.minimax(board, depth - 1)
 
                 if new_score <= score and depth == self._depth:
-                    print('bitch')
                     self._best_move = move
                 
                 score = min(score, new_score)
                 
                 board.undo_move(move, laser_result)
+                
+                after = board.bitboards.get_rotation_string()
+                if (bef != after):
+                    print('shit')
                 
             return score
 

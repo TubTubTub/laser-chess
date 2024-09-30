@@ -1,4 +1,4 @@
-from data.constants import Piece, Colour, Rotation, RotationIndex, EMPTY_BB
+from data.constants import Rank, File, Piece, Colour, Rotation, RotationIndex, EMPTY_BB
 from data.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
 
@@ -14,6 +14,24 @@ class BitboardCollection():
             self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
         except ValueError:
             print('Please input a valid FEN string')
+    
+    def get_rotation_string(self):
+        characters = ''
+        for rank in reversed(Rank):
+
+            for file in File:
+                mask = 1 << (rank * 10 + file)
+                rotation = self.get_rotation_on(mask)
+                has_piece = bb_helpers.is_occupied(self.combined_all_bitboard, mask)
+
+                if has_piece:
+                    characters += f'{rotation.upper()}  '
+                else:
+                    characters += '0  '
+
+            characters += '\n\n'
+ 
+        return characters
     
     def update_move(self, src, dest):
         piece = self.get_piece_on(src, self.active_colour)
