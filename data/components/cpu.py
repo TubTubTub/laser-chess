@@ -32,6 +32,7 @@ class CPU:
             score = -100000
             
             for move in board.generate_all_moves(board.get_active_colour()):
+                before = board.bitboards.get_rotation_string()
                 laser_result = board.apply_move(move)
                 
                 new_score = self.minimax(board, depth - 1)
@@ -42,6 +43,9 @@ class CPU:
                 score = max(score, new_score)
                 
                 board.undo_move(move, laser_result)
+                after = board.bitboards.get_rotation_string()
+                if (before != after):
+                    print('shit')
                 
             return score
             
@@ -69,5 +73,6 @@ class CPU:
             return score
 
     def find_best_move(self):
-        print(self.minimax(self._board, self._depth), 'FINAL SCORE')
+        print('Minimax evaluation:', self.minimax(self._board, self._depth))
+        print('Best move:', self._best_move)
         return self._best_move

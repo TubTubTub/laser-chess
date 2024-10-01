@@ -35,6 +35,7 @@ class GameController:
                             move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
 
                             self.apply_player_move(move)
+                            self.apply_cpu_move()
                         else:
                             self._view.set_overlay_coords([], None)
 
@@ -60,25 +61,16 @@ class GameController:
     
     def apply_player_move(self, move):
         self._model.make_move(move)
-
-        if self._model.winner is not None:
-            print(self._model.winner.name, 'WON')
         
         self.apply_cpu_move()
         
         self._view.set_overlay_coords([], None)
     
     def apply_cpu_move(self):
-        # rot_before = self._model._board.bitboards.get_rotation_string()
-        # print(rot_before)
-
         cpu = CPU(self._model.get_board(), depth=3)
-        print(cpu.evaluate(self._model.get_board()), 'evaluation')
-
         move = cpu.find_best_move()
-        print('BEST MOVE:', move)
         self._model.make_move(move)
-
-        # rot_after = self._model._board.bitboards.get_rotation_string()
-        # print(rot_after)
-        # print(rot_before == rot_after,'IS ROTATION SAME')
+    
+    def check_game_over(self):
+        if self._model.winner is not None:
+            print(self._model.winner.name, 'WON')
