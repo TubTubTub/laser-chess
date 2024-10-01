@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, Colour, LaserType, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import EventType, GameState, LaserType, BG_COLOUR, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
@@ -21,6 +21,10 @@ class GameView:
         }
 
         self.model.register_listener(self.process_model_event)
+
+        self._states = {
+            GameState.LASER_FIRING: False
+        }
         
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
@@ -47,6 +51,9 @@ class GameView:
         self.laser_path = []
         self.laser_start_ticks = 0
         self.laser_colour = None
+    
+    def get_state(self, state):
+        return self._states[state]
     
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
@@ -93,6 +100,8 @@ class GameView:
         self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
         self.laser_start_ticks = pygame.time.get_ticks()
         self.laser_colour = event.active_colour
+
+        self._states[GameState.LASER_FIRING] = True
     
     def handle_widget_click(self, event):
         raise NotImplementedError
@@ -129,6 +138,7 @@ class GameView:
             self.laser_path = []
             self.laser_start_ticks = 0
             self.laser_colour = None
+            self._states[GameState.LASER_FIRING] = False
             return
 
         square_size = self._board_size[0] / 10

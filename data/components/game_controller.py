@@ -1,5 +1,5 @@
 import pygame
-from data.constants import EventType, MoveType, EMPTY_BB
+from data.constants import GameState, EventType, MoveType, EMPTY_BB
 from data.utils import bitboard_helpers as bb_helpers
 from data.components.move import Move
 from data.components.cpu import CPU
@@ -61,8 +61,6 @@ class GameController:
     
     def apply_player_move(self, move):
         self._model.make_move(move)
-        
-        self.apply_cpu_move()
         
         self._view.set_overlay_coords([], None)
     

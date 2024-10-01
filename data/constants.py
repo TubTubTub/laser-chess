@@ -16,6 +16,9 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
+class GameState(IntEnum):
+    LASER_FIRING = 0
+
 class EventType(IntEnum):
     BOARD_CLICK = 0
     PIECE_CLICK = 1
@@ -48,6 +51,7 @@ class PieceScore(IntEnum):
     PYRAMID = 100
     ANUBIS = 110
     SCARAB = 200
+    INFINITE = 6969696969
 
 class Rank(IntEnum):
     ONE = 0

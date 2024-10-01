@@ -22,27 +22,33 @@ class CPU:
     def evaluate_position(self, board, colour):
         return 0
 
-    def minimax(self, board, depth):
+    def minimax(self, board, depth, alpha, beta):
         if depth == 0:
             return self.evaluate(board)
 
         is_maximiser = board.get_active_colour() == Colour.BLUE 
 
         if is_maximiser:
-            score = -100000
+            score = -PieceScore.INFINITE
             
             for move in board.generate_all_moves(board.get_active_colour()):
                 before = board.bitboards.get_rotation_string()
-                laser_result = board.apply_move(move)
-                
-                new_score = self.minimax(board, depth - 1)
 
-                if new_score >= score and depth == self._depth:
-                    self._best_move = move
-                
-                score = max(score, new_score)
-                
+                laser_result = board.apply_move(move)
+                new_score = self.minimax(board, depth - 1, alpha, beta)
+
+                if new_score >= score:
+                    score = new_score
+
+                    if depth == self._depth:
+                        self._best_move = move
+
                 board.undo_move(move, laser_result)
+
+                alpha = max(alpha, new_score)
+                if new_score >= beta:
+                    break
+                
                 after = board.bitboards.get_rotation_string()
                 if (before != after):
                     print('shit')
@@ -50,21 +56,25 @@ class CPU:
             return score
             
         else:
-            score = 100000
+            score = PieceScore.INFINITE
             
             for move in board.generate_all_moves(board.get_active_colour()):
                 bef = board.bitboards.get_rotation_string()
 
                 laser_result = board.apply_move(move)
+                new_score = self.minimax(board, depth - 1, alpha, beta)
 
-                new_score = self.minimax(board, depth - 1)
-
-                if new_score <= score and depth == self._depth:
-                    self._best_move = move
-                
-                score = min(score, new_score)
+                if new_score <= score:
+                    score = new_score
+                    if depth == self._depth:
+                        self._best_move = move
                 
                 board.undo_move(move, laser_result)
+
+                beta = min(beta, new_score)
+
+                if new_score <= alpha:
+                    break
                 
                 after = board.bitboards.get_rotation_string()
                 if (bef != after):
@@ -73,6 +83,6 @@ class CPU:
             return score
 
     def find_best_move(self):
-        print('Minimax evaluation:', self.minimax(self._board, self._depth))
+        print('Minimax evaluation:', self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE))
         print('Best move:', self._best_move)
         return self._best_move
