@@ -5,8 +5,7 @@ from data.components.widget_group import WidgetGroup
 from data.components.game_event import GameEvent
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
-from data.utils.board_helpers import coords_to_screen_pos
-from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay
+from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.setup import GRAPHICS
 
 class GameView:

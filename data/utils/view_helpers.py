@@ -1,8 +1,13 @@
 import pygame
-    
+from data.utils.settings_helpers import get_settings_json
+
+app_settings = get_settings_json()
+
 def create_board(board_size, primary_colour, secondary_colour):
     square_size = board_size[0] / 10
     board_surface = pygame.Surface(board_size)
+
+    font = pygame.freetype.Font(app_settings['primaryFont'])
 
     for i in range(80):
         x = i % 10
@@ -17,6 +22,15 @@ def create_board(board_size, primary_colour, secondary_colour):
         square_y = y * square_size
 
         pygame.draw.rect(board_surface, square_colour, (square_x, square_y, square_size, square_size))
+
+        if y == 7:
+            text_position = (square_x + square_size * 0.7, square_y + square_size * 0.55)
+            text_size = square_size / 2
+            font.render_to(board_surface, text_position, str(x), fgcolor=(10, 10, 10, 175), size=text_size)
+        if x == 0:
+            text_position = (square_x + square_size * 0.1, square_y + square_size * 0.1)
+            text_size = square_size / 2
+            font.render_to(board_surface, text_position, str(7-y), fgcolor=(10, 10, 10, 175), size=text_size)
     
     return board_surface
 
@@ -31,3 +45,9 @@ def create_circle_overlay(square_size, colour):
     pygame.draw.circle(overlay, colour, (square_size / 2, square_size / 2), square_size / 4)
 
     return overlay
+
+def coords_to_screen_pos(coords, anchor_position, square_size):
+    x = coords[0] * square_size + anchor_position[0]
+    y = (7 - coords[1]) * square_size + anchor_position[1]
+
+    return (x, y)

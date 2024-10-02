@@ -2,7 +2,7 @@ import pygame
 from data.setup import GRAPHICS
 from data.constants import Colour, Piece, ImageType
 from data.tools import smoothscale_and_cache
-from data.utils.board_helpers import coords_to_screen_pos
+from data.utils.view_helpers import coords_to_screen_pos
 
 class EmptyPiece(pygame.sprite.Sprite):
     def __init__(self):
