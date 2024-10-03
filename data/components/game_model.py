@@ -51,7 +51,7 @@ class GameModel:
         self.winner = self._board.check_win()
 
         self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
-        print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
+        # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
     
         if laser_result.hit_square_bitboard:
             coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)

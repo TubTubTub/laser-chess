@@ -9,7 +9,8 @@ class Move():
         self.rotation_direction = rotation_direction
     
     def __str__(self):
-        return f'{self.move_type}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)} (Rotation: {self.rotation_direction})'
+        return f'{self.move_type}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)}'
+        # (Rotation: {self.rotation_direction})
     
     @classmethod
     def instance_from_notation(move_cls, move_type, src, dest=None, rotation=None):
