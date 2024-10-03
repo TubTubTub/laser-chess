@@ -1,5 +1,6 @@
 from data.constants import Piece, PieceScore, Colour
-from data.utils.bitboard_helpers import print_bitboard, bitboard_to_coords, coords_to_bitboard
+from data.utils.bitboard_helpers import print_bitboard, bitboard_to_coords, coords_to_bitboard, index_to_bitboard
+from data.psqt import PSQT
 class CPU:
     def __init__(self, board, depth):
         self._board = board
@@ -21,7 +22,15 @@ class CPU:
         )
 
     def evaluate_position(self, board, colour):
-        return 0
+        score = 0
+        for i in range(80):
+            bitboard = index_to_bitboard(i)
+            piece = board.bitboards.get_piece_on(bitboard, colour)
+
+            if piece:
+                score += PSQT[piece][i]
+
+        return piece
 
     def minimax(self, board, depth, alpha, beta, debug):
         self.turns += 1
