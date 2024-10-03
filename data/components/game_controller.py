@@ -2,7 +2,6 @@ import pygame
 from data.constants import GameState, EventType, MoveType, EMPTY_BB
 from data.utils import bitboard_helpers as bb_helpers
 from data.components.move import Move
-from data.components.cpu import CPU
 
 class GameController:
     def __init__(self, model, view):
@@ -34,8 +33,11 @@ class GameController:
                             src_coords = self._view.get_selected_overlay_coord()
                             move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
 
-                            self.apply_player_move(move)
-                            self.apply_cpu_move()
+                            self._model.make_move(move)
+                            self._view.set_overlay_coords([], None)
+
+                            if self._model.cpu:
+                                self._model.make_cpu_move()
                         else:
                             self._view.set_overlay_coords([], None)
 
@@ -58,16 +60,6 @@ class GameController:
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')
-    
-    def apply_player_move(self, move):
-        self._model.make_move(move)
-        
-        self._view.set_overlay_coords([], None)
-    
-    def apply_cpu_move(self):
-        cpu = CPU(self._model.get_board(), depth=3)
-        move = cpu.find_best_move()
-        self._model.make_move(move)
     
     def check_game_over(self):
         if self._model.winner is not None:

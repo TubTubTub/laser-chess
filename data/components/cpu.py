@@ -1,6 +1,7 @@
 from data.constants import Piece, PieceScore, Colour
 from data.utils.bitboard_helpers import print_bitboard, bitboard_to_coords, coords_to_bitboard, index_to_bitboard
-from data.psqt import PSQT
+from data.psqt import PSQT, FLIP
+
 class CPU:
     def __init__(self, board, depth):
         self._board = board
@@ -27,10 +28,15 @@ class CPU:
             bitboard = index_to_bitboard(i)
             piece = board.bitboards.get_piece_on(bitboard, colour)
 
-            if piece:
+            if piece == Piece.SPHINX:
+                continue
+
+            if piece and colour == Colour.BLUE:
+                score += PSQT[piece][FLIP[i]]
+            elif piece and colour == Colour.RED:
                 score += PSQT[piece][i]
 
-        return piece
+        return score
 
     def minimax(self, board, depth, alpha, beta, debug):
         self.turns += 1
@@ -93,8 +99,10 @@ class CPU:
                 
             return score
 
-    def find_best_move(self):
+    def find_best_move(self, result):
+        print('tset:', self.evaluate_position(self._board, Colour.BLUE), self.evaluate_position(self._board, Colour.RED))
         print('\nEvaluation:', self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False))
         print('\nBest move:', self._best_move)
         print('\nNumber of iterations:', self.turns)
-        return self._best_move
+        result.value = self._best_move
+        # return self._best_move

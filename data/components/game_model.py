@@ -6,7 +6,10 @@ from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
+from data.components.cpu import CPU
 from copy import deepcopy
+
+import multiprocessing
 
 class GameModel:
     def __init__(self):
@@ -15,6 +18,7 @@ class GameModel:
         self.status_text = self._board.get_active_colour().name
         self.laser_result = None
         self.winner = None
+        self.cpu = True
 
     def register_listener(self, listener):
         self._listeners.append(listener)
@@ -62,6 +66,16 @@ class GameModel:
 
         self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
     
+    def make_cpu_move(self):
+        cpu = CPU(self.get_board(), depth=3)
+        # move = cpu.find_best_move()
+
+        result = multiprocessing.Value('i')
+        process = multiprocessing.Process(target=cpu.find_best_move, args=(result,))
+        process.start()
+        process.join()
+        self.make_move(result.value)
+    
     def get_clicked_coords(self, src_bitboard):
         if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
             return bb_helpers.bitboard_to_coords_list(self._board.get_valid_squares(src_bitboard))
@@ -72,7 +86,7 @@ class GameModel:
         return self._board.get_piece_list()
     
     def get_board(self):
-        return (self._board)
+        return self._board
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
