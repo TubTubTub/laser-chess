@@ -1,7 +1,104 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg fill="#ff0000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 0 511.261 511.261" xml:space="preserve" stroke="#ff0000">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <g> <path d="M430.25,379.655l-75.982-43.869v59.771H120.73V151.966h59.774l-43.869-75.983L92.767,0L48.898,75.983L5.029,151.966h59.775 v271.557c0,15.443,12.52,27.965,27.963,27.965h261.5v59.773l75.982-43.869l75.982-43.867L430.25,379.655z"/> </g> </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180mm"
+   height="180mm"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="laser_corner_2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="0.74475309"
+     inkscape:cx="577.37257"
+     inkscape:cy="332.32491"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="mm"
+       originx="0"
+       originy="0"
+       spacingx="30.000001"
+       spacingy="30.000001"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#0082b6;fill-opacity:1;stroke-width:0.24245"
+       id="rect1"
+       width="120.43421"
+       height="156.31578"
+       x="29.842106"
+       y="-150.2673"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#0082b6;fill-opacity:1;stroke-width:0.212719"
+       id="rect1-2"
+       width="120.43421"
+       height="120.33014"
+       x="131.98378"
+       y="-150.27631"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#aaffff;fill-opacity:1;stroke-width:0.195285"
+       id="rect2"
+       width="59.950653"
+       height="96.631561"
+       x="60.039474"
+       y="-89.872581"
+       ry="0"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#aaffff;fill-opacity:1;stroke-width:0.246863"
+       id="rect2-3"
+       width="154.40523"
+       height="59.955048"
+       x="59.911541"
+       y="-120.29149"
+       ry="0"
+       transform="scale(1,-1)" />
+    <path
+       style="fill:#f69c9c;fill-opacity:1;stroke-width:1.34273"
+       d="M 226.92085,214.16494 V -25.511811 H 339.7099 452.49896 V 101.37588 228.26357 H 631.08164 809.66432 V 341.05263 453.84169 H 518.29258 226.92085 Z"
+       id="path4"
+       transform="scale(0.26458333)" />
+    <path
+       style="fill:#ad0f0f;fill-opacity:1;stroke-width:1.34273"
+       d="m 306.47741,566.96647 -193.68835,-0.3448 V 271.89766 -22.826357 h 57.24638 57.24638 l -1.00221,239.005387 -1.0022,239.00539 H 518.14222 811.00705 V 341.05263 226.92085 H 632.42437 453.84169 V 102.04724 -22.826357 h 57.06589 57.0659 V 45.652714 114.13179 H 760.65479 953.3361 v 226.92084 226.92085 l -226.58517,-0.33112 c -124.62184,-0.1821 -313.74492,-0.48625 -420.27352,-0.67589 z"
+       id="path5"
+       transform="scale(0.26458333)" />
+  </g>
+</svg>
