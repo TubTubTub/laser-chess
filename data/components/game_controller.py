@@ -18,6 +18,9 @@ class GameController:
                 case EventType.BOARD_CLICK:
                     # print('COORDS:', game_event.coords)
 
+                    if self._model.states['AWAITING_CPU']:
+                        return
+
                     clicked_bitboard = bb_helpers.coords_to_bitboard(game_event.coords)
                     current_selected = self._view.get_selected_overlay_coord()
 
@@ -36,7 +39,7 @@ class GameController:
                             self._model.make_move(move)
                             self._view.set_overlay_coords([], None)
 
-                            if self._model.cpu:
+                            if self._model.states['CPU']:
                                 self._model.make_cpu_move()
                         else:
                             self._view.set_overlay_coords([], None)

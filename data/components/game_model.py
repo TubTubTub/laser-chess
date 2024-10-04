@@ -1,7 +1,7 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, Rotation, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components.game_event import GameEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
@@ -9,16 +9,19 @@ from data.utils import input_helpers as ip_helpers
 from data.components.cpu import CPU
 from copy import deepcopy
 
-import multiprocessing
+import threading
 
 class GameModel:
     def __init__(self):
         self._listeners = []
         self._board = Board()
-        self.status_text = self._board.get_active_colour().name
-        self.laser_result = None
-        self.winner = None
-        self.cpu = True
+
+        self.states = {
+            'CPU': True,
+            'AWAITING_CPU': False,
+            'STATUS_TEXT': self._board.get_active_colour().name,
+            'WINNER': None
+        }
 
     def register_listener(self, listener):
         self._listeners.append(listener)
@@ -52,7 +55,7 @@ class GameModel:
     def make_move(self, move):
         laser_result = self._board.apply_move(move)
         
-        self.winner = self._board.check_win()
+        self.states['WINNER'] = self._board.check_win()
 
         self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
@@ -67,14 +70,10 @@ class GameModel:
         self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
     
     def make_cpu_move(self):
+        self.states['AWAITING_CPU'] = True
         cpu = CPU(self.get_board(), depth=3)
-        # move = cpu.find_best_move()
-
-        result = multiprocessing.Value('i')
-        process = multiprocessing.Process(target=cpu.find_best_move, args=(result,))
+        process = threading.Thread(target=cpu.find_best_move, args=(self.make_move, self.states,))
         process.start()
-        process.join()
-        self.make_move(result.value)
     
     def get_clicked_coords(self, src_bitboard):
         if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:

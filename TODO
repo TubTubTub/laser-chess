@@ -1,5 +1,3 @@
-Implement MVC
-Implement Move object with Move Type
+Implement minimax with rotational moves
 Make bitboards a dictionary
-Read app settings from json instead of making an instance
 Implement win condition

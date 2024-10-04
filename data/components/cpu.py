@@ -12,7 +12,6 @@ class CPU:
     def evaluate(self, board):
         blue_score = self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
         red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
-        #Add king safety
         #Add tapered evaluation
         return blue_score - red_score
     
@@ -47,7 +46,7 @@ class CPU:
     def evaluate_pharoah_safety(self, board, colour):
         pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
         pharoah_available_moves = bb_helpers.pop_count(board.get_valid_squares(pharoah_bitboard, colour))
-        return (9 - pharoah_available_moves) * 2
+        return (9 - pharoah_available_moves) * 3
 
     def minimax(self, board, depth, alpha, beta, debug):
         self.turns += 1
@@ -75,8 +74,12 @@ class CPU:
                 board.undo_move(move, laser_result)
 
                 alpha = max(alpha, score)
-                if beta <= alpha:
-                    break
+                if depth == self._depth: # https://stackoverflow.com/questions/31429974/alphabeta-pruning-alpha-equals-or-greater-than-beta-why-equals
+                    if beta < alpha:
+                        break
+                else:
+                    if beta < alpha:
+                        break
                 
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
                 if (before != after or before_score != after_score):
@@ -101,8 +104,12 @@ class CPU:
                 board.undo_move(move, laser_result)
 
                 beta = min(beta, score)
-                if beta <= alpha:
-                    break
+                if depth == self._depth:
+                    if beta < alpha:
+                        break
+                else:
+                    if beta <= alpha:
+                        break
                 
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
                 if (bef != after or before_score != after_score):
@@ -110,10 +117,12 @@ class CPU:
                 
             return score
 
-    def find_best_move(self, result):
+    def find_best_move(self, callback, game_states):
+        print('position:', self.evaluate_position(self._board, Colour.BLUE), self.evaluate_position(self._board, Colour.RED))
+        print('mobility:', self.evaluate_mobility(self._board, Colour.BLUE), self.evaluate_mobility(self._board, Colour.RED))
         print('safety:', self.evaluate_pharoah_safety(self._board, Colour.BLUE), self.evaluate_pharoah_safety(self._board, Colour.RED))
         print('\nEvaluation:', self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False))
         print('\nBest move:', self._best_move)
         print('\nNumber of iterations:', self.turns)
-        result.value = self._best_move
-        # return self._best_move
+        callback(self._best_move)
+        game_states['AWAITING_CPU'] = False
