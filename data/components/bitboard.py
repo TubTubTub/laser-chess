@@ -127,10 +127,7 @@ class BitboardCollection():
                 return Colour.RED
 
     def get_piece_count(self, piece, colour):
-        count = 0
-        for piece in bb_helpers.occupied_squares(self.get_piece_bitboard(piece, colour)):
-            count += 1
-        return count
+        return bb_helpers.pop_count(self.get_piece_bitboard(piece, colour))
     
     def convert_to_piece_list(self):
         piece_list = []

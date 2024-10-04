@@ -192,7 +192,7 @@ class Board:
         self.bitboards.clear_square(square_bitboard, Colour.RED)
         self.bitboards.clear_rotation(square_bitboard)
     
-    def get_valid_squares(self, src_bitboard):
+    def get_valid_squares(self, src_bitboard, colour=None):
         target_top_left = (src_bitboard & A_FILE_MASK & EIGHT_RANK_MASK) << 9
         target_top_middle = (src_bitboard & EIGHT_RANK_MASK) << 10
         target_top_right = (src_bitboard & J_FILE_MASK & EIGHT_RANK_MASK) << 11
@@ -204,8 +204,12 @@ class Board:
         target_middle_left = (src_bitboard & A_FILE_MASK) >> 1
 
         possible_moves = target_top_left | target_top_middle | target_top_right | target_middle_right |	target_bottom_right | target_bottom_middle | target_bottom_left | target_middle_left
+        
+        if colour:
+            valid_possible_moves = possible_moves & ~self.bitboards.combined_colour_bitboards[colour]
+        else:
+            valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
 
-        valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
         return valid_possible_moves
     
     def get_all_valid_squares(self, colour):

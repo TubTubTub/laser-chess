@@ -58,8 +58,16 @@ def bitboard_to_coords_list(bitboard):
     return list_positions
 
 def occupied_squares(bitboard):
-    while bitboard != EMPTY_BB:
+    while bitboard:
         lsb_square = bitboard & -bitboard
         bitboard = bitboard ^ lsb_square
 
         yield lsb_square
+
+def pop_count(bitboard):
+    count = 0
+    while bitboard:
+        count += 1
+        bitboard &= bitboard - 1
+    
+    return count

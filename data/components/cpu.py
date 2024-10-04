@@ -1,5 +1,5 @@
 from data.constants import Piece, PieceScore, Colour
-from data.utils.bitboard_helpers import print_bitboard, bitboard_to_coords, coords_to_bitboard, index_to_bitboard
+import data.utils.bitboard_helpers as bb_helpers
 from data.psqt import PSQT, FLIP
 
 class CPU:
@@ -10,8 +10,10 @@ class CPU:
         self.turns = 0
     
     def evaluate(self, board):
-        blue_score = self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE)
-        red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED)
+        blue_score = self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
+        red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
+        #Add king safety
+        #Add tapered evaluation
         return blue_score - red_score
     
     def evaluate_pieces(self, board, colour):
@@ -25,7 +27,7 @@ class CPU:
     def evaluate_position(self, board, colour):
         score = 0
         for i in range(80):
-            bitboard = index_to_bitboard(i)
+            bitboard = bb_helpers.index_to_bitboard(i)
             piece = board.bitboards.get_piece_on(bitboard, colour)
 
             if piece == Piece.SPHINX:
@@ -37,6 +39,15 @@ class CPU:
                 score += PSQT[piece][i]
 
         return score
+    
+    def evaluate_mobility(self, board, colour):
+        number_of_moves = bb_helpers.pop_count(board.get_all_valid_squares(colour))
+        return number_of_moves
+
+    def evaluate_pharoah_safety(self, board, colour):
+        pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
+        pharoah_available_moves = bb_helpers.pop_count(board.get_valid_squares(pharoah_bitboard, colour))
+        return (9 - pharoah_available_moves) * 2
 
     def minimax(self, board, depth, alpha, beta, debug):
         self.turns += 1
@@ -64,7 +75,7 @@ class CPU:
                 board.undo_move(move, laser_result)
 
                 alpha = max(alpha, score)
-                if beta < alpha:
+                if beta <= alpha:
                     break
                 
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
@@ -90,7 +101,7 @@ class CPU:
                 board.undo_move(move, laser_result)
 
                 beta = min(beta, score)
-                if beta < alpha:
+                if beta <= alpha:
                     break
                 
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
@@ -100,7 +111,7 @@ class CPU:
             return score
 
     def find_best_move(self, result):
-        print('tset:', self.evaluate_position(self._board, Colour.BLUE), self.evaluate_position(self._board, Colour.RED))
+        print('safety:', self.evaluate_pharoah_safety(self._board, Colour.BLUE), self.evaluate_pharoah_safety(self._board, Colour.RED))
         print('\nEvaluation:', self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False))
         print('\nBest move:', self._best_move)
         print('\nNumber of iterations:', self.turns)
