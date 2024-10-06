@@ -1,8 +1,8 @@
 from data.components.move import Move
 from data.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, EventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
-from data.components.game_event import GameEvent
+from data.constants import Colour, Piece, Rank, File, MoveType, GameEventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.components.custom_event import CustomEvent
 from data.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
@@ -13,33 +13,52 @@ import threading
 
 class GameModel:
     def __init__(self):
-        self._listeners = []
+        self._listeners = {
+            'game': [],
+            'pause': [],
+        }
         self._board = Board()
 
         self.states = {
             'CPU': True,
             'AWAITING_CPU': False,
             'STATUS_TEXT': self._board.get_active_colour().name,
-            'WINNER': None
+            'WINNER': None,
+            'PAUSED': False,
         }
 
-    def register_listener(self, listener):
-        self._listeners.append(listener)
+        self.thread_stop = threading.Event()
+
+    def register_listener(self, listener, parent_class):
+        self._listeners[parent_class].append(listener)
     
     def alert_listeners(self, event):
-        for listener in self._listeners:
+        for parent_class, listeners in self._listeners.items():
             match event.type:
-                case EventType.UPDATE_PIECES:
-                    listener(event)
+                case GameEventType.UPDATE_PIECES:
+                    if parent_class == 'game':
+                        for listener in listeners: listener(event)
                 
-                case EventType.REMOVE_PIECE:
-                    listener(event)
+                case GameEventType.REMOVE_PIECE:
+                    if parent_class == 'game':
+                        for listener in listeners: listener(event)
                 
-                case EventType.SET_LASER:
-                    listener(event)
+                case GameEventType.SET_LASER:
+                    if parent_class == 'game':
+                        for listener in listeners: listener(event)
+                
+                case GameEventType.PAUSE_CLICK:
+                    if parent_class == 'pause':
+                        for listener in listeners:
+                            listener(event)
 
                 case _:
                     raise Exception('Unhandled alert type (GameModel.alert_listeners)')
+    
+    def toggle_paused(self):
+        self.states['PAUSED'] = not self.states['PAUSED']
+        game_event = CustomEvent.create_event(GameEventType.PAUSE_CLICK)
+        self.alert_listeners(game_event)
 
     def get_move(self):
         while True:
@@ -57,22 +76,22 @@ class GameModel:
         
         self.states['WINNER'] = self._board.check_win()
 
-        self.alert_listeners(GameEvent.create_event(EventType.UPDATE_PIECES))
+        self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES))
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
     
         if laser_result.hit_square_bitboard:
             coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
-            self.alert_listeners(GameEvent.create_event(EventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
+            self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
 
         active_colour = self._board.get_active_colour()
         has_hit = laser_result.hit_square_bitboard != EMPTY_BB
 
-        self.alert_listeners(GameEvent.create_event(EventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
+        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
         cpu = CPU(self.get_board(), depth=3)
-        process = threading.Thread(target=cpu.find_best_move, args=(self.make_move, self.states,))
+        process = threading.Thread(target=cpu.find_best_move, args=(self.make_move, self.states, self.thread_stop,))
         process.start()
     
     def get_clicked_coords(self, src_bitboard):
@@ -245,3 +264,10 @@ class Board:
 
             for square in bb_helpers.occupied_squares(piece_bitboard):
                 yield from self.generate_square_moves(square)
+        
+        sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, colour)
+        colour_bitboard = self.bitboards.combined_colour_bitboards[colour] ^ sphinx_bitboard
+
+        for square in bb_helpers.occupied_squares(colour_bitboard):
+            for rotation_direction in RotationDirection:
+                yield Move(MoveType.ROTATE, square, rotation_direction=rotation_direction)

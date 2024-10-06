@@ -1,29 +1,26 @@
 import pygame
-from data.constants import EventType, GameState, LaserType, BG_COLOUR, OVERLAY_COLOUR
+from data.constants import GameEventType, GameState, LaserType, OVERLAY_COLOUR
 from data.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
-from data.components.game_event import GameEvent
+from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_settings_json
 from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.setup import GRAPHICS
+from data.components.widget_dict import WIDGET_DICT
 
 class GameView:
     def __init__(self, model):
-        self.model = model
+        self._model = model
         self._screen = pygame.display.get_surface()
         self._app_settings = get_settings_json()
-        self.event_to_func_map = {
-            EventType.UPDATE_PIECES: self.handle_update_pieces,
-            EventType.REMOVE_PIECE: self.handle_remove_piece,
-            EventType.SET_LASER: self.handle_set_laser,
+        self._event_to_func_map = {
+            GameEventType.UPDATE_PIECES: self.handle_update_pieces,
+            GameEventType.REMOVE_PIECE: self.handle_remove_piece,
+            GameEventType.SET_LASER: self.handle_set_laser,
         }
 
-        self.model.register_listener(self.process_model_event)
-
-        self._states = {
-            GameState.LASER_FIRING: False
-        }
+        self._model.register_listener(self.process_model_event, 'game')
         
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
@@ -35,8 +32,7 @@ class GameView:
         self._piece_group = PieceGroup()
         self.handle_update_pieces()
 
-        self._widget_group = WidgetGroup()
-        self._widget_group.initialise_widgets(self._screen.get_size())
+        self._widget_group = WidgetGroup(WIDGET_DICT['game'])
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -47,12 +43,13 @@ class GameView:
         self._circle_overlay_unscaled = self._circle_overlay.copy()
         self._square_overlay_unscaled = self._square_overlay.copy()
 
-        self.laser_path = []
-        self.laser_start_ticks = 0
-        self.laser_colour = None
-    
-    def get_state(self, state):
-        return self._states[state]
+        self._laser_path = []
+        self._laser_start_ticks = 0
+        self._laser_colour = None
+
+        self.states = {
+            GameState.LASER_FIRING: False
+        }
     
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
@@ -67,7 +64,7 @@ class GameView:
         self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (square_size, square_size))
     
     def handle_update_pieces(self, event=None):
-        piece_list = self.model.get_piece_list()
+        piece_list = self._model.get_piece_list()
         self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
     
     def handle_remove_piece(self, event):
@@ -96,11 +93,11 @@ class GameView:
             event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-2][1].get_opposite())
             laser_rotation[-1] = event.laser_path[-2][1].get_opposite()
 
-        self.laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
-        self.laser_start_ticks = pygame.time.get_ticks()
-        self.laser_colour = event.active_colour
+        self._laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
+        self._laser_start_ticks = pygame.time.get_ticks()
+        self._laser_colour = event.active_colour
 
-        self._states[GameState.LASER_FIRING] = True
+        self.states[GameState.LASER_FIRING] = True
     
     def handle_widget_click(self, event):
         raise NotImplementedError
@@ -128,21 +125,21 @@ class GameView:
             self._screen.blit(self._circle_overlay, (square_x, square_y))
     
     def draw_laser(self):
-        if not self.laser_path:
+        if not self._laser_path:
             return
         
-        elapsed_seconds = (pygame.time.get_ticks() - self.laser_start_ticks) / 1000
+        elapsed_seconds = (pygame.time.get_ticks() - self._laser_start_ticks) / 1000
 
         if elapsed_seconds >= 1.5:
-            self.laser_path = []
-            self.laser_start_ticks = 0
-            self.laser_colour = None
-            self._states[GameState.LASER_FIRING] = False
+            self._laser_path = []
+            self._laser_start_ticks = 0
+            self._laser_colour = None
+            self.states[GameState.LASER_FIRING] = False
             return
 
         square_size = self._board_size[0] / 10
         square = pygame.Surface((30, 30))
-        square.fill(self.laser_colour)
+        square.fill(self._laser_colour)
 
         type_to_image = {
             LaserType.END: ['laser_end_1', 'laser_end_2'],
@@ -150,17 +147,16 @@ class GameView:
             LaserType.CORNER: ['laser_corner_1', 'laser_corner_2']
         }
 
-        for coords, rotation, type in self.laser_path:
+        for coords, rotation, type in self._laser_path:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
 
-            image = GRAPHICS[type_to_image[type][self.laser_colour]]
+            image = GRAPHICS[type_to_image[type][self._laser_colour]]
             scaled_image = pygame.transform.scale(image, (square_size, square_size))
             rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
 
             self._screen.blit(rotated_image, (square_x, square_y))
     
     def draw(self):
-        self._screen.fill(BG_COLOUR)
         self.draw_board()
         self.draw_pieces()
         self.draw_overlay()
@@ -169,7 +165,7 @@ class GameView:
 
     def process_model_event(self, event):
         try:
-            self.event_to_func_map.get(event.type)(event)
+            self._event_to_func_map.get(event.type)(event)
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event)
 
@@ -210,10 +206,10 @@ class GameView:
             x = (mouse_x - self._board_position[0]) // (self._board_size[0] / 10)
             y = (self._board_size[1] - (mouse_y - self._board_position[1])) // (self._board_size[0] / 10)
 
-            return GameEvent.create_event(EventType.BOARD_CLICK, coords=(int(x), int(y)))
+            return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=(int(x), int(y)))
 
         elif collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
             return collided.event
         
         else:
-            return GameEvent.create_event(EventType.EMPTY_CLICK)
+            return CustomEvent.create_event(GameEventType.EMPTY_CLICK)

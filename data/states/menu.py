@@ -1,10 +1,18 @@
 import pygame
 from data.tools import _State
+from data.components.widget_group import WidgetGroup
+from data.components.widget_dict import WIDGET_DICT
+from data.constants import MenuEventType, BG_COLOUR
+from data.components.cursor import Cursor
 
 class Menu(_State):
     def __init__(self):
-        _State.__init__(self)
+        super().__init__()
         self.next = 'game'
+        self._screen = pygame.display.get_surface()
+        self._cursor = Cursor()
+        
+        self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
     
     def cleanup(self):
         print('cleaning')
@@ -13,16 +21,22 @@ class Menu(_State):
         print('starting')
     
     def get_event(self, event):
-        if event.type == pygame.KEYDOWN:
-            print('key down')
-            self.done = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            collided = self._cursor.get_sprite_collision(event.pos, self._widget_group)
+
+            if collided is None:
+                return
+            
+            match collided.event.type:
+                case MenuEventType.GAME_CLICK:
+                    print('clicked')
     
-    def resize(self):
-        print('NOT IMPLEMENTED RESIZING YET BOY!')
+    def handle_resize(self):
+        self._widget_group.handle_resize(self._screen.get_size())
     
-    def draw(self, screen):
-        screen.fill((255, 255, 0))
-        pygame.draw.rect(screen, pygame.Color('red'), pygame.Rect(10, 10, 50, 50).inflate(-10, -10))
+    def draw(self):
+        self._screen.fill(BG_COLOUR)
+        self._widget_group.draw(self._screen)
     
-    def update(self, screen):
-        self.draw(screen)
+    def update(self):
+        self.draw()

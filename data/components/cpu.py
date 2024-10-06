@@ -1,4 +1,4 @@
-from data.constants import Piece, PieceScore, Colour
+from data.constants import Piece, PieceScore, Colour,MoveType
 import data.utils.bitboard_helpers as bb_helpers
 from data.psqt import PSQT, FLIP
 
@@ -48,7 +48,10 @@ class CPU:
         pharoah_available_moves = bb_helpers.pop_count(board.get_valid_squares(pharoah_bitboard, colour))
         return (9 - pharoah_available_moves) * 3
 
-    def minimax(self, board, depth, alpha, beta, debug):
+    def minimax(self, board, depth, alpha, beta, debug, stop_event):
+        if stop_event.is_set():
+            raise Exception('Thread killed - stopping minimax function (CPU.minimax)')
+
         self.turns += 1
 
         if depth == 0:
@@ -63,7 +66,7 @@ class CPU:
                 before, before_score = board.bitboards.get_rotation_string(), self.evaluate(board)
 
                 laser_result = board.apply_move(move)
-                new_score = self.minimax(board, depth - 1, alpha, beta, False)
+                new_score = self.minimax(board, depth - 1, alpha, beta, False, stop_event)
 
                 if new_score >= score:
                     score = new_score
@@ -78,7 +81,7 @@ class CPU:
                     if beta < alpha:
                         break
                 else:
-                    if beta < alpha:
+                    if beta <= alpha:
                         break
                 
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
@@ -94,7 +97,7 @@ class CPU:
                 bef, before_score = board.bitboards.get_rotation_string(), self.evaluate(board)
 
                 laser_result = board.apply_move(move)
-                new_score = self.minimax(board, depth - 1, alpha, beta, False)
+                new_score = self.minimax(board, depth - 1, alpha, beta, False, stop_event)
 
                 if new_score <= score:
                     score = new_score
@@ -117,12 +120,17 @@ class CPU:
                 
             return score
 
-    def find_best_move(self, callback, game_states):
+    def find_best_move(self, callback, game_states, stop_event):
         print('position:', self.evaluate_position(self._board, Colour.BLUE), self.evaluate_position(self._board, Colour.RED))
         print('mobility:', self.evaluate_mobility(self._board, Colour.BLUE), self.evaluate_mobility(self._board, Colour.RED))
         print('safety:', self.evaluate_pharoah_safety(self._board, Colour.BLUE), self.evaluate_pharoah_safety(self._board, Colour.RED))
-        print('\nEvaluation:', self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False))
-        print('\nBest move:', self._best_move)
-        print('\nNumber of iterations:', self.turns)
-        callback(self._best_move)
-        game_states['AWAITING_CPU'] = False
+        try:
+            score = self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False, stop_event)
+            print('\nEvaluation:', score)
+            print('\nBest move:', self._best_move)
+            print('\nNumber of iterations:', self.turns)
+            callback(self._best_move)
+            game_states['AWAITING_CPU'] = False
+        except Exception as error:
+            print(error)
+            return

@@ -1,29 +1,10 @@
 import pygame
-from data.components.widgets import Text
-from data.components.game_event import GameEvent
-from data.constants import EventType, RotationDirection
 
 class WidgetGroup(pygame.sprite.Group):
-    def __init__(self):
+    def __init__(self, widget_list):
         super().__init__()
-    
-    def initialise_widgets(self, screen_size):
-        clockwise_button = Text(
-            event=GameEvent.create_event(EventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE),
-            screen_size=screen_size,position=(0, 200),
-            text='CLOCKWISE',
-            text_colour=(255, 0, 0),
-            font_size=50
-        )
-        anticlockwise_button = Text(
-            event=GameEvent.create_event(EventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE),
-            screen_size=screen_size,position=(0, 400),
-            text='ANTICLOCKWISE',
-            text_colour=(0, 255, 0),
-            font_size=50
-        )
-        self.add(clockwise_button)
-        self.add(anticlockwise_button)
+        for widget in widget_list:
+            self.add(widget)
     
     def handle_resize(self, new_screen_size):
         for sprite in self.sprites():

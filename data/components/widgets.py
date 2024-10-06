@@ -18,8 +18,9 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class Text(_Widget): # Pure text
-    def __init__(self, event, screen_size, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
+    def __init__(self, event, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
         super().__init__()
+        screen_size = pygame.display.get_surface().size
         self.event = event
 
         self._text = text

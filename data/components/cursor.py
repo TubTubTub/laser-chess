@@ -7,8 +7,8 @@ class Cursor(pygame.sprite.Sprite):
         self.image.fill((255, 0, 0))
         self.rect = self.image.get_rect()
         
-    def update(self):
-        self.rect.center = pygame.mouse.get_pos()
+    # def update(self):
+    #     self.rect.center = pygame.mouse.get_pos()
     
     def get_sprite_collision(self, mouse_pos, square_group):
         self.rect.center = mouse_pos

@@ -1,3 +1,21 @@
-Implement minimax with rotational moves
+ASK FOR HELP ON GOOGLE TRENDLE
+ASK IF SEPARATE MVC FOR EACH STATE
+
+Make CPU play rotational moves
+Simplify GameEvent class
 Make bitboards a dictionary
 Implement win condition
+
+Should do:
+Saving games (with SQL)
+Viewing past games
+
+Ambitious:
+Cursor-based pagination for viewing games
+Switch sphinx direction
+Board creator
+Log-in
+
+Miscellaneous:
+Multiple lasers firing at once
+Set image as background

@@ -1,7 +1,8 @@
 import pygame
-from enum import IntEnum, StrEnum
+from enum import IntEnum, StrEnum, auto
 
 BG_COLOUR = (0, 0, 0)
+PAUSE_COLOUR = (50, 50, 50, 200)
 OVERLAY_COLOUR = (255, 0, 0, 128)
 SCREEN_SIZE = (1000, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
@@ -19,15 +20,19 @@ GAME_WIDGETS = {
 class GameState(IntEnum):
     LASER_FIRING = 0
 
-class EventType(IntEnum):
-    BOARD_CLICK = 0
-    PIECE_CLICK = 1
-    WIDGET_CLICK = 2
-    EMPTY_CLICK = 3
-    UPDATE_PIECES = 4
-    REMOVE_PIECE = 5
-    ROTATE_PIECE = 6
-    SET_LASER = 7
+class GameEventType(StrEnum):
+    BOARD_CLICK = auto()
+    PIECE_CLICK = auto()
+    WIDGET_CLICK = auto()
+    EMPTY_CLICK = auto()
+    PAUSE_CLICK = auto()
+    UPDATE_PIECES = auto()
+    REMOVE_PIECE = auto()
+    ROTATE_PIECE = auto()
+    SET_LASER = auto()
+
+class MenuEventType(StrEnum):
+    GAME_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0

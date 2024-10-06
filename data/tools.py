@@ -3,8 +3,6 @@ from pygame._sdl2 import Window
 from pathlib import Path
 from functools import cache
 
-pygame.init()
-
 class Control:
     def __init__(self):
         self.done = False

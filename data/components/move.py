@@ -28,7 +28,7 @@ class Move():
             print('Error (Move.instance_from_notation):', error)
     
     @classmethod
-    def instance_from_coords(move_cls, move_type, src_coords, dest_coords, rotation_direction=None):
+    def instance_from_coords(move_cls, move_type, src_coords, dest_coords=None, rotation_direction=None):
         try:
             src_bitboard = coords_to_bitboard(src_coords)
             dest_bitboard = coords_to_bitboard(dest_coords)
@@ -38,7 +38,7 @@ class Move():
             print('Error (Move.instance_from_coords):', error)
 
     @classmethod
-    def instance_from_bitboards(move_cls, move_type, src_bitboard, dest_bitboard, rotation_direction=None):
+    def instance_from_bitboards(move_cls, move_type, src_bitboard, dest_bitboard=None, rotation_direction=None):
         try:
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
