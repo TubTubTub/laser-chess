@@ -47,5 +47,4 @@ class PauseView:
         if collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
             return collided.event
 
-        else:
-            return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+        return CustomEvent.create_event(GameEventType.EMPTY_CLICK)

@@ -27,7 +27,7 @@ class Control:
 
         self.state = self.state_dict[self.state_name]
         self.state.previous = previous
-        self.state.startup(self.screen)
+        self.state.startup()
     
     def update(self):
         if self.state.quit:

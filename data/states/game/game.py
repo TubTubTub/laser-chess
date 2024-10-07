@@ -1,9 +1,10 @@
 import pygame
 from data.tools import _State
-from data.components.game_model import GameModel
-from data.components.game_view import GameView
-from data.components.game_controller import GameController
-from data.components.pause_view import PauseView
+from data.states.game.components.game_model import GameModel
+from data.states.game.components.game_view import GameView
+from data.states.game.components.game_controller import GameController
+from data.states.game.components.pause_view import PauseView
+from data.states.game.components.win_view import WinView
 from data.constants import BG_COLOUR
 
 class Game(_State):
@@ -13,16 +14,20 @@ class Game(_State):
         self._screen = pygame.display.get_surface()
     
     def cleanup(self):
-        print('cleaning')
+        print('cleaning game.py')
+    
+    def switch_to_menu(self):
+        self.done = True
     
     def startup(self):
         self.model = GameModel()
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)
-        self.controller = GameController(self.model, self.view, self.pause_view)
+        self.win_view = WinView(self.model)
+        self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, self.startup)
 
         self.view.draw()
-        print('starting')
+        print('starting game.py')
     
     def get_event(self, event):
         '''Handle gui events before board events because selected square gets cancelled in board events'''
@@ -33,11 +38,13 @@ class Game(_State):
     
     def handle_resize(self):
         self.view.handle_resize()
+        self.win_view.handle_resize()
         self.pause_view.handle_resize()
 
     def draw(self):
         self._screen.fill(BG_COLOUR)
         self.view.draw()
+        self.win_view.draw()
         self.pause_view.draw()
 
     def update(self):

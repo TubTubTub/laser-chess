@@ -1,12 +1,12 @@
-from data.components.move import Move
-from data.components.laser import Laser
+from data.states.game.components.move import Move
+from data.states.game.components.laser import Laser
 
 from data.constants import Colour, Piece, Rank, File, MoveType, GameEventType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.components.custom_event import CustomEvent
-from data.components import bitboard
+from data.states.game.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
-from data.components.cpu import CPU
+from data.states.game.components.cpu import CPU
 from copy import deepcopy
 
 import threading
@@ -15,12 +15,13 @@ class GameModel:
     def __init__(self):
         self._listeners = {
             'game': [],
+            'win': [],
             'pause': [],
         }
         self._board = Board()
 
         self.states = {
-            'CPU': True,
+            'CPU': False,
             'AWAITING_CPU': False,
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,

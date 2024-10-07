@@ -1,6 +1,6 @@
 import pygame
 from data.constants import EMPTY_BB, Colour, ImageType
-from data.components.piece_sprite import EmptyPiece, create_piece
+from data.states.game.components.piece_sprite import EmptyPiece, create_piece
 from data.utils import bitboard_helpers as bb_helpers
 
 class PieceGroup(pygame.sprite.Group):

@@ -1,8 +1,8 @@
 from sys import platform
 import data.setup
 from data.tools import Control
-from data.states.game import Game
-from data.states.menu import Menu
+from data.states.game.game import Game
+from data.states.menu.menu import Menu
 
 def main():
     state_dict = {

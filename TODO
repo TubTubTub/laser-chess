@@ -1,12 +1,11 @@
 ASK FOR HELP ON GOOGLE TRENDLE
-ASK IF SEPARATE MVC FOR EACH STATE
 
 Make CPU play rotational moves
-Simplify GameEvent class
 Make bitboards a dictionary
 Implement win condition
 
 Should do:
+Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games
 

@@ -1,13 +1,17 @@
 import pygame
 from data.constants import GameEventType, MoveType, EMPTY_BB
 from data.utils import bitboard_helpers as bb_helpers
-from data.components.move import Move
+from data.states.game.components.move import Move
 
 class GameController:
-    def __init__(self, model, view, pause_view):
+    def __init__(self, model, view, win_view, pause_view, to_menu, to_new_game):
         self._model = model
         self._view = view
+        self._win_view = win_view
         self._pause_view = pause_view
+
+        self._to_menu = to_menu
+        self._to_new_game = to_new_game
     
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -18,8 +22,33 @@ class GameController:
                     case GameEventType.PAUSE_CLICK:
                         self._model.toggle_paused()
                     
+                    case GameEventType.MENU_CLICK:
+                        self._to_menu()
+                    
                     case GameEventType.EMPTY_CLICK:
                         pass
+
+                    case _:
+                        raise Exception('Unhandled event type (GameController.handle_event)')
+                
+                return
+
+            elif self._model.states['WINNER']:
+                print('winner activities')
+                game_event = self._win_view.convert_mouse_pos(event.pos)
+
+                match game_event.type:
+                    case GameEventType.MENU_CLICK:
+                        self._to_menu()
+                    
+                    case GameEventType.GAME_CLICK:
+                        self._to_new_game()
+                    
+                    case GameEventType.EMPTY_CLICK:
+                        pass
+
+                    case _:
+                        raise Exception('Unhandled event type (GameController.handle_event)')
                 
                 return
 
@@ -75,7 +104,6 @@ class GameController:
             if event.key == pygame.K_ESCAPE:
                 self._model.toggle_paused()
             elif event.key == pygame.K_l:
-                print('stopping')
                 self._model.thread_stop.set()
 
     def make_move(self, move):

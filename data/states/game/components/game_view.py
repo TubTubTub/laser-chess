@@ -1,6 +1,6 @@
 import pygame
 from data.constants import GameEventType, GameState, LaserType, OVERLAY_COLOUR
-from data.components.piece_group import PieceGroup
+from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
@@ -210,6 +210,5 @@ class GameView:
 
         elif collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
             return collided.event
-        
-        else:
-            return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+
+        return CustomEvent.create_event(GameEventType.EMPTY_CLICK)

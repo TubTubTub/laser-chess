@@ -26,6 +26,8 @@ class GameEventType(StrEnum):
     WIDGET_CLICK = auto()
     EMPTY_CLICK = auto()
     PAUSE_CLICK = auto()
+    MENU_CLICK = auto()
+    GAME_CLICK = auto()
     UPDATE_PIECES = auto()
     REMOVE_PIECE = auto()
     ROTATE_PIECE = auto()
@@ -33,6 +35,7 @@ class GameEventType(StrEnum):
 
 class MenuEventType(StrEnum):
     GAME_CLICK = auto()
+    SETTINGS_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0

@@ -8,17 +8,17 @@ from data.components.cursor import Cursor
 class Menu(_State):
     def __init__(self):
         super().__init__()
-        self.next = 'game'
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
         self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
     
     def cleanup(self):
-        print('cleaning')
+        print('cleaning menu.py')
     
     def startup(self):
-        print('starting')
+        print('starting menu.py')
+        self.draw()
     
     def get_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -29,7 +29,11 @@ class Menu(_State):
             
             match collided.event.type:
                 case MenuEventType.GAME_CLICK:
-                    print('clicked')
+                    self.next = 'game'
+                    self.done = True
+                case MenuEventType.SETTINGS_CLICK:
+                    self.next = 'settings'
+                    self.done = True
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

@@ -1,6 +1,6 @@
 from data.constants import Piece, PieceScore, Colour,MoveType
 import data.utils.bitboard_helpers as bb_helpers
-from data.psqt import PSQT, FLIP
+from data.states.game.components.psqt import PSQT, FLIP
 
 class CPU:
     def __init__(self, board, depth):

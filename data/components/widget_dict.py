@@ -21,7 +21,7 @@ WIDGET_DICT = {
     ],
     'pause': [
         Text(
-            event=CustomEvent.create_event(GameEventType.PAUSE_CLICK),
+            event=CustomEvent.create_event(GameEventType.MENU_CLICK),
             position=(400, 200),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
@@ -35,11 +35,34 @@ WIDGET_DICT = {
             font_size=50
         )
     ],
+    'win': [
+        Text(
+            event=CustomEvent.create_event(GameEventType.MENU_CLICK),
+            position=(400, 200),
+            text='GO TO MENU',
+            text_colour=(255, 0, 0),
+            font_size=50
+        ),
+        Text(
+            event=CustomEvent.create_event(GameEventType.GAME_CLICK),
+            position=(400, 400),
+            text='NEW GAME',
+            text_colour=(255, 0, 0),
+            font_size=50
+        )
+    ],
     'menu': [
         Text(
             event=CustomEvent.create_event(MenuEventType.GAME_CLICK),
             position=(400, 200),
             text='START GAME',
+            text_colour=(255, 0, 0),
+            font_size=50
+        ),
+        Text(
+            event=CustomEvent.create_event(MenuEventType.GAME_CLICK),
+            position=(400, 400),
+            text='SETTINGS',
             text_colour=(255, 0, 0),
             font_size=50
         ),
