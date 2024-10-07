@@ -1,6 +1,6 @@
 from data.components.widgets import Text
 from data.components.custom_event import CustomEvent
-from data.constants import GameEventType, MenuEventType, RotationDirection
+from data.constants import GameEventType, MenuEventType, SettingsEventType, RotationDirection
 
 WIDGET_DICT = {
     'game': [
@@ -60,11 +60,20 @@ WIDGET_DICT = {
             font_size=50
         ),
         Text(
-            event=CustomEvent.create_event(MenuEventType.GAME_CLICK),
+            event=CustomEvent.create_event(MenuEventType.SETTINGS_CLICK),
             position=(400, 400),
             text='SETTINGS',
             text_colour=(255, 0, 0),
             font_size=50
         ),
     ],
+    'settings': [
+        Text(
+            event=CustomEvent.create_event(SettingsEventType.MENU_CLICK),
+            position=(400, 200),
+            text='RETURN TO MAIN MENU',
+            text_colour=(255, 0, 0),
+            font_size=50
+        ),
+    ]
 }

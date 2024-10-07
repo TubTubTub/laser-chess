@@ -37,6 +37,9 @@ class MenuEventType(StrEnum):
     GAME_CLICK = auto()
     SETTINGS_CLICK = auto()
 
+class SettingsEventType(StrEnum):
+    MENU_CLICK = auto()
+
 class Colour(IntEnum):
     BLUE = 0
     RED = 1

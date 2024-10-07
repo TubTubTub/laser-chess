@@ -3,11 +3,13 @@ import data.setup
 from data.tools import Control
 from data.states.game.game import Game
 from data.states.menu.menu import Menu
+from data.states.settings.settings import Settings
 
 def main():
     state_dict = {
         'menu': Menu(),
         'game': Game(),
+        'settings': Settings(),
     }
 
     app = Control()
