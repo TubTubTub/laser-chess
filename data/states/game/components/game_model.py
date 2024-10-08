@@ -12,7 +12,7 @@ from copy import deepcopy
 import threading
 
 class GameModel:
-    def __init__(self):
+    def __init__(self, **kwargs):
         self._listeners = {
             'game': [],
             'win': [],
@@ -23,10 +23,14 @@ class GameModel:
         self.states = {
             'CPU': False,
             'AWAITING_CPU': False,
+            'CPU_DEPTH': kwargs.get('cpu_depth'),
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
         }
+
+        if self.states['CPU_DEPTH']: self.states['CPU'] = True
+        print(self.states,'')
 
         self.thread_stop = threading.Event()
 
@@ -91,7 +95,7 @@ class GameModel:
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
-        cpu = CPU(self.get_board(), depth=3)
+        cpu = CPU(self.get_board(), depth=self.states['CPU_DEPTH'])
         process = threading.Thread(target=cpu.find_best_move, args=(self.make_move, self.states, self.thread_stop,))
         process.start()
     

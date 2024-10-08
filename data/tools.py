@@ -21,13 +21,13 @@ class Control:
     
     def flip_state(self):
         self.state.done = False
-        self.state.cleanup()
+        persist = self.state.cleanup()
 
         previous, self.state_name = self.state_name, self.state.next
 
         self.state = self.state_dict[self.state_name]
         self.state.previous = previous
-        self.state.startup()
+        self.state.startup(persist)
     
     def update(self):
         if self.state.quit:
@@ -85,6 +85,7 @@ class _State:
         self.previous = None
         self.done = False
         self.quit = False
+        self.persist = {}
     
     def draw(self, screen):
         raise NotImplementedError

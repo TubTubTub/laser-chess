@@ -16,7 +16,7 @@ class Menu(_State):
     def cleanup(self):
         print('cleaning menu.py')
     
-    def startup(self):
+    def startup(self, persist=None):
         print('starting menu.py')
         self.draw()
     

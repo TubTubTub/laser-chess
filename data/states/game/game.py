@@ -19,8 +19,8 @@ class Game(_State):
     def switch_to_menu(self):
         self.done = True
     
-    def startup(self):
-        self.model = GameModel()
+    def startup(self, persist):
+        self.model = GameModel(**persist)
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)
         self.win_view = WinView(self.model)

@@ -15,8 +15,12 @@ class Config(_State):
     
     def cleanup(self):
         print('cleaning config.py')
+
+        return {
+            # 'cpu_depth': 3,
+        }
     
-    def startup(self):
+    def startup(self, persist=None):
         print('starting config.py')
         self.draw()
     

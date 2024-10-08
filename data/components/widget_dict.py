@@ -82,6 +82,13 @@ WIDGET_DICT = {
             text_colour=(255, 0, 0),
             font_size=50
         ),
+        Text(
+            event=CustomEvent.create_event(SettingsEventType.RESET_DEFAULT),
+            position=(300, 100),
+            text='RESET TO DEFAULT',
+            text_colour=(255, 0, 0),
+            font_size=50
+        ),
     ],
     'config': [
         Text(

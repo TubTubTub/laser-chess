@@ -21,7 +21,7 @@ class Settings(_State):
         print('cleaning settings.py')
         update_user_settings(self._settings)
     
-    def startup(self):
+    def startup(self, persist=None):
         print('starting settings.py')
         self._settings = get_user_settings()
         self.draw()
