@@ -2,22 +2,22 @@ import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
 from data.components.widget_dict import WIDGET_DICT
-from data.constants import MenuEventType, BG_COLOUR
+from data.constants import ConfigEventType, BG_COLOUR
 from data.components.cursor import Cursor
 
-class Menu(_State):
+class Config(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
-        self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
+        self._widget_group = WidgetGroup(WIDGET_DICT['config'])
     
     def cleanup(self):
-        print('cleaning menu.py')
+        print('cleaning config.py')
     
     def startup(self):
-        print('starting menu.py')
+        print('starting config.py')
         self.draw()
     
     def get_event(self, event):
@@ -28,11 +28,11 @@ class Menu(_State):
                 return
             
             match collided.event.type:
-                case MenuEventType.CONFIG_CLICK:
-                    self.next = 'config'
+                case ConfigEventType.GAME_CLICK:
+                    self.next = 'game'
                     self.done = True
-                case MenuEventType.SETTINGS_CLICK:
-                    self.next = 'settings'
+                case ConfigEventType.MENU_CLICK:
+                    self.next = 'menu'
                     self.done = True
     
     def handle_resize(self):

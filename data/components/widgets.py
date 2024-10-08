@@ -1,7 +1,7 @@
 import pygame
-from data.utils.settings_helpers import get_settings_json
+from data.utils.settings_helpers import get_user_settings
 
-app_settings = get_settings_json()
+user_settings = get_user_settings()
 
 class _Widget(pygame.sprite.Sprite):
     def __init__(self):
@@ -18,7 +18,7 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class Text(_Widget): # Pure text
-    def __init__(self, event, position, text, text_colour=(255, 255, 255), font_path=app_settings['primaryFont'], font_size=100):
+    def __init__(self, event, position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100):
         super().__init__()
         screen_size = pygame.display.get_surface().size
         self.event = event
@@ -54,7 +54,7 @@ class Text(_Widget): # Pure text
 
 class Label(_Widget):
     '''Set 0 border width for filled rounded label'''
-    def __init__(self, screen, position, text, font_path=app_settings['primaryFont'], font_size=30, text_colour=(0, 0, 0), label_colour=None, border_width=0, border_radius=0, margin=None, width=None, height=None):
+    def __init__(self, screen, position, text, font_path=user_settings['primaryFont'], font_size=30, text_colour=(0, 0, 0), label_colour=None, border_width=0, border_radius=0, margin=None, width=None, height=None):
         '''Font size as a percentage of screen height'''
         super().__init__()
         self._text = text

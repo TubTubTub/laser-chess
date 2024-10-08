@@ -4,12 +4,14 @@ from data.tools import Control
 from data.states.game.game import Game
 from data.states.menu.menu import Menu
 from data.states.settings.settings import Settings
+from data.states.config.config import Config
 
 def main():
     state_dict = {
         'menu': Menu(),
         'game': Game(),
         'settings': Settings(),
+        'config': Config(),
     }
 
     app = Control()

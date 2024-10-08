@@ -1,0 +1,7 @@
+{
+    "primaryBoardColour": "0xB98766",
+    "secondaryBoardColour": "0xF3D8B8",
+    "primaryFont": "resources/fonts/NewAmsterdam-Regular.ttf",
+    "laserColourBlue": "0x0000ff",
+    "laserColourRed": "0xff0000"
+}

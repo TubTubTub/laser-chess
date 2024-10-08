@@ -4,7 +4,7 @@ from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.utils.settings_helpers import get_settings_json
+from data.utils.settings_helpers import get_user_settings
 from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.setup import GRAPHICS
 from data.components.widget_dict import WIDGET_DICT
@@ -13,7 +13,7 @@ class GameView:
     def __init__(self, model):
         self._model = model
         self._screen = pygame.display.get_surface()
-        self._app_settings = get_settings_json()
+        self._user_settings = get_user_settings()
         self._event_to_func_map = {
             GameEventType.UPDATE_PIECES: self.handle_update_pieces,
             GameEventType.REMOVE_PIECE: self.handle_remove_piece,
@@ -24,7 +24,7 @@ class GameView:
         
         self._board_size = self.calculate_board_size()
         self._board_position = self.calculate_board_position()
-        self._board_surface = create_board(self._board_size, self._app_settings['primaryBoardColour'], self._app_settings['secondaryBoardColour'])
+        self._board_surface = create_board(self._board_size, self._user_settings['primaryBoardColour'], self._user_settings['secondaryBoardColour'])
         self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
 
         self._cursor = Cursor()

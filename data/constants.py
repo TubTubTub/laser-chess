@@ -34,10 +34,17 @@ class GameEventType(StrEnum):
     SET_LASER = auto()
 
 class MenuEventType(StrEnum):
-    GAME_CLICK = auto()
+    CONFIG_CLICK = auto()
     SETTINGS_CLICK = auto()
 
 class SettingsEventType(StrEnum):
+    MENU_CLICK = auto()
+    UPDATE_PRIMARY = auto()
+    RESET_DEFAULT = auto()
+    RESET_USER = auto()
+
+class ConfigEventType(StrEnum):
+    GAME_CLICK = auto()
     MENU_CLICK = auto()
 
 class Colour(IntEnum):
