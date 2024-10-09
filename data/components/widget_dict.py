@@ -6,14 +6,14 @@ WIDGET_DICT = {
     'game': [
         Text(
             event=CustomEvent.create_event(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE),
-            position=(0, 200),
+            relative_position=(0, 200),
             text='CLOCKWISE',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE),
-            position=(0, 400),
+            relative_position=(0, 400),
             text='ANTICLOCKWISE',
             text_colour=(0, 255, 0),
             font_size=50
@@ -22,14 +22,14 @@ WIDGET_DICT = {
     'pause': [
         Text(
             event=CustomEvent.create_event(GameEventType.MENU_CLICK),
-            position=(400, 200),
+            relative_position=(400, 200),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(GameEventType.PAUSE_CLICK),
-            position=(400, 400),
+            relative_position=(400, 400),
             text='RESUME GAME',
             text_colour=(255, 0, 0),
             font_size=50
@@ -38,14 +38,14 @@ WIDGET_DICT = {
     'win': [
         Text(
             event=CustomEvent.create_event(GameEventType.MENU_CLICK),
-            position=(400, 200),
+            relative_position=(400, 200),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(GameEventType.GAME_CLICK),
-            position=(400, 400),
+            relative_position=(400, 400),
             text='NEW GAME',
             text_colour=(255, 0, 0),
             font_size=50
@@ -54,14 +54,14 @@ WIDGET_DICT = {
     'menu': [
         Text(
             event=CustomEvent.create_event(MenuEventType.CONFIG_CLICK),
-            position=(400, 200),
+            relative_position=(0.5, 0.5),
             text='START GAME',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(MenuEventType.SETTINGS_CLICK),
-            position=(400, 400),
+            relative_position=(0.5, 0.75),
             text='SETTINGS',
             text_colour=(255, 0, 0),
             font_size=50
@@ -70,21 +70,21 @@ WIDGET_DICT = {
     'settings': [
         Text(
             event=CustomEvent.create_event(SettingsEventType.MENU_CLICK),
-            position=(400, 200),
+            relative_position=(400, 200),
             text='RETURN TO MAIN MENU',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(SettingsEventType.UPDATE_PRIMARY),
-            position=(400, 500),
+            relative_position=(400, 500),
             text='UPDATE PRIMARY COLOUR',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(SettingsEventType.RESET_DEFAULT),
-            position=(300, 100),
+            relative_position=(300, 100),
             text='RESET TO DEFAULT',
             text_colour=(255, 0, 0),
             font_size=50
@@ -93,14 +93,14 @@ WIDGET_DICT = {
     'config': [
         Text(
             event=CustomEvent.create_event(ConfigEventType.GAME_CLICK),
-            position=(400, 200),
+            relative_position=(400, 200),
             text='START NEW GAME',
             text_colour=(255, 0, 0),
             font_size=50
         ),
         Text(
             event=CustomEvent.create_event(ConfigEventType.MENU_CLICK),
-            position=(400, 300),
+            relative_position=(400, 300),
             text='RETURN TO MAIN MENU',
             text_colour=(255, 0, 0),
             font_size=50

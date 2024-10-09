@@ -18,39 +18,65 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class Text(_Widget): # Pure text
-    def __init__(self, event, position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100):
+    def __init__(self, event, relative_position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100, background=True, background_colour=(255, 255, 0), margin=50, border_width=10, border_colour=(255, 255, 255), border_radius=5):
         super().__init__()
-        screen_size = pygame.display.get_surface().size
+        screen_size = pygame.display.get_surface().get_size()
         self.event = event
+
+        self._relative_position = relative_position
 
         self._text = text
         self._text_colour = text_colour
         self._font = pygame.freetype.Font(font_path)
 
-        self.rect = self._font.get_rect(self._text, size=font_size)
-        self.rect.topleft = position
+        self._background = background,
+        self._background_colour = background_colour
+        self._margin = margin
+        self._border_width = border_width
+        self._border_colour = border_colour
+        self._border_radius = border_radius
         
-        self._relative_position = (position[0] / screen_size[0], position[1] / screen_size[1])
+        self._position = (self._relative_position[0] * screen_size[0], self._relative_position[1] * screen_size[1])
         self._relative_font_size = font_size / screen_size[1]
-        
-        self._text_surface = pygame.Surface((self.rect.width, self.rect.height))
-        self.set_geometry(screen_size)
-        self.set_image(screen_size)
-    
-    def set_geometry(self, new_screen_size):
-        font_size = self._relative_font_size * new_screen_size[1]
-        position = (self._relative_position[0] * new_screen_size[0], self._relative_position[1] * new_screen_size[1])
-        
+
         self.rect = self._font.get_rect(self._text, size=font_size)
-        self.rect.topleft = position
+        self.rect.topleft = self._position
+
+        self._text_surface = pygame.Surface((0, 0))
+
+        self.set_image(screen_size)
+        self.set_geometry(screen_size)
     
     def set_image(self, new_screen_size):
         font_size = self._relative_font_size * new_screen_size[1]
 
-        text_surface = pygame.transform.scale(self._text_surface, self.rect.size)
+        font_rect = self._font.get_rect(self._text, size=font_size)
+        surface_size = font_rect.inflate(self._margin, self._margin).size
+
+        text_surface = pygame.transform.scale(self._text_surface, surface_size)
         self.image = text_surface
-        self.image.fill((50, 50, 50))
-        self._font.render_to(self.image, (0, 0), self._text, fgcolor=self._text_colour, size=font_size)
+
+        if self._background:
+            background_rect = pygame.Rect(0, 0, surface_size[0], surface_size[1])
+            
+            pygame.draw.rect(self.image, self._background_colour, background_rect, border_radius=self._border_radius)
+            if self._border_width:
+                pygame.draw.rect(self.image, self._border_colour, background_rect, width=self._border_width, border_radius=self._border_radius)
+
+        font_center = ((surface_size[0] - font_rect.size[0]) / 2, (surface_size[1] - font_rect.size[1]) / 2)
+        self._font.render_to(self.image, font_center, self._text, fgcolor=self._text_colour, size=font_size)
+
+        self.rect = self.image.get_rect()
+    
+    def set_geometry(self, new_screen_size):
+        font_size = self._relative_font_size * new_screen_size[1]
+        position = (self._relative_position[0] * new_screen_size[0], self._relative_position[1] * new_screen_size[1])
+        self.rect.center = position
+
+# class Button(Text):
+#     def __init__(self, shadow_distance=0, shadow_colour=(0, 0, 0), click_handler=lambda: None, **kwargs):
+#         super().__init__(**kwargs)
+#         self._shadow
 
 class Label(_Widget):
     '''Set 0 border width for filled rounded label'''

@@ -7,4 +7,6 @@ pygame.init()
 pygame.display.set_mode(SCREEN_SIZE, SCREEN_FLAGS)
 
 module_path = Path(__file__).parent
+print('wewewewew')
+print((module_path / '../resources/graphics').resolve())
 GRAPHICS = load_all_gfx((module_path / '../resources/graphics').resolve())

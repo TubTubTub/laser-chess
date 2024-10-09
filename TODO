@@ -19,3 +19,5 @@ Log-in
 Miscellaneous:
 Multiple lasers firing at once
 Set image as background
+Maybe separate text background code into a new label class
+Make new word wrap text class with text properties
