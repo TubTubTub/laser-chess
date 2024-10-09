@@ -8,5 +8,15 @@ class WidgetGroup(pygame.sprite.Group):
     
     def handle_resize(self, new_screen_size):
         for sprite in self.sprites():
-            sprite.set_geometry(new_screen_size)
-            sprite.set_image(new_screen_size)
+            sprite.set_screen_size(new_screen_size)
+            sprite.set_image()
+            sprite.set_geometry()
+    
+    def process_event(self, event):
+        for sprite in self.sprites():
+            widget_event = sprite.process_event(event)
+
+            if widget_event:
+                return widget_event
+        
+        return None

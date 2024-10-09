@@ -17,6 +17,11 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
+class WidgetState(StrEnum):
+    DEFAULT = auto()
+    HOVER = auto()
+    PRESS = auto()
+
 class GameState(IntEnum):
     LASER_FIRING = 0
 

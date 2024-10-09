@@ -21,19 +21,18 @@ class Menu(_State):
         self.draw()
     
     def get_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            collided = self._cursor.get_sprite_collision(event.pos, self._widget_group)
+        widget_event = self._widget_group.process_event(event)
 
-            if collided is None:
+        match widget_event:
+            case None:
                 return
-            
-            match collided.event.type:
-                case MenuEventType.CONFIG_CLICK:
-                    self.next = 'config'
-                    self.done = True
-                case MenuEventType.SETTINGS_CLICK:
-                    self.next = 'settings'
-                    self.done = True
+
+            case MenuEventType.CONFIG_CLICK:
+                self.next = 'config'
+                self.done = True
+            case MenuEventType.SETTINGS_CLICK:
+                self.next = 'settings'
+                self.done = True
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
