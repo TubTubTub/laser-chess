@@ -28,8 +28,5 @@ class WinView:
     #     except:
     #         raise KeyError('Event type not recognized in Win View (WinView.process_model_event)', event)
     
-    def convert_mouse_pos(self, mouse_pos):
-        if collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
-            return collided.event
-
-        return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+    def convert_mouse_pos(self, event):
+        return self._widget_group.process_event(event)

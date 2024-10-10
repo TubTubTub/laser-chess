@@ -198,9 +198,9 @@ class GameView:
     def get_selected_overlay_coord(self):
         return self._selected_overlay_coord
 
-    def convert_mouse_pos(self, mouse_pos):
-        mouse_x = mouse_pos[0]
-        mouse_y = mouse_pos[1]
+    def convert_mouse_pos(self, event):
+        mouse_x = event.pos[0]
+        mouse_y = event.pos[1]
 
         if (self._board_position[0] <= mouse_x <= self._board_position[0] + self._board_size[0]) and (self._board_position[1] <= mouse_y <= self._board_position[1] + self._board_size[1]):
             x = (mouse_x - self._board_position[0]) // (self._board_size[0] / 10)
@@ -208,7 +208,10 @@ class GameView:
 
             return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=(int(x), int(y)))
 
-        elif collided := self._cursor.get_sprite_collision(mouse_pos, self._widget_group):
-            return collided.event
+        elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
+            return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
 
         return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+
+    def process_widget_event(self, event):
+        return self._widget_group.process_event(event)

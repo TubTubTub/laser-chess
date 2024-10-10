@@ -27,22 +27,21 @@ class Settings(_State):
         self.draw()
     
     def get_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            collided = self._cursor.get_sprite_collision(event.pos, self._widget_group)
+        widget_event = self._widget_group.process_event(event)
 
-            if collided is None:
-                return
+        if widget_event is None:
+            return
             
-            match collided.event.type:
-                case SettingsEventType.MENU_CLICK:
-                    self.next = 'menu'
-                    self.done = True
-                case SettingsEventType.UPDATE_PRIMARY:
-                    self._settings['primaryBoardColour'] = '0x000000'
-                case SettingsEventType.RESET_DEFAULT:
-                    self._settings = get_default_settings()
-                case SettingsEventType.RESET_USER:
-                    self._settings = get_user_settings()
+        match widget_event.type:
+            case SettingsEventType.MENU_CLICK:
+                self.next = 'menu'
+                self.done = True
+            case SettingsEventType.UPDATE_PRIMARY:
+                self._settings['primaryBoardColour'] = '0x000000'
+            case SettingsEventType.RESET_DEFAULT:
+                self._settings = get_default_settings()
+            case SettingsEventType.RESET_USER:
+                self._settings = get_user_settings()
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

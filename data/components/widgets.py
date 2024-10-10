@@ -19,6 +19,49 @@ class _Widget(pygame.sprite.Sprite):
     def process_event(self, event):
         raise NotImplementedError
 
+class ColourSlider(_Widget):
+    def __init__(self, position, width, height):
+        super().__init__()
+        self._position = position
+        self._width = width
+        self._height = height
+        self._border_width = 12
+        self._gradient_width = width - self._border_width * 2
+        self._selected_percent = 0
+        
+        self._gradient = pygame.Surface((width, height))
+        self._gradient.fill((255, 255, 255))
+
+        for i in range(self._gradient_width):
+            color = pygame.Color(0)
+            color.hsva = (int(360 * i / self._gradient_width), 100, 100)
+            pygame.draw.rect(self._gradient, color, (i + self._border_width, self._border_width, 1, height - 2 * self._border_width))
+        
+        self.set_geometry()
+        self.set_image()
+    
+    def set_image(self):
+        self.image = self._gradient
+        center = (self._selected_percent * self._gradient_width + self.rect.left + self._border_width, self.rect.centery)
+        pygame.draw.circle(self.image, self.get_selected_colour(), center, self.rect.height // 2)
+
+    def set_geometry(self):
+        self.rect = pygame.Rect(self._position[0], self._position[1], self._width, self._height)
+    
+    def process_event(self, event):
+        match event.type:
+            case pygame.MOUSEBUTTONDOWN:
+                if self.rect.collidepoint(event.pos):
+                    self._selected_percent = (event.pos[0] - self.rect.left - self._border_width) / self._gradient_width
+                    self._selected_percent = max(0, min(self._selected_percent, 1))
+
+                    self.set_image()
+    
+    def get_selected_colour(self):
+        colour = pygame.Color(0)
+        colour.hsva = (int(self._selected_percent * self._gradient_width), 100, 100)
+        return colour
+
 class ColourPicker(_Widget):
     def __init__(self, origin_position, default_colour=(255, 0, 0), font_path=user_settings['primaryFont']):
         super().__init__()
@@ -35,7 +78,8 @@ class ColourPicker(_Widget):
         mix_1 = pygame.transform.smoothscale(mix_1, self._select_area.size)
 
         hue = self._colour.hsva[0]
-        saturated_rgb = self.hsv_to_rgb((int(hue), 255, 255))
+        saturated_rgb = pygame.Color(0)
+        saturated_rgb.hsva = (hue, 100, 100)
 
         mix_2 = pygame.Surface((2, 1))
         mix_2.fill((255, 255, 255))
@@ -109,9 +153,8 @@ class ColourPicker(_Widget):
         else:
             return (value, p, q)
 
-
 class Text(_Widget): # Pure text
-    def __init__(self, relative_position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100, fill_colour=(0, 0, 0), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
+    def __init__(self, relative_position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 

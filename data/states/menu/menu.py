@@ -23,7 +23,10 @@ class Menu(_State):
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
-        match widget_event:
+        if widget_event is None:
+            return
+
+        match widget_event.type:
             case None:
                 return
 

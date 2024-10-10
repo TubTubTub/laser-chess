@@ -17,7 +17,7 @@ class Config(_State):
         print('cleaning config.py')
 
         return {
-            # 'cpu_depth': 3,
+            # 'cpu_depth': 2,
         }
     
     def startup(self, persist=None):
@@ -25,19 +25,18 @@ class Config(_State):
         self.draw()
     
     def get_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            collided = self._cursor.get_sprite_collision(event.pos, self._widget_group)
+        widget_event = self._widget_group.process_event(event)
 
-            if collided is None:
-                return
-            
-            match collided.event.type:
-                case ConfigEventType.GAME_CLICK:
-                    self.next = 'game'
-                    self.done = True
-                case ConfigEventType.MENU_CLICK:
-                    self.next = 'menu'
-                    self.done = True
+        if widget_event is None:
+            return
+
+        match widget_event.type:
+            case ConfigEventType.GAME_CLICK:
+                self.next = 'game'
+                self.done = True
+            case ConfigEventType.MENU_CLICK:
+                self.next = 'menu'
+                self.done = True
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

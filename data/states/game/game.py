@@ -6,6 +6,7 @@ from data.states.game.components.game_controller import GameController
 from data.states.game.components.pause_view import PauseView
 from data.states.game.components.win_view import WinView
 from data.constants import BG_COLOUR
+from functools import partial
 
 class Game(_State):
     def __init__(self):
@@ -20,11 +21,12 @@ class Game(_State):
         self.done = True
     
     def startup(self, persist):
+        binded_startup = partial(self.startup, persist)
         self.model = GameModel(**persist)
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)
         self.win_view = WinView(self.model)
-        self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, self.startup)
+        self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, binded_startup)
 
         self.view.draw()
         print('starting game.py')

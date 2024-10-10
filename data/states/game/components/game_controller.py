@@ -14,52 +14,81 @@ class GameController:
         self._to_new_game = to_new_game
     
     def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
             if self._model.states['PAUSED']:
-                game_event = self._pause_view.convert_mouse_pos(event.pos)
-
-                match game_event.type:
-                    case GameEventType.PAUSE_CLICK:
-                        self._model.toggle_paused()
-                    
-                    case GameEventType.MENU_CLICK:
-                        self._to_menu()
-                    
-                    case GameEventType.EMPTY_CLICK:
-                        pass
-
-                    case _:
-                        raise Exception('Unhandled event type (GameController.handle_event)')
-                
-                return
-
+                self.handle_pause_event(event)
             elif self._model.states['WINNER']:
-                print('winner activities')
-                game_event = self._win_view.convert_mouse_pos(event.pos)
+                self.handle_winner_event(event)
+            else:
+                self.handle_game_event(event)
 
-                match game_event.type:
-                    case GameEventType.MENU_CLICK:
-                        self._to_menu()
-                    
-                    case GameEventType.GAME_CLICK:
-                        self._to_new_game()
-                    
-                    case GameEventType.EMPTY_CLICK:
-                        pass
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self._model.toggle_paused()
+            elif event.key == pygame.K_l:
+                self._model.thread_stop.set()
 
-                    case _:
-                        raise Exception('Unhandled event type (GameController.handle_event)')
-                
-                return
+    def handle_pause_event(self, event):
+        game_event = self._pause_view.convert_mouse_pos(event)
 
-            # print('MOUSEBUTTONDOWN:', event.pos)
-            game_event = self._view.convert_mouse_pos(event.pos)
+        if game_event is None:
+            return
+
+        match game_event.type:
+            case GameEventType.PAUSE_CLICK:
+                self._model.toggle_paused()
             
+            case GameEventType.MENU_CLICK:
+                self._to_menu()
+
+            case _:
+                raise Exception('Unhandled event type (GameController.handle_event)')
+    
+    def handle_winner_event(self, event):
+        game_event = self._win_view.convert_mouse_pos(event)
+
+        if game_event is None:
+            return
+
+        match game_event.type:
+            case GameEventType.MENU_CLICK:
+                self._to_menu()
+            
+            case GameEventType.GAME_CLICK:
+                self._to_new_game()
+
+            case _:
+                raise Exception('Unhandled event type (GameController.handle_event)')
+
+    def handle_game_widget_event(self, event):
+        widget_event = self._view.process_widget_event(event)
+
+        if widget_event is None:
+            return
+
+        match widget_event.type:
+            case GameEventType.ROTATE_PIECE:
+                src_coords = self._view.get_selected_overlay_coord()
+
+                if src_coords is None:
+                    print('None square selected')
+                    return
+
+                move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=widget_event.rotation_direction)
+                self.make_move(move)
+            
+            case _:
+                raise Exception('Unhandled event type (GameController.handle_event)')
+
+    def handle_game_event(self, event):
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
+            self.handle_game_widget_event(event)
+        
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            game_event = self._view.convert_mouse_pos(event)
+
             match game_event.type:
-
                 case GameEventType.BOARD_CLICK:
-                    # print('COORDS:', game_event.coords)
-
                     if self._model.states['AWAITING_CPU']:
                         return
 
@@ -80,31 +109,15 @@ class GameController:
                             self.make_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
-
+                
                 case GameEventType.WIDGET_CLICK:
-                    print('widget clicked!')
-                        
+                    self.handle_game_widget_event(event)
+
                 case GameEventType.EMPTY_CLICK:
                     self._view.set_overlay_coords([], None)
-                
-                case GameEventType.ROTATE_PIECE:
-                    src_coords = self._view.get_selected_overlay_coord()
-
-                    if src_coords is None:
-                        print('None square selected')
-                        return
-
-                    move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=game_event.rotation_direction)
-                    self.make_move(move)
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                self._model.toggle_paused()
-            elif event.key == pygame.K_l:
-                self._model.thread_stop.set()
 
     def make_move(self, move):
         self._model.make_move(move)
