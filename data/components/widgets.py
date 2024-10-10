@@ -1,6 +1,7 @@
 import pygame
 from data.utils.settings_helpers import get_user_settings
 from data.constants import WidgetState
+import colorsys
 
 user_settings = get_user_settings()
 
@@ -19,24 +20,98 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class ColourPicker(_Widget):
-    def __init__(self, origin_position, default_hue=255, font_path=user_settings['primaryFont']):
+    def __init__(self, origin_position, default_colour=(255, 0, 0), font_path=user_settings['primaryFont']):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
         self._origin_position = origin_position
-        self._hue = default_hue
+        self._colour = pygame.Color(default_colour)
         self._font = pygame.freetype.Font(font_path)
+
+        self._select_area = pygame.Surface((self._screen_size[1] * 0.2, self._screen_size[1] * 0.2))
+
+        mix_1 = pygame.Surface((1, 2))
+        mix_1.fill((255, 255, 255))
+        mix_1.set_at((0, 1), (0, 0, 0))
+        mix_1 = pygame.transform.smoothscale(mix_1, self._select_area.size)
+
+        hue = self._colour.hsva[0]
+        saturated_rgb = self.hsv_to_rgb((int(hue), 255, 255))
+
+        mix_2 = pygame.Surface((2, 1))
+        mix_2.fill((255, 255, 255))
+        mix_2.set_at((1, 0), saturated_rgb)
+        mix_2 = pygame.transform.smoothscale(mix_2, self._select_area.size)
+
+        mix_1.blit(mix_2, (0, 0), special_flags=pygame.BLEND_MULT)
+
+        self._select_area.blit(mix_1, (0, 0))
 
         self.set_image()
         self.set_geometry()
-
-        select_area = pygame.Surface((self._screen_size[1] * 0.2, self._screen_size[1] * 0.2))
-        select_area.fill((0, 0, 0))
-        select_area.set_at((0, 0), self._hue)
     
     def set_image(self):
+        self.image = self._select_area
+    
+    def set_geometry(self):
+        self.rect = self.image.get_rect()
+    
+    def process_event(self, event):
+        pass
+
+    def rgb_to_hsv(self, rgb):
+        red, green, blue = rgb
+
+        rgb_max = max(rgb)
+        rgb_min = min(rgb)
+
+        value = rgb_max
+        if value == 0:
+            return (0, 0, 0)
+
+        saturation = 255 * (rgb_max - rgb_min) // value
+
+        if saturation == 0:
+            return (0, 0, value)
+        
+        if rgb_max == red:
+            hue = 0 + 43 * (green - blue) // (rgb_max - rgb_min)
+        elif rgb_max == green:
+            hue = 85 + 43 * (blue - 4) // (rgb_max - rgb_min)
+        else:
+            hue = 171 + 43 * (red - green) // (rgb_max - rgb_min)
+        
+        return (hue, saturation, value)
+    
+    def hsv_to_rgb(self, hsv):
+        hue, saturation, value = hsv
+
+        if saturation == 0:
+            return (value, value, value)
+        
+        region = hue // 43
+        
+        remainder = (hue - (region * 43)) * 6
+
+        p = (value * (255 - saturation)) >> 8
+        q = (value * (255 - ((saturation * remainder) >> 8))) >> 8
+        t = (value * (255 - ((saturation * (255 - remainder)) >> 8))) >> 8
+
+        if region == 0:
+            return (value, t, p)
+        elif region == 1:
+            return (q, value, p)
+        elif region == 2:
+            return (p, value, t)
+        elif region == 3:
+            return (p, q, value)
+        elif region == 4:
+            return (t, p, value)
+        else:
+            return (value, p, q)
+
 
 class Text(_Widget): # Pure text
-    def __init__(self, relative_position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100, fill_colour=None, margin=50, border_width=10, border_colour=(255, 255, 255), border_radius=5):
+    def __init__(self, relative_position, text, text_colour=(255, 255, 255), font_path=user_settings['primaryFont'], font_size=100, fill_colour=(0, 0, 0), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 

@@ -1,4 +1,4 @@
-from data.components.widgets import Text, Button
+from data.components.widgets import Text, Button, ColourPicker
 from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, RotationDirection
 
@@ -62,25 +62,31 @@ WIDGET_DICT = {
             fill_colour=(0, 0, 255),
             event=MenuEventType.SETTINGS_CLICK
         ),
+        ColourPicker(
+            origin_position=(0.5, 0.5)
+        )
     ],
     'settings': [
-        Text(
-            relative_position=(400, 200),
+        Button(
+            relative_position=(0.5, 0.2),
             text='RETURN TO MAIN MENU',
             text_colour=(255, 0, 0),
-            font_size=50
+            font_size=50,
+            event=SettingsEventType.MENU_CLICK
         ),
-        Text(
-            relative_position=(400, 500),
+        Button(
+            relative_position=(0.5, 0.4),
             text='UPDATE PRIMARY COLOUR',
             text_colour=(255, 0, 0),
-            font_size=50
+            font_size=50,
+            event=SettingsEventType.UPDATE_PRIMARY
         ),
-        Text(
-            relative_position=(300, 100),
+        Button(
+            relative_position=(0.5, 0.6),
             text='RESET TO DEFAULT',
             text_colour=(255, 0, 0),
-            font_size=50
+            font_size=50,
+            event=SettingsEventType.RESET_DEFAULT
         ),
     ],
     'config': [
