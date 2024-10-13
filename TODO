@@ -1,11 +1,13 @@
 ASK FOR HELP ON GOOGLE TRENDLE
-ASK ROBBO IF CAN USE PYGAME WIDGETS LIBRARY
+ASK ROBBO HOW TO GIVE SPECIFIC ARGS TO EACH SUPERCLASS WITH USING super()
 
 Make CPU play rotational moves
 Make bitboards a dictionary
 Implement win condition
 
 Should do:
+Make size getter and setter methods of colour slider widget
+Make border width of widgets relative to screen size (getter and setter methods)
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games

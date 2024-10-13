@@ -1,4 +1,4 @@
-from data.components.widgets import Text, Button, ColourPicker, ColourSlider
+from data.components.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, RotationDirection
 
@@ -68,9 +68,9 @@ WIDGET_DICT = {
             fill_colour=(0, 0, 255),
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
-        ColourPicker(
-            origin_position=(0.5, 0.5)
-        ),
+        # ColourPicker(
+        #     origin_position=(0.5, 0.5)
+        # ),
         ColourSlider(
             relative_position=(0, 0.1),
             width=1000,
