@@ -12,7 +12,8 @@ class ColourSlider(_Widget):
         
         
         self._size = (self._relative_size[0] * self._screen_size[0], self._relative_size[1] * self._screen_size[1])
-        self._thumb = SliderThumb(radius=self._size[1] / 2, colour=(255, 255, 255))
+        self._thumb = SliderThumb(radius=self._size[1] / 2, colour=(255, 255, 255), center=self.set_thumb_center())
+        self._thumb_center = self.set_thumb_center()
 
         self._border_width = 12
         self._thumb_radius = self._size[1] / 2
@@ -57,7 +58,7 @@ class ColourSlider(_Widget):
     def set_image(self):
         scaled_gradient = pygame.transform.smoothscale(self._gradient_surface, self.get_gradient_size())
         self.image.blit(scaled_gradient, (self._thumb_radius, self._size[1] / 4))
-        self.image.blit(self._thumb.thumb_surface, (self._size[0] / 2 - self._size[1] / 2, 0))
+        self._thumb.draw()
         # center = (self._selected_percent * self._gradient_width + self.rect.left + self._border_width, self.rect.centery)
         # pygame.draw.circle(self.image, self.get_selected_colour(), center, self.rect.height // 2)
 
@@ -65,19 +66,29 @@ class ColourSlider(_Widget):
         self._thumb_radius = self._size[1] / 2
         self.rect = self.image.get_rect()
     
+    def set_thumb_center(self, pos_x):
+        if pos_x:
+            pos_y = self.rect.y + self._size[1] / 2
+            self._thumb_center = (pos_x, pos_y)
+            return
+
+        print('ahh')
+    
     def set_screen_size(self, new_screen_size):
         self._screen_size = new_screen_size
     
     def process_event(self, event):
         match event.type:
             case pygame.MOUSEBUTTONDOWN:
-                if self.rect.collidepoint(event.pos):
-                    self._selected_percent = (event.pos[0] - self.rect.left - self._thumb_radius - self._border_width) / (self.get_gradient_size()[0] - 2 * self._border_width)
-                    self._selected_percent = max(0, min(self._selected_percent, 1))
-                    print(self._selected_percent)
-                    print(self.get_selected_colour())
+                if not self.rect.collidepoint(event.pos):
+                    return
+                
+                self._selected_percent = (event.pos[0] - self.rect.left - self._thumb_radius - self._border_width) / (self.get_gradient_size()[0] - 2 * self._border_width)
+                self._selected_percent = max(0, min(self._selected_percent, 1))
+                self.set_thumb_center(event.pos[0])
+            
 
-                    # self.set_image()
+                # self.set_image()
     
     def get_selected_colour(self):
         colour = pygame.Color(0)
