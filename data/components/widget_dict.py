@@ -72,7 +72,7 @@ WIDGET_DICT = {
         #     origin_position=(0.5, 0.5)
         # ),
         ColourSlider(
-            relative_position=(0, 0.1),
+            relative_position=(0.5, 0.2),
             width=1000,
             height=200,
         )

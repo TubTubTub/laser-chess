@@ -5,7 +5,7 @@ from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_user_settings
-from data.utils.view_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
+from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.setup import GRAPHICS
 from data.components.widget_dict import WIDGET_DICT
 

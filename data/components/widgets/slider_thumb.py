@@ -3,7 +3,7 @@ from data.components.widgets.bases import _Pressable, _Widget
 from data.constants import WidgetState
 
 class SliderThumb(_Pressable):
-    def __init__(self, radius, colour, center, border_width=12, border_colour=(255, 255, 255)):
+    def __init__(self, radius, colour, border_width=12, border_colour=(255, 255, 255)):
         super().__init__(
             down_func=lambda: self.down_func(),
             up_func=lambda: self.up_func(),
@@ -12,7 +12,7 @@ class SliderThumb(_Pressable):
         self._screen = pygame.display.get_surface()
         self._colour = colour
         self._radius = radius
-        self._center = center
+        self._center = None
 
         r, g, b = self._colour
         self._hover_colour = (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0))
@@ -24,16 +24,19 @@ class SliderThumb(_Pressable):
 
         self.rect = self._thumb_surface.get_rect()
     
-    def set_position(self, position):
+    def set_center(self, position):
         self._center = position
     
-    def set_size(self, radius):
+    def set_radius(self, radius):
         self._radius = radius
     
     def draw(self):
         rect = pygame.Rect(0, 0, self._radius, self._radius)
         rect.center = self._center
-        self._screen.blit(self._thumb_surface, rect)
+        test = pygame.Surface((50, 50))
+        test.fill((255, 0, 0))
+        self._screen.blit(test, (0, 0))
+        print('sd')
     
     def down_func(self):
         self.set_state_colour(WidgetState.PRESS)
