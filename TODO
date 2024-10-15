@@ -23,3 +23,5 @@ Multiple lasers firing at once
 Set image as background
 Maybe separate text background code into a new label class
 Make new word wrap text class with text properties
+Make relative scale properties getter methods for widgets
+Make widgets low-scale when scaling by just pygame transforming a copy

@@ -15,7 +15,7 @@ class Text(_Widget): # Pure text
         self._text_colour = text_colour
         self._font = pygame.freetype.Font(user_settings['primaryFont'])
 
-        self._margin = margin
+        self._relative_margin = margin / self._screen_size[1]
 
         self._fill_colour = fill_colour
 
@@ -38,7 +38,8 @@ class Text(_Widget): # Pure text
         font_size = self._relative_font_size * self._screen_size[1]
 
         font_rect = self._font.get_rect(self._text, size=font_size)
-        surface_size = font_rect.inflate(self._margin, self._margin).size
+        margin = self._relative_margin * self._screen_size[1]
+        surface_size = font_rect.inflate(margin, margin).size
 
         text_surface = pygame.transform.scale(self._text_surface, surface_size)
         self.image = text_surface

@@ -30,3 +30,10 @@ def create_gradient(size, border_width, border_colour):
     
 def calculate_gradient_slice_height(distance, radius):
     return sqrt(radius ** 2 - distance ** 2) * 2 + 2
+
+def create_slider_thumb(radius, colour, border_colour, border_width):
+    thumb_surface = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
+    pygame.draw.circle(thumb_surface, border_colour, (radius, radius), radius, width=int(border_width))
+    pygame.draw.circle(thumb_surface, colour, (radius, radius), (radius - border_width))
+
+    return thumb_surface
