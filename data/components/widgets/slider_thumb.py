@@ -12,7 +12,7 @@ class SliderThumb(_Pressable):
         self._screen = pygame.display.get_surface()
         self._colour = colour
         self._radius = radius
-        self._center = None
+        self._position = None
 
         r, g, b = self._colour
         self._hover_colour = (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0))
@@ -24,19 +24,14 @@ class SliderThumb(_Pressable):
 
         self.rect = self._thumb_surface.get_rect()
     
-    def set_center(self, position):
-        self._center = position
+    def set_position(self, position):
+        self._position = position
+    
+    def get_position(self):
+        return self._position
     
     def set_radius(self, radius):
         self._radius = radius
-    
-    def draw(self):
-        rect = pygame.Rect(0, 0, self._radius, self._radius)
-        rect.center = self._center
-        test = pygame.Surface((50, 50))
-        test.fill((255, 0, 0))
-        self._screen.blit(test, (0, 0))
-        print('sd')
     
     def down_func(self):
         self.set_state_colour(WidgetState.PRESS)
