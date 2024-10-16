@@ -18,7 +18,7 @@ GAME_WIDGETS = {
 }
 
 class WidgetState(StrEnum):
-    DEFAULT = auto()
+    BASE = auto()
     HOVER = auto()
     PRESS = auto()
 

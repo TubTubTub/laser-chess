@@ -12,10 +12,13 @@ class ColourSlider(_Widget):
         self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
         self._relative_border_width = border_width / self._screen_size[1]
 
+        self._border_colour = border_colour
+
         self._gradient_surface = create_gradient(self.calculate_gradient_size(), border_width, border_colour)
 
-        self._thumb = SliderThumb(radius=self._size[1] / 2, colour=(255, 0, 0), border_colour=border_colour)
-        self.set_thumb_position(0)
+        self._selected_percent = 0
+
+        self._thumb = SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
 
         self._empty_surface = pygame.Surface(self._size)
         self._empty_surface.fill((50, 50, 50))
@@ -54,12 +57,12 @@ class ColourSlider(_Widget):
         else:
             return None
     
-    def set_thumb_position(self, percent):
+    def calculate_thumb_position(self):
         gradient_size = self.calculate_gradient_size()
-        x = gradient_size[0] * percent
+        x = gradient_size[0] * self._selected_percent
         y = 0
 
-        self._thumb.set_position((x, y))
+        return (x, y)
     
     # def calculate_thumb_position(self):
     #     percent = self._thumb.get_percent()
@@ -77,9 +80,9 @@ class ColourSlider(_Widget):
 
     #     return (x, y)
     
-    def calculate_selected_colour(self, percent):
+    def calculate_selected_colour(self):
         colour = pygame.Color(0)
-        colour.hsva = (int(percent * 360), 100, 100)
+        colour.hsva = (int(self._selected_percent * 360), 100, 100)
         return colour
     
     def set_image(self):
@@ -89,17 +92,15 @@ class ColourSlider(_Widget):
         self.image = pygame.transform.scale(self._empty_surface, (self._size))
         self.image.blit(gradient_scaled, gradient_position)
 
+        thumb_position = self.calculate_thumb_position()
+        thumb_colour = self.calculate_selected_colour()
+
+        self._thumb.initialise_new_colours(thumb_colour)
+        self._thumb.set_surface(radius=self._size[1] / 2, border_width=self._border_width)
+        self._thumb.set_position((self._position[0] + thumb_position[0], self._position[1] + thumb_position[1]))
+
         thumb_surface = self._thumb.get_surface()
-        thumb_position = self._thumb.get_position()
-
         self.image.blit(thumb_surface, thumb_position)
-
-        self._thumb.set_radius(self._size / 2)
-        self._thumb.set_border_width(self._border_width)
-
-        # self._thumb.set_surface()
-        # self._thumb.set_position(self.calculate_thumb_screen_position())
-        # self.image.blit(self._thumb.get_surface(), self.calculate_thumb_position())
 
     def set_geometry(self):
         self.rect = self.image.get_rect()
@@ -110,14 +111,15 @@ class ColourSlider(_Widget):
     
     def process_event(self, event):
         if event.type in [pygame.MOUSEMOTION]:
+            if self._thumb.get_pressed() is False:
+                return
+
             selected_percent = self.calculate_gradient_percent(event.pos)
 
             if selected_percent:
-                selected_colour = self.calculate_selected_colour(selected_percent)
-
-                # self._thumb.set_percent(selected_percent)
-                # self._thumb.set_colour(self.calculate_selected_colour(selected_percent))
+                self._selected_percent = selected_percent
                 self.set_image()
 
-        # if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
-        #     # self._thumb.process_event(event)
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
+            self._thumb.process_event(event)
+            self.set_image()

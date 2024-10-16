@@ -8,7 +8,7 @@ class Button(_Pressable, Text):
             self,
             hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
-            up_func=lambda: self.set_state_colour(WidgetState.DEFAULT),
+            up_func=lambda: self.set_state_colour(WidgetState.BASE),
         )
         Text.__init__(self, **kwargs)
 
@@ -18,20 +18,17 @@ class Button(_Pressable, Text):
 
         if self._fill_colour:
             r, g, b = self._fill_colour
-            self._hover_colour = (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0))
-            self._press_colour = (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
-            self._fill_colour_copy = self._fill_colour
+
+            self._colours = {
+                WidgetState.BASE: self._fill_colour,
+                WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
+                WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
+            }
     
     def set_state_colour(self, state):
         if self._fill_colour is None:
             return
-
-        match state:
-            case WidgetState.DEFAULT:
-                self._fill_colour = self._fill_colour_copy
-            case WidgetState.HOVER:
-                self._fill_colour = self._hover_colour
-            case WidgetState.PRESS:
-                self._fill_colour = self._press_colour
+        
+        self._fill_colour = self._colours[state]
 
         self.set_image()
