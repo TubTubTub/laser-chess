@@ -28,11 +28,13 @@ class _Pressable:
         match event.type:
             case pygame.MOUSEBUTTONDOWN:
                 if self.rect.collidepoint(event.pos):
+                    print('1 press')
                     self._down_func()
                     self._pressed = True
             
             case pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
+                    print('2 press')
                     self._hover_func()
                     
                     if self._pressed:
@@ -41,6 +43,7 @@ class _Pressable:
             
             case pygame.MOUSEMOTION:
                 if self.rect.collidepoint(event.pos):
+                    # print('3 press')
                     if self._pressed:
                         self._down_func()
                     else:
