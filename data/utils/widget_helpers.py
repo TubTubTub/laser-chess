@@ -1,7 +1,7 @@
 import pygame
 from math import sqrt
 
-def create_gradient(size, border_width, border_colour):
+def create_slider_gradient(size, border_width, border_colour):
     gradient_surface = pygame.Surface(size)
 
     first_round_end = gradient_surface.height / 2
@@ -37,3 +37,26 @@ def create_slider_thumb(radius, colour, border_colour, border_width):
     pygame.draw.circle(thumb_surface, colour, (radius, radius), (radius - border_width))
 
     return thumb_surface
+
+def create_square_gradient(side_length, colour):
+    square_surface = pygame.Surface((side_length, side_length))
+
+    mix_1 = pygame.Surface((1, 2))
+    mix_1.fill((255, 255, 255))
+    mix_1.set_at((0, 1), (0, 0, 0))
+    mix_1 = pygame.transform.smoothscale(mix_1, (side_length, side_length))
+
+    hue = colour.hsva[0]
+    saturated_rgb = pygame.Color(0)
+    saturated_rgb.hsva = (hue, 100, 100)
+
+    mix_2 = pygame.Surface((2, 1))
+    mix_2.fill((255, 255, 255))
+    mix_2.set_at((1, 0), saturated_rgb)
+    mix_2 = pygame.transform.smoothscale(mix_2,(side_length, side_length))
+
+    mix_1.blit(mix_2, (0, 0), special_flags=pygame.BLEND_MULT)
+
+    square_surface.blit(mix_1, (0, 0))
+
+    return square_surface

@@ -11,6 +11,7 @@ Make border width of widgets relative to screen size (getter and setter methods)
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games
+Refactor colour slider code
 
 Ambitious:
 Cursor-based pagination for viewing games

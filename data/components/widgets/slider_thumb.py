@@ -1,23 +1,24 @@
 import pygame
 from data.components.widgets.bases import _Pressable
 from data.utils.widget_helpers import create_slider_thumb
-from data.constants import WidgetState
+from data.constants import WidgetState, SettingsEventType
+from data.components.custom_event import CustomEvent
 
 class SliderThumb(_Pressable):
     def __init__(self, radius, border_colour=(255, 255, 255)):
         super().__init__(
             down_func=lambda: self.down_func(),
             up_func=lambda: self.up_func(),
-            hover_func=lambda: self.hover_func()
+            hover_func=lambda: self.hover_func(),
+            prolonged=True
         )
 
         self._screen = pygame.display.get_surface()
         self._border_colour  = border_colour
         self._radius = radius
         self._percent = None
-        self._event = None
 
-        self._state = WidgetState.BASE
+        self.state = WidgetState.BASE
 
         self._colours = {
             WidgetState.BASE: None,
@@ -47,19 +48,18 @@ class SliderThumb(_Pressable):
         return self._thumb_surface
     
     def set_surface(self, radius, border_width):
-        self._thumb_surface = create_slider_thumb(radius, self._colours[self._state], self._border_colour, border_width)
+        self._thumb_surface = create_slider_thumb(radius, self._colours[self.state], self._border_colour, border_width)
     
     def get_pressed(self):
         return self._pressed
     
     def down_func(self):
-        self._state = WidgetState.PRESS
-        print('down')
+        self.state = WidgetState.PRESS
+        # print('down')
     
     def up_func(self):
-        self._state = WidgetState.BASE
-        print('up')
+        self.state = WidgetState.BASE
+        # print('up')
     
     def hover_func(self):
-        self._state = WidgetState.HOVER
-        print('hover')
+        self.state = WidgetState.HOVER

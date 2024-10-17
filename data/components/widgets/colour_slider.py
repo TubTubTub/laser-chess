@@ -1,7 +1,8 @@
 import pygame
 from data.components.widgets.bases import _Widget
 from data.components.widgets.slider_thumb import SliderThumb
-from data.utils.widget_helpers import create_gradient
+from data.utils.widget_helpers import create_slider_gradient
+from data.constants import WidgetState
 
 class ColourSlider(_Widget):
     def __init__(self, relative_position, size, border_width=12, border_colour=(255, 255, 255)):
@@ -14,7 +15,7 @@ class ColourSlider(_Widget):
 
         self._border_colour = border_colour
 
-        self._gradient_surface = create_gradient(self.calculate_gradient_size(), border_width, border_colour)
+        self._gradient_surface = create_slider_gradient(self.calculate_gradient_size(), border_width, border_colour)
 
         self._selected_percent = 0
 
@@ -111,14 +112,14 @@ class ColourSlider(_Widget):
     
     def process_event(self, event):
         if event.type in [pygame.MOUSEMOTION]:
-            if self._thumb.get_pressed() is False:
-                return
+            self._thumb.process_event(event)
 
-            selected_percent = self.calculate_gradient_percent(event.pos)
+            if self._thumb.state == WidgetState.PRESS:
+                selected_percent = self.calculate_gradient_percent(event.pos)
 
-            if selected_percent:
-                self._selected_percent = selected_percent
-                self.set_image()
+                if selected_percent:
+                    self._selected_percent = selected_percent
+                    self.set_image()
 
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
             self._thumb.process_event(event)
