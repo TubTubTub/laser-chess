@@ -13,6 +13,8 @@ class SliderThumb(_Pressable):
             prolonged=True
         )
 
+        self._event = 'bitch fein'
+
         self._screen = pygame.display.get_surface()
         self._border_colour  = border_colour
         self._radius = radius

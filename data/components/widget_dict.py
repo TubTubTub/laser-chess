@@ -69,7 +69,7 @@ WIDGET_DICT = {
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
         ColourPicker(
-            relative_position=(0.3, 0.5),
+            relative_position=(0.1, 0.1),
             size=(500, 500)
         )
     ],

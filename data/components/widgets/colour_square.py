@@ -1,31 +1,30 @@
 import pygame
 from data.components.widgets.bases import _Widget
-from data.utils.settings_helpers import get_user_settings
 from data.utils.widget_helpers import create_square_gradient
 
-user_settings = get_user_settings()
-
 class ColourSquare(_Widget):
-    def __init__(self, surface, relative_position, default_colour=(255, 0, 0)):
+    def __init__(self, surface, relative_position, relative_length):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
-        self._origin_position = origin_position
-        self._colour = pygame.Color(default_colour)
-        self._font = pygame.freetype.Font(user_settings['primaryFont'])
+        self._screen = surface
+        self._screen_size = self._screen.get_size()
 
-        self._select_area = create_square_gradient*(self._screen_size[1] * 0.2,
+        self._relative_position = relative_position
+        self._relative_length = relative_length
 
-        self.set_image()
-        self.set_geometry()
+        self._colour = None
     
     def set_colour(self, new_colour):
-        self._square_surface = create_square_gradient()
+        self._colour = pygame.Color(new_colour)
     
     def set_image(self):
-        self.image = self._select_area
+        self.image = create_square_gradient(side_length=self._relative_length * self._screen_size[1], colour=self._colour)
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
+        self.rect.topleft = (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+    
+    def set_screen_size(self, new_screen_size):
+        self._screen_size = new_screen_size
     
     def process_event(self, event):
         pass
