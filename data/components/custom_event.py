@@ -1,10 +1,12 @@
-from data.constants import GameEventType, MenuEventType
+from data.constants import GameEventType, MenuEventType, SettingsEventType
 
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
     GameEventType.REMOVE_PIECE: ['coords_to_remove'],
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
     GameEventType.SET_LASER: ['laser_path', 'active_colour'],
+    SettingsEventType.COLOUR_CLICK: ['colour'],
+    SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour']
 }
 
 class CustomEvent():

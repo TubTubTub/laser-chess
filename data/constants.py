@@ -47,6 +47,9 @@ class SettingsEventType(StrEnum):
     UPDATE_PRIMARY = auto()
     RESET_DEFAULT = auto()
     RESET_USER = auto()
+    COLOUR_CLICK = auto()
+    COLOUR_SLIDER_SLIDE = auto()
+    COLOUR_SLIDER_CLICK = auto()
 
 class ConfigEventType(StrEnum):
     GAME_CLICK = auto()

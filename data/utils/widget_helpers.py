@@ -24,7 +24,7 @@ def create_slider_gradient(size, border_width, border_colour):
         pygame.draw.rect(gradient_surface, color, draw_rect)
 
     border_rect = pygame.Rect((0, 0, gradient_surface.width, gradient_surface.height))
-    pygame.draw.rect(gradient_surface, border_colour, border_rect , width=border_width, border_radius=int(size[1] / 2))
+    pygame.draw.rect(gradient_surface, border_colour, border_rect , width=int(border_width), border_radius=int(size[1] / 2))
     
     return gradient_surface
     
