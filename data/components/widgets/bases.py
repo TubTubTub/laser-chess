@@ -19,14 +19,14 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
 class _Pressable:
-    def __init__(self, down_func=None, up_func=None, hover_func=None, prolonged=False, **kwargs):
+    def __init__(self, event, down_func=None, up_func=None, hover_func=None, prolonged=False, **kwargs):
         self._down_func = down_func
         self._up_func = up_func
         self._hover_func = hover_func
         self._pressed = False
         self._prolonged = prolonged
 
-        self._event = None
+        self._event = event
 
         self._widget_state = WidgetState.BASE
 

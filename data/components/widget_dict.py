@@ -68,10 +68,6 @@ WIDGET_DICT = {
             fill_colour=(0, 0, 255),
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
-        ColourPicker(
-            relative_position=(0.1, 0.1),
-            size=(500, 500)
-        )
     ],
     'settings': [
         Button(

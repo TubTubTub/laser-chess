@@ -6,7 +6,9 @@ required_args = {
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
     GameEventType.SET_LASER: ['laser_path', 'active_colour'],
     SettingsEventType.COLOUR_CLICK: ['colour'],
-    SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour']
+    SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour'],
+    SettingsEventType.COLOUR_PICKER_CLICK: ['colour', 'colour_type'],
+    SettingsEventType.COLOUR_BUTTON_CLICK: ['colour_type']
 }
 
 class CustomEvent():

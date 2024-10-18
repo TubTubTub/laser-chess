@@ -3,25 +3,24 @@ from data.components.widgets.bases import _Widget
 from data.components.widgets.colour_square import ColourSquare
 from data.components.widgets.colour_slider import ColourSlider
 from data.components.widgets.colour_display import ColourDisplay
+from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
-from data.utils.settings_helpers import get_user_settings
-
-user_settings = get_user_settings()
 
 class ColourPicker(_Widget):
-    def __init__(self, relative_position, size, border_width=5, border_colour=(255, 255, 255)):
+    def __init__(self, position, size, colour_type, border_width=5, border_colour=(255, 255, 255)):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._screen_size = self._screen.get_size()
 
-        self._relative_position = relative_position
+        self._relative_position = (position[0] / self._screen_size[0], position[1] / self._screen_size[1])
         self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
         self._relative_border_width = border_width / self._screen_size[1]
 
+        self._colour_type = colour_type
+        self._border_colour = border_colour
+
         self.image = pygame.Surface(self._size)
         self.rect = self.image.get_rect()
-        self._border_colour = border_colour
-        self._font = pygame.freetype.Font(user_settings['primaryFont'])
 
         self._square = ColourSquare(surface=self.image, get_parent_position=lambda: self._position, relative_position=(0.1, 0.1), relative_length=0.5)
         self._square.set_colour((255, 255, 0))
@@ -94,3 +93,5 @@ class ColourPicker(_Widget):
                 case SettingsEventType.COLOUR_CLICK:
                     self._display.set_colour(square_event.colour)
                     self.set_image()
+
+                    return CustomEvent.create_event(SettingsEventType.COLOUR_PICKER_CLICK, colour=square_event.colour, colour_type=self._colour_type)

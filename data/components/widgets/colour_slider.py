@@ -3,8 +3,8 @@ from data.components.widgets.bases import _Widget
 from data.components.widgets.slider_thumb import SliderThumb
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
-from data.utils.widget_helpers import create_slider_gradient
 from data.constants import WidgetState
+from data.utils.widget_helpers import create_slider_gradient
 
 class ColourSlider(_Widget):
     def __init__(self, surface, get_parent_position, relative_position, relative_length, border_width=12, border_colour=(255, 255, 255)):
@@ -25,8 +25,7 @@ class ColourSlider(_Widget):
 
         self._thumb = SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
 
-        self._empty_surface = pygame.Surface(self._size)
-        self._empty_surface.convert_alpha()
+        self._empty_surface = pygame.Surface(self._size, pygame.SRCALPHA)
     
     @property
     def _size(self):

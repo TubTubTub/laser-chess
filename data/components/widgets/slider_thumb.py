@@ -1,19 +1,17 @@
 import pygame
 from data.components.widgets.bases import _Pressable
+from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_thumb
-from data.constants import WidgetState, SettingsEventType
-from data.components.custom_event import CustomEvent
 
 class SliderThumb(_Pressable):
     def __init__(self, radius, border_colour=(255, 255, 255)):
         super().__init__(
+            event=None,
             down_func=lambda: self.down_func(),
             up_func=lambda: self.up_func(),
             hover_func=lambda: self.hover_func(),
             prolonged=True
         )
-
-        self._event = 'bitch fein'
 
         self._screen = pygame.display.get_surface()
         self._border_colour  = border_colour

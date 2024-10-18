@@ -2,7 +2,7 @@ import pygame
 from math import sqrt
 
 def create_slider_gradient(size, border_width, border_colour):
-    gradient_surface = pygame.Surface(size)
+    gradient_surface = pygame.Surface(size, pygame.SRCALPHA)
 
     first_round_end = gradient_surface.height / 2
     second_round_end = gradient_surface.width - first_round_end
@@ -16,7 +16,7 @@ def create_slider_gradient(size, border_width, border_colour):
             draw_height = calculate_gradient_slice_height(distance_from_cutoff, gradient_surface.height / 2)
 
         color = pygame.Color(0)
-        color.hsva = (int(360 * i / gradient_surface.width), 100, 100)
+        color.hsva = (int(360 * i / gradient_surface.width), 100, 100, 100)
 
         draw_rect = pygame.Rect((0, 0, 1, draw_height - 2 * border_width))
         draw_rect.center = (i, gradient_y_mid)
