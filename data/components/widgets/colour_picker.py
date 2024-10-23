@@ -7,13 +7,13 @@ from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 
 class ColourPicker(_Widget):
-    def __init__(self, position, size, colour_type, border_width=5, border_colour=(255, 255, 255)):
+    def __init__(self, position, relative_length, default_colour, colour_type, border_width=5, border_colour=(255, 255, 255)):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._screen_size = self._screen.get_size()
 
         self._relative_position = (position[0] / self._screen_size[0], position[1] / self._screen_size[1])
-        self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
+        self._relative_size = (relative_length, relative_length)
         self._relative_border_width = border_width / self._screen_size[1]
 
         self._colour_type = colour_type
@@ -23,12 +23,13 @@ class ColourPicker(_Widget):
         self.rect = self.image.get_rect()
 
         self._square = ColourSquare(surface=self.image, get_parent_position=lambda: self._position, relative_position=(0.1, 0.1), relative_length=0.5)
-        self._square.set_colour((255, 255, 0))
+        self._square.set_colour(default_colour)
 
         self._slider = ColourSlider(surface=self.image, get_parent_position=lambda: self._position, relative_position=(0.0, 0.7), relative_length=1.0, border_width=self._border_width, border_colour=self._border_colour)
+        self._slider.set_colour(default_colour)
 
         self._display = ColourDisplay(surface=self.image, relative_position=(0.7, 0.1), relative_size=(0.2, 0.5))
-        self._display.set_colour((255, 0, 255))
+        self._display.set_colour(default_colour)
 
         self.set_image()
         self.set_geometry()
@@ -79,6 +80,14 @@ class ColourPicker(_Widget):
     def process_event(self, event):
         slider_event = self._slider.process_event(event)
         square_event = self._square.process_event(event)
+        
+        if square_event:
+            match square_event.type:
+                case SettingsEventType.COLOUR_CLICK:
+                    self._display.set_colour(square_event.colour)
+                    self.set_image()
+
+                    return CustomEvent.create_event(SettingsEventType.COLOUR_PICKER_CLICK, colour=square_event.colour, colour_type=self._colour_type)
 
         if slider_event:
             match slider_event.type:
@@ -88,10 +97,5 @@ class ColourPicker(_Widget):
                 case SettingsEventType.COLOUR_SLIDER_CLICK:
                     self.set_image()
         
-        if square_event:
-            match square_event.type:
-                case SettingsEventType.COLOUR_CLICK:
-                    self._display.set_colour(square_event.colour)
-                    self.set_image()
-
-                    return CustomEvent.create_event(SettingsEventType.COLOUR_PICKER_CLICK, colour=square_event.colour, colour_type=self._colour_type)
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
+            return CustomEvent.create_event(SettingsEventType.COLOUR_PICKER_HOVER)

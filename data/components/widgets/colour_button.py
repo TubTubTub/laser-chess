@@ -3,7 +3,7 @@ from data.components.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):
-    def __init__(self, relative_position, size, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255), event=None):
+    def __init__(self, relative_position, relative_size, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255), event=None):
         _Pressable.__init__(
             self,
             event=event,
@@ -16,7 +16,7 @@ class ColourButton(_Pressable, _Widget):
         self._screen_size = pygame.display.get_surface().get_size()
 
         self._relative_position = relative_position
-        self._relative_size = (size[0] / self._screen_size[0], size[1] / self._screen_size[1])
+        self._relative_size = relative_size
         self._relative_border_width = border_width / self._screen_size[1]
 
         self._fill_colour = default_colour
@@ -31,7 +31,7 @@ class ColourButton(_Pressable, _Widget):
     
     @property
     def _size(self):
-        return (self._relative_size[0] * self._screen_size[0], self._relative_size[1] * self._screen_size[1])
+        return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
     
     @property
     def _position(self):
@@ -42,18 +42,23 @@ class ColourButton(_Pressable, _Widget):
         return self._relative_border_width * self._screen_size[1]
 
     def initialise_new_colours(self, new_colour):
-        r, g, b = new_colour
+        r, g, b = pygame.Color(new_colour).rgb
 
         self._colours = {
             WidgetState.BASE: new_colour,
             WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
             WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
         }
+
+        self.set_state_colour(WidgetState.BASE)
     
     def set_state_colour(self, state):
         self._fill_colour = self._colours[state]
 
         self.set_image()
+
+    def set_screen_size(self, new_screen_size):
+        self._screen_size = new_screen_size
 
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)

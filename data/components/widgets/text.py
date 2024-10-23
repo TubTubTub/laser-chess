@@ -16,49 +16,63 @@ class Text(_Widget): # Pure text
         self._font = pygame.freetype.Font(user_settings['primaryFont'])
 
         self._relative_margin = margin / self._screen_size[1]
+        self._relative_font_size = font_size / self._screen_size[1]
+        self._relative_border_width = border_width / self._screen_size[1]
+        self._relative_border_radius = border_radius / self._screen_size[1]
 
         self._fill_colour = fill_colour
 
-        self._border_width = border_width
         self._border_colour = border_colour
-        self._border_radius = border_radius
-        
-        self._relative_font_size = font_size / self._screen_size[1]
 
-        position = (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
-        self.rect = self._font.get_rect(self._text, size=font_size)
-        self.rect.topleft = position
+        self.rect = self._font.get_rect(self._text, size=self._font_size)
+        self.rect.topleft = self._position
 
-        self._text_surface = pygame.Surface((0, 0))
+        self._empty_surface = pygame.Surface((0, 0))
 
         self.set_image()
         self.set_geometry()
+
+    @property
+    def _position(self):
+        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+
+    @property
+    def _font_size(self):
+        return self._relative_font_size * self._screen_size[1]
+
+    @property
+    def _margin(self):
+        return self._relative_margin * self._screen_size[1]
+
+    @property
+    def _border_width(self):
+        return self._relative_border_width * self._screen_size[1]
+    
+    @property
+    def _border_radius(self):
+        return self._relative_border_radius * self._screen_size[1]
     
     def set_image(self):
-        font_size = self._relative_font_size * self._screen_size[1]
+        font_rect = self._font.get_rect(self._text, size=self._font_size)
+        surface_size = font_rect.inflate(self._margin, self._margin).size
 
-        font_rect = self._font.get_rect(self._text, size=font_size)
-        margin = self._relative_margin * self._screen_size[1]
-        surface_size = font_rect.inflate(margin, margin).size
-
-        text_surface = pygame.transform.scale(self._text_surface, surface_size)
+        text_surface = pygame.transform.scale(self._empty_surface, surface_size)
         self.image = text_surface
 
         if self._fill_colour:
             fill_rect = pygame.Rect(0, 0, surface_size[0], surface_size[1])
-            pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=self._border_radius)
+            pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=int(self._border_radius))
 
-        if self._border_width:
+        if self._relative_border_width:
             fill_rect = pygame.Rect(0, 0, surface_size[0], surface_size[1])
-            pygame.draw.rect(self.image, self._border_colour, fill_rect, width=self._border_width, border_radius=self._border_radius)
+            pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self._border_width), border_radius=int(self._border_radius))
 
         font_center = ((surface_size[0] - font_rect.size[0]) / 2, (surface_size[1] - font_rect.size[1]) / 2)
-        self._font.render_to(self.image, font_center, self._text, fgcolor=self._text_colour, size=font_size)
+        self._font.render_to(self.image, font_center, self._text, fgcolor=self._text_colour, size=self._font_size)
     
     def set_geometry(self):
-        position = (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
         self.rect = self.image.get_rect()
-        self.rect.center = position
+        self.rect.center = self._position
     
     def set_screen_size(self, new_screen_size):
         self._screen_size = new_screen_size

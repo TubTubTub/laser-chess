@@ -11,7 +11,9 @@ Make border width of widgets relative to screen size (getter and setter methods)
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games
-Refactor colour slider code (+add hover colour change)
+Use RectF to prevent black lines in board forming from under-rounding errors
+Extract repetitive code from states to use super() from bases
+Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 
 Ambitious:
 Cursor-based pagination for viewing games

@@ -1,11 +1,12 @@
 import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
-from data.components.widgets import ColourPicker, ColourButton
+from data.components.widgets import ColourPicker, ColourButton, Dropdown
 from data.components.widget_dict import WIDGET_DICT
 from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType, BG_COLOUR
+from data.constants import SettingsEventType, BG_COLOUR, SCREEN_SIZE, SCREEN_FLAGS
 from data.components.cursor import Cursor
+import os
 
 from data.utils.settings_helpers import get_default_settings, get_user_settings, update_user_settings
 
@@ -15,9 +16,15 @@ class Settings(_State):
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
-        self._widget_group = WidgetGroup(WIDGET_DICT['settings'])
+        self._widget_group = None
+        self._colour_picker = None
+        self._primary_colour_button = None
+        self._secondary_colour_button = None
+        self._display_mode_dropdown = None
 
         self._settings = None
+        self._window_size = pygame.display.get_window_size()
+        self._window_position = pygame.display.get_window_position()
     
     def cleanup(self):
         print('cleaning settings.py')
@@ -25,59 +32,125 @@ class Settings(_State):
     
     def startup(self, persist=None):
         print('starting settings.py')
+        self._widget_group = WidgetGroup(WIDGET_DICT['settings'])
+        self._widget_group.handle_resize(self._screen.size)
         self._settings = get_user_settings()
 
-        primary_colour_button = ColourButton(
+        if self._settings['displayMode'] == 'fullscreen':
+            word_list = ['Fullscreen', 'Windowed']
+        else:
+            word_list = ['Windowed', 'Fullscreen']
+
+        self._display_mode_dropdown = Dropdown(
+            relative_position=(0.1, 0.1),
+            word_list=word_list,
+            font_size=30,
+            fill_colour=(255, 100, 100),
+            event=None
+        )
+
+        self._primary_colour_button = ColourButton(
             relative_position=(0.1, 0.3),
-            size=(70, 35),
+            relative_size=(0.1, 0.05),
             default_colour=pygame.Color(self._settings['primaryBoardColour']).rgb,
             border_width=5,
             event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='primary')
         )
-        secondary_colour_button = ColourButton(
+
+        self._secondary_colour_button = ColourButton(
             relative_position=(0.1, 0.5),
-            size=(70, 35),
+            relative_size=(0.1, 0.05),
             default_colour=pygame.Color(self._settings['secondaryBoardColour']).rgb,
             border_width=5,
             event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='secondary')
         )
 
-        self._widget_group.add(primary_colour_button)
-        self._widget_group.add(secondary_colour_button)
+        self._widget_group.add(self._primary_colour_button)
+        self._widget_group.add(self._secondary_colour_button)
+        self._widget_group.add(self._display_mode_dropdown)
 
         self.draw()
     
     def create_colour_picker(self, origin_position, colour_type):
-        colour_picker = ColourPicker(position=origin_position, size=(300, 300), colour_type=colour_type)
-        self._widget_group.add(colour_picker)
+        if colour_type == 'primary':
+            default_colour = self._settings['primaryBoardColour']
+        else:
+            default_colour = self._settings['secondaryBoardColour']
+
+        self._colour_picker = ColourPicker(position=origin_position, relative_length=0.3, default_colour=default_colour, colour_type=colour_type)
+        self._widget_group.add(self._colour_picker)
+    
+    def remove_colour_picker(self):
+        self._colour_picker.kill()
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
         if widget_event is None:
+            if event.type == pygame.MOUSEBUTTONDOWN and self._colour_picker:
+                self.remove_colour_picker()
             return
             
         match widget_event.type:
+            case SettingsEventType.DROPDOWN_CLICK:
+                selected_word = self._display_mode_dropdown.get_selected_word()
+                
+                if selected_word is None:
+                    return
+                
+                selected_word = selected_word.lower()
+                if selected_word == 'fullscreen':
+                    if self._settings['displayMode'] == 'fullscreen':
+                        return
+
+                    self._window_size = pygame.display.get_window_size()
+                    self._window_position = pygame.display.get_window_position()
+                    pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
+
+                elif selected_word == 'windowed':
+                    if self._settings['displayMode'] == 'windowed':
+                        return
+
+                    os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
+                    pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
+
+                self._settings['displayMode'] = selected_word
+
+            case SettingsEventType.COLOUR_PICKER_HOVER:
+                return
+
             case SettingsEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
+            
             case SettingsEventType.UPDATE_PRIMARY:
                 self._settings['primaryBoardColour'] = '0x000000'
+            
             case SettingsEventType.RESET_DEFAULT:
                 self._settings = get_default_settings()
+                self._primary_colour_button.initialise_new_colours(self._settings['primaryBoardColour'])
+                self._secondary_colour_button.initialise_new_colours(self._settings['secondaryBoardColour'])
+            
             case SettingsEventType.RESET_USER:
                 self._settings = get_user_settings()
+            
             case SettingsEventType.COLOUR_BUTTON_CLICK:
                 mouse_pos = pygame.mouse.get_pos()
+
+                if self._colour_picker:
+                    self.remove_colour_picker()
+
                 self.create_colour_picker(mouse_pos, widget_event.colour_type)
+            
             case SettingsEventType.COLOUR_PICKER_CLICK:
                 r, g, b = widget_event.colour.rgb
-                print(hex(r)[2:].zfill(2), hex(g)[2:].zfill(2), hex(b)[2:].zfill(2), 'SLEEP')
                 hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
-                print(hex_colour, 'wow')
+
                 if widget_event.colour_type == 'primary':
+                    self._primary_colour_button.initialise_new_colours(widget_event.colour)
                     self._settings['primaryBoardColour'] = hex_colour
                 elif widget_event.colour_type == 'secondary':
+                    self._secondary_colour_button.initialise_new_colours(widget_event.colour)
                     self._settings['secondaryBoardColour'] = hex_colour
     
     def handle_resize(self):

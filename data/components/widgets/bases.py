@@ -29,6 +29,9 @@ class _Pressable:
         self._event = event
 
         self._widget_state = WidgetState.BASE
+    
+    def get_widget_state(self):
+        return self._widget_state
 
     def process_event(self, event):
         match event.type:
@@ -40,16 +43,16 @@ class _Pressable:
             case pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
                     if self._widget_state == WidgetState.PRESS:
-                        self._widget_state = WidgetState.BASE
                         self._up_func()
+                        self._widget_state = WidgetState.BASE
                         return self._event
 
                     elif self._widget_state == WidgetState.BASE:
                         self._hover_func()
 
                 elif self._prolonged and self._widget_state == WidgetState.PRESS:
-                    self._widget_state = WidgetState.BASE
                     self._up_func()
+                    self._widget_state = WidgetState.BASE
                     return self._event
 
             case pygame.MOUSEMOTION:
@@ -60,8 +63,11 @@ class _Pressable:
                         self._hover_func()
                         self._widget_state = WidgetState.HOVER
                     elif self._widget_state == WidgetState.HOVER:
-                        return
+                        self._hover_func()
                 else:
                     if self._prolonged is False:
-                        self._up_func()
-                        self._widget_state = WidgetState.BASE
+                        if self._widget_state in [WidgetState.PRESS, WidgetState.HOVER]:
+                            self._widget_state = WidgetState.BASE
+                            self._up_func()
+                        elif self._widget_state == WidgetState.BASE:
+                            return

@@ -11,7 +11,7 @@ class Config(_State):
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
-        self._widget_group = WidgetGroup(WIDGET_DICT['config'])
+        self._widget_group = None
     
     def cleanup(self):
         print('cleaning config.py')
@@ -22,6 +22,8 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
+        self._widget_group = WidgetGroup(WIDGET_DICT['config'])
+        self._widget_group.handle_resize(self._screen.size)
         self.draw()
     
     def get_event(self, event):

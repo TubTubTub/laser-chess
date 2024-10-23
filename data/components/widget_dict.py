@@ -58,6 +58,7 @@ WIDGET_DICT = {
             text_colour=(255, 0, 0),
             font_size=50,
             fill_colour=(255, 255, 0),
+            border_width=5,
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         Button(
@@ -67,7 +68,7 @@ WIDGET_DICT = {
             font_size=50,
             fill_colour=(0, 0, 255),
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
-        ),
+        )
     ],
     'settings': [
         Button(
@@ -91,6 +92,12 @@ WIDGET_DICT = {
             font_size=50,
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
+        Switch(
+            relative_position=(0.2, 0.8),
+            relative_length=(0.1),
+            colour=(0, 0, 255),
+            event=CustomEvent(SettingsEventType.RESET_DEFAULT)
+        )
     ],
     'config': [
         Button(

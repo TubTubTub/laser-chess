@@ -50,8 +50,6 @@ class ColourSquare(_Widget):
             if not (0 < relative_pos[0] < self._length and 0 < relative_pos[1] < self._length):
                 return None
 
-            print(self.image.size, self._length,' sds')
-            print(relative_pos, 'sdsd')
             clicked_colour = self.image.get_at(relative_pos)
             
             return CustomEvent.create_event(SettingsEventType.COLOUR_CLICK, colour=clicked_colour)

@@ -55,11 +55,9 @@ class SliderThumb(_Pressable):
     
     def down_func(self):
         self.state = WidgetState.PRESS
-        # print('down')
     
     def up_func(self):
         self.state = WidgetState.BASE
-        # print('up')
     
     def hover_func(self):
         self.state = WidgetState.HOVER

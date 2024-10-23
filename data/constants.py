@@ -51,7 +51,9 @@ class SettingsEventType(StrEnum):
     COLOUR_SLIDER_SLIDE = auto()
     COLOUR_SLIDER_CLICK = auto()
     COLOUR_PICKER_CLICK = auto()
+    COLOUR_PICKER_HOVER = auto()
     COLOUR_BUTTON_CLICK = auto()
+    DROPDOWN_CLICK = auto()
 
 class ConfigEventType(StrEnum):
     GAME_CLICK = auto()

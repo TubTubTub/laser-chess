@@ -11,13 +11,15 @@ class Menu(_State):
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
-        self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
+        self._widget_group = None
     
     def cleanup(self):
         print('cleaning menu.py')
     
     def startup(self, persist=None):
         print('starting menu.py')
+        self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
+        self._widget_group.handle_resize(self._screen.size)
         self.draw()
     
     def get_event(self, event):

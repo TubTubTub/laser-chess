@@ -60,3 +60,9 @@ def create_square_gradient(side_length, colour):
     square_surface.blit(mix_1, (0, 0))
 
     return square_surface
+
+def create_switch(size, colour):
+    switch_surface = pygame.Surface((size[0], size[1]))
+    pygame.draw.rect(switch_surface, colour, (0, 0, size[0], size[1]), border_radius=int(size[1] / 2))
+
+    return switch_surface
