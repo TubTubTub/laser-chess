@@ -1,8 +1,9 @@
+import pygame
 from data.components.widgets.bases import _Pressable
-from data.components.widgets.text import Text
+from data.components.widgets.icon import Icon
 from data.constants import WidgetState
 
-class Button(_Pressable, Text):
+class IconButton(_Pressable, Icon):
     def __init__(self, shadow_distance=0, shadow_colour=(0, 0, 0), event=None, **kwargs):
         _Pressable.__init__(
             self,
@@ -11,14 +12,13 @@ class Button(_Pressable, Text):
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
         )
-        Text.__init__(self, **kwargs)
+        Icon.__init__(self, **kwargs)
 
         self._shadow_distance = shadow_distance
         self._shadow_colour = shadow_colour
 
-        if self._fill_colour:
-            self.initialise_new_colours(self._fill_colour)
-            
+        self.initialise_new_colours(self._fill_colour)
+
     def initialise_new_colours(self, new_colour):
         r, g, b = new_colour
 
@@ -29,9 +29,6 @@ class Button(_Pressable, Text):
         }
     
     def set_state_colour(self, state):
-        if self._fill_colour is None:
-            return
-        
         self._fill_colour = self._colours[state]
 
         self.set_image()

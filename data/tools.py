@@ -110,7 +110,7 @@ def smoothscale_and_cache(image, target_size):
 def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg")):
     graphics = {}
 
-    for file in Path(directory).glob('**/*'):
+    for file in Path(directory).rglob('*'):
         name, extension = file.stem, file.suffix
 
         if extension.lower() in accept:
