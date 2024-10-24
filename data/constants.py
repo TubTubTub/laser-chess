@@ -43,10 +43,9 @@ class MenuEventType(StrEnum):
     SETTINGS_CLICK = auto()
 
 class SettingsEventType(StrEnum):
-    MENU_CLICK = auto()
-    UPDATE_PRIMARY = auto()
     RESET_DEFAULT = auto()
     RESET_USER = auto()
+    MENU_CLICK = auto()
     COLOUR_CLICK = auto()
     COLOUR_SLIDER_SLIDE = auto()
     COLOUR_SLIDER_CLICK = auto()

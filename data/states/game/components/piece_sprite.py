@@ -65,9 +65,9 @@ class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
-            super().__init__(high_res_img=GRAPHICS['sphinx1'], low_res_img=GRAPHICS['sphinx1_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['sphinx_1'], low_res_img=GRAPHICS['sphinx_1_lq'], **kwargs)
         elif colour == Colour.RED:
-            super().__init__(high_res_img=GRAPHICS['sphinx2'], low_res_img=GRAPHICS['sphinx2_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['sphinx_2'], low_res_img=GRAPHICS['sphinx_2_lq'], **kwargs)
             
         self.type = Piece.SPHINX
 
@@ -75,9 +75,9 @@ class AnubisImages(_PieceSprite):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
-            super().__init__(high_res_img=GRAPHICS['anubis1'], low_res_img=GRAPHICS['anubis1_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['anubis_1'], low_res_img=GRAPHICS['anubis_1_lq'], **kwargs)
         elif colour == Colour.RED:
-            super().__init__(high_res_img=GRAPHICS['anubis2'], low_res_img=GRAPHICS['anubis2_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['anubis_2'], low_res_img=GRAPHICS['anubis_2_lq'], **kwargs)
             
         self.type = Piece.ANUBIS
 
@@ -85,9 +85,9 @@ class PyramidImages(_PieceSprite):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
-            super().__init__(high_res_img=GRAPHICS['pyramid1'], low_res_img=GRAPHICS['pyramid1_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['pyramid_1'], low_res_img=GRAPHICS['pyramid_1_lq'], **kwargs)
         elif colour == Colour.RED:
-            super().__init__(high_res_img=GRAPHICS['pyramid2'], low_res_img=GRAPHICS['pyramid2_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['pyramid_2'], low_res_img=GRAPHICS['pyramid_2_lq'], **kwargs)
             
         self.type = Piece.PYRAMID
 
@@ -95,9 +95,9 @@ class ScarabImages(_PieceSprite):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
-            super().__init__(high_res_img=GRAPHICS['scarab1'], low_res_img=GRAPHICS['scarab1_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['scarab_1'], low_res_img=GRAPHICS['scarab_1_lq'], **kwargs)
         elif colour == Colour.RED:
-            super().__init__(high_res_img=GRAPHICS['scarab2'], low_res_img=GRAPHICS['scarab2_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['scarab_2'], low_res_img=GRAPHICS['scarab_2_lq'], **kwargs)
             
         self.type = Piece.SCARAB
 
@@ -105,9 +105,9 @@ class PharoahImages(_PieceSprite):
     def __init__(self, **kwargs):
         colour = kwargs.get('colour')
         if colour == Colour.BLUE:
-            super().__init__(high_res_img=GRAPHICS['pharoah1'], low_res_img=GRAPHICS['pharoah1_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['pharoah_1'], low_res_img=GRAPHICS['pharoah_1_lq'], **kwargs)
         elif colour == Colour.RED:
-            super().__init__(high_res_img=GRAPHICS['pharoah2'], low_res_img=GRAPHICS['pharoah2_lq'], **kwargs)
+            super().__init__(high_res_img=GRAPHICS['pharoah_2'], low_res_img=GRAPHICS['pharoah_2_lq'], **kwargs)
             
         self.type = Piece.PHAROAH
 

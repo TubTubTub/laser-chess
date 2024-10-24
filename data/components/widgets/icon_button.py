@@ -4,7 +4,7 @@ from data.components.widgets.icon import Icon
 from data.constants import WidgetState
 
 class IconButton(_Pressable, Icon):
-    def __init__(self, shadow_distance=0, shadow_colour=(0, 0, 0), event=None, **kwargs):
+    def __init__(self, event, shadow_distance=0, shadow_colour=(0, 0, 0), **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -20,12 +20,12 @@ class IconButton(_Pressable, Icon):
         self.initialise_new_colours(self._fill_colour)
 
     def initialise_new_colours(self, new_colour):
-        r, g, b = new_colour
+        r, g, b, a = new_colour
 
         self._colours = {
             WidgetState.BASE: new_colour,
-            WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
-            WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
+            WidgetState.HOVER: pygame.Color(max(r - 25, 0), max(g - 25, 0), max(b - 25, 0), a),
+            WidgetState.PRESS: pygame.Color(max(r - 50, 0), max(g - 50, 0), max(b - 50, 0), a)
         }
     
     def set_state_colour(self, state):

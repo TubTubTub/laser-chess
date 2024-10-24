@@ -1,7 +1,7 @@
 import pygame
 from data.constants import GameEventType, PAUSE_COLOUR
 from data.components.widget_group import WidgetGroup
-from data.components.widget_dict import WIDGET_DICT
+from data.states.game.widget_dict import PAUSE_WIDGETS
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 
@@ -17,7 +17,7 @@ class PauseView:
             GameEventType.PAUSE_CLICK: self.handle_pause_click
         }
 
-        self._widget_group = WidgetGroup(WIDGET_DICT['pause'])
+        self._widget_group = WidgetGroup(PAUSE_WIDGETS)
 
         self.states = {
             'PAUSED': False

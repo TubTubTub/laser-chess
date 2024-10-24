@@ -8,10 +8,10 @@ from data.constants import SettingsEventType
 user_settings = get_user_settings()
 
 class Dropdown(_Pressable, _Widget):
-    def __init__(self, relative_position, word_list, font_size, fill_colour, text_colour=(0, 0, 0), border_colour=(255, 255, 255), border_width=4, margin=15, event=None):
+    def __init__(self, relative_position, word_list, font_size, fill_colour, event=None, text_colour=(0, 0, 0), border_colour=(255, 255, 255), border_width=4, margin=15):
         _Pressable.__init__(
             self,
-            event=CustomEvent(SettingsEventType.DROPDOWN_CLICK),
+            event=event,
             hover_func=lambda: self.hover_func(),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=lambda: self.up_func(),

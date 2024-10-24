@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, MoveType, EMPTY_BB
+from data.constants import GameEventType, MoveType
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.components.move import Move
 

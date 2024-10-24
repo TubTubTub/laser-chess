@@ -1,7 +1,7 @@
 import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
-from data.components.widget_dict import WIDGET_DICT
+from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.constants import ConfigEventType, BG_COLOUR
 from data.components.cursor import Cursor
 
@@ -22,7 +22,7 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
-        self._widget_group = WidgetGroup(WIDGET_DICT['config'])
+        self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         self.draw()
     

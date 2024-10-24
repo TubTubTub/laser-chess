@@ -3,7 +3,7 @@ from data.components.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):
-    def __init__(self, relative_position, relative_size, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255), event=None):
+    def __init__(self, relative_position, relative_size, event, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255)):
         _Pressable.__init__(
             self,
             event=event,

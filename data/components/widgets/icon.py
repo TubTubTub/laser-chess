@@ -2,7 +2,7 @@ import pygame
 from data.components.widgets.bases import _Widget
 
 class Icon(_Widget):
-    def __init__(self, relative_position, size, icon, fill_colour=(100, 100, 100), margin=30, border_width=5, border_radius=50, border_colour=(255, 255, 255), shadow_distance=0, shadow_colour=(0, 0, 0)):
+    def __init__(self, relative_position, size, icon, fill_colour=(100, 100, 100), margin=30, border_width=0, border_radius=50, border_colour=(255, 255, 255), shadow_distance=0, shadow_colour=(0, 0, 0)):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
@@ -13,11 +13,19 @@ class Icon(_Widget):
         self._relative_border_radius = border_radius / self._screen_size[1]
 
         self._border_colour = border_colour
-        self._fill_colour = fill_colour
+        self._fill_colour = pygame.Color(fill_colour)
 
         self._icon = icon
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
+
+        if margin * 2 >= min(size[0], size[1]):
+            raise ValueError('Size is too small to fit specified margin! (Icon.__init__)', self._size, self._margin)
+
+        print(self._relative_border_width, 'sds')
+        
+        self.set_image()
+        self.set_geometry()
 
     @property
     def _position(self):
@@ -44,8 +52,9 @@ class Icon(_Widget):
         pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self._border_radius))
         scaled_icon = pygame.transform.smoothscale(self._icon, (self._size[0] -  (2 * self._margin), self._size[1] -  (2 * self._margin)))
         self.image.blit(scaled_icon, (self._margin, self._margin))
-        pygame.draw.rect(self.image, self._border_colour, self.image.get_rect(), width=int(self._border_width), border_radius=int(self._border_radius))
 
+        if self._border_width:
+            pygame.draw.rect(self.image, self._border_colour, self.image.get_rect(), width=int(self._border_width), border_radius=int(self._border_radius))
     
     def set_geometry(self):
         self.rect = self.image.get_rect()

@@ -1,7 +1,7 @@
 import pygame
 from data.constants import GameEventType
 from data.components.widget_group import WidgetGroup
-from data.components.widget_dict import WIDGET_DICT
+from data.states.game.widget_dict import WIN_WIDGETS
 from data.components.cursor import Cursor
 from data.components.custom_event import CustomEvent
 
@@ -13,7 +13,7 @@ class WinView:
 
         # self._model.register_listener(self.process_model_event, 'win')
 
-        self._widget_group = WidgetGroup(WIDGET_DICT['win'])
+        self._widget_group = WidgetGroup(WIN_WIDGETS)
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

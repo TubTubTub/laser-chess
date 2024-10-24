@@ -1,7 +1,7 @@
 import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
-from data.components.widget_dict import WIDGET_DICT
+from data.states.menu.widget_dict import MENU_WIDGETS
 from data.constants import MenuEventType, BG_COLOUR
 from data.components.cursor import Cursor
 
@@ -18,7 +18,7 @@ class Menu(_State):
     
     def startup(self, persist=None):
         print('starting menu.py')
-        self._widget_group = WidgetGroup(WIDGET_DICT['menu'])
+        self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         self.draw()
     

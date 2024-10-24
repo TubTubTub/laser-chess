@@ -1,10 +1,15 @@
 import pygame
 
 class WidgetGroup(pygame.sprite.Group):
-    def __init__(self, widget_list):
+    def __init__(self, widget_dict):
         super().__init__()
-        for widget in widget_list:
-            self.add(widget)
+
+        for key, value in widget_dict.items():
+            if key != 'default':
+                self.add(value)
+                continue
+            for widget in value:
+                self.add(widget)
     
     def handle_resize(self, new_screen_size):
         for sprite in self.sprites():

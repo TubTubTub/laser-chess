@@ -2,7 +2,7 @@ import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
 from data.components.widgets import ColourPicker, ColourButton, Dropdown
-from data.components.widget_dict import WIDGET_DICT
+from data.states.settings.widget_dict import SETTINGS_WIDGETS
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType, BG_COLOUR, SCREEN_SIZE, SCREEN_FLAGS
 from data.components.cursor import Cursor
@@ -18,9 +18,6 @@ class Settings(_State):
         
         self._widget_group = None
         self._colour_picker = None
-        self._primary_colour_button = None
-        self._secondary_colour_button = None
-        self._display_mode_dropdown = None
 
         self._settings = None
         self._window_size = pygame.display.get_window_size()
@@ -32,42 +29,9 @@ class Settings(_State):
     
     def startup(self, persist=None):
         print('starting settings.py')
-        self._widget_group = WidgetGroup(WIDGET_DICT['settings'])
+        self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         self._settings = get_user_settings()
-
-        if self._settings['displayMode'] == 'fullscreen':
-            word_list = ['Fullscreen', 'Windowed']
-        else:
-            word_list = ['Windowed', 'Fullscreen']
-
-        self._display_mode_dropdown = Dropdown(
-            relative_position=(0.1, 0.1),
-            word_list=word_list,
-            font_size=30,
-            fill_colour=(255, 100, 100),
-            event=None
-        )
-
-        self._primary_colour_button = ColourButton(
-            relative_position=(0.1, 0.3),
-            relative_size=(0.1, 0.05),
-            default_colour=pygame.Color(self._settings['primaryBoardColour']).rgb,
-            border_width=5,
-            event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='primary')
-        )
-
-        self._secondary_colour_button = ColourButton(
-            relative_position=(0.1, 0.5),
-            relative_size=(0.1, 0.05),
-            default_colour=pygame.Color(self._settings['secondaryBoardColour']).rgb,
-            border_width=5,
-            event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='secondary')
-        )
-
-        self._widget_group.add(self._primary_colour_button)
-        self._widget_group.add(self._secondary_colour_button)
-        self._widget_group.add(self._display_mode_dropdown)
 
         self.draw()
     
@@ -93,7 +57,7 @@ class Settings(_State):
             
         match widget_event.type:
             case SettingsEventType.DROPDOWN_CLICK:
-                selected_word = self._display_mode_dropdown.get_selected_word()
+                selected_word = SETTINGS_WIDGETS['display_mode_dropdown'].get_selected_word()
                 
                 if selected_word is None:
                     return
@@ -123,13 +87,10 @@ class Settings(_State):
                 self.next = 'menu'
                 self.done = True
             
-            case SettingsEventType.UPDATE_PRIMARY:
-                self._settings['primaryBoardColour'] = '0x000000'
-            
             case SettingsEventType.RESET_DEFAULT:
                 self._settings = get_default_settings()
-                self._primary_colour_button.initialise_new_colours(self._settings['primaryBoardColour'])
-                self._secondary_colour_button.initialise_new_colours(self._settings['secondaryBoardColour'])
+                SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
+                SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
             
             case SettingsEventType.RESET_USER:
                 self._settings = get_user_settings()
@@ -147,10 +108,10 @@ class Settings(_State):
                 hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
 
                 if widget_event.colour_type == 'primary':
-                    self._primary_colour_button.initialise_new_colours(widget_event.colour)
+                    SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)
                     self._settings['primaryBoardColour'] = hex_colour
                 elif widget_event.colour_type == 'secondary':
-                    self._secondary_colour_button.initialise_new_colours(widget_event.colour)
+                    SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
                     self._settings['secondaryBoardColour'] = hex_colour
     
     def handle_resize(self):
