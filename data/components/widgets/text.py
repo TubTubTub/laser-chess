@@ -1,8 +1,6 @@
 import pygame
 from data.components.widgets.bases import _Widget
-from data.utils.settings_helpers import get_user_settings
-
-user_settings = get_user_settings()
+from data.assets import FONTS
 
 class Text(_Widget): # Pure text
     def __init__(self, relative_position, text, text_colour=(100, 100, 100), font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
@@ -13,7 +11,7 @@ class Text(_Widget): # Pure text
 
         self._text = text
         self._text_colour = text_colour
-        self._font = pygame.freetype.Font(user_settings['primaryFont'])
+        self._font = FONTS['default']
 
         self._relative_margin = margin / self._screen_size[1]
         self._relative_font_size = font_size / self._screen_size[1]

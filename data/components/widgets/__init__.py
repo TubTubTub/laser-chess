@@ -6,3 +6,4 @@ from data.components.widgets.switch import Switch
 from data.components.widgets.dropdown import Dropdown
 from data.components.widgets.icon_button import IconButton
 from data.components.widgets.icon import Icon
+from data.components.widgets.volume_slider import VolumeSlider

@@ -10,6 +10,7 @@ class ColourButton(_Pressable, _Widget):
             hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
+            play_sfx=False
         )
         _Widget.__init__(self)
 

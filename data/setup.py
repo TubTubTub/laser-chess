@@ -7,5 +7,6 @@ is_fullscreen = False
 if display_mode == 'fullscreen':
     is_fullscreen = pygame.FULLSCREEN
 
+pygame.mixer.init()
 pygame.init()
 pygame.display.set_mode(SCREEN_SIZE, SCREEN_FLAGS | is_fullscreen)

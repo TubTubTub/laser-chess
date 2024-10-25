@@ -75,6 +75,7 @@ class ColourSlider(_Widget):
         colour = pygame.Color(new_colour)
         hue = colour.hsva[0]
         self._selected_percent = hue / 360
+        self.set_image()
     
     def set_image(self):
         gradient_scaled = pygame.transform.smoothscale(self._gradient_surface, self.calculate_gradient_size())

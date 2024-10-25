@@ -10,7 +10,8 @@ class SliderThumb(_Pressable):
             down_func=lambda: self.down_func(),
             up_func=lambda: self.up_func(),
             hover_func=lambda: self.hover_func(),
-            prolonged=True
+            prolonged=True,
+            play_sfx=False
         )
 
         self._screen = pygame.display.get_surface()

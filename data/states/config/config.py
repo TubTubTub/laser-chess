@@ -1,9 +1,16 @@
 import pygame
+
 from data.tools import _State
-from data.components.widget_group import WidgetGroup
+
 from data.states.config.widget_dict import CONFIG_WIDGETS
-from data.constants import ConfigEventType, BG_COLOUR
+
+from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
+from data.components.audio import audio
+
+from data.assets import MUSIC_PATHS
+
+from data.constants import ConfigEventType, BG_COLOUR
 
 class Config(_State):
     def __init__(self):
@@ -25,6 +32,8 @@ class Config(_State):
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         self.draw()
+
+        audio.play_music(MUSIC_PATHS['cpu_hard'])
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)

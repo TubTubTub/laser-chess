@@ -1,6 +1,15 @@
 import pygame
 from math import sqrt
 
+def create_slider(size, fill_colour, border_width, border_colour):
+    gradient_surface = pygame.Surface(size, pygame.SRCALPHA)
+
+    border_rect = pygame.Rect((0, 0, gradient_surface.width, gradient_surface.height))
+    pygame.draw.rect(gradient_surface, fill_colour, border_rect, border_radius=int(size[1] / 2))
+    pygame.draw.rect(gradient_surface, border_colour, border_rect , width=int(border_width), border_radius=int(size[1] / 2))
+    
+    return gradient_surface
+
 def create_slider_gradient(size, border_width, border_colour):
     gradient_surface = pygame.Surface(size, pygame.SRCALPHA)
 
@@ -62,7 +71,7 @@ def create_square_gradient(side_length, colour):
     return square_surface
 
 def create_switch(size, colour):
-    switch_surface = pygame.Surface((size[0], size[1]))
+    switch_surface = pygame.Surface((size[0], size[1]), pygame.SRCALPHA)
     pygame.draw.rect(switch_surface, colour, (0, 0, size[0], size[1]), border_radius=int(size[1] / 2))
 
     return switch_surface

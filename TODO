@@ -3,10 +3,10 @@ ASK ROBBO HOW TO GIVE SPECIFIC ARGS TO EACH SUPERCLASS WITH USING super()
 
 Make CPU play rotational moves
 Make bitboards a dictionary
-Implement win condition
 
 Should do:
-Stop game pausing when dragging window around
+Add sound
+Add empty event to widget group
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games
@@ -22,8 +22,6 @@ Log-in
 
 Miscellaneous:
 Multiple lasers firing at once
-Set image as background
 Maybe separate text background code into a new label class
 Make new word wrap text class with text properties
-Make relative scale properties getter methods for widgets
 Make widgets low-scale when scaling by just pygame transforming a copy

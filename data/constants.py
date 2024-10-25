@@ -17,10 +17,6 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
-class BackgroundType(IntEnum):
-    DEFAULT = 0
-    GAME = 1
-
 class WidgetState(StrEnum):
     BASE = auto()
     HOVER = auto()
@@ -56,6 +52,8 @@ class SettingsEventType(StrEnum):
     COLOUR_PICKER_CLICK = auto()
     COLOUR_PICKER_HOVER = auto()
     COLOUR_BUTTON_CLICK = auto()
+    VOLUME_SLIDER_SLIDE = auto()
+    VOLUME_SLIDER_CLICK = auto()
     DROPDOWN_CLICK = auto()
 
 class ConfigEventType(StrEnum):

@@ -1,20 +1,27 @@
 import pygame
-from data.tools import _State
-from data.components.widget_group import WidgetGroup
-from data.components.widgets import ColourPicker, ColourButton, Dropdown
-from data.states.settings.widget_dict import SETTINGS_WIDGETS
-from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType, BG_COLOUR, SCREEN_SIZE, SCREEN_FLAGS
-from data.components.cursor import Cursor
 import os
 
+from data.tools import _State
+
+from data.states.settings.widget_dict import SETTINGS_WIDGETS
+
+from data.components.widget_group import WidgetGroup
+from data.components.widgets import ColourPicker
+from data.components.audio import audio
+
 from data.utils.settings_helpers import get_default_settings, get_user_settings, update_user_settings
+
+from data.assets import MUSIC_PATHS, GRAPHICS
+from data.utils.asset_helpers import draw_background
+
+from data.constants import SettingsEventType, SCREEN_FLAGS
 
 class Settings(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
-        self._cursor = Cursor()
+        self._current_time = 0
+        self._delta_time = 0.0
         
         self._widget_group = None
         self._colour_picker = None
@@ -32,6 +39,8 @@ class Settings(_State):
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         self._settings = get_user_settings()
+
+        audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
     
@@ -60,7 +69,9 @@ class Settings(_State):
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
-        SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(1)
+        SETTINGS_WIDGETS['music_volume_slider'].set_volume(self._settings['musicVolume'])
+        SETTINGS_WIDGETS['sfx_volume_slider'].set_volume(self._settings['sfxVolume'])
+        SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(self._settings['displayMode'])
         self.set_display_mode(self._settings['displayMode'])
     
     def get_event(self, event):
@@ -72,13 +83,21 @@ class Settings(_State):
             return
             
         match widget_event.type:
+            case SettingsEventType.VOLUME_SLIDER_SLIDE:
+                return
+            
+            case SettingsEventType.VOLUME_SLIDER_CLICK:
+                if widget_event.volume_type == 'music':
+                    audio.set_music_volume(widget_event.volume)
+                elif widget_event.volume_type == 'sfx':
+                    audio.set_sfx_volume(widget_event.volume)
+
             case SettingsEventType.DROPDOWN_CLICK:
                 selected_word = SETTINGS_WIDGETS['display_mode_dropdown'].get_selected_word()
-                
+            
                 if selected_word is None or selected_word == self._settings['displayMode']:
                     return
                 
-                selected_word = selected_word.lower()
                 self.set_display_mode(selected_word)
 
                 self._settings['displayMode'] = selected_word
@@ -99,12 +118,10 @@ class Settings(_State):
                 self.reload_settings()
             
             case SettingsEventType.COLOUR_BUTTON_CLICK:
-                mouse_pos = pygame.mouse.get_pos()
-
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                self.create_colour_picker(mouse_pos, widget_event.colour_type)
+                self.create_colour_picker(event.pos, widget_event.colour_type)
             
             case SettingsEventType.COLOUR_PICKER_CLICK:
                 r, g, b = widget_event.colour.rgb
@@ -121,8 +138,10 @@ class Settings(_State):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        self._screen.fill(BG_COLOUR)
+        draw_background(self._screen, GRAPHICS['background'], current_time=self._current_time)
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):
+        self._current_time = kwargs.get('current_time')
+        self._delta_time = kwargs.get('delta_time')
         self.draw()

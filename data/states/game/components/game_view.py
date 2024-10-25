@@ -6,7 +6,7 @@ from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_user_settings
 from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
-from data.tools import GRAPHICS
+from data.assets import GRAPHICS
 from data.states.game.widget_dict import GAME_WIDGETS
 
 class GameView:

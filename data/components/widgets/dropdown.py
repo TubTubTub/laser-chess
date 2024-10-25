@@ -2,7 +2,7 @@ import pygame
 from data.components.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.settings_helpers import get_user_settings
-from data.tools import GRAPHICS
+from data.assets import GRAPHICS, FONTS
 
 user_settings = get_user_settings()
 
@@ -14,6 +14,7 @@ class Dropdown(_Pressable, _Widget):
             hover_func=lambda: self.hover_func(),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=lambda: self.up_func(),
+            play_sfx=False
         )
         _Widget.__init__(self)
 
@@ -24,10 +25,10 @@ class Dropdown(_Pressable, _Widget):
         self._relative_border_width = border_width / self._screen_size[1]
         self._relative_margin = margin / self._screen_size[1]
 
-        self._font = pygame.freetype.Font(user_settings['primaryFont'])
+        self._font = FONTS['default']
         self._text_colour = text_colour
-        self._word_list = [word_list[0]]
-        self._word_list_copy = word_list
+        self._word_list = [word_list[0].capitalize()]
+        self._word_list_copy = [word.capitalize() for word in word_list]
 
         self._fill_colour = fill_colour
 
@@ -69,7 +70,7 @@ class Dropdown(_Pressable, _Widget):
 
     def get_selected_word(self):
         if self._expanded is False:
-            return self._word_list[0]
+            return self._word_list[0].lower()
         
         return None
     
@@ -87,7 +88,8 @@ class Dropdown(_Pressable, _Widget):
         self._hovered_index = self.calculate_hovered_index(relative_position)
         self.set_state_colour(WidgetState.HOVER)
     
-    def set_selected_word(self, index):
+    def set_selected_word(self, word):
+        index = self._word_list_copy.index(word.capitalize())
         selected_word = self._word_list_copy.pop(index)
         self._word_list_copy.insert(0, selected_word)
 
@@ -96,11 +98,13 @@ class Dropdown(_Pressable, _Widget):
             self._word_list.insert(0, selected_word)
         else:
             self._word_list = [selected_word]
+        
+        self.set_image()
 
     def up_func(self):
         if self.get_widget_state() == WidgetState.PRESS:
             if self._expanded and self._hovered_index is not None:
-                self.set_selected_word(self._hovered_index)
+                self.set_selected_word(self._word_list_copy[self._hovered_index])
 
             self.toggle_expanded()
 

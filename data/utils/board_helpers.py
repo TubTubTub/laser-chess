@@ -1,13 +1,12 @@
 import pygame
 from data.utils.settings_helpers import get_user_settings
+from data.assets import FONTS
 
 user_settings = get_user_settings()
 
-def create_board(board_size, primary_colour, secondary_colour):
+def create_board(board_size, primary_colour, secondary_colour, font=FONTS['default']):
     square_size = board_size[0] / 10
     board_surface = pygame.Surface(board_size)
-
-    font = pygame.freetype.Font(user_settings['primaryFont'])
 
     for i in range(80):
         x = i % 10

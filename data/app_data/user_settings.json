@@ -1,8 +1,10 @@
 {
     "primaryBoardColour": "0xB98766",
     "secondaryBoardColour": "0xF3D8B8",
-    "primaryFont": "resources/fonts/NewAmsterdam-Regular.ttf",
     "laserColourBlue": "0x0000ff",
     "laserColourRed": "0xff0000",
-    "displayMode": "windowed"
+    "displayMode": "windowed",
+    "primaryFont": false,
+    "musicVolume": 0.5,
+    "sfxVolume": 0.5
 }

@@ -3,14 +3,14 @@ from data.components.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 from data.utils.settings_helpers import get_user_settings
-from data.tools import GRAPHICS
+from data.assets import GRAPHICS
 
 user_settings = get_user_settings()
 
 if user_settings['displayMode'] == 'fullscreen':
-    word_list = ['Fullscreen', 'Windowed']
+    word_list = ['fullscreen', 'windowed']
 else:
-    word_list = ['Windowed', 'Fullscreen']
+    word_list = ['windowed', 'fullscreen']
 
 SETTINGS_WIDGETS = {
     'default': [
@@ -54,6 +54,14 @@ SETTINGS_WIDGETS = {
             margin=0,
             fill_colour=(0, 0, 0, 0)
         ),
+        Text(
+            relative_position=(0.01, 0.7),
+            text='Animations (NOT IMPLEMENTED)',
+            font_size=30,
+            text_colour=(255, 255, 255),
+            margin=0,
+            fill_colour=(0, 0, 0, 0)
+        ),
         TextButton(
             relative_position=(0.01, 0.85),
             text='DISCARD CHANGES',
@@ -74,7 +82,7 @@ SETTINGS_WIDGETS = {
             relative_position=(0.35, 0.7),
             relative_length=(0.1),
             colour=(0, 0, 255),
-            event=CustomEvent(SettingsEventType.RESET_DEFAULT)
+            event=None
         ),
         IconButton(
             relative_position=(0.9, 0.1),
@@ -109,5 +117,21 @@ SETTINGS_WIDGETS = {
         default_colour=pygame.Color(user_settings['secondaryBoardColour']).rgb,
         border_width=5,
         event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='secondary')
+    ),
+    'music_volume_slider':
+    VolumeSlider(
+        relative_position=(0.35, 0.274),
+        relative_length=(0.5),
+        default_volume=user_settings['musicVolume'],
+        border_width=5,
+        volume_type='music'
+    ),
+    'sfx_volume_slider':
+    VolumeSlider(
+        relative_position=(0.35, 0.376),
+        relative_length=(0.5),
+        default_volume=user_settings['sfxVolume'],
+        border_width=5,
+        volume_type='sfx'
     )
 }

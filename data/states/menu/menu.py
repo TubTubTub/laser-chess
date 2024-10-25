@@ -1,10 +1,12 @@
 import pygame
-from data.tools import _State, draw_background
+from data.tools import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType, BackgroundType
+from data.constants import MenuEventType
 from data.components.cursor import Cursor
-from data.tools import GRAPHICS
+from data.assets import GRAPHICS, MUSIC_PATHS
+from data.utils.asset_helpers import draw_background
+from data.components.audio import audio
 
 class Menu(_State):
     def __init__(self):
@@ -23,6 +25,9 @@ class Menu(_State):
         print('starting menu.py')
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
+
+        audio.play_music(MUSIC_PATHS['menu'])
+
         self.draw()
     
     def get_event(self, event):
@@ -46,7 +51,7 @@ class Menu(_State):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        draw_background(self._screen, self._current_time, BackgroundType.DEFAULT)
+        draw_background(self._screen, GRAPHICS['background'], current_time=self._current_time)
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):

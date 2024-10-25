@@ -9,7 +9,8 @@ required_args = {
     SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour'],
     SettingsEventType.COLOUR_PICKER_CLICK: ['colour', 'colour_type'],
     SettingsEventType.COLOUR_BUTTON_CLICK: ['colour_type'],
-    SettingsEventType.DROPDOWN_CLICK: ['selected_word']
+    SettingsEventType.DROPDOWN_CLICK: ['selected_word'],
+    SettingsEventType.VOLUME_SLIDER_CLICK: ['volume', 'volume_type'],
 }
 
 class CustomEvent():
