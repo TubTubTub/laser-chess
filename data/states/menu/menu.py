@@ -1,15 +1,18 @@
 import pygame
-from data.tools import _State
+from data.tools import _State, draw_background
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType, BG_COLOUR
+from data.constants import MenuEventType, BackgroundType
 from data.components.cursor import Cursor
+from data.tools import GRAPHICS
 
 class Menu(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
+        self._current_time = 0
+        self._delta_time = 0.0
         
         self._widget_group = None
     
@@ -43,8 +46,10 @@ class Menu(_State):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        self._screen.fill(BG_COLOUR)
+        draw_background(self._screen, self._current_time, BackgroundType.DEFAULT)
         self._widget_group.draw(self._screen)
     
-    def update(self):
+    def update(self, **kwargs):
+        self._current_time = kwargs.get('current_time')
+        self._delta_time = kwargs.get('delta_time')
         self.draw()

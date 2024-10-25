@@ -17,6 +17,10 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
+class BackgroundType(IntEnum):
+    DEFAULT = 0
+    GAME = 1
+
 class WidgetState(StrEnum):
     BASE = auto()
     HOVER = auto()

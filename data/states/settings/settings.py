@@ -47,6 +47,22 @@ class Settings(_State):
     def remove_colour_picker(self):
         self._colour_picker.kill()
     
+    def set_display_mode(self, display_mode):
+        if display_mode == 'fullscreen':
+            self._window_size = pygame.display.get_window_size()
+            self._window_position = pygame.display.get_window_position()
+            pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
+
+        elif display_mode == 'windowed':
+            os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
+            pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
+    
+    def reload_settings(self):
+        SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
+        SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
+        SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(1)
+        self.set_display_mode(self._settings['displayMode'])
+    
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
@@ -59,24 +75,11 @@ class Settings(_State):
             case SettingsEventType.DROPDOWN_CLICK:
                 selected_word = SETTINGS_WIDGETS['display_mode_dropdown'].get_selected_word()
                 
-                if selected_word is None:
+                if selected_word is None or selected_word == self._settings['displayMode']:
                     return
                 
                 selected_word = selected_word.lower()
-                if selected_word == 'fullscreen':
-                    if self._settings['displayMode'] == 'fullscreen':
-                        return
-
-                    self._window_size = pygame.display.get_window_size()
-                    self._window_position = pygame.display.get_window_position()
-                    pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
-
-                elif selected_word == 'windowed':
-                    if self._settings['displayMode'] == 'windowed':
-                        return
-
-                    os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
-                    pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
+                self.set_display_mode(selected_word)
 
                 self._settings['displayMode'] = selected_word
 
@@ -89,11 +92,11 @@ class Settings(_State):
             
             case SettingsEventType.RESET_DEFAULT:
                 self._settings = get_default_settings()
-                SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
-                SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
+                self.reload_settings()
             
             case SettingsEventType.RESET_USER:
                 self._settings = get_user_settings()
+                self.reload_settings()
             
             case SettingsEventType.COLOUR_BUTTON_CLICK:
                 mouse_pos = pygame.mouse.get_pos()
@@ -121,5 +124,5 @@ class Settings(_State):
         self._screen.fill(BG_COLOUR)
         self._widget_group.draw(self._screen)
     
-    def update(self):
+    def update(self, **kwargs):
         self.draw()

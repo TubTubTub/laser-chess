@@ -2,8 +2,7 @@ import pygame
 from data.components.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.settings_helpers import get_user_settings
-from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType
+from data.tools import GRAPHICS
 
 user_settings = get_user_settings()
 
@@ -53,7 +52,8 @@ class Dropdown(_Pressable, _Widget):
         max_word = sorted(self._word_list_copy, key=len)[-1]
         max_word_rect = self._font.get_rect(max_word, size=self._font_size)
         all_words_rect = pygame.Rect(0, 0, max_word_rect.size[0], (max_word_rect.size[1] * len(self._word_list)) + (self._margin * (len(self._word_list) - 1)))
-        return all_words_rect.inflate(2 * self._margin, 2 * self._margin).size
+        all_words_rect = all_words_rect.inflate(2 * self._margin, 2 * self._margin)
+        return (all_words_rect.size[0] + max_word_rect.size[1], all_words_rect.size[1])
 
     @property
     def _font_size(self):
@@ -86,14 +86,21 @@ class Dropdown(_Pressable, _Widget):
         relative_position = (mouse_position[0] - self._position[0], mouse_position[1] - self._position[1])
         self._hovered_index = self.calculate_hovered_index(relative_position)
         self.set_state_colour(WidgetState.HOVER)
+    
+    def set_selected_word(self, index):
+        selected_word = self._word_list_copy.pop(index)
+        self._word_list_copy.insert(0, selected_word)
+
+        if self._expanded:
+            self._word_list.pop(index)
+            self._word_list.insert(0, selected_word)
+        else:
+            self._word_list = [selected_word]
 
     def up_func(self):
         if self.get_widget_state() == WidgetState.PRESS:
             if self._expanded and self._hovered_index is not None:
-                selected_word = self._word_list.pop(self._hovered_index)
-                self._word_list.insert(0, selected_word)
-                selected_word = self._word_list_copy.pop(self._hovered_index)
-                self._word_list_copy.insert(0, selected_word)
+                self.set_selected_word(self._hovered_index)
 
             self.toggle_expanded()
 
@@ -131,10 +138,12 @@ class Dropdown(_Pressable, _Widget):
 
         word_box_height = (self._size[1] - (2 * self._margin) - ((len(self._word_list) - 1) * self._margin)) / len(self._word_list)
 
-        # if self._expanded is False:
-        #     word_position = (self._margin, self._margin)
-        #     self._font.render_to(self.image, word_position, self._word_list[0], fgcolor=self._text_colour, size=self._font_size)
-        #     return
+        arrow_surface = pygame.transform.scale(GRAPHICS['dropdown_arrow'], (word_box_height, word_box_height))
+        arrow_position = (self._size[0] - word_box_height - self._margin * 0.5, word_box_height)
+        if self._expanded:
+            self.image.blit(pygame.transform.rotate(arrow_surface, 180), arrow_position)
+        else:
+            self.image.blit(arrow_surface, arrow_position)
 
         for index, word in enumerate(self._word_list):
             word_position = (self._margin, self._margin + (word_box_height + self._margin) * index)

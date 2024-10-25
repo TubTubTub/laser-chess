@@ -1,7 +1,7 @@
 from data.components.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import MenuEventType
-from data.setup import GRAPHICS
+from data.tools import GRAPHICS
 
 MENU_WIDGETS = {
     'default': [

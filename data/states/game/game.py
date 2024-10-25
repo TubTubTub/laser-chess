@@ -49,7 +49,7 @@ class Game(_State):
         self.win_view.draw()
         self.pause_view.draw()
 
-    def update(self):
+    def update(self, **kwargs):
         # board_clicked = self.board.clicked
         # if board_clicked:
         #     self.board.handle_click()

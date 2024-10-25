@@ -6,8 +6,7 @@ Make bitboards a dictionary
 Implement win condition
 
 Should do:
-Make size getter and setter methods of colour slider widget
-Make border width of widgets relative to screen size (getter and setter methods)
+Stop game pausing when dragging window around
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)
 Viewing past games

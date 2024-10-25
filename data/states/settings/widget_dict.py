@@ -3,7 +3,7 @@ from data.components.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 from data.utils.settings_helpers import get_user_settings
-from data.setup import GRAPHICS
+from data.tools import GRAPHICS
 
 user_settings = get_user_settings()
 
@@ -56,6 +56,14 @@ SETTINGS_WIDGETS = {
         ),
         TextButton(
             relative_position=(0.01, 0.85),
+            text='DISCARD CHANGES',
+            text_colour=(255, 0, 0),
+            margin=20,
+            font_size=30,
+            event=CustomEvent(SettingsEventType.RESET_USER)
+        ),
+        TextButton(
+            relative_position=(0.25, 0.85),
             text='RESET TO DEFAULT',
             text_colour=(255, 0, 0),
             margin=20,

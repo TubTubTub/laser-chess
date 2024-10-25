@@ -1,5 +1,5 @@
 import pygame
-from data.setup import GRAPHICS
+from data.tools import GRAPHICS
 from data.constants import Colour, Piece, ImageType
 from data.tools import smoothscale_and_cache
 from data.utils.board_helpers import coords_to_screen_pos

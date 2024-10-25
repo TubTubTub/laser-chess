@@ -47,5 +47,5 @@ class Config(_State):
         self._screen.fill(BG_COLOUR)
         self._widget_group.draw(self._screen)
     
-    def update(self):
+    def update(self, **kwargs):
         self.draw()

@@ -1,14 +1,17 @@
 import pygame
+from PIL import Image
 from pygame._sdl2 import Window
 from pathlib import Path
 from functools import cache
+from data.constants import BackgroundType
+
+FPS = 60
 
 class Control:
     def __init__(self):
         self.done = False
         self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
-        self.fps = 60
         """temp for fps display counter"""
         self.font = pygame.font.SysFont("Arial" , 18 , bold = True)
     
@@ -34,12 +37,14 @@ class Control:
             self.done = True
         elif self.state.done:
             self.flip_state()
-        
-        self.state.update()
+
+        current_time = pygame.time.get_ticks()
+        delta_time = self.clock.tick(FPS) / 1000.0
+
+        self.state.update(current_time=current_time, delta_time=delta_time)
         
         self.draw_fps()
         pygame.display.update()
-        self.clock.tick(self.fps)
 
     def main_game_loop(self):
         while not self.done:
@@ -50,6 +55,9 @@ class Control:
         self.update_native_window_size()
         self.state.handle_resize()
         self.update()
+    
+    # def draw_background(self):
+        
     
     def draw_fps(self):
         fps = str(int(self.clock.get_fps()))
@@ -90,7 +98,7 @@ class _State:
     def draw(self, screen):
         raise NotImplementedError
     
-    def update(self):
+    def update(self, **kwargs):
         raise NotImplementedError
 
     def handle_resize(self):
@@ -107,19 +115,47 @@ def scale_and_cache(image, target_size):
 def smoothscale_and_cache(image, target_size):
     return pygame.transform.smoothscale(image, target_size)
 
-def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg")):
+def gif_to_frames(path):
+    try:
+        image = Image.open(path)
+
+        first_frame = image.copy().convert('RGBA')
+        yield first_frame
+        image.seek(1)
+
+        while True:
+            current_frame = image.copy()
+            yield current_frame
+            image.seek(image.tell() + 1)
+    except EOFError:
+        pass
+
+def pil_image_to_surface(pil_image):
+    return pygame.image.fromstring(pil_image.tobytes(), pil_image.size, pil_image.mode).convert()
+
+def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg", ".gif")):
     graphics = {}
 
     for file in Path(directory).rglob('*'):
         name, extension = file.stem, file.suffix
+        path = Path(directory / file)
 
         if extension.lower() in accept:
-            path = Path(directory / file)
-            image = pygame.image.load(path)
+            if extension.lower() == '.gif':
+                frames_list = []
 
-            if extension.lower() == '.svg':
+                for frame in gif_to_frames(path):
+                    image_surface = pil_image_to_surface(frame)
+                    frames_list.append(image_surface)
+
+                graphics[name] = frames_list
+                continue
+
+            elif extension.lower() == '.svg':
                 low_quality_image = pygame.image.load_sized_svg(path, (200, 200))
                 graphics[f'{name}_lq'] = low_quality_image
+
+            image = pygame.image.load(path)
 
             if image.get_alpha():
                 image = image.convert_alpha()
@@ -131,3 +167,22 @@ def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg"
             graphics[name] = image
         
     return graphics
+
+module_path = Path(__file__).parent
+GRAPHICS = load_all_gfx((module_path / '../resources/graphics').resolve())
+
+def calculate_frame_index(elapsed_milliseconds, start_index, end_index, fps):
+    ms_per_frame = int(1000 / fps)
+    return start_index + ((elapsed_milliseconds // ms_per_frame) % (end_index - start_index))
+
+def draw_background(screen, current_time, background_type):
+    match background_type:
+        case BackgroundType.DEFAULT:
+            frame_index = calculate_frame_index(current_time, 0, len(GRAPHICS['background']), fps=8)
+            scaled_background = scale_and_cache(GRAPHICS['background'][frame_index], screen.size)
+            screen.blit(scaled_background, (0, 0))
+        case BackgroundType.GAME:
+            pass
+
+        case _:
+            raise ValueError('Unhandled background type! (draw_background)')
