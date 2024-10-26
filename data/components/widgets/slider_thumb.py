@@ -7,9 +7,9 @@ class SliderThumb(_Pressable):
     def __init__(self, radius, border_colour=(255, 255, 255)):
         super().__init__(
             event=None,
-            down_func=lambda: self.down_func(),
-            up_func=lambda: self.up_func(),
-            hover_func=lambda: self.hover_func(),
+            down_func=self.down_func,
+            up_func=self.up_func,
+            hover_func=self.hover_func,
             prolonged=True,
             play_sfx=False
         )

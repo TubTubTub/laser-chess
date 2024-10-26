@@ -10,7 +10,7 @@ class Switch(_Pressable, _Widget):
             event=event,
             hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
-            up_func=lambda: self.up_func(),
+            up_func=self.up_func,
         )
         _Widget.__init__(self)
         self._screen_size = pygame.display.get_surface().get_size()

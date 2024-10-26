@@ -11,9 +11,9 @@ class Dropdown(_Pressable, _Widget):
         _Pressable.__init__(
             self,
             event=event,
-            hover_func=lambda: self.hover_func(),
+            hover_func=self.hover_func,
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
-            up_func=lambda: self.up_func(),
+            up_func=self.up_func,
             play_sfx=False
         )
         _Widget.__init__(self)

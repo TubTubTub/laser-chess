@@ -21,8 +21,6 @@ class Icon(_Widget):
 
         if margin * 2 >= min(size[0], size[1]):
             raise ValueError('Size is too small to fit specified margin! (Icon.__init__)', self._size, self._margin)
-
-        print(self._relative_border_width, 'sds')
         
         self.set_image()
         self.set_geometry()

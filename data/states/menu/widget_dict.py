@@ -29,6 +29,10 @@ MENU_WIDGETS = {
             size=(400, 200),
             fill_colour=(100, 100, 100, 255),
             icon=GRAPHICS['title_screen_art'],
+        ),
+        TextInput(
+            relative_position=(0.1, 0.1),
+            relative_size=(0.5, 0.1)
         )
     ]
 }
