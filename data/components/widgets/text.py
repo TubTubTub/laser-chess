@@ -37,7 +37,7 @@ class Text(_Widget): # Pure text
     @property
     def _size(self):
         font_rect = self._font.get_rect(self._text, size=self._font_size)
-        return font_rect.inflate(2 *self._margin, 2 *self._margin).size
+        return font_rect.inflate(2 * self._margin, 2 * self._margin).size
 
     @property
     def _font_size(self):
@@ -68,7 +68,7 @@ class Text(_Widget): # Pure text
             pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self._border_width), border_radius=int(self._border_radius))
 
         self._font.render_to(self.image, (self._margin, self._margin), self._text, fgcolor=self._text_colour, size=self._font_size)
-    
+
     def set_geometry(self):
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position

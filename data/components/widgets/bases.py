@@ -51,7 +51,7 @@ class _Pressable:
                             audio.play_sfx(self._sfx)
 
                         self._up_func()
-                        self._widget_state = WidgetState.BASE
+                        self._widget_state = WidgetState.HOVER
                         return self._event
 
                     elif self._widget_state == WidgetState.BASE:

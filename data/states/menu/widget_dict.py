@@ -32,7 +32,9 @@ MENU_WIDGETS = {
         ),
         TextInput(
             relative_position=(0.1, 0.1),
-            relative_size=(0.5, 0.1)
+            relative_size=(0.5, 0.1),
+            border_width=5,
+            border_colour=(255, 0 ,255)
         )
     ]
 }
