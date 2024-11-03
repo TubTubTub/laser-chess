@@ -1,6 +1,6 @@
 import pygame
-from data.components.widgets.bases import _Pressable
-from data.components.widgets.text import Text
+from data.widgets.bases import _Pressable
+from data.widgets.text import Text
 from data.constants import WidgetState
 
 class TextButton(_Pressable, Text):

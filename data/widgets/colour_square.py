@@ -1,10 +1,8 @@
 import pygame
-from data.components.widgets.bases import _Widget
-from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType
+from data.widgets.bases import _Widget
 from data.utils.widget_helpers import create_square_gradient
 
-class ColourSquare(_Widget):
+class _ColourSquare(_Widget):
     def __init__(self, surface, get_parent_position, relative_position, relative_length):
         super().__init__()
         self._screen = surface
@@ -26,6 +24,9 @@ class ColourSquare(_Widget):
 
     def set_colour(self, new_colour):
         self._colour = pygame.Color(new_colour)
+    
+    def get_colour(self):
+        return self._colour
     
     def set_image(self):
         self.image = create_square_gradient(side_length=self._length, colour=self._colour)
@@ -51,5 +52,6 @@ class ColourSquare(_Widget):
                 return None
 
             clicked_colour = self.image.get_at(relative_pos)
-            
-            return CustomEvent.create_event(SettingsEventType.COLOUR_CLICK, colour=clicked_colour)
+            return clicked_colour
+        
+        return None

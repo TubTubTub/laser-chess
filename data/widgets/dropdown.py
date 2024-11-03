@@ -1,5 +1,5 @@
 import pygame
-from data.components.widgets.bases import _Widget, _Pressable
+from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.settings_helpers import get_user_settings
 from data.assets import GRAPHICS, FONTS

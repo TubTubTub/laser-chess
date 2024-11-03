@@ -18,18 +18,19 @@ class GameModel:
             'win': [],
             'pause': [],
         }
-        self._board = Board()
+        self._board = Board(fen_sting=kwargs.get('FEN_STRING'))
 
         self.states = {
             'CPU': False,
             'AWAITING_CPU': False,
-            'CPU_DEPTH': kwargs.get('cpu_depth'),
+            'CPU_DEPTH': kwargs.get('CPU_DEPTH'),
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
         }
 
-        if self.states['CPU_DEPTH']: self.states['CPU'] = True
+        if self.states['CPU_DEPTH'] > 0:
+            self.states['CPU'] = True
         print(self.states,'')
 
         self.thread_stop = threading.Event()

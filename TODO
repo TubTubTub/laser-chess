@@ -1,6 +1,8 @@
 ASK FOR HELP ON GOOGLE TRENDLE
 ASK ROBBO HOW TO GIVE SPECIFIC ARGS TO EACH SUPERCLASS WITH USING super()
+ASK ROBBO IF SUPPOSED TO ADD SEPARATE USED_ID COLUMN APART FROM AUTO-GENERATED ID COLUMN
 
+Make game resize when fullscreen button pressed
 Make CPU play rotational moves
 Make bitboards a dictionary
 
@@ -25,3 +27,4 @@ Multiple lasers firing at once
 Maybe separate text background code into a new label class
 Make new word wrap text class with text properties
 Make widgets low-scale when scaling by just pygame transforming a copy
+Add Ctrl + A and mouse drag to text input widget

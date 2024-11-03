@@ -1,9 +1,9 @@
 import pygame
-from data.components.widgets.bases import _Pressable
+from data.widgets.bases import _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_thumb
 
-class SliderThumb(_Pressable):
+class _SliderThumb(_Pressable):
     def __init__(self, radius, border_colour=(255, 255, 255)):
         super().__init__(
             event=None,

@@ -6,8 +6,9 @@ from data.tools import _State
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
 
 from data.components.widget_group import WidgetGroup
-from data.components.widgets import ColourPicker
+from data.widgets import ColourPicker
 from data.components.audio import audio
+from data.components.animation import animation
 
 from data.utils.settings_helpers import get_default_settings, get_user_settings, update_user_settings
 
@@ -20,8 +21,6 @@ class Settings(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
-        self._current_time = 0
-        self._delta_time = 0.0
         
         self._widget_group = None
         self._colour_picker = None
@@ -32,6 +31,7 @@ class Settings(_State):
     
     def cleanup(self):
         print('cleaning settings.py')
+        print(self._settings)
         update_user_settings(self._settings)
     
     def startup(self, persist=None):
@@ -44,13 +44,15 @@ class Settings(_State):
 
         self.draw()
     
-    def create_colour_picker(self, origin_position, colour_type):
-        if colour_type == 'primary':
+    def create_colour_picker(self, origin_position, button_type):
+        if button_type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
             default_colour = self._settings['primaryBoardColour']
+            event_type = SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK
         else:
             default_colour = self._settings['secondaryBoardColour']
+            event_type = SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK
 
-        self._colour_picker = ColourPicker(position=origin_position, relative_length=0.3, default_colour=default_colour, colour_type=colour_type)
+        self._colour_picker = ColourPicker(position=origin_position, relative_length=0.3, default_colour=default_colour, event_type=event_type)
         self._widget_group.add(self._colour_picker)
     
     def remove_colour_picker(self):
@@ -89,8 +91,10 @@ class Settings(_State):
             case SettingsEventType.VOLUME_SLIDER_CLICK:
                 if widget_event.volume_type == 'music':
                     audio.set_music_volume(widget_event.volume)
+                    self._settings['musicVolume'] = widget_event.volume
                 elif widget_event.volume_type == 'sfx':
                     audio.set_sfx_volume(widget_event.volume)
+                    self._settings['sfxVolume'] = widget_event.volume
 
             case SettingsEventType.DROPDOWN_CLICK:
                 selected_word = SETTINGS_WIDGETS['display_mode_dropdown'].get_selected_word()
@@ -101,9 +105,6 @@ class Settings(_State):
                 self.set_display_mode(selected_word)
 
                 self._settings['displayMode'] = selected_word
-
-            case SettingsEventType.COLOUR_PICKER_HOVER:
-                return
 
             case SettingsEventType.MENU_CLICK:
                 self.next = 'menu'
@@ -117,31 +118,32 @@ class Settings(_State):
                 self._settings = get_user_settings()
                 self.reload_settings()
             
-            case SettingsEventType.COLOUR_BUTTON_CLICK:
+            case SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK | SettingsEventType.SECONDARY_COLOUR_BUTTON_CLICK:
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                self.create_colour_picker(event.pos, widget_event.colour_type)
+                self.create_colour_picker(event.pos, widget_event.type)
             
-            case SettingsEventType.COLOUR_PICKER_CLICK:
-                r, g, b = widget_event.colour.rgb
-                hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
+            case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
+                print('sdsd')
+                if widget_event.colour:
+                    print('bbbb')
+                    r, g, b = widget_event.colour.rgb
+                    hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
 
-                if widget_event.colour_type == 'primary':
-                    SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)
-                    self._settings['primaryBoardColour'] = hex_colour
-                elif widget_event.colour_type == 'secondary':
-                    SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
-                    self._settings['secondaryBoardColour'] = hex_colour
+                    if widget_event.type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
+                        SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)
+                        self._settings['primaryBoardColour'] = hex_colour
+                    elif widget_event.type == SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
+                        SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
+                        self._settings['secondaryBoardColour'] = hex_colour
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        draw_background(self._screen, GRAPHICS['background'], current_time=self._current_time)
+        animation.draw_animation(self._screen, GRAPHICS['background'], position=(0, 0), size=self._screen.size)
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):
-        self._current_time = kwargs.get('current_time')
-        self._delta_time = kwargs.get('delta_time')
         self.draw()

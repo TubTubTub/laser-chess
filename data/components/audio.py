@@ -3,7 +3,7 @@ from data.utils.settings_helpers import get_user_settings
 user_settings = get_user_settings()
 
 class AudioManager:
-    def __init__(self, num_channels=8):
+    def __init__(self, num_channels=16):
         pygame.mixer.set_num_channels(num_channels)
 
         self._music_volume = user_settings['musicVolume']

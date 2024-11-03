@@ -1,5 +1,6 @@
 import pygame
 from pygame._sdl2 import Window
+from data.components.animation import animation
 
 FPS = 60
 
@@ -37,7 +38,8 @@ class Control:
         current_time = pygame.time.get_ticks()
         delta_time = self.clock.tick(FPS) / 1000.0
 
-        self.state.update(current_time=current_time, delta_time=delta_time)
+        self.state.update()
+        animation.set_current_ms(current_time)
         
         self.draw_fps()
         pygame.display.update()

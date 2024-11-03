@@ -1,4 +1,4 @@
-from data.components.widgets import *
+from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import MenuEventType
 from data.assets import GRAPHICS
@@ -9,7 +9,7 @@ MENU_WIDGETS = {
             relative_position=(0.375, 0.5),
             text='START GAME',
             text_colour=(255, 0, 0),
-            margin=30,
+            margin=50,
             font_size=50,
             fill_colour=(255, 255, 0),
             border_width=5,
@@ -19,7 +19,7 @@ MENU_WIDGETS = {
             relative_position=(0.4, 0.7),
             text='SETTINGS',
             text_colour=(255, 0, 0),
-            margin=30,
+            margin=50,
             font_size=50,
             fill_colour=(0, 0, 255),
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
@@ -30,11 +30,5 @@ MENU_WIDGETS = {
             fill_colour=(100, 100, 100, 255),
             icon=GRAPHICS['title_screen_art'],
         ),
-        TextInput(
-            relative_position=(0.1, 0.1),
-            relative_size=(0.5, 0.1),
-            border_width=5,
-            border_colour=(255, 0 ,255)
-        )
     ]
 }

@@ -1,6 +1,6 @@
 import pygame
-from data.components.widgets.bases import _Pressable
-from data.components.widgets.icon import Icon
+from data.widgets.bases import _Pressable
+from data.widgets.icon import Icon
 from data.constants import WidgetState
 
 class IconButton(_Pressable, Icon):
@@ -10,7 +10,7 @@ class IconButton(_Pressable, Icon):
             event=event,
             hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
-            up_func=lambda: self.set_state_colour(WidgetState.BASE),
+            up_func=self.up_func,
         )
         Icon.__init__(self, **kwargs)
 
@@ -18,6 +18,9 @@ class IconButton(_Pressable, Icon):
         self._shadow_colour = shadow_colour
 
         self.initialise_new_colours(self._fill_colour)
+    
+    def up_func(self):
+        self.set_state_colour(WidgetState.BASE)
 
     def initialise_new_colours(self, new_colour):
         r, g, b, a = new_colour

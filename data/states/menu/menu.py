@@ -7,14 +7,13 @@ from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.components.audio import audio
+from data.components.animation import animation
 
 class Menu(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
-        self._current_time = 0
-        self._delta_time = 0.0
         
         self._widget_group = None
     
@@ -51,10 +50,8 @@ class Menu(_State):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        # draw_background(self._screen, GRAPHICS['background'], current_time=self._current_time)
+        animation.draw_animation(self._screen, GRAPHICS['background'], position=(0, 0), size=self._screen.size)
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):
-        self._current_time = kwargs.get('current_time')
-        self._delta_time = kwargs.get('delta_time')
         self.draw()

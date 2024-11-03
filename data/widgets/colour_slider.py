@@ -1,12 +1,10 @@
 import pygame
-from data.components.widgets.bases import _Widget
-from data.components.widgets.slider_thumb import SliderThumb
-from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType
+from data.widgets.bases import _Widget
+from data.widgets.slider_thumb import _SliderThumb
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_gradient
 
-class ColourSlider(_Widget):
+class _ColourSlider(_Widget):
     def __init__(self, surface, get_parent_position, relative_position, relative_length, border_width=12, border_colour=(255, 255, 255)):
         super().__init__()
         self._screen = surface
@@ -23,7 +21,7 @@ class ColourSlider(_Widget):
 
         self._selected_percent = 0
 
-        self._thumb = SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
+        self._thumb = _SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
 
         self._empty_surface = pygame.Surface(self._size, pygame.SRCALPHA)
     
@@ -110,8 +108,8 @@ class ColourSlider(_Widget):
 
                 if selected_percent:
                     self._selected_percent = selected_percent
-                    return CustomEvent(SettingsEventType.COLOUR_SLIDER_SLIDE, colour=self.calculate_selected_colour())
+                    return self.calculate_selected_colour()
 
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
             self._thumb.process_event(event)
-            return CustomEvent(SettingsEventType.COLOUR_SLIDER_CLICK)
+            return self.calculate_selected_colour()

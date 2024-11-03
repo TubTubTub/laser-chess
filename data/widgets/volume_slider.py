@@ -1,6 +1,6 @@
 import pygame
-from data.components.widgets.bases import _Widget
-from data.components.widgets.slider_thumb import SliderThumb
+from data.widgets.bases import _Widget
+from data.widgets.slider_thumb import _SliderThumb
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 from data.constants import WidgetState
@@ -23,7 +23,7 @@ class VolumeSlider(_Widget):
         self._volume_type = volume_type
         self._selected_percent = default_volume
 
-        self._thumb = SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
+        self._thumb = _SliderThumb(radius=self._size[1] / 2, border_colour=border_colour)
         self._thumb.initialise_new_colours(self._thumb_colour)
         self._gradient_surface = create_slider(self.calculate_slider_size(), self._fill_colour, border_width, border_colour)
         self._empty_surface = pygame.Surface(self._size, pygame.SRCALPHA)

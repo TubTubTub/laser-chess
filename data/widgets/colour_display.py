@@ -1,7 +1,7 @@
 import pygame
-from data.components.widgets.bases import _Widget
+from data.widgets.bases import _Widget
 
-class ColourDisplay(_Widget):
+class _ColourDisplay(_Widget):
     def __init__(self, surface, relative_position, relative_size):
         self._screen = surface
         self._screen_size = surface.get_size()

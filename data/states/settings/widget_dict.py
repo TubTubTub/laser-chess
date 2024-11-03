@@ -1,5 +1,5 @@
 import pygame
-from data.components.widgets import *
+from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 from data.utils.settings_helpers import get_user_settings
@@ -108,7 +108,7 @@ SETTINGS_WIDGETS = {
         relative_size=(0.1, 0.05),
         default_colour=pygame.Color(user_settings['primaryBoardColour']).rgb,
         border_width=5,
-        event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='primary')
+        event=CustomEvent(SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK)
     ),
     'secondary_colour_button':
     ColourButton(
@@ -116,7 +116,7 @@ SETTINGS_WIDGETS = {
         relative_size=(0.1, 0.05),
         default_colour=pygame.Color(user_settings['secondaryBoardColour']).rgb,
         border_width=5,
-        event=CustomEvent(SettingsEventType.COLOUR_BUTTON_CLICK, colour_type='secondary')
+        event=CustomEvent(SettingsEventType.SECONDARY_COLOUR_BUTTON_CLICK)
     ),
     'music_volume_slider':
     VolumeSlider(

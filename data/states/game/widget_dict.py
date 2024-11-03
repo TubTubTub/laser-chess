@@ -1,4 +1,4 @@
-from data.components.widgets import *
+from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, RotationDirection
 

@@ -157,6 +157,7 @@ class GameView:
             self._screen.blit(rotated_image, (square_x, square_y))
     
     def draw(self):
+        self._widget_group.update()
         self.draw_board()
         self.draw_pieces()
         self.draw_overlay()

@@ -17,6 +17,9 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
+class MiscellaneousEventType(StrEnum):
+    PLACEHOLDER = 'literally anything lol'
+
 class WidgetState(StrEnum):
     BASE = auto()
     HOVER = auto()
@@ -46,12 +49,13 @@ class SettingsEventType(StrEnum):
     RESET_DEFAULT = auto()
     RESET_USER = auto()
     MENU_CLICK = auto()
-    COLOUR_CLICK = auto()
     COLOUR_SLIDER_SLIDE = auto()
     COLOUR_SLIDER_CLICK = auto()
-    COLOUR_PICKER_CLICK = auto()
     COLOUR_PICKER_HOVER = auto()
-    COLOUR_BUTTON_CLICK = auto()
+    PRIMARY_COLOUR_PICKER_CLICK = auto()
+    SECONDARY_COLOUR_PICKER_CLICK = auto()
+    PRIMARY_COLOUR_BUTTON_CLICK = auto()
+    SECONDARY_COLOUR_BUTTON_CLICK = auto()
     VOLUME_SLIDER_SLIDE = auto()
     VOLUME_SLIDER_CLICK = auto()
     DROPDOWN_CLICK = auto()
@@ -59,6 +63,11 @@ class SettingsEventType(StrEnum):
 class ConfigEventType(StrEnum):
     GAME_CLICK = auto()
     MENU_CLICK = auto()
+    FEN_STRING_TYPE = auto()
+    TIME_TYPE = auto()
+    TIME_CLICK = auto()
+    PVP_CLICK = auto()
+    PVC_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0
