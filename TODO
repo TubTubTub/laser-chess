@@ -7,7 +7,7 @@ Make CPU play rotational moves
 Make bitboards a dictionary
 
 Should do:
-Add sound
+Make all widgets take in an event_type instead of event
 Add empty event to widget group
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)

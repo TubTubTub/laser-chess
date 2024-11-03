@@ -4,9 +4,10 @@ from data.widgets.icon_button import IconButton
 from data.components.circular_linked_list import CircularLinkedList
 from data.assets import GRAPHICS
 from data.constants import MiscellaneousEventType
+from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
-    def __init__(self, relative_position, widgets_dict, margin=10):
+    def __init__(self, relative_position, event_type, widgets_dict, margin=10):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._screen_size = self._screen.get_size()
@@ -25,9 +26,10 @@ class Carousel(_Widget):
         self._relative_margin = margin / self._screen_size[1]
         self._relative_size = ((max_widget_size[0] + 2 * (self._margin + self._arrow_size[0])) / self._screen_size[1], (max_widget_size[1]) / self._screen_size[1])
 
-
         self._left_arrow = IconButton(MiscellaneousEventType.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
         self._right_arrow = IconButton(MiscellaneousEventType.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+
+        self._event_type = event_type
 
         self._empty_surface = pygame.Surface((0, 0))
 
@@ -62,18 +64,6 @@ class Carousel(_Widget):
     def _right_arrow_position(self):
         return (self._size[0] - self._arrow_size[0], (self._size[1] - self._arrow_size[1]) / 2)
     
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
-
-        self._widget.set_geometry()
-        self._left_arrow.set_geometry()
-        self._right_arrow.set_geometry()
-
-        self._widget.rect.center = self.rect.center
-        self._left_arrow.rect.topleft = (self._position[0] + self._left_arrow_position[0], self._position[1] + self._left_arrow_position[1])
-        self._right_arrow.rect.topleft = (self._position[0] + self._right_arrow_position[0], self._position[1] + self._right_arrow_position[1])
-    
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)
         self.image.fill((200, 200, 200))
@@ -86,6 +76,18 @@ class Carousel(_Widget):
 
         self._right_arrow.set_image()
         self.image.blit(self._right_arrow.image, self._right_arrow_position)
+    
+    def set_geometry(self):
+        self.rect = self.image.get_rect()
+        self.rect.topleft = self._position
+
+        self._widget.set_geometry()
+        self._left_arrow.set_geometry()
+        self._right_arrow.set_geometry()
+
+        self._widget.rect.center = self.rect.center
+        self._left_arrow.rect.topleft = (self._position[0] + self._left_arrow_position[0], self._position[1] + self._left_arrow_position[1])
+        self._right_arrow.rect.topleft = (self._position[0] + self._right_arrow_position[0], self._position[1] + self._right_arrow_position[1])
     
     def set_screen_size(self, new_screen_size):
         self._screen_size = new_screen_size
@@ -103,11 +105,16 @@ class Carousel(_Widget):
             self._widget = self._widgets_dict[self._widget_key.data]
 
             self.set_geometry()
-        if right_arrow_event:
+            self.set_image()
+            return CustomEvent(self._event_type, data=self._widget_key.data)
+
+        elif right_arrow_event:
             self._widget_key = self._widget_key.next
             self._widget = self._widgets_dict[self._widget_key.data]
 
             self.set_geometry()
+            self.set_image()
+            return CustomEvent(self._event_type, data=self._widget_key.data)
         
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
+        elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
             self.set_image()

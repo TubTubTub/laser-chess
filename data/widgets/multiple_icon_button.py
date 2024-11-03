@@ -1,5 +1,6 @@
 from data.widgets.icon_button import IconButton
 from data.components.circular_linked_list import CircularLinkedList
+from data.components.custom_event import CustomEvent
 from data.constants import WidgetState
 
 class MultipleIconButton(IconButton):
@@ -19,6 +20,9 @@ class MultipleIconButton(IconButton):
             self._icon = self._icons_dict[self._icon_key.data]
 
             self.set_image()
-    
-    def get_value(self):
-        return self._icon_key
+        
+    def process_event(self, event):
+        widget_event = super().process_event(event)
+
+        if widget_event:
+            return CustomEvent(widget_event.type, pvc_enabled=self._icon_key.data)

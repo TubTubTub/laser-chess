@@ -34,7 +34,8 @@ class Config(_State):
     def startup(self, persist=None):
         print('starting config.py')
         self._config = {
-            'CPU_DEPTH': 0,
+            'CPU_ENABLED': True,
+            'CPU_DEPTH': 1,
             'FEN_STRING': 'sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
             'TIME_ENABLED': True,
             'TIME': 10,
@@ -72,11 +73,13 @@ class Config(_State):
             case ConfigEventType.PVP_CLICK:
                 print('pvp click')
             case ConfigEventType.PVC_CLICK:
-                self._config['CPU_DEPTH'] = CONFIG_WIDGETS['pvc_button'].get_value()
+                print(widget_event.pvc_enabled)
             case ConfigEventType.FEN_STRING_TYPE:
                 print(widget_event.text, 'fen string type')
             case ConfigEventType.TIME_TYPE:
                 print(widget_event.text, 'time type')
+            case ConfigEventType.CPU_DEPTH_CLICK:
+                print(widget_event.data)
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

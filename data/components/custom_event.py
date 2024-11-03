@@ -12,6 +12,8 @@ required_args = {
     SettingsEventType.VOLUME_SLIDER_CLICK: ['volume', 'volume_type'],
     ConfigEventType.TIME_TYPE: ['time'],
     ConfigEventType.FEN_STRING_TYPE: ['time'],
+    ConfigEventType.CPU_DEPTH_CLICK: ['data'],
+    ConfigEventType.PVC_CLICK: ['pvc_enabled'],
 }
 
 class CustomEvent():

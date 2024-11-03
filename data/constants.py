@@ -68,6 +68,7 @@ class ConfigEventType(StrEnum):
     TIME_CLICK = auto()
     PVP_CLICK = auto()
     PVC_CLICK = auto()
+    CPU_DEPTH_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0

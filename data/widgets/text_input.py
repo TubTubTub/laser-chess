@@ -48,6 +48,7 @@ class TextInput(_Pressable, Text):
 
         self._empty_cursor = pygame.Surface((0, 0), pygame.SRCALPHA)
 
+        self.resize_text_to_box()
         self.set_image()
         self.set_geometry()
     
@@ -103,6 +104,32 @@ class TextInput(_Pressable, Text):
                 return (test_size - 1) / self._screen_size[1]
 
             test_size += 1
+    
+    def resize_text_to_box(self):
+        test_size = self._relative_font_size * self._screen_size[1] + 1
+        box_size = self._size[0] - 2 * self._border_width
+        ideal_font_size = self.calculate_font_size()
+
+        if self._font.get_rect(text=self._text, size=self._font_size).width < self._size[0]:
+            if self._relative_font_size >= ideal_font_size:
+                return
+
+            while True:
+                text_width = self._font.get_rect(text=self._text, size=test_size).width
+                if text_width > box_size:
+                    self._relative_font_size = (test_size - 1) / self._screen_size[1]
+                    return
+                
+                test_size = test_size + 1
+
+        else:
+            while True:
+                text_width = self._font.get_rect(text=self._text, size=test_size).width
+                if text_width < box_size:
+                    self._relative_font_size = (test_size) / self._screen_size[1]
+                    return
+                
+                test_size = test_size - 1
 
     def calculate_cursor_size(self):
         cursor_height = (self._size[1] - self._border_width * 2) * 0.75
@@ -230,6 +257,8 @@ class TextInput(_Pressable, Text):
                 
                 self._blinking_cooldown += 1
                 animation.set_timer(500, lambda: self.subtract_blinking_cooldown(1))
+
+                self.resize_text_to_box()
                 self.set_image()
                 self.set_geometry()
     

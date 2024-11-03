@@ -1,3 +1,4 @@
+import pygame
 from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import ConfigEventType
@@ -10,20 +11,19 @@ def float_validator(num_string):
     except:
         return False
 
+def dim_icon(icon):
+    icon_copy = icon.copy()
+    overlay = pygame.Surface((icon.get_width(), icon.get_height()), pygame.SRCALPHA)
+    overlay.fill((0, 0, 0, 128))
+    icon_copy.blit(overlay, (0, 0))
+    return icon_copy
+
 CONFIG_WIDGETS = {
     'default': [
-        TextButton(
-            relative_position=(0.5, 0.7),
-            text='START NEW GAME',
-            text_colour=(255, 0, 0),
-            font_size=50,
-            margin=20,
-            minimum_width=400,
-            event=CustomEvent(ConfigEventType.GAME_CLICK)
-        ),
         TextInput(
             relative_position=(0.5, 0.1),
             placeholder='ENTER FEN STRING',
+            default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
             size=(400, 75),
             border_width=5,
             margin=40,
@@ -49,20 +49,41 @@ CONFIG_WIDGETS = {
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
         Carousel(
-            relative_position=(0.1, 0.1),
+            relative_position=(0.5, 0.7),
+            margin=95,
+            event_type=ConfigEventType.CPU_DEPTH_CLICK,
             widgets_dict={
-                0: Text(
-                    relative_position=(0, 0),
-                    text="hi",
-                    font_size=30
-                ),
                 1: Text(
                     relative_position=(0, 0),
-                    text="bye",
+                    text="EASY",
+                    font_size=70,
+                    margin=0
+                ),
+                2: Text(
+                    relative_position=(0, 0),
+                    text="MEDIUM",
+                    font_size=70,
+                    margin=0
+                ),
+                3: Text(
+                    relative_position=(0, 0),
+                    text="HARD",
+                    font_size=70,
+                    margin=0
                 ),
             }
         )
     ],
+    'start_button':
+    TextButton(
+        relative_position=(0.5, 0.7),
+        text='START NEW GAME',
+        text_colour=(255, 0, 0),
+        font_size=50,
+        margin=20,
+        minimum_width=400,
+        event=CustomEvent(ConfigEventType.GAME_CLICK)
+    ),
     'timer_text_input':
     TextInput(
         relative_position=(0.6, 0.3),
@@ -89,10 +110,10 @@ CONFIG_WIDGETS = {
     MultipleIconButton(
         relative_position=(0.72, 0.5),
         size=(180, 75),
-        margin=10,
+        margin=0,
         border_width=5,
         border_radius=5,
-        icons_dict={0: GRAPHICS['pvc_button'], 1: GRAPHICS['home'], 2: GRAPHICS['pvp_button']},
+        icons_dict={False: GRAPHICS['pvc_button'], True: dim_icon(GRAPHICS['pvc_button'])},
         event=CustomEvent(ConfigEventType.PVC_CLICK)
     )
 }
