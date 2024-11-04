@@ -1,4 +1,3 @@
-import pygame
 from data.widgets import *
 from data.states.config.default_config import default_config
 from data.components.custom_event import CustomEvent
@@ -24,6 +23,11 @@ else:
     pvc_locked = False
     pvp_locked = True
 
+if default_config['TIME_ENABLED']:
+    time_enabled_icons = {True: GRAPHICS['timer'], False: get_dimmed_icon(GRAPHICS['timer'])}
+else:
+    time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
+
 CONFIG_WIDGETS = {
     'default': [
         TextInput(
@@ -36,6 +40,17 @@ CONFIG_WIDGETS = {
             border_colour=(150, 150, 150),
             event_type=ConfigEventType.FEN_STRING_TYPE
         ),
+        TextInput(
+            relative_position=(0.6, 0.3),
+            placeholder='TIME CONTROL (MINS)',
+            default=str(default_config['TIME']),
+            size=(300, 75),
+            border_width=5,
+            margin=50,
+            validator=float_validator,
+            border_colour=(150, 150, 150),
+            event_type=ConfigEventType.TIME_TYPE
+        ),
         IconButton(
             relative_position=(0.92, 0.02),
             size=(50, 50),
@@ -45,31 +60,6 @@ CONFIG_WIDGETS = {
             icon=GRAPHICS['home'],
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
-        Carousel(
-            relative_position=(0.5, 0.7),
-            margin=95,
-            event_type=ConfigEventType.CPU_DEPTH_CLICK,
-            widgets_dict={
-                1: Text(
-                    relative_position=(0, 0),
-                    text="EASY",
-                    font_size=70,
-                    margin=0
-                ),
-                2: Text(
-                    relative_position=(0, 0),
-                    text="MEDIUM",
-                    font_size=70,
-                    margin=0
-                ),
-                3: Text(
-                    relative_position=(0, 0),
-                    text="HARD",
-                    font_size=70,
-                    margin=0
-                ),
-            }
-        )
     ],
     'start_button':
     TextButton(
@@ -81,26 +71,14 @@ CONFIG_WIDGETS = {
         minimum_width=400,
         event=CustomEvent(ConfigEventType.GAME_CLICK)
     ),
-    'timer_text_input':
-    TextInput(
-        relative_position=(0.6, 0.3),
-        placeholder='TIME CONTROL (MINS)',
-        default='10',
-        size=(300, 75),
-        border_width=5,
-        margin=50,
-        validator=float_validator,
-        border_colour=(150, 150, 150),
-        event_type=ConfigEventType.TIME_TYPE
-    ),
     'timer_button':
-    IconButton(
+    MultipleIconButton(
         relative_position=(0.5, 0.3),
         size=(75, 75),
-        margin=10,
+        margin=0,
         border_width=5,
         border_radius=5,
-        icon=GRAPHICS['timer'],
+        icons_dict=time_enabled_icons,
         event=CustomEvent(ConfigEventType.TIME_CLICK)
     ),
     'pvp_button':

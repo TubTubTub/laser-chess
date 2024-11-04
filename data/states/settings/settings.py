@@ -33,6 +33,8 @@ class Settings(_State):
         print('cleaning settings.py')
         print(self._settings)
         update_user_settings(self._settings)
+
+        return None
     
     def startup(self, persist=None):
         print('starting settings.py')

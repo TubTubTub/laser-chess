@@ -7,31 +7,30 @@ from data.states.game.components import bitboard
 from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
 from data.states.game.components.cpu import CPU
-from copy import deepcopy
 
+from copy import deepcopy
 import threading
+import json
 
 class GameModel:
-    def __init__(self, **kwargs):
+    def __init__(self, game_config):
         self._listeners = {
             'game': [],
             'win': [],
             'pause': [],
         }
-        self._board = Board(fen_sting=kwargs.get('FEN_STRING'))
+        self._board = Board(fen_string=game_config['FEN_STRING'])
 
         self.states = {
-            'CPU': False,
+            'CPU_ENABLED': game_config['CPU_ENABLED'],
+            'CPU_DEPTH': game_config['CPU_DEPTH'],
             'AWAITING_CPU': False,
-            'CPU_DEPTH': kwargs.get('CPU_DEPTH'),
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
         }
-
-        if self.states['CPU_DEPTH'] > 0:
-            self.states['CPU'] = True
-        print(self.states,'')
+        
+        print('GAME CONFIG:', json.dumps(self.states, indent=4))
 
         self.thread_stop = threading.Event()
 

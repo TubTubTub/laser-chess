@@ -124,7 +124,7 @@ class GameController:
         self._view.set_overlay_coords([], None)
         self.check_game_over()
 
-        if self._model.states['CPU']:
+        if self._model.states['CPU_ENABLED']:
             self._model.make_cpu_move()
             self.check_game_over()
     

@@ -16,13 +16,15 @@ class Game(_State):
     
     def cleanup(self):
         print('cleaning game.py')
+
+        return None
     
     def switch_to_menu(self):
         self.done = True
     
     def startup(self, persist):
         binded_startup = partial(self.startup, persist)
-        self.model = GameModel(**persist)
+        self.model = GameModel(persist)
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)
         self.win_view = WinView(self.model)

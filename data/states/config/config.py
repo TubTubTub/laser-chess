@@ -10,11 +10,13 @@ from data.components.cursor import Cursor
 from data.components.audio import audio
 from data.components.animation import animation
 
+from data.widgets import Carousel, Text
+
 from data.utils.asset_helpers import draw_background
 
 from data.assets import MUSIC_PATHS
 
-from data.constants import ConfigEventType, Colour
+from data.constants import ConfigEventType
 
 class Config(_State):
     def __init__(self):
@@ -28,9 +30,7 @@ class Config(_State):
     def cleanup(self):
         print('cleaning config.py')
 
-        return {
-            # 'cpu_depth': 2,
-        }
+        return self._config
     
     def startup(self, persist=None):
         print('starting config.py')
@@ -38,16 +38,51 @@ class Config(_State):
 
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
+        
+        self._cpu_depth_carousel = Carousel(
+            relative_position=(0.5, 0.7),
+            margin=95,
+            event_type=ConfigEventType.CPU_DEPTH_CLICK,
+            widgets_dict={
+                1: Text(
+                    relative_position=(0, 0),
+                    text="EASY",
+                    font_size=70,
+                    margin=0
+                ),
+                2: Text(
+                    relative_position=(0, 0),
+                    text="MEDIUM",
+                    font_size=70,
+                    margin=0
+                ),
+                3: Text(
+                    relative_position=(0, 0),
+                    text="HARD",
+                    font_size=70,
+                    margin=0
+                ),
+            }
+        )
 
-        # CONFIG_WIDGETS['timer_text_input'].set_text(self._config['TIME'])
-        # if self._config['TIME_ENABLED']:
-        #     CONFIG_WIDGETS['timer_button'].set_mode('TIME_ENABLED')
-        # else:
-        #     CONFIG_WIDGETS['timer_button'].set_mode('TIME_DISABLED')
+        if self._config['CPU_ENABLED']:
+            self.create_depth_picker()
 
         self.draw()
 
         audio.play_music(MUSIC_PATHS['cpu_hard'])
+    
+    def create_depth_picker(self):
+        CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
+        CONFIG_WIDGETS['start_button'].set_image()
+
+        self._widget_group.add(self._cpu_depth_carousel)
+    
+    def remove_depth_picker(self):
+        CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.7))
+        CONFIG_WIDGETS['start_button'].set_image()
+        
+        self._cpu_depth_carousel.kill()
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
@@ -65,7 +100,8 @@ class Config(_State):
                 self.done = True
 
             case ConfigEventType.TIME_CLICK:
-                print('timer click')
+                print('timer click', widget_event.data)
+                self._config['TIME_ENABLED'] = widget_event.data
 
             case ConfigEventType.PVP_CLICK:
                 pvp_enabled = widget_event.data
@@ -80,12 +116,18 @@ class Config(_State):
                 self._config['CPU_ENABLED'] = not(pvp_enabled)
 
                 print('CPU ENABLED:', self._config['CPU_ENABLED'])
+                
+                if self._config['CPU_ENABLED']:
+                    self.create_depth_picker()
+                else:
+                    self.remove_depth_picker()
 
             case ConfigEventType.PVC_CLICK:
                 pvc_enabled = widget_event.data
 
                 if pvc_enabled == self._config['CPU_ENABLED']:
                     return
+
                 CONFIG_WIDGETS['pvc_button'].set_locked(True)
                 CONFIG_WIDGETS['pvp_button'].set_locked(False)
                 CONFIG_WIDGETS['pvp_button'].set_next_icon()
@@ -93,15 +135,23 @@ class Config(_State):
                 self._config['CPU_ENABLED'] = pvc_enabled
                 
                 print('CPU ENABLED:', self._config['CPU_ENABLED'])
+                
+                if self._config['CPU_ENABLED']:
+                    self.create_depth_picker()
+                else:
+                    self.remove_depth_picker()
 
             case ConfigEventType.FEN_STRING_TYPE:
                 print(widget_event.text, 'fen string type')
+                self._config['FEN_STRING'] = widget_event.text
 
             case ConfigEventType.TIME_TYPE:
                 print(widget_event.text, 'time type')
+                self._config['TIME'] = float(widget_event.text)
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 print(widget_event.data)
+                self._config['CPU_DEPTH'] = int(widget_event.data)
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

@@ -19,6 +19,8 @@ class Menu(_State):
     
     def cleanup(self):
         print('cleaning menu.py')
+
+        return None
     
     def startup(self, persist=None):
         print('starting menu.py')

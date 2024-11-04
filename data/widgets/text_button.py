@@ -19,6 +19,11 @@ class TextButton(_Pressable, Text):
 
         if self._fill_colour:
             self.initialise_new_colours(pygame.Color(self._fill_colour))
+    
+    def update_relative_position(self, new_relative_position):
+        self._relative_position = new_relative_position
+        self.set_image()
+        self.set_geometry()
             
     def initialise_new_colours(self, new_colour):
         r, g, b, a = new_colour.rgba

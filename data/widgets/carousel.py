@@ -99,22 +99,22 @@ class Carousel(_Widget):
         self._widget.process_event(event)
         left_arrow_event = self._left_arrow.process_event(event)
         right_arrow_event = self._right_arrow.process_event(event)
+        
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
+            self.set_image()
 
         if left_arrow_event:
             self._widget_key = self._widget_key.previous
             self._widget = self._widgets_dict[self._widget_key.data]
 
-            self.set_geometry()
             self.set_image()
+            self.set_geometry()
             return CustomEvent(self._event_type, data=self._widget_key.data)
 
         elif right_arrow_event:
             self._widget_key = self._widget_key.next
             self._widget = self._widgets_dict[self._widget_key.data]
 
+            self.set_image()
             self.set_geometry()
-            self.set_image()
             return CustomEvent(self._event_type, data=self._widget_key.data)
-        
-        elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
-            self.set_image()
