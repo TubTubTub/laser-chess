@@ -39,3 +39,10 @@ def draw_background(screen, background, current_time=0):
     else:
         scaled_background = scale_and_cache(background, screen.size)
         screen.blit(scaled_background, (0, 0))
+
+def get_dimmed_icon(icon):
+    icon_copy = icon.copy()
+    overlay = pygame.Surface((icon.get_width(), icon.get_height()), pygame.SRCALPHA)
+    overlay.fill((0, 0, 0, 128))
+    icon_copy.blit(overlay, (0, 0))
+    return icon_copy

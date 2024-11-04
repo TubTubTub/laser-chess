@@ -13,7 +13,7 @@ required_args = {
     ConfigEventType.TIME_TYPE: ['time'],
     ConfigEventType.FEN_STRING_TYPE: ['time'],
     ConfigEventType.CPU_DEPTH_CLICK: ['data'],
-    ConfigEventType.PVC_CLICK: ['pvc_enabled'],
+    ConfigEventType.PVC_CLICK: ['data'],
 }
 
 class CustomEvent():

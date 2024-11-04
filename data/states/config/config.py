@@ -3,6 +3,7 @@ import pygame
 from data.tools import _State
 
 from data.states.config.widget_dict import CONFIG_WIDGETS
+from data.states.config.default_config import default_config
 
 from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
@@ -33,14 +34,7 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
-        self._config = {
-            'CPU_ENABLED': True,
-            'CPU_DEPTH': 1,
-            'FEN_STRING': 'sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
-            'TIME_ENABLED': True,
-            'TIME': 10,
-            'COLOUR': Colour.BLUE,
-        }
+        self._config = default_config
 
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
@@ -65,19 +59,47 @@ class Config(_State):
             case ConfigEventType.GAME_CLICK:
                 self.next = 'game'
                 self.done = True
+
             case ConfigEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
+
             case ConfigEventType.TIME_CLICK:
                 print('timer click')
+
             case ConfigEventType.PVP_CLICK:
-                print('pvp click')
+                pvp_enabled = widget_event.data
+                
+                if not(pvp_enabled) == self._config['CPU_ENABLED']:
+                    return
+
+                CONFIG_WIDGETS['pvp_button'].set_locked(True)
+                CONFIG_WIDGETS['pvc_button'].set_locked(False)
+                CONFIG_WIDGETS['pvc_button'].set_next_icon()
+
+                self._config['CPU_ENABLED'] = not(pvp_enabled)
+
+                print('CPU ENABLED:', self._config['CPU_ENABLED'])
+
             case ConfigEventType.PVC_CLICK:
-                print(widget_event.pvc_enabled)
+                pvc_enabled = widget_event.data
+
+                if pvc_enabled == self._config['CPU_ENABLED']:
+                    return
+                CONFIG_WIDGETS['pvc_button'].set_locked(True)
+                CONFIG_WIDGETS['pvp_button'].set_locked(False)
+                CONFIG_WIDGETS['pvp_button'].set_next_icon()
+
+                self._config['CPU_ENABLED'] = pvc_enabled
+                
+                print('CPU ENABLED:', self._config['CPU_ENABLED'])
+
             case ConfigEventType.FEN_STRING_TYPE:
                 print(widget_event.text, 'fen string type')
+
             case ConfigEventType.TIME_TYPE:
                 print(widget_event.text, 'time type')
+
             case ConfigEventType.CPU_DEPTH_CLICK:
                 print(widget_event.data)
     
