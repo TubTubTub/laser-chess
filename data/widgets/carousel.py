@@ -7,7 +7,7 @@ from data.constants import MiscellaneousEventType
 from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
-    def __init__(self, relative_position, event_type, widgets_dict, margin=10):
+    def __init__(self, relative_position, event_type, widgets_dict, margin=10, fill_colour=(0, 0, 0, 0)):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._screen_size = self._screen.get_size()
@@ -30,6 +30,8 @@ class Carousel(_Widget):
         self._right_arrow = IconButton(MiscellaneousEventType.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
 
         self._event_type = event_type
+
+        self._fill_colour = fill_colour
 
         self._empty_surface = pygame.Surface((0, 0))
 
@@ -66,7 +68,7 @@ class Carousel(_Widget):
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)
-        self.image.fill((200, 200, 200))
+        self.image.fill(self._fill_colour)
 
         self._left_arrow.set_image()
         self.image.blit(self._left_arrow.image, self._left_arrow_position)
@@ -99,9 +101,6 @@ class Carousel(_Widget):
         self._widget.process_event(event)
         left_arrow_event = self._left_arrow.process_event(event)
         right_arrow_event = self._right_arrow.process_event(event)
-        
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
-            self.set_image()
 
         if left_arrow_event:
             self._widget_key = self._widget_key.previous
@@ -118,3 +117,6 @@ class Carousel(_Widget):
             self.set_image()
             self.set_geometry()
             return CustomEvent(self._event_type, data=self._widget_key.data)
+        
+        elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
+            self.set_image()

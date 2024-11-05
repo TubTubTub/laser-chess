@@ -40,27 +40,34 @@ class Config(_State):
         self._widget_group.handle_resize(self._screen.size)
         
         self._cpu_depth_carousel = Carousel(
-            relative_position=(0.5, 0.7),
+            relative_position=(0.5, 0.68),
             margin=95,
             event_type=ConfigEventType.CPU_DEPTH_CLICK,
+            fill_colour=(0, 0, 0, 0),
             widgets_dict={
                 1: Text(
                     relative_position=(0, 0),
                     text="EASY",
+                    text_colour=(255, 255, 255),
                     font_size=70,
-                    margin=0
+                    margin=0,
+                    fill_colour=(0, 0, 0, 0)
                 ),
                 2: Text(
                     relative_position=(0, 0),
                     text="MEDIUM",
+                    text_colour=(255, 255, 255),
                     font_size=70,
-                    margin=0
+                    margin=0,
+                    fill_colour=(0, 0, 0, 0)
                 ),
                 3: Text(
                     relative_position=(0, 0),
                     text="HARD",
+                    text_colour=(255, 255, 255),
                     font_size=70,
-                    margin=0
+                    margin=0,
+                    fill_colour=(0, 0, 0, 0)
                 ),
             }
         )

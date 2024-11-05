@@ -7,7 +7,7 @@ from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_user_settings
 from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.assets import GRAPHICS
-from data.states.game.widget_dict import GAME_WIDGETS
+from data.states.game.widget_dict import GAME_WIDGETS_PVC, GAME_WIDGETS_PVP
 
 class GameView:
     def __init__(self, model):
@@ -32,7 +32,10 @@ class GameView:
         self._piece_group = PieceGroup()
         self.handle_update_pieces()
 
-        self._widget_group = WidgetGroup(GAME_WIDGETS)
+        if self._model.states['CPU_ENABLED']:
+            self._widget_group = WidgetGroup(GAME_WIDGETS_PVC)
+        else:
+            self._widget_group = WidgetGroup(GAME_WIDGETS_PVP)
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None

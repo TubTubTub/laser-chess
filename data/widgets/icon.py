@@ -2,7 +2,7 @@ import pygame
 from data.widgets.bases import _Widget
 
 class Icon(_Widget):
-    def __init__(self, relative_position, size, icon, fill_colour=(100, 100, 100), margin=30, border_width=0, border_radius=50, border_colour=(255, 255, 255), shadow_distance=0, shadow_colour=(0, 0, 0), is_mask=False):
+    def __init__(self, relative_position, size, icon, stretch=True, fill_colour=(100, 100, 100), margin=30, border_width=0, border_radius=50, border_colour=(255, 255, 255), shadow_distance=0, shadow_colour=(0, 0, 0), is_mask=False):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
@@ -17,6 +17,7 @@ class Icon(_Widget):
 
         self._icon = icon
         self._is_mask = is_mask
+        self._stretch = stretch
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
@@ -49,11 +50,21 @@ class Icon(_Widget):
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)
         pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self._border_radius))
-        scaled_icon = pygame.transform.smoothscale(self._icon, (self._size[0] -  (2 * self._margin), self._size[1] -  (2 * self._margin)))
-        if self._is_mask:
-            self.image.blit(scaled_icon, (self._margin, self._margin), None, pygame.BLEND_RGBA_MULT)
+
+        if self._stretch:
+            scaled_icon = pygame.transform.smoothscale(self._icon, (self._size[0] -  (2 * self._margin), self._size[1] -  (2 * self._margin)))
+            icon_position = (self._margin, self._margin)
         else:
-            self.image.blit(scaled_icon, (self._margin, self._margin))
+            max_height = self._size[1] - (2 * self._margin)
+            max_width = self._size[0] - (2 * self._margin)
+            scale_factor = min(max_width / self._icon.width, max_height / self._icon.height)
+            scaled_icon = pygame.transform.smoothscale_by(self._icon, (scale_factor, scale_factor))
+            icon_position = ((self._size[0] - scaled_icon.width) / 2, (self._size[1] - scaled_icon.height) / 2)
+
+        if self._is_mask:
+            self.image.blit(scaled_icon, icon_position, None, pygame.BLEND_RGBA_MULT)
+        else:
+            self.image.blit(scaled_icon, icon_position)
 
         if self._border_width:
             pygame.draw.rect(self.image, self._border_colour, self.image.get_rect(), width=int(self._border_width), border_radius=int(self._border_radius))

@@ -1,21 +1,41 @@
 from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, RotationDirection
+from data.assets import GRAPHICS
 
-GAME_WIDGETS = {
+GAME_WIDGETS_PVC = {
     'default': [
-        TextButton(
-            relative_position=(0.1, 0.2),
-            text='CLOCKWISE',
-            text_colour=(255, 0, 0),
-            font_size=50,
+        IconButton(
+            relative_position=(0.44, 0.85),
+            size=(60, 60),
+            margin=10,
+            icon=GRAPHICS['clockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
         ),
-        TextButton(
-            relative_position=(0.1, 0.4),
-            text='ANTICLOCKWISE',
-            text_colour=(0, 255, 0),
-            font_size=50,
+        IconButton(
+            relative_position=(0.52, 0.85),
+            size=(60, 60),
+            margin=10,
+            icon=GRAPHICS['anticlockwise_arrow'],
+            event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
+        )
+    ]
+}
+
+GAME_WIDGETS_PVP = {
+    'default': [
+        IconButton(
+            relative_position=(0.44, 0.85),
+            size=(60, 60),
+            margin=10,
+            icon=GRAPHICS['clockwise_arrow'],
+            event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
+        ),
+        IconButton(
+            relative_position=(0.52, 0.85),
+            size=(60, 60),
+            margin=10,
+            icon=GRAPHICS['anticlockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
         )
     ]

@@ -13,13 +13,13 @@ def float_validator(num_string):
         return False
 
 if default_config['CPU_ENABLED']:
-    pvp_icons = {False: GRAPHICS['pvp_button'], True: get_dimmed_icon(GRAPHICS['pvp_button'])}
-    pvc_icons = {True: get_dimmed_icon(GRAPHICS['pvc_button']), False: GRAPHICS['pvc_button']}
+    pvp_icons = {False: GRAPHICS['pvp_button'], True: GRAPHICS['pvp_button']}
+    pvc_icons = {True: GRAPHICS['pvc_button'], False: GRAPHICS['pvc_button']}
     pvc_locked = True
     pvp_locked = False
 else:
-    pvp_icons = {True: get_dimmed_icon(GRAPHICS['pvp_button']), False: GRAPHICS['pvp_button']}
-    pvc_icons = {False: GRAPHICS['pvc_button'], True: get_dimmed_icon(GRAPHICS['pvc_button'])}
+    pvp_icons = {True: GRAPHICS['pvp_button'], False: GRAPHICS['pvp_button']}
+    pvc_icons = {False: GRAPHICS['pvc_button'], True: GRAPHICS['pvc_button']}
     pvc_locked = False
     pvp_locked = True
 
@@ -44,12 +44,18 @@ CONFIG_WIDGETS = {
             relative_position=(0.6, 0.3),
             placeholder='TIME CONTROL (MINS)',
             default=str(default_config['TIME']),
-            size=(300, 75),
+            size=(200, 75),
             border_width=5,
             margin=50,
             validator=float_validator,
             border_colour=(150, 150, 150),
             event_type=ConfigEventType.TIME_TYPE
+        ),
+        Text(
+            relative_position=(0.82, 0.31),
+            text='MINS',
+            font_size=40,
+            margin=30
         ),
         IconButton(
             relative_position=(0.92, 0.02),
@@ -90,6 +96,7 @@ CONFIG_WIDGETS = {
         border_radius=5,
         icons_dict=pvp_icons,
         locked=pvp_locked,
+        stretch=False,
         event=CustomEvent(ConfigEventType.PVP_CLICK)
     ),
     'pvc_button':
@@ -101,6 +108,7 @@ CONFIG_WIDGETS = {
         border_radius=5,
         icons_dict=pvc_icons,
         locked=pvc_locked,
+        stretch=False,
         event=CustomEvent(ConfigEventType.PVC_CLICK)
     )
 }
