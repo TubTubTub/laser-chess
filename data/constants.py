@@ -40,6 +40,8 @@ class GameEventType(StrEnum):
     REMOVE_PIECE = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()
+    RESIGN_CLICK = auto()
+    DRAW_CLICK = auto()
 
 class MenuEventType(StrEnum):
     CONFIG_CLICK = auto()

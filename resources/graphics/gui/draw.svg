@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 512.00 512.00"
+   fill="#000000"
+   stroke="#000000"
+   stroke-width="38.4"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="draw.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="167.58431"
+     inkscape:cy="263.75083"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="M 154.30709,53.618289 V 266.20547 H 108.6284 V 105.24246 q -3.7703,3.33527 -8.990725,6.38052 -5.07541,2.90023 -10.875879,5.36543 -5.800469,2.32019 -12.035973,4.06033 -6.235504,1.59513 -12.325997,2.32019 V 84.795809 Q 82.236268,79.575387 98.042546,71.454731 113.84882,63.334074 126.60986,53.618289 Z"
+     id="text4"
+     style="font-weight:bold;font-size:296.984px;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI Bold';stroke-width:0"
+     aria-label="1" />
+  <path
+     d="M 324.77614,112.98184 223.41295,355.44144 H 182.51964 L 283.4478,112.98184 Z"
+     id="text3"
+     style="font-weight:bold;font-size:296.984px;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI Bold';stroke-width:0"
+     aria-label="/" />
+  <path
+     d="m 363.33964,395.50842 h 88.16712 V 433.5015 H 313.16558 v -15.66127 q 0,-15.95129 5.36543,-28.56731 5.36544,-12.76103 13.4861,-22.76684 8.12065,-10.15082 17.69143,-17.83644 9.71578,-7.83064 18.41648,-14.06614 9.13574,-6.52553 15.95129,-12.47101 6.96057,-5.94548 11.60094,-11.74595 4.78539,-5.94548 7.10558,-11.89096 2.32018,-6.09049 2.32018,-12.90604 0,-13.34108 -7.54061,-20.15663 -7.54061,-6.81555 -23.05686,-6.81555 -26.82717,0 -51.33415,21.31672 v -40.31326 q 27.11719,-17.54642 61.19495,-17.54642 15.80627,0 28.27728,4.20534 12.61602,4.06033 21.31673,11.74595 8.7007,7.68562 13.19606,18.70651 4.64038,10.87588 4.64038,24.36197 0,14.35617 -4.49537,25.52207 -4.35035,11.1659 -11.74594,20.30164 -7.25059,9.13574 -16.82136,16.82136 -9.57078,7.54061 -19.86661,14.64618 -6.96056,4.9304 -13.48609,9.8608 -6.38052,4.78539 -11.31092,9.57077 -4.93039,4.64038 -7.83063,9.13574 -2.90023,4.49537 -2.90023,8.55569 z"
+     id="text2"
+     style="font-weight:bold;font-size:296.984px;font-family:'Nirmala UI';-inkscape-font-specification:'Nirmala UI Bold';stroke-width:0"
+     aria-label="2" />
+</svg>

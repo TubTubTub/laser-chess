@@ -17,7 +17,7 @@ class GameController:
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
             if self._model.states['PAUSED']:
                 self.handle_pause_event(event)
-            elif self._model.states['WINNER']:
+            elif self._model.states['WINNER'] is not None:
                 self.handle_winner_event(event)
             else:
                 self.handle_game_event(event)
@@ -64,7 +64,7 @@ class GameController:
         widget_event = self._view.process_widget_event(event)
 
         if widget_event is None:
-            return
+            return None
 
         match widget_event.type:
             case GameEventType.ROTATE_PIECE:
@@ -77,14 +77,23 @@ class GameController:
                 move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=widget_event.rotation_direction)
                 self.make_move(move)
             
+            case GameEventType.RESIGN_CLICK:
+                print('RESINGING')
+                self._model.make_resign()
+                return
+                
+            case GameEventType.DRAW_CLICK:
+                print('DRAWING')
+                self._model.make_draw()
+                return
+            
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
 
     def handle_game_event(self, event):
-        if event.type in [pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
-            self.handle_game_widget_event(event)
+        self.handle_game_widget_event(event)
         
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             game_event = self._view.convert_mouse_pos(event)
 
             match game_event.type:
@@ -109,9 +118,6 @@ class GameController:
                             self.make_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
-                
-                case GameEventType.WIDGET_CLICK:
-                    self.handle_game_widget_event(event)
 
                 case GameEventType.EMPTY_CLICK:
                     self._view.set_overlay_coords([], None)

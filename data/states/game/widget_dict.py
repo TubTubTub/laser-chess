@@ -18,6 +18,36 @@ GAME_WIDGETS_PVC = {
             margin=10,
             icon=GRAPHICS['anticlockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
+        ),
+        TextButton(
+            relative_position=(0.27, 0.85),
+            text="   Resign",
+            font_size=30,
+            margin=25,
+            event=CustomEvent(GameEventType.RESIGN_CLICK)
+        ),
+        TextButton(
+            relative_position=(0.65, 0.85),
+            text="   Draw",
+            font_size=30,
+            margin=25,
+            event=CustomEvent(GameEventType.DRAW_CLICK)
+        ),
+        Icon(
+            relative_position=(0.27, 0.85),
+            size=(30, 30),
+            fill_colour=(0, 0, 0, 0),
+            border_radius=0,
+            margin=0,
+            icon=GRAPHICS['resign']
+        ),
+        Icon(
+            relative_position=(0.65, 0.85),
+            size=(35, 35),
+            fill_colour=(0, 0, 0, 0),
+            border_radius=0,
+            margin=0,
+            icon=GRAPHICS['draw']
         )
     ]
 }

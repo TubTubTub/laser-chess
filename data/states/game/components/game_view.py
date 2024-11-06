@@ -212,8 +212,8 @@ class GameView:
 
             return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=(int(x), int(y)))
 
-        elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
-            return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
+        # elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
+        #     return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
 
         return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
 

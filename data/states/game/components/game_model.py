@@ -111,6 +111,15 @@ class GameModel:
     def get_board(self):
         return self._board
 
+    def make_resign(self):
+        active_colour = self._board.get_active_colour()
+        print('RESIGNING GAME:', active_colour.name)
+        self.states['WINNER'] = active_colour
+    
+    def make_draw(self):
+        print('DRAWING GAME')
+        self.states['WINNER'] = 'draw'
+
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.bitboards = bitboard.BitboardCollection(fen_string)
