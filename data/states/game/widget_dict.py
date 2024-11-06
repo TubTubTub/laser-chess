@@ -48,8 +48,18 @@ GAME_WIDGETS_PVC = {
             border_radius=0,
             margin=0,
             icon=GRAPHICS['draw']
-        )
-    ]
+        ),
+    ],
+    'blue_timer':
+    Timer(
+        relative_position=(0.1, 0.1),
+        start_mins=10.1
+    ),
+    'red_timer':
+    Timer(
+        relative_position=(0.1, 0.1),
+        start_mins=10.1
+    ),
 }
 
 GAME_WIDGETS_PVP = {
