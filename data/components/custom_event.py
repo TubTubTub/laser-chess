@@ -5,6 +5,7 @@ required_args = {
     GameEventType.REMOVE_PIECE: ['coords_to_remove'],
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
     GameEventType.SET_LASER: ['laser_path', 'active_colour'],
+    GameEventType.TIMER_END: ['active_colour'],
     SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour'],
     SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK: ['colour'],
     SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK: ['colour'],

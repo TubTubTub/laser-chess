@@ -1,6 +1,6 @@
 from data.widgets import *
 from data.components.custom_event import CustomEvent
-from data.constants import GameEventType, RotationDirection
+from data.constants import GameEventType, RotationDirection, Colour
 from data.assets import GRAPHICS
 
 GAME_WIDGETS_PVC = {
@@ -53,12 +53,16 @@ GAME_WIDGETS_PVC = {
     'blue_timer':
     Timer(
         relative_position=(0.1, 0.1),
-        start_mins=10.1
+        start_mins=10.1,
+        active_colour=Colour.BLUE,
+        event_type=GameEventType.TIMER_END,
     ),
     'red_timer':
     Timer(
-        relative_position=(0.1, 0.1),
-        start_mins=10.1
+        relative_position=(0.1, 0.3),
+        start_mins=10.1,
+        active_colour=Colour.RED,
+        event_type=GameEventType.TIMER_END,
     ),
 }
 
@@ -78,7 +82,21 @@ GAME_WIDGETS_PVP = {
             icon=GRAPHICS['anticlockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
         )
-    ]
+    ],
+    'blue_timer':
+    Timer(
+        relative_position=(0.1, 0.1),
+        start_mins=10.1,
+        active_colour=Colour.BLUE,
+        event_type=GameEventType.TIMER_END,
+    ),
+    'red_timer':
+    Timer(
+        relative_position=(0.1, 0.3),
+        start_mins=10.1,
+        active_colour=Colour.RED,
+        event_type=GameEventType.TIMER_END,
+    ),
 }
 
 PAUSE_WIDGETS = {

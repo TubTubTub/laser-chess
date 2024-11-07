@@ -1,15 +1,16 @@
 from data.utils.asset_helpers import scale_and_cache
+
 class AnimationManager:
     def __init__(self):
         self._current_ms = 0
         self._timers = []
     
-    def set_current_ms(self, current_ms):
-        self._current_ms = current_ms
+    def add_delta_time(self, delta_time):
+        self._current_ms += delta_time
 
         for timer in self._timers:
             start_ms, target_ms, callback = timer
-            if current_ms - start_ms >= target_ms:
+            if self._current_ms - start_ms >= target_ms:
                 callback()
                 self._timers.remove(timer)
 
@@ -28,6 +29,5 @@ class AnimationManager:
     
     def set_timer(self, target_ms, callback):
         self._timers.append((self._current_ms, target_ms, callback))
-
 
 animation = AnimationManager()

@@ -3,6 +3,7 @@ from pygame._sdl2 import Window
 from data.components.animation import animation
 
 FPS = 60
+start_ticks = pygame.time.get_ticks()
 
 class Control:
     def __init__(self):
@@ -11,6 +12,7 @@ class Control:
         self.clock = pygame.time.Clock()
         """temp for fps display counter"""
         self.font = pygame.font.SysFont("Arial" , 18 , bold = True)
+        self._int = '0'
     
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
@@ -35,11 +37,19 @@ class Control:
         elif self.state.done:
             self.flip_state()
 
-        current_time = pygame.time.get_ticks()
-        delta_time = self.clock.tick(FPS) / 1000.0
+        # current_time = pygame.time.get_ticks()
+        delta_time = self.clock.tick(FPS)
+        animation.add_delta_time(self.clock.tick(FPS))
 
         self.state.update()
-        animation.set_current_ms(current_time)
+
+        test = pygame.time.get_ticks()
+        elapsed = test - start_ticks
+        if elapsed > 10000:
+            elapsed -= 10000
+        if str(elapsed)[0] != self._int:
+            print(self._int)
+            self._int = str(elapsed)[0]
         
         self.draw_fps()
         pygame.display.update()

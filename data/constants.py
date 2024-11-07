@@ -42,6 +42,7 @@ class GameEventType(StrEnum):
     SET_LASER = auto()
     RESIGN_CLICK = auto()
     DRAW_CLICK = auto()
+    TIMER_END = auto()
 
 class MenuEventType(StrEnum):
     CONFIG_CLICK = auto()
