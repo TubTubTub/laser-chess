@@ -37,19 +37,10 @@ class Control:
         elif self.state.done:
             self.flip_state()
 
-        # current_time = pygame.time.get_ticks()
-        delta_time = self.clock.tick(FPS)
-        animation.add_delta_time(self.clock.tick(FPS))
+        self.clock.tick(FPS)
+        animation.set_delta_time()
 
         self.state.update()
-
-        test = pygame.time.get_ticks()
-        elapsed = test - start_ticks
-        if elapsed > 10000:
-            elapsed -= 10000
-        if str(elapsed)[0] != self._int:
-            print(self._int)
-            self._int = str(elapsed)[0]
         
         self.draw_fps()
         pygame.display.update()

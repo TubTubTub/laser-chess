@@ -1,12 +1,15 @@
+import pygame
 from data.utils.asset_helpers import scale_and_cache
+
+FPS = 60
 
 class AnimationManager:
     def __init__(self):
         self._current_ms = 0
         self._timers = []
     
-    def add_delta_time(self, delta_time):
-        self._current_ms += delta_time
+    def set_delta_time(self):
+        self._current_ms = pygame.time.get_ticks()
 
         for timer in self._timers:
             start_ms, target_ms, callback = timer

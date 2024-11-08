@@ -9,10 +9,12 @@ class Timer(Text):
         self._active_colour = active_colour
         self._event_type = event_type
         super().__init__(text=self.format_to_text(), **kwargs)
-
+        animation.set_timer(1000, self.decrement_second)
     
     def set_active(self, is_active):
         self._active = is_active
+        if self._active:
+            animation.set_timer(1000, self.decrement_second)
     
     def reset_time(self):
         self._text = self.format_to_text()
@@ -21,17 +23,13 @@ class Timer(Text):
         self._text = 'something'
     
     def decrement_second(self):
-        animation.set_timer(1000, self.decrement_second)
-
         if self._active:
-            print('decrementing')
             self._current_ms = self._current_ms - 1000
-            if self._current_ms <= 0:
-                self._current_ms = 0
-            
             self._text = self.format_to_text()
             self.set_image()
             self.set_geometry()
+
+            animation.set_timer(1000, self.decrement_second)
 
     def format_to_text(self):
         raw_seconds = self._current_ms / 1000

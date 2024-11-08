@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, GameState, LaserType, OVERLAY_COLOUR
+from data.constants import GameEventType, GameState, LaserType, Colour, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
@@ -18,6 +18,7 @@ class GameView:
             GameEventType.UPDATE_PIECES: self.handle_update_pieces,
             GameEventType.REMOVE_PIECE: self.handle_remove_piece,
             GameEventType.SET_LASER: self.handle_set_laser,
+            GameEventType.PAUSE_CLICK: self.handle_pause,
         }
 
         self._model.register_listener(self.process_model_event, 'game')
@@ -102,8 +103,20 @@ class GameView:
 
         self.states[GameState.LASER_FIRING] = True
     
+    def handle_pause(self, event):
+        is_active = not(self._model.states['PAUSED'])
+        self.toggle_timer(event.active_colour, is_active)
+    
     def handle_widget_click(self, event):
         raise NotImplementedError
+
+    def toggle_timer(self, colour, is_active):
+        if colour == Colour.BLUE:
+            GAME_WIDGETS_PVP['blue_timer'].set_active(is_active)
+            GAME_WIDGETS_PVC['blue_timer'].set_active(is_active)
+        else:
+            GAME_WIDGETS_PVP['red_timer'].set_active(is_active)
+            GAME_WIDGETS_PVC['red_timer'].set_active(is_active)
 
     def draw_board(self):
         self._screen.blit(self._board_surface, self._board_position)

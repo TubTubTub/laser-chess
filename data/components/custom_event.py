@@ -4,7 +4,7 @@ required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
     GameEventType.REMOVE_PIECE: ['coords_to_remove'],
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
-    GameEventType.SET_LASER: ['laser_path', 'active_colour'],
+    GameEventType.SET_LASER: ['laser_path', 'active_colour', 'has_hit'],
     GameEventType.TIMER_END: ['active_colour'],
     SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour'],
     SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK: ['colour'],
@@ -29,6 +29,10 @@ class CustomEvent():
             for required_arg in required_args[event_type]:
                 if required_arg not in kwargs:
                     raise ValueError(f"Argument '{required_arg}' required for {event_type.name} event (GameEvent.create_event)")
+
+            for kwarg in kwargs:
+                if kwarg not in required_args[event_type]:
+                    raise ValueError(f"Argument '{kwarg}' not included in required_args dictionary for event '{event_type}'! (GameEvent.create_event)")
             
             return event_cls(event_type, **kwargs)
 

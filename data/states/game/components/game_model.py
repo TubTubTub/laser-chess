@@ -28,6 +28,7 @@ class GameModel:
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
+            'ACTIVE_COLOUR': Colour.BLUE, // ADD ACTiVE_COLOUR STATE
         }
         
         print('GAME CONFIG:', json.dumps(self.states, indent=4))
@@ -53,7 +54,7 @@ class GameModel:
                         for listener in listeners: listener(event)
                 
                 case GameEventType.PAUSE_CLICK:
-                    if parent_class == 'pause':
+                    if parent_class in ['pause', 'game']:
                         for listener in listeners:
                             listener(event)
 
