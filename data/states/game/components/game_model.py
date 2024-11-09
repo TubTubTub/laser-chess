@@ -62,10 +62,9 @@ class GameModel:
                 case _:
                     raise Exception('Unhandled alert type (GameModel.alert_listeners)')
     
-    def set_winner(self, colour=None):
-        if colour is None:
+    def set_winner(self, colour=None, force_active_colour=False):
+        if force_active_colour:
             colour = self.states['ACTIVE_COLOUR']
-        
         self.states['WINNER'] = colour
     
     def toggle_paused(self):
@@ -156,8 +155,10 @@ class Board:
     def check_win(self):
         for colour in Colour:
             if self.get_all_valid_squares(colour) == EMPTY_BB:
+                print(colour.get_flipped_colour(), '(Board.check_win) Returning')
                 return colour.get_flipped_colour()
             elif self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
+                print(colour.get_flipped_colour(), '(Board.check_win) Returning')
                 return colour.get_flipped_colour()
 
         return None

@@ -13,7 +13,7 @@ class GameController:
         self._to_menu = to_menu
         self._to_new_game = to_new_game
 
-        self._view.initialise_timers(end_callback=self._model.set_winner)
+        self._view.initialise_timers(end_callback=lambda: self._model.set_winner(force_active_colour=True))
     
     def handle_event(self, event):
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
@@ -141,6 +141,6 @@ class GameController:
     def check_game_over(self):
         winner = self._model.states['WINNER']
         if winner is not None:
-            print('\n(GameController.check_game_over) Handling game end!')
+            print('\n(GameController.check_game_over) Handling game end!', winner.name)
             self._view.toggle_timer(Colour.BLUE, False)
             self._view.toggle_timer(Colour.RED, False)
