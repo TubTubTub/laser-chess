@@ -62,6 +62,12 @@ class GameModel:
                 case _:
                     raise Exception('Unhandled alert type (GameModel.alert_listeners)')
     
+    def set_winner(self, colour=None):
+        if colour is None:
+            colour = self.states['ACTIVE_COLOUR']
+        
+        self.states['WINNER'] = colour
+    
     def toggle_paused(self):
         self.states['PAUSED'] = not self.states['PAUSED']
         game_event = CustomEvent.create_event(GameEventType.PAUSE_CLICK)
@@ -81,8 +87,8 @@ class GameModel:
     def make_move(self, move):
         laser_result = self._board.apply_move(move)
         
-        self.states['WINNER'] = self._board.check_win()
         self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
+        self.set_winner(self._board.check_win())
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES))
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')

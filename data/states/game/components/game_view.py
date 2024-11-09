@@ -117,11 +117,16 @@ class GameView:
     def handle_widget_click(self, event):
         raise NotImplementedError
     
-    def initialise_timers(self):
+    def initialise_timers(self, end_callback):
         GAME_WIDGETS_PVP['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
         GAME_WIDGETS_PVC['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
         GAME_WIDGETS_PVP['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
         GAME_WIDGETS_PVC['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+
+        GAME_WIDGETS_PVP['blue_timer'].register_end_callback(end_callback)
+        GAME_WIDGETS_PVC['blue_timer'].register_end_callback(end_callback)
+        GAME_WIDGETS_PVP['red_timer'].register_end_callback(end_callback)
+        GAME_WIDGETS_PVC['red_timer'].register_end_callback(end_callback)
 
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
 

@@ -13,13 +13,13 @@ class GameController:
         self._to_menu = to_menu
         self._to_new_game = to_new_game
 
-        self._view.initialise_timers()
+        self._view.initialise_timers(end_callback=self._model.set_winner)
     
     def handle_event(self, event):
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
             if self._model.states['PAUSED']:
                 self.handle_pause_event(event)
-            elif self._model.states['WINNER'] is not None: // MAKE GAME STOP WHEN TIMER REACHES 0
+            elif self._model.states['WINNER'] is not None:
                 self.handle_winner_event(event)
             else:
                 self.handle_game_event(event)
@@ -81,13 +81,13 @@ class GameController:
             
             case GameEventType.RESIGN_CLICK:
                 print('RESINGING')
-                self._model.states['WINNER'] = self._model.states['ACTIVE_COLOUR'].get_flipped_colour()
+                self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
                 self.check_game_over()
                 return
                 
             case GameEventType.DRAW_CLICK:
                 print('DRAWING')
-                self._model.states['WINNER'] = 'draw'
+                self._model.set_winner('draw')
                 self.check_game_over()
                 return
             
