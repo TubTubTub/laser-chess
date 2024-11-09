@@ -127,7 +127,7 @@ class CPU:
         try:
             score = self.minimax(self._board, self._depth, -PieceScore.INFINITE, PieceScore.INFINITE, False, stop_event)
             print('\nEvaluation:', score)
-            print('\nBest move:', self._best_move)
+            print('\nBest move:', self._best_move) # No bit_length bug as None type returned, so Move __str__ called on NoneType I think (just deal with None being returned)
             print('\nNumber of iterations:', self.turns)
             callback(self._best_move)
             game_states['AWAITING_CPU'] = False

@@ -20,7 +20,6 @@ class GameView:
             GameEventType.SET_LASER: self.handle_set_laser,
             GameEventType.PAUSE_CLICK: self.handle_pause,
         }
-
         self._model.register_listener(self.process_model_event, 'game')
         
         self._board_size = self.calculate_board_size()
@@ -31,7 +30,7 @@ class GameView:
         self._cursor = Cursor()
 
         self._piece_group = PieceGroup()
-        self.handle_update_pieces()
+        self.handle_update_pieces(toggle_timers=False)
 
         if self._model.states['CPU_ENABLED']:
             self._widget_group = WidgetGroup(GAME_WIDGETS_PVC)
@@ -67,9 +66,17 @@ class GameView:
         self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (square_size, square_size))
         self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (square_size, square_size))
     
-    def handle_update_pieces(self, event=None):
+    def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
         self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
+
+        if self._model.states['WINNER']:
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
+
+        elif toggle_timers:
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
     
     def handle_remove_piece(self, event):
         self._piece_group.remove_piece(event.coords_to_remove)
@@ -99,24 +106,36 @@ class GameView:
 
         self._laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
         self._laser_start_ticks = pygame.time.get_ticks()
-        self._laser_colour = event.active_colour
+        self._laser_colour = self._model.states['ACTIVE_COLOUR'].get_flipped_colour()
 
         self.states[GameState.LASER_FIRING] = True
     
     def handle_pause(self, event):
         is_active = not(self._model.states['PAUSED'])
-        self.toggle_timer(event.active_colour, is_active)
+        self.toggle_timer(self._model.states['ACTIVE_COLOUR'], is_active)
     
     def handle_widget_click(self, event):
         raise NotImplementedError
+    
+    def initialise_timers(self):
+        GAME_WIDGETS_PVP['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+        GAME_WIDGETS_PVC['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+        GAME_WIDGETS_PVP['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+        GAME_WIDGETS_PVC['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+
+        self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
 
     def toggle_timer(self, colour, is_active):
         if colour == Colour.BLUE:
-            GAME_WIDGETS_PVP['blue_timer'].set_active(is_active)
-            GAME_WIDGETS_PVC['blue_timer'].set_active(is_active)
+            if GAME_WIDGETS_PVP['blue_timer'].get_active() != is_active:
+                GAME_WIDGETS_PVP['blue_timer'].set_active(is_active)
+            if GAME_WIDGETS_PVC['blue_timer'].get_active() != is_active:
+                GAME_WIDGETS_PVC['blue_timer'].set_active(is_active)
         else:
-            GAME_WIDGETS_PVP['red_timer'].set_active(is_active)
-            GAME_WIDGETS_PVC['red_timer'].set_active(is_active)
+            if GAME_WIDGETS_PVP['red_timer'].get_active() != is_active:
+                GAME_WIDGETS_PVP['red_timer'].set_active(is_active)
+            if GAME_WIDGETS_PVC['red_timer'].get_active() != is_active:
+                GAME_WIDGETS_PVC['red_timer'].set_active(is_active)
 
     def draw_board(self):
         self._screen.blit(self._board_surface, self._board_position)
@@ -184,7 +203,7 @@ class GameView:
         try:
             self._event_to_func_map.get(event.type)(event)
         except:
-            raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event)
+            raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event.type)
 
     def calculate_board_size(self):
         '''Returns board size based on screen parameter'''

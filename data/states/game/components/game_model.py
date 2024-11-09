@@ -8,7 +8,7 @@ from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
 from data.states.game.components.cpu import CPU
 
-from copy import deepcopy
+# from copy import deepcopy
 import threading
 import json
 
@@ -28,7 +28,8 @@ class GameModel:
             'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
-            'ACTIVE_COLOUR': Colour.BLUE, // ADD ACTiVE_COLOUR STATE
+            'ACTIVE_COLOUR': Colour.BLUE,
+            'TIME': game_config['TIME']
         }
         
         print('GAME CONFIG:', json.dumps(self.states, indent=4))
@@ -42,7 +43,7 @@ class GameModel:
         for parent_class, listeners in self._listeners.items():
             match event.type:
                 case GameEventType.UPDATE_PIECES:
-                    if parent_class == 'game':
+                    if parent_class in 'game':
                         for listener in listeners: listener(event)
                 
                 case GameEventType.REMOVE_PIECE:
@@ -81,6 +82,7 @@ class GameModel:
         laser_result = self._board.apply_move(move)
         
         self.states['WINNER'] = self._board.check_win()
+        self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES))
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
@@ -89,10 +91,9 @@ class GameModel:
             coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
             self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
 
-        active_colour = self._board.get_active_colour()
         has_hit = laser_result.hit_square_bitboard != EMPTY_BB
 
-        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, active_colour=active_colour, has_hit=has_hit))
+        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, has_hit=has_hit))
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
@@ -111,15 +112,6 @@ class GameModel:
     
     def get_board(self):
         return self._board
-
-    def make_resign(self):
-        active_colour = self._board.get_active_colour()
-        print('RESIGNING GAME:', active_colour.name)
-        self.states['WINNER'] = active_colour
-    
-    def make_draw(self):
-        print('DRAWING GAME')
-        self.states['WINNER'] = 'draw'
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):

@@ -31,9 +31,6 @@ class Game(_State):
         self.win_view = WinView(self.model)
         self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, binded_startup)
 
-        GAME_WIDGETS_PVP['blue_timer'].set_active(True)
-        GAME_WIDGETS_PVC['blue_timer'].set_active(True)
-
         self.view.draw()
         print('starting game.py')
     

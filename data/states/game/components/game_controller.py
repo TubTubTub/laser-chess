@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, MoveType
+from data.constants import GameEventType, MoveType, Colour
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.components.move import Move
 
@@ -12,12 +12,14 @@ class GameController:
 
         self._to_menu = to_menu
         self._to_new_game = to_new_game
+
+        self._view.initialise_timers()
     
     def handle_event(self, event):
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
             if self._model.states['PAUSED']:
                 self.handle_pause_event(event)
-            elif self._model.states['WINNER'] is not None:
+            elif self._model.states['WINNER'] is not None: // MAKE GAME STOP WHEN TIMER REACHES 0
                 self.handle_winner_event(event)
             else:
                 self.handle_game_event(event)
@@ -79,12 +81,14 @@ class GameController:
             
             case GameEventType.RESIGN_CLICK:
                 print('RESINGING')
-                self._model.make_resign()
+                self._model.states['WINNER'] = self._model.states['ACTIVE_COLOUR'].get_flipped_colour()
+                self.check_game_over()
                 return
                 
             case GameEventType.DRAW_CLICK:
                 print('DRAWING')
-                self._model.make_draw()
+                self._model.states['WINNER'] = 'draw'
+                self.check_game_over()
                 return
             
             case _:
@@ -137,4 +141,6 @@ class GameController:
     def check_game_over(self):
         winner = self._model.states['WINNER']
         if winner is not None:
-            print(winner.name, 'WON')
+            print('\n(GameController.check_game_over) Handling game end!')
+            self._view.toggle_timer(Colour.BLUE, False)
+            self._view.toggle_timer(Colour.RED, False)
