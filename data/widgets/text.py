@@ -69,6 +69,12 @@ class Text(_Widget): # Pure text
     @property
     def _border_radius(self):
         return self._relative_border_radius * self._screen_size[1]
+
+    def update_text(self, new_text):
+        print('UPADITNG', new_text)
+        self._text = new_text
+        self.set_image()
+        self.set_geometry()
     
     def set_image(self):
         text_surface = pygame.transform.scale(self._empty_surface, self._size)

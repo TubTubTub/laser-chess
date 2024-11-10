@@ -48,11 +48,11 @@ GAME_WIDGETS_PVC = {
             border_radius=0,
             margin=0,
             icon=GRAPHICS['draw']
-        ),
+        )
     ],
     'blue_timer':
     Timer(
-        relative_position=(0.1, 0.1),
+        relative_position=(0.02, 0.18),
         active_colour=Colour.BLUE,
         event_type=GameEventType.TIMER_END,
     ),
@@ -62,6 +62,14 @@ GAME_WIDGETS_PVC = {
         active_colour=Colour.RED,
         event_type=GameEventType.TIMER_END,
     ),
+    'status_text':
+    Text(
+        relative_position=(0.3, 0.06),
+        font_size=40,
+        margin=10,
+        text="",
+        minimum_width=400
+    )
 }
 
 GAME_WIDGETS_PVP = {
@@ -113,18 +121,26 @@ GAME_WIDGETS_PVP = {
     ],
     'blue_timer':
     Timer(
-        relative_position=(0.1, 0.1),
+        relative_position=(0.02, 0.18),
         start_mins=10.1,
         active_colour=Colour.BLUE,
         event_type=GameEventType.TIMER_END,
     ),
     'red_timer':
     Timer(
-        relative_position=(0.1, 0.3),
+        relative_position=(0.02, 0.62),
         start_mins=10.1,
         active_colour=Colour.RED,
         event_type=GameEventType.TIMER_END,
     ),
+    'status_text':
+    Text(
+        relative_position=(0.3, 0.06),
+        font_size=40,
+        margin=10,
+        text="",
+        minimum_width=400
+    )
 }
 
 PAUSE_WIDGETS = {

@@ -25,7 +25,6 @@ class GameModel:
             'CPU_ENABLED': game_config['CPU_ENABLED'],
             'CPU_DEPTH': game_config['CPU_DEPTH'],
             'AWAITING_CPU': False,
-            'STATUS_TEXT': self._board.get_active_colour().name,
             'WINNER': None,
             'PAUSED': False,
             'ACTIVE_COLOUR': Colour.BLUE,

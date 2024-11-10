@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, GameState, LaserType, Colour, OVERLAY_COLOUR
+from data.constants import GameEventType, GameState, LaserType, Colour, StatusText, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
@@ -32,6 +32,8 @@ class GameView:
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
+        self.set_status_text(StatusText.PLAYER_MOVE)
+
         if self._model.states['CPU_ENABLED']:
             self._widget_group = WidgetGroup(GAME_WIDGETS_PVC)
         else:
@@ -51,8 +53,23 @@ class GameView:
         self._laser_colour = None
 
         self.states = {
-            GameState.LASER_FIRING: False
+            GameState.LASER_FIRING: False,
         }
+    
+    def set_status_text(self, status):
+        match status:
+            case StatusText.PLAYER_MOVE:
+                GAME_WIDGETS_PVC['status_text'].update_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
+                GAME_WIDGETS_PVP['status_text'].update_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
+            case StatusText.CPU_MOVE:
+                GAME_WIDGETS_PVC['status_text'].update_text(f"CPU calculating a crazy move...")
+                GAME_WIDGETS_PVP['status_text'].update_text(f"CPU calculating a crazy move...")
+            case StatusText.WIN:
+                GAME_WIDGETS_PVC['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
+                GAME_WIDGETS_PVP['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
+            case StatusText.DRAW:
+                GAME_WIDGETS_PVC['status_text'].update_text(f"Game is a draw! Boring...")
+                GAME_WIDGETS_PVP['status_text'].update_text(f"Game is a draw! Boring...")
     
     def handle_resize(self, resize_end=False):
         self._board_size = self.calculate_board_size()
@@ -70,9 +87,18 @@ class GameView:
         piece_list = self._model.get_piece_list()
         self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
 
+        if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
+            self.set_status_text(StatusText.PLAYER_MOVE)
+        elif self._model.states['CPU_ENABLED'] is False:
+            self.set_status_text(StatusText.PLAYER_MOVE)
+        else:
+            self.set_status_text(StatusText.CPU_MOVE)
+
         if self._model.states['WINNER']:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
+
+            self.set_status_text(StatusText.WIN)
 
         elif toggle_timers:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)

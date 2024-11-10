@@ -20,7 +20,6 @@ class Timer(Text):
     def set_active(self, is_active):
         self._active = is_active
         if self._active:
-            print('setting')
             animation.set_timer(1000, self.decrement_second)
     
     def set_time(self, milliseconds):

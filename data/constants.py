@@ -25,6 +25,12 @@ class WidgetState(StrEnum):
     HOVER = auto()
     PRESS = auto()
 
+class StatusText(StrEnum):
+    PLAYER_MOVE = auto()
+    CPU_MOVE = auto()
+    WIN = auto()
+    DRAW = auto()
+
 class GameState(IntEnum):
     LASER_FIRING = 0
 

@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, MoveType, Colour
+from data.constants import GameEventType, MoveType, Colour, StatusText
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.components.move import Move
 
@@ -82,12 +82,14 @@ class GameController:
             case GameEventType.RESIGN_CLICK:
                 print('RESINGING')
                 self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
+                self._view.set_status_text(StatusText.WIN)
                 self.check_game_over()
                 return
                 
             case GameEventType.DRAW_CLICK:
                 print('DRAWING')
-                self._model.set_winner('draw')
+                self._model.set_winner(Colour.BLUE) # TEMP, SHOULD BE DRA
+                self._view.set_status_text(StatusText.DRAW)
                 self.check_game_over()
                 return
             
