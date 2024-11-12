@@ -109,8 +109,6 @@ class TextInput(_Pressable, Text):
         test_size = self._relative_font_size * self._screen_size[1] + 1
         box_size = self._size[0] - 2 * self._border_width
         ideal_font_size = self.calculate_font_size()
-        print(ideal_font_size, 'wow')
-        print(self._relative_font_size, 'wwo2')
 
         if self._font.get_rect(text=self._text, size=self._font_size).width < self._size[0]:
             if self._relative_font_size >= ideal_font_size:

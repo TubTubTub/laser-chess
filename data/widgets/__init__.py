@@ -11,6 +11,7 @@ from data.widgets.colour_button import ColourButton
 from data.widgets.text_button import TextButton
 from data.widgets.icon_button import IconButton
 from data.widgets.text_input import TextInput
+from data.widgets.rectangle import Rectangle
 from data.widgets.dropdown import Dropdown
 from data.widgets.carousel import Carousel
 from data.widgets.switch import Switch
@@ -18,4 +19,4 @@ from data.widgets.timer import Timer
 from data.widgets.text import Text
 from data.widgets.icon import Icon
 
-__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer']
+__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle']

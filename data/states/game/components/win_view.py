@@ -1,9 +1,8 @@
 import pygame
-from data.constants import GameEventType
+from data.constants import Colour, Miscellaneous
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
 from data.components.cursor import Cursor
-from data.components.custom_event import CustomEvent
 
 class WinView:
     def __init__(self, model):
@@ -20,6 +19,16 @@ class WinView:
     
     def draw(self):
         if self._model.states['WINNER'] is not None:
+            if self._model.states['WINNER'] == Colour.BLUE:
+                WIN_WIDGETS['red_trophy'].kill()
+                WIN_WIDGETS['draw_trophy'].kill()
+            elif self._model.states['WINNER'] == Colour.RED:
+                WIN_WIDGETS['blue_trophy'].kill()
+                WIN_WIDGETS['draw_trophy'].kill()
+            elif self._model.states['WINNER'] == Miscellaneous.DRAW:
+                WIN_WIDGETS['red_trophy'].kill()
+                WIN_WIDGETS['blue_trophy'].kill()
+        
             self._widget_group.draw(self._screen)
     
     # def process_model_event(self, event):

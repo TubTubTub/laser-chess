@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget
 from data.widgets.icon_button import IconButton
 from data.components.circular_linked_list import CircularLinkedList
 from data.assets import GRAPHICS
-from data.constants import MiscellaneousEventType
+from data.constants import Miscellaneous
 from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
@@ -26,8 +26,8 @@ class Carousel(_Widget):
         self._relative_margin = margin / self._screen_size[1]
         self._relative_size = ((max_widget_size[0] + 2 * (self._margin + self._arrow_size[0])) / self._screen_size[1], (max_widget_size[1]) / self._screen_size[1])
 
-        self._left_arrow = IconButton(MiscellaneousEventType.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
-        self._right_arrow = IconButton(MiscellaneousEventType.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+        self._left_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+        self._right_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
 
         self._event_type = event_type
 

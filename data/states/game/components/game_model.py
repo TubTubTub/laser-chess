@@ -28,6 +28,7 @@ class GameModel:
             'WINNER': None,
             'PAUSED': False,
             'ACTIVE_COLOUR': Colour.BLUE,
+            'TIME_ENABLED': game_config['TIME_ENABLED'],
             'TIME': game_config['TIME']
         }
         

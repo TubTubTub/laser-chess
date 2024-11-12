@@ -1,6 +1,5 @@
 from data.widgets.text import Text
 from data.components.animation import animation
-from data.components.custom_event import CustomEvent
 
 class Timer(Text):
     def __init__(self, active_colour, event_type, start_mins=60, **kwargs):

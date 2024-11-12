@@ -144,17 +144,23 @@ class GameView:
         raise NotImplementedError
     
     def initialise_timers(self, end_callback):
-        GAME_WIDGETS_PVP['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-        GAME_WIDGETS_PVC['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-        GAME_WIDGETS_PVP['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-        GAME_WIDGETS_PVC['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+        if self._model.states['TIME_ENABLED'] is False:
+            GAME_WIDGETS_PVP['blue_timer'].kill()
+            GAME_WIDGETS_PVC['blue_timer'].kill()
+            GAME_WIDGETS_PVP['red_timer'].kill()
+            GAME_WIDGETS_PVC['red_timer'].kill()
+        else:
+            GAME_WIDGETS_PVP['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+            GAME_WIDGETS_PVC['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+            GAME_WIDGETS_PVP['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+            GAME_WIDGETS_PVC['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
 
-        GAME_WIDGETS_PVP['blue_timer'].register_end_callback(end_callback)
-        GAME_WIDGETS_PVC['blue_timer'].register_end_callback(end_callback)
-        GAME_WIDGETS_PVP['red_timer'].register_end_callback(end_callback)
-        GAME_WIDGETS_PVC['red_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS_PVP['blue_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS_PVC['blue_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS_PVP['red_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS_PVC['red_timer'].register_end_callback(end_callback)
 
-        self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
 
     def toggle_timer(self, colour, is_active):
         if colour == Colour.BLUE:
@@ -275,8 +281,8 @@ class GameView:
 
             return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=(int(x), int(y)))
 
-        # elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
-        #     return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
+        elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
+            return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
 
         return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
 

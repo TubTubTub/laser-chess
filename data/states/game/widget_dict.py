@@ -6,14 +6,14 @@ from data.assets import GRAPHICS
 GAME_WIDGETS_PVC = {
     'default': [
         IconButton(
-            relative_position=(0.44, 0.85),
+            relative_position=(0.52, 0.85),
             size=(60, 60),
             margin=10,
             icon=GRAPHICS['clockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
         ),
         IconButton(
-            relative_position=(0.52, 0.85),
+            relative_position=(0.44, 0.85),
             size=(60, 60),
             margin=10,
             icon=GRAPHICS['anticlockwise_arrow'],
@@ -75,14 +75,14 @@ GAME_WIDGETS_PVC = {
 GAME_WIDGETS_PVP = {
     'default': [
         IconButton(
-            relative_position=(0.44, 0.85),
+            relative_position=(0.52, 0.85),
             size=(60, 60),
             margin=10,
             icon=GRAPHICS['clockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
         ),
         IconButton(
-            relative_position=(0.52, 0.85),
+            relative_position=(0.44, 0.85),
             size=(60, 60),
             margin=10,
             icon=GRAPHICS['anticlockwise_arrow'],
@@ -122,14 +122,12 @@ GAME_WIDGETS_PVP = {
     'blue_timer':
     Timer(
         relative_position=(0.02, 0.18),
-        start_mins=10.1,
         active_colour=Colour.BLUE,
         event_type=GameEventType.TIMER_END,
     ),
     'red_timer':
     Timer(
         relative_position=(0.02, 0.62),
-        start_mins=10.1,
         active_colour=Colour.RED,
         event_type=GameEventType.TIMER_END,
     ),
@@ -146,14 +144,14 @@ GAME_WIDGETS_PVP = {
 PAUSE_WIDGETS = {
     'default': [
         TextButton(
-            relative_position=(0.5, 0.2),
+            relative_position=(0.36, 0.3),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
             font_size=50,
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
-            relative_position=(0.5, 0.4),
+            relative_position=(0.35, 0.5),
             text='RESUME GAME',
             text_colour=(255, 0, 0),
             font_size=50,
@@ -164,19 +162,48 @@ PAUSE_WIDGETS = {
 
 WIN_WIDGETS = {
     'default': [
+        Rectangle(
+            relative_position=(0.3, 0.25),
+            size=(450, 210),
+            fill_colour=(128, 128, 128, 200),
+        ),
         TextButton(
-            relative_position=(0.5, 0.2),
+            relative_position=(0.5, 0.27),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
             font_size=50,
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
-            relative_position=(0.5, 0.4),
+            relative_position=(0.5, 0.43),
             text='NEW GAME',
             text_colour=(255, 0, 0),
             font_size=50,
             event=CustomEvent(GameEventType.GAME_CLICK)
-        )
-    ]
+        ),
+    ],
+    'blue_trophy':
+    Icon(
+        relative_position=(0.3, 0.26),
+        size=(200, 200),
+        margin=0,
+        icon=GRAPHICS['blue_trophy'],
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'red_trophy':
+    Icon(
+        relative_position=(0.3, 0.26),
+        size=(200, 200),
+        margin=0,
+        icon=GRAPHICS['red_trophy'],
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'draw_trophy':
+    Icon(
+        relative_position=(0.3, 0.26),
+        size=(200, 200),
+        margin=0,
+        icon=GRAPHICS['hug'],
+        fill_colour=(0, 0, 0, 0),
+    )
 }

@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget
 from data.assets import FONTS
 
 class Text(_Widget): # Pure text
-    def __init__(self, relative_position, text, text_colour=(100, 100, 100), center=True, minimum_width=None, font=FONTS['default'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
+    def __init__(self, relative_position, text, text_colour=(100, 100, 100), center=True, minimum_width=0, font=FONTS['default'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
@@ -19,7 +19,7 @@ class Text(_Widget): # Pure text
         self._relative_border_radius = border_radius / self._screen_size[1]
         
         self._center = center
-        self._minimum_width = minimum_width
+        self._relative_minimum_width = minimum_width / self._screen_size[1]
 
         self._fill_colour = fill_colour
 
@@ -70,8 +70,11 @@ class Text(_Widget): # Pure text
     def _border_radius(self):
         return self._relative_border_radius * self._screen_size[1]
 
+    @property
+    def _minimum_width(self):
+        return self._relative_minimum_width * self._screen_size[1]
+
     def update_text(self, new_text):
-        print('UPADITNG', new_text)
         self._text = new_text
         self.set_image()
         self.set_geometry()

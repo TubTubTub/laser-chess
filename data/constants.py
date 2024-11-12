@@ -17,8 +17,9 @@ GAME_WIDGETS = {
     'anticlockwise': 0
 }
 
-class MiscellaneousEventType(StrEnum):
-    PLACEHOLDER = 'literally anything lol'
+class Miscellaneous(StrEnum):
+    PLACEHOLDER = auto()
+    DRAW = auto()
 
 class WidgetState(StrEnum):
     BASE = auto()
