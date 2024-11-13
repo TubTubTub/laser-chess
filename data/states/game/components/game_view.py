@@ -7,7 +7,7 @@ from data.components.cursor import Cursor
 from data.utils.settings_helpers import get_user_settings
 from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.assets import GRAPHICS
-from data.states.game.widget_dict import GAME_WIDGETS_PVC, GAME_WIDGETS_PVP
+from data.states.game.widget_dict import GAME_WIDGETS
 
 class GameView:
     def __init__(self, model):
@@ -21,11 +21,10 @@ class GameView:
             GameEventType.PAUSE_CLICK: self.handle_pause,
         }
         self._model.register_listener(self.process_model_event, 'game')
-        
-        self._board_size = self.calculate_board_size()
-        self._board_position = self.calculate_board_position()
-        self._board_surface = create_board(self._board_size, self._user_settings['primaryBoardColour'], self._user_settings['secondaryBoardColour'])
-        self._board_unscaled = self._board_surface.copy() # surface glitches if scaling in place
+
+        self._board_size = GAME_WIDGETS['chessboard'].get_size()
+        self._board_position = GAME_WIDGETS['chessboard'].get_position()
+        self._square_size = self._board_size[0] / 10
 
         self._cursor = Cursor()
 
@@ -34,17 +33,13 @@ class GameView:
 
         self.set_status_text(StatusText.PLAYER_MOVE)
 
-        if self._model.states['CPU_ENABLED']:
-            self._widget_group = WidgetGroup(GAME_WIDGETS_PVC)
-        else:
-            self._widget_group = WidgetGroup(GAME_WIDGETS_PVP)
+        self._widget_group = WidgetGroup(GAME_WIDGETS)
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
 
-        square_size = self._board_size[0] / 10
-        self._circle_overlay = create_circle_overlay(square_size, OVERLAY_COLOUR)
-        self._square_overlay = create_square_overlay(square_size, OVERLAY_COLOUR)
+        self._circle_overlay = create_circle_overlay(self._square_size, OVERLAY_COLOUR)
+        self._square_overlay = create_square_overlay(self._square_size, OVERLAY_COLOUR)
         self._circle_overlay_unscaled = self._circle_overlay.copy()
         self._square_overlay_unscaled = self._square_overlay.copy()
 
@@ -59,29 +54,24 @@ class GameView:
     def set_status_text(self, status):
         match status:
             case StatusText.PLAYER_MOVE:
-                GAME_WIDGETS_PVC['status_text'].update_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
-                GAME_WIDGETS_PVP['status_text'].update_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
+                GAME_WIDGETS['status_text'].update_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
             case StatusText.CPU_MOVE:
-                GAME_WIDGETS_PVC['status_text'].update_text(f"CPU calculating a crazy move...")
-                GAME_WIDGETS_PVP['status_text'].update_text(f"CPU calculating a crazy move...")
+                GAME_WIDGETS['status_text'].update_text(f"CPU calculating a crazy move...")
             case StatusText.WIN:
-                GAME_WIDGETS_PVC['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
-                GAME_WIDGETS_PVP['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
+                GAME_WIDGETS['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
             case StatusText.DRAW:
-                GAME_WIDGETS_PVC['status_text'].update_text(f"Game is a draw! Boring...")
-                GAME_WIDGETS_PVP['status_text'].update_text(f"Game is a draw! Boring...")
+                GAME_WIDGETS['status_text'].update_text(f"Game is a draw! Boring...")
     
     def handle_resize(self, resize_end=False):
-        self._board_size = self.calculate_board_size()
-        self._board_position = self.calculate_board_position()
-        self._board_surface = pygame.transform.scale(self._board_unscaled, self._board_size)
-
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
         self._widget_group.handle_resize(self._screen.get_size())
 
-        square_size = self._board_size[0] / 10
-        self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (square_size, square_size))
-        self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (square_size, square_size))
+        self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (self._square_size, self._square_size))
+        self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (self._square_size, self._square_size))
+
+        self._board_size = GAME_WIDGETS['chessboard'].get_size()
+        self._board_position = GAME_WIDGETS['chessboard'].get_position()
+        self._square_size = self._board_size[0] / 10
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
@@ -145,37 +135,24 @@ class GameView:
     
     def initialise_timers(self, end_callback):
         if self._model.states['TIME_ENABLED'] is False:
-            GAME_WIDGETS_PVP['blue_timer'].kill()
-            GAME_WIDGETS_PVC['blue_timer'].kill()
-            GAME_WIDGETS_PVP['red_timer'].kill()
-            GAME_WIDGETS_PVC['red_timer'].kill()
+            GAME_WIDGETS['blue_timer'].kill()
+            GAME_WIDGETS['red_timer'].kill()
         else:
-            GAME_WIDGETS_PVP['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-            GAME_WIDGETS_PVC['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-            GAME_WIDGETS_PVP['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
-            GAME_WIDGETS_PVC['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+            GAME_WIDGETS['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+            GAME_WIDGETS['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
 
-            GAME_WIDGETS_PVP['blue_timer'].register_end_callback(end_callback)
-            GAME_WIDGETS_PVC['blue_timer'].register_end_callback(end_callback)
-            GAME_WIDGETS_PVP['red_timer'].register_end_callback(end_callback)
-            GAME_WIDGETS_PVC['red_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS['blue_timer'].register_end_callback(end_callback)
+            GAME_WIDGETS['red_timer'].register_end_callback(end_callback)
 
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
 
     def toggle_timer(self, colour, is_active):
         if colour == Colour.BLUE:
-            if GAME_WIDGETS_PVP['blue_timer'].get_active() != is_active:
-                GAME_WIDGETS_PVP['blue_timer'].set_active(is_active)
-            if GAME_WIDGETS_PVC['blue_timer'].get_active() != is_active:
-                GAME_WIDGETS_PVC['blue_timer'].set_active(is_active)
+            if GAME_WIDGETS['blue_timer'].get_active() != is_active:
+                GAME_WIDGETS['blue_timer'].set_active(is_active)
         else:
-            if GAME_WIDGETS_PVP['red_timer'].get_active() != is_active:
-                GAME_WIDGETS_PVP['red_timer'].set_active(is_active)
-            if GAME_WIDGETS_PVC['red_timer'].get_active() != is_active:
-                GAME_WIDGETS_PVC['red_timer'].set_active(is_active)
-
-    def draw_board(self):
-        self._screen.blit(self._board_surface, self._board_position)
+            if GAME_WIDGETS['red_timer'].get_active() != is_active:
+                GAME_WIDGETS['red_timer'].set_active(is_active)
 
     def draw_pieces(self):
         self._piece_group.draw(self._screen)
@@ -187,13 +164,11 @@ class GameView:
         if not self._selected_overlay_coord:
             return
         
-        square_size = self._board_size[0] / 10
-        
-        square_x, square_y = coords_to_screen_pos(self._selected_overlay_coord, self._board_position, square_size)
+        square_x, square_y = coords_to_screen_pos(self._selected_overlay_coord, self._board_position, self._square_size)
         self._screen.blit(self._square_overlay, (square_x, square_y))
 
         for coords in self._valid_overlay_coords:
-            square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
+            square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
             self._screen.blit(self._circle_overlay, (square_x, square_y))
     
     def draw_laser(self):
@@ -209,7 +184,7 @@ class GameView:
             self.states[GameState.LASER_FIRING] = False
             return
 
-        square_size = self._board_size[0] / 10
+        self._square_size = self._board_size[0] / 10
         square = pygame.Surface((30, 30))
         square.fill(self._laser_colour)
 
@@ -220,20 +195,19 @@ class GameView:
         }
 
         for coords, rotation, type in self._laser_path:
-            square_x, square_y = coords_to_screen_pos(coords, self._board_position, square_size)
+            square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
 
             image = GRAPHICS[type_to_image[type][self._laser_colour]]
-            scaled_image = pygame.transform.scale(image, (square_size, square_size))
+            scaled_image = pygame.transform.scale(image, (self._square_size, self._square_size))
             rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
 
             self._screen.blit(rotated_image, (square_x, square_y))
     
     def draw(self):
         self._widget_group.update()
-        self.draw_board()
+        self.draw_widgets()
         self.draw_pieces()
         self.draw_overlay()
-        self.draw_widgets()
         self.draw_laser()
 
     def process_model_event(self, event):
@@ -241,25 +215,6 @@ class GameView:
             self._event_to_func_map.get(event.type)(event)
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event.type)
-
-    def calculate_board_size(self):
-        '''Returns board size based on screen parameter'''
-        screen_width, screen_height = self._screen.get_size()
-
-        target_height = screen_height * 0.64
-        target_width = target_height / 0.8
-
-        return (target_width, target_height)
-
-    def calculate_board_position(self):
-        '''Returns required board starting position to draw on center of the screen'''
-        screen_x, screen_y = self._screen.get_size()
-        board_x, board_y = self._board_size
-
-        x = screen_x / 2 - (board_x / 2)
-        y = screen_y / 2 - (board_y / 2)
-
-        return (x, y)
     
     def set_overlay_coords(self, possible_coords_list, selected_coord):
         self._valid_overlay_coords = possible_coords_list

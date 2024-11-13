@@ -5,7 +5,6 @@ from data.states.game.components.game_view import GameView
 from data.states.game.components.game_controller import GameController
 from data.states.game.components.pause_view import PauseView
 from data.states.game.components.win_view import WinView
-from data.states.game.widget_dict import GAME_WIDGETS_PVC, GAME_WIDGETS_PVP
 from data.constants import BG_COLOUR
 from functools import partial
 

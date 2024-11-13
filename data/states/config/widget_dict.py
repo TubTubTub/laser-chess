@@ -110,5 +110,20 @@ CONFIG_WIDGETS = {
         locked=pvc_locked,
         stretch=False,
         event=CustomEvent(ConfigEventType.PVC_CLICK)
+    ),
+    'chessboard':
+    Chessboard(
+        relative_position=(0.02, 0.15),
+        width=460
+    ),
+    'invalid_fen_string':
+    Text(
+        relative_position=(0.5, 0.24),
+        minimum_width=400,
+        text='INVALID FEN STRING!',
+        font_size=30,
+        margin=10,
+        fill_colour=(100, 0, 0),
+        text_colour=(255, 0, 0),
     )
 }

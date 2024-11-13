@@ -219,6 +219,8 @@ class TextInput(_Pressable, Text):
                         pasted_text = ''.join(char for char in pasted_text if 32 <= ord(char) <= 127)
                         self._text = self._text[:self._cursor_index] + pasted_text + self._text[self._cursor_index:]
                         self._cursor_index += len(pasted_text)
+
+                    self.resize_text_to_box()
                     self.set_image()
                     self.set_geometry()
                     
@@ -242,6 +244,7 @@ class TextInput(_Pressable, Text):
 
                     case pygame.K_RETURN:
                         self.unfocus_input()
+                        return CustomEvent(self._event_type, text=self.get_text())
                     
                     case _:
                         if not event.unicode:

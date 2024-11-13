@@ -4,6 +4,8 @@ from data.tools import _State
 
 from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.states.config.default_config import default_config
+from data.states.game.components.board import Board
+from data.states.game.components.piece_group import PieceGroup
 
 from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
@@ -23,6 +25,7 @@ class Config(_State):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
+        self._piece_group = None
         self._config = None
         
         self._widget_group = None
@@ -38,6 +41,17 @@ class Config(_State):
 
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
+
+        CONFIG_WIDGETS['invalid_fen_string'].kill()
+
+        self._piece_group = PieceGroup()
+        
+        try:
+            board = Board(fen_string=self._config['FEN_STRING'])
+            self._piece_group.initialise_pieces(board.get_piece_list(), CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+        except:
+            self._piece_group.initialise_pieces([], CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+            self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
         
         self._cpu_depth_carousel = Carousel(
             relative_position=(0.5, 0.68),
@@ -94,6 +108,10 @@ class Config(_State):
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
+        if event.type == pygame.VIDEORESIZE:
+            self.handle_resize(resize_end=True)
+            return
+
         if widget_event is None:
             return
 
@@ -121,8 +139,6 @@ class Config(_State):
                 CONFIG_WIDGETS['pvc_button'].set_next_icon()
 
                 self._config['CPU_ENABLED'] = not(pvp_enabled)
-
-                print('CPU ENABLED:', self._config['CPU_ENABLED'])
                 
                 if self._config['CPU_ENABLED']:
                     self.create_depth_picker()
@@ -141,8 +157,6 @@ class Config(_State):
 
                 self._config['CPU_ENABLED'] = pvc_enabled
                 
-                print('CPU ENABLED:', self._config['CPU_ENABLED'])
-                
                 if self._config['CPU_ENABLED']:
                     self.create_depth_picker()
                 else:
@@ -151,23 +165,36 @@ class Config(_State):
             case ConfigEventType.FEN_STRING_TYPE:
                 print(widget_event.text, 'fen string type')
                 self._config['FEN_STRING'] = widget_event.text
+                try:
+                    board = Board(fen_string=self._config['FEN_STRING'])
+                    self._piece_group.initialise_pieces(board.get_piece_list(), CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+                    CONFIG_WIDGETS['invalid_fen_string'].kill()
+                except:
+                    self._piece_group.initialise_pieces([], CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+                    self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
 
             case ConfigEventType.TIME_TYPE:
-                print(widget_event.text, 'time type')
                 self._config['TIME'] = float(widget_event.text)
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 print(widget_event.data)
                 self._config['CPU_DEPTH'] = int(widget_event.data)
     
-    def handle_resize(self):
+    def handle_resize(self, resize_end=False):
         self._widget_group.handle_resize(self._screen.get_size())
+        board_position = CONFIG_WIDGETS['chessboard'].get_position()
+        board_size = CONFIG_WIDGETS['chessboard'].get_size()
+
+        self._piece_group.handle_resize(board_position, board_size, resize_end)
     
     def draw(self):
         temp_background = pygame.Surface((1, 1))
         temp_background.fill((10, 10, 10))
         animation.draw_image(self._screen, temp_background, position=(0, 0), size=self._screen.size)
+
         self._widget_group.draw(self._screen)
+
+        self._piece_group.draw(self._screen)
     
     def update(self, **kwargs):
         self._widget_group.update()
