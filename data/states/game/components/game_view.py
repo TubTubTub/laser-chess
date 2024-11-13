@@ -122,7 +122,7 @@ class GameView:
 
         self._laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
         self._laser_start_ticks = pygame.time.get_ticks()
-        self._laser_colour = self._model.states['ACTIVE_COLOUR'].get_flipped_colour()
+        self._laser_colour = self._model.states['ACTIVE_COLOUR']
 
         self.states[GameState.LASER_FIRING] = True
     

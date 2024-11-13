@@ -27,8 +27,8 @@ class Timer(Text):
         self.set_image()
         self.set_geometry()
     
-    def reset_time(self):
-        self._text = self.format_to_text()
+    def get_time(self):
+        return self._current_ms / (1000 * 60)
     
     def decrement_second(self):
         if self._active:

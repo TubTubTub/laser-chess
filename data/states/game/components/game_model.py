@@ -1,5 +1,6 @@
 from data.states.game.components.move import Move
 from data.states.game.components.board import Board
+from data.states.game.widget_dict import GAME_WIDGETS
 
 from data.constants import Colour, GameEventType, EMPTY_BB
 from data.components.custom_event import CustomEvent
@@ -28,7 +29,8 @@ class GameModel:
             'PAUSED': False,
             'ACTIVE_COLOUR': Colour.BLUE,
             'TIME_ENABLED': game_config['TIME_ENABLED'],
-            'TIME': game_config['TIME']
+            'TIME': game_config['TIME'],
+            'HISTORY': []
         }
         
         print('GAME CONFIG:', json.dumps(self.states, indent=4))
@@ -83,21 +85,36 @@ class GameModel:
                 print('Input error (Board.get_move): ' + str(error))
     
     def make_move(self, move):
+        #SWAPPED ACTIVE COLOUR TO BOTTOM SO MIGHT BE BUGGY
+        # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
+        colour = self._board.bitboards.get_colour_on(move.src)
+        piece = self._board.bitboards.get_piece_on(move.src, colour)
         laser_result = self._board.apply_move(move)
+    
+        if laser_result.hit_square_bitboard:
+            coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
+            self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
+        has_hit = laser_result.hit_square_bitboard != EMPTY_BB
+        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, has_hit=has_hit))
         
         self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
         self.set_winner(self._board.check_win())
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES))
-        # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
-    
-        if laser_result.hit_square_bitboard:
-            coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
-            self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
 
-        has_hit = laser_result.hit_square_bitboard != EMPTY_BB
+        move_notation = move.to_notation(colour, piece, laser_result.hit_square_bitboard)
 
-        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, has_hit=has_hit))
+        history_item = {
+            'TIME': {
+                Colour.BLUE: GAME_WIDGETS['blue_timer'].get_time(),
+                Colour.RED: GAME_WIDGETS['red_timer'].get_time()
+            },
+            'MOVE': move_notation,
+            'LASER_RESULT': laser_result
+        }
+        self.states['HISTORY'].append(history_item)
+
+        print('MOVE NOTATION:', move_notation)
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
