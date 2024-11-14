@@ -4,15 +4,18 @@ from data.widgets.text import Text
 from data.assets import FONTS
 
 class MoveList(_Widget):
-    def __init__(self, relative_position, width, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[('abc','cde'), ('fgh', 'ijk')], font=FONTS['default']):
+    def __init__(self, relative_position, width, minimum_height=0, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[], font=FONTS['default']):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
         self._relative_position = relative_position
         self._relative_width = width / self._screen_size[1]
+        self._relative_minimum_height = minimum_height / self._screen_size[1]
         self._move_list = move_list
+        
 
         self._font = font
+        self._font_factor = self.calculate_font_size()
 
         self._fill_colour = pygame.Color(fill_colour)
         self._text_colour = pygame.Color(text_colour)
@@ -30,13 +33,21 @@ class MoveList(_Widget):
     def _width(self):
         return self._relative_width * self._screen_size[1]
     
+    @property
+    def _minimum_height(self):
+        return self._relative_minimum_height * self._screen_size[1]
+    
+    @property
+    def _font_size(self):
+        return self._font_factor * self._screen_size[1]
+    
     def calculate_font_size(self):
         bounding_box_width = self._width / 5
         test_size = 1
         while True:
-            glyph_metrics = self._font.get_metrics((' ' * 6), size=test_size)
+            glyph_metrics = self._font.get_metrics(' ', size=test_size)
             
-            if glyph_metrics[0][4] > bounding_box_width:
+            if (glyph_metrics[0][4] * 6) > bounding_box_width:
                 return (test_size - 1) / self._screen_size[1]
 
             test_size += 1
@@ -47,14 +58,19 @@ class MoveList(_Widget):
         self.set_geometry()
     
     def set_image(self):
-        self.image = pygame.transform.scale(self._empty_surface, (self._width, 200)) # TEMP SIZE
-        self.image.fill(self._fill_colour)
-        font_size = self.calculate_font_size() * self._screen_size[1]
-        print(font_size)
+        font_metrics = self._font.get_metrics('j', size=self._font_size)
+        row_gap = font_metrics[0][3] - font_metrics[0][2]
 
-        for blue_move, red_move in self._move_list:
-            text_position = (self._width / 5, 0)
-            self._font.render_to(self.image, text_position, text=(blue_move + (' ' * 6) + red_move), size=font_size / 5 // WHATS GOING ON HERE, fgcolor=self._text_colour)
+        image_size = (self._width, max(self._minimum_height, row_gap * (len(self._move_list) * 2 + 1)))
+        self.image = pygame.transform.scale(self._empty_surface, image_size)
+        self.image.fill(self._fill_colour)
+
+        for index, (blue_move, red_move) in enumerate(self._move_list):
+            blue_text_position = (self._width / 5, row_gap * (1 + 2 * index))
+            red_text_position = (self._width * 3 / 5, row_gap * (1 + 2 * index))
+            self._font.render_to(self.image, blue_text_position, text=blue_move, size=self._font_size, fgcolor=self._text_colour)
+
+            self._font.render_to(self.image, red_text_position, text=red_move, size=self._font_size, fgcolor=self._text_colour)
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
@@ -62,6 +78,7 @@ class MoveList(_Widget):
     
     def set_screen_size(self, new_screen_size):
         self._screen_size = new_screen_size
+        self._font_factor = self.calculate_font_size()
     
     def process_event(self, event):
         pass

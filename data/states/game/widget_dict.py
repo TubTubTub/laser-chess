@@ -52,13 +52,13 @@ GAME_WIDGETS = {
     ],
     'blue_timer':
     Timer(
-        relative_position=(0.02, 0.18),
+        relative_position=(0.02, 0.62),
         active_colour=Colour.BLUE,
         event_type=GameEventType.TIMER_END,
     ),
     'red_timer':
     Timer(
-        relative_position=(0.02, 0.62),
+        relative_position=(0.02, 0.18),
         active_colour=Colour.RED,
         event_type=GameEventType.TIMER_END,
     ),
@@ -75,6 +75,13 @@ GAME_WIDGETS = {
         relative_position=(0, 0),
         width=480,
         center=True
+    ),
+    'move_list':
+    MoveList(
+        relative_position=(0.77, 0.3),
+        width=200,
+        minimum_height=300,
+        move_list=[]
     )
 }
 

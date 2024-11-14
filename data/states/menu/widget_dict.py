@@ -39,9 +39,5 @@ MENU_WIDGETS = {
                 font_size=30
             )
         ),
-        MoveList(
-            relative_position=(0.6, 0.4),
-            width=300
-        ),
     ]
 }
