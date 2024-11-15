@@ -1,7 +1,7 @@
 import pygame
 from data.widgets.bases import _Widget
 from data.utils.board_helpers import create_board
-from data.utils.settings_helpers import get_user_settings
+from data.utils.data_helpers import get_user_settings
 
 user_settings = get_user_settings()
 

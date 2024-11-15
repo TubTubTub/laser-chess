@@ -1,5 +1,5 @@
 import pygame
-from data.utils.settings_helpers import get_user_settings
+from data.utils.data_helpers import get_user_settings
 user_settings = get_user_settings()
 
 class AudioManager:

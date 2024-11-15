@@ -1,7 +1,7 @@
 from data.states.game.components.piece_group import CustomSpriteGroup
 from archive.square import Square
 from data.components.cursor import Cursor
-from data.utils.settings_helpers import get_settings_json
+from data.utils.data_helpers import get_settings_json
 self._cursor = Cursor()
 self.game_settings = get_settings_json()
 self._board_size = self.calculate_board_size(self.screen)

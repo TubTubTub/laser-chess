@@ -2,9 +2,10 @@ import pygame
 from data.constants import GameEventType, GameState, LaserType, Colour, StatusText, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
+from data.widgets import ScrollArea
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.utils.settings_helpers import get_user_settings
+from data.utils.data_helpers import get_user_settings
 from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
 from data.assets import GRAPHICS
 from data.states.game.widget_dict import GAME_WIDGETS
@@ -47,6 +48,15 @@ class GameView:
         self._laser_start_ticks = 0
         self._laser_colour = None
 
+        self._scroll_area = ScrollArea(
+            relative_position=(0.1, 0.1),
+            size=(300, 400),
+            widget=GAME_WIDGETS['move_list']
+        )
+
+        self._widget_group.add(self._scroll_area)
+        
+
         self.states = {
             GameState.LASER_FIRING: False,
         }
@@ -79,6 +89,7 @@ class GameView:
 
         if event:
             GAME_WIDGETS['move_list'].append_to_move_list(event.move_notation)
+            self._scroll_area.set_image()
 
         if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
             self.set_status_text(StatusText.PLAYER_MOVE)

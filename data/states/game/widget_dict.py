@@ -82,7 +82,7 @@ GAME_WIDGETS = {
         width=200,
         minimum_height=300,
         move_list=[]
-    )
+    ),
 }
 
 PAUSE_WIDGETS = {

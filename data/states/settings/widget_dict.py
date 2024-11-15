@@ -2,7 +2,7 @@ import pygame
 from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
-from data.utils.settings_helpers import get_user_settings
+from data.utils.data_helpers import get_user_settings
 from data.assets import GRAPHICS
 
 user_settings = get_user_settings()

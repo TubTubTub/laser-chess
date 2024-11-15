@@ -10,7 +10,7 @@ from data.widgets import ColourPicker
 from data.components.audio import audio
 from data.components.animation import animation
 
-from data.utils.settings_helpers import get_default_settings, get_user_settings, update_user_settings
+from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
 
 from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background

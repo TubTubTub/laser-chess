@@ -44,4 +44,6 @@ class ScrollArea(_Widget):
     def process_event(self, event):
         if event.type != pygame.MOUSEWHEEL or self.rect.collidepoint(pygame.mouse.get_pos()) is False:
             return
+        
+        print('scrolling')
         self.image.scroll(0, event.y * SCROLL_FACTOR) # WAITING FOR PYGAME-CE 2.5.3 TO RELEASE TO FIX SCROLL FLAGS

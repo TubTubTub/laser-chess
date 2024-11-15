@@ -1,0 +1,44 @@
+{
+    "colors": {
+        "light": {
+            
+            "text": {
+                "primary": "",
+                "secondary": "",
+                "error": ""
+            },
+            "fill": {
+                "primary": "",
+                "secondary": "",
+                "error": ""
+            },
+            "border": {
+                "primary": "",
+                "secondary": ""
+            }
+
+        },
+        "dark": {
+
+            "text": {
+                "primary": "",
+                "secondary": "",
+                "error": ""
+            },
+            "fill": {
+                "primary": "",
+                "secondary": "",
+                "error": ""
+            },
+            "border": {
+                "primary": "",
+                "secondary": ""
+            }
+
+        }
+    },
+    "dimensions": {
+        "borderRadius": 10,
+        "borderWidth": 5
+    }
+}

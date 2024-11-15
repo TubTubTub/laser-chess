@@ -30,14 +30,5 @@ MENU_WIDGETS = {
             fill_colour=(100, 100, 100, 255),
             icon=GRAPHICS['title_screen_art'],
         ),
-        ScrollArea(
-            relative_position=(0.1, 0.1),
-            size=(200, 400),
-            widget=Text(
-                relative_position=(0, 0),
-                text='hello',
-                font_size=30
-            )
-        ),
     ]
 }

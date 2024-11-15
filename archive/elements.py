@@ -1,6 +1,6 @@
 import pygame
 import pygame.freetype
-from data.utils.settings_helpers import get_settings_json
+from data.utils.data_helpers import get_settings_json
 
 from functools import partial
 
