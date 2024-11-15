@@ -70,6 +70,10 @@ class MoveList(_Widget):
             else:
                 text_position = (self._width * 3 / 5, row_gap * (1 + 2 * (index // 2)))
             self._font.render_to(self.image, text_position, text=move, size=self._font_size, fgcolor=self._text_colour)
+
+            move_number = (index // 2) + 1
+            move_number_position = (self._width / 10, row_gap * (1 + 2 * (index // 2)))
+            self._font.render_to(self.image, move_number_position, text=str(move_number), size=self._font_size, fgcolor=self._text_colour)
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
