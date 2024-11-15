@@ -100,9 +100,9 @@ class GameModel:
         self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
         self.set_winner(self._board.check_win())
 
-        self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES))
-
         move_notation = move.to_notation(colour, piece, laser_result.hit_square_bitboard)
+
+        self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES, move_notation=move_notation))
 
         history_item = {
             'TIME': {
@@ -113,8 +113,6 @@ class GameModel:
             'LASER_RESULT': laser_result
         }
         self.states['HISTORY'].append(history_item)
-
-        print('MOVE NOTATION:', move_notation)
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True

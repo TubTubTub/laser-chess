@@ -77,6 +77,9 @@ class GameView:
         piece_list = self._model.get_piece_list()
         self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
 
+        if event:
+            GAME_WIDGETS['move_list'].append_to_move_list(event.move_notation)
+
         if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
             self.set_status_text(StatusText.PLAYER_MOVE)
         elif self._model.states['CPU_ENABLED'] is False:
