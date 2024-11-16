@@ -3,12 +3,14 @@ from data.components.custom_event import CustomEvent
 from data.constants import MenuEventType
 from data.assets import GRAPHICS
 
+from data.theme import theme
+
 MENU_WIDGETS = {
     'default': [
         TextButton(
             relative_position=(0.375, 0.5),
             text='START GAME',
-            text_colour=(255, 0, 0),
+            text_colour=theme.get_colour('textPrimary'),
             margin=50,
             font_size=50,
             fill_colour=(255, 255, 0),

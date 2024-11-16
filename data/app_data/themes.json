@@ -1,38 +1,38 @@
 {
-    "colors": {
+    "colours": {
         "light": {
             
             "text": {
-                "primary": "",
-                "secondary": "",
-                "error": ""
+                "textPrimary": "0xFF0000",
+                "textSecondary": "",
+                "textError": ""
             },
             "fill": {
-                "primary": "",
-                "secondary": "",
-                "error": ""
+                "fillPrimary": "",
+                "fillSecondary": "",
+                "fillError": ""
             },
             "border": {
-                "primary": "",
-                "secondary": ""
+                "borderPrimary": "",
+                "borderSecondary": ""
             }
 
         },
         "dark": {
-
+            
             "text": {
-                "primary": "",
-                "secondary": "",
-                "error": ""
+                "textPrimary": "",
+                "textSecondary": "",
+                "textError": ""
             },
             "fill": {
-                "primary": "",
-                "secondary": "",
-                "error": ""
+                "fillPrimary": "",
+                "fillSecondary": "",
+                "fillError": ""
             },
             "border": {
-                "primary": "",
-                "secondary": ""
+                "borderPrimary": "",
+                "borderSecondary": ""
             }
 
         }

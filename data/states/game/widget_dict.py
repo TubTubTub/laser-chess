@@ -80,7 +80,7 @@ GAME_WIDGETS = {
     MoveList(
         relative_position=(0.77, 0.3),
         width=200,
-        minimum_height=300,
+        minimum_height=1000,
         move_list=[]
     ),
 }
