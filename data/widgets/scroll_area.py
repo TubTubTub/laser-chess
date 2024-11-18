@@ -2,7 +2,7 @@ import pygame
 from data.widgets.bases import _Widget
 from data.widgets.scrollbar import _Scrollbar
 
-SCROLLBAR_WIDTH_FACTOR = 0.2
+SCROLLBAR_WIDTH_FACTOR =  0.05
 
 class ScrollArea(_Widget):
     def __init__(self, relative_position, size, widget, vertical, scroll_factor=5):

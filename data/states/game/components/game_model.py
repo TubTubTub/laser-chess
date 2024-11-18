@@ -105,12 +105,12 @@ class GameModel:
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES, move_notation=move_notation))
 
         history_item = {
-            'TIME': {
+            'time': {
                 Colour.BLUE: GAME_WIDGETS['blue_timer'].get_time(),
                 Colour.RED: GAME_WIDGETS['red_timer'].get_time()
             },
-            'MOVE': move_notation,
-            'LASER_RESULT': laser_result
+            'move': move_notation,
+            'laserResult': laser_result
         }
         self.states['HISTORY'].append(history_item)
     

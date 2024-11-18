@@ -7,6 +7,7 @@ from data.states.game.components.pause_view import PauseView
 from data.states.game.components.win_view import WinView
 from data.constants import BG_COLOUR
 from functools import partial
+import pprint
 
 class Game(_State):
     def __init__(self):
@@ -16,6 +17,7 @@ class Game(_State):
     
     def cleanup(self):
         print('cleaning game.py')
+        pprint.pprint(self.model.states['HISTORY'])
 
         return None
     

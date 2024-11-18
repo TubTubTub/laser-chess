@@ -6,7 +6,7 @@ from data.assets import GRAPHICS
 move_list = MoveList(
     relative_position=(0, 0),
     width=200,
-    minimum_height=1000,
+    minimum_height=390,
     move_list=[]
 )
 

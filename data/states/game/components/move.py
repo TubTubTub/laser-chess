@@ -1,5 +1,6 @@
-from data.constants import MoveType, Colour, RotationDirection, Rotation, RotationIndex
+from data.constants import MoveType, Colour
 from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords, bitboard_to_notation, print_bitboard
+import re
 
 class Move():
     def __init__(self, move_type, src, dest=None, rotation_direction=None):
@@ -22,11 +23,42 @@ class Move():
             return 'R' + piece + bitboard_to_notation(self.src) + self.rotation_direction + hit_square
     
     def __str__(self):
-        return f'{self.move_type}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)}'
+        rotate_text = ''
+        if self.move_type == MoveType.ROTATE:
+            rotate_text = ' ' + self.rotation_direction
+
+        return f'{self.move_type}{rotate_text}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)}'
         # (Rotation: {self.rotation_direction})
     
     @classmethod
-    def instance_from_notation(move_cls, move_type, src, dest=None, rotation=None):
+    def instance_from_notation(move_cls, notation):
+        try:
+            notation = notation.split('x')[0]
+            move_type = notation[0].lower()
+
+            moves = notation[2:]
+            letters = re.findall('[A-Za-z]+', moves)
+            numbers = re.findall('\d+', moves)
+
+            if move_type == MoveType.MOVE:
+                src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
+                dest_bitboard = notation_to_bitboard(letters[1] + numbers[1])
+
+                return move_cls(move_type, src_bitboard, dest_bitboard)
+            
+            elif move_type == MoveType.ROTATE:
+                src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
+                rotation_direction = letters[1]
+
+                return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction)
+            else:
+                raise ValueError('(Move.instance_from_notation) Invalid move type:', move_type)
+
+        except Exception as error:
+            print('(Move.instance_from_notation) Error occured while parsing:', error)
+    
+    @classmethod
+    def instance_from_input(move_cls, move_type, src, dest=None, rotation=None):
         try:
             if move_type == MoveType.MOVE:
                 src_bitboard = notation_to_bitboard(src)
@@ -38,7 +70,7 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
-            print('Error (Move.instance_from_notation):', error)
+            print('Error (Move.instance_from):', error)
     
     @classmethod
     def instance_from_coords(move_cls, move_type, src_coords, dest_coords=None, rotation_direction=None):

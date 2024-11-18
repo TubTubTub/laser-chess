@@ -1,11 +1,9 @@
 from data.utils.data_helpers import get_themes, get_user_settings
 
 THEMES = get_themes()
-print(THEMES)
 user_settings = get_user_settings()
 
 def recursive_lookup(key, dictionary):
-    print(key, dictionary)
     if key in dictionary:
         return dictionary[key]
 
