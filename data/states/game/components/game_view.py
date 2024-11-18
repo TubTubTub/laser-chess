@@ -35,6 +35,7 @@ class GameView:
         self.set_status_text(StatusText.PLAYER_MOVE)
 
         self._widget_group = WidgetGroup(GAME_WIDGETS)
+        GAME_WIDGETS['move_list'].kill()
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -47,14 +48,6 @@ class GameView:
         self._laser_path = []
         self._laser_start_ticks = 0
         self._laser_colour = None
-
-        self._scroll_area = ScrollArea(
-            relative_position=(0.1, 0.1),
-            size=(300, 400),
-            widget=GAME_WIDGETS['move_list']
-        )
-
-        self._widget_group.add(self._scroll_area)
         
 
         self.states = {
@@ -89,7 +82,7 @@ class GameView:
 
         if event:
             GAME_WIDGETS['move_list'].append_to_move_list(event.move_notation)
-            self._scroll_area.set_image()
+            GAME_WIDGETS['scroll_area'].set_image()
 
         if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
             self.set_status_text(StatusText.PLAYER_MOVE)

@@ -100,7 +100,7 @@ class _ColourSlider(_Widget):
         self._screen_size = new_screen_size
     
     def process_event(self, event):
-        if event.type in [pygame.MOUSEMOTION]:
+        if event.type == pygame.MOUSEMOTION:
             self._thumb.process_event(event)
 
             if self._thumb.state == WidgetState.PRESS:
@@ -110,6 +110,6 @@ class _ColourSlider(_Widget):
                     self._selected_percent = selected_percent
                     return self.calculate_selected_colour()
 
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
+        elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
             self._thumb.process_event(event)
             return self.calculate_selected_colour()

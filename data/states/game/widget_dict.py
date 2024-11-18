@@ -3,6 +3,13 @@ from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, RotationDirection, Colour
 from data.assets import GRAPHICS
 
+move_list = MoveList(
+    relative_position=(0, 0),
+    width=200,
+    minimum_height=1000,
+    move_list=[]
+)
+
 GAME_WIDGETS = {
     'default': [
         IconButton(
@@ -77,12 +84,14 @@ GAME_WIDGETS = {
         center=True
     ),
     'move_list':
-    MoveList(
-        relative_position=(0.77, 0.3),
-        width=200,
-        minimum_height=1000,
-        move_list=[]
-    ),
+        move_list,
+    'scroll_area':
+    ScrollArea(
+        relative_position=(0.77, 0.18),
+        size=(200, 390),
+        vertical=True,
+        widget=move_list
+    )
 }
 
 PAUSE_WIDGETS = {

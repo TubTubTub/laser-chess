@@ -3,6 +3,7 @@ from data.widgets.colour_square import _ColourSquare
 from data.widgets.colour_slider import _ColourSlider
 from data.widgets.slider_thumb import _SliderThumb
 from data.widgets.bases import _Pressable, _Widget
+from data.widgets.scrollbar import _Scrollbar
 
 from data.widgets.multiple_icon_button import MultipleIconButton
 from data.widgets.volume_slider import VolumeSlider
