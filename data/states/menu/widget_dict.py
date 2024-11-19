@@ -10,26 +10,25 @@ MENU_WIDGETS = {
         TextButton(
             relative_position=(0.375, 0.5),
             text='START GAME',
-            text_colour=theme.get_colour('textPrimary'),
+            text_colour=theme['textPrimary'],
             margin=50,
             font_size=50,
-            fill_colour=(255, 255, 0),
-            border_width=5,
+            fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         TextButton(
             relative_position=(0.4, 0.7),
             text='SETTINGS',
-            text_colour=(255, 0, 0),
+            text_colour=theme['textPrimary'],
             margin=50,
             font_size=50,
-            fill_colour=(0, 0, 255),
+            fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
         Icon(
             relative_position=(0.3, 0.1),
             size=(400, 200),
-            fill_colour=(100, 100, 100, 255),
+            fill_colour=theme['fillSecondary'],
             icon=GRAPHICS['title_screen_art'],
         ),
     ]

@@ -3,36 +3,36 @@
         "light": {
             
             "text": {
-                "textPrimary": "0xFF0000",
-                "textSecondary": "",
-                "textError": ""
+                "primary": "0xFF0000",
+                "secondary": "0x00FF00",
+                "error": ""
             },
             "fill": {
-                "fillPrimary": "",
-                "fillSecondary": "",
-                "fillError": ""
+                "primary": "0xAAAAAA",
+                "secondary": "0xAAAAAA",
+                "error": ""
             },
             "border": {
-                "borderPrimary": "",
-                "borderSecondary": ""
+                "primary": "",
+                "secondary": ""
             }
 
         },
         "dark": {
             
             "text": {
-                "textPrimary": "",
-                "textSecondary": "",
-                "textError": ""
+                "primary": "0xFF0000",
+                "secondary": "",
+                "error": ""
             },
             "fill": {
-                "fillPrimary": "",
-                "fillSecondary": "",
-                "fillError": ""
+                "primary": "",
+                "secondary": "",
+                "error": ""
             },
             "border": {
-                "borderPrimary": "",
-                "borderSecondary": ""
+                "primary": "",
+                "secondary": ""
             }
 
         }

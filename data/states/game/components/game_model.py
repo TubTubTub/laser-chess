@@ -30,7 +30,7 @@ class GameModel:
             'ACTIVE_COLOUR': Colour.BLUE,
             'TIME_ENABLED': game_config['TIME_ENABLED'],
             'TIME': game_config['TIME'],
-            'HISTORY': []
+            'MOVES': []
         }
         
         print('GAME CONFIG:', json.dumps(self.states, indent=4))
@@ -104,7 +104,7 @@ class GameModel:
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES, move_notation=move_notation))
 
-        history_item = {
+        move_item = {
             'time': {
                 Colour.BLUE: GAME_WIDGETS['blue_timer'].get_time(),
                 Colour.RED: GAME_WIDGETS['red_timer'].get_time()
@@ -112,7 +112,7 @@ class GameModel:
             'move': move_notation,
             'laserResult': laser_result
         }
-        self.states['HISTORY'].append(history_item)
+        self.states['MOVES'].append(move_item)
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
