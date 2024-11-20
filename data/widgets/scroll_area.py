@@ -54,7 +54,7 @@ class ScrollArea(_Widget):
             return 0
         
         if scrollbar:
-            self._scroll_percentage += vertical_offset / (self._size[1] - self._scrollbar_size[1])
+            self._scroll_percentage += vertical_offset / (self._size[1] - self._scrollbar_size[1] + 0.001)
         else:
             max_scroll_height = widget_height - self._size[1]
             current_scroll_height = self._scroll_percentage * max_scroll_height

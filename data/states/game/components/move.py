@@ -37,8 +37,8 @@ class Move():
             move_type = notation[0].lower()
 
             moves = notation[2:]
-            letters = re.findall('[A-Za-z]+', moves)
-            numbers = re.findall('\d+', moves)
+            letters = re.findall(r'[A-Za-z]+', moves)
+            numbers = re.findall(r'\d+', moves)
 
             if move_type == MoveType.MOVE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])

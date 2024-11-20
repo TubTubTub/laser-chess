@@ -5,16 +5,32 @@ class GameEntry:
     def __init__(self, game_states):
         self._game_states = game_states
     
-    def convert_to_row(self, game_entry):
+    def __str__(self):
+        return f'''
+<GameEntry> :>
+    CPU_ENABLED: {self._game_states['CPU_ENABLED']}
+    CPU_DEPTH: {self._game_states['CPU_DEPTH']},
+    WINNER: {self._game_states['WINNER']},
+    TIME_ENABLED: {self._game_states['TIME_ENABLED']},
+    TIME: {self._game_states['TIME']},
+    NUMBER_OF_PLY: {len(self._game_states['MOVES'])},
+    MOVES: {self.convert_moves(self._game_states['MOVES'])}
+</GameEntry>
+        '''
+    
+    def convert_to_row(self):
         return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']))
     
     def convert_moves(self, moves):
+        # ;{pickle.dumps(move['laserResult'])}
         return '|'.join([
-            f'{move['time'][Colour.BLUE]};{move['time'][Colour.RED]};{move['move']};{pickle.dumps(move['laserResult'])}'
+            f'{move['time'][Colour.BLUE]};{move['time'][Colour.RED]};{move['move']}'
             for move in moves
         ])
-
-
+    
+    @staticmethod
+    def row_to_dict(row):
+        pass
 
 # self.states = {
 #     'CPU_ENABLED': game_config['CPU_ENABLED'],

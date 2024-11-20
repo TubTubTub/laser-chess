@@ -1,11 +1,16 @@
 import pygame
-from data.tools import _State
+
 from data.states.game.components.game_model import GameModel
 from data.states.game.components.game_view import GameView
 from data.states.game.components.game_controller import GameController
 from data.states.game.components.pause_view import PauseView
 from data.states.game.components.win_view import WinView
+
+from data.components.game_entry import GameEntry
 from data.constants import BG_COLOUR
+from data.tools import _State
+from data.database.database_helpers import insert_into_games
+
 from functools import partial
 import pprint
 
@@ -17,7 +22,11 @@ class Game(_State):
     
     def cleanup(self):
         print('cleaning game.py')
-        pprint.pprint(self.model.states['HISTORY'])
+        print('\n\n\nFINAL MODEL')
+
+        game_entry = GameEntry(self.model.states)
+        print(game_entry)
+        insert_into_games(game_entry.convert_to_row())
 
         return None
     

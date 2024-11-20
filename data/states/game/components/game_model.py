@@ -32,8 +32,6 @@ class GameModel:
             'TIME': game_config['TIME'],
             'MOVES': []
         }
-        
-        print('GAME CONFIG:', json.dumps(self.states, indent=4))
 
         self.thread_stop = threading.Event()
 
