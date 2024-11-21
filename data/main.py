@@ -5,6 +5,7 @@ from data.states.game.game import Game
 from data.states.menu.menu import Menu
 from data.states.settings.settings import Settings
 from data.states.config.config import Config
+from data.states.browser.browser import Browser
 
 def main():
     state_dict = {
@@ -12,6 +13,7 @@ def main():
         'game': Game(),
         'settings': Settings(),
         'config': Config(),
+        'browser': Browser(),
     }
 
     app = Control()

@@ -111,11 +111,6 @@ CONFIG_WIDGETS = {
         stretch=False,
         event=CustomEvent(ConfigEventType.PVC_CLICK)
     ),
-    'chessboard':
-    Chessboard(
-        relative_position=(0.02, 0.15),
-        width=460
-    ),
     'invalid_fen_string':
     Text(
         relative_position=(0.5, 0.24),
@@ -125,5 +120,10 @@ CONFIG_WIDGETS = {
         margin=10,
         fill_colour=(100, 0, 0),
         text_colour=(255, 0, 0),
+    ),
+    'board_thumbnail':
+    BoardThumbnail(
+        relative_position=(0.02, 0.15),
+        width=460
     )
 }

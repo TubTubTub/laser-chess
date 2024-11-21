@@ -1,15 +1,15 @@
 import pygame
 from data.tools import _State
 from data.components.widget_group import WidgetGroup
-from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType
+from data.states.browser.widget_dict import BROWSER_WIDGETS
+from data.constants import BrowserEventType
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.components.audio import audio
 from data.components.animation import animation
 
-class Menu(_State):
+class Browser(_State):
     def __init__(self):
         super().__init__()
         self._screen = pygame.display.get_surface()
@@ -18,16 +18,16 @@ class Menu(_State):
         self._widget_group = None
     
     def cleanup(self):
-        print('cleaning menu.py')
+        print('cleaning browser.py')
 
         return None
     
     def startup(self, persist=None):
-        print('starting menu.py')
-        self._widget_group = WidgetGroup(MENU_WIDGETS)
+        print('starting browser.py')
+        self._widget_group = WidgetGroup(BROWSER_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
 
-        audio.play_music(MUSIC_PATHS['menu'])
+        # audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
     
@@ -38,24 +38,17 @@ class Menu(_State):
             return
 
         match widget_event.type:
-            case None:
-                return
-
-            case MenuEventType.CONFIG_CLICK:
-                self.next = 'config'
-                self.done = True
-            case MenuEventType.SETTINGS_CLICK:
-                self.next = 'settings'
-                self.done = True
-            case MenuEventType.BROWSER_CLICK:
-                self.next = 'browser'
+            case BrowserEventType.MENU_CLICK:
+                self.next = 'menu'
                 self.done = True
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        animation.draw_animation(self._screen, GRAPHICS['background'], position=(0, 0), size=self._screen.size)
+        background = pygame.Surface(self._screen.get_size())
+        background.fill((50, 50, 50))
+        draw_background(self._screen, background)
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):

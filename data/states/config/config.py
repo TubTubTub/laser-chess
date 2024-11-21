@@ -4,8 +4,6 @@ from data.tools import _State
 
 from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.states.config.default_config import default_config
-from data.states.game.components.board import Board
-from data.states.game.components.piece_group import PieceGroup
 
 from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
@@ -25,7 +23,6 @@ class Config(_State):
         super().__init__()
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
-        self._piece_group = None
         self._config = None
         
         self._widget_group = None
@@ -37,20 +34,17 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
-        self._config = default_config
-
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
 
-        CONFIG_WIDGETS['invalid_fen_string'].kill()
+        self._config = default_config
 
-        self._piece_group = PieceGroup()
+        CONFIG_WIDGETS['invalid_fen_string'].kill()
         
         try:
-            board = Board(fen_string=self._config['FEN_STRING'])
-            self._piece_group.initialise_pieces(board.get_piece_list(), CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+            CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string(self._config['FEN_STRING'])
         except:
-            self._piece_group.initialise_pieces([], CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+            CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
             self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
         
         self._cpu_depth_carousel = Carousel(
@@ -166,11 +160,10 @@ class Config(_State):
                 print(widget_event.text, 'fen string type')
                 self._config['FEN_STRING'] = widget_event.text
                 try:
-                    board = Board(fen_string=self._config['FEN_STRING'])
-                    self._piece_group.initialise_pieces(board.get_piece_list(), CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+                    CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string(self._config['FEN_STRING'])
                     CONFIG_WIDGETS['invalid_fen_string'].kill()
                 except:
-                    self._piece_group.initialise_pieces([], CONFIG_WIDGETS['chessboard'].get_position(), CONFIG_WIDGETS['chessboard'].get_size())
+                    CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
                     self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
 
             case ConfigEventType.TIME_TYPE:
@@ -182,10 +175,6 @@ class Config(_State):
     
     def handle_resize(self, resize_end=False):
         self._widget_group.handle_resize(self._screen.get_size())
-        board_position = CONFIG_WIDGETS['chessboard'].get_position()
-        board_size = CONFIG_WIDGETS['chessboard'].get_size()
-
-        self._piece_group.handle_resize(board_position, board_size, resize_end)
     
     def draw(self):
         temp_background = pygame.Surface((1, 1))
@@ -193,8 +182,6 @@ class Config(_State):
         animation.draw_image(self._screen, temp_background, position=(0, 0), size=self._screen.size)
 
         self._widget_group.draw(self._screen)
-
-        self._piece_group.draw(self._screen)
     
     def update(self, **kwargs):
         self._widget_group.update()

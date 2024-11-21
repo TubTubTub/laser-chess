@@ -12,8 +12,8 @@ class BitboardCollection():
 
         try:
             self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
-        except ValueError:
-            print('Please input a valid FEN string')
+        except ValueError as error:
+            print('(BitboardCollection.__init__) Please input a valid FEN string:', error)
     
     def get_rotation_string(self):
         characters = ''

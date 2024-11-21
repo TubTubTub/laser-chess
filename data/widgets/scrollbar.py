@@ -23,9 +23,9 @@ class _Scrollbar(_Pressable, _Widget):
         self._fill_colour = fill_colour
 
         self._vertical = vertical
-        self._last_mouse_y = None
+        self._last_mouse_px = None
 
-        self._empty_surface = pygame.Surface(self._size)
+        self._empty_surface = pygame.Surface(self._size, pygame.SRCALPHA)
 
         self.initialise_new_colours(fill_colour)
 
@@ -52,11 +52,15 @@ class _Scrollbar(_Pressable, _Widget):
         self._screen_size = new_screen_size
     
     def down_func(self):
-        self._last_mouse_y = pygame.mouse.get_pos()[1]
+        if self._vertical:
+            self._last_mouse_px = pygame.mouse.get_pos()[1]
+        else:
+            self._last_mouse_px = pygame.mouse.get_pos()[0]
+
         self.set_state_colour(WidgetState.PRESS)
     
     def up_func(self):
-        self._last_mouse_y = None
+        self._last_mouse_px = None
         self.set_state_colour(WidgetState.BASE)
     
     def set_position(self, starting_position):
@@ -68,14 +72,13 @@ class _Scrollbar(_Pressable, _Widget):
 
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)
-        self.image.fill(self._fill_colour)
 
         if self._vertical:
-            rounded_radius = self._size[1] / 2
+            rounded_radius = self._size[0] / 2
         else:
             rounded_radius = self._size[1] / 2
 
-        pygame.draw.rect(self.image, self._fill_colour, (0, 0, self._size[0], self._size[1]), width=int(rounded_radius))
+        pygame.draw.rect(self.image, self._fill_colour, (0, 0, self._size[0], self._size[1]), border_radius=int(rounded_radius))
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
@@ -86,11 +89,18 @@ class _Scrollbar(_Pressable, _Widget):
         widget_event = super().process_event(event)
         after_state = self.get_widget_state()
 
-        if event.type == pygame.MOUSEMOTION and self._last_mouse_y:
-            offset_from_last_frame = event.pos[1] - self._last_mouse_y
-            self._last_mouse_y = event.pos[1]
+        if event.type == pygame.MOUSEMOTION and self._last_mouse_px:
+            if self._vertical:
+                offset_from_last_frame = event.pos[1] - self._last_mouse_px
+                self._last_mouse_px = event.pos[1]
 
-            return offset_from_last_frame
+                return offset_from_last_frame
+            else:
+                offset_from_last_frame = event.pos[0] - self._last_mouse_px
+                self._last_mouse_px = event.pos[0]
+
+                return offset_from_last_frame
+
 
         if widget_event or before_state != after_state:
             return 0

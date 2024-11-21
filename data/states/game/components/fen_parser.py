@@ -64,5 +64,4 @@ def parse_fen_string(fen_string):
         combined_colour_bitboards[Colour.RED] |= piece_bitboards[Colour.RED][piece]
     
     combined_all_bitboard = combined_colour_bitboards[Colour.BLUE] | combined_colour_bitboards[Colour.RED]
-    
     return (piece_bitboards, combined_colour_bitboards, combined_all_bitboard, rotation_bitboards, colour)

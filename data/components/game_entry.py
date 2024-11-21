@@ -24,7 +24,7 @@ class GameEntry:
     def convert_moves(self, moves):
         # ;{pickle.dumps(move['laserResult'])}
         return '|'.join([
-            f'{move['time'][Colour.BLUE]};{move['time'][Colour.RED]};{move['move']}'
+            f'{round(move['time'][Colour.BLUE], 3)};{round(move['time'][Colour.RED], 3)};{move['move']}'
             for move in moves
         ])
     

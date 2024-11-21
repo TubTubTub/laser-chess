@@ -12,10 +12,13 @@ def insert_into_games(game_entry):
         VALUES(?, ?, ?, ?, ?, ?, ?)
     ''', game_entry)
 
-    cursor.execute('''
+    games = cursor.execute('''
         SELECT * FROM games
     ''')
-    print('(database_helpers.insert_into_games) Games database entries:', cursor.fetchall())
+
+    print('(database_helpers.insert_into_games) Games database entries:')
+    for game in games.fetchall():
+        print(game)
 
     connection.commit()
     connection.close()

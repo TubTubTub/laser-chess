@@ -16,6 +16,7 @@ from data.widgets.chessboard import Chessboard
 from data.widgets.text_input import TextInput
 from data.widgets.rectangle import Rectangle
 from data.widgets.move_list import MoveList
+from data.widgets.board_thumbnail import BoardThumbnail
 from data.widgets.dropdown import Dropdown
 from data.widgets.carousel import Carousel
 from data.widgets.switch import Switch
@@ -23,4 +24,4 @@ from data.widgets.timer import Timer
 from data.widgets.text import Text
 from data.widgets.icon import Icon
 
-__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList']
+__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList', 'BoardThumbnail']

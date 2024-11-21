@@ -32,6 +32,9 @@ class StatusText(StrEnum):
     WIN = auto()
     DRAW = auto()
 
+class BrowserEventType(StrEnum):
+    MENU_CLICK = auto()
+
 class GameState(IntEnum):
     LASER_FIRING = 0
 
@@ -54,6 +57,7 @@ class GameEventType(StrEnum):
 class MenuEventType(StrEnum):
     CONFIG_CLICK = auto()
     SETTINGS_CLICK = auto()
+    BROWSER_CLICK = auto()
 
 class SettingsEventType(StrEnum):
     RESET_DEFAULT = auto()

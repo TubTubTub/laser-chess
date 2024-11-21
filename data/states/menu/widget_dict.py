@@ -25,6 +25,15 @@ MENU_WIDGETS = {
             fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
+        TextButton(
+            relative_position=(0.6, 0.7),
+            text='RECENT GAMES',
+            text_colour=theme['textPrimary'],
+            margin=50,
+            font_size=50,
+            fill_colour=theme['fillPrimary'],
+            event=CustomEvent(MenuEventType.BROWSER_CLICK)
+        ),
         Icon(
             relative_position=(0.3, 0.1),
             size=(400, 200),
