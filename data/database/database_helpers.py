@@ -8,8 +8,8 @@ def insert_into_games(game_entry):
     cursor = connection.cursor()
 
     cursor.execute('''
-        INSERT INTO games (cpu_enabled, cpu_depth, winner, time_enabled, time, number_of_ply, moves)
-        VALUES(?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO games (cpu_enabled, cpu_depth, winner, time_enabled, time, number_of_ply, moves, fen_string)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?)
     ''', game_entry)
 
     games = cursor.execute('''
@@ -25,13 +25,25 @@ def insert_into_games(game_entry):
 
 def get_all_games():
     connection = sqlite3.connect(database_path)
+    connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT * FROM games
     ''')
-    games = result.fetchall()
+    games = cursor.fetchall()
 
     connection.close()
 
-    return games
+    return [dict(game) for game in games]
+
+def delete_all_games():
+    connection = sqlite3.connect(database_path)
+    cursor = connection.cursor()
+
+    cursor.execute('''
+        DELETE FROM games
+    ''')
+
+    connection.commit()
+    connection.close()

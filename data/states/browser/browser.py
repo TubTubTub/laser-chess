@@ -19,6 +19,7 @@ class Browser(_State):
         self._cursor = Cursor()
         
         self._widget_group = None
+        # BROWSER_WIDGETS['board_thumbnail_strip'].kill()
     
     def cleanup(self):
         print('cleaning browser.py')
@@ -31,6 +32,11 @@ class Browser(_State):
         self._widget_group.handle_resize(self._screen.size)
 
         # audio.play_music(MUSIC_PATHS['menu'])
+
+        games = get_all_games()
+        fen_string_list = [game['fen_string'] for game in games]
+        BROWSER_WIDGETS['board_thumbnail_strip'].initialise_fen_string_list(fen_string_list)
+        BROWSER_WIDGETS['scroll_area'].set_image()
 
         self.draw()
     
@@ -56,3 +62,4 @@ class Browser(_State):
     
     def update(self, **kwargs):
         self.draw()
+        

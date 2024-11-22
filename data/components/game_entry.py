@@ -2,8 +2,9 @@ from data.constants import Colour
 import pickle
 
 class GameEntry:
-    def __init__(self, game_states):
+    def __init__(self, game_states, fen_string):
         self._game_states = game_states
+        self._fen_string = fen_string
     
     def __str__(self):
         return f'''
@@ -15,11 +16,12 @@ class GameEntry:
     TIME: {self._game_states['TIME']},
     NUMBER_OF_PLY: {len(self._game_states['MOVES'])},
     MOVES: {self.convert_moves(self._game_states['MOVES'])}
+    FEN_STRING: {self._fen_string}
 </GameEntry>
         '''
     
     def convert_to_row(self):
-        return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']))
+        return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']), self._fen_string)
     
     def convert_moves(self, moves):
         # ;{pickle.dumps(move['laserResult'])}

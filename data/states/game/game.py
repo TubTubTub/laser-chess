@@ -12,7 +12,6 @@ from data.tools import _State
 from data.database.database_helpers import insert_into_games
 
 from functools import partial
-import pprint
 
 class Game(_State):
     def __init__(self):
@@ -22,11 +21,8 @@ class Game(_State):
     
     def cleanup(self):
         print('cleaning game.py')
-        print('\n\n\nFINAL MODEL')
 
-        game_entry = GameEntry(self.model.states)
-        fen_string = self.model.get_fen_string()
-        print(fen_string)
+        game_entry = GameEntry(self.model.states, fen_string=self.model.get_fen_string())
         insert_into_games(game_entry.convert_to_row())
 
         return None

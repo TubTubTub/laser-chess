@@ -6,8 +6,8 @@ from data.assets import GRAPHICS
 from data.theme import theme
 
 board_thumbnail_strip = BoardThumbnailStrip(
-    relative_position=(0, 0),
-    board_width = 50,
+    relative_position=(0.5, 0),
+    board_width=300,
     fen_string_list=[]
 )
 
@@ -23,6 +23,8 @@ BROWSER_WIDGETS = {
             event=CustomEvent(BrowserEventType.MENU_CLICK)
         ),
     ],
+    'board_thumbnail_strip':
+        board_thumbnail_strip,
     'scroll_area':
     ScrollArea(
         relative_position=(0.0, 0.3),

@@ -40,7 +40,11 @@ def parse_fen_string(fen_string):
                     raise ValueError('Invalid FEN String - piece character not followed by rotational character')
             
             file += 1
-        elif character in '12346789':
+        elif character in '012346789':
+            if character == '1' and fen_string[index + 1] == '0':
+                file += 10
+                continue
+
             file += int(character)
         elif character == '/':
             rank = rank - 1
@@ -48,7 +52,7 @@ def parse_fen_string(fen_string):
         elif character in Rotation:
             continue
         else:
-            raise ValueError('Invalid FEN String - invalid character found')
+            raise ValueError('Invalid FEN String - invalid character found:', character)
     
     if piece_count['s'] != 1 or piece_count['S'] != 1:
         raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')

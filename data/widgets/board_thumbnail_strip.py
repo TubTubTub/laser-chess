@@ -11,6 +11,8 @@ class BoardThumbnailStrip(_Widget):
         self._relative_board_width = board_width / self._screen_size[1]
         self._relative_gap = gap / self._screen_size[1]
 
+        self._image_copy = None
+
         self.initialise_fen_string_list(fen_string_list)
 
     @property
@@ -39,15 +41,14 @@ class BoardThumbnailStrip(_Widget):
 
         width = len(fen_string_list) * (self._board_width + self._gap) - self._gap
 
-        self._relative_size = (width / self._screen_size[1], self._board_width * 0.8)
+        self._relative_size = (width / self._screen_size[1], (self._board_width * 0.8) / self._screen_size[1])
 
-        strip_surface = pygame.Surface(self._size)
+        self._image_copy = pygame.Surface(self._size)
+        self._image_copy.fill((255, 0, 0))
 
         for index, fen_string in enumerate(fen_string_list):
             board_thumbnail = BoardThumbnail(relative_position=(0, 0), width=self._board_width, fen_string=fen_string)
-            strip_surface.blit(board_thumbnail.image, (index * (self._board_width + self._gap), 0))
-        
-        self._image_copy = strip_surface.copy()
+            self._image_copy.blit(board_thumbnail.image, (index * (self._board_width + self._gap), 0))
 
         self.set_image()
         self.set_geometry()

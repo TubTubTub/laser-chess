@@ -13,17 +13,12 @@ class BoardThumbnail(_Widget):
         size = (width, width * 0.8)
         self._relative_position = relative_position
         self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
-        
-        if fen_string:
-            piece_list = BitboardCollection(fen_string).convert_to_piece_list()
-        else:
-            piece_list = []
-        self._piece_group = PieceGroup()
-        self._piece_group.initialise_pieces(piece_list, (0, 0), self._size)
 
         self._board = Chessboard(relative_position, width)
-        
-        self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
+
+        self._empty_surface = pygame.Surface((0, 0))
+
+        self.initialise_fen_string(fen_string)
         
         self.set_image()
         self.set_geometry()
@@ -37,7 +32,11 @@ class BoardThumbnail(_Widget):
         return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
 
     def initialise_fen_string(self, fen_string):
-        piece_list = BitboardCollection(fen_string).convert_to_piece_list()
+        if len(fen_string) == 0:
+            piece_list = []
+        else:
+            piece_list = BitboardCollection(fen_string).convert_to_piece_list()
+
         self._piece_group = PieceGroup()
         self._piece_group.initialise_pieces(piece_list, (0, 0), self._size)
         
