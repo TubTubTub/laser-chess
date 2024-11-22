@@ -4,6 +4,13 @@ from data.constants import BrowserEventType
 from data.assets import GRAPHICS
 
 from data.theme import theme
+
+board_thumbnail_strip = BoardThumbnailStrip(
+    relative_position=(0, 0),
+    board_width = 50,
+    fen_string_list=[]
+)
+
 BROWSER_WIDGETS = {
     'default': [
         IconButton(
@@ -21,6 +28,6 @@ BROWSER_WIDGETS = {
         relative_position=(0.0, 0.3),
         size=(1000, 400),
         vertical=False,
-        widget=Text(relative_position=(0, 0), text='HI TEST', minimum_width=1800)
+        widget=board_thumbnail_strip
     )
 }

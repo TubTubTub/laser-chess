@@ -22,3 +22,16 @@ def insert_into_games(game_entry):
 
     connection.commit()
     connection.close()
+
+def get_all_games():
+    connection = sqlite3.connect(database_path)
+    cursor = connection.cursor()
+
+    result = cursor.execute('''
+        SELECT * FROM games
+    ''')
+    games = result.fetchall()
+
+    connection.close()
+
+    return games

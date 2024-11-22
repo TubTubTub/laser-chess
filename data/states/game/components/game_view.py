@@ -2,7 +2,6 @@ import pygame
 from data.constants import GameEventType, GameState, LaserType, Colour, StatusText, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
 from data.components.widget_group import WidgetGroup
-from data.widgets import ScrollArea
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 from data.utils.data_helpers import get_user_settings

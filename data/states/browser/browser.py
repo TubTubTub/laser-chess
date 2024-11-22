@@ -9,6 +9,9 @@ from data.utils.asset_helpers import draw_background
 from data.components.audio import audio
 from data.components.animation import animation
 
+from data.database.database_helpers import get_all_games
+from data.widgets import BoardThumbnail
+
 class Browser(_State):
     def __init__(self):
         super().__init__()

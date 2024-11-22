@@ -1,7 +1,8 @@
 from data.constants import Colour, RotationIndex, Rotation, Piece
+from data.utils.bitboard_helpers import occupied_squares, print_bitboard, bitboard_to_index
 
 def parse_fen_string(fen_string):
-    #sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa r
+    #sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
     piece_bitboards = [{char: 0b0 for char in Piece}, {char: 0b0 for char in Piece}]
     rotation_bitboards = [0b0, 0b0]
     combined_colour_bitboards = [0b0, 0b0]
@@ -65,3 +66,52 @@ def parse_fen_string(fen_string):
     
     combined_all_bitboard = combined_colour_bitboards[Colour.BLUE] | combined_colour_bitboards[Colour.RED]
     return (piece_bitboards, combined_colour_bitboards, combined_all_bitboard, rotation_bitboards, colour)
+
+def encode_fen_string(bitboard_collection):
+    blue_bitboards = bitboard_collection.piece_bitboards[Colour.BLUE]
+    red_bitboards = bitboard_collection.piece_bitboards[Colour.RED]
+
+    fen_string_list = [''] * 80
+
+    for piece, bitboard in blue_bitboards.items():
+        for individual_bitboard in occupied_squares(bitboard):
+            index = bitboard_to_index(individual_bitboard)
+            rotation = bitboard_collection.get_rotation_on(individual_bitboard)
+            fen_string_list[index] = piece.upper() + rotation
+
+    for piece, bitboard in red_bitboards.items():
+        for individual_bitboard in occupied_squares(bitboard):
+            index = bitboard_to_index(individual_bitboard)
+            rotation = bitboard_collection.get_rotation_on(individual_bitboard)
+            fen_string_list[index] = piece.lower() + rotation
+    
+    fen_string = ''
+    row_string = ''
+    empty_count = 0
+    for index, square in enumerate(fen_string_list):
+        if square == '':
+            empty_count += 1
+        else:
+            if empty_count > 0:
+                row_string += str(empty_count)
+                empty_count = 0
+
+            row_string += square
+
+        if index % 10 == 9:
+            if empty_count > 0:
+                fen_string = '/' + row_string + str(empty_count) + fen_string
+            else:
+                fen_string = '/' + row_string + fen_string
+
+            row_string = ''
+            empty_count = 0
+    
+    fen_string = fen_string[1:]
+
+    if bitboard_collection.active_colour == Colour.BLUE:
+        colour = 'b'
+    else:
+        colour = 'r'
+
+    return fen_string + ' ' + colour

@@ -1,5 +1,6 @@
 from data.states.game.components.move import Move
 from data.states.game.components.board import Board
+from data.states.game.components.fen_parser import encode_fen_string
 from data.states.game.widget_dict import GAME_WIDGETS
 
 from data.constants import Colour, GameEventType, EMPTY_BB
@@ -126,6 +127,9 @@ class GameModel:
 
     def get_piece_list(self):
         return self._board.get_piece_list()
+
+    def get_fen_string(self):
+        return encode_fen_string(self._board.bitboards)
     
     def get_board(self):
         return self._board

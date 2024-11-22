@@ -25,7 +25,8 @@ class Game(_State):
         print('\n\n\nFINAL MODEL')
 
         game_entry = GameEntry(self.model.states)
-        print(game_entry)
+        fen_string = self.model.get_fen_string()
+        print(fen_string)
         insert_into_games(game_entry.convert_to_row())
 
         return None

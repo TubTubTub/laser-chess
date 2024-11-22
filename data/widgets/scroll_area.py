@@ -45,7 +45,7 @@ class ScrollArea(_Widget):
         if self._vertical:
             return (self._size[0] * SCROLLBAR_WIDTH_FACTOR, min(1, self._size[1] / self._widget.rect.height) * self._size[1])
         else:
-            return (min(1, self._size[0] / self._widget.rect.width) * self._size[1], self._size[1] * SCROLLBAR_WIDTH_FACTOR)
+            return (min(1, self._size[0] / (self._widget.rect.width + 0.001)) * self._size[1], self._size[1] * SCROLLBAR_WIDTH_FACTOR)
 
     def calculate_scroll_percentage(self, offset, scrollbar=False):
         if self._vertical:
@@ -91,6 +91,11 @@ class ScrollArea(_Widget):
             scrollbar_position = (self._position[0] + horizontal_offset, self._size[1] * (1 - SCROLLBAR_WIDTH_FACTOR) + self._position[1])
 
         return scrollbar_position
+    
+    def set_widget(self, new_widget):
+        self._widget = new_widget
+        self.set_image()
+        self.set_geometry()
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)
