@@ -1,6 +1,7 @@
 import pygame
 from data.widgets.bases import _Widget
 from data.assets import FONTS
+from data.utils.font_helpers import width_to_font_size
 
 class MoveList(_Widget):
     def __init__(self, relative_position, width, minimum_height=0, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[], font=FONTS['default']):
@@ -14,7 +15,7 @@ class MoveList(_Widget):
         
 
         self._font = font
-        self._font_factor = self.calculate_font_size()
+        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
 
         self._fill_colour = pygame.Color(fill_colour)
         self._text_colour = pygame.Color(text_colour)
@@ -38,18 +39,7 @@ class MoveList(_Widget):
     
     @property
     def _font_size(self):
-        return self._font_factor * self._screen_size[1]
-    
-    def calculate_font_size(self):
-        bounding_box_width = self._width / 5
-        test_size = 1
-        while True:
-            glyph_metrics = self._font.get_metrics(' ', size=test_size)
-            
-            if (glyph_metrics[0][4] * 8) > bounding_box_width:
-                return (test_size - 1) / self._screen_size[1]
-
-            test_size += 1
+        return self._relative_font_size * self._screen_size[1]
 
     def append_to_move_list(self, new_move):
         self._move_list.append(new_move)
@@ -81,7 +71,7 @@ class MoveList(_Widget):
     
     def set_screen_size(self, new_screen_size):
         self._screen_size = new_screen_size
-        self._font_factor = self.calculate_font_size()
+        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
     
     def process_event(self, event):
         pass

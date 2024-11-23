@@ -11,6 +11,7 @@ from data.widgets.board_thumbnail import BoardThumbnail
 from data.widgets.volume_slider import VolumeSlider
 from data.widgets.colour_picker import ColourPicker
 from data.widgets.colour_button import ColourButton
+from data.widgets.browser_item import BrowserItem
 from data.widgets.text_button import TextButton
 from data.widgets.icon_button import IconButton
 from data.widgets.scroll_area import ScrollArea
@@ -25,4 +26,4 @@ from data.widgets.timer import Timer
 from data.widgets.text import Text
 from data.widgets.icon import Icon
 
-__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList', 'BoardThumbnail', 'BoardThumbnailStrip']
+__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList', 'BoardThumbnail', 'BoardThumbnailStrip', 'BrowserItem']
