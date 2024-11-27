@@ -34,6 +34,8 @@ class StatusText(StrEnum):
 
 class BrowserEventType(StrEnum):
     MENU_CLICK = auto()
+    BROWSER_STRIP_CLICK = auto()
+    COPY_CLICK = auto()
 
 class GameState(IntEnum):
     LASER_FIRING = 0

@@ -7,6 +7,7 @@ Make bitboards a dictionary
 
 Should do:
 Make all widgets take in an event_type instead of event
+Make widgets draw relative to surface instead of screen
 Add empty event to widget group
 Zobrist hashing (to check for threefold reptition)
 Saving games (with SQL)

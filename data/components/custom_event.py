@@ -1,4 +1,4 @@
-from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType
+from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, BrowserEventType
 
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
@@ -15,6 +15,7 @@ required_args = {
     ConfigEventType.FEN_STRING_TYPE: ['time'],
     ConfigEventType.CPU_DEPTH_CLICK: ['data'],
     ConfigEventType.PVC_CLICK: ['data'],
+    BrowserEventType.BROWSER_STRIP_CLICK: ['selected_index']
 }
 
 class CustomEvent():

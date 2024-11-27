@@ -9,13 +9,19 @@ class ScrollArea(_Widget):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
+        if vertical:
+            self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
+        else:
+            self._relative_size = (size[0] / self._screen_size[0], size[1] / self._screen_size[1])
+
         self._relative_position = relative_position
-        self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
         self._relative_scroll_factor = scroll_factor / self._screen_size[1]
 
         self._scroll_percentage = 0
         self._widget = widget
         self._vertical = vertical
+
+        self._widget.register_get_rect(self.calculate_widget_rect)
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -34,7 +40,10 @@ class ScrollArea(_Widget):
 
     @property
     def _size(self):
-        return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
+        if self._vertical:
+            return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
+        else:
+            return (self._relative_size[0] * self._screen_size[0], self._relative_size[1] * self._screen_size[1])
     
     @property
     def _scroll_factor(self):
@@ -45,7 +54,7 @@ class ScrollArea(_Widget):
         if self._vertical:
             return (self._size[0] * SCROLLBAR_WIDTH_FACTOR, min(1, self._size[1] / self._widget.rect.height) * self._size[1])
         else:
-            return (min(1, self._size[0] / (self._widget.rect.width + 0.001)) * self._size[1], self._size[1] * SCROLLBAR_WIDTH_FACTOR)
+            return (min(1, self._size[0] / (self._widget.rect.width + 0.001)) * self._size[0], self._size[1] * SCROLLBAR_WIDTH_FACTOR)
 
     def calculate_scroll_percentage(self, offset, scrollbar=False):
         if self._vertical:
@@ -59,7 +68,7 @@ class ScrollArea(_Widget):
             else:
                 max_scroll_height = widget_height - self._size[1]
                 current_scroll_height = self._scroll_percentage * max_scroll_height
-                self._scroll_percentage = (current_scroll_height + offset) / max_scroll_height
+                self._scroll_percentage = (current_scroll_height + offset) / (max_scroll_height + 0.001)
         else:
             widget_width = self._widget.rect.width
 
@@ -72,9 +81,12 @@ class ScrollArea(_Widget):
                 max_scoll_width = widget_width - self._size[0]
                 current_scroll_width = self._scroll_percentage * max_scoll_width
                 self._scroll_percentage = (current_scroll_width + offset) / max_scoll_width
-                print(self._scroll_percentage, (current_scroll_width + offset))
 
         return min(1, max(0, self._scroll_percentage))
+    
+    def calculate_widget_rect(self):
+        widget_position = self.calculate_widget_position()
+        return pygame.Rect(widget_position[0] - self._position[0], self._position[1] + widget_position[1], self._size[0], self._size[1])
 
     def calculate_widget_position(self):
         if self._vertical:
@@ -136,20 +148,21 @@ class ScrollArea(_Widget):
             if abs(offset) > 0:
                 self._scroll_percentage = self.calculate_scroll_percentage(offset, scrollbar=True)
 
-        if self.rect.collidepoint(pygame.mouse.get_pos()) is False:
-            return
-        
-        if event.type != pygame.MOUSEBUTTONDOWN:
-            return
-        
-        if event.button == 4:
-            self._scroll_percentage = self.calculate_scroll_percentage(-self._scroll_factor)
+        if self.rect.collidepoint(pygame.mouse.get_pos()):
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 4:
+                    self._scroll_percentage = self.calculate_scroll_percentage(-self._scroll_factor)
+                    self.set_image()
+                    return
+                elif event.button == 5:
+                    if self._scroll_percentage == 100:
+                        return
+                    
+                    self._scroll_percentage = self.calculate_scroll_percentage(self._scroll_factor)
+                    self.set_image()
+                    return
+                
+        widget_event = self._widget.process_event(event, scrolled_pos=self.calculate_widget_position())
+        if widget_event is not None:
             self.set_image()
-        elif event.button == 5:
-            if self._scroll_percentage == 100:
-                return
-            
-            self._scroll_percentage = self.calculate_scroll_percentage(self._scroll_factor)
-            self.set_image()
-        else:
-            return
+        return widget_event

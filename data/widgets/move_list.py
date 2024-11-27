@@ -12,7 +12,6 @@ class MoveList(_Widget):
         self._relative_width = width / self._screen_size[1]
         self._relative_minimum_height = minimum_height / self._screen_size[1]
         self._move_list = move_list
-        
 
         self._font = font
         self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
@@ -40,6 +39,9 @@ class MoveList(_Widget):
     @property
     def _font_size(self):
         return self._relative_font_size * self._screen_size[1]
+    
+    def register_get_rect(self, get_rect_func):
+        pass
 
     def append_to_move_list(self, new_move):
         self._move_list.append(new_move)
@@ -73,5 +75,5 @@ class MoveList(_Widget):
         self._screen_size = new_screen_size
         self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
     
-    def process_event(self, event):
+    def process_event(self, event, scrolled_pos=None):
         pass

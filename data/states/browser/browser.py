@@ -1,16 +1,18 @@
 import pygame
+import pyperclip
+
 from data.tools import _State
-from data.components.widget_group import WidgetGroup
 from data.states.browser.widget_dict import BROWSER_WIDGETS
-from data.constants import BrowserEventType
-from data.components.cursor import Cursor
-from data.assets import GRAPHICS, MUSIC_PATHS
-from data.utils.asset_helpers import draw_background
-from data.components.audio import audio
+
+from data.components.widget_group import WidgetGroup
 from data.components.animation import animation
+from data.components.cursor import Cursor
+from data.components.audio import audio
+
+from data.constants import BrowserEventType
 
 from data.database.database_helpers import get_all_games
-from data.widgets import BoardThumbnail
+from data.utils.asset_helpers import draw_background
 
 class Browser(_State):
     def __init__(self):
@@ -18,8 +20,9 @@ class Browser(_State):
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
+        self._selected_index = None
+        self._games_list = []
         self._widget_group = None
-        # BROWSER_WIDGETS['board_thumbnail_strip'].kill()
     
     def cleanup(self):
         print('cleaning browser.py')
@@ -28,14 +31,15 @@ class Browser(_State):
     
     def startup(self, persist=None):
         print('starting browser.py')
-        self._widget_group = WidgetGroup(BROWSER_WIDGETS)
-        self._widget_group.handle_resize(self._screen.size)
-
         # audio.play_music(MUSIC_PATHS['menu'])
 
-        games = get_all_games()
-        fen_string_list = [game['fen_string'] for game in games]
-        BROWSER_WIDGETS['board_thumbnail_strip'].initialise_fen_string_list(fen_string_list)
+        self._widget_group = WidgetGroup(BROWSER_WIDGETS)
+        self._widget_group.handle_resize(self._screen.size)
+        BROWSER_WIDGETS['browser_strip'].kill()
+
+        self._selected_index = None
+        self._games_list = get_all_games()
+        BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
         BROWSER_WIDGETS['scroll_area'].set_image()
 
         self.draw()
@@ -50,6 +54,13 @@ class Browser(_State):
             case BrowserEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
+            case BrowserEventType.BROWSER_STRIP_CLICK:
+                self._selected_index = widget_event.selected_index
+            case BrowserEventType.COPY_CLICK:
+                if self._selected_index is None:
+                    return
+                print('COPYING TO CLIPBOARD:', self._games_list[self._selected_index]['fen_string'])
+                pyperclip.copy(self._games_list[self._selected_index]['fen_string']) // IF COPY FEN STRING THEN LASER COLOUR STARTS WRONG SOMETIMES
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

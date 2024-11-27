@@ -5,10 +5,10 @@ from data.assets import GRAPHICS
 
 from data.theme import theme
 
-board_thumbnail_strip = BoardThumbnailStrip(
-    relative_position=(0.5, 0),
-    board_width=300,
-    fen_string_list=[]
+browser_strip = BrowserStrip(
+    relative_position=(0, 0),
+    item_width=220,
+    games_list=[]
 )
 
 BROWSER_WIDGETS = {
@@ -22,14 +22,23 @@ BROWSER_WIDGETS = {
             icon=GRAPHICS['home'],
             event=CustomEvent(BrowserEventType.MENU_CLICK)
         ),
+        IconButton(
+            relative_position=(0.3, 0.1),
+            size=(50, 50),
+            margin=10,
+            border_width=5,
+            border_radius=10,
+            icon=GRAPHICS['copy'],
+            event=CustomEvent(BrowserEventType.COPY_CLICK),
+        )
     ],
-    'board_thumbnail_strip':
-        board_thumbnail_strip,
+    'browser_strip':
+        browser_strip,
     'scroll_area':
     ScrollArea(
         relative_position=(0.0, 0.3),
         size=(1000, 400),
         vertical=False,
-        widget=board_thumbnail_strip
+        widget=browser_strip
     )
 }

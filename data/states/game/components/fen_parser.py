@@ -40,7 +40,7 @@ def parse_fen_string(fen_string):
                     raise ValueError('Invalid FEN String - piece character not followed by rotational character')
             
             file += 1
-        elif character in '012346789':
+        elif character in '0123456789':
             if character == '1' and fen_string[index + 1] == '0':
                 file += 10
                 continue
@@ -56,8 +56,9 @@ def parse_fen_string(fen_string):
     
     if piece_count['s'] != 1 or piece_count['S'] != 1:
         raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')
-    elif piece_count['f'] != 1 or piece_count['F'] != 1:
-        raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
+    # COMMENTED OUT AS NO PHAROAH PIECES IS OKAY IF PARSING FEN STRING FOR FINISHED GAME BOARD THUMBNAIL
+    # elif piece_count['f'] != 1 or piece_count['F'] != 1:
+    #     raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
     
     if (part_2 == 'b'):
         colour = Colour.BLUE
