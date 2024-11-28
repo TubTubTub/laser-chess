@@ -25,4 +25,4 @@ def downgrade():
     connection.commit()
     connection.close()
 
-# upgrade()
+upgrade()

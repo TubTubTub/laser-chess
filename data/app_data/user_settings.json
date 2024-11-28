@@ -5,7 +5,7 @@
     "laserColourRed": "0xff0000",
     "displayMode": "windowed",
     "primaryFont": false,
-    "musicVolume": 0.013043478260869565,
-    "sfxVolume": 0.017391304347826087,
+    "musicVolume": 0.004347826086956522,
+    "sfxVolume": 0.02608695652173913,
     "colourMode": "light"
 }

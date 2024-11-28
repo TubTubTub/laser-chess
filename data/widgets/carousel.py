@@ -65,6 +65,16 @@ class Carousel(_Widget):
     @property
     def _right_arrow_position(self):
         return (self._size[0] - self._arrow_size[0], (self._size[1] - self._arrow_size[1]) / 2)
+
+    def set_to_key(self, key):
+        for i in range(len(self._widgets_dict)):
+            if self._widget_key.data == key:
+                return
+        
+            self._widget_key = self._widget_key.next
+            self._widget = self._widgets_dict[self._widget_key.data]
+        
+        raise ValueError('(Carousel.set_to_key) Key not found!', key)
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)

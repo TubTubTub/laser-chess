@@ -18,7 +18,7 @@ def get_winner_string(winner):
         return Colour(winner).name
 
 class BrowserItem(_Widget):
-    def __init__(self, relative_position, game, width, text_colour=(100, 100, 100), font=FONTS['default']):
+    def __init__(self, relative_position, game, width, text_colour=(200, 200, 200), font=FONTS['default']):
         super().__init__()
         self._screen_size = pygame.display.get_surface().get_size()
 
@@ -52,13 +52,36 @@ class BrowserItem(_Widget):
         return self._relative_font_size * self._screen_size[1]
     
     def set_image(self):
-        self.image = pygame.Surface(self._size)
+        self.image = pygame.Surface(self._size, pygame.SRCALPHA)
         resized_board = pygame.transform.smoothscale(self._board_thumbnail.image, (self._size[0], self._size[0] * 0.8))
         self.image.blit(resized_board, (0, 0))
 
         get_line_y = lambda line: (self._size[0] * 0.8) + ((self._size[0] * 0.8) / FONT_DIVISION) * line
-        self._font.render_to(self.image, (0, get_line_y(0)), f'WINNER: {get_winner_string(self._game['winner'])}', fgcolor=self._text_colour, size=self._font_size)
-        self._font.render_to(self.image, (0, get_line_y(1)), f'NO. MOVES: {int(self._game['number_of_ply'] / 2)}', fgcolor=self._text_colour, size=self._font_size)
+
+        text_to_render = self.get_text_to_render()
+
+        for index, text in enumerate(text_to_render):
+            self._font.render_to(self.image, (0, get_line_y(index)), text, fgcolor=self._text_colour, size=self._font_size)
+    
+    def get_text_to_render(self):
+        depth_to_text = {
+            2: 'EASY',
+            3: 'MEDIUM',
+            4: 'HARD'
+        }
+
+        if self._game['cpu_enabled'] == 1:
+            depth_text = depth_to_text[self._game['cpu_depth']]
+            cpu_text = f'PVC ({depth_text})'
+        else:
+            cpu_text = 'PVP'
+        
+        return [
+            cpu_text,
+            self._game['created_dt'].strftime('%Y-%m-%d %H:%M:%S'),
+            f'WINNER: {get_winner_string(self._game['winner'])}',
+            f'NO. MOVES: {int(self._game['number_of_ply'] / 2)}'
+        ]
     
     def set_geometry(self):
         self.rect = self.image.get_rect()

@@ -34,7 +34,9 @@ class GameView:
         self.set_status_text(StatusText.PLAYER_MOVE)
 
         self._widget_group = WidgetGroup(GAME_WIDGETS)
+        GAME_WIDGETS['move_list'].reset_move_list()
         GAME_WIDGETS['move_list'].kill()
+        GAME_WIDGETS['scroll_area'].set_image()
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -47,7 +49,6 @@ class GameView:
         self._laser_path = []
         self._laser_start_ticks = 0
         self._laser_colour = None
-        
 
         self.states = {
             GameState.LASER_FIRING: False,
@@ -191,8 +192,6 @@ class GameView:
             return
 
         self._square_size = self._board_size[0] / 10
-        square = pygame.Surface((30, 30))
-        square.fill(self._laser_colour)
 
         type_to_image = {
             LaserType.END: ['laser_end_1', 'laser_end_2'],

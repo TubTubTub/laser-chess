@@ -12,11 +12,11 @@ from data.components.animation import animation
 
 from data.widgets import Carousel, Text
 
+from data.assets import MUSIC_PATHS, GRAPHICS
+
+from data.constants import ConfigEventType, Colour
+
 from data.utils.asset_helpers import draw_background
-
-from data.assets import MUSIC_PATHS
-
-from data.constants import ConfigEventType
 
 class Config(_State):
     def __init__(self):
@@ -53,7 +53,7 @@ class Config(_State):
             event_type=ConfigEventType.CPU_DEPTH_CLICK,
             fill_colour=(0, 0, 0, 0),
             widgets_dict={
-                1: Text(
+                2: Text(
                     relative_position=(0, 0),
                     text="EASY",
                     text_colour=(255, 255, 255),
@@ -61,7 +61,7 @@ class Config(_State):
                     margin=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
-                2: Text(
+                3: Text(
                     relative_position=(0, 0),
                     text="MEDIUM",
                     text_colour=(255, 255, 255),
@@ -69,7 +69,7 @@ class Config(_State):
                     margin=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
-                3: Text(
+                4: Text(
                     relative_position=(0, 0),
                     text="HARD",
                     text_colour=(255, 255, 255),
@@ -79,6 +79,8 @@ class Config(_State):
                 ),
             }
         )
+
+        self._cpu_depth_carousel.set_to_key(2)
 
         if self._config['CPU_ENABLED']:
             self.create_depth_picker()
@@ -98,6 +100,27 @@ class Config(_State):
         CONFIG_WIDGETS['start_button'].set_image()
         
         self._cpu_depth_carousel.kill()
+    
+    def toggle_pvc(self, pvc_enabled):
+        print(pvc_enabled, self._config['CPU_ENABLED'])
+        if pvc_enabled == self._config['CPU_ENABLED']:
+            return
+        
+        if pvc_enabled:
+            CONFIG_WIDGETS['pvc_button'].set_locked(True)
+            CONFIG_WIDGETS['pvp_button'].set_locked(False)
+            CONFIG_WIDGETS['pvp_button'].set_next_icon()
+        else:
+            CONFIG_WIDGETS['pvp_button'].set_locked(True)
+            CONFIG_WIDGETS['pvc_button'].set_locked(False)
+            CONFIG_WIDGETS['pvc_button'].set_next_icon()
+
+        self._config['CPU_ENABLED'] = pvc_enabled
+        
+        if self._config['CPU_ENABLED']:
+            self.create_depth_picker()
+        else:
+            self.remove_depth_picker()
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
@@ -119,49 +142,24 @@ class Config(_State):
                 self.done = True
 
             case ConfigEventType.TIME_CLICK:
-                print('timer click', widget_event.data)
                 self._config['TIME_ENABLED'] = widget_event.data
 
             case ConfigEventType.PVP_CLICK:
-                pvp_enabled = widget_event.data
-                
-                if not(pvp_enabled) == self._config['CPU_ENABLED']:
-                    return
-
-                CONFIG_WIDGETS['pvp_button'].set_locked(True)
-                CONFIG_WIDGETS['pvc_button'].set_locked(False)
-                CONFIG_WIDGETS['pvc_button'].set_next_icon()
-
-                self._config['CPU_ENABLED'] = not(pvp_enabled)
-                
-                if self._config['CPU_ENABLED']:
-                    self.create_depth_picker()
-                else:
-                    self.remove_depth_picker()
+                self.toggle_pvc(False)
 
             case ConfigEventType.PVC_CLICK:
-                pvc_enabled = widget_event.data
-
-                if pvc_enabled == self._config['CPU_ENABLED']:
-                    return
-
-                CONFIG_WIDGETS['pvc_button'].set_locked(True)
-                CONFIG_WIDGETS['pvp_button'].set_locked(False)
-                CONFIG_WIDGETS['pvp_button'].set_next_icon()
-
-                self._config['CPU_ENABLED'] = pvc_enabled
-                
-                if self._config['CPU_ENABLED']:
-                    self.create_depth_picker()
-                else:
-                    self.remove_depth_picker()
+                self.toggle_pvc(True)
 
             case ConfigEventType.FEN_STRING_TYPE:
-                print(widget_event.text, 'fen string type')
                 self._config['FEN_STRING'] = widget_event.text
                 try:
                     CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string(self._config['FEN_STRING'])
                     CONFIG_WIDGETS['invalid_fen_string'].kill()
+
+                    if self._config['FEN_STRING'][-1].lower() == 'r':
+                        self._config['COLOUR'] = Colour.RED
+                    else:
+                        self._config['COLOUR'] = Colour.BLUE
                 except:
                     CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
                     self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
@@ -170,17 +168,14 @@ class Config(_State):
                 self._config['TIME'] = float(widget_event.text)
 
             case ConfigEventType.CPU_DEPTH_CLICK:
-                print(widget_event.data)
                 self._config['CPU_DEPTH'] = int(widget_event.data)
+                print('asdadsaasd', int(widget_event.data))
     
     def handle_resize(self, resize_end=False):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        temp_background = pygame.Surface((1, 1))
-        temp_background.fill((10, 10, 10))
-        animation.draw_image(self._screen, temp_background, position=(0, 0), size=self._screen.size)
-
+        draw_background(self._screen, GRAPHICS['temp_background'])
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):

@@ -8,7 +8,7 @@ from data.theme import theme
 MENU_WIDGETS = {
     'default': [
         TextButton(
-            relative_position=(0.375, 0.5),
+            relative_position=(0.375, 0.45),
             text='START GAME',
             text_colour=theme['textPrimary'],
             margin=50,
@@ -17,7 +17,7 @@ MENU_WIDGETS = {
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         TextButton(
-            relative_position=(0.4, 0.7),
+            relative_position=(0.4, 0.6),
             text='SETTINGS',
             text_colour=theme['textPrimary'],
             margin=50,
@@ -26,7 +26,7 @@ MENU_WIDGETS = {
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
         TextButton(
-            relative_position=(0.6, 0.7),
+            relative_position=(0.35, 0.75),
             text='RECENT GAMES',
             text_colour=theme['textPrimary'],
             margin=50,

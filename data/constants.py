@@ -36,6 +36,9 @@ class BrowserEventType(StrEnum):
     MENU_CLICK = auto()
     BROWSER_STRIP_CLICK = auto()
     COPY_CLICK = auto()
+    DELETE_CLICK = auto()
+    FILTER_COLUMN_CLICK = auto()
+    FILTER_ASCEND_CLICK = auto()
 
 class GameState(IntEnum):
     LASER_FIRING = 0

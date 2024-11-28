@@ -28,7 +28,7 @@ class GameModel:
             'AWAITING_CPU': False,
             'WINNER': None,
             'PAUSED': False,
-            'ACTIVE_COLOUR': Colour.BLUE,
+            'ACTIVE_COLOUR': game_config['COLOUR'],
             'TIME_ENABLED': game_config['TIME_ENABLED'],
             'TIME': game_config['TIME'],
             'MOVES': []

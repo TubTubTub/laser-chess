@@ -55,7 +55,7 @@ class Menu(_State):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        animation.draw_animation(self._screen, GRAPHICS['background'], position=(0, 0), size=self._screen.size)
+        draw_background(self._screen, GRAPHICS['temp_background'])
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):

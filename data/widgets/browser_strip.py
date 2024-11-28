@@ -47,7 +47,9 @@ class BrowserStrip(_Widget):
         self._get_rect = get_rect_func
 
     def initialise_games_list(self, games_list):
+        self._items_list = []
         self._games_list = games_list
+        self._selected_index = None
 
         for game in games_list:
             browser_item = BrowserItem(relative_position=(0, 0), game=game, width=self._item_width)
@@ -57,7 +59,7 @@ class BrowserStrip(_Widget):
         self.set_geometry()
     
     def set_image(self):
-        self.image = pygame.Surface(self._size)
+        self.image = pygame.Surface(self._size, pygame.SRCALPHA)
         for index, item in enumerate(self._items_list):
             item.set_image()
             browser_item_position = (index * (self._item_width + self._margin) + self._margin, self._margin)

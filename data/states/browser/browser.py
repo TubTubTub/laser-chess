@@ -9,9 +9,12 @@ from data.components.animation import animation
 from data.components.cursor import Cursor
 from data.components.audio import audio
 
+from data.assets import GRAPHICS
+
 from data.constants import BrowserEventType
 
-from data.database.database_helpers import get_all_games
+from data.database.database_helpers import get_all_games, delete_game, get_ordered_games
+
 from data.utils.asset_helpers import draw_background
 
 class Browser(_State):
@@ -21,6 +24,8 @@ class Browser(_State):
         self._cursor = Cursor()
         
         self._selected_index = None
+        self._filter_column = 'number_of_ply'
+        self._filter_ascend = False
         self._games_list = []
         self._widget_group = None
     
@@ -33,16 +38,35 @@ class Browser(_State):
         print('starting browser.py')
         # audio.play_music(MUSIC_PATHS['menu'])
 
+        self._filter_column = 'number_of_ply'
+        self._filter_ascend = False
+
         self._widget_group = WidgetGroup(BROWSER_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
         BROWSER_WIDGETS['browser_strip'].kill()
 
-        self._selected_index = None
-        self._games_list = get_all_games()
-        BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
-        BROWSER_WIDGETS['scroll_area'].set_image()
+        self.refresh_games_list()
 
         self.draw()
+    
+    def refresh_games_list(self):
+        column_map = {
+            'moves': 'number_of_ply',
+            'winner': 'winner',
+            'time': 'created_dt'
+        }
+
+        ascend_map = {
+            'asc': True,
+            'desc': False
+        }
+        filter_column = BROWSER_WIDGETS['filter_column_dropdown'].get_selected_word()
+        filter_ascend = BROWSER_WIDGETS['filter_ascend_dropdown'].get_selected_word()
+
+        self._selected_index = None
+        self._games_list = get_ordered_games(column_map[filter_column], ascend_map[filter_ascend])
+        BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
+        BROWSER_WIDGETS['scroll_area'].set_image()
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
@@ -54,21 +78,44 @@ class Browser(_State):
             case BrowserEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
+
             case BrowserEventType.BROWSER_STRIP_CLICK:
                 self._selected_index = widget_event.selected_index
+
             case BrowserEventType.COPY_CLICK:
                 if self._selected_index is None:
                     return
                 print('COPYING TO CLIPBOARD:', self._games_list[self._selected_index]['fen_string'])
-                pyperclip.copy(self._games_list[self._selected_index]['fen_string']) // IF COPY FEN STRING THEN LASER COLOUR STARTS WRONG SOMETIMES
+                pyperclip.copy(self._games_list[self._selected_index]['fen_string'])
+
+            case BrowserEventType.DELETE_CLICK:
+                if self._selected_index is None:
+                    return
+                delete_game(self._games_list[self._selected_index]['id'])
+                self.refresh_games_list()
+
+            case BrowserEventType.FILTER_COLUMN_CLICK:
+                selected_word = BROWSER_WIDGETS['filter_column_dropdown'].get_selected_word()
+            
+                if selected_word is None:
+                    return
+                
+                self.refresh_games_list()
+
+            case BrowserEventType.FILTER_ASCEND_CLICK:
+                selected_word = BROWSER_WIDGETS['filter_ascend_dropdown'].get_selected_word()
+            
+                if selected_word is None:
+                    return
+                
+                self.refresh_games_list()
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):
-        background = pygame.Surface(self._screen.get_size())
-        background.fill((50, 50, 50))
-        draw_background(self._screen, background)
+        draw_background(self._screen, GRAPHICS['temp_background'])
+        self._widget_group.handle_resize(self._screen.get_size())
         self._widget_group.draw(self._screen)
     
     def update(self, **kwargs):

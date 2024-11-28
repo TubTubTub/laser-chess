@@ -42,6 +42,11 @@ class MoveList(_Widget):
     
     def register_get_rect(self, get_rect_func):
         pass
+    
+    def reset_move_list(self):
+        self._move_list = []
+        self.set_image()
+        self.set_geometry()
 
     def append_to_move_list(self, new_move):
         self._move_list.append(new_move)

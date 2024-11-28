@@ -8,16 +8,7 @@ def upgrade():
     cursor = connection.cursor()
 
     cursor.execute('''
-        CREATE TABLE games(
-            id INTEGER PRIMARY KEY,
-            cpu_enabled INTEGER NOT NULL,
-            cpu_depth INTEGER,
-            winner INTEGER,
-            time_enabled INTEGER NOT NULL,
-            time REAL,
-            number_of_ply INTEGER NOT NULL,
-            moves TEXT NOT NULL
-        )
+        ALTER TABLE games ADD COLUMN created_dt TIMESTAMP NOT NULL
     ''')
 
     connection.commit()
@@ -28,7 +19,7 @@ def downgrade():
     cursor = connection.cursor()
 
     cursor.execute('''
-        DROP TABLE games
+        ALTER TABLE games DROP COLUMN created_dt
     ''')
 
     connection.commit()
