@@ -8,7 +8,7 @@ from data.states.game.components.win_view import WinView
 
 from data.components.game_entry import GameEntry
 from data.constants import BG_COLOUR
-from data.tools import _State
+from data.control import _State
 from data.database.database_helpers import insert_into_games
 
 from functools import partial

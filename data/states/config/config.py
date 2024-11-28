@@ -1,6 +1,6 @@
 import pygame
 
-from data.tools import _State
+from data.control import _State
 
 from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.states.config.default_config import default_config

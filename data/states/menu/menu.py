@@ -1,5 +1,5 @@
 import pygame
-from data.tools import _State
+from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
 from data.constants import MenuEventType

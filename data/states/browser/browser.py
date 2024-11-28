@@ -1,7 +1,7 @@
 import pygame
 import pyperclip
 
-from data.tools import _State
+from data.control import _State
 from data.states.browser.widget_dict import BROWSER_WIDGETS
 
 from data.components.widget_group import WidgetGroup

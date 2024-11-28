@@ -1,6 +1,6 @@
 import pygame
 from data.states.game.components.piece_sprite import create_piece_images
-from data.tools import smoothscale_and_cache
+from data.control import smoothscale_and_cache
 from data.constants import STARTING_SQUARE_SIZE, ImageType
 
 class Square(pygame.sprite.Sprite):

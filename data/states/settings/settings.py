@@ -1,7 +1,7 @@
 import pygame
 import os
 
-from data.tools import _State
+from data.control import _State
 
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
 
