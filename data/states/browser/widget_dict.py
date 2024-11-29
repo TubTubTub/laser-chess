@@ -42,8 +42,8 @@ BROWSER_WIDGETS = {
             event=CustomEvent(BrowserEventType.DELETE_CLICK),
         ),
         Text(
-            relative_position=(0.74, 0.75),
-            text='FILTER BY:',
+            relative_position=(0.75, 0.75),
+            text='SORT BY:',
             fill_colour=(0, 0, 0, 0),
             font_size=30,
             text_colour=(255, 255, 255)

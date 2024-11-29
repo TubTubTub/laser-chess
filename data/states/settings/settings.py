@@ -47,7 +47,8 @@ class Settings(_State):
         self.draw()
     
     def create_colour_picker(self, origin_position, button_type):
-        if button_type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
+        print(button_type, 'sasdasdads')
+        if button_type == SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK:
             default_colour = self._settings['primaryBoardColour']
             event_type = SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK
         else:
@@ -127,11 +128,10 @@ class Settings(_State):
                 self.create_colour_picker(event.pos, widget_event.type)
             
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
-                print('sdsd')
                 if widget_event.colour:
-                    print('bbbb')
                     r, g, b = widget_event.colour.rgb
                     hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
+                    print(widget_event.type.name)
 
                     if widget_event.type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
                         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)
