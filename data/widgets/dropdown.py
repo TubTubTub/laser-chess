@@ -18,12 +18,10 @@ class Dropdown(_Pressable, _Widget):
         )
         _Widget.__init__(self)
 
-        self._screen_size = pygame.display.get_surface().get_size()
-
         self._relative_position = relative_position
-        self._relative_font_size = font_size / self._screen_size[1]
-        self._relative_border_width = border_width / self._screen_size[1]
-        self._relative_margin = margin / self._screen_size[1]
+        self._relative_font_size = font_size / self._surface_size[1]
+        self._relative_border_width = border_width / self._surface_size[1]
+        self._relative_margin = margin / self._surface_size[1]
 
         self._font = FONTS['default']
         self._text_colour = text_colour
@@ -46,7 +44,7 @@ class Dropdown(_Pressable, _Widget):
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _size(self):
@@ -58,15 +56,15 @@ class Dropdown(_Pressable, _Widget):
 
     @property
     def _font_size(self):
-        return self._relative_font_size * self._screen_size[1]
+        return self._relative_font_size * self._surface_size[1]
 
     @property
     def _margin(self):
-        return self._relative_margin * self._screen_size[1]
+        return self._relative_margin * self._surface_size[1]
 
     @property
     def _border_width(self):
-        return self._relative_border_width * self._screen_size[1]
+        return self._relative_border_width * self._surface_size[1]
 
     def get_selected_word(self):
         if self._expanded is False:
@@ -163,5 +161,5 @@ class Dropdown(_Pressable, _Widget):
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position
 
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size

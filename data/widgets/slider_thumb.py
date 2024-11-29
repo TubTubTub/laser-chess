@@ -14,7 +14,6 @@ class _SliderThumb(_Pressable):
             play_sfx=False
         )
 
-        self._screen = pygame.display.get_surface()
         self._border_colour  = border_colour
         self._radius = radius
         self._percent = None

@@ -9,12 +9,10 @@ from data.utils.widget_helpers import create_slider
 class VolumeSlider(_Widget):
     def __init__(self, relative_position, relative_length, default_volume, volume_type, fill_colour=(100, 100, 100), thumb_colour=(200, 200, 200), border_width=12, border_colour=(255, 255, 255)):
         super().__init__()
-        self._screen = pygame.display.get_surface()
-        self._screen_size = self._screen.get_size()
  
         self._relative_position = relative_position
         self._relative_length = relative_length
-        self._relative_border_width = border_width / self._screen_size[1]
+        self._relative_border_width = border_width / self._surface_size[1]
 
         self._fill_colour = pygame.Color(fill_colour)
         self._thumb_colour = pygame.Color(thumb_colour)
@@ -30,16 +28,16 @@ class VolumeSlider(_Widget):
     
     @property
     def _size(self):
-        return (self._relative_length * self._screen_size[1], self._relative_length * 0.2 * self._screen_size[1])
+        return (self._relative_length * self._surface_size[1], self._relative_length * 0.2 * self._surface_size[1])
 
     @property
     def _position(self):
         '''Minus so easier to position slider by starting from the left edge of the slider instead of the thumb'''
-        return (self._relative_position[0] * self._screen_size[0] - (self._size[1] / 2), self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0] - (self._size[1] / 2), self._relative_position[1] * self._surface_size[1])
     
     @property
     def _border_width(self):
-        return self._relative_border_width * self._screen_size[1]
+        return self._relative_border_width * self._surface_size[1]
     
     def calculate_slider_position(self):
         return (self._size[1] / 2, self._size[1] / 4)
@@ -87,8 +85,8 @@ class VolumeSlider(_Widget):
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
     
     def process_event(self, event):
         if event.type in [pygame.MOUSEMOTION]:

@@ -176,7 +176,7 @@ class Config(_State):
     
     def draw(self):
         draw_background(self._screen, GRAPHICS['temp_background'])
-        self._widget_group.draw(self._screen)
+        self._widget_group.draw()
     
     def update(self, **kwargs):
         self._widget_group.update()

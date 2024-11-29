@@ -15,8 +15,6 @@ class _Scrollbar(_Pressable, _Widget):
         )
         _Widget.__init__(self)
 
-        self._screen_size = pygame.display.get_surface().get_size()
-
         self._position = position
         self._size = size
 
@@ -48,8 +46,8 @@ class _Scrollbar(_Pressable, _Widget):
 
         self.set_image()
 
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
     
     def down_func(self):
         if self._vertical:

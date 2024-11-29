@@ -36,7 +36,7 @@ class PauseView:
     def draw(self):
         if self.states['PAUSED']:
             self._screen.blit(self._screen_overlay, (0, 0))
-            self._widget_group.draw(self._screen)
+            self._widget_group.draw()
     
     def process_model_event(self, event):
         try:

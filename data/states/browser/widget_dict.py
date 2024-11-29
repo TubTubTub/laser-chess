@@ -7,7 +7,7 @@ from data.theme import theme
 
 browser_strip = BrowserStrip(
     relative_position=(0.0, 0.0),
-    item_width=220,
+    relative_item_width=0.3,
     games_list=[]
 )
 

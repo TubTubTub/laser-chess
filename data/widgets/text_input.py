@@ -9,7 +9,7 @@ from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
 
 class TextInput(_Pressable, Text):
-    def __init__(self, size, event_type, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
+    def __init__(self, relative_size, event_type, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
         pygame.key.set_repeat(500, 50)
         _Pressable.__init__(
             self,
@@ -19,14 +19,12 @@ class TextInput(_Pressable, Text):
             up_func=self.up_func,
             play_sfx=False
         )
-
-        self._screen_size = pygame.display.get_surface().get_size()
-        self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
+        self._relative_size = relative_size
         self._cursor_index = None
 
         Text.__init__(self, text="", font=FONTS['comicsans'], center=False, **kwargs)
 
-        self._relative_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._screen_size[1]
+        self._relative_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._surface_size[1]
         self._blinking_fps = 1000 / blinking_interval
         self._cursor_colour = cursor_colour
         self._cursor_colour_copy = cursor_colour
@@ -68,7 +66,7 @@ class TextInput(_Pressable, Text):
     
     @property
     def _size(self):
-        return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
+        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
 
     def hover_func(self):
         self.set_state_colour(WidgetState.HOVER)
@@ -95,9 +93,9 @@ class TextInput(_Pressable, Text):
         self.set_image()
     
     def resize_text_to_box(self):
-        test_size = self._relative_font_size * self._screen_size[1] + 1
+        test_size = self._relative_font_size * self._surface_size[1] + 1
         box_size = self._size[0] - 2 * self._border_width
-        ideal_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._screen_size[1]
+        ideal_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._surface_size[1]
 
         if self._font.get_rect(text=self._text, size=self._font_size).width < self._size[0]:
             if self._relative_font_size >= ideal_font_size:
@@ -106,7 +104,7 @@ class TextInput(_Pressable, Text):
             while True:
                 text_width = self._font.get_rect(text=self._text, size=test_size).width
                 if text_width > box_size:
-                    self._relative_font_size = (test_size - 1) / self._screen_size[1]
+                    self._relative_font_size = (test_size - 1) / self._surface_size[1]
                     return
                 
                 test_size = test_size + 1
@@ -115,7 +113,7 @@ class TextInput(_Pressable, Text):
             while True:
                 text_width = self._font.get_rect(text=self._text, size=test_size).width
                 if text_width < box_size:
-                    self._relative_font_size = (test_size) / self._screen_size[1]
+                    self._relative_font_size = (test_size) / self._surface_size[1]
                     return
                 
                 test_size = test_size - 1
