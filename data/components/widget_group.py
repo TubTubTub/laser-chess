@@ -11,9 +11,9 @@ class WidgetGroup(pygame.sprite.Group):
             for widget in value:
                 self.add(widget)
     
-    def handle_resize(self, new_screen_size):
+    def handle_resize(self, new_surface_size):
         for sprite in self.sprites():
-            sprite.set_screen_size(new_screen_size)
+            sprite.set_surface_size(new_surface_size)
             sprite.set_image()
             sprite.set_geometry()
     
@@ -25,3 +25,12 @@ class WidgetGroup(pygame.sprite.Group):
                 return widget_event
         
         return None
+    
+    def draw(self):
+        sprites = self.sprites()
+        for spr in sprites:
+            self.spritedict[spr] = spr._surface.blit(spr.image, spr.rect)
+        self.lostsprites = []
+        dirty = self.lostsprites
+
+        return dirty

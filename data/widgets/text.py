@@ -5,7 +5,6 @@ from data.assets import FONTS
 class Text(_Widget): # Pure text
     def __init__(self, relative_position, text, text_colour=(100, 100, 100), center=True, minimum_width=0, font=FONTS['default'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
 
         self._relative_position = relative_position
 
@@ -13,13 +12,13 @@ class Text(_Widget): # Pure text
         self._text_colour = text_colour
         self._font = font
 
-        self._relative_margin = margin / self._screen_size[1]
-        self._relative_font_size = font_size / self._screen_size[1]
-        self._relative_border_width = border_width / self._screen_size[1]
-        self._relative_border_radius = border_radius / self._screen_size[1]
+        self._relative_margin = margin / self._surface_size[1]
+        self._relative_font_size = font_size / self._surface_size[1]
+        self._relative_border_width = border_width / self._surface_size[1]
+        self._relative_border_radius = border_radius / self._surface_size[1]
         
         self._center = center
-        self._relative_minimum_width = minimum_width / self._screen_size[1]
+        self._relative_minimum_width = minimum_width / self._surface_size[1]
 
         self._fill_colour = fill_colour
 
@@ -38,7 +37,7 @@ class Text(_Widget): # Pure text
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _size(self):
@@ -56,23 +55,23 @@ class Text(_Widget): # Pure text
 
     @property
     def _font_size(self):
-        return self._relative_font_size * self._screen_size[1]
+        return self._relative_font_size * self._surface_size[1]
 
     @property
     def _margin(self):
-        return self._relative_margin * self._screen_size[1]
+        return self._relative_margin * self._surface_size[1]
 
     @property
     def _border_width(self):
-        return self._relative_border_width * self._screen_size[1]
+        return self._relative_border_width * self._surface_size[1]
     
     @property
     def _border_radius(self):
-        return self._relative_border_radius * self._screen_size[1]
+        return self._relative_border_radius * self._surface_size[1]
 
     @property
     def _minimum_width(self):
-        return self._relative_minimum_width * self._screen_size[1]
+        return self._relative_minimum_width * self._surface_size[1]
 
     def update_text(self, new_text):
         self._text = new_text
@@ -102,8 +101,8 @@ class Text(_Widget): # Pure text
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
 
     def process_event(self, event):
         pass

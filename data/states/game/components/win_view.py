@@ -29,7 +29,7 @@ class WinView:
                 WIN_WIDGETS['red_trophy'].kill()
                 WIN_WIDGETS['blue_trophy'].kill()
         
-            self._widget_group.draw(self._screen)
+            self._widget_group.draw()
     
     # def process_model_event(self, event):
     #     try:

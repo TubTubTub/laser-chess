@@ -5,15 +5,13 @@ from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_gradient
 
 class _ColourSlider(_Widget):
-    def __init__(self, surface, get_parent_position, relative_position, relative_length, border_width=12, border_colour=(255, 255, 255)):
+    def __init__(self, get_parent_position, relative_position, relative_length, border_width=12, border_colour=(255, 255, 255)):
         super().__init__()
-        self._screen = surface
-        self._screen_size = self._screen.get_size()
         self._get_parent_position = get_parent_position
  
         self._relative_position = relative_position
         self._relative_length = relative_length
-        self._relative_border_width = border_width / self._screen_size[1]
+        self._relative_border_width = border_width / self._surface_size[1]
 
         self._border_colour = border_colour
 
@@ -27,15 +25,15 @@ class _ColourSlider(_Widget):
     
     @property
     def _size(self):
-        return (self._relative_length * self._screen_size[1], self._relative_length * 0.2 * self._screen_size[1])
+        return (self._relative_length * self._surface_size[1], self._relative_length * 0.2 * self._surface_size[1])
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
     
     @property
     def _border_width(self):
-        return self._relative_border_width * self._screen_size[1]
+        return self._relative_border_width * self._surface_size[1]
     
     def calculate_gradient_size(self):
         return (self._size[0] - 2 * (self._size[1] / 2), self._size[1] / 2)
@@ -47,7 +45,7 @@ class _ColourSlider(_Widget):
         parent_x, parent_y = self._get_parent_position()
         mouse_pos = (mouse_pos[0] - self.rect.topleft[0] - parent_x, mouse_pos[1] - self.rect.topleft[1] - parent_y)
 
-        border_width = self._relative_border_width * self._screen_size[1]
+        border_width = self._relative_border_width * self._surface_size[1]
         selected_percent = (mouse_pos[0] - (self._size[1] / 2) - border_width) / (self.calculate_gradient_size()[0] - 2 * border_width)
         selected_percent = max(0, min(selected_percent, 1))
         return selected_percent
@@ -96,8 +94,8 @@ class _ColourSlider(_Widget):
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
     
     def process_event(self, event):
         if event.type == pygame.MOUSEMOTION:

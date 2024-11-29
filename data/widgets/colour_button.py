@@ -14,11 +14,9 @@ class ColourButton(_Pressable, _Widget):
         )
         _Widget.__init__(self)
 
-        self._screen_size = pygame.display.get_surface().get_size()
-
         self._relative_position = relative_position
         self._relative_size = relative_size
-        self._relative_border_width = border_width / self._screen_size[1]
+        self._relative_border_width = border_width / self._surface_size[1]
 
         self._fill_colour = default_colour
         self._border_colour = border_colour
@@ -32,15 +30,15 @@ class ColourButton(_Pressable, _Widget):
     
     @property
     def _size(self):
-        return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
+        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
     
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _border_width(self):
-        return self._relative_border_width * self._screen_size[1]
+        return self._relative_border_width * self._surface_size[1]
 
     def initialise_new_colours(self, new_colour):
         r, g, b = pygame.Color(new_colour).rgb
@@ -58,8 +56,8 @@ class ColourButton(_Pressable, _Widget):
 
         self.set_image()
 
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
 
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self._size)

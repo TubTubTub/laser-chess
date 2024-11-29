@@ -1,3 +1,4 @@
+import pygame
 from data.widgets import *
 from data.states.config.default_config import default_config
 from data.components.custom_event import CustomEvent
@@ -6,6 +7,8 @@ from data.assets import GRAPHICS
 from data.utils.asset_helpers import get_dimmed_icon
 
 from copy import deepcopy
+
+screen = pygame.display.get_surface()
 
 def float_validator(num_string):
     try:
@@ -36,7 +39,7 @@ CONFIG_WIDGETS = {
             relative_position=(0.5, 0.1),
             placeholder='ENTER FEN STRING',
             default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
-            size=(400, 75),
+            relative_size=(0.5, 0.1),
             border_width=5,
             margin=40,
             border_colour=(150, 150, 150),
@@ -46,7 +49,7 @@ CONFIG_WIDGETS = {
             relative_position=(0.6, 0.3),
             placeholder='TIME CONTROL (MINS)',
             default=str(default_config['TIME']),
-            size=(200, 75),
+            relative_size=(0.3, 0.1),
             border_width=5,
             margin=50,
             validator=float_validator,
@@ -125,7 +128,8 @@ CONFIG_WIDGETS = {
     ),
     'board_thumbnail':
     BoardThumbnail(
+        surface=screen,
         relative_position=(0.02, 0.15),
-        width=460
+        relative_width=0.5
     )
 }

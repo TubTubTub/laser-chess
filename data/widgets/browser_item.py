@@ -18,21 +18,25 @@ def get_winner_string(winner):
         return Colour(winner).name
 
 class BrowserItem(_Widget):
-    def __init__(self, relative_position, game, width, text_colour=(200, 200, 200), font=FONTS['default']):
+    def __init__(self, relative_position, relative_width, game, text_colour=(200, 200, 200), font=FONTS['default']):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
 
         self._font = font
 
         self._relative_position = relative_position
-        self._relative_width = width / self._screen_size[1]
+        self._relative_width = relative_width
         
-        line_height = (self._size[1] / 2) / FONT_DIVISION
-        self._relative_font_size = height_to_font_size(self._font, line_height) / self._screen_size[1]
+        line_height = (self.size[1] / 2) / FONT_DIVISION
+        self._relative_font_size = height_to_font_size(self._font, line_height) / self._surface_size[1]
 
         self._text_colour = text_colour
         self._game = game
-        self._board_thumbnail = BoardThumbnail(relative_position=(0, 0), width=self._size[0], fen_string=self._game['fen_string'])
+        self._board_thumbnail = BoardThumbnail(
+            surface=pygame.display.get_surface(),
+            relative_position=(0, 0),
+            width=self.size[0],
+            fen_string=self._game['fen_string']
+        )
         
         self._empty_surface = pygame.Surface((0, 0))
         
@@ -40,23 +44,23 @@ class BrowserItem(_Widget):
         self.set_geometry()
 
     @property
-    def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+    def position(self):
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
     
     @property
-    def _size(self):
-        return (self._relative_width * self._screen_size[1], self._relative_width * 2 * 0.8 * self._screen_size[1])
+    def size(self):
+        return (self._relative_width * self._surface_size[1], self._relative_width * 2 * 0.8 * self._surface_size[1])
 
     @property
     def _font_size(self):
-        return self._relative_font_size * self._screen_size[1]
+        return self._relative_font_size * self._surface_size[1]
     
     def set_image(self):
-        self.image = pygame.Surface(self._size, pygame.SRCALPHA)
-        resized_board = pygame.transform.smoothscale(self._board_thumbnail.image, (self._size[0], self._size[0] * 0.8))
+        self.image = pygame.Surface(self.size, pygame.SRCALPHA)
+        resized_board = pygame.transform.smoothscale(self._board_thumbnail.image, (self.size[0], self.size[0] * 0.8))
         self.image.blit(resized_board, (0, 0))
 
-        get_line_y = lambda line: (self._size[0] * 0.8) + ((self._size[0] * 0.8) / FONT_DIVISION) * line
+        get_line_y = lambda line: (self.size[0] * 0.8) + ((self.size[0] * 0.8) / FONT_DIVISION) * line
 
         text_to_render = self.get_text_to_render()
 
@@ -85,10 +89,10 @@ class BrowserItem(_Widget):
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
+        self.rect.topleft = self.position
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
     
     def process_event(self, event):
         pass

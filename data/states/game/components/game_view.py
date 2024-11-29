@@ -165,7 +165,7 @@ class GameView:
         self._piece_group.draw(self._screen)
     
     def draw_widgets(self):
-        self._widget_group.draw(self._screen)
+        self._widget_group.draw()
 
     def draw_overlay(self):
         if not self._selected_overlay_coord:

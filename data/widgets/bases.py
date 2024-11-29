@@ -3,10 +3,13 @@ from data.constants import WidgetState
 from data.components.audio import audio
 from data.assets import SFX
 
+screen = pygame.display.get_surface()
+
 class _Widget(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, surface=screen):
         super().__init__()
-        pass
+        self._surface = surface
+        self._surface_size = surface.get_size()
     
     def set_image(self):
         raise NotImplementedError
@@ -14,7 +17,7 @@ class _Widget(pygame.sprite.Sprite):
     def set_geometry(self):
         raise NotImplementedError
     
-    def set_screen_size(self, new_screen_size):
+    def set_surface_size(self, new_surface_size):
         raise NotImplementedError
     
     def process_event(self, event):

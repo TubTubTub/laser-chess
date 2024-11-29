@@ -5,13 +5,12 @@ from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent
 
 class BrowserStrip(_Widget):
-    def __init__(self, relative_position, item_width, games_list, margin=20):
+    def __init__(self, relative_position, relative_item_width, games_list, margin=20):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
         
         self._relative_position = relative_position
-        self._relative_item_width = item_width / self._screen_size[1]
-        self._relative_margin = margin / self._screen_size[1]
+        self._relative_item_width = relative_item_width
+        self._relative_margin = margin / self._surface_size[1]
 
         self._get_rect = None
 
@@ -23,11 +22,11 @@ class BrowserStrip(_Widget):
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _item_width(self):
-        return self._relative_item_width * self._screen_size[1]
+        return self._relative_item_width * self._surface_size[1]
 
     @property
     def _size(self):
@@ -41,7 +40,7 @@ class BrowserStrip(_Widget):
     
     @property
     def _margin(self):
-        return self._relative_margin * self._screen_size[1]
+        return self._relative_margin * self._surface_size[1]
     
     def register_get_rect(self, get_rect_func):
         self._get_rect = get_rect_func
@@ -76,10 +75,10 @@ class BrowserStrip(_Widget):
         for item in self._items_list:
             item.set_geometry()
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
         for item in self._items_list:
-            item.set_screen_size(new_screen_size)
+            item.set_surface_size(new_surface_size)
     
     def process_event(self, event, scrolled_pos):
         parent_pos = self._get_rect().topleft

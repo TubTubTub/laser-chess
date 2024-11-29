@@ -7,15 +7,14 @@ SCROLLBAR_WIDTH_FACTOR =  0.05
 class ScrollArea(_Widget):
     def __init__(self, relative_position, size, widget, vertical, scroll_factor=5):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
 
         if vertical:
-            self._relative_size = (size[0] / self._screen_size[1], size[1] / self._screen_size[1])
+            self._relative_size = (size[0] / self._surface_size[1], size[1] / self._surface_size[1])
         else:
-            self._relative_size = (size[0] / self._screen_size[0], size[1] / self._screen_size[1])
+            self._relative_size = (size[0] / self._surface_size[0], size[1] / self._surface_size[1])
 
         self._relative_position = relative_position
-        self._relative_scroll_factor = scroll_factor / self._screen_size[1]
+        self._relative_scroll_factor = scroll_factor / self._surface_size[1]
 
         self._scroll_percentage = 0
         self._widget = widget
@@ -36,18 +35,18 @@ class ScrollArea(_Widget):
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _size(self):
         if self._vertical:
-            return (self._relative_size[0] * self._screen_size[1], self._relative_size[1] * self._screen_size[1])
+            return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
         else:
-            return (self._relative_size[0] * self._screen_size[0], self._relative_size[1] * self._screen_size[1])
+            return (self._relative_size[0] * self._surface_size[0], self._relative_size[1] * self._surface_size[1])
     
     @property
     def _scroll_factor(self):
-        return self._relative_scroll_factor * self._screen_size[1]
+        return self._relative_scroll_factor * self._surface_size[1]
 
     @property
     def _scrollbar_size(self):
@@ -129,11 +128,11 @@ class ScrollArea(_Widget):
         self._widget.set_geometry()
         self._scrollbar.set_geometry()
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
 
-        self._widget.set_screen_size(new_screen_size)
-        # self._scrollbar.set_screen_size(new_screen_size)
+        self._widget.set_surface_size(new_surface_size)
+        # self._scrollbar.set_surface_size(new_surface_size)
     
     def process_event(self, event):
         # WAITING FOR PYGAME-CE 2.5.3 TO RELEASE TO FIX SCROLL FLAGS

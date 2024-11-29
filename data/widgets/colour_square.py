@@ -3,10 +3,8 @@ from data.widgets.bases import _Widget
 from data.utils.widget_helpers import create_square_gradient
 
 class _ColourSquare(_Widget):
-    def __init__(self, surface, get_parent_position, relative_position, relative_length):
+    def __init__(self, get_parent_position, relative_position, relative_length):
         super().__init__()
-        self._screen = surface
-        self._screen_size = self._screen.get_size()
         self._get_parent_position = get_parent_position
 
         self._relative_position = relative_position
@@ -16,11 +14,11 @@ class _ColourSquare(_Widget):
     
     @property
     def _length(self):
-        return self._relative_length * self._screen_size[1]
+        return self._relative_length * self._surface_size[1]
     
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     def set_colour(self, new_colour):
         self._colour = pygame.Color(new_colour)
@@ -33,10 +31,10 @@ class _ColourSquare(_Widget):
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
-        self.rect.topleft = (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        self.rect.topleft = (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
     
     def global_to_relative_position(self, position):
         global_x, global_y = position

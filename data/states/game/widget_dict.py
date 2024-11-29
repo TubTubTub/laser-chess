@@ -80,7 +80,7 @@ GAME_WIDGETS = {
     'chessboard':
     Chessboard(
         relative_position=(0, 0),
-        width=480,
+        relative_width=0.5,
         center=True
     ),
     'move_list':

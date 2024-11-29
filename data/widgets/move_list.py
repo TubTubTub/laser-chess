@@ -6,15 +6,14 @@ from data.utils.font_helpers import width_to_font_size
 class MoveList(_Widget):
     def __init__(self, relative_position, width, minimum_height=0, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[], font=FONTS['default']):
         super().__init__()
-        self._screen_size = pygame.display.get_surface().get_size()
 
         self._relative_position = relative_position
-        self._relative_width = width / self._screen_size[1]
-        self._relative_minimum_height = minimum_height / self._screen_size[1]
+        self._relative_width = width / self._surface_size[1]
+        self._relative_minimum_height = minimum_height / self._surface_size[1]
         self._move_list = move_list
 
         self._font = font
-        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._surface_size[1]
 
         self._fill_colour = pygame.Color(fill_colour)
         self._text_colour = pygame.Color(text_colour)
@@ -26,19 +25,19 @@ class MoveList(_Widget):
 
     @property
     def _position(self):
-        return (self._relative_position[0] * self._screen_size[0], self._relative_position[1] * self._screen_size[1])
+        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _width(self):
-        return self._relative_width * self._screen_size[1]
+        return self._relative_width * self._surface_size[1]
     
     @property
     def _minimum_height(self):
-        return self._relative_minimum_height * self._screen_size[1]
+        return self._relative_minimum_height * self._surface_size[1]
     
     @property
     def _font_size(self):
-        return self._relative_font_size * self._screen_size[1]
+        return self._relative_font_size * self._surface_size[1]
     
     def register_get_rect(self, get_rect_func):
         pass
@@ -76,9 +75,9 @@ class MoveList(_Widget):
         self.rect = self.image.get_rect()
         self.rect.topleft = self._position
     
-    def set_screen_size(self, new_screen_size):
-        self._screen_size = new_screen_size
-        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._screen_size[1]
+    def set_surface_size(self, new_surface_size):
+        self._surface_size = new_surface_size
+        self._relative_font_size = width_to_font_size(self._font, self._width / 5) / self._surface_size[1]
     
     def process_event(self, event, scrolled_pos=None):
         pass
