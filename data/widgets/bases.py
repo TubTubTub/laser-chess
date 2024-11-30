@@ -6,22 +6,43 @@ from data.assets import SFX
 screen = pygame.display.get_surface()
 
 class _Widget(pygame.sprite.Sprite):
-    def __init__(self, surface=screen):
+    def __init__(self, surface, relative_position, relative_size):
         super().__init__()
+
+        if surface is None:
+            surface = screen
         self._surface = surface
         self._surface_size = surface.get_size()
+
+        self._relative_position = relative_position
+        self._relative_size = ((relative_size[0] / self._surface_size[0]) * self._surface_size[1], relative_size[1])
+    
+    @property
+    def position(self):
+        return (self._relative_position * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
+    
+    @property
+    def size(self):
+        return (self._relative_size * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
     
     def set_image(self):
         raise NotImplementedError
     
     def set_geometry(self):
-        raise NotImplementedError
+        self.rect = self.image.get_rect()
+        self.rect.topleft = self.position
     
     def set_surface_size(self, new_surface_size):
-        raise NotImplementedError
+        self._surface_size = new_surface_size
     
     def process_event(self, event):
         raise NotImplementedError
+
+    def get_size(self):
+        return self._size
+
+    def blit(self, image, rect):
+        self.image.blit(image, rect)
 
 class _Pressable:
     def __init__(self, event, down_func=None, up_func=None, hover_func=None, prolonged=False, play_sfx=True, **kwargs):

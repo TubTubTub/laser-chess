@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):
-    def __init__(self, relative_position, relative_size, event, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255)):
+    def __init__(self, relative_position, relative_size, event, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255), surface=None):
         _Pressable.__init__(
             self,
             event=event,
@@ -12,7 +12,7 @@ class ColourButton(_Pressable, _Widget):
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
             play_sfx=False
         )
-        _Widget.__init__(self)
+        _Widget.__init__(self, surface)
 
         self._relative_position = relative_position
         self._relative_size = relative_size

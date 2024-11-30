@@ -86,7 +86,7 @@ SETTINGS_WIDGETS = {
         ),
         IconButton(
             relative_position=(0.9, 0.1),
-            size=(50, 50),
+            relative_size=(0.3, 0.3),
             margin=10,
             border_width=5,
             border_radius=5,

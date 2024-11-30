@@ -7,7 +7,7 @@ from data.assets import GRAPHICS, FONTS
 user_settings = get_user_settings()
 
 class Dropdown(_Pressable, _Widget):
-    def __init__(self, relative_position, word_list, font_size, fill_colour, event=None, text_colour=(0, 0, 0), border_colour=(255, 255, 255), border_width=4, margin=15):
+    def __init__(self, word_list, font_size, fill_colour, event=None, text_colour=(0, 0, 0), border_colour=(255, 255, 255), border_width=4, margin=15, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -16,9 +16,8 @@ class Dropdown(_Pressable, _Widget):
             up_func=self.up_func,
             play_sfx=False
         )
-        _Widget.__init__(self)
+        _Widget.__init__(self, **kwargs)
 
-        self._relative_position = relative_position
         self._relative_font_size = font_size / self._surface_size[1]
         self._relative_border_width = border_width / self._surface_size[1]
         self._relative_margin = margin / self._surface_size[1]
@@ -41,10 +40,6 @@ class Dropdown(_Pressable, _Widget):
 
         self.set_image()
         self.set_geometry()
-
-    @property
-    def _position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _size(self):
@@ -82,7 +77,7 @@ class Dropdown(_Pressable, _Widget):
 
     def hover_func(self):
         mouse_position = pygame.mouse.get_pos()
-        relative_position = (mouse_position[0] - self._position[0], mouse_position[1] - self._position[1])
+        relative_position = (mouse_position[0] - self.position[0], mouse_position[1] - self.position[1])
         self._hovered_index = self.calculate_hovered_index(relative_position)
         self.set_state_colour(WidgetState.HOVER)
     
@@ -156,10 +151,3 @@ class Dropdown(_Pressable, _Widget):
             overlay_surface.fill((*self._overlay_colour, 128))
             overlay_position = (0, (word_box_height + self._margin) * self._hovered_index)
             self.image.blit(overlay_surface, overlay_position)
-    
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
-
-    def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size

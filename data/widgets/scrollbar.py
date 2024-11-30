@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState, Miscellaneous
 # self.set_state_colour(WidgetState.HOVER)
 class _Scrollbar(_Pressable, _Widget):
-    def __init__(self, position, size, vertical, fill_colour=(255, 255, 255)):
+    def __init__(self, position, size, vertical, fill_colour=(255, 255, 255), surface=None):
         _Pressable.__init__(
             self,
             event=Miscellaneous.PLACEHOLDER,
@@ -13,7 +13,7 @@ class _Scrollbar(_Pressable, _Widget):
             prolonged=True,
             play_sfx=False
         )
-        _Widget.__init__(self)
+        _Widget.__init__(self, surface)
 
         self._position = position
         self._size = size

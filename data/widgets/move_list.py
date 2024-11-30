@@ -4,8 +4,8 @@ from data.assets import FONTS
 from data.utils.font_helpers import width_to_font_size
 
 class MoveList(_Widget):
-    def __init__(self, relative_position, width, minimum_height=0, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[], font=FONTS['default']):
-        super().__init__()
+    def __init__(self, relative_position, width, minimum_height=0, fill_colour=(150, 150, 150), text_colour=(0, 0, 0), move_list=[], font=FONTS['default'], surface=None):
+        super().__init__(surface)
 
         self._relative_position = relative_position
         self._relative_width = width / self._surface_size[1]

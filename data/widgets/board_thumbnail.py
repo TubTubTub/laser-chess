@@ -5,27 +5,16 @@ from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.bitboard_collection import BitboardCollection
 
 class BoardThumbnail(_Widget):
-    def __init__(self, relative_position, relative_width, fen_string='', **kwargs):
-        super().__init__(**kwargs)
-        self._relative_position = relative_position
-        self._relative_size = (relative_width, relative_width * 0.8)
+    def __init__(self, relative_width, fen_string='', **kwargs):
+        super().__init__(relative_size=(relative_width, relative_width * 0.8), **kwargs)
 
-        self._board = Chessboard(relative_position, relative_width)
+        self._board = Chessboard(kwargs.get('relative_position'), relative_width)
 
         self._empty_surface = pygame.Surface((0, 0))
 
         self.initialise_fen_string(fen_string)
-        
         self.set_image()
         self.set_geometry()
-
-    @property
-    def position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
-
-    @property
-    def size(self):
-        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
 
     def initialise_fen_string(self, fen_string):
         if len(fen_string) == 0:
@@ -47,12 +36,11 @@ class BoardThumbnail(_Widget):
         self._piece_group.draw(self.image)
     
     def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self.position
+        super().set_geometry()
         self._board.set_geometry()
     
     def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
+        super().set_surface_size(new_surface_size)
         self._board.set_surface_size(new_surface_size)
         self._piece_group.handle_resize((0, 0), self.size, resize_end=False) # ONLY RENDERS PIECES IN LOW QUALITY
     

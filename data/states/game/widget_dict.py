@@ -14,14 +14,14 @@ GAME_WIDGETS = {
     'default': [
         IconButton(
             relative_position=(0.52, 0.85),
-            size=(60, 60),
+            relative_size=(0.3, 0.3),
             margin=10,
             icon=GRAPHICS['clockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
         ),
         IconButton(
             relative_position=(0.44, 0.85),
-            size=(60, 60),
+            relative_size=(0.3, 0.3),
             margin=10,
             icon=GRAPHICS['anticlockwise_arrow'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
@@ -42,7 +42,7 @@ GAME_WIDGETS = {
         ),
         Icon(
             relative_position=(0.27, 0.85),
-            size=(30, 30),
+            relative_size=(0.3, 0.3),
             fill_colour=(0, 0, 0, 0),
             border_radius=0,
             margin=0,
@@ -50,7 +50,7 @@ GAME_WIDGETS = {
         ),
         Icon(
             relative_position=(0.65, 0.85),
-            size=(35, 35),
+            relative_size=(0.3, 0.3),
             fill_colour=(0, 0, 0, 0),
             border_radius=0,
             margin=0,
@@ -117,7 +117,7 @@ WIN_WIDGETS = {
     'default': [
         Rectangle(
             relative_position=(0.3, 0.25),
-            size=(450, 210),
+            relative_size=(0.5, 0.3),
             fill_colour=(128, 128, 128, 200),
         ),
         TextButton(
@@ -138,7 +138,7 @@ WIN_WIDGETS = {
     'blue_trophy':
     Icon(
         relative_position=(0.3, 0.26),
-        size=(200, 200),
+        relative_size=(0.3, 0.3),
         margin=0,
         icon=GRAPHICS['blue_trophy'],
         fill_colour=(0, 0, 0, 0),
@@ -146,7 +146,7 @@ WIN_WIDGETS = {
     'red_trophy':
     Icon(
         relative_position=(0.3, 0.26),
-        size=(200, 200),
+        relative_size=(0.3, 0.3),
         margin=0,
         icon=GRAPHICS['red_trophy'],
         fill_colour=(0, 0, 0, 0),
@@ -154,7 +154,7 @@ WIN_WIDGETS = {
     'draw_trophy':
     Icon(
         relative_position=(0.3, 0.26),
-        size=(200, 200),
+        relative_size=(0.3, 0.3),
         margin=0,
         icon=GRAPHICS['hug'],
         fill_colour=(0, 0, 0, 0),

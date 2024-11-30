@@ -5,8 +5,8 @@ from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent
 
 class BrowserStrip(_Widget):
-    def __init__(self, relative_position, relative_item_width, games_list, margin=20):
-        super().__init__()
+    def __init__(self, relative_position, relative_item_width, games_list, margin=20, surface=None):
+        super().__init__(surface)
         
         self._relative_position = relative_position
         self._relative_item_width = relative_item_width
@@ -51,7 +51,7 @@ class BrowserStrip(_Widget):
         self._selected_index = None
 
         for game in games_list:
-            browser_item = BrowserItem(relative_position=(0, 0), game=game, width=self._item_width)
+            browser_item = BrowserItem(relative_position=(0, 0), game=game, relative_width=self._item_width)
             self._items_list.append(browser_item)
 
         self.set_image()

@@ -7,8 +7,8 @@ from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider
 
 class VolumeSlider(_Widget):
-    def __init__(self, relative_position, relative_length, default_volume, volume_type, fill_colour=(100, 100, 100), thumb_colour=(200, 200, 200), border_width=12, border_colour=(255, 255, 255)):
-        super().__init__()
+    def __init__(self, relative_position, relative_length, default_volume, volume_type, fill_colour=(100, 100, 100), thumb_colour=(200, 200, 200), border_width=12, border_colour=(255, 255, 255), surface=None):
+        super().__init__(surface)
  
         self._relative_position = relative_position
         self._relative_length = relative_length

@@ -4,7 +4,7 @@ from data.constants import WidgetState
 from data.utils.widget_helpers import create_switch
 
 class Switch(_Pressable, _Widget):
-    def __init__(self, relative_position, relative_length, colour, event):
+    def __init__(self, relative_position, relative_length, colour, event, surface=None):
         _Pressable.__init__(
             self,
             event=event,
@@ -12,7 +12,7 @@ class Switch(_Pressable, _Widget):
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=self.up_func,
         )
-        _Widget.__init__(self)
+        _Widget.__init__(self, surface)
 
         self._relative_position = relative_position
         self._relative_size = (relative_length, relative_length * 0.5)

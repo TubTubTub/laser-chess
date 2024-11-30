@@ -33,44 +33,54 @@ if default_config['TIME_ENABLED']:
 else:
     time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
+config_container = Rectangle(
+    relative_position=(0.5, 0.1),
+    relative_size=(0.4, 0.8)
+)
+
 CONFIG_WIDGETS = {
     'default': [
         TextInput(
-            relative_position=(0.5, 0.1),
+            surface=config_container,
+            relative_position=(0.1, 0.1),
             placeholder='ENTER FEN STRING',
             default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
-            relative_size=(0.5, 0.1),
+            relative_size=(0.8, 0.2),
             border_width=5,
-            margin=40,
+            margin=0,
             border_colour=(150, 150, 150),
             event_type=ConfigEventType.FEN_STRING_TYPE
         ),
         TextInput(
+            surface=config_container,
             relative_position=(0.6, 0.3),
             placeholder='TIME CONTROL (MINS)',
             default=str(default_config['TIME']),
             relative_size=(0.3, 0.1),
             border_width=5,
-            margin=50,
+            margin=0,
             validator=float_validator,
             border_colour=(150, 150, 150),
             event_type=ConfigEventType.TIME_TYPE
         ),
         Text(
+            surface=config_container,
             relative_position=(0.82, 0.31),
             text='MINS',
             font_size=40,
             margin=30
         ),
         IconButton(
+            surface=config_container,
             relative_position=(0.92, 0.02),
-            size=(50, 50),
+            relative_size=(0.3, 0.3),
             margin=10,
             border_width=5,
             border_radius=5,
             icon=GRAPHICS['home'],
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
+        config_container,
     ],
     'start_button':
     TextButton(
@@ -85,7 +95,7 @@ CONFIG_WIDGETS = {
     'timer_button':
     MultipleIconButton(
         relative_position=(0.5, 0.3),
-        size=(75, 75),
+        relative_size=(0.3, 0.3),
         margin=0,
         border_width=5,
         border_radius=5,
@@ -95,7 +105,7 @@ CONFIG_WIDGETS = {
     'pvp_button':
     MultipleIconButton(
         relative_position=(0.5, 0.5),
-        size=(180, 75),
+        relative_size=(0.3, 0.3),
         margin=0,
         border_width=5,
         border_radius=5,
@@ -107,7 +117,7 @@ CONFIG_WIDGETS = {
     'pvc_button':
     MultipleIconButton(
         relative_position=(0.72, 0.5),
-        size=(180, 75),
+        relative_size=(0.3, 0.3),
         margin=0,
         border_width=5,
         border_radius=5,

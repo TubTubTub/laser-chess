@@ -3,8 +3,8 @@ from data.widgets.bases import _Widget
 from data.assets import FONTS
 
 class Text(_Widget): # Pure text
-    def __init__(self, relative_position, text, text_colour=(100, 100, 100), center=True, minimum_width=0, font=FONTS['default'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5):
-        super().__init__()
+    def __init__(self, relative_position, text, text_colour=(100, 100, 100), center=True, minimum_width=0, font=FONTS['default'], font_size=100, fill_colour=(255, 255, 255), margin=50, border_width=0, border_colour=(255, 255, 255), border_radius=5, surface=None):
+        super().__init__(surface)
 
         self._relative_position = relative_position
 

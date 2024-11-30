@@ -5,8 +5,8 @@ from data.widgets.scrollbar import _Scrollbar
 SCROLLBAR_WIDTH_FACTOR =  0.05
 
 class ScrollArea(_Widget):
-    def __init__(self, relative_position, size, widget, vertical, scroll_factor=5):
-        super().__init__()
+    def __init__(self, relative_position, size, widget, vertical, scroll_factor=5, surface=None):
+        super().__init__(surface)
 
         if vertical:
             self._relative_size = (size[0] / self._surface_size[1], size[1] / self._surface_size[1])

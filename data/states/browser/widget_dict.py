@@ -15,7 +15,7 @@ BROWSER_WIDGETS = {
     'default': [
         IconButton(
             relative_position=(0.92, 0.02),
-            size=(50, 50),
+            relative_size=(0.3, 0.3),
             margin=10,
             border_width=5,
             border_radius=5,
@@ -24,7 +24,7 @@ BROWSER_WIDGETS = {
         ),
         IconButton(
             relative_position=(0.4, 0.78),
-            size=(100, 100),
+            relative_size=(0.3, 0.3),
             margin=10,
             border_width=5,
             border_radius=10,
@@ -33,7 +33,7 @@ BROWSER_WIDGETS = {
         ),
         IconButton(
             relative_position=(0.55, 0.78),
-            size=(100, 100),
+            relative_size=(0.3, 0.3),
             margin=10,
             border_width=5,
             border_radius=10,

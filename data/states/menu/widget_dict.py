@@ -36,7 +36,7 @@ MENU_WIDGETS = {
         ),
         Icon(
             relative_position=(0.3, 0.1),
-            size=(400, 200),
+            relative_size=(0.3, 0.3),
             fill_colour=theme['fillSecondary'],
             icon=GRAPHICS['title_screen_art'],
         ),

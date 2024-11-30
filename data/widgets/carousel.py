@@ -7,8 +7,8 @@ from data.constants import Miscellaneous
 from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
-    def __init__(self, relative_position, event_type, widgets_dict, margin=10, fill_colour=(0, 0, 0, 0)):
-        super().__init__()
+    def __init__(self, relative_position, event_type, widgets_dict, margin=10, fill_colour=(0, 0, 0, 0), surface=None):
+        super().__init__(surface)
 
         self._widgets_dict = widgets_dict
         self._widgets = CircularLinkedList(list(self._widgets_dict.keys()))
@@ -24,14 +24,14 @@ class Carousel(_Widget):
         self._relative_margin = margin / self._surface_size[1]
         self._relative_size = ((max_widget_size[0] + 2 * (self._margin + self._arrow_size[0])) / self._surface_size[1], (max_widget_size[1]) / self._surface_size[1])
 
-        self._left_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
-        self._right_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+        self._left_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), relative_size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+        self._right_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), relative_size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
 
         self._event_type = event_type
 
         self._fill_colour = fill_colour
 
-        self._empty_surface = pygame.Surface((0, 0))
+        self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
         self.set_image()
         self.set_geometry()
