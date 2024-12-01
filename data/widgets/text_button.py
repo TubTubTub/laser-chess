@@ -4,7 +4,7 @@ from data.widgets.text import Text
 from data.constants import WidgetState
 
 class TextButton(_Pressable, Text):
-    def __init__(self, event, shadow_distance=0, shadow_colour=(0, 0, 0), **kwargs):
+    def __init__(self, event, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -13,9 +13,6 @@ class TextButton(_Pressable, Text):
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
         )
         Text.__init__(self, **kwargs)
-
-        self._shadow_distance = shadow_distance
-        self._shadow_colour = shadow_colour
 
         if self._fill_colour:
             self.initialise_new_colours(pygame.Color(self._fill_colour))

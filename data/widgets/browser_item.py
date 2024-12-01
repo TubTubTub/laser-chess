@@ -1,9 +1,8 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.assets import FONTS, GRAPHICS
+from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
 from data.widgets.board_thumbnail import BoardThumbnail
-from data.widgets.icon_button import IconButton
 from data.constants import Colour
 from data.constants import Miscellaneous
 
@@ -18,18 +17,12 @@ def get_winner_string(winner):
         return Colour(winner).name
 
 class BrowserItem(_Widget):
-    def __init__(self, relative_position, relative_width, game, text_colour=(200, 200, 200), font=FONTS['default']):
-        super().__init__()
-
-        self._font = font
-
-        self._relative_position = relative_position
-        self._relative_width = relative_width
+    def __init__(self, relative_width, game, **kwargs):
+        super().__init__(relative_size=(relative_width, relative_width * 2 * 0.8), **kwargs)
         
         line_height = (self.size[1] / 2) / FONT_DIVISION
         self._relative_font_size = height_to_font_size(self._font, line_height) / self._surface_size[1]
 
-        self._text_colour = text_colour
         self._game = game
         self._board_thumbnail = BoardThumbnail(
             surface=pygame.display.get_surface(),
@@ -42,14 +35,6 @@ class BrowserItem(_Widget):
         
         self.set_image()
         self.set_geometry()
-
-    @property
-    def position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
-    
-    @property
-    def size(self):
-        return (self._relative_width * self._surface_size[1], self._relative_width * 2 * 0.8 * self._surface_size[1])
 
     @property
     def _font_size(self):
@@ -86,13 +71,6 @@ class BrowserItem(_Widget):
             f'WINNER: {get_winner_string(self._game['winner'])}',
             f'NO. MOVES: {int(self._game['number_of_ply'] / 2)}'
         ]
-    
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self.position
-    
-    def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
     
     def process_event(self, event):
         pass

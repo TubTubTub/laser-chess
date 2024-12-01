@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):
-    def __init__(self, relative_position, relative_size, event, default_colour=(255, 255, 255), border_width=5, border_colour=(255, 255, 255), surface=None):
+    def __init__(self, event, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -12,29 +12,14 @@ class ColourButton(_Pressable, _Widget):
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
             play_sfx=False
         )
-        _Widget.__init__(self, surface)
+        _Widget.__init__(self, **kwargs)
 
-        self._relative_position = relative_position
-        self._relative_size = relative_size
-        self._relative_border_width = border_width / self._surface_size[1]
+        self._empty_surface = pygame.Surface(self.size)
 
-        self._fill_colour = default_colour
-        self._border_colour = border_colour
-
-        self._empty_surface = pygame.Surface(self._size)
-
-        self.initialise_new_colours(default_colour)
+        self.initialise_new_colours(kwargs.get('fill_colour'))
 
         self.set_image()
         self.set_geometry()
-    
-    @property
-    def _size(self):
-        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
-    
-    @property
-    def _position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
 
     @property
     def _border_width(self):
@@ -56,14 +41,7 @@ class ColourButton(_Pressable, _Widget):
 
         self.set_image()
 
-    def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
-
     def set_image(self):
-        self.image = pygame.transform.scale(self._empty_surface, self._size)
+        self.image = pygame.transform.scale(self._empty_surface, self.size)
         self.image.fill(self._fill_colour)
-        pygame.draw.rect(self.image, self._border_colour, (0, 0, self._size[0], self._size[1]), width=int(self._border_width))
-    
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
+        pygame.draw.rect(self.image, self._border_colour, (0, 0, self.size[0], self.size[1]), width=int(self._border_width))

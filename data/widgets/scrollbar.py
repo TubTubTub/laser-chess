@@ -3,7 +3,7 @@ from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState, Miscellaneous
 # self.set_state_colour(WidgetState.HOVER)
 class _Scrollbar(_Pressable, _Widget):
-    def __init__(self, position, size, vertical, fill_colour=(255, 255, 255), surface=None):
+    def __init__(self, vertical, **kwargs):
         _Pressable.__init__(
             self,
             event=Miscellaneous.PLACEHOLDER,
@@ -13,19 +13,14 @@ class _Scrollbar(_Pressable, _Widget):
             prolonged=True,
             play_sfx=False
         )
-        _Widget.__init__(self, surface)
-
-        self._position = position
-        self._size = size
-
-        self._fill_colour = fill_colour
+        _Widget.__init__(self, **kwargs)
 
         self._vertical = vertical
         self._last_mouse_px = None
 
-        self._empty_surface = pygame.Surface(self._size, pygame.SRCALPHA)
+        self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
 
-        self.initialise_new_colours(fill_colour)
+        self.initialise_new_colours(kwargs.get('fill_colour'))
 
         self.set_image()
         self.set_geometry()
@@ -45,9 +40,6 @@ class _Scrollbar(_Pressable, _Widget):
         self._fill_colour = self._colours[state]
 
         self.set_image()
-
-    def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
     
     def down_func(self):
         if self._vertical:
@@ -65,22 +57,18 @@ class _Scrollbar(_Pressable, _Widget):
         self._position = starting_position
         self.set_geometry()
     
-    def set_size(self, new_size):
-        self._size = new_size
+    # def set_size(self, new_size):
+    #     self.size = new_size
 
     def set_image(self):
-        self.image = pygame.transform.scale(self._empty_surface, self._size)
+        self.image = pygame.transform.scale(self._empty_surface, self.size)
 
         if self._vertical:
-            rounded_radius = self._size[0] / 2
+            rounded_radius = self.size[0] / 2
         else:
-            rounded_radius = self._size[1] / 2
+            rounded_radius = self.size[1] / 2
 
-        pygame.draw.rect(self.image, self._fill_colour, (0, 0, self._size[0], self._size[1]), border_radius=int(rounded_radius))
-    
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
+        pygame.draw.rect(self.image, self._fill_colour, (0, 0, self.size[0], self.size[1]), border_radius=int(rounded_radius))
     
     def process_event(self, event):
         before_state = self.get_widget_state()

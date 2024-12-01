@@ -3,22 +3,18 @@ from data.widgets.bases import _Widget
 from data.utils.widget_helpers import create_square_gradient
 
 class _ColourSquare(_Widget):
-    def __init__(self, get_parent_position, relative_position, relative_length):
-        super().__init__()
-        self._get_parent_position = get_parent_position
+    def __init__(self, get_parent_position, relative_length, **kwargs):
+        super().__init__(relative_size=(relative_length, relative_length), **kwargs)
 
-        self._relative_position = relative_position
-        self._relative_length = relative_length
+        self._get_parent_position = get_parent_position
 
         self._colour = None
     
-    @property
-    def _length(self):
-        return self._relative_length * self._surface_size[1]
-    
-    @property
-    def _position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
+    def global_to_relative_position(self, position):
+        global_x, global_y = position
+        parent_x, parent_y = self._get_parent_position()
+
+        return (global_x - parent_x - self.position[0], global_y - parent_y - self.position[1])
 
     def set_colour(self, new_colour):
         self._colour = pygame.Color(new_colour)
@@ -27,26 +23,13 @@ class _ColourSquare(_Widget):
         return self._colour
     
     def set_image(self):
-        self.image = create_square_gradient(side_length=self._length, colour=self._colour)
-    
-    def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
-    
-    def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
-    
-    def global_to_relative_position(self, position):
-        global_x, global_y = position
-        parent_x, parent_y = self._get_parent_position()
-
-        return (global_x - parent_x - self._position[0], global_y - parent_y - self._position[1])
+        self.image = create_square_gradient(side_length=self.size[0], colour=self._colour)
     
     def process_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             relative_pos = self.global_to_relative_position(event.pos)
 
-            if not (0 < relative_pos[0] < self._length and 0 < relative_pos[1] < self._length):
+            if not (0 < relative_pos[0] < self.size[0] and 0 < relative_pos[1] < self.size[0]):
                 return None
 
             clicked_colour = self.image.get_at(relative_pos)

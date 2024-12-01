@@ -9,8 +9,8 @@ from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
 
 class TextInput(_Pressable, Text):
-    def __init__(self, relative_size, event_type, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
-        pygame.key.set_repeat(500, 50)
+    def __init__(self, event_type, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
+        self._cursor_index = None
         _Pressable.__init__(
             self,
             event=None,
@@ -19,12 +19,11 @@ class TextInput(_Pressable, Text):
             up_func=self.up_func,
             play_sfx=False
         )
-        self._relative_size = relative_size
-        self._cursor_index = None
-
         Text.__init__(self, text="", font=FONTS['comicsans'], center=False, **kwargs)
 
-        self._relative_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._surface_size[1]
+        pygame.key.set_repeat(500, 50)
+
+        self._relative_font_size = height_to_font_size(self._font, target_height=self._size[1] - self.margin) / self._surface_size[1]
         self._blinking_fps = 1000 / blinking_interval
         self._cursor_colour = cursor_colour
         self._cursor_colour_copy = cursor_colour
@@ -64,9 +63,9 @@ class TextInput(_Pressable, Text):
         else:
             self._text_colour = self._text_colour_copy
     
-    @property
-    def _size(self):
-        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
+    # @property MAYBE NEED TO RE-OVERRIDE TEXT SIZE PROPERTY OVERRIDE?
+    # def _size(self):
+    #     return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
 
     def hover_func(self):
         self.set_state_colour(WidgetState.HOVER)
@@ -95,7 +94,7 @@ class TextInput(_Pressable, Text):
     def resize_text_to_box(self):
         test_size = self._relative_font_size * self._surface_size[1] + 1
         box_size = self._size[0] - 2 * self._border_width
-        ideal_font_size = height_to_font_size(self._font, target_height=self._size[1] - self._margin) / self._surface_size[1]
+        ideal_font_size = height_to_font_size(self._font, target_height=self._size[1] - self.margin) / self._surface_size[1]
 
         if self._font.get_rect(text=self._text, size=self._font_size).width < self._size[0]:
             if self._relative_font_size >= ideal_font_size:
@@ -123,7 +122,7 @@ class TextInput(_Pressable, Text):
         return (cursor_height * 0.1, cursor_height)
 
     def calculate_cursor_position(self):
-        current_width = (self._margin / 2)
+        current_width = (self.margin / 2)
         cursor_size = self.calculate_cursor_size()
         for index, metrics in enumerate(self._font.get_metrics(self._text, size=self._font_size)):
             if index == self._cursor_index:
@@ -160,7 +159,7 @@ class TextInput(_Pressable, Text):
             self._cursor_index = mouse_pos
             return
 
-        relative_x = mouse_pos[0] - (self._margin / 2) - self._position[0]
+        relative_x = mouse_pos[0] - (self.margin / 2) - self.position[0]
         relative_x = max(0, relative_x)
         self._cursor_index = self.relative_x_to_cursor_index(relative_x)
     

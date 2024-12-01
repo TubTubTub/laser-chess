@@ -5,12 +5,10 @@ from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent
 
 class BrowserStrip(_Widget):
-    def __init__(self, relative_position, relative_item_width, games_list, margin=20, surface=None):
-        super().__init__(surface)
+    def __init__(self, relative_item_width, games_list, **kwargs):
+        super().__init__(relative_size=None, **kwargs)
         
-        self._relative_position = relative_position
         self._relative_item_width = relative_item_width
-        self._relative_margin = margin / self._surface_size[1]
 
         self._get_rect = None
 
@@ -21,20 +19,16 @@ class BrowserStrip(_Widget):
         self.initialise_games_list(games_list)
 
     @property
-    def _position(self):
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
-
-    @property
     def _item_width(self):
         return self._relative_item_width * self._surface_size[1]
 
     @property
-    def _size(self):
+    def size(self):
         if self._get_rect:
             height = self._get_rect().height
         else:
             height = 0
-        width = max(0, len(self._games_list) * (self._item_width + self._margin) + self._margin)
+        width = max(0, len(self._games_list) * (self._item_width + self.margin) + self.margin)
 
         return (width, height)
     
@@ -61,22 +55,21 @@ class BrowserStrip(_Widget):
         self.image = pygame.Surface(self._size, pygame.SRCALPHA)
         for index, item in enumerate(self._items_list):
             item.set_image()
-            browser_item_position = (index * (self._item_width + self._margin) + self._margin, self._margin)
+            browser_item_position = (index * (self._item_width + self.margin) + self.margin, self.margin)
             self.image.blit(item.image, browser_item_position)
 
         if self._selected_index is not None:
-            border_position = (self._selected_index * (self._item_width + self._margin), 0)
-            border_size = (self._item_width + 2 * self._margin, self._size[1])
+            border_position = (self._selected_index * (self._item_width + self.margin), 0)
+            border_size = (self._item_width + 2 * self.margin, self.size[1])
             pygame.draw.rect(self.image, (255, 255, 255), (*border_position, *border_size), width=int(self._item_width / 20))
     
     def set_geometry(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = self._position
+        super().set_geometry()
         for item in self._items_list:
             item.set_geometry()
     
     def set_surface_size(self, new_surface_size):
-        self._surface_size = new_surface_size
+        super().set_surface_size(new_surface_size)
         for item in self._items_list:
             item.set_surface_size(new_surface_size)
     
@@ -91,6 +84,6 @@ class BrowserStrip(_Widget):
         
         if event.type == pygame.MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos):
             relative_mouse_pos = (event.pos[0] - parent_pos[0], event.pos[1] - parent_pos[1])
-            self._selected_index = int(max(0, (relative_mouse_pos[0] - self._margin) // (self._item_width + self._margin)))
+            self._selected_index = int(max(0, (relative_mouse_pos[0] - self.margin) // (self._item_width + self.margin)))
             self.set_image()
             return CustomEvent(BrowserEventType.BROWSER_STRIP_CLICK, selected_index=self._selected_index)

@@ -4,7 +4,7 @@ from data.widgets.icon import Icon
 from data.constants import WidgetState
 
 class IconButton(_Pressable, Icon):
-    def __init__(self, event, shadow_distance=0, shadow_colour=(0, 0, 0), **kwargs):
+    def __init__(self, event, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -13,9 +13,6 @@ class IconButton(_Pressable, Icon):
             up_func=self.up_func,
         )
         Icon.__init__(self, **kwargs)
-
-        self._shadow_distance = shadow_distance
-        self._shadow_colour = shadow_colour
 
         self.initialise_new_colours(self._fill_colour)
     

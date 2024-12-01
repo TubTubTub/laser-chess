@@ -9,7 +9,7 @@ class Chessboard(_Widget):
     def __init__(self, relative_width, center=False, **kwargs):
         super().__init__(relative_size=(relative_width, relative_width * 0.8), **kwargs)
 
-        self._board_surface = create_board(self._size, user_settings['primaryBoardColour'], user_settings['secondaryBoardColour'])
+        self._board_surface = create_board(self.size, user_settings['primaryBoardColour'], user_settings['secondaryBoardColour'])
 
         self._center = center
 

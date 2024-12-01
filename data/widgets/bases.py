@@ -1,21 +1,66 @@
 import pygame
 from data.constants import WidgetState
 from data.components.audio import audio
-from data.assets import SFX
+from data.assets import SFX, FONTS
 
-screen = pygame.display.get_surface()
+DEFAULT_SURFACE = pygame.display.get_surface()
+DEFAULT_FONT = FONTS['default']
+REQUIRED_KWARGS = ['surface', 'relative_position', 'relative_size']
 
 class _Widget(pygame.sprite.Sprite):
-    def __init__(self, surface, relative_position, relative_size):
+    def __init__(self, **kwargs):
         super().__init__()
 
-        if surface is None:
-            surface = screen
-        self._surface = surface
-        self._surface_size = surface.get_size()
+        self._surface = None
+        self._surface_size = None
+        self._relative_position = None
+        self._relative_size = None
+        self._relative_margin = None
+        self._relative_border_width = None
+        self._relative_border_radius = None
+        self._border_colour = None
+        self._fill_colour = None
 
-        self._relative_position = relative_position
-        self._relative_size = ((relative_size[0] / self._surface_size[0]) * self._surface_size[1], relative_size[1])
+        for required_kwarg in REQUIRED_KWARGS:
+            if required_kwarg not in kwargs:
+                raise KeyError(f'(_Widget.__init__) Required keyword "{required_kwarg}" not in base kwargs')
+
+        if kwargs.get('surface') is None:
+            self._surface = DEFAULT_SURFACE
+        else:
+            self._surface = kwargs.get('surface')
+
+        self._surface_size = self._surface.get_size()
+        self._relative_position = kwargs.get('relative_position')
+
+        if kwargs.get('relative_size') is not None:
+            self._relative_size = ((kwargs.get('relative_size')[0] / self._surface_size[0]) * self._surface_size[1], kwargs.get('relative_size')[1])
+        
+        if 'margin' in kwargs:
+            self._relative_margin = kwargs.get('margin') / self._surface_size[1]
+
+            if (self._relative_margin * 2) >= min(self._relative_size[0], self._relative_size[1]):
+                raise ValueError('(_Widget.__init__) Margin larger than specified size!')
+        
+        if 'border_width' in kwargs:
+            self._relative_border_width = kwargs.get('border_width') / self._surface_size[1]
+        
+        if 'border_radius' in kwargs:
+            self._relative_border_radius = kwargs.get('border_radius') / self._surface_size[1]
+        
+        if 'border_colour' in kwargs:
+            self._border_colour = pygame.Color(kwargs.get('border_colour'))
+        
+        if 'fill_colour' in kwargs:
+            self._fill_colour = pygame.Color(kwargs.get('fill_colour'))
+        
+        if 'text_colour' in kwargs:
+            self._text_colour = pygame.Color(kwargs.get('text_colour'))
+        
+        if 'font' in kwargs:
+            self._font = kwargs.get('font')
+        else:
+            self._font = DEFAULT_FONT
     
     @property
     def position(self):
@@ -24,6 +69,18 @@ class _Widget(pygame.sprite.Sprite):
     @property
     def size(self):
         return (self._relative_size * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
+
+    @property
+    def margin(self):
+        return self._relative_margin * self._surface_size[1]
+
+    @property
+    def border_width(self):
+        return self._relative_border_width * self._surface_size[1]
+
+    @property
+    def border_radius(self):
+        return self._relative_border_radius * self._surface_size[1]
     
     def set_image(self):
         raise NotImplementedError
