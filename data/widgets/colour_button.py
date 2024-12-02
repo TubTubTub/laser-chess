@@ -16,7 +16,7 @@ class ColourButton(_Pressable, _Widget):
 
         self._empty_surface = pygame.Surface(self.size)
 
-        self.initialise_new_colours(kwargs.get('fill_colour'))
+        self.initialise_new_colours(self._fill_colour)
 
         self.set_image()
         self.set_geometry()
@@ -26,7 +26,7 @@ class ColourButton(_Pressable, _Widget):
         return self._relative_border_width * self._surface_size[1]
 
     def initialise_new_colours(self, new_colour):
-        r, g, b = pygame.Color(new_colour).rgb
+        r, g, b = new_colour.rgb
 
         self._colours = {
             WidgetState.BASE: new_colour,

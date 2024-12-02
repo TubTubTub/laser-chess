@@ -1,14 +1,13 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.assets import FONTS
+from data.utils.font_helpers import width_to_font_size
 
 class Text(_Widget): # Pure text
-    def __init__(self, text, center=True, minimum_width=0, font_size=100, **kwargs):
+    def __init__(self, text, center=True, minimum_width=0, **kwargs):
         super().__init__(**kwargs)
-
         self._text = text
 
-        self._relative_font_size = font_size / self._surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.size[0]) / self._surface_size[1]
         
         self._center = center
         self._relative_minimum_width = minimum_width / self._surface_size[1]

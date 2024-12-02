@@ -19,8 +19,8 @@ class ScrollArea(_Widget):
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
         self._scrollbar = _Scrollbar(
-            position=self.calculate_scrollbar_position(),
-            size=self._scrollbar_size,
+            relative_position=self.calculate_relative_scrollbar_position(),
+            relative_size=(self._scrollbar_size[0] / self.size[0], self._scrollbar_size[1] / self.size[1]),
             vertical=vertical,
         )
 
@@ -83,7 +83,7 @@ class ScrollArea(_Widget):
         else:
             return (-self._scroll_percentage * (self._widget.rect.width - self.size[0]), 0)
 
-    def calculate_scrollbar_position(self):
+    def calculate_relative_scrollbar_position(self):
         if self._vertical:
             vertical_offset = (self.size[1] - self._scrollbar_size[1]) * self._scroll_percentage
             scrollbar_position = (self.size[0] * (1 - SCROLLBAR_WIDTH_FACTOR) + self.position[0], self.position[1] + vertical_offset)
@@ -91,7 +91,7 @@ class ScrollArea(_Widget):
             horizontal_offset = (self.size[0] - self._scrollbar_size[0]) * self._scroll_percentage
             scrollbar_position = (self.position[0] + horizontal_offset, self.size[1] * (1 - SCROLLBAR_WIDTH_FACTOR) + self.position[1])
 
-        return scrollbar_position
+        return (scrollbar_position[0] / self.size[0], scrollbar_position[1] / self.size[1])
     
     def set_widget(self, new_widget):
         self._widget = new_widget
@@ -105,8 +105,8 @@ class ScrollArea(_Widget):
         self._widget.set_image()
         self.image.blit(self._widget.image, self.calculate_widget_position())
 
-        self._scrollbar.set_position(self.calculate_scrollbar_position())
-        self._scrollbar.set_size(self._scrollbar_size)
+        self._scrollbar.set_position(self.calculate_relative_scrollbar_position()) # WRONG USING RELATIVE
+        self._scrollbar.set_relative_size((self._scrollbar_size[0] / self.size[0], self._scrollbar_size[1] / self.size[1]))
         self._scrollbar.set_image()
         relative_scrollbar_position = (self._scrollbar.rect.left - self.position[0], self._scrollbar.rect.top - self.position[1])
         self.image.blit(self._scrollbar.image, relative_scrollbar_position)

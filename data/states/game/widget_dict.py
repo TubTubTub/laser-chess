@@ -5,7 +5,7 @@ from data.assets import GRAPHICS
 
 move_list = MoveList(
     relative_position=(0, 0),
-    width=200,
+    relative_width=0.2,
     minimum_height=390,
     move_list=[]
 )
@@ -28,16 +28,16 @@ GAME_WIDGETS = {
         ),
         TextButton(
             relative_position=(0.27, 0.85),
+            relative_size=(0.1, 0.1),
             text="   Resign",
-            font_size=30,
-            margin=25,
+            margin=1,
             event=CustomEvent(GameEventType.RESIGN_CLICK)
         ),
         TextButton(
             relative_position=(0.65, 0.85),
+            relative_size=(0.1, 0.1),
             text="   Draw",
-            font_size=30,
-            margin=25,
+            margin=1,
             event=CustomEvent(GameEventType.DRAW_CLICK)
         ),
         Icon(
@@ -60,19 +60,21 @@ GAME_WIDGETS = {
     'blue_timer':
     Timer(
         relative_position=(0.02, 0.62),
+        relative_size=(0.2, 0.2),
         active_colour=Colour.BLUE,
         event_type=GameEventType.TIMER_END,
     ),
     'red_timer':
     Timer(
         relative_position=(0.02, 0.18),
+        relative_size=(0.2, 0.2),
         active_colour=Colour.RED,
         event_type=GameEventType.TIMER_END,
     ),
     'status_text':
     Text(
         relative_position=(0.3, 0.06),
-        font_size=40,
+        relative_size=(0.7, 0.2),
         margin=10,
         text="",
         minimum_width=400
@@ -88,7 +90,7 @@ GAME_WIDGETS = {
     'scroll_area':
     ScrollArea(
         relative_position=(0.77, 0.18),
-        size=(200, 390),
+        relative_size=(0.2, 0.4),
         vertical=True,
         widget=move_list
     )
@@ -98,16 +100,16 @@ PAUSE_WIDGETS = {
     'default': [
         TextButton(
             relative_position=(0.36, 0.3),
+            relative_size=(0.3, 0.2),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
-            font_size=50,
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
             relative_position=(0.35, 0.5),
+            relative_size=(0.3, 0.2),
             text='RESUME GAME',
             text_colour=(255, 0, 0),
-            font_size=50,
             event=CustomEvent(GameEventType.PAUSE_CLICK)
         )
     ]
@@ -122,16 +124,16 @@ WIN_WIDGETS = {
         ),
         TextButton(
             relative_position=(0.5, 0.27),
+            relative_size=(0.3, 0.2),
             text='GO TO MENU',
             text_colour=(255, 0, 0),
-            font_size=50,
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
             relative_position=(0.5, 0.43),
+            relative_size=(0.3, 0.2),
             text='NEW GAME',
             text_colour=(255, 0, 0),
-            font_size=50,
             event=CustomEvent(GameEventType.GAME_CLICK)
         ),
     ],

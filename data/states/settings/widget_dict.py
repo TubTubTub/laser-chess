@@ -17,7 +17,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.2),
             text='Display mode',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -25,7 +25,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.3),
             text='Music',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -33,7 +33,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.4),
             text='SFX',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -41,7 +41,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.5),
             text='Primary board colour',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -49,7 +49,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.6),
             text='Secondary board colour',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -57,7 +57,7 @@ SETTINGS_WIDGETS = {
         Text(
             relative_position=(0.01, 0.7),
             text='Animations (NOT IMPLEMENTED)',
-            font_size=30,
+            relative_size=(0.1, 0.1),
             text_colour=(255, 255, 255),
             margin=0,
             fill_colour=(0, 0, 0, 0)
@@ -66,16 +66,16 @@ SETTINGS_WIDGETS = {
             relative_position=(0.01, 0.85),
             text='DISCARD CHANGES',
             text_colour=(255, 0, 0),
-            margin=20,
-            font_size=30,
+            margin=2,
+            relative_size=(0.1, 0.1),
             event=CustomEvent(SettingsEventType.RESET_USER)
         ),
         TextButton(
             relative_position=(0.25, 0.85),
             text='RESET TO DEFAULT',
             text_colour=(255, 0, 0),
-            margin=20,
-            font_size=30,
+            margin=2,
+            relative_size=(0.1, 0.1),
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
         Switch(
@@ -97,8 +97,8 @@ SETTINGS_WIDGETS = {
     'display_mode_dropdown':
     Dropdown(
         relative_position=(0.35, 0.175),
+        relative_size=(0.3, 0.2),
         word_list=word_list,
-        font_size=25,
         fill_colour=(255, 100, 100),
         event=CustomEvent(SettingsEventType.DROPDOWN_CLICK)
     ),

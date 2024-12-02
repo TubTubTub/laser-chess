@@ -9,28 +9,28 @@ MENU_WIDGETS = {
     'default': [
         TextButton(
             relative_position=(0.375, 0.45),
+            relative_size=(0.3, 0.2),
             text='START GAME',
             text_colour=theme['textPrimary'],
             margin=50,
-            font_size=50,
             fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         TextButton(
             relative_position=(0.4, 0.6),
+            relative_size=(0.3, 0.2),
             text='SETTINGS',
             text_colour=theme['textPrimary'],
             margin=50,
-            font_size=50,
             fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
         TextButton(
             relative_position=(0.35, 0.75),
+            relative_size=(0.3, 0.2),
             text='RECENT GAMES',
             text_colour=theme['textPrimary'],
             margin=50,
-            font_size=50,
             fill_colour=theme['fillPrimary'],
             event=CustomEvent(MenuEventType.BROWSER_CLICK)
         ),

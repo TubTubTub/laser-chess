@@ -20,13 +20,13 @@ class _Scrollbar(_Pressable, _Widget):
 
         self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
 
-        self.initialise_new_colours(kwargs.get('fill_colour'))
+        self.initialise_new_colours(self._fill_colour)
 
         self.set_image()
         self.set_geometry()
 
     def initialise_new_colours(self, new_colour):
-        r, g, b = pygame.Color(new_colour).rgb
+        r, g, b = new_colour.rgb
 
         self._colours = {
             WidgetState.BASE: new_colour,
@@ -57,8 +57,8 @@ class _Scrollbar(_Pressable, _Widget):
         self._position = starting_position
         self.set_geometry()
     
-    # def set_size(self, new_size):
-    #     self.size = new_size
+    def set_relative_size(self, new_relative_size):
+        self._relative_size = new_relative_size
 
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)

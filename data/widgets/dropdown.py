@@ -2,12 +2,13 @@ import pygame
 from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.data_helpers import get_user_settings
+from data.utils.font_helpers import width_to_font_size
 from data.assets import GRAPHICS, FONTS
 
 user_settings = get_user_settings()
 
 class Dropdown(_Pressable, _Widget):
-    def __init__(self, word_list, font_size, event=None, **kwargs):
+    def __init__(self, word_list, event=None, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -18,7 +19,7 @@ class Dropdown(_Pressable, _Widget):
         )
         _Widget.__init__(self, **kwargs)
 
-        self._relative_font_size = font_size / self._surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.size[0]) / self._surface_size[1]
 
         self._word_list = [word_list[0].capitalize()]
         self._word_list_copy = [word.capitalize() for word in word_list]

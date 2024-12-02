@@ -11,7 +11,7 @@ class MoveList(_Widget):
         self._relative_minimum_height = minimum_height / self._surface_size[1]
         self._move_list = move_list
 
-        self._relative_font_size = width_to_font_size(self._font, self.size[0] / 5) / self._surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, relative_width * self._surface_size[0] / 5) / self._surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
