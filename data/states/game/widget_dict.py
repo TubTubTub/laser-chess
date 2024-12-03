@@ -76,7 +76,7 @@ GAME_WIDGETS = {
         relative_position=(0.3, 0.06),
         relative_size=(0.7, 0.2),
         margin=10,
-        text="",
+        text="g",
         minimum_width=400
     ),
     'chessboard':

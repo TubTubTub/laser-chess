@@ -7,9 +7,13 @@ from data.assets import SFX, FONTS
 DEFAULT_SURFACE = pygame.display.get_surface()
 DEFAULT_FONT = FONTS['default']
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
+COUNT = 0
 
 class _Widget(pygame.sprite.Sprite):
     def __init__(self, **kwargs):
+        # global COUNT
+        # print(COUNT, 'INITIALSING BASE _WIDGET', self.__class__.__qualname__, kwargs.get('relative_position'))
+        # COUNT = COUNT + 1
         super().__init__()
 
         for required_kwarg in REQUIRED_KWARGS:
@@ -36,7 +40,9 @@ class _Widget(pygame.sprite.Sprite):
         self._fill_colour = pygame.Color(theme['fillPrimary'])
 
         if kwargs.get('relative_size'):
-            self._relative_size = ((kwargs.get('relative_size')[0] / self._surface_size[0]) * self._surface_size[1], kwargs.get('relative_size')[1])
+            self._relative_size = ((kwargs.get('relative_size')[0] * self._surface_size[0]) / self._surface_size[1], kwargs.get('relative_size')[1])
+        else:
+            self._relative_size = (1, 1)
         
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._surface_size[1]
@@ -98,7 +104,7 @@ class _Widget(pygame.sprite.Sprite):
         raise NotImplementedError
 
     def get_size(self):
-        return self._size
+        return self.size
 
     def blit(self, image, rect):
         self.image.blit(image, rect)

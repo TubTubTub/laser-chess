@@ -43,9 +43,9 @@ BROWSER_WIDGETS = {
         ),
         Text(
             relative_position=(0.75, 0.75),
+            relative_size=(0.3, 0.3),
             text='SORT BY:',
             fill_colour=(0, 0, 0, 0),
-            font_size=30,
             text_colour=(255, 255, 255)
         )
     ],
@@ -54,23 +54,23 @@ BROWSER_WIDGETS = {
     'scroll_area':
     ScrollArea(
         relative_position=(0.0, 0.15),
-        size=(1000, 350),
+        relative_size=(1, 0.5),
         vertical=False,
         widget=browser_strip
     ),
     'filter_column_dropdown':
     Dropdown(
         relative_position=(0.87,0.77),
+        relative_size=(0.3, 0.3),
         word_list=['moves', 'winner', 'time'],
-        font_size=25,
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_COLUMN_CLICK)
     ),
     'filter_ascend_dropdown':
     Dropdown(
         relative_position=(0.87, 0.87),
+        relative_size=(0.3, 0.3),
         word_list=['asc', 'desc'],
-        font_size=25,
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)
     )

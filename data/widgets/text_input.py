@@ -23,7 +23,7 @@ class TextInput(_Pressable, Text):
 
         pygame.key.set_repeat(500, 50)
 
-        self._relative_font_size = height_to_font_size(self._font, target_height=self._size[1] - self.margin) / self._surface_size[1]
+        self._relative_font_size = height_to_font_size(self._font, target_height=self.size[1] - self.margin) / self._surface_size[1]
         self._blinking_fps = 1000 / blinking_interval
         self._cursor_colour = cursor_colour
         self._cursor_colour_copy = cursor_colour
@@ -93,10 +93,10 @@ class TextInput(_Pressable, Text):
     
     def resize_text_to_box(self):
         test_size = self._relative_font_size * self._surface_size[1] + 1
-        box_size = self._size[0] - 2 * self._border_width
-        ideal_font_size = height_to_font_size(self._font, target_height=self._size[1] - self.margin) / self._surface_size[1]
+        box_size = self.size[0] - 2 * self.border_width
+        ideal_font_size = height_to_font_size(self._font, target_height=self.size[1] - self.margin) / self._surface_size[1]
 
-        if self._font.get_rect(text=self._text, size=self._font_size).width < self._size[0]:
+        if self._font.get_rect(text=self._text, size=self._font_size).width < self.size[0]:
             if self._relative_font_size >= ideal_font_size:
                 return
 
@@ -110,6 +110,8 @@ class TextInput(_Pressable, Text):
 
         else:
             while True:
+                # if test_size == 0:
+                #     raise ValueError('')
                 text_width = self._font.get_rect(text=self._text, size=test_size).width
                 if text_width < box_size:
                     self._relative_font_size = (test_size) / self._surface_size[1]
@@ -118,7 +120,7 @@ class TextInput(_Pressable, Text):
                 test_size = test_size - 1
 
     def calculate_cursor_size(self):
-        cursor_height = (self._size[1] - self._border_width * 2) * 0.75
+        cursor_height = (self.size[1] - self._border_width * 2) * 0.75
         return (cursor_height * 0.1, cursor_height)
 
     def calculate_cursor_position(self):
@@ -126,11 +128,11 @@ class TextInput(_Pressable, Text):
         cursor_size = self.calculate_cursor_size()
         for index, metrics in enumerate(self._font.get_metrics(self._text, size=self._font_size)):
             if index == self._cursor_index:
-                return (current_width - cursor_size[0], (self._size[1] - cursor_size[1]) / 2)
+                return (current_width - cursor_size[0], (self.size[1] - cursor_size[1]) / 2)
             
             glyph_width = metrics[4]
             current_width += glyph_width
-        return (current_width - cursor_size[0], (self._size[1] - cursor_size[1]) / 2)
+        return (current_width - cursor_size[0], (self.size[1] - cursor_size[1]) / 2)
     
     def relative_x_to_cursor_index(self, relative_x):
         current_width = 0

@@ -8,7 +8,7 @@ from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
     def __init__(self, event_type, widgets_dict, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(relative_size=None, **kwargs)
 
         self._widgets_dict = widgets_dict
         self._widgets = CircularLinkedList(list(self._widgets_dict.keys()))
@@ -20,10 +20,30 @@ class Carousel(_Widget):
             max_widget_size = (max(max_widget_size[0], widget.rect.width), max(max_widget_size[1], widget.rect.height))
 
         self._relative_max_widget_size = (max_widget_size[0] / self._surface_size[1], max_widget_size[1] / self._surface_size[1])
-        self._relative_size = ((max_widget_size[0] + 2 * (self.margin + self._arrow_size[0])) / self._surface_size[1], (max_widget_size[1]) / self._surface_size[1])
+        self._relative_size = ((max_widget_size[0] + 2 * (self.margin + self.arrow_size[0])) / self._surface_size[1], (max_widget_size[1]) / self._surface_size[1])
 
-        self._left_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), relative_size=self._arrow_size, icon=GRAPHICS['left_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
-        self._right_arrow = IconButton(Miscellaneous.PLACEHOLDER, relative_position=(0, 0), relative_size=self._arrow_size, icon=GRAPHICS['right_arrow'], margin=0, border_radius=0, is_mask=True, fill_colour=(255, 0, 0))
+        self._left_arrow = IconButton(
+            event=Miscellaneous.PLACEHOLDER,
+            surface=self,
+            relative_position=(0, 0),
+            relative_size=(self.arrow_size[0] / self._surface_size[0], self.arrow_size[1] / self._surface_size[1]),
+            icon=GRAPHICS['left_arrow'],
+            margin=0,
+            border_radius=0,
+            is_mask=True,
+            fill_colour=(255, 0, 0)
+        )
+        self._right_arrow = IconButton(
+            event=Miscellaneous.PLACEHOLDER,
+            surface=self,
+            relative_position=(0, 0),
+            relative_size=(self.arrow_size[0] / self._surface_size[0], self.arrow_size[1] / self._surface_size[1]),
+            icon=GRAPHICS['right_arrow'],
+            margin=0,
+            border_radius=0,
+            is_mask=True,
+            fill_colour=(255, 0, 0)
+        )
 
         self._event_type = event_type
 
@@ -33,28 +53,24 @@ class Carousel(_Widget):
         self.set_geometry()
 
     @property
-    def _max_widget_size(self):
+    def max_widget_size(self):
         return (self._relative_max_widget_size[0] * self._surface_size[1], self._relative_max_widget_size[1] * self._surface_size[1])
     
     @property
     def size(self):
-        return ((self._arrow_size[0] + self.margin) * 2 + self._max_widget_size[0], self._max_widget_size[1])
+        return ((self.arrow_size[0] + self.margin) * 2 + self.max_widget_size[0], self.max_widget_size[1])
 
     @property
-    def _arrow_size(self):
-        return (self._max_widget_size[1] / 2, self._max_widget_size[1] / 2)
-    
-    @property
-    def _margin(self):
-        return self._relative_margin * self._surface_size[1]
+    def arrow_size(self):
+        return (self.max_widget_size[1] / 2, self.max_widget_size[1] / 2)
 
     @property
-    def _left_arrow_position(self):
-        return (0, (self.size[1] - self._arrow_size[1]) / 2)
+    def left_arrow_position(self):
+        return (0, (self.size[1] - self.arrow_size[1]) / 2)
     
     @property
-    def _right_arrow_position(self):
-        return (self.size[0] - self._arrow_size[0], (self.size[1] - self._arrow_size[1]) / 2)
+    def right_arrow_position(self):
+        return (self.size[0] - self.arrow_size[0], (self.size[1] - self.arrow_size[1]) / 2)
 
     def set_to_key(self, key):
         for i in range(len(self._widgets_dict)):
@@ -71,13 +87,13 @@ class Carousel(_Widget):
         self.image.fill(self._fill_colour)
 
         self._left_arrow.set_image()
-        self.image.blit(self._left_arrow.image, self._left_arrow_position)
+        self.image.blit(self._left_arrow.image, self.left_arrow_position)
 
         self._widget.set_image()
         self.image.blit(self._widget.image, ((self.size[0] - self._widget.rect.size[0]) / 2, (self.size[1] - self._widget.rect.size[1]) / 2))
 
         self._right_arrow.set_image()
-        self.image.blit(self._right_arrow.image, self._right_arrow_position)
+        self.image.blit(self._right_arrow.image, self.right_arrow_position)
     
     def set_geometry(self):
         super().set_geometry()
@@ -87,8 +103,8 @@ class Carousel(_Widget):
         self._right_arrow.set_geometry()
 
         self._widget.rect.center = self.rect.center
-        self._left_arrow.rect.topleft = (self.position[0] + self._left_arrow_position[0], self.position[1] + self._left_arrow_position[1])
-        self._right_arrow.rect.topleft = (self.position[0] + self._right_arrow_position[0], self.position[1] + self._right_arrow_position[1])
+        self._left_arrow.rect.topleft = (self.position[0] + self.left_arrow_position[0], self.position[1] + self.left_arrow_position[1])
+        self._right_arrow.rect.topleft = (self.position[0] + self.right_arrow_position[0], self.position[1] + self.right_arrow_position[1])
     
     def set_surface_size(self, new_surface_size):
         super().set_geometry(new_surface_size)

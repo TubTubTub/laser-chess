@@ -65,9 +65,9 @@ CONFIG_WIDGETS = {
         ),
         Text(
             surface=config_container,
+            relative_size=(0.3, 0.3),
             relative_position=(0.82, 0.31),
             text='MINS',
-            font_size=40,
             margin=30
         ),
         IconButton(
@@ -85,6 +85,7 @@ CONFIG_WIDGETS = {
     'start_button':
     TextButton(
         relative_position=(0.5, 0.7),
+        relative_size=(0.3, 0.3),
         text='START NEW GAME',
         text_colour=(255, 0, 0),
         font_size=50,
@@ -129,9 +130,9 @@ CONFIG_WIDGETS = {
     'invalid_fen_string':
     Text(
         relative_position=(0.5, 0.24),
+        relative_size=(0.3, 0.3),
         minimum_width=400,
         text='INVALID FEN STRING!',
-        font_size=30,
         margin=10,
         fill_colour=(100, 0, 0),
         text_colour=(255, 0, 0),

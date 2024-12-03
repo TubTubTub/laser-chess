@@ -9,7 +9,7 @@ MENU_WIDGETS = {
     'default': [
         TextButton(
             relative_position=(0.375, 0.45),
-            relative_size=(0.3, 0.2),
+            relative_size=(0.5, 0.2),
             text='START GAME',
             text_colour=theme['textPrimary'],
             margin=50,

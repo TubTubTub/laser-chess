@@ -19,6 +19,19 @@ def width_to_font_size(font, target_width):
 
         test_size += 1
 
+def text_to_font_size(text, font, target_width):
+    test_size = 1
+    if len(text) == 0:
+        raise ValueError('(text_to_font_size) Text must have length greater than 1!')
+    
+    while True:
+        text_rect = font.get_rect(text, size=test_size)
+        
+        if text_rect.width > target_width:
+            return (test_size - 1)
+
+        test_size += 1
+
 def get_font_height(font, font_size):
     glyph_metrics = font.get_metrics('j', size=font_size)
     descender = font.get_sized_descender(font_size)

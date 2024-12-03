@@ -52,7 +52,7 @@ class BrowserStrip(_Widget):
         self.set_geometry()
     
     def set_image(self):
-        self.image = pygame.Surface(self._size, pygame.SRCALPHA)
+        self.image = pygame.Surface(self.size, pygame.SRCALPHA)
         for index, item in enumerate(self._items_list):
             item.set_image()
             browser_item_position = (index * (self._item_width + self.margin) + self.margin, self.margin)

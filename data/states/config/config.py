@@ -55,25 +55,25 @@ class Config(_State):
             widgets_dict={
                 2: Text(
                     relative_position=(0, 0),
+                    relative_size=(0.3, 0.3),
                     text="EASY",
                     text_colour=(255, 255, 255),
-                    font_size=70,
                     margin=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
                 3: Text(
                     relative_position=(0, 0),
+                    relative_size=(0.3, 0.3),
                     text="MEDIUM",
                     text_colour=(255, 255, 255),
-                    font_size=70,
                     margin=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
                 4: Text(
                     relative_position=(0, 0),
+                    relative_size=(0.3, 0.3),
                     text="HARD",
                     text_colour=(255, 255, 255),
-                    font_size=70,
                     margin=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
