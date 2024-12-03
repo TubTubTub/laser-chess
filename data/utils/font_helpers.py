@@ -22,7 +22,8 @@ def width_to_font_size(font, target_width):
 def text_to_font_size(text, font, target_width):
     test_size = 1
     if len(text) == 0:
-        raise ValueError('(text_to_font_size) Text must have length greater than 1!')
+        print('(text_to_font_size) Text must have length greater than 1!')
+        text = ' '
     
     while True:
         text_rect = font.get_rect(text, size=test_size)

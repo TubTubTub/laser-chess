@@ -102,7 +102,6 @@ class Config(_State):
         self._cpu_depth_carousel.kill()
     
     def toggle_pvc(self, pvc_enabled):
-        print(pvc_enabled, self._config['CPU_ENABLED'])
         if pvc_enabled == self._config['CPU_ENABLED']:
             return
         
@@ -169,7 +168,6 @@ class Config(_State):
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 self._config['CPU_DEPTH'] = int(widget_event.data)
-                print('asdadsaasd', int(widget_event.data))
     
     def handle_resize(self, resize_end=False):
         self._widget_group.handle_resize(self._screen.get_size())

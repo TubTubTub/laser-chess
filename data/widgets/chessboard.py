@@ -7,7 +7,11 @@ user_settings = get_user_settings()
 
 class Chessboard(_Widget):
     def __init__(self, relative_width, center=False, **kwargs):
-        super().__init__(relative_size=(relative_width, relative_width * 0.8), **kwargs)
+        super().__init__(relative_size=None, **kwargs)
+        self._relative_size  = (
+            (relative_width * self._surface_size[0]) / self._surface_size[1],
+            relative_width * 0.8 * self._surface_size[0] / self._surface_size[1]
+        )
 
         self._board_surface = create_board(self.size, user_settings['primaryBoardColour'], user_settings['secondaryBoardColour'])
 

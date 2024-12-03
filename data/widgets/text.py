@@ -47,7 +47,6 @@ class Text(_Widget): # Pure text
         self.set_geometry()
     
     def set_image(self):
-        print(self.size, self._text)
         text_surface = pygame.transform.scale(self._empty_surface, self.size)
         self.image = text_surface
 
