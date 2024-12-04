@@ -2,7 +2,7 @@ import pygame
 from data.widgets.bases import _Widget
 
 class Icon(_Widget):
-    def __init__(self, icon, stretch=True, is_mask=False, **kwargs):
+    def __init__(self, icon, stretch=False, is_mask=False, **kwargs):
         super().__init__(**kwargs)
 
         self._icon = icon

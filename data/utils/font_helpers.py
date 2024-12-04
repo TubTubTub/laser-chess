@@ -19,7 +19,7 @@ def width_to_font_size(font, target_width):
 
         test_size += 1
 
-def text_to_font_size(text, font, target_width):
+def text_width_to_font_size(text, font, target_width):
     test_size = 1
     if len(text) == 0:
         print('(text_to_font_size) Text must have length greater than 1!')
@@ -29,6 +29,28 @@ def text_to_font_size(text, font, target_width):
         text_rect = font.get_rect(text, size=test_size)
         
         if text_rect.width > target_width:
+            return (test_size - 1)
+
+        test_size += 1
+
+def text_height_to_font_size(text, font, target_height):
+    test_size = 1
+
+    if ('(' in text) or (')' in text):
+        text = text.replace('(', 'j') # Pygame freetype thinks '(' or ')' is taller for some reason
+        text = text.replace(')', 'j')
+
+    if len(text) == 0:
+        print('(text_to_font_size) Text must have length greater than 1!')
+        text = ' '
+    
+    while True:
+        text_rect = font.get_rect(text, size=test_size)
+
+        if test_size > 1000:
+            print('ERROR IN SCALING TEXT:', text)
+            return 2
+        if text_rect.height > target_height:
             return (test_size - 1)
 
         test_size += 1

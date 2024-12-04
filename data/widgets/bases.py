@@ -40,9 +40,15 @@ class _Widget(pygame.sprite.Sprite):
         self._fill_colour = pygame.Color(theme['fillPrimary'])
 
         if kwargs.get('relative_size'):
-            self._relative_size = ((kwargs.get('relative_size')[0] * self._surface_size[0]) / self._surface_size[1], kwargs.get('relative_size')[1])
+            if kwargs.get('scale_with_height'): # Relative scale based on only surface height
+                self._relative_size = (kwargs.get('relative_size')[0], kwargs.get('relative_size')[1])
+            else: # Relative scale based on surface width and height
+                self._relative_size = ((kwargs.get('relative_size')[0] * self._surface_size[0]) / self._surface_size[1], kwargs.get('relative_size')[1])
         else:
             self._relative_size = (1, 1)
+        
+        if self._relative_size[0] > 2 or self._relative_size[1] > 2:
+            raise ValueError('(_Widget.__init__) Relative size must be less than 2')
         
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._surface_size[1]

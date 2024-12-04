@@ -4,7 +4,7 @@ from data.constants import WidgetState
 from data.utils.widget_helpers import create_switch
 
 class Switch(_Pressable, _Widget):
-    def __init__(self, relative_length, event, **kwargs):
+    def __init__(self, relative_height, event, **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -12,11 +12,11 @@ class Switch(_Pressable, _Widget):
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=self.up_func,
         )
-        _Widget.__init__(self, relative_size=(relative_length, relative_length * 0.5), **kwargs)
+        _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_with_height=True, **kwargs)
 
         self._is_toggled_on = False
 
-        self._background_colour = kwargs.get('fill_colour')
+        self._background_colour = self._fill_colour
         self._thumb_colour = None
         self.initialise_new_colours((255, 255, 255))
         self.set_toggle_state(False)

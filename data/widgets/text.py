@@ -1,15 +1,17 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.utils.font_helpers import text_to_font_size
+from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size
 
 class Text(_Widget): # Pure text
-    def __init__(self, text, center=True, minimum_width=0, **kwargs):
+    def __init__(self, text, center=True, fit_vertical=True, **kwargs):
         super().__init__(**kwargs)
         self._text = text
-        self._relative_font_size = text_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
+        if fit_vertical:
+            self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
+        else:
+            self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
         
         self._center = center
-        self._relative_minimum_width = minimum_width / self._surface_size[1]
 
         self.rect = self._font.get_rect(self._text, size=self._font_size)
         self.rect.topleft = self.position
@@ -18,20 +20,6 @@ class Text(_Widget): # Pure text
 
         self.set_image()
         self.set_geometry()
-
-    # @property
-    # def size(self):
-    #     font_rect_size = self._font.get_rect(self._text, size=self._font_size).size
-    #     if self._text == '':
-    #         font_rect_size = (font_rect_size[0], self._font.get_rect('j', size=self._font_size).size[1])
-        
-    #     rect_size = pygame.Rect((0, 0, font_rect_size[0], font_rect_size[1])).inflate(self.margin, self.margin).size
-
-    #     if self._relative_minimum_width:
-    #         if rect_size[0] < self.minimum_width:
-    #             rect_size = (self.minimum_width, rect_size[1])
-
-    #     return rect_size
 
     @property
     def _font_size(self):
