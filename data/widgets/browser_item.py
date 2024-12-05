@@ -35,10 +35,6 @@ class BrowserItem(_Widget):
         
         self.set_image()
         self.set_geometry()
-
-    @property
-    def _font_size(self):
-        return self._relative_font_size * self._surface_size[1]
     
     def set_image(self):
         self.image = pygame.Surface(self.size, pygame.SRCALPHA)
@@ -50,7 +46,7 @@ class BrowserItem(_Widget):
         text_to_render = self.get_text_to_render()
 
         for index, text in enumerate(text_to_render):
-            self._font.render_to(self.image, (0, get_line_y(index)), text, fgcolor=self._text_colour, size=self._font_size)
+            self._font.render_to(self.image, (0, get_line_y(index)), text, fgcolor=self._text_colour, size=self.font_size)
     
     def get_text_to_render(self):
         depth_to_text = {

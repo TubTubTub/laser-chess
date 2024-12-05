@@ -25,10 +25,6 @@ class VolumeSlider(_Widget):
         '''Minus so easier to position slider by starting from the left edge of the slider instead of the thumb'''
         return (self._relative_position[0] * self._surface_size[0] - (self.size[1] / 2), self._relative_position[1] * self._surface_size[1])
     
-    @property
-    def _border_width(self):
-        return self._relative_border_width * self._surface_size[1]
-    
     def calculate_slider_position(self):
         return (self.size[1] / 2, self.size[1] / 4)
     
@@ -38,7 +34,7 @@ class VolumeSlider(_Widget):
     def calculate_selected_percent(self, mouse_pos):
         relative_mouse_pos = (mouse_pos[0] - self.rect.topleft[0], mouse_pos[1] - self.rect.topleft[1])
 
-        selected_percent = (relative_mouse_pos[0] - (self.size[1] / 2) - self._border_width) / (self.calculate_slider_size()[0] - 2 * self._border_width)
+        selected_percent = (relative_mouse_pos[0] - (self.size[1] / 2) - self.border_width) / (self.calculate_slider_size()[0] - 2 * self.border_width)
         selected_percent = max(0, min(selected_percent, 1))
         return selected_percent
     
@@ -61,7 +57,7 @@ class VolumeSlider(_Widget):
         self.image.blit(gradient_scaled, gradient_position)
 
         thumb_position = self.calculate_thumb_position()
-        self._thumb.set_surface(radius=self.size[1] / 2, border_width=self._border_width)
+        self._thumb.set_surface(radius=self.size[1] / 2, border_width=self.border_width)
         self._thumb.set_position(self.relative_to_global_position((thumb_position[0], thumb_position[1])))
 
         thumb_surface = self._thumb.get_surface()

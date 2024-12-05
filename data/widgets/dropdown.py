@@ -19,7 +19,7 @@ class Dropdown(_Pressable, _Widget):
         )
         _Widget.__init__(self, **kwargs)
 
-        self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, self._relative_size[0] * self._surface_size[1]) / self._surface_size[1]
+        self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, self._relative_size[0] * self._surface_size[1] - self.margin) / self._surface_size[1]
 
         self._word_list = [word_list[0].capitalize()]
         self._word_list_copy = [word.capitalize() for word in word_list]

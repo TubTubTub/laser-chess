@@ -12,18 +12,13 @@ class Text(_Widget): # Pure text
             self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
         
         self._center = center
-
-        self.rect = self._font.get_rect(self._text, size=self._font_size)
+        self.rect = self._font.get_rect(self._text, size=self.font_size)
         self.rect.topleft = self.position
 
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
         self.set_image()
         self.set_geometry()
-
-    @property
-    def _font_size(self):
-        return self._relative_font_size * self._surface_size[1]
 
     @property
     def minimum_width(self):
@@ -42,12 +37,12 @@ class Text(_Widget): # Pure text
             fill_rect = pygame.Rect(0, 0, self.size[0], self.size[1])
             pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=int(self.border_radius))
 
-        font_rect_size = self._font.get_rect(self._text, size=self._font_size).size
+        font_rect_size = self._font.get_rect(self._text, size=self.font_size).size
         if self._center:
             font_position = ((self.size[0] - font_rect_size[0]) / 2, (self.size[1] - font_rect_size[1]) / 2)
         else:
             font_position = (self.margin / 2, (self.size[1] - font_rect_size[1]) / 2)
-        self._font.render_to(self.image, font_position, self._text, fgcolor=self._text_colour, size=self._font_size)
+        self._font.render_to(self.image, font_position, self._text, fgcolor=self._text_colour, size=self.font_size)
 
         if self.border_width:
             fill_rect = pygame.Rect(0, 0, self.size[0], self.size[1])

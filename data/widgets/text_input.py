@@ -23,7 +23,7 @@ class TextInput(_Pressable, Text):
 
         pygame.key.set_repeat(500, 50)
 
-        self._relative_font_size = height_to_font_size(self._font, target_height=self.size[1] - self.margin) / self._surface_size[1]
+        self._relative_font_size = height_to_font_size(self._font, target_height=self.size[1] - 2 * (self.margin - self.border_width)) / self._surface_size[1]
         self._blinking_fps = 1000 / blinking_interval
         self._cursor_colour = cursor_colour
         self._cursor_colour_copy = cursor_colour
@@ -96,7 +96,7 @@ class TextInput(_Pressable, Text):
         box_size = self.size[0] - 2 * self.border_width
         ideal_font_size = height_to_font_size(self._font, target_height=self.size[1] - self.margin) / self._surface_size[1]
 
-        if self._font.get_rect(text=self._text, size=self._font_size).width < self.size[0]:
+        if self._font.get_rect(text=self._text, size=self.font_size).width < self.size[0]:
             if self._relative_font_size >= ideal_font_size:
                 return
 
@@ -120,13 +120,13 @@ class TextInput(_Pressable, Text):
                 test_size = test_size - 1
 
     def calculate_cursor_size(self):
-        cursor_height = (self.size[1] - self._border_width * 2) * 0.75
+        cursor_height = (self.size[1] - self.border_width * 2) * 0.75
         return (cursor_height * 0.1, cursor_height)
 
     def calculate_cursor_position(self):
         current_width = (self.margin / 2)
         cursor_size = self.calculate_cursor_size()
-        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self._font_size)):
+        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self.font_size)):
             if index == self._cursor_index:
                 return (current_width - cursor_size[0], (self.size[1] - cursor_size[1]) / 2)
             
@@ -137,7 +137,7 @@ class TextInput(_Pressable, Text):
     def relative_x_to_cursor_index(self, relative_x):
         current_width = 0
 
-        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self._font_size)):
+        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self.font_size)):
             glyph_width = metrics[4]
 
             if relative_x <= current_width:

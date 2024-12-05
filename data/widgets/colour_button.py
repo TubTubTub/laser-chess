@@ -21,10 +21,6 @@ class ColourButton(_Pressable, _Widget):
         self.set_image()
         self.set_geometry()
 
-    @property
-    def _border_width(self):
-        return self._relative_border_width * self._surface_size[1]
-
     def initialise_new_colours(self, new_colour):
         r, g, b = new_colour.rgb
 
@@ -44,4 +40,4 @@ class ColourButton(_Pressable, _Widget):
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
         self.image.fill(self._fill_colour)
-        pygame.draw.rect(self.image, self._border_colour, (0, 0, self.size[0], self.size[1]), width=int(self._border_width))
+        pygame.draw.rect(self.image, self._border_colour, (0, 0, self.size[0], self.size[1]), width=int(self.border_width))

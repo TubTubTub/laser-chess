@@ -18,10 +18,6 @@ class _ColourSlider(_Widget):
 
         self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
     
-    @property
-    def _border_width(self):
-        return self._relative_border_width * self._surface_size[1]
-    
     def calculate_gradient_size(self):
         return (self.size[0] - 2 * (self.size[1] / 2), self.size[1] / 2)
     
@@ -71,7 +67,7 @@ class _ColourSlider(_Widget):
         thumb_colour = self.calculate_selected_colour()
 
         self._thumb.initialise_new_colours(thumb_colour)
-        self._thumb.set_surface(radius=self.size[1] / 2, border_width=self._border_width)
+        self._thumb.set_surface(radius=self.size[1] / 2, border_width=self.border_width)
         self._thumb.set_position(self.relative_to_global_position((thumb_position[0], thumb_position[1])))
 
         thumb_surface = self._thumb.get_surface()
