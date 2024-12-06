@@ -39,53 +39,54 @@ config_container = Rectangle(
 )
 
 CONFIG_WIDGETS = {
+    'config_container':
+        config_container,
     'default': [
         TextInput(
-            surface=config_container,
-            relative_position=(0.1, 0.1),
+            parent=config_container,
+            relative_position=(0.05, 0.05),
+            relative_size=(0.9, 0.15),
             placeholder='ENTER FEN STRING',
             default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
-            relative_size=(0.3, 0.2),
-            border_width=0,
-            margin=0,
-            border_colour=(150, 150, 150),
+            border_width=5,
+            margin=20,
             event_type=ConfigEventType.FEN_STRING_TYPE
         ),
         TextInput(
-            surface=config_container,
-            relative_position=(0.6, 0.3),
+            parent=config_container,
+            relative_position=(0.3, 0.3),
+            relative_size=(0.4, 0.15),
+            fit_vertical=True,
             placeholder='TIME CONTROL (MINS)',
             default=str(default_config['TIME']),
-            relative_size=(0.1, 0.1),
             border_width=5,
-            margin=0,
+            margin=20,
             validator=float_validator,
-            border_colour=(150, 150, 150),
             event_type=ConfigEventType.TIME_TYPE
         ),
         Text(
-            surface=config_container,
-            relative_size=(0.1, 0.1),
-            relative_position=(0.82, 0.31),
+            parent=config_container,
+            fit_vertical=False,
+            relative_position=(0.75, 0.3),
+            relative_size=(0.2, 0.15),
             text='MINS',
             margin=2
         ),
         IconButton(
-            surface=config_container,
             relative_position=(0.92, 0.02),
-            relative_size=(0.1, 0.1),
+            relative_size=(0.05, 0.1),
             margin=10,
             border_width=5,
             border_radius=5,
             icon=GRAPHICS['home'],
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
-        config_container,
     ],
     'start_button':
     TextButton(
-        relative_position=(0.5, 0.7),
-        relative_size=(0.1, 0.1),
+        parent=config_container,
+        relative_position=(0.05, 0.8),
+        relative_size=(0.9, 0.15),
         text='START NEW GAME',
         text_colour=(255, 0, 0),
         font_size=50,
@@ -95,8 +96,10 @@ CONFIG_WIDGETS = {
     ),
     'timer_button':
     MultipleIconButton(
-        relative_position=(0.5, 0.3),
-        relative_size=(0.1, 0.1),
+        parent=config_container,
+        scale_with_height=True,
+        relative_position=(0.05, 0.3),
+        relative_size=(0.15, 0.15),
         margin=0,
         border_width=5,
         border_radius=5,
@@ -105,8 +108,9 @@ CONFIG_WIDGETS = {
     ),
     'pvp_button':
     MultipleIconButton(
-        relative_position=(0.5, 0.5),
-        relative_size=(0.1, 0.1),
+        parent=config_container,
+        relative_position=(0.05, 0.55),
+        relative_size=(0.4, 0.15),
         margin=0,
         border_width=5,
         border_radius=5,
@@ -117,8 +121,9 @@ CONFIG_WIDGETS = {
     ),
     'pvc_button':
     MultipleIconButton(
-        relative_position=(0.72, 0.5),
-        relative_size=(0.1, 0.1),
+        parent=config_container,
+        relative_position=(0.55, 0.55),
+        relative_size=(0.4, 0.15),
         margin=0,
         border_width=5,
         border_radius=5,
@@ -129,8 +134,9 @@ CONFIG_WIDGETS = {
     ),
     'invalid_fen_string':
     Text(
-        relative_position=(0.5, 0.24),
-        relative_size=(0.1, 0.1),
+        parent=config_container,
+        relative_position=(0.05, 0.2),
+        relative_size=(0.9, 0.1),
         minimum_width=400,
         text='INVALID FEN STRING!',
         margin=10,

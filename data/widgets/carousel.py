@@ -30,6 +30,7 @@ class Carousel(_Widget):
             icon=GRAPHICS['left_arrow'],
             margin=0,
             border_radius=0,
+            border_width=self.border_width,
             is_mask=True,
             fill_colour=(255, 0, 0)
         )
@@ -41,6 +42,7 @@ class Carousel(_Widget):
             icon=GRAPHICS['right_arrow'],
             margin=0,
             border_radius=0,
+            border_width=self.border_width,
             is_mask=True,
             fill_colour=(255, 0, 0)
         )

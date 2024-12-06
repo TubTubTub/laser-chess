@@ -5,14 +5,9 @@ from data.assets import GRAPHICS
 
 from data.theme import theme
 
-main_surface = Rectangle(
-    relative_position=(0.3, 0.5),
-    relative_size=(0.3, 0.5)
-)
-
 MENU_WIDGETS = {
     'default': [
-        TextButton( // BLITING ON WIDGET NOT WORKING
+        TextButton(
             relative_position=(0.3, 0.4),
             relative_size=(0.4, 0.1),
             text='START GAME',

@@ -48,33 +48,38 @@ class Config(_State):
             self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
         
         self._cpu_depth_carousel = Carousel(
-            relative_position=(0.5, 0.68),
-            margin=95,
+            parent=CONFIG_WIDGETS['config_container'],
+            relative_position=(0.05, 0.7),
+            margin=5,
             event_type=ConfigEventType.CPU_DEPTH_CLICK,
+            border_width=0,
             fill_colour=(0, 0, 0, 0),
             widgets_dict={
                 2: Text(
                     relative_position=(0, 0),
-                    relative_size=(0.3, 0.3),
+                    relative_size=(0.3, 0.09),
                     text="EASY",
                     text_colour=(255, 255, 255),
                     margin=0,
+                    border_width=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
                 3: Text(
                     relative_position=(0, 0),
-                    relative_size=(0.3, 0.3),
+                    relative_size=(0.3, 0.09),
                     text="MEDIUM",
                     text_colour=(255, 255, 255),
                     margin=0,
+                    border_width=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
                 4: Text(
                     relative_position=(0, 0),
-                    relative_size=(0.3, 0.3),
+                    relative_size=(0.3, 0.09),
                     text="HARD",
                     text_colour=(255, 255, 255),
                     margin=0,
+                    border_width=0,
                     fill_colour=(0, 0, 0, 0)
                 ),
             }
@@ -90,14 +95,14 @@ class Config(_State):
         audio.play_music(MUSIC_PATHS['cpu_hard'])
     
     def create_depth_picker(self):
-        CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
-        CONFIG_WIDGETS['start_button'].set_image()
+        # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
+        # CONFIG_WIDGETS['start_button'].set_image()
 
         self._widget_group.add(self._cpu_depth_carousel)
     
     def remove_depth_picker(self):
-        CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.7))
-        CONFIG_WIDGETS['start_button'].set_image()
+        # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.7))
+        # CONFIG_WIDGETS['start_button'].set_image()
         
         self._cpu_depth_carousel.kill()
     

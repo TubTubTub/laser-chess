@@ -1,1 +1,3 @@
-add surface so scaling doesn't move stuff apart
+font size broken with parent in timer input
+font size with parent not scaling correctly (see fen string input)
+add center position anchoring

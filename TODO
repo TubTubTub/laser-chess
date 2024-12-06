@@ -16,6 +16,7 @@ Use RectF to prevent black lines in board forming from under-rounding errors
 Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
+Select default FEN strings in config screen
 
 Ambitious:
 Cursor-based pagination for viewing games

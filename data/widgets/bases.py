@@ -21,16 +21,18 @@ class _Widget(pygame.sprite.Sprite):
                 raise KeyError(f'(_Widget.__init__) Required keyword "{required_kwarg}" not in base kwargs')
             
         self._relative_font_size = None # SET IN EACH WIDGET
-
-        self._surface = kwargs.get('surface') or DEFAULT_SURFACE
+        
+        self._surface = DEFAULT_SURFACE
         self._surface_size = self._surface.get_size()
+
+        self._parent = kwargs.get('parent')
 
         self._relative_position = kwargs.get('relative_position')
         self._relative_margin = theme['margin'] / self._surface_size[1]
         self._relative_border_width = theme['borderWidth'] / self._surface_size[1]
         self._relative_border_radius = theme['borderRadius'] / self._surface_size[1]
         
-        self._fixed_anchor_x = kwargs.get('fixed_anchor_x') or 'right'
+        self._fixed_anchor_x = kwargs.get('fixed_anchor_x')
         self._fixed_anchor_y = kwargs.get('fixed_anchor_y')
         self._fixed_position = self.calculate_fixed_position()
 
@@ -40,9 +42,10 @@ class _Widget(pygame.sprite.Sprite):
 
         if kwargs.get('relative_size'):
             if kwargs.get('scale_with_height'): # Relative scale based on only surface height
-                self._relative_size = (kwargs.get('relative_size')[0], kwargs.get('relative_size')[1])
+                print('scaling', self.__class__.__qualname__)
+                self._relative_size = kwargs.get('relative_size')
             else: # Relative scale based on surface width and height
-                self._relative_size = ((kwargs.get('relative_size')[0] * self._surface_size[0]) / self._surface_size[1], kwargs.get('relative_size')[1])
+                self._relative_size = ((kwargs.get('relative_size')[0] * self.parent_adjusted_surface_size[0]) / self.parent_adjusted_surface_size[1], kwargs.get('relative_size')[1])
         else:
             self._relative_size = (1, 1)
         
@@ -76,23 +79,33 @@ class _Widget(pygame.sprite.Sprite):
             self._font = DEFAULT_FONT
     
     @property
+    def parent_adjusted_surface_size(self):
+        if self._parent:
+            return self._parent.size
+        else:
+            return self._surface_size
+    
+    @property
     def position(self):
-        x, y = (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
+        x, y = (self._relative_position[0] * self.parent_adjusted_surface_size[0], self._relative_position[1] * self.parent_adjusted_surface_size[1])
 
         if self._fixed_anchor_x == 'left':
             x = self._fixed_position[0]
         elif self._fixed_anchor_x == 'right':
-            x = self._surface_size[0] - self._fixed_position[0]
+            x = self.parent_adjusted_surface_size[0] - self._fixed_position[0]
         if self._fixed_anchor_y == 'top':
             y = self._fixed_position[1]
         elif self._fixed_anchor_y == 'bottom':
-            y = self._surface_size[1] - self._fixed_position[1]
+            y = self.parent_adjusted_surface_size[1] - self._fixed_position[1]
 
-        return (x, y)
+        if self._parent:
+            return (x + self._parent.position[0], y + self._parent.position[1])
+        else:
+            return (x, y)
     
     @property
     def size(self):
-        return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
+        return (self._relative_size[0] * self.parent_adjusted_surface_size[1], self._relative_size[1] * self.parent_adjusted_surface_size[1])
 
     @property
     def margin(self):
@@ -108,7 +121,7 @@ class _Widget(pygame.sprite.Sprite):
 
     @property
     def font_size(self):
-        return self._relative_font_size * self._surface_size[1]
+        return self._relative_font_size * self.parent_adjusted_surface_size[1]
     
     def set_image(self):
         raise NotImplementedError
