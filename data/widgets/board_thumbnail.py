@@ -8,8 +8,8 @@ class BoardThumbnail(_Widget):
     def __init__(self, relative_width, fen_string='', **kwargs):
         super().__init__(relative_size=None, **kwargs)
         self._relative_size  = (
-            (relative_width * self._surface_size[0]) / self._surface_size[1],
-            relative_width * 0.8 * self._surface_size[0] / self._surface_size[1]
+            (relative_width * self.surface_size[0]) / self.surface_size[1],
+            relative_width * 0.8 * self.surface_size[0] / self.surface_size[1]
         )
 
         self._board = Chessboard(

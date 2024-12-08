@@ -8,7 +8,7 @@ class ScrollArea(_Widget):
     def __init__(self, widget, vertical, scroll_factor=5, **kwargs):
         super().__init__(**kwargs)
         
-        self._relative_scroll_factor = scroll_factor / self._surface_size[1]
+        self._relative_scroll_factor = scroll_factor / self.surface_size[1]
 
         self._scroll_percentage = 0
         self._widget = widget
@@ -30,13 +30,13 @@ class ScrollArea(_Widget):
     @property
     def size(self):
         if self._vertical:
-            return (self._relative_size[0] * self._surface_size[1], self._relative_size[1] * self._surface_size[1])
+            return (self._relative_size[0] * self.surface_size[1], self._relative_size[1] * self.surface_size[1])
         else:
-            return (self._relative_size[0] * self._surface_size[0], self._relative_size[1] * self._surface_size[1])
+            return (self._relative_size[0] * self.surface_size[0], self._relative_size[1] * self.surface_size[1])
     
     @property
     def scroll_factor(self):
-        return self._relative_scroll_factor * self._surface_size[1]
+        return self._relative_scroll_factor * self.surface_size[1]
 
     @property
     def scrollbar_size(self):

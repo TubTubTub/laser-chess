@@ -28,7 +28,7 @@ class _ColourSlider(_Widget):
         parent_x, parent_y = self._get_parent_position()
         mouse_pos = (mouse_pos[0] - self.rect.topleft[0] - parent_x, mouse_pos[1] - self.rect.topleft[1] - parent_y)
 
-        border_width = self._relative_border_width * self._surface_size[1]
+        border_width = self._relative_border_width * self.surface_size[1]
         selected_percent = (mouse_pos[0] - (self.size[1] / 2) - border_width) / (self.calculate_gradient_size()[0] - 2 * border_width)
         selected_percent = max(0, min(selected_percent, 1))
         return selected_percent

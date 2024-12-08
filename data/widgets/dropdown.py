@@ -19,7 +19,7 @@ class Dropdown(_Pressable, _Widget):
         )
         _Widget.__init__(self, **kwargs)
 
-        self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, self._relative_size[0] * self._surface_size[1] - self.margin) / self._surface_size[1]
+        self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, self._relative_size[0] * self.surface_size[1] - self.margin) / self.surface_size[1]
 
         self._word_list = [word_list[0].capitalize()]
         self._word_list_copy = [word.capitalize() for word in word_list]
@@ -42,10 +42,6 @@ class Dropdown(_Pressable, _Widget):
         all_words_rect = pygame.Rect(0, 0, max_word_rect.size[0], (max_word_rect.size[1] * len(self._word_list)) + (self.margin * (len(self._word_list) - 1)))
         all_words_rect = all_words_rect.inflate(2 * self.margin, 2 * self.margin)
         return (all_words_rect.size[0] + max_word_rect.size[1], all_words_rect.size[1])
-
-    @property
-    def font_size(self):
-        return self._relative_font_size * self._surface_size[1]
 
     def get_selected_word(self):
         if self._expanded is False:

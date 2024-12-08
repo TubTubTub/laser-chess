@@ -21,7 +21,7 @@ class BrowserItem(_Widget):
         super().__init__(relative_size=(relative_width, relative_width * 2 * 0.8), **kwargs)
         
         line_height = (self.size[1] / 2) / FONT_DIVISION
-        self._relative_font_size = height_to_font_size(self._font, line_height) / self._surface_size[1]
+        self._relative_font_size = height_to_font_size(self._font, line_height) / self.surface_size[1]
 
         self._game = game
         self._board_thumbnail = BoardThumbnail(

@@ -23,7 +23,7 @@ class VolumeSlider(_Widget):
     @property
     def position(self):
         '''Minus so easier to position slider by starting from the left edge of the slider instead of the thumb'''
-        return (self._relative_position[0] * self._surface_size[0] - (self.size[1] / 2), self._relative_position[1] * self._surface_size[1])
+        return (self._relative_position[0] * self.surface_size[0] - (self.size[1] / 2), self._relative_position[1] * self.surface_size[1])
     
     def calculate_slider_position(self):
         return (self.size[1] / 2, self.size[1] / 4)

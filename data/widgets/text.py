@@ -7,9 +7,9 @@ class Text(_Widget): # Pure text
         super().__init__(**kwargs)
         self._text = text
         if fit_vertical:
-            self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
+            self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
         else:
-            self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self._surface_size[1]
+            self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
         
         self._center = center
         self.rect = self._font.get_rect(self._text, size=self.font_size)
@@ -19,10 +19,6 @@ class Text(_Widget): # Pure text
 
         self.set_image()
         self.set_geometry()
-
-    @property
-    def minimum_width(self):
-        return self._relative_minimum_width * self._surface_size[1]
 
     def update_text(self, new_text):
         self._text = new_text

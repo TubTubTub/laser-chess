@@ -20,7 +20,7 @@ class BrowserStrip(_Widget):
 
     @property
     def item_width(self):
-        return self._relative_item_width * self._surface_size[1]
+        return self._relative_item_width * self.surface_size[1]
 
     @property
     def size(self):

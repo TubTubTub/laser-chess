@@ -8,10 +8,10 @@ class MoveList(_Widget):
         super().__init__(relative_size=None, **kwargs)
 
         self._relative_width = relative_width
-        self._relative_minimum_height = minimum_height / self._surface_size[1]
+        self._relative_minimum_height = minimum_height / self.surface_size[1]
         self._move_list = move_list
 
-        self._relative_font_size = width_to_font_size(self._font, relative_width * self._surface_size[0] / 5) / self._surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, relative_width * self.surface_size[0] / 5) / self.surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -22,11 +22,11 @@ class MoveList(_Widget):
     def size(self):
         font_metrics = self._font.get_metrics('j', size=self.font_size)
         row_gap = font_metrics[0][3] - font_metrics[0][2]
-        return (self._relative_width * self._surface_size[0], max(self.minimum_height, row_gap * ( 2 * ((len(self._move_list) + 1) // 2) + 1 ) ))
+        return (self._relative_width * self.surface_size[0], max(self.minimum_height, row_gap * ( 2 * ((len(self._move_list) + 1) // 2) + 1 ) ))
     
     @property
     def minimum_height(self):
-        return self._relative_minimum_height * self._surface_size[1]
+        return self._relative_minimum_height * self.surface_size[1]
     
     def register_get_rect(self, get_rect_func):
         pass
@@ -61,7 +61,7 @@ class MoveList(_Widget):
     
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
-        self._relative_font_size = width_to_font_size(self._font, self.size[0] / 5) / self._surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.size[0] / 5) / self.surface_size[1]
     
     def process_event(self, event, scrolled_pos=None):
         pass

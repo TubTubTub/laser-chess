@@ -97,7 +97,9 @@ class Config(_State):
     def create_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
         # CONFIG_WIDGETS['start_button'].set_image()
-
+        self._cpu_depth_carousel.set_surface_size(self._screen.get_size())
+        self._cpu_depth_carousel.set_image()
+        self._cpu_depth_carousel.set_geometry()
         self._widget_group.add(self._cpu_depth_carousel)
     
     def remove_depth_picker(self):
@@ -169,7 +171,10 @@ class Config(_State):
                     self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
 
             case ConfigEventType.TIME_TYPE:
-                self._config['TIME'] = float(widget_event.text)
+                if widget_event.text == '':
+                    self._config['TIME'] = 5
+                else:
+                    self._config['TIME'] = float(widget_event.text)
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 self._config['CPU_DEPTH'] = int(widget_event.data)

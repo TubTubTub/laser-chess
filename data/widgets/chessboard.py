@@ -9,8 +9,8 @@ class Chessboard(_Widget):
     def __init__(self, relative_width, center=False, **kwargs):
         super().__init__(relative_size=None, **kwargs)
         self._relative_size  = (
-            (relative_width * self._surface_size[0]) / self._surface_size[1],
-            relative_width * 0.8 * self._surface_size[0] / self._surface_size[1]
+            (relative_width * self.surface_size[0]) / self.surface_size[1],
+            relative_width * 0.8 * self.surface_size[0] / self.surface_size[1]
         )
 
         self._board_surface = create_board(self.size, user_settings['primaryBoardColour'], user_settings['secondaryBoardColour'])
@@ -24,7 +24,8 @@ class Chessboard(_Widget):
     def position(self):
         if self._center:
             return self.calculate_center_position()
-        return (self._relative_position[0] * self._surface_size[0], self._relative_position[1] * self._surface_size[1])
+
+        return super().position
 
     def get_position(self):
         return self.position
@@ -34,7 +35,7 @@ class Chessboard(_Widget):
 
     def calculate_center_position(self):
         '''Returns required board starting position to draw on center of the screen'''
-        screen_x, screen_y = self._surface_size
+        screen_x, screen_y = self._raw_surface_size
         board_x, board_y = self.size
 
         x = screen_x / 2 - (board_x / 2)
