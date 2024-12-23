@@ -4,7 +4,7 @@ from enum import IntEnum, StrEnum, auto
 BG_COLOUR = (0, 0, 0)
 PAUSE_COLOUR = (50, 50, 50, 200)
 OVERLAY_COLOUR = (255, 0, 0, 128)
-SCREEN_SIZE = (1000, 600)
+SCREEN_SIZE = (1200, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
 STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 #Board height divded by 8
 EMPTY_BB = 0
@@ -32,16 +32,19 @@ class StatusText(StrEnum):
     WIN = auto()
     DRAW = auto()
 
+class ReviewEventType(StrEnum):
+    MENU_CLICK = auto()
+    PREVIOUS_CLICK = auto()
+    NEXT_CLICK = auto()
+
 class BrowserEventType(StrEnum):
     MENU_CLICK = auto()
     BROWSER_STRIP_CLICK = auto()
     COPY_CLICK = auto()
     DELETE_CLICK = auto()
+    REVIEW_CLICK = auto()
     FILTER_COLUMN_CLICK = auto()
     FILTER_ASCEND_CLICK = auto()
-
-class GameState(IntEnum):
-    LASER_FIRING = 0
 
 class GameEventType(StrEnum):
     BOARD_CLICK = auto()

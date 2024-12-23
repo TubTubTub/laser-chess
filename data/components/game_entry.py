@@ -1,10 +1,11 @@
 from data.constants import Colour
+from data.states.game.components.move import Move
 import pickle
 
 class GameEntry:
-    def __init__(self, game_states, fen_string):
+    def __init__(self, game_states, final_fen_string):
         self._game_states = game_states
-        self._fen_string = fen_string
+        self._final_fen_string = final_fen_string
     
     def __str__(self):
         return f'''
@@ -16,23 +17,32 @@ class GameEntry:
     TIME: {self._game_states['TIME']},
     NUMBER_OF_PLY: {len(self._game_states['MOVES'])},
     MOVES: {self.convert_moves(self._game_states['MOVES'])}
-    FEN_STRING: {self._fen_string}
+    FINAL FEN_STRING: {self._final_fen_string}
+    START FEN STRING: {self._game_states['START_FEN_STRING']}
 </GameEntry>
         '''
     
     def convert_to_row(self):
-        return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']), self._fen_string)
+        return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']), self._game_states['START_FEN_STRING'], self._final_fen_string)
     
     def convert_moves(self, moves):
         # ;{pickle.dumps(move['laserResult'])}
         return '|'.join([
-            f'{round(move['time'][Colour.BLUE], 3)};{round(move['time'][Colour.RED], 3)};{move['move']}'
+            f'{round(move['time'][Colour.BLUE], 4)};{round(move['time'][Colour.RED], 4)};{move['move']}'
             for move in moves
         ])
     
     @staticmethod
-    def row_to_dict(row):
-        pass
+    def parse_moves(move_str):
+        moves = move_str.split('|')
+
+        return [
+            {
+                'blue_time': move.split(';')[0],
+                'red_time': move.split(';')[1],
+                'move': Move.instance_from_notation(move.split(';')[2])
+            } for move in moves
+        ]
 
 # self.states = {
 #     'CPU_ENABLED': game_config['CPU_ENABLED'],

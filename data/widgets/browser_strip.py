@@ -4,12 +4,12 @@ from data.widgets.browser_item import BrowserItem
 from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent
 
-class BrowserStrip(_Widget):
-    def __init__(self, relative_item_width, games_list, **kwargs):
-        super().__init__(relative_size=None, **kwargs)
-        
-        self._relative_item_width = relative_item_width
+WIDTH_FACTOR = 0.3
 
+class BrowserStrip(_Widget):
+    def __init__(self, relative_height, games_list, **kwargs):
+        super().__init__(relative_size=None, **kwargs)
+        self._relative_item_width = relative_height / 2
         self._get_rect = None
 
         self._games_list = []
@@ -41,7 +41,7 @@ class BrowserStrip(_Widget):
         self._selected_index = None
 
         for game in games_list:
-            browser_item = BrowserItem(relative_position=(0, 0), game=game, relative_width=self.item_width)
+            browser_item = BrowserItem(relative_position=(0, 0), game=game, relative_width=self._relative_item_width)
             self._items_list.append(browser_item)
 
         self.set_image()

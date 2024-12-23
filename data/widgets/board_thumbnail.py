@@ -6,24 +6,21 @@ from data.states.game.components.bitboard_collection import BitboardCollection
 
 class BoardThumbnail(_Widget):
     def __init__(self, relative_width, fen_string='', **kwargs):
-        super().__init__(relative_size=None, **kwargs)
-        self._relative_size  = (
-            (relative_width * self.surface_size[0]) / self.surface_size[1],
-            relative_width * 0.8 * self.surface_size[0] / self.surface_size[1]
-        )
+        super().__init__(relative_size=(relative_width, relative_width * 0.8), **kwargs)
 
         self._board = Chessboard(
             relative_position=kwargs.get('relative_position'),
+            scale_mode=kwargs.get('scale_mode'),
             relative_width=relative_width
         )
 
         self._empty_surface = pygame.Surface((0, 0))
 
-        self.initialise_fen_string(fen_string)
+        self.initialise_board(fen_string)
         self.set_image()
         self.set_geometry()
 
-    def initialise_fen_string(self, fen_string):
+    def initialise_board(self, fen_string):
         if len(fen_string) == 0:
             piece_list = []
         else:
@@ -32,11 +29,12 @@ class BoardThumbnail(_Widget):
         self._piece_group = PieceGroup()
         self._piece_group.initialise_pieces(piece_list, (0, 0), self.size)
         
+        self._board.refresh_board()
         self.set_image()
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
-        
+
         self._board.set_image()
         self.image.blit(self._board.image, (0, 0))
 

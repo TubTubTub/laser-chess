@@ -12,7 +12,7 @@ class Switch(_Pressable, _Widget):
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=self.up_func,
         )
-        _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_with_height=True, **kwargs)
+        _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_mode='height', **kwargs)
 
         self._is_toggled_on = False
 

@@ -11,15 +11,9 @@ def insert_into_games(game_entry):
     game_entry = (*game_entry, datetime.now())
 
     cursor.execute('''
-        INSERT INTO games (cpu_enabled, cpu_depth, winner, time_enabled, time, number_of_ply, moves, fen_string, created_dt)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO games (cpu_enabled, cpu_depth, winner, time_enabled, time, number_of_ply, moves, start_fen_string, final_fen_string, created_dt)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', game_entry)
-
-    games = cursor.execute('''
-        SELECT * FROM games
-    ''')
-
-    print('(database_helpers.insert_into_games) Games database entries:')
 
     connection.commit()
     connection.close()

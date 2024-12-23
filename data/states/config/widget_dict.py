@@ -34,8 +34,9 @@ else:
     time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
 config_container = Rectangle(
-    relative_position=(0.5, 0.1),
-    relative_size=(0.4, 0.8)
+    relative_position=(0.25, 0.1),
+    relative_size=(0.4, 0.8),
+    anchor_x='center'
 )
 
 CONFIG_WIDGETS = {
@@ -73,12 +74,14 @@ CONFIG_WIDGETS = {
             margin=2
         ),
         IconButton(
-            relative_position=(0.92, 0.02),
+            relative_position=(0.1, 0.02),
             relative_size=(0.05, 0.1),
             margin=10,
             border_width=5,
             border_radius=5,
             icon=GRAPHICS['home'],
+            anchor_x='right',
+            fixed_position=True,
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
     ],
@@ -145,8 +148,10 @@ CONFIG_WIDGETS = {
     ),
     'board_thumbnail':
     BoardThumbnail(
-        surface=screen,
-        relative_position=(0.02, 0.15),
-        relative_width=0.5
+        relative_position=(-0.22, 0),
+        relative_width=0.5,
+        scale_mode='width',
+        anchor_x='center',
+        anchor_y='center'
     )
 }

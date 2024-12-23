@@ -32,6 +32,9 @@ class Browser(_State):
     def cleanup(self):
         print('cleaning browser.py')
 
+        if self._selected_index is not None:
+            return self._games_list[self._selected_index]
+
         return None
     
     def startup(self, persist=None):
@@ -60,6 +63,7 @@ class Browser(_State):
             'asc': True,
             'desc': False
         }
+
         filter_column = BROWSER_WIDGETS['filter_column_dropdown'].get_selected_word()
         filter_ascend = BROWSER_WIDGETS['filter_ascend_dropdown'].get_selected_word()
 
@@ -93,6 +97,13 @@ class Browser(_State):
                     return
                 delete_game(self._games_list[self._selected_index]['id'])
                 self.refresh_games_list()
+            
+            case BrowserEventType.REVIEW_CLICK:
+                if self._selected_index is None:
+                    return
+                
+                self.next = 'review'
+                self.done = True
 
             case BrowserEventType.FILTER_COLUMN_CLICK:
                 selected_word = BROWSER_WIDGETS['filter_column_dropdown'].get_selected_word()

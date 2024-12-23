@@ -3,11 +3,12 @@ from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard
 import re
 
 class Move():
-    def __init__(self, move_type, src, dest=None, rotation_direction=None):
+    def __init__(self, move_type, src, dest=None, rotation_direction=None, captured=None):
         self.move_type = move_type
         self.src = src
         self.dest = dest
         self.rotation_direction = rotation_direction
+        self.captured = {}
 
     def to_notation(self, colour, piece, hit_square_bitboard):
         hit_square = ''
@@ -40,17 +41,19 @@ class Move():
             letters = re.findall(r'[A-Za-z]+', moves)
             numbers = re.findall(r'\d+', moves)
 
+            captured = notation_to_bitboard(notation.split('x')[1]) if 'x' in notation else None
+
             if move_type == MoveType.MOVE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
                 dest_bitboard = notation_to_bitboard(letters[1] + numbers[1])
 
-                return move_cls(move_type, src_bitboard, dest_bitboard)
+                return move_cls(move_type, src_bitboard, dest_bitboard, captured=captured)
             
             elif move_type == MoveType.ROTATE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
                 rotation_direction = letters[1]
 
-                return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction)
+                return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction, captured)
             else:
                 raise ValueError('(Move.instance_from_notation) Invalid move type:', move_type)
 

@@ -1,4 +1,5 @@
 import pygame
+import pprint
 import os
 
 from data.control import _State
@@ -31,7 +32,10 @@ class Settings(_State):
     
     def cleanup(self):
         print('cleaning settings.py')
-        print(self._settings)
+        # print('\nUPDATING SETTINGS:', )
+        # pprint.pprint(self._settings)
+        # print('')
+
         update_user_settings(self._settings)
 
         return None
@@ -42,20 +46,28 @@ class Settings(_State):
         self._widget_group.handle_resize(self._screen.size)
         self._settings = get_user_settings()
 
+        # print('\nGETTING USER SETTINGS:')
+        # pprint.pprint(self._settings)
+        # print('')
+
         audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
     
-    def create_colour_picker(self, origin_position, button_type):
-        print(button_type, 'sasdasdads')
+    def create_colour_picker(self, relative_position, button_type):
         if button_type == SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK:
-            default_colour = self._settings['primaryBoardColour']
+            fill_colour = self._settings['primaryBoardColour']
             event_type = SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK
         else:
-            default_colour = self._settings['secondaryBoardColour']
+            fill_colour = self._settings['secondaryBoardColour']
             event_type = SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK
 
-        self._colour_picker = ColourPicker(position=origin_position, relative_length=0.3, default_colour=default_colour, event_type=event_type)
+        self._colour_picker = ColourPicker(
+            relative_position=relative_position,
+            relative_width=0.15,
+            fill_colour=fill_colour,
+            event_type=event_type
+        )
         self._widget_group.add(self._colour_picker)
     
     def remove_colour_picker(self):
@@ -125,13 +137,13 @@ class Settings(_State):
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                self.create_colour_picker(event.pos, widget_event.type)
+                relative_position = (event.pos[0] / self._screen.size[0], event.pos[1] / self._screen.size[1])
+                self.create_colour_picker(relative_position, widget_event.type)
             
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
                 if widget_event.colour:
                     r, g, b = widget_event.colour.rgb
                     hex_colour = f'0x{hex(r)[2:].zfill(2)}{hex(g)[2:].zfill(2)}{hex(b)[2:].zfill(2)}'
-                    print(widget_event.type.name)
 
                     if widget_event.type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
                         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)

@@ -1,30 +1,34 @@
-from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import BrowserEventType
 from data.assets import GRAPHICS
+from data.widgets import *
 
-from data.theme import theme
+BROWSER_HEIGHT = 0.6
 
 browser_strip = BrowserStrip(
     relative_position=(0.0, 0.0),
-    relative_item_width=0.3,
+    relative_height=BROWSER_HEIGHT,
     games_list=[]
 )
 
 BROWSER_WIDGETS = {
     'default': [
         IconButton(
-            relative_position=(0.92, 0.02),
-            relative_size=(0.3, 0.3),
+            relative_position=(0.075, 0.05),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
             margin=10,
             border_width=5,
             border_radius=5,
+            fixed_width=True,
+            anchor_x='right',
             icon=GRAPHICS['home'],
             event=CustomEvent(BrowserEventType.MENU_CLICK)
         ),
         IconButton(
-            relative_position=(0.4, 0.78),
-            relative_size=(0.3, 0.3),
+            relative_position=(0.1, 0.8),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
             margin=10,
             border_width=5,
             border_radius=10,
@@ -32,8 +36,9 @@ BROWSER_WIDGETS = {
             event=CustomEvent(BrowserEventType.COPY_CLICK),
         ),
         IconButton(
-            relative_position=(0.55, 0.78),
-            relative_size=(0.3, 0.3),
+            relative_position=(0.25, 0.8),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
             margin=10,
             border_width=5,
             border_radius=10,
@@ -41,11 +46,23 @@ BROWSER_WIDGETS = {
             icon=GRAPHICS['trash'],
             event=CustomEvent(BrowserEventType.DELETE_CLICK),
         ),
+        IconButton(
+            relative_position=(0.4, 0.8),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            margin=10,
+            border_width=5,
+            border_radius=10,
+            icon=GRAPHICS['review'],
+            event=CustomEvent(BrowserEventType.REVIEW_CLICK),
+        ),
         Text(
-            relative_position=(0.75, 0.75),
-            relative_size=(0.3, 0.3),
+            relative_position=(0.4, 0.8),
+            relative_size=(0.3, 0.075),
             text='SORT BY:',
             fill_colour=(0, 0, 0, 0),
+            border_width=0,
+            margin=0,
             text_colour=(255, 255, 255)
         )
     ],
@@ -54,22 +71,22 @@ BROWSER_WIDGETS = {
     'scroll_area':
     ScrollArea(
         relative_position=(0.0, 0.15),
-        relative_size=(1, 0.5),
+        relative_size=(0.5, BROWSER_HEIGHT),
         vertical=False,
         widget=browser_strip
     ),
     'filter_column_dropdown':
     Dropdown(
-        relative_position=(0.87,0.77),
-        relative_size=(0.3, 0.3),
+        relative_position=(0.65, 0.8),
+        relative_height=0.075,
         word_list=['moves', 'winner', 'time'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_COLUMN_CLICK)
     ),
     'filter_ascend_dropdown':
     Dropdown(
-        relative_position=(0.87, 0.87),
-        relative_size=(0.3, 0.3),
+        relative_position=(0.85, 0.8),
+        relative_height=0.075,
         word_list=['asc', 'desc'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)

@@ -1,13 +1,13 @@
 import pygame
-from data.constants import GameEventType, GameState, LaserType, Colour, StatusText, OVERLAY_COLOUR
+from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos
+from data.constants import GameEventType, Colour, StatusText, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
+from data.states.game.components.laser_draw import LaserDraw
+from data.utils.data_helpers import get_user_settings
+from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.utils.data_helpers import get_user_settings
-from data.utils.board_helpers import create_board, create_circle_overlay, create_square_overlay, coords_to_screen_pos
-from data.assets import GRAPHICS
-from data.states.game.widget_dict import GAME_WIDGETS
 
 class GameView:
     def __init__(self, model):
@@ -22,8 +22,15 @@ class GameView:
         }
         self._model.register_listener(self.process_model_event, 'game')
 
-        self._board_size = GAME_WIDGETS['chessboard'].get_size()
-        self._board_position = GAME_WIDGETS['chessboard'].get_position()
+        self._widget_group = WidgetGroup(GAME_WIDGETS)
+        GAME_WIDGETS['move_list'].reset_move_list()
+        GAME_WIDGETS['move_list'].kill()
+        GAME_WIDGETS['scroll_area'].set_image()
+        
+        GAME_WIDGETS['chessboard'].refresh_board()
+        
+        self._board_size = GAME_WIDGETS['chessboard'].size
+        self._board_position = GAME_WIDGETS['chessboard'].position
         self._square_size = self._board_size[0] / 10
 
         self._cursor = Cursor()
@@ -31,12 +38,9 @@ class GameView:
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
-        self.set_status_text(StatusText.PLAYER_MOVE)
+        self._laser_draw = LaserDraw(self._board_position, self._board_size)
 
-        self._widget_group = WidgetGroup(GAME_WIDGETS)
-        GAME_WIDGETS['move_list'].reset_move_list()
-        GAME_WIDGETS['move_list'].kill()
-        GAME_WIDGETS['scroll_area'].set_image()
+        self.set_status_text(StatusText.PLAYER_MOVE)
         
         self._valid_overlay_coords = []
         self._selected_overlay_coord = None
@@ -45,14 +49,6 @@ class GameView:
         self._square_overlay = create_square_overlay(self._square_size, OVERLAY_COLOUR)
         self._circle_overlay_unscaled = self._circle_overlay.copy()
         self._square_overlay_unscaled = self._square_overlay.copy()
-
-        self._laser_path = []
-        self._laser_start_ticks = 0
-        self._laser_colour = None
-
-        self.states = {
-            GameState.LASER_FIRING: False,
-        }
     
     def set_status_text(self, status):
         match status:
@@ -66,15 +62,16 @@ class GameView:
                 GAME_WIDGETS['status_text'].update_text(f"Game is a draw! Boring...")
     
     def handle_resize(self, resize_end=False):
+        self._board_size = GAME_WIDGETS['chessboard'].size
+        self._board_position = GAME_WIDGETS['chessboard'].position
+        self._square_size = self._board_size[0] / 10
+        
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
         self._widget_group.handle_resize(self._screen.get_size())
+        self._laser_draw.handle_resize(self._board_position, self._board_size)
 
         self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (self._square_size, self._square_size))
         self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (self._square_size, self._square_size))
-
-        self._board_size = GAME_WIDGETS['chessboard'].get_size()
-        self._board_position = GAME_WIDGETS['chessboard'].get_position()
-        self._square_size = self._board_size[0] / 10
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
@@ -105,33 +102,7 @@ class GameView:
         self._piece_group.remove_piece(event.coords_to_remove)
     
     def handle_set_laser(self, event):
-        laser_types = [LaserType.END]
-        laser_rotation = [event.laser_path[0][1]]
-        
-        for i in range(1, len(event.laser_path)):
-            previous_direction = event.laser_path[i-1][1]
-            current_direction = event.laser_path[i][1]
-
-            if current_direction == previous_direction:
-                laser_types.append(LaserType.STRAIGHT)
-                laser_rotation.append(current_direction)
-            elif current_direction == previous_direction.get_clockwise():
-                laser_types.append(LaserType.CORNER)
-                laser_rotation.append(current_direction)
-            elif current_direction == previous_direction.get_anticlockwise():
-                laser_types.append(LaserType.CORNER)
-                laser_rotation.append(current_direction.get_anticlockwise())
-        
-        if event.has_hit:
-            laser_types[-1] = LaserType.END
-            event.laser_path[-1] = (event.laser_path[-1][0], event.laser_path[-2][1].get_opposite())
-            laser_rotation[-1] = event.laser_path[-2][1].get_opposite()
-
-        self._laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(event.laser_path, laser_rotation, laser_types)]
-        self._laser_start_ticks = pygame.time.get_ticks()
-        self._laser_colour = self._model.states['ACTIVE_COLOUR']
-
-        self.states[GameState.LASER_FIRING] = True
+        self._laser_draw.add_laser(event.laser_result, self._model.states['ACTIVE_COLOUR'])
     
     def handle_pause(self, event):
         is_active = not(self._model.states['PAUSED'])
@@ -178,42 +149,12 @@ class GameView:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
             self._screen.blit(self._circle_overlay, (square_x, square_y))
     
-    def draw_laser(self):
-        if not self._laser_path:
-            return
-        
-        elapsed_seconds = (pygame.time.get_ticks() - self._laser_start_ticks) / 1000
-
-        if elapsed_seconds >= 1.5:
-            self._laser_path = []
-            self._laser_start_ticks = 0
-            self._laser_colour = None
-            self.states[GameState.LASER_FIRING] = False
-            return
-
-        self._square_size = self._board_size[0] / 10
-
-        type_to_image = {
-            LaserType.END: ['laser_end_1', 'laser_end_2'],
-            LaserType.STRAIGHT: ['laser_straight_1', 'laser_straight_2'],
-            LaserType.CORNER: ['laser_corner_1', 'laser_corner_2']
-        }
-
-        for coords, rotation, type in self._laser_path:
-            square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
-
-            image = GRAPHICS[type_to_image[type][self._laser_colour]]
-            scaled_image = pygame.transform.scale(image, (self._square_size, self._square_size))
-            rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
-
-            self._screen.blit(rotated_image, (square_x, square_y))
-    
     def draw(self):
         self._widget_group.update()
         self.draw_widgets()
         self.draw_pieces()
+        self._laser_draw.draw()
         self.draw_overlay()
-        self.draw_laser()
 
     def process_model_event(self, event):
         try:

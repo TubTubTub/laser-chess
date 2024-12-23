@@ -1,6 +1,3 @@
-ASK FOR HELP ON GOOGLE TRENDLE
-ASK ROBBO HOW TO GIVE SPECIFIC ARGS TO EACH SUPERCLASS WITH USING super()
-
 Make game resize when fullscreen button pressed
 Make CPU play rotational moves
 Make bitboards a dictionary
@@ -25,7 +22,6 @@ Board creator
 Log-in
 
 Miscellaneous:
-Multiple lasers firing at once
 Maybe separate text background code into a new label class
 Make new word wrap text class with text properties
 Make widgets low-scale when scaling by just pygame transforming a copy

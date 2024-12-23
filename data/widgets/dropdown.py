@@ -2,7 +2,7 @@ import pygame
 from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.data_helpers import get_user_settings
-from data.utils.font_helpers import text_width_to_font_size
+from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size
 from data.assets import GRAPHICS, FONTS
 
 user_settings = get_user_settings()
@@ -17,9 +17,12 @@ class Dropdown(_Pressable, _Widget):
             up_func=self.up_func,
             play_sfx=False
         )
-        _Widget.__init__(self, **kwargs)
+        _Widget.__init__(self, relative_size=None, **kwargs)
 
-        self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, self._relative_size[0] * self.surface_size[1] - self.margin) / self.surface_size[1]
+        if kwargs.get('relative_width'):
+            self._relative_font_size = text_width_to_font_size(max(word_list, key=len), self._font, kwargs.get('relative_width') * self.surface_size[0] - self.margin) / self.surface_size[1]
+        elif kwargs.get('relative_height'):
+            self._relative_font_size = text_height_to_font_size(max(word_list, key=len), self._font, kwargs.get('relative_height') * self.surface_size[1] - self.margin) / self.surface_size[1]
 
         self._word_list = [word_list[0].capitalize()]
         self._word_list_copy = [word.capitalize() for word in word_list]
@@ -44,10 +47,7 @@ class Dropdown(_Pressable, _Widget):
         return (all_words_rect.size[0] + max_word_rect.size[1], all_words_rect.size[1])
 
     def get_selected_word(self):
-        if self._expanded is False:
-            return self._word_list[0].lower()
-        
-        return None
+        return self._word_list[0].lower()
     
     def toggle_expanded(self):
         if self._expanded:

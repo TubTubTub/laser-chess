@@ -69,19 +69,23 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         TextButton(
-            relative_position=(0.01, 0.8),
+            relative_position=(0.3, 0.2),
+            relative_size=(0.3, 0.1),
             text='DISCARD CHANGES',
+            anchor_x='right',
+            anchor_y='bottom',
             text_colour=(255, 0, 0),
             margin=10,
-            relative_size=(0.3, 0.1),
             event=CustomEvent(SettingsEventType.RESET_USER)
         ),
         TextButton(
-            relative_position=(0.35, 0.8),
+            relative_position=(0.3, 0.1),
+            relative_size=(0.3, 0.1),
             text='RESET TO DEFAULT',
+            anchor_x='right',
+            anchor_y='bottom',
             text_colour=(255, 0, 0),
             margin=10,
-            relative_size=(0.3, 0.1),
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
         Switch(
@@ -91,17 +95,20 @@ SETTINGS_WIDGETS = {
             event=None
         ),
         IconButton(
-            relative_position=(0.9, 0.05),
-            relative_size=(0.07, 0.1),
+            relative_position=(0.1, 0.05),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
             margin=10,
             icon=GRAPHICS['home'],
+            anchor_x='right',
+            fixed_position=True,
             event=CustomEvent(SettingsEventType.MENU_CLICK)
         )
     ],
     'display_mode_dropdown':
     Dropdown(
         relative_position=(0.4, 0.2),
-        relative_size=(0.2, 0.2),
+        relative_width=0.2,
         word_list=word_list,
         fill_colour=(255, 100, 100),
         event=CustomEvent(SettingsEventType.DROPDOWN_CLICK)
@@ -110,7 +117,7 @@ SETTINGS_WIDGETS = {
     ColourButton(
         relative_position=(0.4, 0.5),
         relative_size=(0.08, 0.05),
-        default_colour=pygame.Color(user_settings['primaryBoardColour']).rgb,
+        fill_colour=user_settings['primaryBoardColour'],
         border_width=5,
         event=CustomEvent(SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK)
     ),
@@ -118,7 +125,7 @@ SETTINGS_WIDGETS = {
     ColourButton(
         relative_position=(0.4, 0.6),
         relative_size=(0.08, 0.05),
-        default_colour=pygame.Color(user_settings['secondaryBoardColour']).rgb,
+        fill_colour=user_settings['secondaryBoardColour'],
         border_width=5,
         event=CustomEvent(SettingsEventType.SECONDARY_COLOUR_BUTTON_CLICK)
     ),

@@ -22,7 +22,7 @@ class ColourButton(_Pressable, _Widget):
         self.set_geometry()
 
     def initialise_new_colours(self, new_colour):
-        r, g, b = new_colour.rgb
+        r, g, b = pygame.Color(new_colour).rgb
 
         self._colours = {
             WidgetState.BASE: new_colour,

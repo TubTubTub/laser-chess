@@ -24,6 +24,7 @@ class Config(_State):
         self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         self._config = None
+        self._valid_fen = True
         
         self._widget_group = None
     
@@ -42,9 +43,9 @@ class Config(_State):
         CONFIG_WIDGETS['invalid_fen_string'].kill()
         
         try:
-            CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string(self._config['FEN_STRING'])
+            CONFIG_WIDGETS['board_thumbnail'].initialise_board(self._config['FEN_STRING'])
         except:
-            CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
+            CONFIG_WIDGETS['board_thumbnail'].initialise_board([])
             self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
         
         self._cpu_depth_carousel = Carousel(
@@ -131,17 +132,14 @@ class Config(_State):
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
-        if event.type == pygame.VIDEORESIZE:
-            self.handle_resize(resize_end=True)
-            return
-
         if widget_event is None:
             return
 
         match widget_event.type:
             case ConfigEventType.GAME_CLICK:
-                self.next = 'game'
-                self.done = True
+                if self._valid_fen:
+                    self.next = 'game'
+                    self.done = True
 
             case ConfigEventType.MENU_CLICK:
                 self.next = 'menu'
@@ -166,9 +164,13 @@ class Config(_State):
                         self._config['COLOUR'] = Colour.RED
                     else:
                         self._config['COLOUR'] = Colour.BLUE
+                    
+                    self._valid_fen = True
                 except:
                     CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
                     self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
+                    
+                    self._valid_fen = False
 
             case ConfigEventType.TIME_TYPE:
                 if widget_event.text == '':
@@ -179,7 +181,7 @@ class Config(_State):
             case ConfigEventType.CPU_DEPTH_CLICK:
                 self._config['CPU_DEPTH'] = int(widget_event.data)
     
-    def handle_resize(self, resize_end=False):
+    def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
     
     def draw(self):

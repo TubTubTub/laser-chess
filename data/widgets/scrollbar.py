@@ -53,8 +53,8 @@ class _Scrollbar(_Pressable, _Widget):
         self._last_mouse_px = None
         self.set_state_colour(WidgetState.BASE)
     
-    def set_position(self, starting_position):
-        self._position = starting_position
+    def set_relative_position(self, relative_position):
+        self._relative_position = relative_position
         self.set_geometry()
     
     def set_relative_size(self, new_relative_size):

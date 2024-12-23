@@ -22,8 +22,8 @@ def width_to_font_size(font, target_width):
 def text_width_to_font_size(text, font, target_width):
     test_size = 1
     if len(text) == 0:
-        print('(text_to_font_size) Text must have length greater than 1!')
-        text = ' '
+        # print('(text_width_to_font_size) Text must have length greater than 1!')
+        text = " "
     
     while True:
         text_rect = font.get_rect(text, size=test_size)
@@ -41,15 +41,12 @@ def text_height_to_font_size(text, font, target_height):
         text = text.replace(')', 'j')
 
     if len(text) == 0:
-        print('(text_to_font_size) Text must have length greater than 1!')
-        text = ' '
+        # print('(text_height_to_font_size) Text must have length greater than 1!')
+        text = "j"
     
     while True:
         text_rect = font.get_rect(text, size=test_size)
-
-        if test_size > 1000:
-            print('ERROR IN SCALING TEXT:', text)
-            return 2
+        
         if text_rect.height > target_height:
             return (test_size - 1)
 

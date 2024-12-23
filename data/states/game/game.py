@@ -22,7 +22,7 @@ class Game(_State):
     def cleanup(self):
         print('cleaning game.py')
 
-        game_entry = GameEntry(self.model.states, fen_string=self.model.get_fen_string())
+        game_entry = GameEntry(self.model.states, final_fen_string=self.model.get_fen_string())
         insert_into_games(game_entry.convert_to_row())
 
         return None

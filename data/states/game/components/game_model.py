@@ -31,6 +31,7 @@ class GameModel:
             'ACTIVE_COLOUR': game_config['COLOUR'],
             'TIME_ENABLED': game_config['TIME_ENABLED'],
             'TIME': game_config['TIME'],
+            'START_FEN_STRING': game_config['FEN_STRING'],
             'MOVES': []
         }
 
@@ -93,8 +94,8 @@ class GameModel:
         if laser_result.hit_square_bitboard:
             coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
             self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
-        has_hit = laser_result.hit_square_bitboard != EMPTY_BB
-        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_path=laser_result.laser_path, has_hit=has_hit))
+
+        self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
         
         self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
         self.set_winner(self._board.check_win())

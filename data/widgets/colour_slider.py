@@ -5,10 +5,8 @@ from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_gradient
 
 class _ColourSlider(_Widget):
-    def __init__(self, get_parent_position, relative_width, **kwargs):
-        super().__init__(relative_size=(relative_width, relative_width * 0.2))
-
-        self._get_parent_position = get_parent_position
+    def __init__(self, relative_width, **kwargs):
+        super().__init__(relative_size=(relative_width, relative_width * 0.2), **kwargs)
 
         self._gradient_surface = create_slider_gradient(self.calculate_gradient_size(), self.border_width, self._border_colour)
 
@@ -25,8 +23,7 @@ class _ColourSlider(_Widget):
         return (self.size[1] / 2, self.size[1] / 4)
 
     def calculate_gradient_percent(self, mouse_pos):
-        parent_x, parent_y = self._get_parent_position()
-        mouse_pos = (mouse_pos[0] - self.rect.topleft[0] - parent_x, mouse_pos[1] - self.rect.topleft[1] - parent_y)
+        mouse_pos = (mouse_pos[0] - self.rect.topleft[0], mouse_pos[1] - self.rect.topleft[1])
 
         border_width = self._relative_border_width * self.surface_size[1]
         selected_percent = (mouse_pos[0] - (self.size[1] / 2) - border_width) / (self.calculate_gradient_size()[0] - 2 * border_width)
@@ -42,8 +39,7 @@ class _ColourSlider(_Widget):
 
     def relative_to_global_position(self, position):
         relative_x, relative_y = position
-        parent_x, parent_y = self._get_parent_position()
-        return (relative_x + parent_x + self.position[0], relative_y + parent_y + self.position[1])
+        return (relative_x + self.position[0], relative_y + self.position[1])
 
     def calculate_selected_colour(self):
         colour = pygame.Color(0)

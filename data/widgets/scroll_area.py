@@ -6,7 +6,7 @@ SCROLLBAR_WIDTH_FACTOR =  0.05
 
 class ScrollArea(_Widget):
     def __init__(self, widget, vertical, scroll_factor=5, **kwargs):
-        super().__init__(**kwargs)
+        super().__init__(**kwargs, scale_mode='both')
         
         self._relative_scroll_factor = scroll_factor / self.surface_size[1]
 
@@ -15,14 +15,21 @@ class ScrollArea(_Widget):
         self._vertical = vertical
 
         self._widget.register_get_rect(self.calculate_widget_rect)
-        
-        self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
-        
+
+        anchor_x = 'right' if self._vertical else 'left'
+        anchor_y = 'bottom' if not self._vertical else 'right'
+        scale_mode = 'height' if self._vertical else 'width'
         self._scrollbar = _Scrollbar(
-            relative_position=self.calculate_relative_scrollbar_position(),
-            relative_size=(self.scrollbar_size[0] / self.size[0], self.scrollbar_size[1] / self.size[1]),
+            parent=self,
+            relative_position=(0, 0),
+            relative_size=None,
+            anchor_x=anchor_x,
+            anchor_y=anchor_y,
+            scale_mode=scale_mode,
             vertical=vertical,
         )
+        
+        self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
         self.set_image()
         self.set_geometry()
@@ -86,10 +93,10 @@ class ScrollArea(_Widget):
     def calculate_relative_scrollbar_position(self):
         if self._vertical:
             vertical_offset = (self.size[1] - self.scrollbar_size[1]) * self._scroll_percentage
-            scrollbar_position = (self.size[0] * (1 - SCROLLBAR_WIDTH_FACTOR) + self.position[0], self.position[1] + vertical_offset)
+            scrollbar_position = (self.size[0] * SCROLLBAR_WIDTH_FACTOR, vertical_offset)
         else:
             horizontal_offset = (self.size[0] - self.scrollbar_size[0]) * self._scroll_percentage
-            scrollbar_position = (self.position[0] + horizontal_offset, self.size[1] * (1 - SCROLLBAR_WIDTH_FACTOR) + self.position[1])
+            scrollbar_position = (horizontal_offset, self.size[1] * SCROLLBAR_WIDTH_FACTOR)
 
         return (scrollbar_position[0] / self.size[0], scrollbar_position[1] / self.size[1])
     
@@ -105,8 +112,8 @@ class ScrollArea(_Widget):
         self._widget.set_image()
         self.image.blit(self._widget.image, self.calculate_widget_position())
 
-        self._scrollbar.set_position(self.calculate_relative_scrollbar_position()) # WRONG USING RELATIVE
-        self._scrollbar.set_relative_size((self.scrollbar_size[0] / self.size[0], self.scrollbar_size[1] / self.size[1]))
+        self._scrollbar.set_relative_position(self.calculate_relative_scrollbar_position()) # WRONG USING RELATIVE
+        self._scrollbar.set_relative_size((self.scrollbar_size[0] / self.size[1], self.scrollbar_size[1] / self.size[1]))
         self._scrollbar.set_image()
         relative_scrollbar_position = (self._scrollbar.rect.left - self.position[0], self._scrollbar.rect.top - self.position[1])
         self.image.blit(self._scrollbar.image, relative_scrollbar_position)

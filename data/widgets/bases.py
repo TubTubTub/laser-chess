@@ -32,24 +32,30 @@ class _Widget(pygame.sprite.Sprite):
         self._relative_border_width = theme['borderWidth'] / self._raw_surface_size[1]
         self._relative_border_radius = theme['borderRadius'] / self._raw_surface_size[1]
         
-        self._fixed_anchor_x = kwargs.get('fixed_anchor_x')
-        self._fixed_anchor_y = kwargs.get('fixed_anchor_y')
-        self._fixed_position = self.calculate_fixed_position()
+        self._anchor_x = kwargs.get('anchor_x')
+        self._anchor_y = kwargs.get('anchor_y')
+        self._fixed_position = (self._relative_position[0] * self.surface_size[0], self._relative_position[1] * self.surface_size[1]) if kwargs.get('fixed_position') else None
 
         self._border_colour = pygame.Color(theme['borderPrimary'])
         self._text_colour = pygame.Color(theme['textPrimary'])
         self._fill_colour = pygame.Color(theme['fillPrimary'])
 
+        scale_mode = kwargs.get('scale_mode') or 'both' # Relative scale based on surface width and height
         if kwargs.get('relative_size'):
-            if kwargs.get('scale_with_height'): # Relative scale based on only surface height
-                self._relative_size = kwargs.get('relative_size')
-            else: # Relative scale based on surface width and height
-                self._relative_size = ((kwargs.get('relative_size')[0] * self.surface_size[0]) / self.surface_size[1], kwargs.get('relative_size')[1])
+            match scale_mode:
+                case 'height':
+                    self._relative_size = kwargs.get('relative_size')
+                case 'width':
+                    self._relative_size = ((kwargs.get('relative_size')[0] * self.surface_size[0]) / self.surface_size[1], (kwargs.get('relative_size')[1] * self.surface_size[0]) / self.surface_size[1])
+                case 'both':
+                    self._relative_size = ((kwargs.get('relative_size')[0] * self.surface_size[0]) / self.surface_size[1], kwargs.get('relative_size')[1])
+                case _:
+                    raise ValueError('(_Widget.__init__) Unknown scale mode:', scale_mode)
         else:
             self._relative_size = (1, 1)
         
-        if self._relative_size[0] > 2 or self._relative_size[1] > 2:
-            raise ValueError('(_Widget.__init__) Relative size must be less than 2')
+        # if self._relative_size[0] > 2 or self._relative_size[1] > 2:
+        #     raise ValueError('(_Widget.__init__) Relative size must be less than 2', self._relative_size, self._parent.size)
         
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._raw_surface_size[1]
@@ -86,16 +92,24 @@ class _Widget(pygame.sprite.Sprite):
     
     @property
     def position(self):
-        x, y = (self._relative_position[0] * self.surface_size[0], self._relative_position[1] * self.surface_size[1])
+        if self._fixed_position:
+            x, y = self._fixed_position
+        else:
+            x, y = (self._relative_position[0] * self.surface_size[0], self._relative_position[1] * self.surface_size[1])
 
-        if self._fixed_anchor_x == 'left':
-            x = self._fixed_position[0]
-        elif self._fixed_anchor_x == 'right':
-            x = self.surface_size[0] - self._fixed_position[0]
-        if self._fixed_anchor_y == 'top':
-            y = self._fixed_position[1]
-        elif self._fixed_anchor_y == 'bottom':
-            y = self.surface_size[1] - self._fixed_position[1]
+        if self._anchor_x == 'left':
+            x = x
+        elif self._anchor_x == 'right':
+            x = self.surface_size[0] - x
+        elif self._anchor_x == 'center':
+            x = (self.surface_size[0] / 2 - self.size[0] / 2) + x
+
+        if self._anchor_y == 'top':
+            y = y
+        elif self._anchor_y == 'bottom':
+            y = self.surface_size[1] - y
+        elif self._anchor_y == 'center':
+            y = (self.surface_size[1] / 2 - self.size[1] / 2) + y
 
         if self._parent:
             return (x + self._parent.position[0], y + self._parent.position[1])
@@ -134,26 +148,6 @@ class _Widget(pygame.sprite.Sprite):
     
     def process_event(self, event):
         raise NotImplementedError
-    
-    def calculate_fixed_position(self):
-        x = None
-        y = None
-
-        if self._fixed_anchor_x == 'left':
-            x = self._relative_position[0] * self.surface_size[0]
-        elif self._fixed_anchor_x == 'right':
-            x = (1 - self._relative_position[0]) * self.surface_size[0]
-        elif self._fixed_anchor_x:
-            raise ValueError('(_Widget.calculate_fixed_position) Unrecognised anchor x argument:', self._fixed_anchor_x)
-        
-        if self._fixed_anchor_y == 'top':
-            y = self._relative_position[1] * self.surface_size[1]
-        elif self._fixed_anchor_y == 'bottom':
-            y = (1 - self._relative_position[1]) * self.surface_size[1]
-        elif self._fixed_anchor_y:
-            raise ValueError('(_Widget.calculate_fixed_position) Unrecognised anchor y argument:', self._fixed_anchor_y)
-        
-        return (x, y)
 
     def get_size(self):
         return self.size
