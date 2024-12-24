@@ -2,8 +2,6 @@ Make CPU play rotational moves
 Make bitboards a dictionary
 
 Should do:
-Make all widgets take in an event_type instead of event
-Make widgets draw relative to surface instead of screen
 Add empty event to widget group
 Zobrist hashing (to check for threefold reptition)
 Use RectF to prevent black lines in board forming from under-rounding errors
