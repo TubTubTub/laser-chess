@@ -9,6 +9,7 @@ from data.constants import ReviewEventType, Colour
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
+from data.utils.browser_helpers import get_winner_string
 from data.components.audio import audio
 from data.components.game_entry import GameEntry
 
@@ -46,12 +47,37 @@ class Review(_State):
         self._piece_group = PieceGroup()
         self._laser_draw = LaserDraw(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
 
+        self.initialise_widgets()
         self.simulate_all_moves()
         self.refresh_pieces()
 
         # audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
+    
+    def initialise_widgets(self):
+        REVIEW_WIDGETS['winner_text'].update_text(f'WINNER: {get_winner_string(self._game_info['winner'])}')
+    
+        if self._game_info['time_enabled']:
+            REVIEW_WIDGETS['timer_disabled_text'].kill()
+        else:
+            REVIEW_WIDGETS['blue_timer'].kill()
+            REVIEW_WIDGETS['red_timer'].kill()
+        
+        self.update_widgets()
+    
+    def update_widgets(self):
+
+        REVIEW_WIDGETS['move_number_text'].update_text(f'MOVE NO: {(self._move_index + 1) / 2:.1f} / {len(self._moves) / 2:.1f}')
+        REVIEW_WIDGETS['move_colour_text'].update_text(f'{self.calculate_colour(self._move_index + 1).name} TO MOVE')
+        
+        if self._game_info['time_enabled']:
+            if self._move_index == -1:
+                REVIEW_WIDGETS['blue_timer'].set_time(float(self._game_info['time']) * 60 * 1000)
+                REVIEW_WIDGETS['red_timer'].set_time(float(self._game_info['time']) * 60 * 1000)
+            else:
+                REVIEW_WIDGETS['blue_timer'].set_time(float(self._moves[self._move_index]['blue_time']) * 60 * 1000)
+                REVIEW_WIDGETS['red_timer'].set_time(float(self._moves[self._move_index]['red_time']) * 60 * 1000)
     
     def simulate_all_moves(self):
         for index, move_dict in enumerate(self._moves):
@@ -100,6 +126,8 @@ class Review(_State):
 
                 self._just_undid = self._move_index
                 self._move_index = max(-1, self._move_index - 1)
+                
+                self.update_widgets()
 
                 self._last_move = 'PREVIOUS'
 
@@ -112,6 +140,8 @@ class Review(_State):
                 self.refresh_pieces()
 
                 self._move_index = min(len(self._moves) - 1, self._move_index + 1)
+                
+                self.update_widgets()
 
                 self._last_move = 'NEXT'
     

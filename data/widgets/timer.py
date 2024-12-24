@@ -1,13 +1,13 @@
+import pygame
 from data.widgets.text import Text
 from data.components.animation import animation
 
 class Timer(Text):
-    def __init__(self, active_colour, event_type, start_mins=60, **kwargs):
+    def __init__(self, event=None, start_mins=60, **kwargs):
         self._current_ms = float(start_mins) * 60 * 1000
         self._active = False
         self._times_out_callback = None
-        self._active_colour = active_colour
-        self._event_type = event_type
+        self._event = event
         super().__init__(text=self.format_to_text(), **kwargs)
     
     def register_end_callback(self, callback):
@@ -36,7 +36,8 @@ class Timer(Text):
 
             if self._current_ms <= 0:
                 self.set_time(0)
-                self._times_out_callback()
+                self._active = False
+                pygame.event.post(pygame.event.Event(pygame.MOUSEMOTION, pos=pygame.mouse.get_pos())) # RANDOM EVENT TO TRIGGER process_event
             else:
                 animation.set_timer(1000, self.decrement_second)
 
@@ -46,4 +47,5 @@ class Timer(Text):
         return f'{str(int(minutes)).zfill(2)}:{str(int(seconds)).zfill(2)}'
 
     def process_event(self, event):
-        pass
+        if self._current_ms <= 0:
+            return self._event

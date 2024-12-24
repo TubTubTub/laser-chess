@@ -1,6 +1,5 @@
 from data.constants import Colour
 from data.states.game.components.move import Move
-import pickle
 
 class GameEntry:
     def __init__(self, game_states, final_fen_string):
@@ -26,7 +25,6 @@ class GameEntry:
         return (self._game_states['CPU_ENABLED'], self._game_states['CPU_DEPTH'], self._game_states['WINNER'], self._game_states['TIME_ENABLED'], self._game_states['TIME'], len(self._game_states['MOVES']), self.convert_moves(self._game_states['MOVES']), self._game_states['START_FEN_STRING'], self._final_fen_string)
     
     def convert_moves(self, moves):
-        # ;{pickle.dumps(move['laserResult'])}
         return '|'.join([
             f'{round(move['time'][Colour.BLUE], 4)};{round(move['time'][Colour.RED], 4)};{move['move']}'
             for move in moves
@@ -35,13 +33,12 @@ class GameEntry:
     @staticmethod
     def parse_moves(move_str):
         moves = move_str.split('|')
-
         return [
             {
                 'blue_time': move.split(';')[0],
                 'red_time': move.split(';')[1],
                 'move': Move.instance_from_notation(move.split(';')[2])
-            } for move in moves
+            } for move in moves if move != ''
         ]
 
 # self.states = {

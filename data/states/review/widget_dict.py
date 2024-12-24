@@ -6,8 +6,16 @@ from data.assets import GRAPHICS
 
 screen = pygame.display.get_surface()
 
+info_container = Rectangle(
+    relative_position=(0.35, 0),
+    relative_size=(0.2, 0.3),
+    anchor_x='center',
+    anchor_y='center'
+)
+
 REVIEW_WIDGETS = {
     'default': [
+        info_container,
         IconButton(
             relative_position=(0.1, 0.02),
             relative_size=(0.05, 0.1),
@@ -49,5 +57,52 @@ REVIEW_WIDGETS = {
         scale_mode='width',
         anchor_x='center',
         anchor_y='center'
-    )
+    ),
+    'move_number_text':
+    Text(
+        parent=info_container,
+        relative_size=(0.9, 0.3),
+        relative_position=(0.05, 0.65),
+        border_width=0,
+        fit_vertical=False,
+        text='MOVE NO:',
+    ),
+    'move_colour_text':
+    Text(
+        parent=info_container,
+        relative_size=(0.9, 0.3),
+        relative_position=(0.05, 0.35),
+        border_width=0,
+        fit_vertical=False,
+        text='TO MOVE',
+    ),
+    'winner_text':
+    Text(
+        parent=info_container,
+        relative_size=(0.9, 0.3),
+        relative_position=(0.05, 0.05),
+        border_width=0,
+        fit_vertical=False,
+        text='WINNER:',
+    ),
+    'blue_timer':
+    Timer(
+        relative_position=(0.05, -0.05),
+        anchor_y='center',
+        relative_size=(0.1, 0.1),
+    ),
+    'red_timer':
+    Timer(
+        relative_position=(0.05, 0.05),
+        anchor_y='center',
+        relative_size=(0.1, 0.1),
+    ),
+    'timer_disabled_text':
+    Text(
+        relative_size=(0.2, 0.1),
+        relative_position=(0.05, 0),
+        anchor_y='center',
+        fit_vertical=False,
+        text='TIMER DISABLED',
+    ),
 }

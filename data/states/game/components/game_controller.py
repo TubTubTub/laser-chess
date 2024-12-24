@@ -13,7 +13,7 @@ class GameController:
         self._to_menu = to_menu
         self._to_new_game = to_new_game
 
-        self._view.initialise_timers(end_callback=lambda: self._model.set_winner(force_active_colour=True))
+        self._view.initialise_timers()
     
     def handle_event(self, event):
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
@@ -90,6 +90,10 @@ class GameController:
                 self._view.set_status_text(StatusText.DRAW)
                 self.check_game_over()
                 return
+                
+            case GameEventType.TIMER_END:
+                self._model.set_winner(widget_event.active_colour.get_flipped_colour())
+                return
             
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
@@ -128,6 +132,7 @@ class GameController:
 
                 case GameEventType.EMPTY_CLICK:
                     self._view.set_overlay_coords([], None)
+                    return
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')

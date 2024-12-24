@@ -6,10 +6,10 @@ from data.components.custom_event import CustomEvent
 from data.components.animation import animation
 from data.constants import WidgetState
 from data.assets import FONTS
-from data.utils.font_helpers import height_to_font_size, text_width_to_font_size
+from data.utils.font_helpers import height_to_font_size
 
 class TextInput(_Pressable, Text):
-    def __init__(self, event_type, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
+    def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
         self._cursor_index = None
         _Pressable.__init__(
             self,
@@ -23,7 +23,6 @@ class TextInput(_Pressable, Text):
 
         pygame.key.set_repeat(500, 50)
 
-        self._relative_font_size = height_to_font_size(self._font, target_height=self.size[1] - (self.margin - self.border_width)) / self.surface_size[1]
         self._blinking_fps = 1000 / blinking_interval
         self._cursor_colour = cursor_colour
         self._cursor_colour_copy = cursor_colour
@@ -34,19 +33,19 @@ class TextInput(_Pressable, Text):
         self._placeholder_text = placeholder
         self._is_placeholder = None
         if default:
-            self.set_text(default)
+            self._text = default
             self.is_placeholder = False
         else:
-            self.set_text(self._placeholder_text)
+            self._text = self._placeholder_text
             self.is_placeholder = True
 
-        self._event_type = event_type
+        self._event = event
         self._validator = validator
         self._blinking_cooldown = 0
 
         self._empty_cursor = pygame.Surface((0, 0), pygame.SRCALPHA)
 
-        self.resize_text_to_box()
+        self.resize_text()
         self.set_image()
         self.set_geometry()
     
@@ -86,15 +85,6 @@ class TextInput(_Pressable, Text):
         self._fill_colour = self._colours[state]
 
         self.set_image()
-    
-    def resize_text_to_box(self):
-        ideal_font_size = height_to_font_size(self._font, target_height=(self.size[1] - (self.margin + self.border_width))) / self.surface_size[1]
-        new_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - (self.margin + self.border_width))) / self.surface_size[1]
-
-        if new_font_size < ideal_font_size:
-            self._relative_font_size = new_font_size
-        else:
-            self._relative_font_size = ideal_font_size
 
     def calculate_cursor_size(self):
         cursor_height = (self.size[1] - self.border_width * 2) * 0.75
@@ -124,9 +114,6 @@ class TextInput(_Pressable, Text):
         
         return len(self._text)
     
-    def set_text(self, new_text):
-        self._text = new_text
-    
     def get_text(self):
         if self.is_placeholder:
             return ''
@@ -144,7 +131,7 @@ class TextInput(_Pressable, Text):
     
     def focus_input(self, mouse_pos):
         if self.is_placeholder:
-            self.set_text('')
+            self._text = ''
             self.is_placeholder = False
 
         self.set_cursor_index(mouse_pos)
@@ -152,9 +139,9 @@ class TextInput(_Pressable, Text):
     
     def unfocus_input(self):
         if self._text == '':
-            self.set_text(self._placeholder_text)
-            self.resize_text_to_box()
+            self._text = self._placeholder_text
             self.is_placeholder = True
+            self.resize_text()
 
         self.set_cursor_index(None)
         self.set_image()
@@ -170,7 +157,7 @@ class TextInput(_Pressable, Text):
                     self.focus_input(event.pos)
                 if current_state == WidgetState.BASE and self._cursor_index is not None:
                     self.unfocus_input()
-                    return CustomEvent(self._event_type, text=self.get_text())
+                    return CustomEvent(**vars(self._event), text=self.get_text())
             
             case pygame.KEYDOWN:
                 if self._cursor_index is None:
@@ -186,7 +173,7 @@ class TextInput(_Pressable, Text):
                         self._text = self._text[:self._cursor_index] + pasted_text + self._text[self._cursor_index:]
                         self._cursor_index += len(pasted_text)
 
-                    self.resize_text_to_box()
+                    self.resize_text()
                     self.set_image()
                     self.set_geometry()
                     
@@ -206,11 +193,11 @@ class TextInput(_Pressable, Text):
                     
                     case pygame.K_ESCAPE:
                         self.unfocus_input()
-                        return CustomEvent(self._event_type, text=self.get_text())
+                        return CustomEvent(**vars(self._event), text=self.get_text())
 
                     case pygame.K_RETURN:
                         self.unfocus_input()
-                        return CustomEvent(self._event_type, text=self.get_text())
+                        return CustomEvent(**vars(self._event), text=self.get_text())
                     
                     case _:
                         if not event.unicode:
@@ -227,7 +214,7 @@ class TextInput(_Pressable, Text):
                 self._blinking_cooldown += 1
                 animation.set_timer(500, lambda: self.subtract_blinking_cooldown(1))
 
-                self.resize_text_to_box()
+                self.resize_text()
                 self.set_image()
                 self.set_geometry()
     

@@ -111,26 +111,21 @@ class GameView:
     def handle_widget_click(self, event):
         raise NotImplementedError
     
-    def initialise_timers(self, end_callback):
-        if self._model.states['TIME_ENABLED'] is False:
-            GAME_WIDGETS['blue_timer'].kill()
-            GAME_WIDGETS['red_timer'].kill()
-        else:
+    def initialise_timers(self):
+        if self._model.states['TIME_ENABLED']:
             GAME_WIDGETS['blue_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
             GAME_WIDGETS['red_timer'].set_time(self._model.states['TIME'] * 60 * 1000)
+        else:
+            GAME_WIDGETS['blue_timer'].kill()
+            GAME_WIDGETS['red_timer'].kill()
 
-            GAME_WIDGETS['blue_timer'].register_end_callback(end_callback)
-            GAME_WIDGETS['red_timer'].register_end_callback(end_callback)
-
-            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
+        self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
 
     def toggle_timer(self, colour, is_active):
         if colour == Colour.BLUE:
-            if GAME_WIDGETS['blue_timer'].get_active() != is_active:
-                GAME_WIDGETS['blue_timer'].set_active(is_active)
+            GAME_WIDGETS['blue_timer'].set_active(is_active)
         else:
-            if GAME_WIDGETS['red_timer'].get_active() != is_active:
-                GAME_WIDGETS['red_timer'].set_active(is_active)
+            GAME_WIDGETS['red_timer'].set_active(is_active)
 
     def draw_pieces(self):
         self._piece_group.draw(self._screen)

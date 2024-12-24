@@ -1,20 +1,12 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
+from data.utils.browser_helpers import get_winner_string
 from data.widgets.board_thumbnail import BoardThumbnail
 from data.constants import Colour
 from data.constants import Miscellaneous
 
 FONT_DIVISION = 7
-
-def get_winner_string(winner):
-    if winner is None:
-        return 'UNFINISHED'
-    elif winner == Miscellaneous.DRAW:
-        return 'DRAW'
-    else:
-        return Colour(winner).name
 
 class BrowserItem(_Widget):
     def __init__(self, relative_width, game, **kwargs):
@@ -55,6 +47,8 @@ class BrowserItem(_Widget):
             4: 'HARD'
         }
 
+        format_moves = lambda no_of_moves:  int(no_of_moves / 2) if (no_of_moves / 2 % 1 == 0) else round(no_of_moves / 2, 1)
+
         if self._game['cpu_enabled'] == 1:
             depth_text = depth_to_text[self._game['cpu_depth']]
             cpu_text = f'PVC ({depth_text})'
@@ -65,7 +59,7 @@ class BrowserItem(_Widget):
             cpu_text,
             self._game['created_dt'].strftime('%Y-%m-%d %H:%M:%S'),
             f'WINNER: {get_winner_string(self._game['winner'])}',
-            f'NO. MOVES: {int(self._game['number_of_ply'] / 2)}'
+            f'NO. MOVES: {format_moves(self._game['number_of_ply'])}'
         ]
     
     def process_event(self, event):

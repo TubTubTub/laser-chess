@@ -9,12 +9,14 @@ from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
 from data.components.audio import audio
 from data.components.animation import animation
+from data.components.custom_event import CustomEvent
 
 from data.widgets import Carousel, Text
 
 from data.assets import MUSIC_PATHS, GRAPHICS
 
 from data.constants import ConfigEventType, Colour
+
 
 from data.utils.asset_helpers import draw_background
 
@@ -52,7 +54,7 @@ class Config(_State):
             parent=CONFIG_WIDGETS['config_container'],
             relative_position=(0.05, 0.7),
             margin=5,
-            event_type=ConfigEventType.CPU_DEPTH_CLICK,
+            event=CustomEvent(ConfigEventType.CPU_DEPTH_CLICK),
             border_width=0,
             fill_colour=(0, 0, 0, 0),
             widgets_dict={

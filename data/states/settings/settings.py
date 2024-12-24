@@ -74,14 +74,20 @@ class Settings(_State):
         self._colour_picker.kill()
     
     def set_display_mode(self, display_mode):
+        mouse_percentage = (pygame.mouse.get_pos()[0] / self._screen.size[0], pygame.mouse.get_pos()[1] / self._screen.size[1])
         if display_mode == 'fullscreen':
+            
             self._window_size = pygame.display.get_window_size()
             self._window_position = pygame.display.get_window_position()
             pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
 
+
         elif display_mode == 'windowed':
             os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
             pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
+        
+        pygame.mouse.set_pos((mouse_percentage[0] * self._screen.size[0], mouse_percentage[1] * self._screen.size[1]))
+        self._widget_group.handle_resize(self._screen.size)
     
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])

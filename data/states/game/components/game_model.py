@@ -9,9 +9,7 @@ from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
 from data.states.game.components.cpu import CPU
 
-# from copy import deepcopy
 import threading
-import json
 
 class GameModel:
     def __init__(self, game_config):
@@ -63,9 +61,7 @@ class GameModel:
                 case _:
                     raise Exception('Unhandled alert type (GameModel.alert_listeners)')
     
-    def set_winner(self, colour=None, force_active_colour=False):
-        if force_active_colour:
-            colour = self.states['ACTIVE_COLOUR']
+    def set_winner(self, colour=None):
         self.states['WINNER'] = colour
     
     def toggle_paused(self):

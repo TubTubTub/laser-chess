@@ -7,7 +7,7 @@ from data.constants import Miscellaneous
 from data.components.custom_event import CustomEvent
 
 class Carousel(_Widget):
-    def __init__(self, event_type, widgets_dict, **kwargs):
+    def __init__(self, event, widgets_dict, **kwargs):
         super().__init__(relative_size=None, **kwargs)
 
         self._widgets_dict = widgets_dict
@@ -46,7 +46,7 @@ class Carousel(_Widget):
             fill_colour=(255, 0, 0)
         )
 
-        self._event_type = event_type
+        self._event = event
 
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
@@ -124,7 +124,7 @@ class Carousel(_Widget):
 
             self.set_image()
             self.set_geometry()
-            return CustomEvent(self._event_type, data=self._widget_key.data)
+            return CustomEvent(**vars(self._event), data=self._widget_key.data)
 
         elif right_arrow_event:
             self._widget_key = self._widget_key.next
@@ -132,7 +132,7 @@ class Carousel(_Widget):
 
             self.set_image()
             self.set_geometry()
-            return CustomEvent(self._event_type, data=self._widget_key.data)
+            return CustomEvent(**vars(self._event), data=self._widget_key.data)
         
         elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
             self.set_image()

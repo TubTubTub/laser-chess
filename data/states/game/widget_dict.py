@@ -85,22 +85,21 @@ GAME_WIDGETS = {
         relative_position=(0.05, -0.05),
         anchor_y='center',
         relative_size=(0.1, 0.1),
-        active_colour=Colour.BLUE,
-        event_type=GameEventType.TIMER_END,
+        event=CustomEvent(GameEventType.TIMER_END, active_colour=Colour.BLUE),
     ),
     'red_timer':
     Timer(
         relative_position=(0.05, 0.05),
         anchor_y='center',
         relative_size=(0.1, 0.1),
-        active_colour=Colour.RED,
-        event_type=GameEventType.TIMER_END,
+        event=CustomEvent(GameEventType.TIMER_END, active_colour=Colour.RED),
     ),
     'status_text':
     Text(
         relative_position=(0, 0.05),
         relative_size=(0.4, 0.1),
         anchor_x='center',
+        fit_vertical=False,
         margin=10,
         text="g",
         minimum_width=400

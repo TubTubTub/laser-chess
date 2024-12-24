@@ -47,11 +47,12 @@ CONFIG_WIDGETS = {
             parent=config_container,
             relative_position=(0.05, 0.05),
             relative_size=(0.9, 0.15),
+            fit_vertical=False,
             placeholder='ENTER FEN STRING',
             default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
             border_width=5,
             margin=20,
-            event_type=ConfigEventType.FEN_STRING_TYPE
+            event=CustomEvent(ConfigEventType.FEN_STRING_TYPE)
         ),
         TextInput(
             parent=config_container,
@@ -63,7 +64,7 @@ CONFIG_WIDGETS = {
             border_width=5,
             margin=20,
             validator=float_validator,
-            event_type=ConfigEventType.TIME_TYPE
+            event=CustomEvent(ConfigEventType.TIME_TYPE)
         ),
         Text(
             parent=config_container,

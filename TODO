@@ -1,4 +1,3 @@
-Make game resize when fullscreen button pressed
 Make CPU play rotational moves
 Make bitboards a dictionary
 
@@ -7,13 +6,12 @@ Make all widgets take in an event_type instead of event
 Make widgets draw relative to surface instead of screen
 Add empty event to widget group
 Zobrist hashing (to check for threefold reptition)
-Saving games (with SQL)
-Viewing past games
 Use RectF to prevent black lines in board forming from under-rounding errors
 Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
 Select default FEN strings in config screen
+Add captured pieces list
 
 Ambitious:
 Cursor-based pagination for viewing games

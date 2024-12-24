@@ -1,11 +1,13 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size
+from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
 
 class Text(_Widget): # Pure text
     def __init__(self, text, center=True, fit_vertical=True, **kwargs):
         super().__init__(**kwargs)
         self._text = text
+        self._fit_vertical = fit_vertical
+
         if fit_vertical:
             self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
         else:
@@ -19,11 +21,24 @@ class Text(_Widget): # Pure text
 
         self.set_image()
         self.set_geometry()
+    
+    def resize_text(self):
+        if self._fit_vertical:
+            self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
+        else:
+            ideal_font_size = height_to_font_size(self._font, target_height=(self.size[1] - (self.margin + self.border_width))) / self.surface_size[1]
+            new_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - (self.margin + self.border_width))) / self.surface_size[1]
+
+            if new_font_size < ideal_font_size:
+                self._relative_font_size = new_font_size
+            else:
+                self._relative_font_size = ideal_font_size
 
     def update_text(self, new_text):
         self._text = new_text
+
+        self.resize_text()
         self.set_image()
-        self.set_geometry()
     
     def set_image(self):
         text_surface = pygame.transform.scale(self._empty_surface, self.size)
