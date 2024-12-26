@@ -7,6 +7,7 @@ from data.states.settings.settings import Settings
 from data.states.config.config import Config
 from data.states.browser.browser import Browser
 from data.states.review.review import Review
+from data.states.setup.setup import Setup
 
 def main():
     state_dict = {
@@ -15,7 +16,8 @@ def main():
         'settings': Settings(),
         'config': Config(),
         'browser': Browser(),
-        'review': Review()
+        'review': Review(),
+        'setup': Setup()
     }
 
     app = Control()

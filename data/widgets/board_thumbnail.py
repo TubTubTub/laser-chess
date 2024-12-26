@@ -9,7 +9,8 @@ class BoardThumbnail(_Widget):
         super().__init__(relative_size=(relative_width, relative_width * 0.8), **kwargs)
 
         self._board = Chessboard(
-            relative_position=kwargs.get('relative_position'),
+            parent=self._parent,
+            relative_position=(0, 0),
             scale_mode=kwargs.get('scale_mode'),
             relative_width=relative_width
         )

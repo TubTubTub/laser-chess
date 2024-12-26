@@ -3,9 +3,11 @@ from data.components.custom_event import CustomEvent
 from data.constants import GameEventType, RotationDirection, Colour
 from data.assets import GRAPHICS
 
+MOVE_LIST_WIDTH = 0.2
+
 move_list = MoveList(
     relative_position=(0, 0),
-    relative_width=0.2,
+    relative_width=MOVE_LIST_WIDTH,
     minimum_height=390,
     fill_colour=(100, 100, 100),
     move_list=[]
@@ -117,11 +119,23 @@ GAME_WIDGETS = {
     'scroll_area':
     ScrollArea(
         relative_position=(0.25, 0),
-        relative_size=(0.2, 0.4),
+        relative_size=(MOVE_LIST_WIDTH, 0.4),
         anchor_x='right',
         anchor_y='center',
         vertical=True,
         widget=move_list
+    ),
+    'blue_piece_display':
+    PieceDisplay(
+        relative_position=(0.05, 0.05),
+        relative_size=(0.2, 0.1),
+        active_colour=Colour.BLUE
+    ),
+    'red_piece_display':
+    PieceDisplay(
+        relative_position=(0.75, 0.05),
+        relative_size=(0.2, 0.1),
+        active_colour=Colour.RED
     )
 }
 

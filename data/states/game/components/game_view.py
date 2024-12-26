@@ -1,5 +1,6 @@
 import pygame
-from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos
+from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
+from data.utils.bitboard_helpers import bitboard_to_coords
 from data.constants import GameEventType, Colour, StatusText, OVERLAY_COLOUR
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
@@ -16,7 +17,6 @@ class GameView:
         self._user_settings = get_user_settings()
         self._event_to_func_map = {
             GameEventType.UPDATE_PIECES: self.handle_update_pieces,
-            GameEventType.REMOVE_PIECE: self.handle_remove_piece,
             GameEventType.SET_LASER: self.handle_set_laser,
             GameEventType.PAUSE_CLICK: self.handle_pause,
         }
@@ -98,18 +98,22 @@ class GameView:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
     
-    def handle_remove_piece(self, event):
-        self._piece_group.remove_piece(event.coords_to_remove)
-    
     def handle_set_laser(self, event):
-        self._laser_draw.add_laser(event.laser_result, self._model.states['ACTIVE_COLOUR'])
+        laser_result = event.laser_result
+        if laser_result.hit_square_bitboard:
+            coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
+            self._piece_group.remove_piece(coords_to_remove)
+
+            if laser_result.piece_colour == Colour.BLUE:
+                GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
+            elif laser_result.piece_colour == Colour.RED:
+                GAME_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
+
+        self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
     
     def handle_pause(self, event):
         is_active = not(self._model.states['PAUSED'])
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'], is_active)
-    
-    def handle_widget_click(self, event):
-        raise NotImplementedError
     
     def initialise_timers(self):
         if self._model.states['TIME_ENABLED']:
@@ -168,19 +172,13 @@ class GameView:
         return self._selected_overlay_coord
 
     def convert_mouse_pos(self, event):
-        mouse_x = event.pos[0]
-        mouse_y = event.pos[1]
+        clicked_coords = screen_pos_to_coords(event.pos, self._board_position, self._board_size)
 
-        if (self._board_position[0] <= mouse_x <= self._board_position[0] + self._board_size[0]) and (self._board_position[1] <= mouse_y <= self._board_position[1] + self._board_size[1]):
-            x = (mouse_x - self._board_position[0]) // (self._board_size[0] / 10)
-            y = (self._board_size[1] - (mouse_y - self._board_position[1])) // (self._board_size[0] / 10)
+        if clicked_coords:
+            return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
 
-            return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=(int(x), int(y)))
-
-        elif self._cursor.get_sprite_collision(event.pos, self._widget_group):
-            return CustomEvent.create_event(GameEventType.WIDGET_CLICK)
-
-        return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+        elif self._cursor.get_sprite_collision(event.pos, self._widget_group) is None:
+            return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
 
     def process_widget_event(self, event):
         return self._widget_group.process_event(event)

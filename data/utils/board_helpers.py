@@ -45,8 +45,16 @@ def create_circle_overlay(square_size, colour):
 
     return overlay
 
-def coords_to_screen_pos(coords, anchor_position, square_size):
-    x = coords[0] * square_size + anchor_position[0]
-    y = (7 - coords[1]) * square_size + anchor_position[1]
+def coords_to_screen_pos(coords, board_position, square_size):
+    x = board_position[0] + (coords[0] * square_size)
+    y = board_position[1] + ((7 - coords[1]) * square_size)
 
     return (x, y)
+
+def screen_pos_to_coords(mouse_position, board_position, board_size):
+    if (board_position[0] <= mouse_position[0] <= board_position[0] + board_size[0]) and (board_position[1] <= mouse_position[1] <= board_position[1] + board_size[1]):
+        x = (mouse_position[0] - board_position[0]) // (board_size[0] / 10)
+        y = (board_size[1] - (mouse_position[1] - board_position[1])) // (board_size[0] / 10)
+        return (int(x), int(y))
+    
+    return None

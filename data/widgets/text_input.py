@@ -146,6 +146,10 @@ class TextInput(_Pressable, Text):
         self.set_cursor_index(None)
         self.set_image()
     
+    def update_text(self, new_text):
+        super().update_text(new_text)
+        return CustomEvent(**vars(self._event), text=self.get_text())
+    
     def process_event(self, event):
         previous_state = self.get_widget_state()
         super().process_event(event)

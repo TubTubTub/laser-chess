@@ -9,7 +9,7 @@ Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
 Select default FEN strings in config screen
-Add captured pieces list
+Make wrapper for pressable button widgets
 
 Ambitious:
 Cursor-based pagination for viewing games
@@ -22,3 +22,4 @@ Maybe separate text background code into a new label class
 Make new word wrap text class with text properties
 Make widgets low-scale when scaling by just pygame transforming a copy
 Add Ctrl + A and mouse drag to text input widget
+Make ScrollArea use parent keyword

@@ -89,7 +89,7 @@ class Board:
     def undo_move(self, move, laser_result):
         self.flip_colour()
         
-        if laser_result and laser_result.hit_square_bitboard: # TEMP if (laser_result) <--- and ...
+        if laser_result.hit_square_bitboard:
             src = laser_result.hit_square_bitboard
             piece = laser_result.piece_hit
             colour = laser_result.piece_colour

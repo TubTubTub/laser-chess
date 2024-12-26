@@ -45,10 +45,6 @@ class GameModel:
                     if parent_class in 'game':
                         for listener in listeners: listener(event)
                 
-                case GameEventType.REMOVE_PIECE:
-                    if parent_class == 'game':
-                        for listener in listeners: listener(event)
-                
                 case GameEventType.SET_LASER:
                     if parent_class == 'game':
                         for listener in listeners: listener(event)
@@ -86,10 +82,6 @@ class GameModel:
         colour = self._board.bitboards.get_colour_on(move.src)
         piece = self._board.bitboards.get_piece_on(move.src, colour)
         laser_result = self._board.apply_move(move)
-    
-        if laser_result.hit_square_bitboard:
-            coords_to_remove = bb_helpers.bitboard_to_coords(laser_result.hit_square_bitboard)
-            self.alert_listeners(CustomEvent.create_event(GameEventType.REMOVE_PIECE, coords_to_remove=coords_to_remove))
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
         

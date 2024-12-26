@@ -131,6 +131,25 @@ class Config(_State):
         else:
             self.remove_depth_picker()
     
+    def set_fen_string(self, new_fen_string):
+        try:
+            CONFIG_WIDGETS['board_thumbnail'].initialise_board(new_fen_string)
+            CONFIG_WIDGETS['invalid_fen_string'].kill()
+
+            if new_fen_string[-1].lower() == 'r':
+                self._config['COLOUR'] = Colour.RED
+            else:
+                self._config['COLOUR'] = Colour.BLUE
+            
+            self._valid_fen = True
+        except:
+            CONFIG_WIDGETS['board_thumbnail'].initialise_board('')
+            self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
+            
+            self._valid_fen = False
+
+        self._config['FEN_STRING'] = new_fen_string
+    
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
@@ -157,22 +176,7 @@ class Config(_State):
                 self.toggle_pvc(True)
 
             case ConfigEventType.FEN_STRING_TYPE:
-                self._config['FEN_STRING'] = widget_event.text
-                try:
-                    CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string(self._config['FEN_STRING'])
-                    CONFIG_WIDGETS['invalid_fen_string'].kill()
-
-                    if self._config['FEN_STRING'][-1].lower() == 'r':
-                        self._config['COLOUR'] = Colour.RED
-                    else:
-                        self._config['COLOUR'] = Colour.BLUE
-                    
-                    self._valid_fen = True
-                except:
-                    CONFIG_WIDGETS['board_thumbnail'].initialise_fen_string([])
-                    self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
-                    
-                    self._valid_fen = False
+                self.set_fen_string(widget_event.text)
 
             case ConfigEventType.TIME_TYPE:
                 if widget_event.text == '':
@@ -182,6 +186,14 @@ class Config(_State):
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 self._config['CPU_DEPTH'] = int(widget_event.data)
+            
+            case ConfigEventType.PRESET_CLICK:
+                CONFIG_WIDGETS['fen_string_input'].update_text(widget_event.fen_string)
+                self.set_fen_string(widget_event.fen_string)
+            
+            case ConfigEventType.SETUP_CLICK:
+                self.next = 'setup'
+                self.done = True
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())

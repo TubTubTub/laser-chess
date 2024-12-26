@@ -7,11 +7,11 @@ class MoveList(_Widget):
     def __init__(self, relative_width, minimum_height=0, move_list=[], **kwargs):
         super().__init__(relative_size=None, **kwargs)
 
-        self._relative_width = relative_width
+        self._relative_width = relative_width * self.surface_size[0] / self.surface_size[1]
         self._relative_minimum_height = minimum_height / self.surface_size[1]
         self._move_list = move_list
 
-        self._relative_font_size = width_to_font_size(self._font, relative_width * self.surface_size[0] / 5) / self.surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, relative_width * self.surface_size[1] / 3) / self.surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -22,11 +22,7 @@ class MoveList(_Widget):
     def size(self):
         font_metrics = self._font.get_metrics('j', size=self.font_size)
         row_gap = font_metrics[0][3] - font_metrics[0][2]
-        return (self._relative_width * self.surface_size[0], max(self.minimum_height, row_gap * ( 2 * ((len(self._move_list) + 1) // 2) + 1 ) ))
-    
-    @property
-    def minimum_height(self):
-        return self._relative_minimum_height * self.surface_size[1]
+        return (self._relative_width * self.surface_size[1], max(self._relative_minimum_height * self.surface_size[1], row_gap * (2 * ((len(self._move_list) + 1) // 2) + 1) ))
     
     def register_get_rect(self, get_rect_func):
         pass
@@ -38,6 +34,11 @@ class MoveList(_Widget):
 
     def append_to_move_list(self, new_move):
         self._move_list.append(new_move)
+        self.set_image()
+        self.set_geometry()
+    
+    def pop_from_move_list(self):
+        self._move_list.pop()
         self.set_image()
         self.set_geometry()
     
@@ -58,10 +59,6 @@ class MoveList(_Widget):
             move_number = (index // 2) + 1
             move_number_position = (self.size[0] / 10, row_gap * (1 + 2 * (index // 2)))
             self._font.render_to(self.image, move_number_position, text=str(move_number), size=self.font_size, fgcolor=self._text_colour)
-    
-    def set_surface_size(self, new_surface_size):
-        super().set_surface_size(new_surface_size)
-        self._relative_font_size = width_to_font_size(self._font, self.size[0] / 5) / self.surface_size[1]
     
     def process_event(self, event, scrolled_pos=None):
         pass

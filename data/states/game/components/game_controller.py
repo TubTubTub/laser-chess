@@ -126,9 +126,6 @@ class GameController:
                             self.make_move(move)
                         else:
                             self._view.set_overlay_coords([], None)
-                
-                case GameEventType.WIDGET_CLICK:
-                    return
 
                 case GameEventType.EMPTY_CLICK:
                     self._view.set_overlay_coords([], None)

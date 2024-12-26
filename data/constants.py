@@ -32,6 +32,10 @@ class StatusText(StrEnum):
     WIN = auto()
     DRAW = auto()
 
+class SetupEventType(StrEnum):
+    MENU_CLICK = auto()
+    PICK_PIECE_CLICK = auto()
+
 class ReviewEventType(StrEnum):
     MENU_CLICK = auto()
     PREVIOUS_CLICK = auto()
@@ -49,13 +53,11 @@ class BrowserEventType(StrEnum):
 class GameEventType(StrEnum):
     BOARD_CLICK = auto()
     PIECE_CLICK = auto()
-    WIDGET_CLICK = auto()
     EMPTY_CLICK = auto()
     PAUSE_CLICK = auto()
     MENU_CLICK = auto()
     GAME_CLICK = auto()
     UPDATE_PIECES = auto()
-    REMOVE_PIECE = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()
     RESIGN_CLICK = auto()
@@ -91,6 +93,8 @@ class ConfigEventType(StrEnum):
     PVP_CLICK = auto()
     PVC_CLICK = auto()
     CPU_DEPTH_CLICK = auto()
+    PRESET_CLICK = auto()
+    SETUP_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0
@@ -114,6 +118,7 @@ class PieceScore(IntEnum):
     PYRAMID = 100
     ANUBIS = 110
     SCARAB = 200
+    PHAROAH = 6969696969
     INFINITE = 6969696969
 
 class Rank(IntEnum):

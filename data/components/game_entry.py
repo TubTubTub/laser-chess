@@ -37,7 +37,8 @@ class GameEntry:
             {
                 'blue_time': move.split(';')[0],
                 'red_time': move.split(';')[1],
-                'move': Move.instance_from_notation(move.split(';')[2])
+                'move': Move.instance_from_notation(move.split(';')[2]),
+                'unparsed_move': move.split(';')[2],
             } for move in moves if move != ''
         ]
 

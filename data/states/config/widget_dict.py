@@ -39,21 +39,20 @@ config_container = Rectangle(
     anchor_x='center'
 )
 
+preview_container = Rectangle(
+    relative_position=(-0.22, 0),
+    relative_size=(0.5, 0.4),
+    scale_mode='width',
+    anchor_x='center',
+    anchor_y='center'
+)
+
 CONFIG_WIDGETS = {
     'config_container':
         config_container,
+    'preview_container':
+        preview_container,
     'default': [
-        TextInput(
-            parent=config_container,
-            relative_position=(0.05, 0.05),
-            relative_size=(0.9, 0.15),
-            fit_vertical=False,
-            placeholder='ENTER FEN STRING',
-            default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
-            border_width=5,
-            margin=20,
-            event=CustomEvent(ConfigEventType.FEN_STRING_TYPE)
-        ),
         TextInput(
             parent=config_container,
             relative_position=(0.3, 0.3),
@@ -85,7 +84,57 @@ CONFIG_WIDGETS = {
             fixed_position=True,
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
+        BoardThumbnailButton(
+            parent=preview_container,
+            relative_width=0.3,
+            relative_position=(0, 0.3),
+            scale_mode='width',
+            anchor_y='bottom',
+            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
+            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
+        ),
+        BoardThumbnailButton(
+            parent=preview_container,
+            relative_width=0.3,
+            relative_position=(0, 0.3),
+            scale_mode='width',
+            anchor_x='center',
+            anchor_y='bottom',
+            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
+            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
+        ),
+        BoardThumbnailButton(
+            parent=preview_container,
+            relative_width=0.3,
+            relative_position=(0.3, 0.3),
+            scale_mode='width',
+            anchor_x='right',
+            anchor_y='bottom',
+            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
+            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
+        ),
+        TextButton(
+            parent=preview_container,
+            relative_position=(0, 0),
+            relative_size=(0.2, 0.2),
+            text='EDIT',
+            text_colour=(255, 0, 0),
+            margin=20,
+            event=CustomEvent(ConfigEventType.SETUP_CLICK)
+        )
     ],
+    'fen_string_input':
+    TextInput(
+        parent=config_container,
+        relative_position=(0.05, 0.05),
+        relative_size=(0.9, 0.15),
+        fit_vertical=False,
+        placeholder='ENTER FEN STRING',
+        default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
+        border_width=5,
+        margin=20,
+        event=CustomEvent(ConfigEventType.FEN_STRING_TYPE)
+    ),
     'start_button':
     TextButton(
         parent=config_container,
@@ -93,7 +142,6 @@ CONFIG_WIDGETS = {
         relative_size=(0.9, 0.15),
         text='START NEW GAME',
         text_colour=(255, 0, 0),
-        font_size=50,
         margin=20,
         minimum_width=400,
         event=CustomEvent(ConfigEventType.GAME_CLICK)
@@ -149,10 +197,10 @@ CONFIG_WIDGETS = {
     ),
     'board_thumbnail':
     BoardThumbnail(
-        relative_position=(-0.22, 0),
-        relative_width=0.5,
+        parent=preview_container,
+        relative_position=(0, 0),
+        relative_width=0.6,
         scale_mode='width',
         anchor_x='center',
-        anchor_y='center'
     )
 }

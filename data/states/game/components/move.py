@@ -1,4 +1,4 @@
-from data.constants import MoveType, Colour
+from data.constants import MoveType, Colour, RotationDirection
 from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords, bitboard_to_notation, print_bitboard
 import re
 
@@ -51,7 +51,7 @@ class Move():
             
             elif move_type == MoveType.ROTATE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
-                rotation_direction = letters[1]
+                rotation_direction = RotationDirection(letters[1])
 
                 return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction, captured)
             else:

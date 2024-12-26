@@ -18,9 +18,7 @@ class Laser:
         square_animation_states = []
 
         while current_square:
-            blue_piece = self._bitboards.get_piece_on(current_square, Colour.BLUE)
-            red_piece = self._bitboards.get_piece_on(current_square, Colour.RED)
-            current_piece = blue_piece or red_piece
+            current_piece = self._bitboards.get_piece_on(current_square, Colour.BLUE) or self._bitboards.get_piece_on(current_square, Colour.RED)
             current_rotation = self._bitboards.get_rotation_on(current_square)
             
             next_square, direction, piece_hit = self.calculate_next_square(current_square, current_piece, current_rotation, previous_direction)
@@ -61,7 +59,7 @@ class Laser:
 
                 next_square = self.next_square_bitboard(square, new_direction)
                 
-                return next_square, new_direction, Piece.PYRAMID
+                return next_square, new_direction, None
 
             case Piece.ANUBIS:
                 if previous_direction == rotation.get_clockwise().get_clockwise():

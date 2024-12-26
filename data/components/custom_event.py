@@ -2,7 +2,6 @@ from data.constants import GameEventType, MenuEventType, SettingsEventType, Conf
 
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
-    GameEventType.REMOVE_PIECE: ['coords_to_remove'],
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
     GameEventType.SET_LASER: ['laser_result'],
     GameEventType.UPDATE_PIECES: ['move_notation'],
@@ -16,6 +15,7 @@ required_args = {
     ConfigEventType.FEN_STRING_TYPE: ['time'],
     ConfigEventType.CPU_DEPTH_CLICK: ['data'],
     ConfigEventType.PVC_CLICK: ['data'],
+    ConfigEventType.PRESET_CLICK: ['fen_string'],
     BrowserEventType.BROWSER_STRIP_CLICK: ['selected_index']
 }
 
