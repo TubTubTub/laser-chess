@@ -18,13 +18,13 @@ def flatten_dictionary_generator(dictionary, parent_key):
 def flatten_dictionary(dictionary, parent_key=''):
     return dict(flatten_dictionary_generator(dictionary, parent_key))
 
-def recursive_lookup(key, dictionary):
-    if key in dictionary:
-        return dictionary[key]
+# def recursive_lookup(key, dictionary):
+#     if key in dictionary:
+#         return dictionary[key]
 
-    for nested_dictionary in dictionary.values():
-        if isinstance(nested_dictionary, dict):
-            return recursive_lookup(key, nested_dictionary)
+#     for nested_dictionary in dictionary.values():
+#         if isinstance(nested_dictionary, dict):
+#             return recursive_lookup(key, nested_dictionary)
 
 class ThemeManager:
     def __init__(self, colour_mode="light"):

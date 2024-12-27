@@ -4,14 +4,15 @@ from data.utils import bitboard_helpers as bb_helpers
 
 class BitboardCollection():
     def __init__(self, fen_string):
-        self.piece_bitboards = None
-        self.combined_colour_bitboards = None
-        self.combined_all_bitboard = None
-        self.rotation_bitboards = None
-        self.active_colour = None
+        self.piece_bitboards = [{char: EMPTY_BB for char in Piece}, {char: EMPTY_BB for char in Piece}]
+        self.combined_colour_bitboards = [EMPTY_BB, EMPTY_BB]
+        self.combined_all_bitboard = EMPTY_BB
+        self.rotation_bitboards = [EMPTY_BB, EMPTY_BB]
+        self.active_colour = Colour.BLUE
 
         try:
-            self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
+            if fen_string:
+                self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
         except ValueError as error:
             print('(BitboardCollection.__init__) Please input a valid FEN string:', error)
     
@@ -85,14 +86,14 @@ class BitboardCollection():
             case _:
                 raise ValueError('Invalid rotation input (bitboard.py):', rotation)
     
-    def set_square(self, index, piece, colour):
+    def set_square(self, bitboard, piece, colour):
         piece_bitboard = self.get_piece_bitboard(piece, colour)
         colour_bitboard = self.combined_colour_bitboards[colour]
         all_bitboard = self.combined_all_bitboard
 
-        self.piece_bitboards[colour][piece] = bb_helpers.set_square(piece_bitboard, index)
-        self.combined_colour_bitboards[colour] = bb_helpers.set_square(colour_bitboard, index)
-        self.combined_all_bitboard = bb_helpers.set_square(all_bitboard, index)
+        self.piece_bitboards[colour][piece] = bb_helpers.set_square(piece_bitboard, bitboard)
+        self.combined_colour_bitboards[colour] = bb_helpers.set_square(colour_bitboard, bitboard)
+        self.combined_all_bitboard = bb_helpers.set_square(all_bitboard, bitboard)
     
     def get_piece_bitboard(self, piece, colour):
         return self.piece_bitboards[colour][piece]

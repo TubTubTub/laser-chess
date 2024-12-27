@@ -1,11 +1,11 @@
-from data.constants import Colour, RotationIndex, Rotation, Piece
+from data.constants import Colour, RotationIndex, Rotation, Piece, EMPTY_BB
 from data.utils.bitboard_helpers import occupied_squares, print_bitboard, bitboard_to_index
 
 def parse_fen_string(fen_string):
     #sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
-    piece_bitboards = [{char: 0b0 for char in Piece}, {char: 0b0 for char in Piece}]
-    rotation_bitboards = [0b0, 0b0]
-    combined_colour_bitboards = [0b0, 0b0]
+    piece_bitboards = [{char: EMPTY_BB for char in Piece}, {char: EMPTY_BB for char in Piece}]
+    rotation_bitboards = [EMPTY_BB, EMPTY_BB]
+    combined_colour_bitboards = [EMPTY_BB, EMPTY_BB]
     combined_all_bitboard = 0
     part_1, part_2 = fen_string.split(' ')
 
@@ -57,8 +57,8 @@ def parse_fen_string(fen_string):
     if piece_count['s'] != 1 or piece_count['S'] != 1:
         raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')
     # COMMENTED OUT AS NO PHAROAH PIECES IS OKAY IF PARSING FEN STRING FOR FINISHED GAME BOARD THUMBNAIL
-    # elif piece_count['f'] != 1 or piece_count['F'] != 1:
-    #     raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
+    elif piece_count['f'] > 1 or piece_count['F'] > 1:
+        raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
     
     if (part_2 == 'b'):
         colour = Colour.BLUE

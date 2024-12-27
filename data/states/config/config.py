@@ -37,6 +37,7 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
+        print('RECEIVED CUSTOM FEN STRING:', persist)
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
 
@@ -88,6 +89,8 @@ class Config(_State):
             }
         )
 
+        self.toggle_pvc(self._config['CPU_ENABLED'])
+
         self._cpu_depth_carousel.set_to_key(2)
 
         if self._config['CPU_ENABLED']:
@@ -112,18 +115,13 @@ class Config(_State):
         self._cpu_depth_carousel.kill()
     
     def toggle_pvc(self, pvc_enabled):
-        if pvc_enabled == self._config['CPU_ENABLED']:
-            return
-        
         if pvc_enabled:
             CONFIG_WIDGETS['pvc_button'].set_locked(True)
             CONFIG_WIDGETS['pvp_button'].set_locked(False)
-            CONFIG_WIDGETS['pvp_button'].set_next_icon()
         else:
             CONFIG_WIDGETS['pvp_button'].set_locked(True)
             CONFIG_WIDGETS['pvc_button'].set_locked(False)
-            CONFIG_WIDGETS['pvc_button'].set_next_icon()
-
+        
         self._config['CPU_ENABLED'] = pvc_enabled
         
         if self._config['CPU_ENABLED']:
@@ -167,7 +165,8 @@ class Config(_State):
                 self.done = True
 
             case ConfigEventType.TIME_CLICK:
-                self._config['TIME_ENABLED'] = widget_event.data
+                self._config['TIME_ENABLED'] = not(widget_event.data)
+                CONFIG_WIDGETS['timer_button'].set_next_icon()
 
             case ConfigEventType.PVP_CLICK:
                 self.toggle_pvc(False)

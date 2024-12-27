@@ -35,6 +35,14 @@ class StatusText(StrEnum):
 class SetupEventType(StrEnum):
     MENU_CLICK = auto()
     PICK_PIECE_CLICK = auto()
+    ROTATE_PIECE_CLICK = auto()
+    COPY_CLICK = auto()
+    EMPTY_CLICK = auto()
+    RESET_CLICK = auto()
+    BLUE_START_CLICK = auto()
+    RED_START_CLICK = auto()
+    START_CLICK = auto()
+    CONFIG_CLICK = auto()
 
 class ReviewEventType(StrEnum):
     MENU_CLICK = auto()

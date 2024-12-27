@@ -16,6 +16,7 @@ Cursor-based pagination for viewing games
 Switch sphinx direction
 Board creator
 Log-in
+Drag-and-drop pieces
 
 Miscellaneous:
 Maybe separate text background code into a new label class

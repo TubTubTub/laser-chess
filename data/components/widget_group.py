@@ -4,12 +4,15 @@ class WidgetGroup(pygame.sprite.Group):
     def __init__(self, widget_dict):
         super().__init__()
 
-        for key, value in widget_dict.items():
-            if key != 'default':
+        for value in widget_dict.values():
+            if isinstance(value, list):
+                for widget in value:
+                    self.add(widget)
+            elif isinstance(value, dict):
+                for widget in value.values():
+                    self.add(widget)
+            else:
                 self.add(value)
-                continue
-            for widget in value:
-                self.add(widget)
     
     def handle_resize(self, new_surface_size):
         for sprite in self.sprites():

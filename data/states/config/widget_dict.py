@@ -167,7 +167,6 @@ CONFIG_WIDGETS = {
         border_width=5,
         border_radius=5,
         icons_dict=pvp_icons,
-        locked=pvp_locked,
         stretch=False,
         event=CustomEvent(ConfigEventType.PVP_CLICK)
     ),
@@ -180,7 +179,6 @@ CONFIG_WIDGETS = {
         border_width=5,
         border_radius=5,
         icons_dict=pvc_icons,
-        locked=pvc_locked,
         stretch=False,
         event=CustomEvent(ConfigEventType.PVC_CLICK)
     ),
