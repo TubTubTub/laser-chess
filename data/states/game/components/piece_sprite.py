@@ -22,44 +22,41 @@ class EmptyPiece(pygame.sprite.Sprite):
         pass
 
 class _PieceSprite(pygame.sprite.Sprite):
-    def __init__(self, coords, high_res_img, low_res_img, colour):
+    def __init__(self, high_res_img, low_res_img, colour, rotation):
         super().__init__()
-        self.type = None
         self.low_res_img = low_res_img
         self.high_res_img = high_res_img
-
         self.colour = colour
-        self.coords = coords
+        self.rotation = rotation
 
-        self.anchor_position = None
+        self.type = None
+        self.coords = None
         self.size = None
-        self.rotation = None
     
     def set_image(self, type):
         match (type):
             case ImageType.LOW_RES:
                 rotated_img = pygame.transform.rotate(self.low_res_img, self.rotation.to_angle())
                 self.image = pygame.transform.scale(rotated_img, (self.size, self.size))
-                self.set_rect()
 
             case ImageType.HIGH_RES:
                 rotated_img = pygame.transform.rotate(self.high_res_img, self.rotation.to_angle())
                 self.image = smoothscale_and_cache(rotated_img, (self.size, self.size))
-                self.set_rect()
 
             case _:
                 raise ValueError('Invalid type provided for square image')
     
-    def set_rect(self):
-        self.rect = self.image.get_rect()
-        self.rect.topleft = coords_to_screen_pos(self.coords, self.anchor_position, self.size)
+    def set_geometry(self, new_position, square_size):
+        self.size = square_size
+        self.rect = pygame.Rect((0, 0, square_size, square_size))
+
+        if self.coords:
+            self.rect.topleft = coords_to_screen_pos(self.coords, new_position, square_size)
+        else:
+            self.rect.topleft = new_position
     
-    def set_geometry(self, anchor_position, size):
-        self.anchor_position = anchor_position
-        self.size = size
-    
-    def set_rotation(self, rotation):
-        self.rotation = rotation
+    def set_coords(self, new_coords):
+        self.coords = new_coords
 
 class SphinxImages(_PieceSprite):
     def __init__(self, **kwargs):
@@ -113,6 +110,6 @@ class PharoahImages(_PieceSprite):
 
 PIECE_DICTIONARY = {'f': PharoahImages, 'r': ScarabImages, 'p': PyramidImages, 'n': AnubisImages, 's': SphinxImages}
 
-def create_piece(piece, coords, colour):
+def create_piece(piece, colour, rotation):
     target_piece_class = PIECE_DICTIONARY[piece.lower()]
-    return target_piece_class(colour=colour, coords=coords)
+    return target_piece_class(colour=colour, rotation=rotation)

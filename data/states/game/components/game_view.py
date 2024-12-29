@@ -1,9 +1,10 @@
 import pygame
 from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
 from data.utils.bitboard_helpers import bitboard_to_coords
-from data.constants import GameEventType, Colour, StatusText, OVERLAY_COLOUR
+from data.constants import GameEventType, Colour, StatusText, OVERLAY_COLOUR_LIGHT
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
+from data.states.game.components.overlay_draw import OverlayDraw
 from data.utils.data_helpers import get_user_settings
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
@@ -39,16 +40,11 @@ class GameView:
         self.handle_update_pieces(toggle_timers=False)
 
         self._laser_draw = LaserDraw(self._board_position, self._board_size)
+        self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
+
+        self._selected_coords = None
 
         self.set_status_text(StatusText.PLAYER_MOVE)
-        
-        self._valid_overlay_coords = []
-        self._selected_overlay_coord = None
-
-        self._circle_overlay = create_circle_overlay(self._square_size, OVERLAY_COLOUR)
-        self._square_overlay = create_square_overlay(self._square_size, OVERLAY_COLOUR)
-        self._circle_overlay_unscaled = self._circle_overlay.copy()
-        self._square_overlay_unscaled = self._square_overlay.copy()
     
     def set_status_text(self, status):
         match status:
@@ -69,9 +65,7 @@ class GameView:
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
         self._widget_group.handle_resize(self._screen.get_size())
         self._laser_draw.handle_resize(self._board_position, self._board_size)
-
-        self._circle_overlay = pygame.transform.scale(self._circle_overlay_unscaled, (self._square_size, self._square_size))
-        self._square_overlay = pygame.transform.scale(self._square_overlay_unscaled, (self._square_size, self._square_size))
+        self._laser_draw.handle_resize(self._board_position, self._board_size)
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
@@ -136,24 +130,13 @@ class GameView:
     
     def draw_widgets(self):
         self._widget_group.draw()
-
-    def draw_overlay(self):
-        if not self._selected_overlay_coord:
-            return
-        
-        square_x, square_y = coords_to_screen_pos(self._selected_overlay_coord, self._board_position, self._square_size)
-        self._screen.blit(self._square_overlay, (square_x, square_y))
-
-        for coords in self._valid_overlay_coords:
-            square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
-            self._screen.blit(self._circle_overlay, (square_x, square_y))
     
     def draw(self):
         self._widget_group.update()
         self.draw_widgets()
+        self._overlay_draw.draw(self._screen)
         self.draw_pieces()
-        self._laser_draw.draw()
-        self.draw_overlay()
+        self._laser_draw.draw(self._screen)
 
     def process_model_event(self, event):
         try:
@@ -161,15 +144,13 @@ class GameView:
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event.type)
     
-    def set_overlay_coords(self, possible_coords_list, selected_coord):
-        self._valid_overlay_coords = possible_coords_list
-        self._selected_overlay_coord = selected_coord
+    def set_overlay_coords(self, available_coords_list, selected_coord):
+        self._selected_coords = selected_coord
+        self._overlay_draw.set_selected_coords(selected_coord)
+        self._overlay_draw.set_available_coords(available_coords_list)
     
-    def get_valid_overlay_coords(self):
-        return self._valid_overlay_coords
-    
-    def get_selected_overlay_coord(self):
-        return self._selected_overlay_coord
+    def get_selected_coords(self):
+        return self._selected_coords
 
     def convert_mouse_pos(self, event):
         clicked_coords = screen_pos_to_coords(event.pos, self._board_position, self._board_size)

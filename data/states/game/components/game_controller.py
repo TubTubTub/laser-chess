@@ -70,7 +70,7 @@ class GameController:
 
         match widget_event.type:
             case GameEventType.ROTATE_PIECE:
-                src_coords = self._view.get_selected_overlay_coord()
+                src_coords = self._view.get_selected_coords()
 
                 if src_coords is None:
                     print('None square selected')
@@ -104,31 +104,33 @@ class GameController:
         if event.type == pygame.MOUSEBUTTONDOWN:
             game_event = self._view.convert_mouse_pos(event)
 
+            if game_event is None:
+                return
+
             match game_event.type:
                 case GameEventType.BOARD_CLICK:
                     if self._model.states['AWAITING_CPU']:
                         return
 
                     clicked_bitboard = bb_helpers.coords_to_bitboard(game_event.coords)
-                    current_selected = self._view.get_selected_overlay_coord()
 
-                    if not current_selected:
-                        possible_move_coords = self._model.get_clicked_coords(clicked_bitboard)
+                    if self._view.get_selected_coords():
+                        src_coords = self._view.get_selected_coords()
+                        possible_move_coords = self._model.get_clicked_coords(bb_helpers.coords_to_bitboard(src_coords))
 
-                        if possible_move_coords:
-                            self._view.set_overlay_coords(possible_move_coords, game_event.coords)
-                    else:
-                        current_overlays = self._view.get_valid_overlay_coords()
-
-                        if game_event.coords in current_overlays:
-                            src_coords = self._view.get_selected_overlay_coord()
+                        if game_event.coords in possible_move_coords:
+                            src_coords = self._view.get_selected_coords()
                             move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
                             self.make_move(move)
                         else:
-                            self._view.set_overlay_coords([], None)
+                            self._view.set_overlay_coords(None, None)
+                    else:
+                        possible_move_coords = self._model.get_clicked_coords(clicked_bitboard)
+                        if possible_move_coords:
+                            self._view.set_overlay_coords(possible_move_coords, game_event.coords)
 
                 case GameEventType.EMPTY_CLICK:
-                    self._view.set_overlay_coords([], None)
+                    self._view.set_overlay_coords(None, None)
                     return
 
                 case _:

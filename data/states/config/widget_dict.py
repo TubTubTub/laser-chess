@@ -84,35 +84,6 @@ CONFIG_WIDGETS = {
             fixed_position=True,
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
-        BoardThumbnailButton(
-            parent=preview_container,
-            relative_width=0.3,
-            relative_position=(0, 0.3),
-            scale_mode='width',
-            anchor_y='bottom',
-            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
-            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
-        ),
-        BoardThumbnailButton(
-            parent=preview_container,
-            relative_width=0.3,
-            relative_position=(0, 0.3),
-            scale_mode='width',
-            anchor_x='center',
-            anchor_y='bottom',
-            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
-            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
-        ),
-        BoardThumbnailButton(
-            parent=preview_container,
-            relative_width=0.3,
-            relative_position=(0.3, 0.3),
-            scale_mode='width',
-            anchor_x='right',
-            anchor_y='bottom',
-            fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
-            event=CustomEvent(ConfigEventType.PRESET_CLICK, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
-        ),
         TextButton(
             parent=preview_container,
             relative_position=(0, 0),
@@ -200,5 +171,37 @@ CONFIG_WIDGETS = {
         relative_width=0.6,
         scale_mode='width',
         anchor_x='center',
+    ),
+    'preset_1':
+    BoardThumbnailButton(
+        parent=preview_container,
+        relative_width=0.3,
+        relative_position=(0, 0.3),
+        scale_mode='width',
+        anchor_y='bottom',
+        fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
+        event=CustomEvent(ConfigEventType.PRESET_CLICK)
+    ),
+    'preset_2':
+    BoardThumbnailButton(
+        parent=preview_container,
+        relative_width=0.3,
+        relative_position=(0, 0.3),
+        scale_mode='width',
+        anchor_x='center',
+        anchor_y='bottom',
+        fen_string="sc3ncfcncra2/10/3Pd2pa3/paPc2Pbra2pbPd/pbPd2Rapd2paPc/3Pc2pb3/10/2RaNaFaNa3Sa b",
+        event=CustomEvent(ConfigEventType.PRESET_CLICK)
+    ),
+    'preset_3':
+    BoardThumbnailButton(
+        parent=preview_container,
+        relative_width=0.3,
+        relative_position=(0.3, 0.3),
+        scale_mode='width',
+        anchor_x='right',
+        anchor_y='bottom',
+        fen_string="sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b",
+        event=CustomEvent(ConfigEventType.PRESET_CLICK)
     )
 }

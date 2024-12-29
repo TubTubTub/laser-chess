@@ -3,9 +3,10 @@ import pyperclip
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.setup.widget_dict import SETUP_WIDGETS
-from data.constants import SetupEventType, Colour, RotationDirection
+from data.constants import SetupEventType, Colour, RotationDirection, Piece, Rotation
 from data.states.game.components.bitboard_collection import BitboardCollection
 from data.states.game.components.piece_group import PieceGroup
+from data.states.game.components.father import DragAndDrop
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.bitboard_helpers import coords_to_bitboard
@@ -25,13 +26,16 @@ class Setup(_State):
         self._bitboards = None
         self._piece_group = None
         self._selected_coords = None
-        self._selected_piece = None
-        self._selected_piece_colour = None
+        self._selected_tool = None
+        self._selected_tool_colour = None
         
+        self._drag_and_drop = None
         self._widget_group = None
     
     def cleanup(self):
         print('cleaning setup.py')
+
+        self.deselect_piece()
 
         return encode_fen_string(self._bitboards)
     
@@ -40,13 +44,16 @@ class Setup(_State):
         self._widget_group = WidgetGroup(SETUP_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
 
+        self._drag_and_drop = DragAndDrop(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
         self._bitboards = BitboardCollection(persist['FEN_STRING'])
         self._initial_fen_string = persist['FEN_STRING']
         self._piece_group = PieceGroup()
         self._selected_coords = None
-        self._selected_piece = None
-        self._selected_piece_colour = None
+        self._selected_tool = None
+        self._selected_tool_colour = None
         self._starting_colour = Colour.BLUE
+
+        self.set_starting_colour(Colour.BLUE)
 
         # audio.play_music(MUSIC_PATHS['setup'])
         
@@ -68,9 +75,38 @@ class Setup(_State):
             if clicked_coords:
                 self._selected_coords = clicked_coords
 
-                if self._selected_piece:
-                    self.set_piece()
+                if self._selected_tool is None:
+                    return
+
+                if self._selected_tool == 'MOVE':
+                    bitboard_under_mouse = coords_to_bitboard(clicked_coords)
+                    dragged_piece = self._bitboards.get_piece_on(bitboard_under_mouse, Colour.BLUE) or self._bitboards.get_piece_on(bitboard_under_mouse, Colour.RED)
+
+                    if dragged_piece:
+                        dragged_colour = self._bitboards.get_colour_on(bitboard_under_mouse)
+                        dragged_rotation = self._bitboards.get_rotation_on(bitboard_under_mouse)
+                        self._drag_and_drop.set_dragged_piece(dragged_piece, dragged_colour, dragged_rotation)
+
+                elif self._selected_tool == 'ERASE':
+                    self.remove_piece()
+                else:
+                    self.set_piece(self._selected_tool, self._selected_tool_colour, Rotation.UP)
                     
+                return
+        
+        if event.type == pygame.MOUSEBUTTONUP:
+            clicked_coords = screen_pos_to_coords(event.pos, SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+
+            if self._drag_and_drop.dragged_sprite:
+                if clicked_coords:
+                    piece, colour, rotation = self._drag_and_drop.get_dragged_info()
+                    
+                    if piece != Piece.SPHINX:
+                        self.remove_piece()
+                        self._selected_coords = clicked_coords
+                        self.set_piece(piece, colour, rotation)
+
+                self._drag_and_drop.remove_dragged_piece()
                 return
         
         widget_event = self._widget_group.process_event(event)
@@ -97,7 +133,7 @@ class Setup(_State):
                 self.rotate_piece(widget_event.rotation_direction)
             
             case SetupEventType.EMPTY_CLICK:
-                self._bitboards = BitboardCollection(None)
+                self._bitboards = BitboardCollection(fen_string='sc9/10/10/10/10/10/10/9Sa b')
                 self.refresh_pieces()
             
             case SetupEventType.RESET_CLICK:
@@ -121,6 +157,12 @@ class Setup(_State):
                 self.reset_board()
                 self.next = 'config'
                 self.done = True
+            
+            case SetupEventType.ERASE_CLICK:
+                self.select_piece('ERASE', None)
+            
+            case SetupEventType.MOVE_CLICK:
+                self.select_piece('MOVE', None)
     
     def reset_board(self):
         self._bitboards = BitboardCollection(self._initial_fen_string)
@@ -128,7 +170,6 @@ class Setup(_State):
     
     def set_starting_colour(self, new_colour):
         if new_colour == Colour.BLUE:
-            print('seting blue')
             SETUP_WIDGETS['blue_start_button'].set_locked(True)
             SETUP_WIDGETS['red_start_button'].set_locked(False)
         elif new_colour == Colour.RED:
@@ -142,7 +183,19 @@ class Setup(_State):
         self._starting_colour = new_colour
         self._bitboards.active_colour = new_colour
 
-    def set_piece(self):
+    def set_piece(self, piece, colour, rotation):
+        if self._selected_coords is None or self._selected_coords == (0, 7) or self._selected_coords == (9, 0):
+            return
+        
+        self.remove_piece()
+
+        selected_bitboard = coords_to_bitboard(self._selected_coords)
+        self._bitboards.set_square(selected_bitboard, piece, colour)
+        self._bitboards.set_rotation(selected_bitboard, rotation)
+
+        self.refresh_pieces()
+    
+    def remove_piece(self):
         if self._selected_coords is None or self._selected_coords == (0, 7) or self._selected_coords == (9, 0):
             return
         
@@ -150,7 +203,6 @@ class Setup(_State):
         self._bitboards.clear_square(selected_bitboard, Colour.BLUE)
         self._bitboards.clear_square(selected_bitboard, Colour.RED)
         self._bitboards.clear_rotation(selected_bitboard)
-        self._bitboards.set_square(selected_bitboard, self._selected_piece, self._selected_piece_colour)
 
         self.refresh_pieces()
     
@@ -176,26 +228,41 @@ class Setup(_State):
         dict_name_map = { Colour.BLUE: 'blue_piece_buttons', Colour.RED: 'red_piece_buttons' }
 
         self.deselect_piece()
+
+        if piece == 'ERASE':
+            SETUP_WIDGETS['erase_button'].set_locked(True)
+            SETUP_WIDGETS['erase_button'].set_next_icon()
+        elif piece == 'MOVE':
+            SETUP_WIDGETS['move_button'].set_locked(True)
+            SETUP_WIDGETS['move_button'].set_next_icon()
+        else:
+            SETUP_WIDGETS[dict_name_map[colour]][piece].set_locked(True)
+            SETUP_WIDGETS[dict_name_map[colour]][piece].set_next_icon()
         
-        SETUP_WIDGETS[dict_name_map[colour]][piece].set_locked(True)
-        SETUP_WIDGETS[dict_name_map[colour]][piece].set_next_icon()
-        
-        self._selected_piece = piece
-        self._selected_piece_colour = colour
+        self._selected_tool = piece
+        self._selected_tool_colour = colour
     
     def deselect_piece(self):
         dict_name_map = { Colour.BLUE: 'blue_piece_buttons', Colour.RED: 'red_piece_buttons' }
 
-        if self._selected_piece:
-            SETUP_WIDGETS[dict_name_map[self._selected_piece_colour]][self._selected_piece].set_locked(False)
-            SETUP_WIDGETS[dict_name_map[self._selected_piece_colour]][self._selected_piece].set_next_icon()
+        if self._selected_tool:
+            if self._selected_tool == 'ERASE':
+                SETUP_WIDGETS['erase_button'].set_locked(False)
+                SETUP_WIDGETS['erase_button'].set_next_icon()
+            elif self._selected_tool == 'MOVE':
+                SETUP_WIDGETS['move_button'].set_locked(False)
+                SETUP_WIDGETS['move_button'].set_next_icon()
+            else:
+                SETUP_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_locked(False)
+                SETUP_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_next_icon()
         
-        self._selected_piece = None
-        self._selected_piece_colour = None
+        self._selected_tool = None
+        self._selected_tool_colour = None
                 
     def handle_resize(self, resize_end=False):
         self._widget_group.handle_resize(self._screen.get_size())
         self._piece_group.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size, resize_end)
+        self._drag_and_drop.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
     
     def draw(self):
         draw_background(self._screen, GRAPHICS['temp_background'])
@@ -206,6 +273,8 @@ class Setup(_State):
             square_size = SETUP_WIDGETS['chessboard'].size[0] / 10
             overlay_position = coords_to_screen_pos(self._selected_coords, SETUP_WIDGETS['chessboard'].position, square_size)
             pygame.draw.rect(self._screen, theme['borderPrimary'], (*overlay_position, square_size, square_size), width=int(theme['borderWidth']))
+
+        self._drag_and_drop.draw(self._screen)
     
     def update(self, **kwargs):
         self.draw()

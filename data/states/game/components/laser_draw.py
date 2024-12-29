@@ -16,7 +16,6 @@ class LaserDraw:
         self._board_position = board_position
         self._square_size = board_size[0] / 10
         self._laser_lists = []
-        self._screen = pygame.display.get_surface()
     
     def add_laser(self, laser_result, laser_colour):
         laser_path = laser_result.laser_path.copy()
@@ -46,7 +45,7 @@ class LaserDraw:
         self._laser_lists.append((laser_path, laser_colour))
         animation.set_timer(1000, lambda: self._laser_lists.pop(0))
     
-    def draw_laser(self, laser_list):
+    def draw_laser(self, screen, laser_list):
         laser_path, laser_colour = laser_list
         for coords, rotation, type in laser_path:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
@@ -55,11 +54,11 @@ class LaserDraw:
             scaled_image = pygame.transform.scale(image, (self._square_size + 1, self._square_size + 1)) # +1 to prevent rounding creating black lines
             rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
 
-            self._screen.blit(rotated_image, (square_x, square_y))
+            screen.blit(rotated_image, (square_x, square_y))
     
-    def draw(self):
+    def draw(self, screen):
         for laser_list in self._laser_lists:
-            self.draw_laser(laser_list)
+            self.draw_laser(screen, laser_list)
     
     def handle_resize(self, board_position, board_size):
         self._board_position = board_position

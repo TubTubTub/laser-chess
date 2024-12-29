@@ -185,7 +185,7 @@ class Review(_State):
         draw_background(self._screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
         self._piece_group.draw(self._screen)
-        self._laser_draw.draw()
+        self._laser_draw.draw(self._screen)
     
     def update(self, **kwargs):
         self.draw()

@@ -3,7 +3,8 @@ from enum import IntEnum, StrEnum, auto
 
 BG_COLOUR = (0, 0, 0)
 PAUSE_COLOUR = (50, 50, 50, 200)
-OVERLAY_COLOUR = (255, 0, 0, 128)
+OVERLAY_COLOUR_LIGHT = (255, 0, 0, 128)
+OVERLAY_COLOUR_DARK = (255, 0, 0, 196)
 SCREEN_SIZE = (1200, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE
 STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 #Board height divded by 8
@@ -43,6 +44,8 @@ class SetupEventType(StrEnum):
     RED_START_CLICK = auto()
     START_CLICK = auto()
     CONFIG_CLICK = auto()
+    ERASE_CLICK = auto()
+    MOVE_CLICK = auto()
 
 class ReviewEventType(StrEnum):
     MENU_CLICK = auto()

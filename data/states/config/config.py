@@ -9,6 +9,7 @@ from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
 from data.components.audio import audio
 from data.components.animation import animation
+from data.theme import theme
 from data.components.custom_event import CustomEvent
 
 from data.widgets import Carousel, Text
@@ -27,6 +28,7 @@ class Config(_State):
         self._cursor = Cursor()
         self._config = None
         self._valid_fen = True
+        self._selected_preset = None
         
         self._widget_group = None
     
@@ -37,19 +39,16 @@ class Config(_State):
     
     def startup(self, persist=None):
         print('starting config.py')
-        print('RECEIVED CUSTOM FEN STRING:', persist)
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(self._screen.size)
+        CONFIG_WIDGETS['invalid_fen_string'].kill()
 
         self._config = default_config
 
-        CONFIG_WIDGETS['invalid_fen_string'].kill()
+        if persist:
+            self._config['FEN_STRING'] = persist
         
-        try:
-            CONFIG_WIDGETS['board_thumbnail'].initialise_board(self._config['FEN_STRING'])
-        except:
-            CONFIG_WIDGETS['board_thumbnail'].initialise_board([])
-            self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
+        self.set_fen_string(self._config['FEN_STRING'])
         
         self._cpu_depth_carousel = Carousel(
             parent=CONFIG_WIDGETS['config_container'],
@@ -88,10 +87,9 @@ class Config(_State):
                 ),
             }
         )
+        self._cpu_depth_carousel.set_to_key(2)
 
         self.toggle_pvc(self._config['CPU_ENABLED'])
-
-        self._cpu_depth_carousel.set_to_key(2)
 
         if self._config['CPU_ENABLED']:
             self.create_depth_picker()
@@ -130,6 +128,11 @@ class Config(_State):
             self.remove_depth_picker()
     
     def set_fen_string(self, new_fen_string):
+        CONFIG_WIDGETS['fen_string_input'].update_text(new_fen_string)
+        self._config['FEN_STRING'] = new_fen_string
+
+        self.set_preset_overlay(new_fen_string)
+
         try:
             CONFIG_WIDGETS['board_thumbnail'].initialise_board(new_fen_string)
             CONFIG_WIDGETS['invalid_fen_string'].kill()
@@ -145,8 +148,6 @@ class Config(_State):
             self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
             
             self._valid_fen = False
-
-        self._config['FEN_STRING'] = new_fen_string
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
@@ -187,12 +188,23 @@ class Config(_State):
                 self._config['CPU_DEPTH'] = int(widget_event.data)
             
             case ConfigEventType.PRESET_CLICK:
-                CONFIG_WIDGETS['fen_string_input'].update_text(widget_event.fen_string)
                 self.set_fen_string(widget_event.fen_string)
             
             case ConfigEventType.SETUP_CLICK:
                 self.next = 'setup'
                 self.done = True
+    
+    def set_preset_overlay(self, fen_string):
+        fen_string_widget_map = {
+            'sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b': 'preset_1',
+            'sc3ncfcncra2/10/3Pd2pa3/paPc2Pbra2pbPd/pbPd2Rapd2paPc/3Pc2pb3/10/2RaNaFaNa3Sa b': 'preset_2',
+            'sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b': 'preset_3'
+        }
+
+        if fen_string in fen_string_widget_map:
+            self._selected_preset = CONFIG_WIDGETS[fen_string_widget_map[fen_string]]
+        else:
+            self._selected_preset = None
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
@@ -200,6 +212,9 @@ class Config(_State):
     def draw(self):
         draw_background(self._screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
+
+        if self._selected_preset:
+            pygame.draw.rect(self._screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))
     
     def update(self, **kwargs):
         self._widget_group.update()

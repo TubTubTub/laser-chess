@@ -112,6 +112,28 @@ SETUP_WIDGETS = {
     ],
     'blue_piece_buttons': {},
     'red_piece_buttons': {},
+    'erase_button':
+    MultipleIconButton(
+        relative_position=(0.2, 0.1),
+        relative_size=(0.1, 0.1),
+        scale_mode='height',
+        margin=10,
+        border_width=5,
+        border_radius=10,
+        icons_dict={True: GRAPHICS['erase'], False: get_dimmed_icon(GRAPHICS['erase'])},
+        event=CustomEvent(SetupEventType.ERASE_CLICK),
+    ),
+    'move_button':
+    MultipleIconButton(
+        relative_position=(0.3, 0.1),
+        relative_size=(0.1, 0.1),
+        scale_mode='height',
+        margin=10,
+        border_width=5,
+        border_radius=10,
+        icons_dict={True: GRAPHICS['point'], False: get_dimmed_icon(GRAPHICS['point'])},
+        event=CustomEvent(SetupEventType.MOVE_CLICK),
+    ),
     'chessboard':
     Chessboard(
         relative_position=(0, 0),
@@ -158,7 +180,6 @@ for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX
         icons_dict={True: blue_icon, False: dimmed_blue_icon},
         event=CustomEvent(SetupEventType.PICK_PIECE_CLICK, piece=piece, active_colour=Colour.BLUE)
     )
-    
 
     red_icon = GRAPHICS[f'{piece.name.lower()}_2']
     dimmed_red_icon = get_dimmed_icon(red_icon)
