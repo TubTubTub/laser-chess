@@ -8,15 +8,11 @@ Use RectF to prevent black lines in board forming from under-rounding errors
 Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
-Select default FEN strings in config screen
 Make wrapper for pressable button widgets
 
 Ambitious:
-Cursor-based pagination for viewing games
 Switch sphinx direction
-Board creator
 Log-in
-Drag-and-drop pieces
 
 Miscellaneous:
 Maybe separate text background code into a new label class

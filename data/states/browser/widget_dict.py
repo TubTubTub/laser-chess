@@ -1,7 +1,8 @@
 from data.components.custom_event import CustomEvent
-from data.constants import BrowserEventType
+from data.constants import BrowserEventType, GAMES_PER_PAGE
 from data.assets import GRAPHICS
 from data.widgets import *
+from data.database.database_helpers import get_number_of_games
 
 BROWSER_HEIGHT = 0.6
 
@@ -92,3 +93,24 @@ BROWSER_WIDGETS = {
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)
     )
 }
+
+number_of_pages = get_number_of_games() // GAMES_PER_PAGE + 1
+carousel_widgets = {
+    i: Text(
+        relative_position=(0, 0),
+        relative_size=(0.3, 0.1),
+        text=f"PAGE {i} OF {number_of_pages}",
+        fit_vertical=True,
+        border_width=0,
+    )
+    for i in range(1, number_of_pages + 1)
+}
+
+BROWSER_WIDGETS['page_carousel'] = Carousel(
+    relative_position = (0, 0.03),
+    anchor_x='center',
+    margin=5,
+    border_width=0,
+    widgets_dict=carousel_widgets,
+    event=CustomEvent(BrowserEventType.PAGE_CLICK),
+)

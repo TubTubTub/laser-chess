@@ -1,0 +1,61 @@
+from data.constants import Colour, Piece, Score
+from data.utils.bitboard_helpers import index_to_bitboard, pop_count
+from data.states.game.components.psqt import PSQT, FLIP
+
+class Evaluator:
+    def __init__(self, verbose=True):
+        self._verbose = verbose
+        pass
+    
+    def evaluate(self, board):
+        #Add tapered evaluation
+        blue_score = self.evaluate_win(board, Colour.BLUE) + self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
+
+        red_score = self.evaluate_win(board, Colour.RED) + self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
+
+        if (self._verbose):
+            print('\nPosition:', self.evaluate_position(board, Colour.BLUE), self.evaluate_position(board, Colour.RED))
+            print('Mobility:', self.evaluate_mobility(board, Colour.BLUE), self.evaluate_mobility(board, Colour.RED))
+            print('Safety:', self.evaluate_pharoah_safety(board, Colour.BLUE), self.evaluate_pharoah_safety(board, Colour.RED))
+            print('Overall score', blue_score - red_score)
+
+        return blue_score - red_score
+    
+    def evaluate_pieces(self, board, colour):
+        return (
+            Score.SPHINX * board.bitboards.get_piece_count(Piece.SPHINX, colour) +
+            Score.PYRAMID * board.bitboards.get_piece_count(Piece.PYRAMID, colour) +
+            Score.ANUBIS * board.bitboards.get_piece_count(Piece.ANUBIS, colour) +
+            Score.SCARAB * board.bitboards.get_piece_count(Piece.SCARAB, colour)
+        )
+
+    def evaluate_position(self, board, colour):
+        score = 0
+
+        for i in range(80):
+            bitboard = index_to_bitboard(i)
+            piece = board.bitboards.get_piece_on(bitboard, colour)
+
+            if piece is None or piece == Piece.SPHINX:
+                continue
+
+            index = FLIP[i] if colour == Colour.BLUE else i
+            score += PSQT[piece][index] * Score.POSITION
+
+        return score
+    
+    def evaluate_mobility(self, board, colour):
+        number_of_moves = pop_count(board.get_all_valid_squares(colour))
+
+        return number_of_moves * Score.MOVE
+
+    def evaluate_pharoah_safety(self, board, colour):
+        pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
+        pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
+        return (9 - pharoah_available_moves) * 3
+
+    def evaluate_win(self, board, colour):
+        if board.check_win() == colour:
+            return Score.CHECKMATE
+        
+        return 0

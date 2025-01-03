@@ -203,5 +203,43 @@ CONFIG_WIDGETS = {
         anchor_y='bottom',
         fen_string="sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
+    ),
+    'cpu_depth_carousel':
+    Carousel(
+        parent=config_container,
+        relative_position=(0.05, 0.7),
+        margin=5,
+        event=CustomEvent(ConfigEventType.CPU_DEPTH_CLICK),
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
+        widgets_dict={
+            2: Text(
+                relative_position=(0, 0),
+                relative_size=(0.3, 0.09),
+                text="EASY",
+                text_colour=(255, 255, 255),
+                margin=0,
+                border_width=0,
+                fill_colour=(0, 0, 0, 0)
+            ),
+            3: Text(
+                relative_position=(0, 0),
+                relative_size=(0.3, 0.09),
+                text="MEDIUM",
+                text_colour=(255, 255, 255),
+                margin=0,
+                border_width=0,
+                fill_colour=(0, 0, 0, 0)
+            ),
+            4: Text(
+                relative_position=(0, 0),
+                relative_size=(0.3, 0.09),
+                text="HARD",
+                text_colour=(255, 255, 255),
+                margin=0,
+                border_width=0,
+                fill_colour=(0, 0, 0, 0)
+            ),
+        }
     )
 }

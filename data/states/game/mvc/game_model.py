@@ -5,11 +5,9 @@ from data.states.game.widget_dict import GAME_WIDGETS
 
 from data.constants import Colour, GameEventType, EMPTY_BB
 from data.components.custom_event import CustomEvent
-from data.utils import bitboard_helpers as bb_helpers
 from data.utils import input_helpers as ip_helpers
-from data.states.game.components.cpu import CPU
-
-import threading
+from data.states.game.cpu import SimpleCPU
+from data.states.game.cpu.cpu_thread import CPUThread
 
 class GameModel:
     def __init__(self, game_config):
@@ -30,10 +28,13 @@ class GameModel:
             'TIME_ENABLED': game_config['TIME_ENABLED'],
             'TIME': game_config['TIME'],
             'START_FEN_STRING': game_config['FEN_STRING'],
-            'MOVES': []
+            'MOVES': [],
+            'ZOBRIST_KEYS': []
         }
-
-        self.thread_stop = threading.Event()
+        
+        self._cpu = SimpleCPU(self.cpu_callback)
+        self._cpu_thread = CPUThread(self._cpu)
+        self._cpu_thread.start()
 
     def register_listener(self, listener, parent_class):
         self._listeners[parent_class].append(listener)
@@ -104,15 +105,21 @@ class GameModel:
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
-        cpu = CPU(self.get_board(), depth=self.states['CPU_DEPTH'])
-        process = threading.Thread(target=cpu.find_best_move, args=(self.make_move, self.states, self.thread_stop,))
-        process.start()
+        self._cpu_thread.start_thread(self.get_board())
     
-    def get_clicked_coords(self, src_bitboard):
+    def cpu_callback(self, move):
+        self.make_move(move)
+        self.states['AWAITING_CPU'] = False
+    
+    def stop_cpu(self):
+        self._cpu.stop_thread()
+        self.states['AWAITING_CPU'] = False
+    
+    def get_available_moves(self, src_bitboard):
         if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
-            return bb_helpers.bitboard_to_coords_list(self._board.get_valid_squares(src_bitboard))
+            return self._board.get_valid_squares(src_bitboard)
         
-        return []
+        return EMPTY_BB
 
     def get_piece_list(self):
         return self._board.get_piece_list()

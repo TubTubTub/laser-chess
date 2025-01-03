@@ -1,7 +1,6 @@
 import pygame
 import sys
 from data.main import main
-from data.states.game.components.game_model import Board
 
 print('Running run.py...')
 

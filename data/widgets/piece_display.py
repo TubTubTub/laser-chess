@@ -1,7 +1,7 @@
 import pygame
 from data.widgets.bases import _Widget
 from data.states.game.components.piece_sprite import create_piece
-from data.constants import PieceScore, Rotation
+from data.constants import Score, Rotation
 
 class PieceDisplay(_Widget):
     def __init__(self, active_colour, **kwargs):
@@ -18,7 +18,7 @@ class PieceDisplay(_Widget):
     
     def add_piece(self, piece):
         self._piece_list.append(piece)
-        self._piece_list.sort(key=lambda piece: PieceScore[piece.name])
+        self._piece_list.sort(key=lambda piece: Score[piece.name])
         self.initialise_piece_surface()
     
     def remove_piece(self, piece):

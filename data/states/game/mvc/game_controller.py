@@ -28,7 +28,8 @@ class GameController:
             if event.key == pygame.K_ESCAPE:
                 self._model.toggle_paused()
             elif event.key == pygame.K_l:
-                self._model.thread_stop.set()
+                print('\nSTOPPING CPU')
+                self._model.stop_cpu()
 
     def handle_pause_event(self, event):
         game_event = self._pause_view.convert_mouse_pos(event)
@@ -112,22 +113,22 @@ class GameController:
                     if self._model.states['AWAITING_CPU']:
                         return
 
-                    clicked_bitboard = bb_helpers.coords_to_bitboard(game_event.coords)
+                    clicked_coords = game_event.coords
+                    clicked_bitboard = bb_helpers.coords_to_bitboard(clicked_coords)
+                    selected_coords = self._view.get_selected_coords()
 
-                    if self._view.get_selected_coords():
-                        src_coords = self._view.get_selected_coords()
-                        possible_move_coords = self._model.get_clicked_coords(bb_helpers.coords_to_bitboard(src_coords))
+                    if selected_coords:
+                        selected_bitboard = bb_helpers.coords_to_bitboard(selected_coords)
+                        available_bitboard = self._model.get_available_moves(selected_bitboard)
 
-                        if game_event.coords in possible_move_coords:
-                            src_coords = self._view.get_selected_coords()
-                            move = Move.instance_from_coords(MoveType.MOVE, src_coords, game_event.coords)
+                        if bb_helpers.is_occupied(clicked_bitboard, available_bitboard):
+                            move = Move.instance_from_coords(MoveType.MOVE, selected_coords, clicked_coords)
                             self.make_move(move)
                         else:
                             self._view.set_overlay_coords(None, None)
                     else:
-                        possible_move_coords = self._model.get_clicked_coords(clicked_bitboard)
-                        if possible_move_coords:
-                            self._view.set_overlay_coords(possible_move_coords, game_event.coords)
+                        available_bitboard = self._model.get_available_moves(clicked_bitboard)
+                        self._view.set_overlay_coords(bb_helpers.bitboard_to_coords_list(available_bitboard), clicked_coords)
 
                 case GameEventType.EMPTY_CLICK:
                     self._view.set_overlay_coords(None, None)

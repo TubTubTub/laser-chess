@@ -10,14 +10,10 @@ from data.components.cursor import Cursor
 from data.components.audio import audio
 from data.components.animation import animation
 from data.theme import theme
-from data.components.custom_event import CustomEvent
-
-from data.widgets import Carousel, Text
 
 from data.assets import MUSIC_PATHS, GRAPHICS
 
 from data.constants import ConfigEventType, Colour
-
 
 from data.utils.asset_helpers import draw_background
 
@@ -49,50 +45,13 @@ class Config(_State):
             self._config['FEN_STRING'] = persist
         
         self.set_fen_string(self._config['FEN_STRING'])
-        
-        self._cpu_depth_carousel = Carousel(
-            parent=CONFIG_WIDGETS['config_container'],
-            relative_position=(0.05, 0.7),
-            margin=5,
-            event=CustomEvent(ConfigEventType.CPU_DEPTH_CLICK),
-            border_width=0,
-            fill_colour=(0, 0, 0, 0),
-            widgets_dict={
-                2: Text(
-                    relative_position=(0, 0),
-                    relative_size=(0.3, 0.09),
-                    text="EASY",
-                    text_colour=(255, 255, 255),
-                    margin=0,
-                    border_width=0,
-                    fill_colour=(0, 0, 0, 0)
-                ),
-                3: Text(
-                    relative_position=(0, 0),
-                    relative_size=(0.3, 0.09),
-                    text="MEDIUM",
-                    text_colour=(255, 255, 255),
-                    margin=0,
-                    border_width=0,
-                    fill_colour=(0, 0, 0, 0)
-                ),
-                4: Text(
-                    relative_position=(0, 0),
-                    relative_size=(0.3, 0.09),
-                    text="HARD",
-                    text_colour=(255, 255, 255),
-                    margin=0,
-                    border_width=0,
-                    fill_colour=(0, 0, 0, 0)
-                ),
-            }
-        )
-        self._cpu_depth_carousel.set_to_key(2)
-
         self.toggle_pvc(self._config['CPU_ENABLED'])
 
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_to_key(2)
         if self._config['CPU_ENABLED']:
             self.create_depth_picker()
+        else:
+            self.remove_depth_picker()
 
         self.draw()
 
@@ -101,16 +60,16 @@ class Config(_State):
     def create_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
         # CONFIG_WIDGETS['start_button'].set_image()
-        self._cpu_depth_carousel.set_surface_size(self._screen.get_size())
-        self._cpu_depth_carousel.set_image()
-        self._cpu_depth_carousel.set_geometry()
-        self._widget_group.add(self._cpu_depth_carousel)
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_surface_size(self._screen.get_size())
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_image()
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_geometry()
+        self._widget_group.add(CONFIG_WIDGETS['cpu_depth_carousel'])
     
     def remove_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.7))
         # CONFIG_WIDGETS['start_button'].set_image()
         
-        self._cpu_depth_carousel.kill()
+        CONFIG_WIDGETS['cpu_depth_carousel'].kill()
     
     def toggle_pvc(self, pvc_enabled):
         if pvc_enabled:

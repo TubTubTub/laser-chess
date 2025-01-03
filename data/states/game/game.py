@@ -1,8 +1,8 @@
 import pygame
 
-from data.states.game.components.game_model import GameModel
-from data.states.game.components.game_view import GameView
-from data.states.game.components.game_controller import GameController
+from data.states.game.mvc.game_model import GameModel
+from data.states.game.mvc.game_view import GameView
+from data.states.game.mvc.game_controller import GameController
 from data.states.game.components.pause_view import PauseView
 from data.states.game.components.win_view import WinView
 

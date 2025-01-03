@@ -1,6 +1,7 @@
 from data.constants import Rank, File, Piece, Colour, Rotation, RotationIndex, EMPTY_BB
 from data.states.game.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
+from data.states.game.components.zobrist_hasher import ZobristHasher
 
 class BitboardCollection():
     def __init__(self, fen_string):
@@ -9,10 +10,12 @@ class BitboardCollection():
         self.combined_all_bitboard = EMPTY_BB
         self.rotation_bitboards = [EMPTY_BB, EMPTY_BB]
         self.active_colour = Colour.BLUE
+        self._hasher = ZobristHasher()
 
         try:
             if fen_string:
                 self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
+                self.initialise_hash()
         except ValueError as error:
             print('(BitboardCollection.__init__) Please input a valid FEN string:', error)
             raise error
@@ -35,6 +38,27 @@ class BitboardCollection():
  
         return characters
     
+    def initialise_hash(self):
+        for piece in Piece:
+            for colour in Colour:
+                piece_bitboard = self.get_piece_bitboard(piece, colour)
+
+                for occupied_bitboard in bb_helpers.occupied_squares(piece_bitboard):
+                    self._hasher.apply_piece_hash(occupied_bitboard, piece, colour)
+        
+        for bitboard in bb_helpers.loop_all_squares():
+            rotation = self.get_rotation_on(bitboard)
+            self._hasher.apply_rotation_hash(bitboard, rotation)
+                    
+        if self.active_colour == Colour.RED:
+            self._hasher.apply_red_move_hash()
+    
+    def flip_colour(self):
+        self.active_colour = self.active_colour.get_flipped_colour()
+
+        if self.active_colour == Colour.RED:
+            self._hasher.apply_red_move_hash()
+    
     def update_move(self, src, dest):
         piece = self.get_piece_on(src, self.active_colour)
 
@@ -49,13 +73,16 @@ class BitboardCollection():
         self.clear_rotation(src)
         self.set_rotation(dest, new_rotation)
     
-    def clear_rotation(self, index):
+    def clear_rotation(self, bitboard):
+        old_rotation = self.get_rotation_on(bitboard)
         rotation_1, rotation_2 = self.rotation_bitboards
-        self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.clear_square(rotation_1, index)
-        self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.clear_square(rotation_2, index)
+        self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.clear_square(rotation_1, bitboard)
+        self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.clear_square(rotation_2, bitboard)
+
+        self._hasher.apply_rotation_hash(bitboard, old_rotation)
     
-    def clear_square(self, index, colour):
-        piece = self.get_piece_on(index, colour)
+    def clear_square(self, bitboard, colour):
+        piece = self.get_piece_on(bitboard, colour)
 
         if piece is None:
             return
@@ -64,25 +91,28 @@ class BitboardCollection():
         colour_bitboard = self.combined_colour_bitboards[colour]
         all_bitboard = self.combined_all_bitboard
 
-        self.piece_bitboards[colour][piece] = bb_helpers.clear_square(piece_bitboard, index)
-        self.combined_colour_bitboards[colour] = bb_helpers.clear_square(colour_bitboard, index)
-        self.combined_all_bitboard = bb_helpers.clear_square(all_bitboard, index)
+        self.piece_bitboards[colour][piece] = bb_helpers.clear_square(piece_bitboard, bitboard)
+        self.combined_colour_bitboards[colour] = bb_helpers.clear_square(colour_bitboard, bitboard)
+        self.combined_all_bitboard = bb_helpers.clear_square(all_bitboard, bitboard)
+
+        self._hasher.apply_piece_hash(bitboard, piece, colour)
     
-    def set_rotation(self, index, rotation):
+    def set_rotation(self, bitboard, rotation):
         rotation_1, rotation_2 = self.rotation_bitboards
+        self._hasher.apply_rotation_hash(bitboard, rotation)
         
         match rotation:
             case Rotation.UP:
                 return
             case Rotation.RIGHT:
-                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, index)
+                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, bitboard)
                 return
             case Rotation.DOWN:
-                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, index)
+                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, bitboard)
                 return
             case Rotation.LEFT:
-                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, index)
-                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, index)
+                self.rotation_bitboards[RotationIndex.FIRSTBIT] = bb_helpers.set_square(rotation_1, bitboard)
+                self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.set_square(rotation_2, bitboard)
                 return
             case _:
                 raise ValueError('Invalid rotation input (bitboard.py):', rotation)
@@ -95,6 +125,8 @@ class BitboardCollection():
         self.piece_bitboards[colour][piece] = bb_helpers.set_square(piece_bitboard, bitboard)
         self.combined_colour_bitboards[colour] = bb_helpers.set_square(colour_bitboard, bitboard)
         self.combined_all_bitboard = bb_helpers.set_square(all_bitboard, bitboard)
+
+        self._hasher.apply_piece_hash(bitboard, piece, colour)
     
     def get_piece_bitboard(self, piece, colour):
         return self.piece_bitboards[colour][piece]
@@ -130,6 +162,9 @@ class BitboardCollection():
 
     def get_piece_count(self, piece, colour):
         return bb_helpers.pop_count(self.get_piece_bitboard(piece, colour))
+    
+    def get_hash(self):
+        return self._hasher.hash
     
     def convert_to_piece_list(self):
         piece_list = []

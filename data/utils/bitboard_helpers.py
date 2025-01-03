@@ -78,3 +78,7 @@ def pop_count(bitboard):
         bitboard &= bitboard - 1
     
     return count
+
+def loop_all_squares():
+    for i in range(80):
+        yield 1 << i

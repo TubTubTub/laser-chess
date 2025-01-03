@@ -106,7 +106,7 @@ SETUP_WIDGETS = {
             margin=10,
             border_width=5,
             border_radius=10,
-            icon=GRAPHICS['right_arrow'],
+            icon=GRAPHICS['return'],
             event=CustomEvent(SetupEventType.CONFIG_CLICK),
         )
     ],

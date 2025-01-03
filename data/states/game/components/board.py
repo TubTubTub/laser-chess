@@ -2,12 +2,13 @@ from data.states.game.components.move import Move
 from data.states.game.components.laser import Laser
 
 from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
-from data.states.game.components import bitboard_collection
+from data.states.game.components.bitboard_collection import BitboardCollection
 from data.utils import bitboard_helpers as bb_helpers
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
-        self.bitboards = bitboard_collection.BitboardCollection(fen_string)
+        self.bitboards = BitboardCollection(fen_string)
+        # print('NEW HASH:', self.bitboards.get_hash())
 
     def __str__(self):
         characters = ''
@@ -36,16 +37,13 @@ class Board:
     def get_active_colour(self):
         return self.bitboards.active_colour
     
-    def flip_colour(self):
-        self.bitboards.active_colour = self.bitboards.active_colour.get_flipped_colour()
-    
     def check_win(self):
         for colour in Colour:
             if self.get_all_valid_squares(colour) == EMPTY_BB:
-                print(colour.get_flipped_colour(), '(Board.check_win) Returning')
+                print(colour.get_flipped_colour().name, '(Board.check_win) Returning')
                 return colour.get_flipped_colour()
             elif self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
-                print(colour.get_flipped_colour(), '(Board.check_win) Returning')
+                print(colour.get_flipped_colour().name, '(Board.check_win) Returning')
                 return colour.get_flipped_colour()
 
         return None
@@ -83,11 +81,13 @@ class Board:
         if fire_laser:
             laser = self.fire_laser()
 
-        self.flip_colour()
+        self.bitboards.flip_colour()
+
+        # print('NEW HASH:', self.bitboards.get_hash())
         return laser
     
     def undo_move(self, move, laser_result):
-        self.flip_colour()
+        self.bitboards.flip_colour()
         
         if laser_result.hit_square_bitboard:
             src = laser_result.hit_square_bitboard
@@ -105,7 +105,7 @@ class Board:
             reversed_move = Move.instance_from_bitboards(MoveType.ROTATE, move.src, move.src, move.rotation_direction.get_opposite())
         
         self.apply_move(reversed_move, fire_laser=False)
-        self.flip_colour()
+        self.bitboards.flip_colour()
     
     def remove_piece(self, square_bitboard):
         self.bitboards.clear_square(square_bitboard, Colour.BLUE)

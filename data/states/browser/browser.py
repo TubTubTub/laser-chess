@@ -11,9 +11,9 @@ from data.components.audio import audio
 
 from data.assets import GRAPHICS
 
-from data.constants import BrowserEventType
+from data.constants import BrowserEventType, GAMES_PER_PAGE
 
-from data.database.database_helpers import get_all_games, delete_game, get_ordered_games
+from data.database.database_helpers import delete_game, get_ordered_games
 
 from data.utils.asset_helpers import draw_background
 
@@ -28,6 +28,7 @@ class Browser(_State):
         self._filter_ascend = False
         self._games_list = []
         self._widget_group = None
+        self._page_number = 1
     
     def cleanup(self):
         print('cleaning browser.py')
@@ -68,7 +69,10 @@ class Browser(_State):
         filter_ascend = BROWSER_WIDGETS['filter_ascend_dropdown'].get_selected_word()
 
         self._selected_index = None
-        self._games_list = get_ordered_games(column_map[filter_column], ascend_map[filter_ascend])
+
+        start_row = (self._page_number - 1) * GAMES_PER_PAGE + 1
+        end_row = (self._page_number) * GAMES_PER_PAGE
+        self._games_list = get_ordered_games(column_map[filter_column], ascend_map[filter_ascend], start_row=start_row, end_row=end_row)
         BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
         BROWSER_WIDGETS['scroll_area'].set_image()
     
@@ -120,6 +124,12 @@ class Browser(_State):
                     return
                 
                 self.refresh_games_list()
+            
+            case BrowserEventType.PAGE_CLICK:
+                self._page_number = widget_event.data
+
+                self.refresh_games_list()
+
     
     def handle_resize(self):
         self._widget_group.handle_resize(self._screen.get_size())
