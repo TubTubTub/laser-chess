@@ -3,12 +3,11 @@ from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard
 import re
 
 class Move():
-    def __init__(self, move_type, src, dest=None, rotation_direction=None, captured=None):
+    def __init__(self, move_type, src, dest=None, rotation_direction=None):
         self.move_type = move_type
         self.src = src
         self.dest = dest
         self.rotation_direction = rotation_direction
-        self.captured = {}
 
     def to_notation(self, colour, piece, hit_square_bitboard):
         hit_square = ''
@@ -16,7 +15,7 @@ class Move():
             piece = piece.upper()
         
         if hit_square_bitboard:
-            hit_square =  'x' + bitboard_to_notation(hit_square_bitboard)
+            hit_square = 'x' + bitboard_to_notation(hit_square_bitboard)
 
         if self.move_type == MoveType.MOVE:
             return 'M' + piece + bitboard_to_notation(self.src) + bitboard_to_notation(self.dest) + hit_square
@@ -25,10 +24,16 @@ class Move():
     
     def __str__(self):
         rotate_text = ''
-        if self.move_type == MoveType.ROTATE:
-            rotate_text = ' ' + self.rotation_direction
+        coords_1 = '(' + chr(bitboard_to_coords(self.src)[0] + 65) + ',' + str(bitboard_to_coords(self.src)[1] + 1) + ')'
 
-        return f'{self.move_type}{rotate_text}: FROM {bitboard_to_coords(self.src)} TO {bitboard_to_coords(self.dest)}'
+        if self.move_type == MoveType.ROTATE:
+            rotate_text = ' ' + self.rotation_direction.name
+            return f'{self.move_type.name}{rotate_text}: ON {coords_1}'
+        
+        elif self.move_type == MoveType.MOVE:
+            coords_2 = '(' + chr(bitboard_to_coords(self.dest)[0] + 65) + ', ' + str(bitboard_to_coords(self.dest)[1] + 1) + ')'
+            return f'{self.move_type.name}{rotate_text}: FROM {coords_1} TO {coords_2}'
+        
         # (Rotation: {self.rotation_direction})
     
     @classmethod
@@ -41,19 +46,17 @@ class Move():
             letters = re.findall(r'[A-Za-z]+', moves)
             numbers = re.findall(r'\d+', moves)
 
-            captured = notation_to_bitboard(notation.split('x')[1]) if 'x' in notation else None
-
             if move_type == MoveType.MOVE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
                 dest_bitboard = notation_to_bitboard(letters[1] + numbers[1])
 
-                return move_cls(move_type, src_bitboard, dest_bitboard, captured=captured)
+                return move_cls(move_type, src_bitboard, dest_bitboard)
             
             elif move_type == MoveType.ROTATE:
                 src_bitboard = notation_to_bitboard(letters[0] + numbers[0])
                 rotation_direction = RotationDirection(letters[1])
 
-                return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction, captured)
+                return move_cls(move_type, src_bitboard, src_bitboard, rotation_direction)
             else:
                 raise ValueError('(Move.instance_from_notation) Invalid move type:', move_type)
 

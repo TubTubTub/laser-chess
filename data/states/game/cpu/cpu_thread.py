@@ -29,5 +29,5 @@ class CPUThread(threading.Thread):
                 self._cpu.find_move(self._board, self._stop_event)
                 self.stop_thread()
             else:
-                time.sleep(5)
-                print('(CPUThread.run) Thread still running...')
+                time.sleep(1)
+                # print('(CPUThread.run) Thread still running...')

@@ -9,5 +9,6 @@
         "**/*.pyc": {"when": "$(basename).py"},
         "**/__pycache__": true
     },
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "python.terminal.activateEnvironment": true
 }

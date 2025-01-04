@@ -136,7 +136,8 @@ class Score(IntEnum):
     
     MOVE = 10
     POSITION = 5
-    CHECKMATE = 6969696969
+    CHECKMATE = 100000
+    INFINITE = 6969696969
 
 class Rank(IntEnum):
     ONE = 0

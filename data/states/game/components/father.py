@@ -1,5 +1,5 @@
 import pygame
-from data.constants import ImageType, OVERLAY_COLOUR_LIGHT
+from data.constants import ImageType
 from data.states.game.components.piece_sprite import create_piece
 
 class DragAndDrop:

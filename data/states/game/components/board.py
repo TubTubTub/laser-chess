@@ -159,15 +159,11 @@ class Board:
             yield Move(MoveType.MOVE, src, dest)
     
     def generate_all_moves(self, colour):
-        for piece in (Piece.ANUBIS, Piece.PYRAMID, Piece.SCARAB, Piece.PHAROAH):
-            piece_bitboard = self.bitboards.get_piece_bitboard(piece, colour)
-
-            for square in bb_helpers.occupied_squares(piece_bitboard):
-                yield from self.generate_square_moves(square)
-        
         sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, colour)
-        colour_bitboard = self.bitboards.combined_colour_bitboards[colour] ^ sphinx_bitboard
+        sphinx_masked_bitboard = self.bitboards.combined_colour_bitboards[colour] ^ sphinx_bitboard
 
-        for square in bb_helpers.occupied_squares(colour_bitboard):
+        for square in bb_helpers.occupied_squares(sphinx_masked_bitboard):
+            yield from self.generate_square_moves(square)
+
             for rotation_direction in RotationDirection:
                 yield Move(MoveType.ROTATE, square, rotation_direction=rotation_direction)

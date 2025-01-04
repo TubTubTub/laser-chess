@@ -6,7 +6,7 @@ from data.states.game.widget_dict import GAME_WIDGETS
 from data.constants import Colour, GameEventType, EMPTY_BB
 from data.components.custom_event import CustomEvent
 from data.utils import input_helpers as ip_helpers
-from data.states.game.cpu import SimpleCPU
+from data.states.game.cpu import MinimaxCPU
 from data.states.game.cpu.cpu_thread import CPUThread
 
 class GameModel:
@@ -32,7 +32,7 @@ class GameModel:
             'ZOBRIST_KEYS': []
         }
         
-        self._cpu = SimpleCPU(self.cpu_callback)
+        self._cpu = MinimaxCPU(max_depth=1, callback=self.cpu_callback)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
 

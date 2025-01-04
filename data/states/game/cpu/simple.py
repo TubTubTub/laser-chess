@@ -1,35 +1,23 @@
 from data.states.game.cpu.base import BaseCPU
-from data.states.game.components.evaluator import Evaluator
 from data.constants import Colour
 from pprint import pprint
-import threading
-import time
 
 class SimpleCPU(BaseCPU):
     def __init__(self, callback, verbose=True):
-        self._verbose = verbose
-        self._evaluator = Evaluator(verbose=False)
-        self._callback = callback
-
-        self._stats = {
-            'nodes': 0,
-            'leaf_nodes' : 0,
-            'mates': 0
-        }
+        super().__init__(callback, verbose)
     
     def find_move(self, board, stop_event=None):
-        best_move = self.search(board, stop_event)
+        self.initialise_stats()
+        best_score, best_move = self.search(board, stop_event)
 
         if self._verbose:
-            print('\nCPU Search Results:')
-            pprint(self._stats)
-            print('Best move:', best_move, '\n')
+            self.print_stats(best_score, best_move)
 
         self._callback(best_move)
     
     def search(self, board, stop_event):
         if stop_event and stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (CPU.minimax)')
+            raise Exception('Thread killed - stopping minimax function (CPU.search)')
         
         best_score = 0
         best_move = None
@@ -54,4 +42,4 @@ class SimpleCPU(BaseCPU):
                 
             board.undo_move(move, laser_result)
             
-        return best_move
+        return best_score, best_move
