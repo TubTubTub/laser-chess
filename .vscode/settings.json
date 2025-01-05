@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "python": "python run.py"
+        "python": "python run_compare.py"
     },
     "code-runner.enableAppInsights": false,
     "code-runner.saveFileBeforeRun": true,

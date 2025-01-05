@@ -14,6 +14,7 @@ class CPUThread(threading.Thread):
     def delete_thread(self):
         self.stop_thread()
         self._running = False
+        self.join()
     
     def stop_thread(self):
         self._stop_event.set()
@@ -30,4 +31,4 @@ class CPUThread(threading.Thread):
                 self.stop_thread()
             else:
                 time.sleep(1)
-                # print('(CPUThread.run) Thread still running...')
+                # print(f'(CPUThread.run) Thread {threading.get_native_id()} still running...')

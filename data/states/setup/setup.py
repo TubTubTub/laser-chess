@@ -122,7 +122,7 @@ class Setup(_State):
                 self.done = True
             
             case SetupEventType.PICK_PIECE_CLICK:
-                if widget_event.piece == self._selected_tool:
+                if widget_event.piece == self._selected_tool and widget_event.active_colour == self._selected_tool_colour:
                     self.deselect_tool()
                 else:
                     self.select_tool(widget_event.piece, widget_event.active_colour)

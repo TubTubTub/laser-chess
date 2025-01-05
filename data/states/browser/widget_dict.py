@@ -80,7 +80,7 @@ BROWSER_WIDGETS = {
     Dropdown(
         relative_position=(0.65, 0.8),
         relative_height=0.075,
-        word_list=['moves', 'winner', 'time'],
+        word_list=['time', 'moves', 'winner'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_COLUMN_CLICK)
     ),
@@ -88,7 +88,7 @@ BROWSER_WIDGETS = {
     Dropdown(
         relative_position=(0.85, 0.8),
         relative_height=0.075,
-        word_list=['asc', 'desc'],
+        word_list=['desc', 'asc'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)
     )

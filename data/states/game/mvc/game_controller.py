@@ -1,5 +1,5 @@
 import pygame
-from data.constants import GameEventType, MoveType, Colour, StatusText, Miscellaneous
+from data.constants import GameEventType, MoveType, StatusText, Miscellaneous
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.components.move import Move
 
@@ -29,7 +29,7 @@ class GameController:
                 self._model.toggle_paused()
             elif event.key == pygame.K_l:
                 print('\nSTOPPING CPU')
-                self._model.stop_cpu()
+                self._model.kill_cpu()
 
     def handle_pause_event(self, event):
         game_event = self._pause_view.convert_mouse_pos(event)
@@ -42,6 +42,7 @@ class GameController:
                 self._model.toggle_paused()
             
             case GameEventType.MENU_CLICK:
+                self._model.kill_cpu()
                 self._to_menu()
 
             case _:
@@ -55,9 +56,11 @@ class GameController:
 
         match game_event.type:
             case GameEventType.MENU_CLICK:
+                self._model.kill_cpu()
                 self._to_menu()
             
             case GameEventType.GAME_CLICK:
+                self._model.kill_cpu()
                 self._to_new_game()
 
             case _:
@@ -83,13 +86,11 @@ class GameController:
             case GameEventType.RESIGN_CLICK:
                 self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
                 self._view.set_status_text(StatusText.WIN)
-                self.check_game_over()
                 return
                 
             case GameEventType.DRAW_CLICK:
                 self._model.set_winner(Miscellaneous.DRAW)
                 self._view.set_status_text(StatusText.DRAW)
-                self.check_game_over()
                 return
                 
             case GameEventType.TIMER_END:
@@ -126,7 +127,8 @@ class GameController:
                             self.make_move(move)
                         else:
                             self._view.set_overlay_coords(None, None)
-                    else:
+                            
+                    elif self._model.is_selectable(clicked_bitboard):
                         available_bitboard = self._model.get_available_moves(clicked_bitboard)
                         self._view.set_overlay_coords(bb_helpers.bitboard_to_coords_list(available_bitboard), clicked_coords)
 
@@ -140,15 +142,6 @@ class GameController:
     def make_move(self, move):
         self._model.make_move(move)
         self._view.set_overlay_coords([], None)
-        self.check_game_over()
 
         if self._model.states['CPU_ENABLED']:
             self._model.make_cpu_move()
-            self.check_game_over()
-    
-    def check_game_over(self):
-        winner = self._model.states['WINNER']
-        if winner is not None:
-            print('\n(GameController.check_game_over) Handling game end!', winner.name)
-            self._view.toggle_timer(Colour.BLUE, False)
-            self._view.toggle_timer(Colour.RED, False)

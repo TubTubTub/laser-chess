@@ -1,6 +1,5 @@
 from data.states.game.cpu.base import BaseCPU
-from data.constants import Colour
-from pprint import pprint
+from data.constants import Colour, Score
 
 class SimpleCPU(BaseCPU):
     def __init__(self, callback, verbose=True):
@@ -17,26 +16,25 @@ class SimpleCPU(BaseCPU):
     
     def search(self, board, stop_event):
         if stop_event and stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (CPU.search)')
+            raise Exception('Thread killed - stopping simple function (SimpleCPU.search)')
         
-        best_score = 0
-        best_move = None
         active_colour = board.bitboards.active_colour
-        self._stats['nodes'] += 1
+        best_score = -Score.INFINITE if active_colour == Colour.BLUE else Score.INFINITE
+        best_move = None
 
         for move in board.generate_all_moves(active_colour):
             laser_result = board.apply_move(move)
 
             self._stats['nodes'] += 1
-            self._stats['leaf_nodes'] += 1
-            if board.check_win() is not None:
-                self._stats['mates'] += 1
+            
+            if winner := board.check_win() is not None:
+                self.process_win(winner)
+            else:
+                self._stats['leaf_nodes'] += 1
 
             score = self._evaluator.evaluate(board)
-            if active_colour == Colour.RED:
-                score = -score
 
-            if score > best_score:
+            if (active_colour == Colour.BLUE and score > best_score) or (active_colour == Colour.RED and score < best_score):
                 best_move = move
                 best_score = score
                 

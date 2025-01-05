@@ -1,34 +1,39 @@
 from data.states.game.components.move import Move
 from data.states.game.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, Miscellaneous, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.states.game.components.bitboard_collection import BitboardCollection
 from data.utils import bitboard_helpers as bb_helpers
+from collections import defaultdict
 
 class Board:
     def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.bitboards = BitboardCollection(fen_string)
-        # print('NEW HASH:', self.bitboards.get_hash())
+        self.hash_list = [self.bitboards.get_hash()]
 
     def __str__(self):
         characters = ''
-        for rank in reversed(Rank):
+        pieces = defaultdict(int)
 
+        for rank in reversed(Rank):
             for file in File:
                 mask = 1 << (rank * 10 + file)
                 blue_piece = self.bitboards.get_piece_on(mask, Colour.BLUE)
                 red_piece = self.bitboards.get_piece_on(mask, Colour.RED)
 
                 if blue_piece:
+                    pieces[blue_piece.value.upper()] += 1
                     characters += f'{blue_piece.upper()}  '
                 elif red_piece:
+                    pieces[red_piece.value] += 1
                     characters += f'{red_piece}  '
                 else:
-                    characters += '0  '
+                    characters += '.  '
 
             characters += '\n\n'
         
-        characters += f'CURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}'
+        characters += str(dict(pieces))
+        characters += f'\nCURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}\n'
         return characters
     
     def get_piece_list(self):
@@ -36,19 +41,25 @@ class Board:
 
     def get_active_colour(self):
         return self.bitboards.active_colour
+
+    def to_hash(self):
+        return self.bitboards.get_hash()
     
     def check_win(self):
         for colour in Colour:
-            if self.get_all_valid_squares(colour) == EMPTY_BB:
-                print(colour.get_flipped_colour().name, '(Board.check_win) Returning')
-                return colour.get_flipped_colour()
-            elif self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
-                print(colour.get_flipped_colour().name, '(Board.check_win) Returning')
+            if self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
+                # print('\n(Board.check_win) Returning', colour.get_flipped_colour().name)
                 return colour.get_flipped_colour()
 
+        if self.hash_list.count(self.hash_list[-1]) >= 3: # ONLY CHECKING LAST AS check_win() CALLED EVERY MOVE
+            return Miscellaneous.DRAW
+
         return None
+
+    def append_hash_list(self):
+        self.hash_list.append(self.bitboards.get_hash())
     
-    def apply_move(self, move, fire_laser=True):
+    def apply_move(self, move, confirm=True):
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
@@ -78,12 +89,11 @@ class Board:
             self.bitboards.update_rotation(move.src, move.src, new_rotation)
 
         laser = None
-        if fire_laser:
+        if confirm:
             laser = self.fire_laser()
 
         self.bitboards.flip_colour()
 
-        # print('NEW HASH:', self.bitboards.get_hash())
         return laser
     
     def undo_move(self, move, laser_result):
@@ -104,7 +114,7 @@ class Board:
         elif move.move_type == MoveType.ROTATE:
             reversed_move = Move.instance_from_bitboards(MoveType.ROTATE, move.src, move.src, move.rotation_direction.get_opposite())
         
-        self.apply_move(reversed_move, fire_laser=False)
+        self.apply_move(reversed_move, confirm=False)
         self.bitboards.flip_colour()
     
     def remove_piece(self, square_bitboard):

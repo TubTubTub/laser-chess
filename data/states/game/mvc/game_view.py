@@ -1,7 +1,7 @@
 import pygame
 from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
 from data.utils.bitboard_helpers import bitboard_to_coords
-from data.constants import GameEventType, Colour, StatusText, OVERLAY_COLOUR_LIGHT
+from data.constants import GameEventType, Colour, StatusText, Miscellaneous, OVERLAY_COLOUR_LIGHT
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.states.game.components.overlay_draw import OverlayDraw
@@ -22,29 +22,33 @@ class GameView:
             GameEventType.PAUSE_CLICK: self.handle_pause,
         }
         self._model.register_listener(self.process_model_event, 'game')
+        self._selected_coords = None
 
         self._widget_group = WidgetGroup(GAME_WIDGETS)
-        GAME_WIDGETS['move_list'].reset_move_list()
-        GAME_WIDGETS['move_list'].kill()
-        GAME_WIDGETS['scroll_area'].set_image()
-        
-        GAME_WIDGETS['chessboard'].refresh_board()
+        self.initialise_widgets()
         
         self._board_size = GAME_WIDGETS['chessboard'].size
         self._board_position = GAME_WIDGETS['chessboard'].position
         self._square_size = self._board_size[0] / 10
 
         self._cursor = Cursor()
-
+        self._laser_draw = LaserDraw(self._board_position, self._board_size)
+        self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
-        self._laser_draw = LaserDraw(self._board_position, self._board_size)
-        self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
-
-        self._selected_coords = None
-
         self.set_status_text(StatusText.PLAYER_MOVE)
+    
+    def initialise_widgets(self):
+        GAME_WIDGETS['move_list'].reset_move_list()
+        GAME_WIDGETS['move_list'].kill()
+
+        GAME_WIDGETS['scroll_area'].set_image()
+        
+        GAME_WIDGETS['chessboard'].refresh_board()
+
+        GAME_WIDGETS['blue_piece_display'].reset_piece_list()
+        GAME_WIDGETS['red_piece_display'].reset_piece_list()
     
     def set_status_text(self, status):
         match status:
@@ -53,7 +57,10 @@ class GameView:
             case StatusText.CPU_MOVE:
                 GAME_WIDGETS['status_text'].update_text(f"CPU calculating a crazy move...")
             case StatusText.WIN:
-                GAME_WIDGETS['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
+                if self._model.states['WINNER'] == Miscellaneous.DRAW:
+                    GAME_WIDGETS['status_text'].update_text(f"Game is a draw! Boring...")
+                else:
+                    GAME_WIDGETS['status_text'].update_text(f"{self._model.states['WINNER'].name} won!")
             case StatusText.DRAW:
                 GAME_WIDGETS['status_text'].update_text(f"Game is a draw! Boring...")
     
@@ -82,7 +89,7 @@ class GameView:
         else:
             self.set_status_text(StatusText.CPU_MOVE)
 
-        if self._model.states['WINNER']:
+        if self._model.states['WINNER'] is not None:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 

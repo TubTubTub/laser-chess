@@ -1,9 +1,9 @@
-from data.constants import Score, Colour
+from data.constants import Score, Colour, Miscellaneous
 from data.states.game.cpu.base import BaseCPU
-from pprint import pprint
+from data.utils.bitboard_helpers import print_bitboard
 
 class MinimaxCPU(BaseCPU):
-    def __init__(self, max_depth, callback, verbose=True):
+    def __init__(self, max_depth, callback, verbose=False):
         super().__init__(callback, verbose)
         self._max_depth = max_depth
 
@@ -17,23 +17,26 @@ class MinimaxCPU(BaseCPU):
         self._callback(best_move)
 
     def search(self, board, depth, stop_event):
-        if stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (CPU.minimax)')
+        if stop_event and stop_event.is_set():
+            raise Exception('Thread killed - stopping minimax function (MinimaxCPU.searcg)')
         
         self._stats['nodes'] += 1
+        
+        if (winner := board.check_win()) is not None:
+            return self.process_win(winner)
         
         if depth == 0:
             self._stats['leaf_nodes'] += 1
             return self._evaluator.evaluate(board), None
 
-        is_maximiser = board.get_active_colour() == Colour.BLUE 
         best_move = None
 
-        if is_maximiser:
+        if board.get_active_colour() == Colour.BLUE: # is_maximiser
             max_score = -Score.INFINITE
             
             for move in board.generate_all_moves(Colour.BLUE):
                 laser_result = board.apply_move(move)
+                
                 new_score = self.search(board, depth - 1, stop_event)[0]
 
                 if new_score > max_score:

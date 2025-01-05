@@ -12,7 +12,7 @@ def print_bitboard(bitboard):
             if (bitboard & mask) != 0:
                 characters += '1  '
             else:
-                characters += '0  '
+                characters += '.  '
 
         characters += '\n\n'
     

@@ -2,12 +2,13 @@ from data.states.game.components.move import Move
 from data.states.game.components.board import Board
 from data.states.game.components.fen_parser import encode_fen_string
 from data.states.game.widget_dict import GAME_WIDGETS
-
-from data.constants import Colour, GameEventType, EMPTY_BB
-from data.components.custom_event import CustomEvent
-from data.utils import input_helpers as ip_helpers
-from data.states.game.cpu import MinimaxCPU
 from data.states.game.cpu.cpu_thread import CPUThread
+from data.states.game.cpu import CachedAlphaBetaCPU
+
+from data.utils.bitboard_helpers import is_occupied
+from data.utils import input_helpers as ip_helpers
+from data.components.custom_event import CustomEvent
+from data.constants import Colour, GameEventType, EMPTY_BB
 
 class GameModel:
     def __init__(self, game_config):
@@ -32,7 +33,7 @@ class GameModel:
             'ZOBRIST_KEYS': []
         }
         
-        self._cpu = MinimaxCPU(max_depth=1, callback=self.cpu_callback)
+        self._cpu = CachedAlphaBetaCPU(2, self.cpu_callback)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
 
@@ -78,11 +79,14 @@ class GameModel:
                 print('Input error (Board.get_move): ' + str(error))
     
     def make_move(self, move):
+        print(self._board.hash_list)
         #SWAPPED ACTIVE COLOUR TO BOTTOM SO MIGHT BE BUGGY
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
         colour = self._board.bitboards.get_colour_on(move.src)
         piece = self._board.bitboards.get_piece_on(move.src, colour)
         laser_result = self._board.apply_move(move)
+        
+        self._board.append_hash_list()
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
         
@@ -108,12 +112,16 @@ class GameModel:
         self._cpu_thread.start_thread(self.get_board())
     
     def cpu_callback(self, move):
-        self.make_move(move)
+        if self.states['WINNER'] is None:
+            self.make_move(move)
+            self.states['AWAITING_CPU'] = False
+    
+    def kill_cpu(self):
+        self._cpu_thread.delete_thread()
         self.states['AWAITING_CPU'] = False
     
-    def stop_cpu(self):
-        self._cpu.stop_thread()
-        self.states['AWAITING_CPU'] = False
+    def is_selectable(self, src_bitboard):
+        return is_occupied(self._board.bitboards.combined_colour_bitboards[self.states['ACTIVE_COLOUR']], src_bitboard)
     
     def get_available_moves(self, src_bitboard):
         if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:

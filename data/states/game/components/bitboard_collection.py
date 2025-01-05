@@ -20,6 +20,24 @@ class BitboardCollection():
             print('(BitboardCollection.__init__) Please input a valid FEN string:', error)
             raise error
     
+    def __str__(self):
+        characters = ''
+        for rank in reversed(Rank):
+            for file in File:
+                bitboard = 1 << (rank * 10 + file)
+
+                colour = self.get_colour_on(bitboard)
+                piece = self.get_piece_on(bitboard, Colour.BLUE) or self.get_piece_on(bitboard, Colour.RED)
+
+                if piece is not None:
+                        characters += f'{piece.upper() if colour == Colour.BLUE else piece}  '
+                else:
+                    characters += '.  '
+
+            characters += '\n\n'
+ 
+        return characters
+    
     def get_rotation_string(self):
         characters = ''
         for rank in reversed(Rank):
@@ -32,7 +50,7 @@ class BitboardCollection():
                 if has_piece:
                     characters += f'{rotation.upper()}  '
                 else:
-                    characters += '0  '
+                    characters += '.  '
 
             characters += '\n\n'
  
