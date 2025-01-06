@@ -55,11 +55,8 @@ class Board:
             return Miscellaneous.DRAW
 
         return None
-
-    def append_hash_list(self):
-        self.hash_list.append(self.bitboards.get_hash())
     
-    def apply_move(self, move, confirm=True):
+    def apply_move(self, move, fire_laser=True):
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
@@ -89,14 +86,16 @@ class Board:
             self.bitboards.update_rotation(move.src, move.src, new_rotation)
 
         laser = None
-        if confirm:
+        if fire_laser:
             laser = self.fire_laser()
+            self.hash_list.append(self.bitboards.get_hash())
 
         self.bitboards.flip_colour()
 
         return laser
     
     def undo_move(self, move, laser_result):
+        self.hash_list.pop(-1)
         self.bitboards.flip_colour()
         
         if laser_result.hit_square_bitboard:
@@ -114,7 +113,7 @@ class Board:
         elif move.move_type == MoveType.ROTATE:
             reversed_move = Move.instance_from_bitboards(MoveType.ROTATE, move.src, move.src, move.rotation_direction.get_opposite())
         
-        self.apply_move(reversed_move, confirm=False)
+        self.apply_move(reversed_move, fire_laser=False)
         self.bitboards.flip_colour()
     
     def remove_piece(self, square_bitboard):

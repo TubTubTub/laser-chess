@@ -15,21 +15,20 @@ class GameController:
 
         self._view.initialise_timers()
     
-    def handle_event(self, event):
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
-            if self._model.states['PAUSED']:
-                self.handle_pause_event(event)
-            elif self._model.states['WINNER'] is not None:
-                self.handle_winner_event(event)
-            else:
-                self.handle_game_event(event)
+    def cleanup(self, next):
+        self._model.kill_thread()
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                self._model.toggle_paused()
-            elif event.key == pygame.K_l:
-                print('\nSTOPPING CPU')
-                self._model.kill_cpu()
+        if next == 'menu':
+            self._to_menu()
+        elif next == 'game':
+            self._to_new_game()
+
+    def make_move(self, move):
+        self._model.make_move(move)
+        self._view.set_overlay_coords([], None)
+
+        if self._model.states['CPU_ENABLED']:
+            self._model.make_cpu_move()
 
     def handle_pause_event(self, event):
         game_event = self._pause_view.convert_mouse_pos(event)
@@ -42,8 +41,7 @@ class GameController:
                 self._model.toggle_paused()
             
             case GameEventType.MENU_CLICK:
-                self._model.kill_cpu()
-                self._to_menu()
+                self.cleanup('menu')
 
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
@@ -56,12 +54,10 @@ class GameController:
 
         match game_event.type:
             case GameEventType.MENU_CLICK:
-                self._model.kill_cpu()
-                self._to_menu()
+                self.cleanup('menu')
             
             case GameEventType.GAME_CLICK:
-                self._model.kill_cpu()
-                self._to_new_game()
+                self.cleanup('game')
 
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
@@ -138,10 +134,19 @@ class GameController:
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')
+    
+    def handle_event(self, event):
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
+            if self._model.states['PAUSED']:
+                self.handle_pause_event(event)
+            elif self._model.states['WINNER'] is not None:
+                self.handle_winner_event(event)
+            else:
+                self.handle_game_event(event)
 
-    def make_move(self, move):
-        self._model.make_move(move)
-        self._view.set_overlay_coords([], None)
-
-        if self._model.states['CPU_ENABLED']:
-            self._model.make_cpu_move()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                self._model.toggle_paused()
+            elif event.key == pygame.K_l:
+                print('\nSTOPPING CPU')
+                self._model._cpu_thread.stop_cpu() #temp

@@ -85,8 +85,6 @@ class GameModel:
         colour = self._board.bitboards.get_colour_on(move.src)
         piece = self._board.bitboards.get_piece_on(move.src, colour)
         laser_result = self._board.apply_move(move)
-        
-        self._board.append_hash_list()
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
         
@@ -109,15 +107,15 @@ class GameModel:
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True
-        self._cpu_thread.start_thread(self.get_board())
+        self._cpu_thread.start_cpu(self.get_board())
     
     def cpu_callback(self, move):
         if self.states['WINNER'] is None:
             self.make_move(move)
             self.states['AWAITING_CPU'] = False
     
-    def kill_cpu(self):
-        self._cpu_thread.delete_thread()
+    def kill_thread(self):
+        self._cpu_thread.kill_thread()
         self.states['AWAITING_CPU'] = False
     
     def is_selectable(self, src_bitboard):

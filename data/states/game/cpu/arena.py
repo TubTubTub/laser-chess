@@ -5,14 +5,17 @@ from data.constants import Colour, Miscellaneous
 
 def compare(cls1, cls2, rounds):
     wins = [0, 0]
+    
+    board = Board()
+    def callback(move):
+        board.apply_move(move)
+        print('APPLYING MOVE:', move)
+    cpu1 = cls1(callback=callback, verbose=False)
+    cpu2 = cls2(callback=callback, max_depth=2, verbose=False)
 
     for i in range(rounds):
         board = Board()
-        callback = lambda move: board.apply_move(move)
-        
-        cpu1 = cls1(callback=callback, verbose=False)
-        cpu2 = cls2(callback=callback, max_depth=2, verbose=False)
-        
+
         if i % 2 == 0:
             players = { Colour.BLUE: cpu1, Colour.RED: cpu2 }
         else:
@@ -31,7 +34,6 @@ def compare(cls1, cls2, rounds):
                 wins[1] += 1
 
         print(f'ROUND {i + 1} | WINNER: {players[winner]} | PLY: {len(board.hash_list) - 1}')
-    
-    print(f'{cpu1} WINS: {wins[0]} | {cpu2} WINS: {wins[1]}')
+    # print(f'{cpu1} WINS: {wins[0]} | {cpu2} WINS: {wins[1]}')
 
-compare(SimpleCPU, MinimaxCPU, 20)
+compare(SimpleCPU, MinimaxCPU, 10)

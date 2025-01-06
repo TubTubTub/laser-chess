@@ -1,4 +1,3 @@
-Make bot arena ply work
+Fix minimax crashing
 Make bot arena
 Make minimax engine mixin like the GitHub repo
-Refactor CPU threading

@@ -16,7 +16,6 @@ from functools import partial
 class Game(_State):
     def __init__(self):
         super().__init__()
-        self.next = 'menu'
         self._screen = pygame.display.get_surface()
     
     def cleanup(self):
@@ -28,10 +27,12 @@ class Game(_State):
         return None
     
     def switch_to_menu(self):
+        self.next = 'menu'
         self.done = True
     
     def startup(self, persist):
         binded_startup = partial(self.startup, persist)
+        
         self.model = GameModel(persist)
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)

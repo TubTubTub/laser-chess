@@ -11,16 +11,15 @@ class CPUThread(threading.Thread):
         self._board = None
         self._cpu = cpu
     
-    def delete_thread(self):
-        self.stop_thread()
+    def kill_thread(self):
+        self.stop_cpu()
         self._running = False
-        self.join()
     
-    def stop_thread(self):
+    def stop_cpu(self):
         self._stop_event.set()
         self._board = None
     
-    def start_thread(self, board):
+    def start_cpu(self, board):
         self._stop_event.clear()
         self._board = board
     
@@ -28,7 +27,7 @@ class CPUThread(threading.Thread):
         while self._running:
             if self._board and self._cpu:
                 self._cpu.find_move(self._board, self._stop_event)
-                self.stop_thread()
+                self.stop_cpu()
             else:
                 time.sleep(1)
-                # print(f'(CPUThread.run) Thread {threading.get_native_id()} still running...')
+                print(f'(CPUThread.run) Thread {threading.get_native_id()} idling...')
