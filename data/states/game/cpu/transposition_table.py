@@ -1,5 +1,4 @@
 from data.constants import TranspositionFlag
-from random import randint
 
 class TranspositionEntry:
     def __init__(self, score, move, flag, hash_key, depth):
@@ -34,7 +33,6 @@ class TranspositionTable:
 
         if len(self._table) > self._max_entries:
             # REMOVES FIRST ADDED ENTRY https://docs.python.org/3/library/collections.html#ordereddict-objects
-            print('REMOVING')
             (k := next(iter(self._table)), self._table.pop(k))
     
     def get_entry(self, hash_key, depth, alpha, beta):

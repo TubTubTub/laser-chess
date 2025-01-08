@@ -2,10 +2,11 @@ import threading
 import time
 
 class CPUThread(threading.Thread):
-    def __init__(self, cpu):
+    def __init__(self, cpu, verbose=False):
         super().__init__()
         self._stop_event = threading.Event()
         self._running = True
+        self._verbose = verbose
         self.daemon = True
 
         self._board = None
@@ -30,4 +31,5 @@ class CPUThread(threading.Thread):
                 self.stop_cpu()
             else:
                 time.sleep(1)
-                print(f'(CPUThread.run) Thread {threading.get_native_id()} idling...')
+                if self._verbose:
+                    print(f'(CPUThread.run) Thread {threading.get_native_id()} idling...')

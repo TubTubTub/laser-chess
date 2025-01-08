@@ -7,11 +7,11 @@ class Evaluator:
         self._verbose = verbose
         pass
     
-    def evaluate(self, board):
+    def evaluate(self, board, absolute=False):
         #Add tapered evaluation
-        blue_score = self.evaluate_win(board, Colour.BLUE) + self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
+        blue_score = self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
 
-        red_score = self.evaluate_win(board, Colour.RED) + self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
+        red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
 
         if (self._verbose):
             print('\nPosition:', self.evaluate_position(board, Colour.BLUE), self.evaluate_position(board, Colour.RED))
@@ -19,6 +19,9 @@ class Evaluator:
             print('Safety:', self.evaluate_pharoah_safety(board, Colour.BLUE), self.evaluate_pharoah_safety(board, Colour.RED))
             print('Overall score', blue_score - red_score)
 
+        if absolute and board.get_active_colour() == Colour.RED:
+            return red_score - blue_score
+        
         return blue_score - red_score
     
     def evaluate_pieces(self, board, colour):
@@ -53,9 +56,3 @@ class Evaluator:
         pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
         pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
         return (9 - pharoah_available_moves) * 3
-
-    def evaluate_win(self, board, colour):
-        if board.check_win() == colour:
-            return Score.CHECKMATE
-        
-        return 0

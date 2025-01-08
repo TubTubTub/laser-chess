@@ -3,7 +3,7 @@ from data.states.game.components.board import Board
 from data.states.game.components.fen_parser import encode_fen_string
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.states.game.cpu.cpu_thread import CPUThread
-from data.states.game.cpu import CachedAlphaBetaCPU
+from data.states.game.cpu.engines import ABMinimaxCPU
 
 from data.utils.bitboard_helpers import is_occupied
 from data.utils import input_helpers as ip_helpers
@@ -33,7 +33,7 @@ class GameModel:
             'ZOBRIST_KEYS': []
         }
         
-        self._cpu = CachedAlphaBetaCPU(2, self.cpu_callback)
+        self._cpu = ABMinimaxCPU(3, self.cpu_callback)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
 
@@ -84,7 +84,7 @@ class GameModel:
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
         colour = self._board.bitboards.get_colour_on(move.src)
         piece = self._board.bitboards.get_piece_on(move.src, colour)
-        laser_result = self._board.apply_move(move)
+        laser_result = self._board.apply_move(move, add_hash=True)
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
         
@@ -110,6 +110,7 @@ class GameModel:
         self._cpu_thread.start_cpu(self.get_board())
     
     def cpu_callback(self, move):
+        print('MAKING MOVE', move)
         if self.states['WINNER'] is None:
             self.make_move(move)
             self.states['AWAITING_CPU'] = False

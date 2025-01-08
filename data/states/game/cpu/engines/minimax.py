@@ -1,6 +1,7 @@
 from data.constants import Score, Colour, Miscellaneous
 from data.states.game.cpu.base import BaseCPU
 from data.utils.bitboard_helpers import print_bitboard
+from random import choice
 
 class MinimaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=False):
@@ -18,7 +19,7 @@ class MinimaxCPU(BaseCPU):
 
     def search(self, board, depth, stop_event):
         if stop_event and stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (MinimaxCPU.searcg)')
+            raise Exception('Thread killed - stopping minimax function (MinimaxCPU.search)')
         
         self._stats['nodes'] += 1
         
@@ -42,6 +43,8 @@ class MinimaxCPU(BaseCPU):
                 if new_score > max_score:
                     max_score = new_score
                     best_move = move
+                elif new_score == max_score:
+                    choice([best_move, move])
 
                 board.undo_move(move, laser_result)
                 
@@ -57,6 +60,8 @@ class MinimaxCPU(BaseCPU):
                 if new_score < min_score:
                     min_score = new_score
                     best_move = move
+                elif new_score == min_score:
+                    choice([best_move, move])
                 
                 board.undo_move(move, laser_result)
                 

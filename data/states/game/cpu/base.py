@@ -1,4 +1,4 @@
-from data.states.game.components.evaluator import Evaluator
+from data.states.game.cpu.evaluator import Evaluator
 from data.constants import Colour, Score, Miscellaneous
 from pprint import pprint
 import time
@@ -21,13 +21,22 @@ class BaseCPU:
         }
     
     def print_stats(self, score, move):
+        if self._verbose is False:
+            return
+
         self._stats['time_taken'] = round(1000 * (time.time() - self._stats['time_taken']), 3)
         self._stats['ms_per_node'] = round(self._stats['time_taken'] / self._stats['nodes'], 3)
 
-        print(f'\n{self.__str__()} Search Results:', '\n')
-        pprint(self._stats, sort_dicts=False)
-        print('\n' + 'Best score:', score)
-        print('Best move:', move, '\n')
+        if self._verbose is True:
+            print(f'\n{self.__str__()} Search Results:', '\n')
+            pprint(self._stats, sort_dicts=False)
+            print('\n' + 'Best score:', score)
+            print('Best move:', move, '\n')
+        
+        elif self._verbose.lower() == 'compact':
+            print(self._stats)
+            print('Best score:', score)
+            print('Best move:', move, '\n')
 
     def find_move(self, board, stop_event=None):
         raise NotImplementedError

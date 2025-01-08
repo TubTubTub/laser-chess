@@ -1,5 +1,6 @@
-from data.states.game.cpu.simple import SimpleCPU
-from data.states.game.cpu.minimax import MinimaxCPU
+from data.states.game.cpu.engines.simple import SimpleCPU
+from data.states.game.cpu.engines.minimax import MinimaxCPU
+from data.states.game.cpu.engines.negamax import NegamaxCPU
 from data.states.game.components.board import Board
 from data.constants import Colour, Miscellaneous
 
@@ -8,21 +9,24 @@ def compare(cls1, cls2, rounds):
     
     board = Board()
     def callback(move):
-        board.apply_move(move)
-        print('APPLYING MOVE:', move)
-    cpu1 = cls1(callback=callback, verbose=False)
-    cpu2 = cls2(callback=callback, max_depth=2, verbose=False)
+        board.apply_move(move, add_hash=True)
+
+    cpu1 = cls1(callback=callback, max_depth=2, verbose='compact')
+    cpu2 = cls2(callback=callback, max_depth=2, verbose='compact')
 
     for i in range(rounds):
-        board = Board()
+        board = Board(fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pc/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b")
+        ply = 0
 
         if i % 2 == 0:
-            players = { Colour.BLUE: cpu1, Colour.RED: cpu2 }
+            players = { Colour.BLUE: cpu1, Colour.RED: cpu2, Miscellaneous.DRAW: 'DRAW' }
         else:
-            players = { Colour.BLUE: cpu2, Colour.RED: cpu1 }
+            players = { Colour.BLUE: cpu2, Colour.RED: cpu1, Miscellaneous.DRAW: 'DRAW' }
 
         while (winner := board.check_win()) is None:
             players[board.get_active_colour()].find_move(board, None)
+            ply += 1
+            print('PLY:', ply)
         
         if winner == Miscellaneous.DRAW:
             wins[0] += 0.5
@@ -33,7 +37,8 @@ def compare(cls1, cls2, rounds):
             else:
                 wins[1] += 1
 
-        print(f'ROUND {i + 1} | WINNER: {players[winner]} | PLY: {len(board.hash_list) - 1}')
-    # print(f'{cpu1} WINS: {wins[0]} | {cpu2} WINS: {wins[1]}')
+        print(f'ROUND {i + 1} | WINNER: {players[winner]} | PLY: {ply}')
+    
+    print(f'{cpu1} SCORE: {wins[0]} | {cpu2} SCORE: {wins[1]}')
 
-compare(SimpleCPU, MinimaxCPU, 10)
+compare(NegamaxCPU, MinimaxCPU, 3)

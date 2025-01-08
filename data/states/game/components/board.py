@@ -56,7 +56,7 @@ class Board:
 
         return None
     
-    def apply_move(self, move, fire_laser=True):
+    def apply_move(self, move, fire_laser=True, add_hash=False):
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
@@ -87,7 +87,9 @@ class Board:
 
         laser = None
         if fire_laser:
-            laser = self.fire_laser()
+            laser = self.fire_laser(add_hash)
+        
+        if add_hash:
             self.hash_list.append(self.bitboards.get_hash())
 
         self.bitboards.flip_colour()
@@ -95,7 +97,6 @@ class Board:
         return laser
     
     def undo_move(self, move, laser_result):
-        self.hash_list.pop(-1)
         self.bitboards.flip_colour()
         
         if laser_result.hit_square_bitboard:
@@ -155,12 +156,14 @@ class Board:
         sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, self.bitboards.active_colour)
         return active_pieces ^ sphinx_bitboard
 
-    def fire_laser(self):
+    def fire_laser(self, remove_hash):
         laser = Laser(self.bitboards)
 
         if laser.hit_square_bitboard:
             self.remove_piece(laser.hit_square_bitboard)
-        
+
+            if remove_hash:
+                self.hash_list = [] # AS POSITION IMPOSSIBLE TO REPEAT
         return laser
     
     def generate_square_moves(self, src):

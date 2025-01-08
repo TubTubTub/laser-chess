@@ -62,6 +62,7 @@ class Move():
 
         except Exception as error:
             print('(Move.instance_from_notation) Error occured while parsing:', error)
+            raise error
     
     @classmethod
     def instance_from_input(move_cls, move_type, src, dest=None, rotation=None):
@@ -77,6 +78,7 @@ class Move():
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
             print('Error (Move.instance_from):', error)
+            raise error
     
     @classmethod
     def instance_from_coords(move_cls, move_type, src_coords, dest_coords=None, rotation_direction=None):
@@ -87,6 +89,7 @@ class Move():
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
             print('Error (Move.instance_from_coords):', error)
+            raise error
 
     @classmethod
     def instance_from_bitboards(move_cls, move_type, src_bitboard, dest_bitboard=None, rotation_direction=None):
@@ -94,3 +97,4 @@ class Move():
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
             print('Error (Move.instance_from_bitboards):', error)
+            raise error

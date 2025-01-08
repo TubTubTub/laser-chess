@@ -1,7 +1,7 @@
 from data.constants import Rank, File, Piece, Colour, Rotation, RotationIndex, EMPTY_BB
 from data.states.game.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
-from data.states.game.components.zobrist_hasher import ZobristHasher
+from data.states.game.cpu.zobrist_hasher import ZobristHasher
 
 class BitboardCollection():
     def __init__(self, fen_string):
