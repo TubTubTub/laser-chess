@@ -23,8 +23,6 @@ class BrowserItem(_Widget):
             fen_string=self._game['final_fen_string']
         )
         
-        self._empty_surface = pygame.Surface((0, 0))
-        
         self.set_image()
         self.set_geometry()
     

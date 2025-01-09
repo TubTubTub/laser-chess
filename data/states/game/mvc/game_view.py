@@ -1,20 +1,21 @@
 import pygame
 from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
 from data.utils.bitboard_helpers import bitboard_to_coords
-from data.constants import GameEventType, Colour, StatusText, Miscellaneous, OVERLAY_COLOUR_LIGHT
+from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ScreenEffect
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.states.game.components.overlay_draw import OverlayDraw
+from data.states.game.components.particles_draw import ParticlesDraw
 from data.utils.data_helpers import get_user_settings
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
+from data.screen import screen
 
 class GameView:
     def __init__(self, model):
         self._model = model
-        self._screen = pygame.display.get_surface()
         self._user_settings = get_user_settings()
         self._event_to_func_map = {
             GameEventType.UPDATE_PIECES: self.handle_update_pieces,
@@ -34,6 +35,7 @@ class GameView:
         self._cursor = Cursor()
         self._laser_draw = LaserDraw(self._board_position, self._board_size)
         self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
+        self._particles_draw = ParticlesDraw()
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
@@ -70,7 +72,7 @@ class GameView:
         self._square_size = self._board_size[0] / 10
         
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
-        self._widget_group.handle_resize(self._screen.get_size())
+        self._widget_group.handle_resize(screen.get_size())
         self._laser_draw.handle_resize(self._board_position, self._board_size)
         self._laser_draw.handle_resize(self._board_position, self._board_size)
     
@@ -104,6 +106,11 @@ class GameView:
         if laser_result.hit_square_bitboard:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
+            screen.set_effect(ScreenEffect.SHAKE)
+
+            image = pygame.Surface((20, 20))
+            image.fill((255, 0, 0))
+            self._particles_draw.add_captured_piece(laser_result.piece_hit, laser_result.piece_colour, laser_result.piece_rotation, coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size), self._square_size)
 
             if laser_result.piece_colour == Colour.BLUE:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
@@ -133,17 +140,20 @@ class GameView:
             GAME_WIDGETS['red_timer'].set_active(is_active)
 
     def draw_pieces(self):
-        self._piece_group.draw(self._screen)
+        self._piece_group.draw(screen)
     
     def draw_widgets(self):
         self._widget_group.draw()
     
     def draw(self):
         self._widget_group.update()
+        self._particles_draw.update()
+
         self.draw_widgets()
-        self._overlay_draw.draw(self._screen)
+        self._overlay_draw.draw(screen)
         self.draw_pieces()
-        self._laser_draw.draw(self._screen)
+        self._laser_draw.draw(screen)
+        self._particles_draw.draw(screen)
 
     def process_model_event(self, event):
         try:

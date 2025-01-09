@@ -3,8 +3,8 @@ from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import ReviewEventType, Colour
 from data.assets import GRAPHICS
+from data.screen import screen
 
-screen = pygame.display.get_surface()
 MOVE_LIST_WIDTH = 0.2
 
 info_container = Rectangle(

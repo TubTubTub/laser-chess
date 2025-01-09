@@ -17,11 +17,11 @@ from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
 
 from data.constants import SettingsEventType, SCREEN_FLAGS
+from data.screen import screen
 
 class Settings(_State):
     def __init__(self):
         super().__init__()
-        self._screen = pygame.display.get_surface()
         
         self._widget_group = None
         self._colour_picker = None
@@ -43,7 +43,7 @@ class Settings(_State):
     def startup(self, persist=None):
         print('starting settings.py')
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
-        self._widget_group.handle_resize(self._screen.size)
+        self._widget_group.handle_resize(screen.size)
         self._settings = get_user_settings()
 
         # print('\nGETTING USER SETTINGS:')
@@ -74,20 +74,20 @@ class Settings(_State):
         self._colour_picker.kill()
     
     def set_display_mode(self, display_mode):
-        mouse_percentage = (pygame.mouse.get_pos()[0] / self._screen.size[0], pygame.mouse.get_pos()[1] / self._screen.size[1])
+        mouse_percentage = (pygame.mouse.get_pos()[0] / screen.size[0], pygame.mouse.get_pos()[1] / screen.size[1])
         if display_mode == 'fullscreen':
             
             self._window_size = pygame.display.get_window_size()
             self._window_position = pygame.display.get_window_position()
+            # pygame.Window().set_fullscreen()
             pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
-
 
         elif display_mode == 'windowed':
             os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
             pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
         
-        pygame.mouse.set_pos((mouse_percentage[0] * self._screen.size[0], mouse_percentage[1] * self._screen.size[1]))
-        self._widget_group.handle_resize(self._screen.size)
+        pygame.mouse.set_pos((mouse_percentage[0] * screen.size[0], mouse_percentage[1] * screen.size[1]))
+        self._widget_group.handle_resize(screen.size)
     
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
@@ -143,7 +143,7 @@ class Settings(_State):
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                relative_position = (event.pos[0] / self._screen.size[0], event.pos[1] / self._screen.size[1])
+                relative_position = (event.pos[0] / screen.size[0], event.pos[1] / screen.size[1])
                 self.create_colour_picker(relative_position, widget_event.type)
             
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
@@ -159,10 +159,10 @@ class Settings(_State):
                         self._settings['secondaryBoardColour'] = hex_colour
     
     def handle_resize(self):
-        self._widget_group.handle_resize(self._screen.get_size())
+        self._widget_group.handle_resize(screen.get_size())
     
     def draw(self):
-        draw_background(self._screen, GRAPHICS['temp_background'])
+        draw_background(screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
     
     def update(self, **kwargs):

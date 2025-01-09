@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "python": "python3 run_arena.py"
+        "python": "python3 run.py"
     },
     "code-runner.enableAppInsights": false,
     "code-runner.saveFileBeforeRun": true,

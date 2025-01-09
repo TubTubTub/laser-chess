@@ -37,11 +37,14 @@ class PieceDisplay(_Widget):
             return
 
         piece_width = min(self.size[1] - 2 * self.margin, (self.size[0] - 2 * self.margin) / len(self._piece_list))
+        piece_list = []
 
         for index, piece in enumerate(self._piece_list):
             piece_instance = create_piece(piece, self._active_colour.get_flipped_colour(), Rotation.UP)
             piece_image = pygame.transform.smoothscale(piece_instance.high_res_img, (piece_width, piece_width))
-            self._piece_surface.blit(piece_image, (piece_width * index, (self._piece_surface.height - piece_width) / 2))
+            piece_list.append((piece_image, (piece_width * index, (self._piece_surface.height - piece_width) / 2)))
+        
+        self._piece_surface.fblits(piece_list)
         
         self.set_image()
     

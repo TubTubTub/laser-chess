@@ -1,6 +1,7 @@
 import pygame
 from pygame._sdl2 import Window
 from data.components.animation import animation
+from data.screen import screen
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -8,10 +9,9 @@ start_ticks = pygame.time.get_ticks()
 class Control:
     def __init__(self):
         self.done = False
-        self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
         """temp for fps display counter"""
-        self.font = pygame.font.SysFont("Arial" , 18 , bold = True)
+        self.font = pygame.font.SysFont("Arial" , 18 , bold=True)
         self._int = '0'
     
     def setup_states(self, state_dict, start_state):
@@ -40,6 +40,8 @@ class Control:
         self.clock.tick(FPS)
         animation.set_delta_time()
 
+        screen.update()
+
         self.state.update()
         
         self.draw_fps()
@@ -52,6 +54,7 @@ class Control:
     
     def update_window(self, resize=False):
         if resize:
+            screen.resize_surface()
             self.update_native_window_size()
             self.state.handle_resize()
         self.update()
@@ -59,10 +62,10 @@ class Control:
     def draw_fps(self):
         fps = str(int(self.clock.get_fps()))
         fps_t = self.font.render(fps , 1, pygame.Color("RED"), True)
-        self.screen.blit(fps_t,(0,0))
+        screen.blit(fps_t,(0,0))
     
     def update_native_window_size(self):
-        x, y = self.screen.get_rect().size
+        x, y = screen.size
 
         max_screen_x = 100000
         max_screen_y = x / 1.4

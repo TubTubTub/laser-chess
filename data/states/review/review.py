@@ -12,11 +12,11 @@ from data.utils.asset_helpers import draw_background
 from data.utils.browser_helpers import get_winner_string
 from data.components.audio import audio
 from data.components.game_entry import GameEntry
+from data.screen import screen
 
 class Review(_State):
     def __init__(self):
         super().__init__()
-        self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
         self._widget_group = None
@@ -37,7 +37,7 @@ class Review(_State):
     def startup(self, persist):
         print('starting review.py')
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)
-        self._widget_group.handle_resize(self._screen.size)
+        self._widget_group.handle_resize(screen.size)
 
         self._moves = GameEntry.parse_moves(persist.pop('moves', ''))
         self._game_info = persist
@@ -177,15 +177,15 @@ class Review(_State):
                 self.refresh_widgets()
     
     def handle_resize(self, resize_end=False):
-        self._widget_group.handle_resize(self._screen.get_size())
+        self._widget_group.handle_resize(screen.get_size())
         self._piece_group.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size, resize_end)
         self._laser_draw.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
     
     def draw(self):
-        draw_background(self._screen, GRAPHICS['temp_background'])
+        draw_background(screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
-        self._piece_group.draw(self._screen)
-        self._laser_draw.draw(self._screen)
+        self._piece_group.draw(screen)
+        self._laser_draw.draw(screen)
     
     def update(self, **kwargs):
         self.draw()

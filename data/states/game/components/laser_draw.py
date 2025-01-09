@@ -11,6 +11,8 @@ type_to_image = {
     LaserType.CORNER: ['laser_corner_1', 'laser_corner_2']
 }
 
+GLOW_SCALE_FACTOR = 1.5
+
 class LaserDraw:
     def __init__(self, board_position, board_size):
         self._board_position = board_position
@@ -47,14 +49,23 @@ class LaserDraw:
     
     def draw_laser(self, screen, laser_list):
         laser_path, laser_colour = laser_list
+        laser_list = []
+        glow_list = []
+
         for coords, rotation, type in laser_path:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
 
             image = GRAPHICS[type_to_image[type][laser_colour]]
-            scaled_image = pygame.transform.scale(image, (self._square_size + 1, self._square_size + 1)) # +1 to prevent rounding creating black lines
-            rotated_image = pygame.transform.rotate(scaled_image, rotation.to_angle())
+            rotated_image = pygame.transform.rotate(image, rotation.to_angle())
+            scaled_image = pygame.transform.scale(rotated_image, (self._square_size + 1, self._square_size + 1)) # +1 to prevent rounding creating black lines
+            laser_list.append((scaled_image, (square_x, square_y)))
 
-            screen.blit(rotated_image, (square_x, square_y))
+            scaled_glow = pygame.transform.scale(rotated_image, (self._square_size * GLOW_SCALE_FACTOR, self._square_size * GLOW_SCALE_FACTOR))
+            offset = self._square_size * ((GLOW_SCALE_FACTOR - 1) / 2)
+            glow_list.append((scaled_glow, (square_x - offset, square_y - offset)))
+
+        screen.fblits(glow_list, pygame.BLEND_RGB_ADD)
+        screen.blits(laser_list)
     
     def draw(self, screen):
         for laser_list in self._laser_lists:

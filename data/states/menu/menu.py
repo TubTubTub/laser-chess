@@ -8,11 +8,11 @@ from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.components.audio import audio
 from data.components.animation import animation
+from data.screen import screen
 
 class Menu(_State):
     def __init__(self):
         super().__init__()
-        self._screen = pygame.display.get_surface()
         self._cursor = Cursor()
         
         self._widget_group = None
@@ -25,7 +25,7 @@ class Menu(_State):
     def startup(self, persist=None):
         print('starting menu.py')
         self._widget_group = WidgetGroup(MENU_WIDGETS)
-        self._widget_group.handle_resize(self._screen.size)
+        self._widget_group.handle_resize(screen.size)
 
         audio.play_music(MUSIC_PATHS['menu'])
 
@@ -52,10 +52,10 @@ class Menu(_State):
                 self.done = True
     
     def handle_resize(self):
-        self._widget_group.handle_resize(self._screen.get_size())
+        self._widget_group.handle_resize(screen.get_size())
     
     def draw(self):
-        draw_background(self._screen, GRAPHICS['temp_background'])
+        draw_background(screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
     
     def update(self, **kwargs):

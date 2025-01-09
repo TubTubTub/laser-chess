@@ -2,9 +2,10 @@ import pygame
 from data.constants import WidgetState
 from data.components.audio import audio
 from data.theme import theme
+from data.screen import screen
 from data.assets import SFX, FONTS
 
-DEFAULT_SURFACE = pygame.display.get_surface()
+DEFAULT_SURFACE = screen
 DEFAULT_FONT = FONTS['default']
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
 COUNT = 0

@@ -15,7 +15,7 @@ class BoardThumbnail(_Widget):
             relative_width=relative_width
         )
 
-        self._empty_surface = pygame.Surface((0, 0))
+        self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
         self.initialise_board(fen_string)
         self.set_image()

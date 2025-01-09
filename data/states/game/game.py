@@ -13,10 +13,11 @@ from data.database.database_helpers import insert_into_games
 
 from functools import partial
 
+from data.screen import screen
+
 class Game(_State):
     def __init__(self):
         super().__init__()
-        self._screen = pygame.display.get_surface()
     
     def cleanup(self):
         print('cleaning game.py')
@@ -55,7 +56,7 @@ class Game(_State):
         self.pause_view.handle_resize()
 
     def draw(self):
-        self._screen.fill(BG_COLOUR)
+        screen.fill(BG_COLOUR)
         self.view.draw()
         self.win_view.draw()
         self.pause_view.draw()

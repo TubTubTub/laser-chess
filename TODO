@@ -3,15 +3,16 @@ Make bitboards a dictionary
 
 Should do:
 Add empty event to widget group
-Zobrist hashing (to check for threefold reptition)
 Use RectF to prevent black lines in board forming from under-rounding errors
 Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
 Make wrapper for pressable button widgets
 Use logging package
+Make variables like board position properties
 
 Ambitious:
+Raycasting
 Switch sphinx direction
 Log-in
 

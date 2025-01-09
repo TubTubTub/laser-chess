@@ -79,7 +79,6 @@ class GameModel:
                 print('Input error (Board.get_move): ' + str(error))
     
     def make_move(self, move):
-        print(self._board.hash_list)
         #SWAPPED ACTIVE COLOUR TO BOTTOM SO MIGHT BE BUGGY
         # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
         colour = self._board.bitboards.get_colour_on(move.src)

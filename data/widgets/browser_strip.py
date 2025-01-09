@@ -49,10 +49,12 @@ class BrowserStrip(_Widget):
     
     def set_image(self):
         self.image = pygame.Surface(self.size, pygame.SRCALPHA)
+        browser_list = []
         for index, item in enumerate(self._items_list):
             item.set_image()
-            browser_item_position = (index * (self.item_width + self.margin) + self.margin, self.margin)
-            self.image.blit(item.image, browser_item_position)
+            browser_list.append((item, (index * (self.item_width + self.margin) + self.margin, self.margin)))
+            
+        self.image.blits(browser_list)
 
         if self._selected_index is not None:
             border_position = (self._selected_index * (self.item_width + self.margin), 0)
