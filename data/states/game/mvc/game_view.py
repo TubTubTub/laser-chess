@@ -106,11 +106,12 @@ class GameView:
         if laser_result.hit_square_bitboard:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
+
             screen.set_effect(ScreenEffect.SHAKE)
 
-            image = pygame.Surface((20, 20))
-            image.fill((255, 0, 0))
             self._particles_draw.add_captured_piece(laser_result.piece_hit, laser_result.piece_colour, laser_result.piece_rotation, coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size), self._square_size)
+            particle_colour = (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255)
+            self._particles_draw.add_sparks(3, particle_colour, coords_to_screen_pos(laser_result.laser_path[0][0], self._board_position, self._square_size))
 
             if laser_result.piece_colour == Colour.BLUE:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)

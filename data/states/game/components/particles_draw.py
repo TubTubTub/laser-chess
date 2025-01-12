@@ -7,6 +7,7 @@ from data.states.game.components.piece_sprite import create_piece
 class ParticlesDraw:
     def __init__(self, gravity=0.2, rotation=180, shrink=0.5, opacity=150):
         self._particles = [] # (image, image_copy, position, velocity, lifespan)
+        self._glow_particles = []
 
         self._gravity = gravity
         self._rotation = rotation
@@ -69,6 +70,12 @@ class ParticlesDraw:
         for particle in particles:
             self.add_particle(particle, position)
     
+    def add_sparks(self, radius, colour, position):
+        for i in range(randint(10, 15)):
+            velocity = [randint(-15, 15) / 10, randint(-20, 0) / 10]
+            random_colour = [min(max(val + randint(-20, 20), 0), 255) for val in colour]
+            self._particles.append([None, [radius, random_colour], [*position], velocity, 0])
+    
     def add_particle(self, image, position):
         velocity = [randint(-15, 15) / 10, randint(-20, 0) / 10]
 
@@ -76,32 +83,47 @@ class ParticlesDraw:
 
     def update(self):
         for i in range(len(self._particles) - 1, -1, -1):
-            image, image_copy, position, velocity, lifespan = self._particles[i]
+            particle = self._particles[i]
 
-            position[0] += velocity[0]
-            position[1] += velocity[1]
+            #update position
+            particle[2][0] += particle[3][0]
+            particle[2][1] += particle[3][1]
 
+            #update lifespan
             self._particles[i][4] += 0.01
 
             if self._particles[i][4] >= 1:
                 self._particles.pop(i)
                 continue
 
-            velocity[1] += self._gravity
+            if isinstance(particle[1], pygame.Surface): # Draw surface
+                # update velocity
+                particle[3][1] += self._gravity
+                
+                # update size
+                image_size = particle[1].get_rect().size
+                end_size = ((1 - self._shrink) * image_size[0], (1 - self._shrink) * image_size[1])
+                target_size = (image_size[0] - particle[4] * (image_size[0] - end_size[0]), image_size[1] - particle[4] * (image_size[1] - end_size[1]))
 
-            image_size = image_copy.get_rect().size
+                # update rotation
+                rotation = (self._rotation if particle[3][0] <= 0 else -self._rotation) * particle[4] 
 
-            end_size = ((1 - self._shrink) * image_size[0], (1 - self._shrink) * image_size[1])
-            size = (image_size[0] - lifespan * (image_size[0] - end_size[0]), image_size[1] - lifespan * (image_size[1] - end_size[1]))
-
-            rotation = (self._rotation if velocity[0] <= 0 else -self._rotation) * lifespan 
-
-            alpha = 255 - lifespan * (255 - self._opacity)
-
-            new_image = pygame.transform.scale(pygame.transform.rotate(image_copy, rotation), size)
-            new_image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
+                updated_image = pygame.transform.scale(pygame.transform.rotate(particle[1], rotation), target_size)
             
-            self._particles[i][0] = new_image
+            elif isinstance(particle[1], list): # Draw circle
+                # update size
+                end_radius = (1 - self._shrink) * particle[1][0]
+                target_radius = particle[1][0] - particle[4] * (particle[1][0] - end_radius)
+
+                updated_image = pygame.Surface((target_radius * 2, target_radius * 2), pygame.SRCALPHA)
+                pygame.draw.circle(updated_image, particle[1][1], (target_radius, target_radius), target_radius)
+
+            # update opacity
+            alpha = 255 - particle[4] * (255 - self._opacity)
+
+            updated_image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
+            
+            particle[0] = updated_image
     
     def draw(self, surface):
         if len(self._particles) == 0:

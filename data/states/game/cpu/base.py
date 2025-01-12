@@ -41,8 +41,18 @@ class BaseCPU:
     def find_move(self, board, stop_event=None):
         raise NotImplementedError
     
-    def search(self):
-        raise NotImplementedError
+    def search(self, board, depth, stop_event, absolute=False, **kwargs):
+        if stop_event and stop_event.is_set():
+            raise Exception(f'Thread killed - stopping minimax function ({self.__str__}.search)')
+        
+        self._stats['nodes'] += 1
+
+        if (winner := board.check_win()) is not None:
+            return self.process_win(winner)
+
+        if depth == 0:
+            self._stats['leaf_nodes'] += 1
+            return self._evaluator.evaluate(board, absolute), None
     
     def process_win(self, winner):
         self._stats['leaf_nodes'] += 1

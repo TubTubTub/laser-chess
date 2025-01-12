@@ -1,4 +1,4 @@
-from data.constants import Score, Colour, Miscellaneous
+from data.constants import Score, Colour, Miscellaneous, MoveType
 from data.states.game.cpu.base import BaseCPU
 from data.utils.bitboard_helpers import print_bitboard
 from random import choice, randint
@@ -18,24 +18,14 @@ class NegamaxCPU(BaseCPU):
             
         self._callback(best_move)
 
-    def search(self, board, depth, stop_event):
-        if stop_event and stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (MinimaxCPU.search)')
+    def search(self, board, depth, stop_event, moves=None):
+        if (base_case := super().search(board, depth, stop_event, absolute=True)):
+            return base_case
         
-        self._stats['nodes'] += 1
-        active_colour = board.get_active_colour()
-        
-        if (winner := board.check_win()) is not None:
-            return self.process_win(winner)
-        
-        if depth == 0:
-            self._stats['leaf_nodes'] += 1
-            return self._evaluator.evaluate(board), None
-
         best_move = None
         best_score = -Score.INFINITE
 
-        for move in board.generate_all_moves(active_colour):
+        for move in board.generate_all_moves(board.get_active_colour()):
             laser_result = board.apply_move(move)
 
             new_score = self.search(board, depth - 1, stop_event)[0]

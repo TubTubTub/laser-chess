@@ -1,5 +1,5 @@
 from data.states.game.cpu.transposition_table import TranspositionTable
-from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU
+from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU, ABNegamaxCPU
 
 class TranspositionTableMixin:
     def __init__(self, *args, **kwargs):
@@ -21,6 +21,15 @@ class TranspositionTableMixin:
         return score, move
 
 class TTMinimaxCPU(TranspositionTableMixin, ABMinimaxCPU):
+    def initialise_stats(self):
+        super().initialise_stats()
+        self._stats['cache_hits'] = 0
+    
+    def print_stats(self, score, move):
+        self._stats['cache_hits_percentage'] = self._stats['cache_hits'] / self._stats['nodes']
+        super().print_stats(score, move)
+
+class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
     def initialise_stats(self):
         super().initialise_stats()
         self._stats['cache_hits'] = 0

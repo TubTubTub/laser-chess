@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from inspect import getsourcefile
 
 module_path = Path(__file__).parent
 default_file_path = (module_path / '../app_data/default_settings.json').resolve()

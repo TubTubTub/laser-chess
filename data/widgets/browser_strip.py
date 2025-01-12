@@ -52,7 +52,7 @@ class BrowserStrip(_Widget):
         browser_list = []
         for index, item in enumerate(self._items_list):
             item.set_image()
-            browser_list.append((item, (index * (self.item_width + self.margin) + self.margin, self.margin)))
+            browser_list.append((item.image, (index * (self.item_width + self.margin) + self.margin, self.margin)))
             
         self.image.blits(browser_list)
 

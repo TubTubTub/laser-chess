@@ -18,17 +18,8 @@ class MinimaxCPU(BaseCPU):
         self._callback(best_move)
 
     def search(self, board, depth, stop_event):
-        if stop_event and stop_event.is_set():
-            raise Exception('Thread killed - stopping minimax function (MinimaxCPU.search)')
-        
-        self._stats['nodes'] += 1
-        
-        if (winner := board.check_win()) is not None:
-            return self.process_win(winner)
-        
-        if depth == 0:
-            self._stats['leaf_nodes'] += 1
-            return self._evaluator.evaluate(board), None
+        if (base_case := super().search(board, depth, stop_event)):
+            return base_case
 
         best_move = None
 

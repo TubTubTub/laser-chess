@@ -1,5 +1,4 @@
 import pygame
-from pygame._sdl2 import Window
 from data.components.animation import animation
 from data.screen import screen
 
@@ -40,12 +39,10 @@ class Control:
         self.clock.tick(FPS)
         animation.set_delta_time()
 
-        screen.update()
-
         self.state.update()
-        
+
         self.draw_fps()
-        pygame.display.update()
+        screen.update()
 
     def main_game_loop(self):
         while not self.done:
@@ -77,8 +74,8 @@ class Control:
 
         min_screen_size = (min_screen_x, min_screen_y)
         max_screen_size = (max_screen_x, max_screen_y)
-        Window.from_display_module().minimum_size = min_screen_size
-        Window.from_display_module().maximum_size = max_screen_size
+        pygame.Window().minimum_size = min_screen_size
+        pygame.Window().maximum_size = max_screen_size
     
     def event_loop(self):
         for event in pygame.event.get():

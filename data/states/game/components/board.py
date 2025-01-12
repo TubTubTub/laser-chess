@@ -148,7 +148,7 @@ class Board:
 
         for square in bb_helpers.occupied_squares(piece_bitboard):
             possible_moves |= self.get_valid_squares(square)
-        
+
         return possible_moves
 
     def get_all_active_pieces(self):

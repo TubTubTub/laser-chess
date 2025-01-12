@@ -1,7 +1,2 @@
-Fix minimax crashing
-Make bot arena
-Make minimax engine mixin like the GitHub repo
-
-# hits sphinx
-# kills itself when moving
-# loop in laser
+Fix OpenGL scaling
+Fix Minimax
