@@ -75,10 +75,32 @@ def pop_count(bitboard):
     count = 0
     while bitboard:
         count += 1
-        bitboard &= bitboard - 1
+        lsb_square = bitboard & -bitboard
+        bitboard = bitboard ^ lsb_square
     
     return count
+
+# def pop_count(bitboard):
+#     count = 0
+#     while bitboard:
+#         count += 1
+#         bitboard &= bitboard - 1
+    
+#     return count
 
 def loop_all_squares():
     for i in range(80):
         yield 1 << i
+
+#Solar
+def get_LSB_value(bitboard: int):
+    return bitboard & -bitboard
+
+def pop_count_2(bitboard):
+    count = 0
+    while bitboard > 0:
+        lsb_value = get_LSB_value(bitboard)
+        count += 1
+        bitboard ^= lsb_value
+    
+    return count

@@ -1,6 +1,6 @@
 from data.constants import Score, Colour, Miscellaneous, MoveType
 from data.states.game.cpu.base import BaseCPU
-from data.utils.bitboard_helpers import print_bitboard
+from data.utils.bitboard_helpers import print_bitboard, is_occupied
 from random import choice, randint
 from copy import deepcopy
 

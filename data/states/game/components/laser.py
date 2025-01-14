@@ -1,12 +1,11 @@
 from data.utils import bitboard_helpers as bb_helpers
 from data.constants import Piece, Colour, Rotation, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
 from data.utils.bitboard_helpers import print_bitboard
-import random
 
 class Laser:
     def __init__(self, bitboards):
         self._bitboards = bitboards
-        self.hit_square_bitboard, self.piece_hit, self.laser_path = self.calculate_trajectory()
+        self.hit_square_bitboard, self.piece_hit, self.laser_path, self.path_bitboard = self.calculate_trajectory()
         
         if (self.hit_square_bitboard != EMPTY_BB):
             self.piece_rotation = self._bitboards.get_rotation_on(self.hit_square_bitboard)
@@ -35,7 +34,7 @@ class Laser:
                 if piece_hit:
                     hit_square_bitboard = current_square
                     
-                return hit_square_bitboard, piece_hit, list(zip(trajectory_list, square_animation_states))
+                return hit_square_bitboard, piece_hit, list(zip(trajectory_list, square_animation_states)), trajectory_bitboard
             
             current_square = next_square
             previous_direction = direction

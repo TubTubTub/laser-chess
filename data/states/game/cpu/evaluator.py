@@ -1,6 +1,7 @@
 from data.constants import Colour, Piece, Score
-from data.utils.bitboard_helpers import index_to_bitboard, pop_count
+from data.utils.bitboard_helpers import index_to_bitboard, pop_count, occupied_squares, bitboard_to_index
 from data.states.game.components.psqt import PSQT, FLIP
+import random
 
 class Evaluator:
     def __init__(self, verbose=True):
@@ -25,6 +26,7 @@ class Evaluator:
         return blue_score - red_score
     
     def evaluate_pieces(self, board, colour):
+        # return random.randint(-100, 100)
         return (
             Score.SPHINX * board.bitboards.get_piece_count(Piece.SPHINX, colour) +
             Score.PYRAMID * board.bitboards.get_piece_count(Piece.PYRAMID, colour) +
@@ -35,16 +37,19 @@ class Evaluator:
     def evaluate_position(self, board, colour):
         score = 0
 
-        for i in range(80):
-            bitboard = index_to_bitboard(i)
-            piece = board.bitboards.get_piece_on(bitboard, colour)
-
-            if piece is None or piece == Piece.SPHINX:
+        for piece in Piece:
+            if piece == Piece.SPHINX:
                 continue
 
-            index = FLIP[i] if colour == Colour.BLUE else i
-            score += PSQT[piece][index] * Score.POSITION
+            for colour in Colour:
+                piece_bitboard = board.bitboards.get_piece_bitboard(piece, colour)
+                
+                for bitboard in occupied_squares(piece_bitboard):
+                    index = bitboard_to_index(bitboard)
+                    index = FLIP[index] if colour == Colour.BLUE else index
 
+                    score += PSQT[piece][index] * Score.POSITION
+        
         return score
     
     def evaluate_mobility(self, board, colour):

@@ -5,16 +5,18 @@ from data.states.game.cpu.engines.alpha_beta import ABNegamaxCPU, ABMinimaxCPU
 from data.states.game.cpu.engines.transposition_table import TTMinimaxCPU, TTNegamaxCPU
 from data.states.game.components.board import Board
 from data.constants import Colour, Miscellaneous
+# sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
+# scfaRa7/RaRaRaFa6/RaRaRa7/10/10/10/10/9Sa b
 
-def compare(cls1, cls2, rounds):
+def compare(cls1, cls2, depth, rounds):
     wins = [0, 0]
     
     board = Board()
     def callback(move):
         board.apply_move(move, add_hash=True)
 
-    cpu1 = cls1(callback=callback, max_depth=2, verbose='compact')
-    cpu2 = cls2(callback=callback, max_depth=2, verbose='compact')
+    cpu1 = cls1(callback=callback, max_depth=depth, verbose=True)
+    cpu2 = cls2(callback=callback, max_depth=depth, verbose=True)
 
     for i in range(rounds):
         board = Board()
@@ -43,4 +45,4 @@ def compare(cls1, cls2, rounds):
     
     print(f'{cpu1} SCORE: {wins[0]} | {cpu2} SCORE: {wins[1]}')
 
-compare(TTNegamaxCPU, TTNegamaxCPU, 3)
+compare(TTNegamaxCPU, TTNegamaxCPU, 10)

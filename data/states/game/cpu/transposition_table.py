@@ -15,7 +15,7 @@ class TranspositionTable:
     
     def calculate_entry_index(self, hash_key):
         # return hash_key % self._max_entries
-        return hash_key
+        return str(hash_key)
     
     def insert_entry(self, score, move, hash_key, depth, alpha, beta):
         if depth == 0 or alpha < score < beta:

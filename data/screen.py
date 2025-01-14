@@ -7,7 +7,7 @@ from array import array
 from pathlib import Path
 
 vertex_shader = (Path(__file__).parent / './shaders/base.vert').resolve().read_text()
-fragment_shader = (Path(__file__).parent / './shaders/crt.frag').resolve().read_text()
+fragment_shader = (Path(__file__).parent / './shaders/final.frag').resolve().read_text()
 
 quad_array = array('f', [
     -1.0, 1.0, 0.0, 0.0,
@@ -54,10 +54,17 @@ class ScreenManager(pygame.Surface):
                 animation.set_timer(duration, self.reset_screen_shake)
     
     def draw(self):
+            # self._program['center'] = pygame.mouse.get_pos()
         frame_texture = self.surface_to_texture(self)
-        frame_texture.use(0)
-        self._program['screenTexture'] = 0
-        self._render_object.render(mode=moderngl.TRIANGLE_STRIP)
+
+        frame_buffer = self._ctx.framebuffer(color_attachments=[])
+
+        for _ in range(2):
+            frame_texture.use(0)
+            self._program['screenTexture'] = 0
+            self._render_object.render(mode=moderngl.TRIANGLE_STRIP)
+
+            self
         
         pygame.display.flip()
 

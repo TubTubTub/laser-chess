@@ -110,6 +110,5 @@ class ABNegamaxCPU(BaseCPU):
             if best_score >= beta:
                 self._stats['beta_prunes'] += 1
                 break
-
         
         return best_score, best_move

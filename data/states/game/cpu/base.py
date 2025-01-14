@@ -48,6 +48,7 @@ class BaseCPU:
         self._stats['nodes'] += 1
 
         if (winner := board.check_win()) is not None:
+            self._stats['leaf_nodes'] += 1
             return self.process_win(winner)
 
         if depth == 0:

@@ -7,18 +7,19 @@ class TranspositionTableMixin:
         self._table = TranspositionTable()
     
     def search(self, board, depth, alpha, beta, stop_event):
-        score, move = self._table.get_entry(board.to_hash(), depth, alpha, beta)
+        hash = board.to_hash()
+        score, move = self._table.get_entry(hash, depth, alpha, beta)
 
         if score is not None:
             self._stats['cache_hits'] += 1
             self._stats['nodes'] += 1
 
             return score, move
-        
-        score, move = super().search(board, depth, alpha, beta, stop_event)
-        self._table.insert_entry(score, move, board.to_hash(), depth, alpha, beta)
+        else:
+            score, move = super().search(board, depth, alpha, beta, stop_event)
+            self._table.insert_entry(score, move, hash, depth, alpha, beta)
 
-        return score, move
+            return score, move
 
 class TTMinimaxCPU(TranspositionTableMixin, ABMinimaxCPU):
     def initialise_stats(self):
@@ -26,7 +27,7 @@ class TTMinimaxCPU(TranspositionTableMixin, ABMinimaxCPU):
         self._stats['cache_hits'] = 0
     
     def print_stats(self, score, move):
-        self._stats['cache_hits_percentage'] = self._stats['cache_hits'] / self._stats['nodes']
+        self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
         super().print_stats(score, move)
 
 class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
@@ -35,5 +36,5 @@ class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
         self._stats['cache_hits'] = 0
     
     def print_stats(self, score, move):
-        self._stats['cache_hits_percentage'] = self._stats['cache_hits'] / self._stats['nodes']
+        self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
         super().print_stats(score, move)
