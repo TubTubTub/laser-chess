@@ -17,7 +17,7 @@ from data.database.database_helpers import delete_game, get_ordered_games
 
 from data.utils.asset_helpers import draw_background
 
-from data.screen import screen
+from data.window import screen
 
 class Browser(_State):
     def __init__(self):

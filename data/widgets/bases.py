@@ -2,7 +2,7 @@ import pygame
 from data.constants import WidgetState
 from data.components.audio import audio
 from data.theme import theme
-from data.screen import screen
+from data.window import screen
 from data.assets import SFX, FONTS
 
 DEFAULT_SURFACE = screen

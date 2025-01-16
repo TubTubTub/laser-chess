@@ -7,10 +7,35 @@ from data.assets import GRAPHICS
 
 user_settings = get_user_settings()
 
-if user_settings['displayMode'] == 'fullscreen':
-    word_list = ['fullscreen', 'windowed']
-else:
-    word_list = ['windowed', 'fullscreen']
+carousel_widgets = {
+    None: Text(
+        relative_position=(0, 0),
+        relative_size=(0.2, 0.04),
+        margin=0,
+        text='OFF',
+        fit_vertical=True,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'crt': Text(
+        relative_position=(0, 0),
+        relative_size=(0.2, 0.04),
+        margin=0,
+        text='RETRO',
+        fit_vertical=True,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'grayscale': Text(
+        relative_position=(0, 0),
+        relative_size=(0.2, 0.04),
+        margin=0,
+        text='REALLY RETRO',
+        fit_vertical=True,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
+    ),
+}
 
 SETTINGS_WIDGETS = {
     'default': [
@@ -61,7 +86,16 @@ SETTINGS_WIDGETS = {
         ),
         Text(
             relative_position=(0.01, 0.7),
-            text='Animations (NOT IMPLEMENTED)',
+            text='Particles',
+            relative_size=(0.4, 0.04),
+            center=False,
+            border_width=0,
+            margin=0,
+            fill_colour=(0, 0, 0, 0)
+        ),
+        Text(
+            relative_position=(0.01, 0.8),
+            text='Super Secret Settings',
             relative_size=(0.4, 0.04),
             center=False,
             border_width=0,
@@ -88,12 +122,6 @@ SETTINGS_WIDGETS = {
             margin=10,
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
-        Switch(
-            relative_position=(0.4, 0.7),
-            relative_height=0.04,
-            fill_colour=(0, 0, 255),
-            event=None
-        ),
         IconButton(
             relative_position=(0.1, 0.05),
             relative_size=(0.1, 0.1),
@@ -109,7 +137,7 @@ SETTINGS_WIDGETS = {
     Dropdown(
         relative_position=(0.4, 0.2),
         relative_width=0.2,
-        word_list=word_list,
+        word_list=['fullscreen', 'windowed'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(SettingsEventType.DROPDOWN_CLICK)
     ),
@@ -144,5 +172,21 @@ SETTINGS_WIDGETS = {
         default_volume=user_settings['sfxVolume'],
         border_width=5,
         volume_type='sfx'
-    )
+    ),
+    'shader_carousel':
+    Carousel(
+        relative_position = (0.4, 0.8),
+        margin=5,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
+        widgets_dict=carousel_widgets,
+        event=CustomEvent(SettingsEventType.SHADER_CLICK),
+    ),
+    'particles_switch':
+    Switch(
+        relative_position=(0.4, 0.7),
+        relative_height=0.04,
+        fill_colour=(0, 0, 255),
+        event=CustomEvent(SettingsEventType.PARTICLES_CLICK)
+    ),
 }

@@ -8,7 +8,7 @@ from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.components.audio import audio
 from data.components.animation import animation
-from data.screen import screen
+from data.window import screen
 
 class Menu(_State):
     def __init__(self):

@@ -100,6 +100,8 @@ class SettingsEventType(StrEnum):
     VOLUME_SLIDER_SLIDE = auto()
     VOLUME_SLIDER_CLICK = auto()
     DROPDOWN_CLICK = auto()
+    SHADER_CLICK = auto()
+    PARTICLES_CLICK = auto()
 
 class ConfigEventType(StrEnum):
     GAME_CLICK = auto()

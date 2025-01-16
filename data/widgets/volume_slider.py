@@ -87,4 +87,4 @@ class VolumeSlider(_Widget):
             self.set_image()
 
             if self._thumb.state != previous_state:
-                return CustomEvent(SettingsEventType.VOLUME_SLIDER_CLICK, volume=self._selected_percent, volume_type=self._volume_type)
+                return CustomEvent(SettingsEventType.VOLUME_SLIDER_CLICK, volume=round(self._selected_percent, 3), volume_type=self._volume_type)

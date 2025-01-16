@@ -3,7 +3,7 @@ from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
 from data.constants import GameEventType, PAUSE_COLOUR
 from data.states.game.widget_dict import PAUSE_WIDGETS
-from data.screen import screen
+from data.window import screen
 
 class PauseView:
     def __init__(self, model):

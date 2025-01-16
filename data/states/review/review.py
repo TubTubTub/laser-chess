@@ -12,7 +12,7 @@ from data.utils.asset_helpers import draw_background
 from data.utils.browser_helpers import get_winner_string
 from data.components.audio import audio
 from data.components.game_entry import GameEntry
-from data.screen import screen
+from data.window import screen
 
 class Review(_State):
     def __init__(self):

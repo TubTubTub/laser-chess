@@ -2,6 +2,7 @@ import pygame
 from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_switch
+from data.components.custom_event import CustomEvent
 
 class Switch(_Pressable, _Widget):
     def __init__(self, relative_height, event, **kwargs):
@@ -14,7 +15,7 @@ class Switch(_Pressable, _Widget):
         )
         _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_mode='height', **kwargs)
 
-        self._is_toggled_on = False
+        self._is_toggled = False
 
         self._background_colour = self._fill_colour
         self._thumb_colour = None
@@ -24,9 +25,9 @@ class Switch(_Pressable, _Widget):
         self.set_image()
         self.set_geometry()
     
-    def set_toggle_state(self, state):
-        self._is_toggled_on = state
-        if state:
+    def set_toggle_state(self, is_toggled):
+        self._is_toggled = is_toggled
+        if is_toggled:
             self._fill_colour = self._background_colour
         else:
             self._fill_colour = (50, 50, 50)
@@ -51,15 +52,16 @@ class Switch(_Pressable, _Widget):
     
     def up_func(self):
         if self.get_widget_state() == WidgetState.PRESS:
-            toggle_state = not(self._is_toggled_on)
+            toggle_state = not(self._is_toggled)
             self.set_toggle_state(toggle_state)
+
         self.set_state_colour(WidgetState.BASE)
     
     def draw_thumb(self):
         margin = self.size[1] * 0.1
         thumb_radius = (self.size[1] / 2) - margin
 
-        if self._is_toggled_on:
+        if self._is_toggled:
             thumb_center = (self.size[0] - margin - thumb_radius, self.size[1] / 2)
         else:
             thumb_center = (margin + thumb_radius, self.size[1] / 2)
@@ -69,3 +71,8 @@ class Switch(_Pressable, _Widget):
     def set_image(self):
         self.image = create_switch(self.size, self._fill_colour)
         self.draw_thumb()
+    
+    def process_event(self, event):
+        data = super().process_event(event)
+        if data:
+            return CustomEvent(**vars(data), toggled=self._is_toggled)

@@ -17,7 +17,7 @@ from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
 
 from data.constants import SettingsEventType, SCREEN_FLAGS
-from data.screen import screen
+from data.window import screen, window
 
 class Settings(_State):
     def __init__(self):
@@ -27,8 +27,6 @@ class Settings(_State):
         self._colour_picker = None
 
         self._settings = None
-        self._window_size = pygame.display.get_window_size()
-        self._window_position = pygame.display.get_window_position()
     
     def cleanup(self):
         print('cleaning settings.py')
@@ -45,6 +43,7 @@ class Settings(_State):
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(screen.size)
         self._settings = get_user_settings()
+        self.reload_settings()
 
         # print('\nGETTING USER SETTINGS:')
         # pprint.pprint(self._settings)
@@ -74,19 +73,13 @@ class Settings(_State):
         self._colour_picker.kill()
     
     def set_display_mode(self, display_mode):
-        mouse_percentage = (pygame.mouse.get_pos()[0] / screen.size[0], pygame.mouse.get_pos()[1] / screen.size[1])
         if display_mode == 'fullscreen':
-            
-            self._window_size = pygame.display.get_window_size()
-            self._window_position = pygame.display.get_window_position()
-            # pygame.Window().set_fullscreen()
-            pygame.display.set_mode((0, 0), SCREEN_FLAGS | pygame.FULLSCREEN)
+            window.set_fullscreen()
 
         elif display_mode == 'windowed':
-            os.environ['SDL_VIDEO_WINDOW_POS'] = str(self._window_position[0]) + ', ' + str(self._window_position[1])
-            pygame.display.set_mode(self._window_size, SCREEN_FLAGS)
+            window.set_windowed()
+            window.restore()
         
-        pygame.mouse.set_pos((mouse_percentage[0] * screen.size[0], mouse_percentage[1] * screen.size[1]))
         self._widget_group.handle_resize(screen.size)
     
     def reload_settings(self):
@@ -95,6 +88,8 @@ class Settings(_State):
         SETTINGS_WIDGETS['music_volume_slider'].set_volume(self._settings['musicVolume'])
         SETTINGS_WIDGETS['sfx_volume_slider'].set_volume(self._settings['sfxVolume'])
         SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(self._settings['displayMode'])
+        SETTINGS_WIDGETS['shader_carousel'].set_to_key(self._settings['shader'])
+        SETTINGS_WIDGETS['particles_switch'].set_toggle_state(self._settings['particles'])
         self.set_display_mode(self._settings['displayMode'])
     
     def get_event(self, event):
@@ -157,6 +152,12 @@ class Settings(_State):
                     elif widget_event.type == SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
                         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
                         self._settings['secondaryBoardColour'] = hex_colour
+            
+            case SettingsEventType.SHADER_CLICK:
+                self._settings['shader'] = widget_event.data
+            
+            case SettingsEventType.PARTICLES_CLICK:
+                self._settings['particles'] = widget_event.toggled
     
     def handle_resize(self):
         self._widget_group.handle_resize(screen.get_size())

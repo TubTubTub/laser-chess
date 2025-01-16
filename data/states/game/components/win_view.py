@@ -3,7 +3,7 @@ from data.constants import Colour, Miscellaneous
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
 from data.components.cursor import Cursor
-from data.screen import screen
+from data.window import screen
 
 class WinView:
     def __init__(self, model):

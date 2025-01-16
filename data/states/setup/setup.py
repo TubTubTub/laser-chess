@@ -16,7 +16,7 @@ from data.utils.board_helpers import screen_pos_to_coords
 from data.states.game.components.fen_parser import encode_fen_string
 from data.components.audio import audio
 from data.components.animation import animation
-from data.screen import screen
+from data.window import screen
 
 class Setup(_State):
     def __init__(self):

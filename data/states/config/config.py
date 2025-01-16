@@ -17,7 +17,7 @@ from data.constants import ConfigEventType, Colour
 
 from data.utils.asset_helpers import draw_background
 
-from data.screen import screen
+from data.window import screen
 
 class Config(_State):
     def __init__(self):

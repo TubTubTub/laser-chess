@@ -8,7 +8,7 @@ from data.utils.asset_helpers import get_dimmed_icon
 
 from copy import deepcopy
 
-from data.screen import screen
+from data.window import screen
 
 def float_validator(num_string):
     try:
