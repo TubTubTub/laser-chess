@@ -54,6 +54,7 @@ class Control:
     def update_window(self, resize=False):
         if resize:
             self.update_native_window_size()
+            window.handle_resize()
             self.state.handle_resize()
 
         self.update()
