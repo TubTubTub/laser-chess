@@ -93,6 +93,7 @@ class Bloom:
         shader_manager.create_framebuffer(ShaderType.BLUR)
         shader_manager.create_framebuffer(ShaderType.CONTRAST)
         
+        
     
     def update(self, screen_texture, output_fbo, threshold=1.0, intensity=1.0):
 
