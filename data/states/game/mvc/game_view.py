@@ -1,7 +1,7 @@
 import pygame
 from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
 from data.utils.bitboard_helpers import bitboard_to_coords
-from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ScreenEffect
+from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ShaderType
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.states.game.components.overlay_draw import OverlayDraw
@@ -107,7 +107,7 @@ class GameView:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
 
-            window.set_effect(ScreenEffect.SHAKE)
+            window.set_effect(ShaderType.SHAKE)
 
             self._particles_draw.add_captured_piece(laser_result.piece_hit, laser_result.piece_colour, laser_result.piece_rotation, coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size), self._square_size)
             particle_colour = (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255)

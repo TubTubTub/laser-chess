@@ -1,5 +1,5 @@
 import pygame
-from data.constants import ScreenEffect
+from data.constants import ShaderType
 from data.components.animation import animation
 from random import randint
 import moderngl
@@ -46,7 +46,7 @@ class WindowManager(pygame.Window):
     
     def set_effect(self, effect, **kwargs):
         match effect:
-            case ScreenEffect.SHAKE:
+            case ShaderType.SHAKE:
                 intensity = kwargs.get('intensity') or 10
                 duration = kwargs.get('duration') or 500
 
