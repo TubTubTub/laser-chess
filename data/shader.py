@@ -22,11 +22,8 @@ class Main:
 
         self._shader_manager.create_framebuffer(ShaderType.MAIN)
     
-    def apply(self, texture, output_fbo=None):
-        texture.use()
-        self._shader_manager.render_to_fbo(ShaderType.MAIN)
-        # output_fbo.color_attachments[0].write(data=self._shader_manager.framebuffers[ShaderType.MAIN].color_attachments[0].read())
-        texture.release()
+    def apply(self, texture):
+        self._shader_manager.render_to_fbo(ShaderType.MAIN, texture, screenTexture=0)
 
 class Grayscale:
     def __init__(self, shader_manager):
@@ -34,15 +31,21 @@ class Grayscale:
 
         shader_manager.create_framebuffer(ShaderType.GRAYSCALE)
     
-    def apply(self, texture, output_fbo):
-        texture.use()
-        self._shader_manager.render_to_fbo(ShaderType.GRAYSCALE)
-        output_fbo.write(self._shader_manager.get_fbo_attachment(ShaderType.GRAYSCALE).read())
+    def apply(self, texture):
+        self._shader_manager.render_to_fbo(ShaderType.GRAYSCALE, texture, screenTexture=0)
+
+class CRT:
+    def __init__(self, shader_manager):
+        self._shader_manager = shader_manager
+
+        shader_manager.create_framebuffer(ShaderType.CRT)
+    
+    def apply(self, texture):
+        self._shader_manager.render_to_fbo(ShaderType.CRT, texture, screenTexture=0)
 
 class Bloom:
     def __init__(self, shader_manager):
         self._shader_manager = shader_manager
-
 
         shader_manager.create_framebuffer(ShaderType.BLOOM)
         shader_manager.create_framebuffer(ShaderType.BLUR)
@@ -50,13 +53,13 @@ class Bloom:
     
     def apply(self, texture, output_fbo):
         Contrast(self._shader_manager).apply(texture)
-        Blur(self._shader_manager).apply(self._shader_manager.get_fbo_attachment(ShaderType.CONTRAST))
+        Blur(self._shader_manager).apply(self._shader_manager.get_fbo_texture(ShaderType.CONTRAST))
         
         texture.use(0)
         self._shader_manager.use_framebuffer(ShaderType.BLUR, location=1)
         self._shader_manager.render_to_fbo(ShaderType.BLOOM, uTexture=0, uBlur=1)
 
-        output_fbo.write(self._shader_manager.get_fbo_attachment(ShaderType.BLOOM).read())
+        output_fbo.write(self._shader_manager.get_fbo_texture(ShaderType.BLOOM).read())
 
 class Contrast:
     def __init__(self, shader_manager):
@@ -69,7 +72,7 @@ class Contrast:
 
         texture.use()
         self._shader_manager.render_to_fbo(ShaderType.CONTRAST, uThreshold=BLOOM_THRESHOLD, uIntensity=BLOOM_INTENSITY)
-        output_fbo.write(self._shader_manager.get_fbo_attachment(ShaderType.CONTRAST).read())
+        output_fbo.write(self._shader_manager.get_fbo_texture(ShaderType.CONTRAST).read())
 
 class Blur:
     def __init__(self, shader_manager):
@@ -93,7 +96,7 @@ class Blur:
 
             self._shader_manager.render_to_fbo(ShaderType.BLUR, output_fbo=self._shader_manager.framebuffers["ping"])
         
-        output_fbo.write(self._shader_manager.get_fbo_attachment("pong").read())
+        output_fbo.write(self._shader_manager.get_fbo_texture("pong").read())
 
 shader_pass_lookup = {
     ShaderType.MAIN: Main,
@@ -101,6 +104,7 @@ shader_pass_lookup = {
     ShaderType.BLUR: Blur,
     ShaderType.CONTRAST: Contrast,
     ShaderType.GRAYSCALE: Grayscale,
+    ShaderType.CRT: CRT,
 }
 
 class ShaderManager:
@@ -108,7 +112,7 @@ class ShaderManager:
         self._ctx = ctx
         self._screen_size = screen_size
         self._buffer = self._ctx.buffer(data=quad_array)
-        self._shader_stack = []
+        self._shader_stack = [ShaderType.MAIN]
 
         self._vert_shaders = {}
         self._frag_shaders = {}
@@ -118,11 +122,12 @@ class ShaderManager:
         self.framebuffers = {}
         self._shader_passes = {}
 
+        self.load_shader(ShaderType.MAIN)
+
     def load_shader(self, shader_type):
-        print('Loading shader:', shader_type)
         self._shader_passes[shader_type] = shader_pass_lookup[shader_type](self)
 
-        vert_path = Path(shader_path / (shader_type + '.vert')).resolve()
+        vert_path = Path(shader_path / 'main.vert').resolve()
         frag_path = Path(shader_path / (shader_type + '.frag')).resolve()
 
         self._vert_shaders[shader_type] = vert_path.read_text()
@@ -131,70 +136,56 @@ class ShaderManager:
         self.create_vao(shader_type)
     
     def create_vao(self, shader_type):
-        print('Creating vao:', shader_type)
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
         self._programs[shader_type] = program
-        self._vaos[shader_type] = self._ctx.vertex_array(program, [(self._buffer, '2f 2f', 'vert', 'texCoords')])
+        self._vaos[shader_type] = self._ctx.vertex_array(self._programs[shader_type], [(self._buffer, '2f 2f', 'vert', 'texCoords')])
 
     def create_texture(self, shader_type):
         texture = self._ctx.texture(size=self._screen_size, components=4)
         texture.filter = (moderngl.NEAREST, moderngl.NEAREST)
-        texture.swizzle = 'BGRA' # MAYBE DON'T NEED
 
         self._textures[shader_type] = texture
     
     def create_framebuffer(self, shader_type):
         self.create_texture(shader_type)
-        framebuffer = self._ctx.framebuffer(color_attachments=self._textures[shader_type])
-        self.framebuffers[shader_type] = framebuffer
+        self.framebuffers[shader_type] = self._ctx.framebuffer(color_attachments=[self._textures[shader_type]])
     
-    def use_framebuffer(self, shader_type, attachment=0, location=0):
-        self.framebuffers[shader_type].color_attachments[attachment].use(location)
-    
-    def get_fbo_attachment(self, shader_type):
-        return self.framebuffers[shader_type].color_attachments[0]
-    
-    def render_to_fbo(self, shader_type, program=None, vao=None, output_fbo=None, **kwargs):
-        fbo = output_fbo or self.framebuffers[shader_type]
-        vao = vao or self._vaos[shader_type]
-        program = program or shader_type
-
-        self._textures[shader_type].use()
-        # fbo.use() NOT WORKING IF THIS TURNED ON
+    def render_to_fbo(self, shader_type, texture, **kwargs):
+        self.framebuffers[shader_type].use()
+        texture.use(0)
         
-        # self._programs[program].__dict__.update(kwargs)
-        for uniform in kwargs:
-            self._programs[program][uniform] = kwargs[uniform]
+        self._programs[shader_type].__dict__.update(kwargs)
 
-        vao.render(mode=moderngl.TRIANGLE_STRIP)
-        print(self._programs[ShaderType.MAIN] == self._programs[program],uniform)
+        self._vaos[shader_type].render(mode=moderngl.TRIANGLE_STRIP)
     
     def apply_shader(self, shader_type):
         if shader_type in self._shader_stack:
             raise ValueError('(ShaderManager) Shader already being applied!', shader_type)
         
         self.load_shader(shader_type)
-        self._shader_stack.append(shader_type)
+        self._shader_stack.insert(-1, shader_type) # ShaderType.MAIN always last
     
     def remove_shader(self, shader_type):
         self._shader_stack.remove(shader_type)
     
     def render_main(self):
-        self._textures[ShaderType.MAIN].use(0)
+        self._ctx.screen.use() # IMPORTANT
+        self.get_fbo_texture(ShaderType.MAIN).use(0)
         self._programs[ShaderType.MAIN]['screenTexture'] = 0
         self._vaos[ShaderType.MAIN].render(mode=moderngl.TRIANGLE_STRIP)
+    
+    def get_fbo_texture(self, shader_type):
+        return self.framebuffers[shader_type].color_attachments[0]
 
     def draw(self, screen_texture):
         texture = screen_texture
 
-        self._textures[ShaderType.MAIN] = screen_texture
+        for shader_type in self._shader_stack:
+            self._shader_passes[shader_type].apply(texture)
+            texture = self.get_fbo_texture(shader_type)
 
-        # for shader_type in self._shader_stack:
-        #     self._shader_passes[shader_type].apply(texture, output_fbo=self.framebuffers[shader_type])
-        #     texture = self.get_fbo_attachment(shader_type)
-        
-        # self.render_main()
-        self.render_to_fbo(ShaderType.MAIN, screenTexture=0)
+        screen_texture.release()
+        self.render_main()
     
     def __del__(self):
         self.cleanup()

@@ -24,7 +24,8 @@ class WindowManager(pygame.Window):
 
         self._ctx = moderngl.create_context()
         self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
-        self._shader_manager.apply_shader(ShaderType.MAIN)
+        self._shader_manager.apply_shader(ShaderType.GRAYSCALE)
+        self._shader_manager.apply_shader(ShaderType.CRT)
     
     def get_size(self):
         return self.size
@@ -60,10 +61,7 @@ class WindowManager(pygame.Window):
         # frame_texture.release()
 
         self._ctx.viewport = (0, 0, *self.size)
-        self._ctx.screen.use()
-        self._ctx.clear()
-        screen_texture = self.to_texture()
-        self._shader_manager.draw(screen_texture=screen_texture)
+        self._shader_manager.draw(screen_texture=self.to_texture())
 
         self.flip()
     
