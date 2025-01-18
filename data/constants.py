@@ -20,7 +20,7 @@ class ShaderType(StrEnum):
     BLOOM = auto()
     GRAYSCALE = auto()
     CRT = auto()
-    MAIN = auto()
+    BASE = auto()
     BLUR = auto()
     CONTRAST = auto()
 
