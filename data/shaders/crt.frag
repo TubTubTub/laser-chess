@@ -1,7 +1,7 @@
 #version 330 core
 
 precision mediump float;
-uniform sampler2D screenTexture;
+uniform sampler2D image;
 
 in vec2 uvs;
 out vec4 f_colour;
