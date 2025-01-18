@@ -187,7 +187,7 @@ class ShaderManager:
         # self.get_fbo_texture(output_shader_type).use(0)
         texture.use()
         self._programs[ShaderType.BASE]['screenTexture'] = 0
-        self._vaos[ShaderType.BASE].render(mode=moderngl.TRIANGLE_STRIP) # SOMETHING ABOUT DRAWING FLIPS THE IMAGE
+        self._vaos[ShaderType.BASE].render(mode=moderngl.TRIANGLE_STRIP) # SOMETHING ABOUT DRAWING FLIPS THE
     
     def get_fbo_texture(self, shader_type):
         return self.framebuffers[shader_type].color_attachments[0]
