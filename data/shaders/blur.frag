@@ -4,7 +4,7 @@ in vec2 uvs;
 
 out vec4 f_colour;
 
-uniform sampler2D screenTexture;
+uniform sampler2D image;
 
 uniform bool horizontal = 1;
 uniform float weight[5] = float[] (0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);

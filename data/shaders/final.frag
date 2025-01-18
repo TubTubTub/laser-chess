@@ -3,7 +3,7 @@
 in vec2 uvs;
 out vec4 f_colour;
 
-uniform sampler2D screenTexture;
+uniform sampler2D image;
 uniform float bloom_spread = 0.8;
 uniform float bloom_intensity = 1;
 

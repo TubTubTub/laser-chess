@@ -22,7 +22,7 @@ class ShaderType(StrEnum):
     CRT = auto()
     MAIN = auto()
     BLUR = auto()
-    CONTRAST = auto()
+    HIGHLIGHT = auto()
 
 class TranspositionFlag(StrEnum):
     LOWER = auto()

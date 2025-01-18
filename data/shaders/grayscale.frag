@@ -1,6 +1,6 @@
 #version 330 core
 
-uniform sampler2D screenTexture;
+uniform sampler2D image;
 
 in vec2 uvs;
 out vec4 f_colour;

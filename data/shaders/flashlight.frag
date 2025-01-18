@@ -1,6 +1,6 @@
 #version 330 core
 
-uniform sampler2D screenTexture;
+uniform sampler2D image;
 uniform vec2 center;
 
 in vec2 uvs;
