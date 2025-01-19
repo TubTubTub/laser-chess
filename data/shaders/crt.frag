@@ -9,7 +9,7 @@ uniform int mode = 1;
 
 void main() {
   if (mode == 0){
-    f_colour = vec4(texture(screenTexture, uvs).rgb, 1.0);
+    f_colour = vec4(texture(image, uvs).rgb, 1.0);
   }
   else {
     float flatness = 1.0;
@@ -30,8 +30,8 @@ void main() {
       f_colour=vec4(0.0, 0.0, 0.0, 1.0);
       
     } else {
-      f_colour = vec4(texture(screenTexture, uvs_2).rgb, 1.0);
-      float fv = fract(uvs_2.y * float(textureSize(screenTexture,0).y));
+      f_colour = vec4(texture(image, uvs_2).rgb, 1.0);
+      float fv = fract(uvs_2.y * float(textureSize(image,0).y));
       fv = min(1.0, 0.8+0.5*min(fv, 1.0-fv));
       f_colour.rgb *= fv;
     }

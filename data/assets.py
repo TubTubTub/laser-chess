@@ -29,9 +29,13 @@ def load_all_gfx(directory, colorkey=(255, 0, 0), accept=(".svg", ".png", ".jpg"
             if image.get_alpha():
                 image = image.convert_alpha()
             else:
-                image = image.convert((255, 0, 0))
-                image.set_colorkey(colorkey)
-                print('TOOLS.PY: CONVERTED IMAGE ALPHA')
+                try:
+                    image = image.convert((255, 0, 0))
+                    image.set_colorkey(colorkey)
+                    print('TOOLS.PY: CONVERTED IMAGE ALPHA')
+                except Exception as error:
+                    print('Invalid file:', name, extension)
+                    raise error
             
             graphics[name] = image
         

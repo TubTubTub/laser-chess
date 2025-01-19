@@ -6,7 +6,7 @@ uniform vec2 center;
 in vec2 uvs;
 out vec4 f_colour;
 
-vec2 resolution = textureSize(screenTexture, 0);
+vec2 resolution = textureSize(image, 0);
 float radius = 100.0; // radius in pixel
 
 float getDistance(vec2 pixelCoord, vec2 playerCoord) {
@@ -23,9 +23,9 @@ void main() {
 
     if (distance < 10000) {
         float factor = 1.0 / (pow((distance / 100), 2) + 1);
-        f_colour = vec4(texture(screenTexture, uvs).rgb + factor, 1.0);
+        f_colour = vec4(texture(image, uvs).rgb + factor, 1.0);
     }
     else {
-        f_colour = vec4(texture(screenTexture, uvs).rgb, 1.0);
+        f_colour = vec4(texture(image, uvs).rgb, 1.0);
     }
 }

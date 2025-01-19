@@ -5,7 +5,8 @@ BG_COLOUR = (0, 0, 0)
 PAUSE_COLOUR = (50, 50, 50, 200)
 OVERLAY_COLOUR_LIGHT = (255, 0, 0, 128)
 OVERLAY_COLOUR_DARK = (255, 0, 0, 196)
-SCREEN_SIZE = (1200, 600)
+# SCREEN_SIZE = (1200, 600)
+SCREEN_SIZE = (600, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE | pygame.OPENGL
 STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 #Board height divded by 8
 EMPTY_BB = 0
@@ -23,6 +24,10 @@ class ShaderType(StrEnum):
     BASE = auto()
     BLUR = auto()
     HIGHLIGHT = auto()
+    CALIBRATE = auto()
+    SHADOWMAP = auto()
+    OCCLUSION = auto()
+    LIGHTMAP = auto()
 
 class TranspositionFlag(StrEnum):
     LOWER = auto()

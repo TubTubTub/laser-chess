@@ -90,7 +90,7 @@ CONFIG_WIDGETS = {
             relative_size=(0.2, 0.2),
             text='EDIT',
             text_colour=(255, 0, 0),
-            margin=20,
+            margin=10,
             event=CustomEvent(ConfigEventType.SETUP_CLICK)
         )
     ],

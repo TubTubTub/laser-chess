@@ -1,6 +1,10 @@
 {
     "code-runner.executorMap": {
-        "python": "python run.py"
+        "python": "python run.py",
+        "glsl": "python run.py"
+    },
+    "code-runner.executorMapByFileExtension": {
+        ".frag": "python run.py"  
     },
     "code-runner.enableAppInsights": false,
     "code-runner.saveFileBeforeRun": true,
