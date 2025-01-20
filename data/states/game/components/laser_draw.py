@@ -3,7 +3,7 @@ from data.constants import LaserType
 from data.utils.board_helpers import coords_to_screen_pos
 from data.assets import GRAPHICS
 from data.constants import EMPTY_BB
-from data.components.animation import animation
+from data.managers.animation import animation
 
 type_to_image = {
     LaserType.END: ['laser_end_1', 'laser_end_2'],

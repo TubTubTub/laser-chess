@@ -2,8 +2,9 @@ from data.constants import ShaderType
 from array import array
 from pathlib import Path
 import moderngl
+import pygame
 
-shader_path = (Path(__file__).parent / './shaders/').resolve()
+shader_path = (Path(__file__).parent / '../shaders/').resolve()
 
 pygame_quad_array = array('f', [
     -1.0, 1.0, 0.0, 0.0,
@@ -22,13 +23,11 @@ opengl_quad_array = array('f', [
 HIGHLIGHT_THRESHOLD = 0.7
 HIGHLIGHT_INTENSITY = 0.3
 BLUR_ITERATIONS = 10
+LIGHT_RESOLUTION = 256
 
 class ShaderManager:
     def __init__(self, ctx: moderngl.Context, screen_size):
         self._ctx = ctx
-
-        # self._ctx.enable(self._ctx.BLEND) # BLEND NEEDED FOR LIGHTMAP BUT BREAKS WITH SHADOWMAP
-        # self._ctx.blend_func = ctx.SRC_ALPHA, ctx.ONE_MINUS_SRC_ALPHA
 
         self._screen_size = screen_size
         self._opengl_buffer = self._ctx.buffer(data=opengl_quad_array)
@@ -46,11 +45,11 @@ class ShaderManager:
         self.load_shader(ShaderType.BASE)
         self._calibration_vao = self._ctx.vertex_array(self._programs[ShaderType.BASE], [(self._pygame_buffer, '2f 2f', 'vert', 'texCoords')])
 
-    def load_shader(self, shader_type):
-        self._shader_passes[shader_type] = shader_pass_lookup[shader_type](self)
+    def load_shader(self, shader_type, **kwargs):
+        self._shader_passes[shader_type] = shader_pass_lookup[shader_type](self, **kwargs)
 
         vert_path = Path(shader_path / 'base.vert').resolve()
-        frag_path = Path(shader_path / (shader_type + '.frag')).resolve()
+        frag_path = Path(shader_path / (shader_type.replace('_', '') + '.frag')).resolve()
 
         self._vert_shaders[shader_type] = vert_path.read_text()
         self._frag_shaders[shader_type] = frag_path.read_text()
@@ -62,15 +61,13 @@ class ShaderManager:
         self._programs[shader_type] = program
 
         self._vaos[shader_type] = self._ctx.vertex_array(self._programs[shader_type], [(self._opengl_buffer, '2f 2f', 'vert', 'texCoords')])
-
-    def create_texture(self, shader_type):
-        texture = self._ctx.texture(size=self._screen_size, components=4)
-        texture.filter = (moderngl.NEAREST, moderngl.NEAREST)
+    
+    def create_framebuffer(self, shader_type, size=None, filter=moderngl.NEAREST):
+        texture_size = size or self._screen_size
+        texture = self._ctx.texture(size=texture_size, components=4)
+        texture.filter = (filter, filter)
 
         self._textures[shader_type] = texture
-    
-    def create_framebuffer(self, shader_type):
-        self.create_texture(shader_type)
         self.framebuffers[shader_type] = self._ctx.framebuffer(color_attachments=[self._textures[shader_type]])
     
     def render_to_fbo(self, shader_type, texture, output_fbo=None, **kwargs):
@@ -84,11 +81,11 @@ class ShaderManager:
             
         self._vaos[shader_type].render(mode=moderngl.TRIANGLE_STRIP)
     
-    def apply_shader(self, shader_type):
+    def apply_shader(self, shader_type, **kwargs):
         if shader_type in self._shader_stack:
             raise ValueError('(ShaderManager) Shader already being applied!', shader_type)
         
-        self.load_shader(shader_type)
+        self.load_shader(shader_type, **kwargs)
         self._shader_stack.append(shader_type)
     
     def remove_shader(self, shader_type):
@@ -106,22 +103,27 @@ class ShaderManager:
     def get_fbo_texture(self, shader_type):
         return self.framebuffers[shader_type].color_attachments[0]
     
-    def calibrate_pygame_texture(self, pygame_texture):
-        pygame_texture.use()
+    def calibrate_pygame_surface(self, pygame_surface):
+        texture = self._ctx.texture(pygame_surface.size, 4)
+        texture.filter = (moderngl.NEAREST, moderngl.NEAREST)
+        texture.swizzle = 'BGRA'
+        texture.write(pygame_surface.get_view('1'))
+
+        texture.use()
         self.framebuffers[ShaderType.BASE].use()
         self._calibration_vao.render(mode=moderngl.TRIANGLE_STRIP)
-        pygame_texture.release()
+        texture.release()
 
         return self.get_fbo_texture(ShaderType.BASE)
 
-    def draw(self, screen_texture):
+    def draw(self, surface):
         self._ctx.viewport = (0, 0, *self._screen_size)
-        texture = self.calibrate_pygame_texture(screen_texture)
+        texture = self.calibrate_pygame_surface(surface)
 
         for shader_type in self._shader_stack:
             self._shader_passes[shader_type].apply(texture)
             texture = self.get_fbo_texture(shader_type)
-        # print(texture.read())
+
         self.render_output()
     
     def __del__(self):
@@ -226,65 +228,119 @@ class Blur:
 
         self._shader_manager.render_to_fbo(ShaderType.BLUR, self._shader_manager.get_fbo_texture("blurPong"))
 
-class LightMap:
+class Rays:
+    def __init__(self, shader_manager: ShaderManager, light_positions, light_radii): # pos relative to screen, radius pixels
+        self._shader_manager = shader_manager
+        self._lights = list(zip(light_positions, light_radii))
+
+        shader_manager.load_shader(ShaderType._LIGHTMAP)
+        shader_manager.load_shader(ShaderType._BLEND)
+        shader_manager.load_shader(ShaderType._CROP)
+        shader_manager.create_framebuffer(ShaderType.RAYS)
+    
+    # def get_cropped_texture(self, texture, light_pos, light_radius): # if this approach to edges doesn't work, fill edge in with occluder instead
+    #     screen_size = self._shader_manager._screen_size
+    #     pos = (light_pos[0] * screen_size[0], light_pos[1] * screen_size[1])
+
+    #     topleft = (max(0, pos[0] - light_radius), max(0, pos[1] - light_radius))
+    #     bottomright = (min(texture.size[0], pos[0] + light_radius), min(texture.size[1], pos[1] + light_radius))
+
+    #     new_surface = pygame.Surface((bottomright[0] - topleft[0], bottomright[1] - topleft[1]))
+    #     new_surface.blit(texture, (-pos[0], -pos[1]))
+    #     return new_surface
+    
+    def apply(self, texture):
+        final_texture = texture
+
+        for light_pos, light_radius in self._lights:
+            light_topleft = (light_pos[0] - (light_radius / texture.size[0]), light_pos[1] - (light_radius / texture.size[1]))
+            relative_light_size = (light_radius * 2 / texture.size[0], light_radius * 2 / texture.size[1])
+
+            _Crop(self._shader_manager).apply(texture, relative_pos=light_topleft, relative_size=relative_light_size)
+            cropped_texture = self._shader_manager.get_fbo_texture(ShaderType._CROP)
+
+            _LightMap(self._shader_manager).apply(cropped_texture, light_radius)
+            light_map = self._shader_manager.get_fbo_texture(ShaderType._LIGHTMAP)
+            
+            _Blend(self._shader_manager).apply(final_texture, light_map, light_topleft)
+            final_texture = self._shader_manager.get_fbo_texture(ShaderType._BLEND)
+        
+        self._shader_manager.render_to_fbo(ShaderType.RAYS, final_texture)
+
+class _LightMap:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
-        self._light_size = 600
 
-        from data.assets import GRAPHICS
-        self._test_surface = GRAPHICS['final_8'].get_view('1')
+        shader_manager.load_shader(ShaderType._SHADOWMAP)
 
-        shader_manager.load_shader(ShaderType.SHADOWMAP)
-
-        shader_manager.create_framebuffer(ShaderType.LIGHTMAP)
-
-    def apply(self, texture):
+    def apply(self, texture, light_radius):
+        self._shader_manager.create_framebuffer(ShaderType._LIGHTMAP, size=(light_radius * 2, light_radius * 2))
         self._shader_manager._ctx.enable(self._shader_manager._ctx.BLEND)
 
-        ShadowMap(self._shader_manager).apply(texture)
+        _ShadowMap(self._shader_manager).apply(texture, light_radius)
 
-        # self._shader_manager.get_fbo_texture(ShaderType.SHADOWMAP).write(self._test_surface)
-        # self._shader_manager.get_fbo_texture(ShaderType.SHADOWMAP).swizzle = 'BRGA'
-
-
-        shadow_map = self._shader_manager.get_fbo_texture(ShaderType.SHADOWMAP)
+        shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
         shadow_map.use(1)
+        occlusionMap = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
+        occlusionMap.use(2)
 
-        self._shader_manager.render_to_fbo(ShaderType.LIGHTMAP, texture, shadowMap=1, resolution=(self._light_size, self._light_size))
-        # self._shader_manager.render_to_fbo(ShaderType.LIGHTMAP, occlusion_texture, shadowMap=1)
-        # self._shader_manager.render_to_fbo(ShaderType.LIGHTMAP, shadow_map)
+        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, texture, shadowMap=1, occlusionMap=2, resolution=LIGHT_RESOLUTION)
 
         self._shader_manager._ctx.disable(self._shader_manager._ctx.BLEND)
 
-class ShadowMap:
+class _ShadowMap:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
-        self._light_size = 600
 
-        shader_manager.load_shader(ShaderType.OCCLUSION)
-        
-        texture = self._shader_manager._ctx.texture(size=(self._light_size, 1), components=4)
-        texture.filter = (moderngl.LINEAR, moderngl.LINEAR) # TESTING CHANGE TO LINEAR
-        texture.repeat_x = True
-        texture.repeat_y = True
+        shader_manager.load_shader(ShaderType._OCCLUSION)
 
-        self._shader_manager._textures[ShaderType.SHADOWMAP] = texture
-        self._shader_manager.framebuffers[ShaderType.SHADOWMAP] = self._shader_manager._ctx.framebuffer(color_attachments=[texture])
+    def apply(self, texture, light_radius):
+        self._shader_manager.create_framebuffer(ShaderType._SHADOWMAP, size=(light_radius * 2, 1), filter=moderngl.LINEAR)
 
-    def apply(self, texture):
-        Occlusion(self._shader_manager).apply(texture)
-        occlusion_texture = self._shader_manager.get_fbo_texture(ShaderType.OCCLUSION)
+        _Occlusion(self._shader_manager).apply(texture, light_radius)
+        occlusion_texture = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
 
-        # self._shader_manager.render_to_fbo(ShaderType.SHADOWMAP, occlusion_texture, resolution=(self._light_size, self._light_size))
-        self._shader_manager.render_to_fbo(ShaderType.SHADOWMAP, occlusion_texture)
+        self._shader_manager.render_to_fbo(ShaderType._SHADOWMAP, occlusion_texture, resolution=LIGHT_RESOLUTION)
 
-class Occlusion:
+class _Occlusion:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
-        self._shader_manager.create_framebuffer(ShaderType.OCCLUSION)
 
-    def apply(self, texture):
-        self._shader_manager.render_to_fbo(ShaderType.OCCLUSION, texture)
+    def apply(self, texture, light_radius):
+        self._shader_manager.create_framebuffer(ShaderType._OCCLUSION, size=(light_radius * 2, light_radius * 2))
+        self._shader_manager.render_to_fbo(ShaderType._OCCLUSION, texture)
+
+class _Blend:
+    def __init__(self, shader_manager: ShaderManager):
+        self._shader_manager = shader_manager
+
+        self._shader_manager.create_framebuffer(ShaderType._BLEND)
+
+    def apply(self, texture, texture_2, texture_2_pos):
+        # from data.assets import GRAPHICS
+        # self._test_surface = GRAPHICS['overlay'].get_view('1')
+        # self._shader_manager.create_framebuffer(ShaderType._OCCLUSION, size=(200, 200))
+        # self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION).write(self._test_surface)
+        # self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION).use(1)
+        # texture_2 = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
+
+        relative_size = (texture_2.size[0] / texture.size[0], texture_2.size[1] / texture.size[1])
+        opengl_pos = (texture_2_pos[0], 1 - texture_2_pos[1] - relative_size[1])
+
+        texture_2.use(1)
+        self._shader_manager.render_to_fbo(ShaderType._BLEND, texture, image2=1, image2Pos=opengl_pos, relativeSize=relative_size)
+
+class _Crop:
+    def __init__(self, shader_manager: ShaderManager):
+        self._shader_manager = shader_manager
+
+    def apply(self, texture, relative_pos, relative_size):
+        opengl_pos = (relative_pos[0], 1 - relative_pos[1] - relative_size[1])
+        pixel_size = (int(relative_size[0] * texture.size[0]), int(relative_size[1] * texture.size[1]))
+
+        self._shader_manager.create_framebuffer(ShaderType._CROP, size=pixel_size)
+
+        self._shader_manager.render_to_fbo(ShaderType._CROP, texture, relativePos=opengl_pos, relativeSize=relative_size)
 
 shader_pass_lookup = {
     ShaderType.CALIBRATE: lambda *args: None,
@@ -294,7 +350,10 @@ shader_pass_lookup = {
     ShaderType.HIGHLIGHT: Highlight,
     ShaderType.GRAYSCALE: Grayscale,
     ShaderType.CRT: CRT,
-    ShaderType.SHADOWMAP: ShadowMap,
-    ShaderType.OCCLUSION: Occlusion,
-    ShaderType.LIGHTMAP: LightMap,
+    ShaderType.RAYS: Rays,
+    ShaderType._SHADOWMAP: _ShadowMap,
+    ShaderType._OCCLUSION: _Occlusion,
+    ShaderType._LIGHTMAP: _LightMap,
+    ShaderType._BLEND: _Blend,
+    ShaderType._CROP: _Crop,
 }

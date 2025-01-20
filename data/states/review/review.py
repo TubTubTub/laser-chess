@@ -10,9 +10,9 @@ from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.utils.browser_helpers import get_winner_string
-from data.components.audio import audio
+from data.managers.audio import audio
 from data.components.game_entry import GameEntry
-from data.window import screen
+from data.managers.window import screen
 
 class Review(_State):
     def __init__(self):

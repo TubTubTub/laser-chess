@@ -8,8 +8,8 @@ from data.states.settings.widget_dict import SETTINGS_WIDGETS
 
 from data.components.widget_group import WidgetGroup
 from data.widgets import ColourPicker
-from data.components.audio import audio
-from data.components.animation import animation
+from data.managers.audio import audio
+from data.managers.animation import animation
 
 from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
 
@@ -17,7 +17,7 @@ from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
 
 from data.constants import SettingsEventType, SCREEN_FLAGS
-from data.window import screen, window
+from data.managers.window import screen, window
 
 class Settings(_State):
     def __init__(self):

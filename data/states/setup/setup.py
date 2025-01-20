@@ -14,9 +14,9 @@ from data.utils.bitboard_helpers import coords_to_bitboard
 from data.utils.asset_helpers import draw_background
 from data.utils.board_helpers import screen_pos_to_coords
 from data.states.game.components.fen_parser import encode_fen_string
-from data.components.audio import audio
-from data.components.animation import animation
-from data.window import screen
+from data.managers.audio import audio
+from data.managers.animation import animation
+from data.managers.window import screen
 
 class Setup(_State):
     def __init__(self):

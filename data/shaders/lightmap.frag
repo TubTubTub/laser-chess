@@ -9,7 +9,8 @@ out vec4 f_colour;
 //uniform values
 uniform sampler2D image;
 uniform sampler2D shadowMap;
-uniform vec2 resolution;
+uniform sampler2D occlusionMap;
+uniform float resolution;
 
 //sample from the 1D distance map
 float sample(vec2 coord, float r) {
@@ -33,7 +34,7 @@ void main() {
 	//we multiply the blur amount by our distance from center
 	//this leads to more blurriness as the shadow "fades away"
     // straight to cuved edges
-	float blur = (1.0 / resolution.x) * smoothstep(0.0, 0.1, r); 
+	float blur = (1.0 / resolution) * smoothstep(0.0, 0.1, r); 
 	
 	//now we use a simple gaussian blur
 	float sum = 0.0;
@@ -55,7 +56,8 @@ void main() {
  	//multiply the summed amount by our distance, which gives us a radial falloff
  	// //then multiply by vertex (light) color
     // if (center == 1.0) {
-        f_colour = texture(image, uvs).rgba * vec4(vec3(1.0), sum * smoothstep(1.0, 0.0, r));
+	vec3 final_colour = vec3(texture(image, uvs).rgb * vec3(sum * smoothstep(1.0, 0.0, r)) * 5);
+        f_colour = vec4(final_colour.r + texture(occlusionMap, uvs).r, final_colour.gb, 1.0);
     // } else {
     //     f_colour = vec4(0.0, 1.0, 0.0, 1.0);
     // }

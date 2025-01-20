@@ -5,9 +5,9 @@ from data.control import _State
 from data.states.browser.widget_dict import BROWSER_WIDGETS
 
 from data.components.widget_group import WidgetGroup
-from data.components.animation import animation
+from data.managers.animation import animation
 from data.components.cursor import Cursor
-from data.components.audio import audio
+from data.managers.audio import audio
 
 from data.assets import GRAPHICS
 
@@ -17,7 +17,7 @@ from data.database.database_helpers import delete_game, get_ordered_games
 
 from data.utils.asset_helpers import draw_background
 
-from data.window import screen
+from data.managers.window import screen
 
 class Browser(_State):
     def __init__(self):

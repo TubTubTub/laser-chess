@@ -13,7 +13,7 @@ from data.database.database_helpers import insert_into_games
 
 from functools import partial
 
-from data.window import screen
+from data.managers.window import screen
 
 class Game(_State):
     def __init__(self):

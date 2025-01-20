@@ -5,7 +5,7 @@ from data.assets import GRAPHICS
 from data.constants import Piece, Colour
 from data.utils.asset_helpers import get_dimmed_icon
 
-from data.theme import theme
+from data.managers.theme import theme
 
 blue_pieces_container = Rectangle(
     relative_position=(-0.25, 0),

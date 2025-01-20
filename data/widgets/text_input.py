@@ -3,7 +3,7 @@ import pyperclip
 from data.widgets.text import Text
 from data.widgets.bases import _Pressable
 from data.components.custom_event import CustomEvent
-from data.components.animation import animation
+from data.managers.animation import animation
 from data.constants import WidgetState
 from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size

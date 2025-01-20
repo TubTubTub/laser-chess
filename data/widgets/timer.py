@@ -1,6 +1,6 @@
 import pygame
 from data.widgets.text import Text
-from data.components.animation import animation
+from data.managers.animation import animation
 
 class Timer(Text):
     def __init__(self, event=None, start_mins=60, **kwargs):

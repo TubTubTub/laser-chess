@@ -25,9 +25,13 @@ class ShaderType(StrEnum):
     BLUR = auto()
     HIGHLIGHT = auto()
     CALIBRATE = auto()
-    SHADOWMAP = auto()
-    OCCLUSION = auto()
-    LIGHTMAP = auto()
+    RAYS = auto()
+    
+    _LIGHTMAP = auto()
+    _SHADOWMAP = auto()
+    _OCCLUSION = auto()
+    _BLEND = auto()
+    _CROP = auto()
 
 class TranspositionFlag(StrEnum):
     LOWER = auto()

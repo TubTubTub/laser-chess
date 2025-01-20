@@ -11,7 +11,7 @@ from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.window import screen, window
+from data.managers.window import screen, window
 
 class GameView:
     def __init__(self, model):

@@ -3,8 +3,8 @@ import moderngl
 from random import randint
 from data.utils.data_helpers import get_user_settings
 from data.constants import ShaderType, SCREEN_SIZE
-from data.components.animation import animation
-from data.shader import ShaderManager
+from data.managers.animation import animation
+from data.managers.shader import ShaderManager
 
 class WindowManager(pygame.Window):
     def __init__(self, **kwargs):
@@ -14,18 +14,10 @@ class WindowManager(pygame.Window):
         self._screen_shake = None
         self._ctx = moderngl.create_context()
         self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
-        self._shader_manager.apply_shader(ShaderType.LIGHTMAP)
+        self._shader_manager.apply_shader(ShaderType.RAYS, light_positions=[(0.5, 0.5), (0.5, 0.1)], light_radii=[500, 200]) # DON'T PUT LIGHT ON EDGE
     
     def get_size(self):
         return self.size
-    
-    def to_texture(self):
-        texture = self._ctx.texture(self.size, 4)
-        texture.filter = (moderngl.NEAREST, moderngl.NEAREST)
-        texture.swizzle = 'BGRA'
-        texture.write(self.get_surface().get_view('1'))
-
-        return texture
     
     def reset_screen_shake(self):
         self._screen_shake = None
@@ -41,7 +33,7 @@ class WindowManager(pygame.Window):
                 animation.set_timer(duration, self.reset_screen_shake)
     
     def draw(self):
-        self._shader_manager.draw(screen_texture=self.to_texture())
+        self._shader_manager.draw(self.get_surface())
         self.flip()
     
     def update(self):

@@ -3,10 +3,18 @@ from data.components.custom_event import CustomEvent
 from data.constants import MenuEventType
 from data.assets import GRAPHICS
 
-from data.theme import theme
+from data.managers.theme import theme
 
 MENU_WIDGETS = {
     'default': [
+        Rectangle(
+            relative_position=(0.3, 0),
+            anchor_x='center',
+            anchor_y='center',
+            relative_size=(0.3, 0.3),
+            fill_colour=(255, 0, 0),
+            border_width=0,
+        ),
         Rectangle(
             relative_position=(0.1, 0.1),
             relative_size=(0.3, 0.3),

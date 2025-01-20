@@ -1,6 +1,6 @@
 import pygame
-from data.components.animation import animation
-from data.window import window
+from data.managers.animation import animation
+from data.managers.window import window
 
 screen = window.get_surface()
 

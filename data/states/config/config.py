@@ -7,9 +7,9 @@ from data.states.config.default_config import default_config
 
 from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
-from data.components.audio import audio
-from data.components.animation import animation
-from data.theme import theme
+from data.managers.audio import audio
+from data.managers.animation import animation
+from data.managers.theme import theme
 
 from data.assets import MUSIC_PATHS, GRAPHICS
 
@@ -17,7 +17,7 @@ from data.constants import ConfigEventType, Colour
 
 from data.utils.asset_helpers import draw_background
 
-from data.window import screen
+from data.managers.window import screen
 
 class Config(_State):
     def __init__(self):

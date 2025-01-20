@@ -19,13 +19,16 @@ void main() {
     float b = 1;
 
     // if (distance < radius)
+    float factor = 1.0 / (pow((distance / 100), 2) + 1);
+    float isLit = step(distance, 10000);
 
+    f_colour = vec4(texture(image, uvs).rgb + factor * isLit, 1.0);
 
-    if (distance < 10000) {
-        float factor = 1.0 / (pow((distance / 100), 2) + 1);
-        f_colour = vec4(texture(image, uvs).rgb + factor, 1.0);
-    }
-    else {
-        f_colour = vec4(texture(image, uvs).rgb, 1.0);
-    }
+    // if (distance < 10000) {
+    //     float factor = 1.0 / (pow((distance / 100), 2) + 1);
+    //     f_colour = vec4(texture(image, uvs).rgb + factor, 1.0);
+    // }
+    // else {
+    //     f_colour = vec4(texture(image, uvs).rgb, 1.0);
+    // }
 }
