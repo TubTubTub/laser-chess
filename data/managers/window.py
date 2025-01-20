@@ -14,7 +14,7 @@ class WindowManager(pygame.Window):
         self._screen_shake = None
         self._ctx = moderngl.create_context()
         self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
-        self._shader_manager.apply_shader(ShaderType.RAYS, light_positions=[(0.5, 0.5), (0.5, 0.1)], light_radii=[500, 200]) # DON'T PUT LIGHT ON EDGE
+        self._shader_manager.apply_shader(ShaderType.RAYS, light_positions=[(0.5, 0.5), (0.5, 0.1), (0.5, 0.5), (0.5, 0.1)], light_radii=[500, 200, 500, 200]) # DON'T PUT LIGHT ON EDGE
     
     def get_size(self):
         return self.size

@@ -279,12 +279,12 @@ class _LightMap:
 
         _ShadowMap(self._shader_manager).apply(texture, light_radius)
 
-        shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
-        shadow_map.use(1)
-        occlusionMap = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
-        occlusionMap.use(2)
+        # shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
+        # shadow_map.use(1)
+        # occlusionMap = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
+        # occlusionMap.use(2)
 
-        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, texture, shadowMap=1, occlusionMap=2, resolution=LIGHT_RESOLUTION)
+        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP), resolution=LIGHT_RESOLUTION)
 
         self._shader_manager._ctx.disable(self._shader_manager._ctx.BLEND)
 

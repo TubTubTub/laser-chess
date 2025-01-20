@@ -8,13 +8,13 @@ out vec4 f_colour;
 
 //uniform values
 uniform sampler2D image;
-uniform sampler2D shadowMap;
 uniform sampler2D occlusionMap;
 uniform float resolution;
+uniform float softShadow=0.0;
 
 //sample from the 1D distance map
 float sample(vec2 coord, float r) {
-	return step(r, texture(shadowMap, coord).r); // returns 1.0 if 2nd parameter greater than 1st, 0.0 if not
+	return step(r, texture(image, coord).r); // returns 1.0 if 2nd parameter greater than 1st, 0.0 if not
 }
 
 void main() {
@@ -56,8 +56,13 @@ void main() {
  	//multiply the summed amount by our distance, which gives us a radial falloff
  	// //then multiply by vertex (light) color
     // if (center == 1.0) {
-	vec3 final_colour = vec3(texture(image, uvs).rgb * vec3(sum * smoothstep(1.0, 0.0, r)) * 5);
-        f_colour = vec4(final_colour.r + texture(occlusionMap, uvs).r, final_colour.gb, 1.0);
+	float isLit = mix(center, sum, softShadow);
+
+	// vec3 final_colour = vec3(texture(image, uvs).rgb * vec3(sum * smoothstep(1.0, 0.0, r)) * 5);
+	
+	// f_colour = vec4(final_colour.r + texture(occlusionMap, uvs).r, final_colour.gb, 1.0);
+
+	f_colour = vec4(0.0, 1.0, 1.0, isLit * smoothstep(1.0, 0.0, r));
     // } else {
     //     f_colour = vec4(0.0, 1.0, 0.0, 1.0);
     // }
