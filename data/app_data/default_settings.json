@@ -9,5 +9,6 @@
     "sfxVolume": 0.5,
     "colourMode": "light",
     "particles": true,
+    "opengl": true,
     "shader": null
 }

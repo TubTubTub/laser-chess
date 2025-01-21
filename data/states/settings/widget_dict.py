@@ -1,7 +1,6 @@
-import pygame
 from data.widgets import *
 from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType
+from data.constants import SettingsEventType, SHADER_MAP
 from data.utils.data_helpers import get_user_settings
 from data.assets import GRAPHICS
 
@@ -17,24 +16,17 @@ carousel_widgets = {
         border_width=0,
         fill_colour=(0, 0, 0, 0),
     ),
-    'crt': Text(
-        relative_position=(0, 0),
-        relative_size=(0.2, 0.04),
-        margin=0,
-        text='RETRO',
-        fit_vertical=True,
-        border_width=0,
-        fill_colour=(0, 0, 0, 0),
-    ),
-    'grayscale': Text(
-        relative_position=(0, 0),
-        relative_size=(0.2, 0.04),
-        margin=0,
-        text='REALLY RETRO',
-        fit_vertical=True,
-        border_width=0,
-        fill_colour=(0, 0, 0, 0),
-    ),
+    **{
+        key: Text(
+            relative_position=(0, 0),
+            relative_size=(0.2, 0.04),
+            margin=0,
+            text=key.replace('_', ' ').upper(),
+            fit_vertical=True,
+            border_width=0,
+            fill_colour=(0, 0, 0, 0),
+        ) for key in SHADER_MAP.keys()
+    }
 }
 
 SETTINGS_WIDGETS = {
@@ -95,6 +87,15 @@ SETTINGS_WIDGETS = {
         ),
         Text(
             relative_position=(0.01, 0.8),
+            text='Shaders (OPENGL GPU REQUIRED)',
+            relative_size=(0.4, 0.04),
+            center=False,
+            border_width=0,
+            margin=0,
+            fill_colour=(0, 0, 0, 0)
+        ),
+        Text(
+            relative_position=(0.01, 0.9),
             text='Super Secret Settings',
             relative_size=(0.4, 0.04),
             center=False,
@@ -175,12 +176,12 @@ SETTINGS_WIDGETS = {
     ),
     'shader_carousel':
     Carousel(
-        relative_position = (0.4, 0.8),
+        relative_position = (0.4, 0.9),
         margin=5,
         border_width=0,
         fill_colour=(0, 0, 0, 0),
         widgets_dict=carousel_widgets,
-        event=CustomEvent(SettingsEventType.SHADER_CLICK),
+        event=CustomEvent(SettingsEventType.SHADER_PICKER_CLICK),
     ),
     'particles_switch':
     Switch(
@@ -188,5 +189,12 @@ SETTINGS_WIDGETS = {
         relative_height=0.04,
         fill_colour=(0, 0, 255),
         event=CustomEvent(SettingsEventType.PARTICLES_CLICK)
+    ),
+    'opengl_switch':
+    Switch(
+        relative_position=(0.4, 0.8),
+        relative_height=0.04,
+        fill_colour=(0, 0, 255),
+        event=CustomEvent(SettingsEventType.OPENGL_CLICK)
     ),
 }

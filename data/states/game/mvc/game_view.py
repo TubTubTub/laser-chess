@@ -109,14 +109,25 @@ class GameView:
 
             window.set_effect(ShaderType.SHAKE)
 
-            self._particles_draw.add_captured_piece(laser_result.piece_hit, laser_result.piece_colour, laser_result.piece_rotation, coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size), self._square_size)
-            particle_colour = (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255)
-            self._particles_draw.add_sparks(3, particle_colour, coords_to_screen_pos(laser_result.laser_path[0][0], self._board_position, self._square_size))
-
             if laser_result.piece_colour == Colour.BLUE:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
             elif laser_result.piece_colour == Colour.RED:
                 GAME_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
+
+            if self._user_settings['particles']:
+                self._particles_draw.add_captured_piece(
+                    laser_result.piece_hit,
+                    laser_result.piece_colour,
+                    laser_result.piece_rotation,
+                    coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size),
+                    self._square_size
+                )
+                self._particles_draw.add_sparks(
+                    3,
+                    (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255),
+                    coords_to_screen_pos(laser_result.laser_path[0][0],
+                    self._board_position, self._square_size)
+                )
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
     

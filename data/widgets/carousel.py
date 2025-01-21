@@ -11,8 +11,8 @@ class Carousel(_Widget):
         super().__init__(relative_size=None, **kwargs)
 
         self._widgets_dict = widgets_dict
-        self._widgets = CircularLinkedList(list(self._widgets_dict.keys()))
-        self._widget_key = self._widgets.get_head()
+        self._widget_keys = CircularLinkedList(list(self._widgets_dict.keys()))
+        self._widget_key = self._widget_keys.get_head()
         self._widget = self._widgets_dict[self._widget_key.data]
 
         max_widget_size = (0, 0)
@@ -74,14 +74,15 @@ class Carousel(_Widget):
         return (self.size[0] - self.arrow_length, (self.size[1] - self.arrow_length) / 2)
 
     def set_to_key(self, key):
-        for i in range(len(self._widgets_dict)):
+        if self._widget_keys.data_in_list(key) is False:
+            raise ValueError('(Carousel.set_to_key) Key not found!', key)
+        
+        for _ in range(len(self._widgets_dict)):
             if self._widget_key.data == key:
                 return
         
             self._widget_key = self._widget_key.next
             self._widget = self._widgets_dict[self._widget_key.data]
-        
-        raise ValueError('(Carousel.set_to_key) Key not found!', key)
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)

@@ -1,0 +1,80 @@
+import pygame
+from data.widgets.bases import _Widget, _Pressable
+from data.components.circular_linked_list import CircularLinkedList
+from data.components.custom_event import CustomEvent
+from data.constants import WidgetState
+
+class ReactiveButton(_Pressable, _Widget):
+    def __init__(self, widgets_dict, event, center=True, **kwargs):
+        _Pressable.__init__(
+            self,
+            event=event,
+            hover_func=lambda: self.set_to_key(WidgetState.HOVER),
+            down_func=lambda: self.set_to_key(WidgetState.PRESS),
+            up_func=lambda: self.set_to_key(WidgetState.BASE),
+        )
+
+        _Widget.__init__(self, **kwargs)
+
+        self._widgets_dict = widgets_dict
+        self._widget_keys = CircularLinkedList(list(self._widgets_dict.keys()))
+        self._widget_key = self._widget_keys.get_head()
+        self._widget = self._widgets_dict[self._widget_key.data]
+        
+        if center:
+            self._relative_position = (kwargs.get('relative_position')[0] + (self._widget.rect.width / self.surface_size[0] / 2), kwargs.get('relative_position')[1] + (self._widget.rect.height / self.surface_size[1] / 2))
+            self._center = True
+        else:
+            self._relative_position = kwargs.get('relative_position')
+            self._center = False
+    
+    def set_image(self):
+        self._widget.set_image()
+        self.image = self._widget.image
+    
+    def set_geometry(self):
+        if self._center:
+            self.rect = self.image.get_rect()
+            self.rect.center = self.position
+            self._widget.set_geometry()
+            self._widget.rect.center = self.rect.center
+        else:
+            super().set_geometry()
+            self._widget.set_geometry()
+            self._widget.rect.topleft = self.rect.topleft
+
+    def set_surface_size(self, new_surface_size):
+        super().set_surface_size(new_surface_size)
+        self._widget.set_surface_size(new_surface_size)
+    
+    def set_next_widget(self):
+        self._widget_key = self._widget_key.next
+        self._widget = self._widgets_dict[self._widget_key.data]
+
+        self.set_image()
+    
+    def set_previous_widget(self):
+        self._widget_key = self._widget_key.previous
+        self._widget = self._widgets_dict[self._widget_key.data]
+
+        self.set_image()
+
+    def set_to_key(self, key):
+        if self._widget_keys.data_in_list(key) is False:
+            raise ValueError('(ReactiveButton.set_to_key) Key not found!', key)
+        
+        for _ in range(len(self._widgets_dict)):
+            if self._widget_key.data == key:
+                self.set_image()
+                self.set_geometry()
+                return
+        
+            self._widget_key = self._widget_key.next
+            self._widget = self._widgets_dict[self._widget_key.data]
+        
+    def process_event(self, event):
+        widget_event = super().process_event(event)
+        self._widget.process_event(event)
+
+        if widget_event:
+            return CustomEvent(**vars(widget_event), data=self._widget_key.data)

@@ -137,7 +137,6 @@ class Browser(_State):
     
     def draw(self):
         draw_background(screen, GRAPHICS['temp_background'])
-        self._widget_group.handle_resize(screen.get_size())
         self._widget_group.draw()
     
     def update(self, **kwargs):

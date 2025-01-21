@@ -57,6 +57,9 @@ class ShaderManager:
 
         self.create_vao(shader_type)
     
+    def clear_shaders(self):
+        self._shader_stack = [ShaderType.BASE]
+    
     def create_vao(self, shader_type):
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
         self._programs[shader_type] = program
@@ -84,6 +87,7 @@ class ShaderManager:
     
     def apply_shader(self, shader_type, **kwargs):
         if shader_type in self._shader_stack:
+            return
             raise ValueError('(ShaderManager) Shader already being applied!', shader_type)
         
         self.load_shader(shader_type, **kwargs)

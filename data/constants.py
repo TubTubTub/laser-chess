@@ -16,6 +16,7 @@ ONE_RANK_MASK = 0b11111111111111111111111111111111111111111111111111111111111111
 EIGHT_RANK_MASK = 0b00000000001111111111111111111111111111111111111111111111111111111111111111111111
 GAMES_PER_PAGE = 10
 
+
 class ShaderType(StrEnum):
     SHAKE = auto()
     BLOOM = auto()
@@ -32,6 +33,16 @@ class ShaderType(StrEnum):
     _OCCLUSION = auto()
     _BLEND = auto()
     _CROP = auto()
+
+SHADER_MAP = {
+    'retro': [
+        ShaderType.CRT
+    ],
+    'really_retro': [
+        ShaderType.CRT,
+        ShaderType.GRAYSCALE
+    ],
+}
 
 class TranspositionFlag(StrEnum):
     LOWER = auto()
@@ -114,8 +125,9 @@ class SettingsEventType(StrEnum):
     SECONDARY_COLOUR_BUTTON_CLICK = auto()
     VOLUME_SLIDER_SLIDE = auto()
     VOLUME_SLIDER_CLICK = auto()
+    SHADER_PICKER_CLICK = auto()
+    OPENGL_CLICK = auto()
     DROPDOWN_CLICK = auto()
-    SHADER_CLICK = auto()
     PARTICLES_CLICK = auto()
 
 class ConfigEventType(StrEnum):

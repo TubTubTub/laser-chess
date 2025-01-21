@@ -16,7 +16,7 @@ from data.utils.data_helpers import get_default_settings, get_user_settings, upd
 from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
 
-from data.constants import SettingsEventType, SCREEN_FLAGS
+from data.constants import SettingsEventType, ShaderType, SCREEN_FLAGS, SHADER_MAP
 from data.managers.window import screen, window
 
 class Settings(_State):
@@ -72,15 +72,24 @@ class Settings(_State):
     def remove_colour_picker(self):
         self._colour_picker.kill()
     
-    def set_display_mode(self, display_mode):
-        if display_mode == 'fullscreen':
+    def reload_display_mode(self):
+        if self._settings['displayMode'] == 'fullscreen':
             window.set_fullscreen()
 
-        elif display_mode == 'windowed':
+        elif self._settings['displayMode'] == 'windowed':
             window.set_windowed()
             window.restore()
         
         self._widget_group.handle_resize(screen.size)
+    
+    def reload_shaders(self):
+        window.clear_effects()
+
+        if self._settings['shader'] is None:
+            return
+        
+        for shader_type in SHADER_MAP[self._settings['shader']]:
+            window.set_effect(shader_type)
     
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
@@ -90,7 +99,10 @@ class Settings(_State):
         SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(self._settings['displayMode'])
         SETTINGS_WIDGETS['shader_carousel'].set_to_key(self._settings['shader'])
         SETTINGS_WIDGETS['particles_switch'].set_toggle_state(self._settings['particles'])
-        self.set_display_mode(self._settings['displayMode'])
+        SETTINGS_WIDGETS['opengl_switch'].set_toggle_state(self._settings['opengl'])
+
+        self.reload_shaders()
+        self.reload_display_mode()
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
@@ -118,9 +130,10 @@ class Settings(_State):
                 if selected_word is None or selected_word == self._settings['displayMode']:
                     return
                 
-                self.set_display_mode(selected_word)
-
                 self._settings['displayMode'] = selected_word
+                
+                self.reload_display_mode()
+
 
             case SettingsEventType.MENU_CLICK:
                 self.next = 'menu'
@@ -153,8 +166,13 @@ class Settings(_State):
                         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
                         self._settings['secondaryBoardColour'] = hex_colour
             
-            case SettingsEventType.SHADER_CLICK:
-                self._settings['shader'] = widget_event.data
+            case SettingsEventType.SHADER_PICKER_CLICK:
+                self._settings['shaders'] = widget_event.toggled
+                self.reload_shaders()
+
+            case SettingsEventType.OPENGL_CLICK:
+                self._settings['opengl'] = widget_event.toggled
+                self.reload_shaders()
             
             case SettingsEventType.PARTICLES_CLICK:
                 self._settings['particles'] = widget_event.toggled

@@ -1,4 +1,3 @@
-Make CPU play rotational moves
 Make bitboards a dictionary
 
 Should do:
@@ -10,16 +9,16 @@ Set MOUSEBUTTONDOWN events to only left-click
 Make wrapper for pressable button widgets
 Use logging package
 Make variables like board position properties
+Fix opengl support
+Refactor linked list code
+Fix main menu text positioning
 
 Ambitious:
-Raycasting
 Switch sphinx direction
 Log-in
 
 Miscellaneous:
 Maybe separate text background code into a new label class
-Make new word wrap text class with text properties
-Make widgets low-scale when scaling by just pygame transforming a copy
 Add Ctrl + A and mouse drag to text input widget
 Make ScrollArea use parent keyword
 Remove Miscllaenous Draw and replace with third Colour option
