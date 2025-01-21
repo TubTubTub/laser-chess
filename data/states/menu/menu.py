@@ -55,7 +55,7 @@ class Menu(_State):
         self._widget_group.handle_resize(screen.get_size())
     
     def draw(self):
-        # draw_background(screen, GRAPHICS['temp_background'])
+        draw_background(screen, GRAPHICS['temp_background'])
         surface = pygame.Surface(screen.size)
         surface.fill((0, 0, 100))
         draw_background(screen, surface)

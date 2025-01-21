@@ -10,7 +10,10 @@ out vec4 f_colour;
 uniform sampler2D image;
 uniform sampler2D occlusionMap;
 uniform float resolution;
-uniform float softShadow=0.0;
+uniform vec3 lightColour;
+uniform float softShadow=0.5;
+
+vec3 normLightColour = lightColour / 255;
 
 //sample from the 1D distance map
 float sample(vec2 coord, float r) {
@@ -61,8 +64,7 @@ void main() {
 	// vec3 final_colour = vec3(texture(image, uvs).rgb * vec3(sum * smoothstep(1.0, 0.0, r)) * 5);
 	
 	// f_colour = vec4(final_colour.r + texture(occlusionMap, uvs).r, final_colour.gb, 1.0);
-
-	f_colour = vec4(0.0, 1.0, 1.0, isLit * smoothstep(1.0, 0.0, r));
+	f_colour = vec4(normLightColour, isLit * smoothstep(1.0, 0.0, r));
     // } else {
     //     f_colour = vec4(0.0, 1.0, 0.0, 1.0);
     // }
