@@ -13,7 +13,7 @@ from data.database.database_helpers import insert_into_games
 
 from functools import partial
 
-from data.managers.window import screen
+from data.managers.window import window
 
 class Game(_State):
     def __init__(self):
@@ -56,7 +56,7 @@ class Game(_State):
         self.pause_view.handle_resize()
 
     def draw(self):
-        screen.fill(BG_COLOUR)
+        window.screen.fill(BG_COLOUR)
         self.view.draw()
         self.win_view.draw()
         self.pause_view.draw()

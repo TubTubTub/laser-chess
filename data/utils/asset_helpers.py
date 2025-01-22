@@ -57,8 +57,6 @@ def get_angle_between_vectors(u, v, deg=True):
     radians = math.acos(min(max(cos_angle, -1), 1))
 
     angle = math.degrees(math.atan2(u[1] - v[1], u[0] - v[0])) - 90
-    print(angle)
-    print(math.degrees(radians))
 
     if deg:
         return math.degrees(radians)

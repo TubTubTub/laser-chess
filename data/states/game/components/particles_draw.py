@@ -126,10 +126,6 @@ class ParticlesDraw:
             particle[0] = updated_image
     
     def draw(self, surface):
-        if len(self._particles) == 0:
-            return
-        
         surface.blits([
-            (particle[0], particle[2]) \
-                for particle in self._particles
+            (particle[0], particle[2]) for particle in self._particles
         ])

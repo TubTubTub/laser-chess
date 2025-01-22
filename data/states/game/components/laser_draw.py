@@ -2,8 +2,9 @@ import pygame
 from data.constants import LaserType
 from data.utils.board_helpers import coords_to_screen_pos
 from data.assets import GRAPHICS
-from data.constants import EMPTY_BB
+from data.constants import EMPTY_BB, ShaderType, Colour
 from data.managers.animation import animation
+from data.managers.window import window
 
 type_to_image = {
     LaserType.END: ['laser_end_1', 'laser_end_2'],
@@ -19,14 +20,19 @@ class LaserDraw:
         self._square_size = board_size[0] / 10
         self._laser_lists = []
     
+    @property
+    def firing(self):
+        return len(self._laser_lists) > 0
+    
     def add_laser(self, laser_result, laser_colour):
         laser_path = laser_result.laser_path.copy()
         laser_types = [LaserType.END]
         laser_rotation = [laser_path[0][1]]
+        laser_lights = []
         
         for i in range(1, len(laser_path)):
             previous_direction = laser_path[i-1][1]
-            current_direction = laser_path[i][1]
+            current_coords, current_direction = laser_path[i]
 
             if current_direction == previous_direction:
                 laser_types.append(LaserType.STRAIGHT)
@@ -37,6 +43,15 @@ class LaserDraw:
             elif current_direction == previous_direction.get_anticlockwise():
                 laser_types.append(LaserType.CORNER)
                 laser_rotation.append(current_direction.get_anticlockwise())
+            
+            abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
+            laser_lights.append([
+                (abs_position[0] / window.size[0], abs_position[1] / window.size[1]),
+                0.3,
+                (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0)
+            ])
+
+        window.set_effect(ShaderType.RAYS, lights=laser_lights)
         
         if laser_result.hit_square_bitboard != EMPTY_BB:
             laser_types[-1] = LaserType.END
@@ -45,9 +60,16 @@ class LaserDraw:
 
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
         self._laser_lists.append((laser_path, laser_colour))
-        animation.set_timer(1000, lambda: self._laser_lists.pop(0))
+
+        animation.set_timer(1000, self.remove_laser)
     
-    def draw_laser(self, screen, laser_list):
+    def remove_laser(self):
+        self._laser_lists.pop(0)
+
+        if len(self._laser_lists) == 0:
+            window.clear_effect(ShaderType.RAYS)
+    
+    def draw_laser(self, screen, laser_list, glow=True):
         laser_path, laser_colour = laser_list
         laser_list = []
         glow_list = []
@@ -64,7 +86,9 @@ class LaserDraw:
             offset = self._square_size * ((GLOW_SCALE_FACTOR - 1) / 2)
             glow_list.append((scaled_glow, (square_x - offset, square_y - offset)))
 
-        screen.fblits(glow_list, pygame.BLEND_RGB_ADD)
+        if glow:
+            screen.fblits(glow_list, pygame.BLEND_RGB_ADD)
+
         screen.blits(laser_list)
     
     def draw(self, screen):

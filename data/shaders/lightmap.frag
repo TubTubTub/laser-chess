@@ -26,7 +26,7 @@ float sample(vec2 coord, float r) {
 void main() {
 	//rectangular to polar
 	vec2 norm = uvs.xy * 2.0 - 1.0; // [0, 1] -> [-1, 1]
-	float angle = atan(norm.y, norm.x) + radiansClamp.y * 0.001;
+	float angle = atan(norm.y, norm.x);
 	float r = length(norm);	
 	float coord = (angle + PI) / (2.0 * PI); // uvs -> [0, 1]
 	

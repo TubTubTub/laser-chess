@@ -17,7 +17,7 @@ from data.constants import ConfigEventType, Colour
 
 from data.utils.asset_helpers import draw_background
 
-from data.managers.window import screen
+from data.managers.window import window
 
 class Config(_State):
     def __init__(self):
@@ -37,7 +37,7 @@ class Config(_State):
     def startup(self, persist=None):
         print('starting config.py')
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
         CONFIG_WIDGETS['invalid_fen_string'].kill()
 
         self._config = default_config
@@ -61,7 +61,7 @@ class Config(_State):
     def create_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
         # CONFIG_WIDGETS['start_button'].set_image()
-        CONFIG_WIDGETS['cpu_depth_carousel'].set_surface_size(screen.get_size())
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_surface_size(window.size)
         CONFIG_WIDGETS['cpu_depth_carousel'].set_image()
         CONFIG_WIDGETS['cpu_depth_carousel'].set_geometry()
         self._widget_group.add(CONFIG_WIDGETS['cpu_depth_carousel'])
@@ -167,14 +167,14 @@ class Config(_State):
             self._selected_preset = None
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
     
     def draw(self):
-        draw_background(screen, GRAPHICS['temp_background'])
+        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
 
         if self._selected_preset:
-            pygame.draw.rect(screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))
+            pygame.draw.rect(window.screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))
     
     def update(self, **kwargs):
         self._widget_group.update()

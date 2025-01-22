@@ -11,7 +11,8 @@ from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.managers.window import screen
+from data.managers.window import window
+from data.managers.animation import animation
 
 class GameView:
     def __init__(self, model):
@@ -26,6 +27,7 @@ class GameView:
         self._selected_coords = None
 
         self._widget_group = WidgetGroup(GAME_WIDGETS)
+        self._widget_group.handle_resize(window.size)
         self.initialise_widgets()
         
         self._board_size = GAME_WIDGETS['chessboard'].size
@@ -72,9 +74,12 @@ class GameView:
         self._square_size = self._board_size[0] / 10
         
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
         self._laser_draw.handle_resize(self._board_position, self._board_size)
         self._laser_draw.handle_resize(self._board_position, self._board_size)
+
+        if self._laser_draw.firing:
+            self.update_laser_shader()
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
@@ -107,8 +112,6 @@ class GameView:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
 
-            screen.set_effect(ShaderType.SHAKE)
-
             if laser_result.piece_colour == Colour.BLUE:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
             elif laser_result.piece_colour == Colour.RED:
@@ -129,7 +132,11 @@ class GameView:
                     self._board_position, self._square_size)
                 )
 
+            window.set_effect(ShaderType.SHAKE)
+            animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
+
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
+        self.update_laser_shader()
     
     def handle_pause(self, event):
         is_active = not(self._model.states['PAUSED'])
@@ -150,22 +157,24 @@ class GameView:
             GAME_WIDGETS['blue_timer'].set_active(is_active)
         else:
             GAME_WIDGETS['red_timer'].set_active(is_active)
-
-    def draw_pieces(self):
-        self._piece_group.draw(screen)
     
-    def draw_widgets(self):
-        self._widget_group.draw()
+    def update_laser_shader(self):
+        temp_surface = pygame.Surface(window.size, pygame.SRCALPHA)
+        self._piece_group.draw(temp_surface)
+        mask = pygame.mask.from_surface(temp_surface, threshold=127)
+        mask_surface = mask.to_surface(unsetcolor=(0, 0, 0, 255), setcolor=(255, 0, 0, 255))
+
+        window.set_apply_arguments(ShaderType.RAYS, occlusion=mask_surface)
     
     def draw(self):
         self._widget_group.update()
         self._particles_draw.update()
 
-        self.draw_widgets()
-        self._overlay_draw.draw(screen)
-        self.draw_pieces()
-        self._laser_draw.draw(screen)
-        self._particles_draw.draw(screen)
+        self._widget_group.draw()
+        self._overlay_draw.draw(window.screen)
+        self._piece_group.draw(window.screen)
+        self._laser_draw.draw(window.screen)
+        self._particles_draw.draw(window.screen)
 
     def process_model_event(self, event):
         try:

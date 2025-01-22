@@ -1,4 +1,5 @@
 import pygame
+from data.managers.window import window
 
 class WidgetGroup(pygame.sprite.Group):
     def __init__(self, widget_dict):
@@ -32,7 +33,8 @@ class WidgetGroup(pygame.sprite.Group):
     def draw(self):
         sprites = self.sprites()
         for spr in sprites:
-            self.spritedict[spr] = spr._surface.blit(spr.image, spr.rect)
+            surface = spr._surface or window.screen
+            self.spritedict[spr] = surface.blit(spr.image, spr.rect)
         self.lostsprites = []
         dirty = self.lostsprites
 

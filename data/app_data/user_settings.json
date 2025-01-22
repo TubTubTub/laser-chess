@@ -6,7 +6,7 @@
     "displayMode": "windowed",
     "primaryFont": false,
     "musicVolume": 0.011,
-    "sfxVolume": 0.075,
+    "sfxVolume": 0.066,
     "colourMode": "light",
     "particles": true,
     "opengl": false,

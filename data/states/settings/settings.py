@@ -1,23 +1,14 @@
 import pygame
-import pprint
-import os
-
-from data.control import _State
-
-from data.states.settings.widget_dict import SETTINGS_WIDGETS
-
-from data.components.widget_group import WidgetGroup
-from data.widgets import ColourPicker
-from data.managers.audio import audio
-from data.managers.animation import animation
-
 from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
-
-from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
-
-from data.constants import SettingsEventType, ShaderType, SCREEN_FLAGS, SHADER_MAP
-from data.managers.window import screen
+from data.states.settings.widget_dict import SETTINGS_WIDGETS
+from data.constants import SettingsEventType, SHADER_MAP
+from data.components.widget_group import WidgetGroup
+from data.assets import MUSIC_PATHS, GRAPHICS
+from data.managers.window import window
+from data.managers.audio import audio
+from data.widgets import ColourPicker
+from data.control import _State
 
 class Settings(_State):
     def __init__(self):
@@ -41,7 +32,7 @@ class Settings(_State):
     def startup(self, persist=None):
         print('starting settings.py')
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
         self._settings = get_user_settings()
         self.reload_settings()
 
@@ -74,22 +65,22 @@ class Settings(_State):
     
     def reload_display_mode(self):
         if self._settings['displayMode'] == 'fullscreen':
-            screen.set_fullscreen()
+            window.set_fullscreen()
 
         elif self._settings['displayMode'] == 'windowed':
-            screen.set_windowed()
-            screen.restore()
+            window.set_windowed()
+            window.restore()
         
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
     
     def reload_shaders(self):
-        screen.clear_all_effects()
+        window.clear_all_effects()
 
         if self._settings['shader'] is None:
             return
         
         for shader_type in SHADER_MAP[self._settings['shader']]:
-            screen.set_effect(shader_type)
+            window.set_effect(shader_type)
     
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
@@ -151,7 +142,7 @@ class Settings(_State):
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                relative_position = (event.pos[0] / screen.size[0], event.pos[1] / screen.size[1])
+                relative_position = (event.pos[0] / window.size[0], event.pos[1] / window.size[1])
                 self.create_colour_picker(relative_position, widget_event.type)
             
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
@@ -178,10 +169,10 @@ class Settings(_State):
                 self._settings['particles'] = widget_event.toggled
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
     
     def draw(self):
-        draw_background(screen, GRAPHICS['temp_background'])
+        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
     
     def update(self, **kwargs):

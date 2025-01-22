@@ -6,10 +6,6 @@ from data.constants import ConfigEventType
 from data.assets import GRAPHICS
 from data.utils.asset_helpers import get_dimmed_icon
 
-from copy import deepcopy
-
-from data.managers.window import screen
-
 def float_validator(num_string):
     try:
         float(num_string)

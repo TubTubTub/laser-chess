@@ -3,7 +3,7 @@ from data.constants import Colour, Miscellaneous
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
 from data.components.cursor import Cursor
-from data.managers.window import screen
+from data.managers.window import window
 
 class WinView:
     def __init__(self, model):
@@ -15,7 +15,7 @@ class WinView:
         self._widget_group = WidgetGroup(WIN_WIDGETS)
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
     
     def draw(self):
         if self._model.states['WINNER'] is not None:

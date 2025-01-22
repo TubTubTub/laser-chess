@@ -8,9 +8,9 @@ from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
 from data.managers.audio import audio
 from data.managers.animation import animation
-from data.managers.window import screen
+from data.managers.window import window
 from data.utils.asset_helpers import get_rotational_angle
-import math
+from random import randint
 
 class Menu(_State):
     def __init__(self):
@@ -28,7 +28,7 @@ class Menu(_State):
     def startup(self, persist=None):
         print('starting menu.py')
         self._widget_group = WidgetGroup(MENU_WIDGETS)
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
         self._fire_laser = False
 
         audio.play_music(MUSIC_PATHS['menu'])
@@ -40,6 +40,7 @@ class Menu(_State):
             self._fire_laser = True
         elif event.type == pygame.MOUSEBUTTONUP:
             self._fire_laser = False
+            window.clear_effect(ShaderType.RAYS)
             
         widget_event = self._widget_group.process_event(event)
 
@@ -61,15 +62,15 @@ class Menu(_State):
                 self.done = True
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
 
     @property
     def sphinx_center(self):
-        return (screen.size[0] - self.sphinx_size[0] / 2, screen.size[1] - self.sphinx_size[1] / 2)
+        return (window.size[0] - self.sphinx_size[0] / 2, window.size[1] - self.sphinx_size[1] / 2)
     
     @property
     def sphinx_size(self):
-        return (min(screen.size) * 0.1, min(screen.size) * 0.1)
+        return (min(window.size) * 0.1, min(window.size) * 0.1)
 
     @property
     def sphinx_rotation(self):
@@ -82,16 +83,16 @@ class Menu(_State):
         sphinx_rect = pygame.Rect(0, 0, *self.sphinx_size)
         sphinx_rect.center = self.sphinx_center
 
-        screen.blit(sphinx_surface, sphinx_rect)
+        window.screen.blit(sphinx_surface, sphinx_rect)
     
     def draw_mask(self):
-        mask = pygame.mask.from_surface(screen, threshold=254)
-        screen.blit(mask.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 255, 255, 255)), ((0, 0)))
+        mask = pygame.mask.from_surface(window.screen, threshold=254)
+        window.screen.blit(mask.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 255, 255, 255)), ((0, 0)))
     
     def draw(self):
-        # draw_background(screen, GRAPHICS['temp_background'])
+        # draw_background(window.screen, GRAPHICS['temp_background'])
         
-        screen.fill((0, 0, 0, 0))
+        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         self.draw_sphinx()
 
@@ -99,14 +100,14 @@ class Menu(_State):
     
     def update(self, **kwargs):
         if self._fire_laser:
-            screen.clear_effect(ShaderType.RAYS)
+            window.clear_effect(ShaderType.RAYS)
             
-            screen.set_effect(ShaderType.RAYS, lights=[[
-                (self.sphinx_center[0] / screen.size[0], self.sphinx_center[1] / screen.size[1]),
+            window.set_effect(ShaderType.RAYS, lights=[[
+                (self.sphinx_center[0] / window.size[0], self.sphinx_center[1] / window.size[1]),
                 2.2,
-                (0, 50, 255),
+                (220, 220, 255),
                 0.99,
-                (self.sphinx_rotation - 10, self.sphinx_rotation + 10)
+                (self.sphinx_rotation - 10 + randint(-20, 20) / 40, self.sphinx_rotation + 10 + randint(-20, 20) / 40)
             ]])
 
         self.draw()

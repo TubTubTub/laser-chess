@@ -17,7 +17,7 @@ from data.database.database_helpers import delete_game, get_ordered_games
 
 from data.utils.asset_helpers import draw_background
 
-from data.managers.window import screen
+from data.managers.window import window
 
 class Browser(_State):
     def __init__(self):
@@ -47,7 +47,7 @@ class Browser(_State):
         self._filter_ascend = False
 
         self._widget_group = WidgetGroup(BROWSER_WIDGETS)
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
         BROWSER_WIDGETS['browser_strip'].kill()
 
         self.refresh_games_list()
@@ -133,10 +133,10 @@ class Browser(_State):
 
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
     
     def draw(self):
-        draw_background(screen, GRAPHICS['temp_background'])
+        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
     
     def update(self, **kwargs):

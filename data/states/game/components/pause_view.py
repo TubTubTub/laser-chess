@@ -3,7 +3,7 @@ from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
 from data.constants import GameEventType, PAUSE_COLOUR
 from data.states.game.widget_dict import PAUSE_WIDGETS
-from data.managers.window import screen
+from data.managers.window import window
 
 class PauseView:
     def __init__(self, model):
@@ -22,20 +22,20 @@ class PauseView:
             'PAUSED': False
         }
 
-        self._screen_overlay = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+        self._screen_overlay = pygame.Surface(window.size, pygame.SRCALPHA)
         self._screen_overlay.fill(PAUSE_COLOUR)
 
     def handle_pause_click(self, event):
         self.states['PAUSED'] = not self.states['PAUSED']
     
     def handle_resize(self):
-        self._widget_group.handle_resize(screen.get_size())
-        self._screen_overlay = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+        self._widget_group.handle_resize(window.size)
+        self._screen_overlay = pygame.Surface(window.size, pygame.SRCALPHA)
         self._screen_overlay.fill(PAUSE_COLOUR)
     
     def draw(self):
         if self.states['PAUSED']:
-            screen.blit(self._screen_overlay, (0, 0))
+            window.screen.blit(self._screen_overlay, (0, 0))
             self._widget_group.draw()
     
     def process_model_event(self, event):

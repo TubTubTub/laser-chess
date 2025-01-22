@@ -16,7 +16,7 @@ from data.utils.board_helpers import screen_pos_to_coords
 from data.states.game.components.fen_parser import encode_fen_string
 from data.managers.audio import audio
 from data.managers.animation import animation
-from data.managers.window import screen
+from data.managers.window import window
 
 class Setup(_State):
     def __init__(self):
@@ -45,7 +45,7 @@ class Setup(_State):
     def startup(self, persist):
         print('starting setup.py')
         self._widget_group = WidgetGroup(SETUP_WIDGETS)
-        self._widget_group.handle_resize(screen.size)
+        self._widget_group.handle_resize(window.size)
 
         self._drag_and_drop = DragAndDrop(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
         self._overlay_draw = OverlayDraw(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
@@ -292,17 +292,17 @@ class Setup(_State):
         self._selected_tool_colour = None
                 
     def handle_resize(self, resize_end=False):
-        self._widget_group.handle_resize(screen.get_size())
+        self._widget_group.handle_resize(window.size)
         self._piece_group.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size, resize_end)
         self._drag_and_drop.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
         self._overlay_draw.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
     
     def draw(self):
-        draw_background(screen, GRAPHICS['temp_background'])
+        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
-        self._overlay_draw.draw(screen)
-        self._piece_group.draw(screen)
-        self._drag_and_drop.draw(screen)
+        self._overlay_draw.draw(window.screen)
+        self._piece_group.draw(window.screen)
+        self._drag_and_drop.draw(window.screen)
     
     def update(self, **kwargs):
         self.draw()

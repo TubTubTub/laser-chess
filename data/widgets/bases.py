@@ -2,10 +2,10 @@ import pygame
 from data.constants import WidgetState
 from data.managers.audio import audio
 from data.managers.theme import theme
-from data.managers.window import screen
+from data.managers.window import window
 from data.assets import SFX, FONTS
 
-DEFAULT_SURFACE = screen
+DEFAULT_SURFACE_SIZE = window.screen.size
 DEFAULT_FONT = FONTS['default']
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
 COUNT = 0
@@ -23,8 +23,8 @@ class _Widget(pygame.sprite.Sprite):
             
         self._relative_font_size = None # SET IN EACH WIDGET
         
-        self._surface = DEFAULT_SURFACE
-        self._raw_surface_size = self._surface.get_size()
+        self._surface = None # SET IN WIDGET GROUP, AS NEED TO BE FETCHED EVERY CALL
+        self._raw_surface_size = DEFAULT_SURFACE_SIZE
 
         self._parent = kwargs.get('parent')
 

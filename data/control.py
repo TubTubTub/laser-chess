@@ -1,6 +1,6 @@
 import pygame
 from data.managers.animation import animation
-from data.managers.window import screen
+from data.managers.window import window
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -42,7 +42,7 @@ class Control:
         self.state.update()
 
         self.draw_fps()
-        screen.update()
+        window.update()
 
     def main_game_loop(self):
         while not self.done:
@@ -52,7 +52,7 @@ class Control:
     def update_window(self, resize=False):
         if resize:
             self.update_native_window_size()
-            screen.handle_resize()
+            window.handle_resize()
             self.state.handle_resize()
 
         self.update()
@@ -60,10 +60,10 @@ class Control:
     def draw_fps(self):
         fps = str(int(self.clock.get_fps()))
         fps_t = self.font.render(fps , 1, pygame.Color("RED"), True)
-        screen.blit(fps_t,(0,0))
+        window.screen.blit(fps_t,(0,0))
     
     def update_native_window_size(self):
-        x, y = screen.size
+        x, y = window.size
 
         max_window_x = 100000
         max_window_y = x / 1.4
@@ -75,8 +75,8 @@ class Control:
 
         min_window_size = (min_window_x, min_window_y)
         max_window_size = (max_window_x, max_window_y)
-        screen.minimum_size = min_window_size
-        screen.maximum_size = max_window_size
+        window.minimum_size = min_window_size
+        window.maximum_size = max_window_size
     
     def event_loop(self):
         for event in pygame.event.get():
@@ -93,7 +93,7 @@ class _State:
         self.quit = False
         self.persist = {}
     
-    def draw(self, screen):
+    def draw(self, surface):
         raise NotImplementedError
     
     def update(self, **kwargs):

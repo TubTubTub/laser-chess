@@ -3,7 +3,6 @@ from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import ReviewEventType, Colour
 from data.assets import GRAPHICS
-from data.managers.window import screen
 
 MOVE_LIST_WIDTH = 0.2
 

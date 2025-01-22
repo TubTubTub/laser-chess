@@ -24,6 +24,7 @@ HIGHLIGHT_THRESHOLD = 0.7
 HIGHLIGHT_INTENSITY = 0.3
 BLUR_ITERATIONS = 10
 LIGHT_RESOLUTION = 256
+SHAKE_INTENSITY = 3
 
 class ShaderManager:
     def __init__(self, ctx: moderngl.Context, screen_size):
@@ -95,7 +96,8 @@ class ShaderManager:
         self._shader_stack.append(shader_type)
     
     def remove_shader(self, shader_type):
-        self._shader_stack.remove(shader_type)
+        if shader_type in self._shader_stack:
+            self._shader_stack.remove(shader_type)
     
     def render_output(self):
         output_shader_type = self._shader_stack[-1]
@@ -122,12 +124,12 @@ class ShaderManager:
 
         return self.get_fbo_texture(ShaderType.BASE)
 
-    def draw(self, surface):
+    def draw(self, surface, arguments):
         self._ctx.viewport = (0, 0, *self._screen_size)
         texture = self.calibrate_pygame_surface(surface)
 
         for shader_type in self._shader_stack:
-            self._shader_passes[shader_type].apply(texture)
+            self._shader_passes[shader_type].apply(texture, **arguments[shader_type])
             texture = self.get_fbo_texture(shader_type)
 
         self.render_output()
@@ -162,6 +164,16 @@ class Base:
     
     def apply(self, texture):
         self._shader_manager.render_to_fbo(ShaderType.BASE, texture)
+
+class Shake:
+    def __init__(self, shader_manager: ShaderManager):
+        self._shader_manager = shader_manager
+
+        self._shader_manager.create_framebuffer(ShaderType.SHAKE)
+    
+    def apply(self, texture):
+        displacement = (randint(-SHAKE_INTENSITY, SHAKE_INTENSITY) / 1000, randint(-SHAKE_INTENSITY, SHAKE_INTENSITY) / 1000)
+        self._shader_manager.render_to_fbo(ShaderType.SHAKE, texture, displacement=displacement)
 
 class Grayscale:
     def __init__(self, shader_manager: ShaderManager):
@@ -248,29 +260,24 @@ class Rays:
         shader_manager.load_shader(ShaderType._CROP)
         shader_manager.create_framebuffer(ShaderType.RAYS)
     
-    # def get_cropped_texture(self, texture, light_pos, light_radius): # if this approach to edges doesn't work, fill edge in with occluder instead
-    #     screen_size = self._shader_manager._screen_size
-    #     pos = (light_pos[0] * screen_size[0], light_pos[1] * screen_size[1])
-
-    #     topleft = (max(0, pos[0] - light_radius), max(0, pos[1] - light_radius))
-    #     bottomright = (min(texture.size[0], pos[0] + light_radius), min(texture.size[1], pos[1] + light_radius))
-
-    #     new_surface = pygame.Surface((bottomright[0] - topleft[0], bottomright[1] - topleft[1]))
-    #     new_surface.blit(texture, (-pos[0], -pos[1]))
-    #     return new_surface
-    
-    def apply(self, texture):
+    def apply(self, texture, occlusion=None):
         final_texture = texture
 
         for pos, radius, colour, *args in self._lights:
-            print(texture.size)
             light_topleft = (pos[0] - (radius * texture.size[1] / texture.size[0]), pos[1] - radius)
             relative_size = (radius * 2 * texture.size[1] / texture.size[0], radius * 2)
 
             _Crop(self._shader_manager).apply(texture, relative_pos=light_topleft, relative_size=relative_size)
             cropped_texture = self._shader_manager.get_fbo_texture(ShaderType._CROP)
 
-            _LightMap(self._shader_manager).apply(cropped_texture, colour, *args)
+            if occlusion:
+                occlusion_texture = self._shader_manager.calibrate_pygame_surface(occlusion)
+                _Crop(self._shader_manager).apply(occlusion_texture, relative_pos=light_topleft, relative_size=relative_size)
+                occlusion_texture = self._shader_manager.get_fbo_texture(ShaderType._CROP)
+            else:
+                occlusion_texture = None
+
+            _LightMap(self._shader_manager).apply(cropped_texture, colour, occlusion_texture, *args)
             light_map = self._shader_manager.get_fbo_texture(ShaderType._LIGHTMAP)
             
             _Blend(self._shader_manager).apply(final_texture, light_map, light_topleft)
@@ -284,17 +291,14 @@ class _LightMap:
 
         shader_manager.load_shader(ShaderType._SHADOWMAP)
 
-    def apply(self, texture, colour, falloff=0.0, clamp=(-360, 359)):
+    def apply(self, texture, colour, occlusion=None, falloff=0.0, clamp=(-180, 180)):
         self._shader_manager.create_framebuffer(ShaderType._LIGHTMAP, size=texture.size)
         self._shader_manager._ctx.enable(self._shader_manager._ctx.BLEND)
-        _ShadowMap(self._shader_manager).apply(texture)
 
-        # shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
-        # shadow_map.use(1)
-        # occlusionMap = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
-        # occlusionMap.use(2)
+        _ShadowMap(self._shader_manager).apply(texture, occlusion)
+        shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
 
-        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP), resolution=LIGHT_RESOLUTION, lightColour=colour, falloff=falloff, angleClamp=clamp)
+        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, shadow_map, resolution=LIGHT_RESOLUTION, lightColour=colour, falloff=falloff, angleClamp=clamp)
 
         self._shader_manager._ctx.disable(self._shader_manager._ctx.BLEND)
 
@@ -304,11 +308,12 @@ class _ShadowMap:
 
         shader_manager.load_shader(ShaderType._OCCLUSION)
 
-    def apply(self, texture):
+    def apply(self, texture, occlusion_texture=None):
         self._shader_manager.create_framebuffer(ShaderType._SHADOWMAP, size=(texture.size[0], 1), filter=moderngl.LINEAR)
 
-        _Occlusion(self._shader_manager).apply(texture)
-        occlusion_texture = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
+        if occlusion_texture is None:
+            _Occlusion(self._shader_manager).apply(texture)
+            occlusion_texture = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
 
         self._shader_manager.render_to_fbo(ShaderType._SHADOWMAP, occlusion_texture, resolution=LIGHT_RESOLUTION)
 
@@ -327,13 +332,6 @@ class _Blend:
         self._shader_manager.create_framebuffer(ShaderType._BLEND)
 
     def apply(self, texture, texture_2, texture_2_pos):
-        # from data.assets import GRAPHICS
-        # self._test_surface = GRAPHICS['overlay'].get_view('1')
-        # self._shader_manager.create_framebuffer(ShaderType._OCCLUSION, size=(200, 200))
-        # self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION).write(self._test_surface)
-        # self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION).use(1)
-        # texture_2 = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
-
         self._shader_manager._ctx.blend_func = (moderngl.SRC_ALPHA, moderngl.ONE)
 
         relative_size = (texture_2.size[0] / texture.size[0], texture_2.size[1] / texture.size[1])
@@ -358,6 +356,7 @@ class _Crop:
 shader_pass_lookup = {
     ShaderType.CALIBRATE: lambda *args: None,
     ShaderType.BASE: Base,
+    ShaderType.SHAKE: Shake,
     ShaderType.BLOOM: Bloom,
     ShaderType.BLUR: Blur,
     ShaderType.HIGHLIGHT: Highlight,
