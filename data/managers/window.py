@@ -5,15 +5,18 @@ from data.utils.data_helpers import get_user_settings
 from data.constants import ShaderType, SCREEN_SIZE, SHADER_MAP
 from data.managers.animation import animation
 from data.managers.shader import ShaderManager
+import ctypes
+
 
 class WindowManager(pygame.Window):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        
         self.get_surface() # Initialise convert format
-
         self._screen_shake = None
         self._ctx = moderngl.create_context()
         self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
+        self._custom_surface = pygame.Surface(self.size, pygame.SRCALPHA)
 
         if (selected_shader := get_user_settings()['shader']) is not None:
             for shader_type in SHADER_MAP[selected_shader]:
@@ -42,22 +45,25 @@ class WindowManager(pygame.Window):
     def get_size(self):
         return self.size
     
-    def reset_screen_shake(self):
-        self._screen_shake = None
-        self._position = (0, 0)
-    
     def set_effect(self, effect, **kwargs):
         if effect == ShaderType.SHAKE:
             intensity = kwargs.get('intensity') or 10
             duration = kwargs.get('duration') or 500
 
             self._screen_shake = intensity
-            animation.set_timer(duration, self.reset_screen_shake)
+            animation.set_timer(duration, lambda: self.clear_effect(ShaderType.SHAKE))
         
         elif isinstance(effect, ShaderType):
             self._shader_manager.apply_shader(effect, **kwargs)
     
-    def clear_effects(self):
+    def clear_effect(self, effect):
+        if effect == ShaderType.SHAKE:
+            self._screen_shake = None
+        
+        elif isinstance(effect, ShaderType):
+            self._shader_manager.remove_shader(effect)
+    
+    def clear_all_effects(self):
         self._shader_manager.clear_shaders()
     
     def draw(self):
@@ -66,18 +72,23 @@ class WindowManager(pygame.Window):
     
     def update(self):
         if self._screen_shake is not None:
-            surface = self.get_surface()
-            surface_copy = surface.copy()
+            draw_pos = (randint(0, self._screen_shake) - self._screen_shake / 2, randint(0, self._screen_shake) - self._screen_shake / 2)
+        else:
+            draw_pos = (0, 0)
 
-            surface.fill((0, 0, 0, 0))
-            surface.blit(surface_copy, (randint(0, self._screen_shake) - self._screen_shake / 2, randint(0, self._screen_shake) - self._screen_shake / 2))
-
+        native_surface = self.get_surface()
+        native_surface.fill((0, 0, 0))
+        native_surface.blit(self._custom_surface, draw_pos)
         self.draw()
     
     def handle_resize(self):
         self._shader_manager.handle_resize(self.size)
+        self._custom_surface = pygame.Surface(self.size, pygame.SRCALPHA)
+    
+    def blit(self, *args, **kwargs):
+        self._custom_surface.blit(*args, **kwargs)
+    def fill(self, *args, **kwargs):
+        self._custom_surface.fill(*args, **kwargs)
 
 is_fullscreen = get_user_settings()['displayMode'] == 'fullscreen'
-window = WindowManager(size=SCREEN_SIZE, opengl=True, resizable=True, fullscreen=is_fullscreen)
-screen = window.get_surface()
-screen = screen.convert_alpha() SCREEN ALPHA NOT WORKING
+screen = WindowManager(size=SCREEN_SIZE, opengl=True, resizable=True, fullscreen=is_fullscreen)

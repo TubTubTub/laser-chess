@@ -11,9 +11,12 @@ uniform sampler2D image;
 uniform sampler2D occlusionMap;
 uniform float resolution;
 uniform vec3 lightColour;
-uniform float softShadow=0.5;
+uniform float falloff;
+uniform vec2 angleClamp;
+uniform float softShadow=0.0;
 
 vec3 normLightColour = lightColour / 255;
+vec2 radiansClamp = angleClamp * (PI / 180);
 
 //sample from the 1D distance map
 float sample(vec2 coord, float r) {
@@ -23,7 +26,7 @@ float sample(vec2 coord, float r) {
 void main() {
 	//rectangular to polar
 	vec2 norm = uvs.xy * 2.0 - 1.0; // [0, 1] -> [-1, 1]
-	float angle = atan(norm.y, norm.x);
+	float angle = atan(norm.y, norm.x) + radiansClamp.y * 0.001;
 	float r = length(norm);	
 	float coord = (angle + PI) / (2.0 * PI); // uvs -> [0, 1]
 	
@@ -33,6 +36,7 @@ void main() {
 	
 	//the center tex coord, which gives us hard shadows
 	float center = sample(tc, r); // center = 1.0 -> in light, center = 0.0, -> in shadow
+	center = center * step(angle, radiansClamp.y) * step(radiansClamp.x, angle);
 	
 	//we multiply the blur amount by our distance from center
 	//this leads to more blurriness as the shadow "fades away"
@@ -64,7 +68,7 @@ void main() {
 	// vec3 final_colour = vec3(texture(image, uvs).rgb * vec3(sum * smoothstep(1.0, 0.0, r)) * 5);
 	
 	// f_colour = vec4(final_colour.r + texture(occlusionMap, uvs).r, final_colour.gb, 1.0);
-	f_colour = vec4(normLightColour, isLit * smoothstep(1.0, 0.0, r));
+	f_colour = vec4(normLightColour, isLit * smoothstep(1.0, falloff, r));
     // } else {
     //     f_colour = vec4(0.0, 1.0, 0.0, 1.0);
     // }

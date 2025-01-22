@@ -2,7 +2,7 @@ import pygame
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType
+from data.constants import MenuEventType, ShaderType
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
@@ -16,6 +16,7 @@ class Menu(_State):
     def __init__(self):
         super().__init__()
         self._cursor = Cursor()
+        self._fire_laser = False
         
         self._widget_group = None
     
@@ -28,12 +29,18 @@ class Menu(_State):
         print('starting menu.py')
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(screen.size)
+        self._fire_laser = False
 
         audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
     
     def get_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            self._fire_laser = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            self._fire_laser = False
+            
         widget_event = self._widget_group.process_event(event)
 
         if widget_event is None:
@@ -56,35 +63,50 @@ class Menu(_State):
     def handle_resize(self):
         self._widget_group.handle_resize(screen.get_size())
 
+    @property
+    def sphinx_center(self):
+        return (screen.size[0] - self.sphinx_size[0] / 2, screen.size[1] - self.sphinx_size[1] / 2)
+    
+    @property
+    def sphinx_size(self):
+        return (min(screen.size) * 0.1, min(screen.size) * 0.1)
+
+    @property
+    def sphinx_rotation(self):
+        mouse_pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] + 0.01)
+        return -get_rotational_angle(mouse_pos, self.sphinx_center)
     
     def draw_sphinx(self):
-        mouse_pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] + 0.1)
-        sphinx_size = (min(screen.size) * 0.1, min(screen.size) * 0.1)
-        sphinx_position = (screen.size[0] - sphinx_size[0], screen.size[1] - sphinx_size[1])
+        sphinx_surface = pygame.transform.scale(GRAPHICS['sphinx_1'], self.sphinx_size)
+        sphinx_surface = pygame.transform.rotate(sphinx_surface, self.sphinx_rotation - 30)
+        sphinx_rect = pygame.Rect(0, 0, *self.sphinx_size)
+        sphinx_rect.center = self.sphinx_center
 
-        sphinx_center = (sphinx_position[0] + sphinx_size[0] / 2, sphinx_position[1] + sphinx_size[1] / 2)
-        sphinx_rotation = -get_rotational_angle(mouse_pos, sphinx_center) - 30
-
-        sphinx_surface = pygame.transform.scale(GRAPHICS['sphinx_1'], sphinx_size)
-        sphinx_surface = pygame.transform.rotate(sphinx_surface, sphinx_rotation)
-
-        screen.blit(sphinx_surface, sphinx_position)
+        screen.blit(sphinx_surface, sphinx_rect)
     
-    def draw_mask(self, surface):
-        mask = pygame.mask.from_surface(surface, threshold=254)
+    def draw_mask(self):
+        mask = pygame.mask.from_surface(screen, threshold=254)
         screen.blit(mask.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 255, 255, 255)), ((0, 0)))
     
     def draw(self):
         # draw_background(screen, GRAPHICS['temp_background'])
-
-        # temp_surface = pygame.Surface((screen.size[0] / 2, screen.size[1] / 2), pygame.SRCALPHA)
-        # temp_surface.fill((0, 0, 0, 0))
-        screen.fill((0, 0, 10, 255))
+        
+        screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         self.draw_sphinx()
-        pygame.draw.rect(screen, 'red', (100, 100, 100, 100))
 
-        # self.draw_mask(screen)
+        # self.draw_mask()
     
     def update(self, **kwargs):
+        if self._fire_laser:
+            screen.clear_effect(ShaderType.RAYS)
+            
+            screen.set_effect(ShaderType.RAYS, lights=[[
+                (self.sphinx_center[0] / screen.size[0], self.sphinx_center[1] / screen.size[1]),
+                2.2,
+                (0, 50, 255),
+                0.99,
+                (self.sphinx_rotation - 10, self.sphinx_rotation + 10)
+            ]])
+
         self.draw()

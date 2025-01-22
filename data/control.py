@@ -1,8 +1,6 @@
 import pygame
 from data.managers.animation import animation
-from data.managers.window import window
-
-screen = window.get_surface()
+from data.managers.window import screen
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -44,7 +42,7 @@ class Control:
         self.state.update()
 
         self.draw_fps()
-        window.update()
+        screen.update()
 
     def main_game_loop(self):
         while not self.done:
@@ -54,7 +52,7 @@ class Control:
     def update_window(self, resize=False):
         if resize:
             self.update_native_window_size()
-            window.handle_resize()
+            screen.handle_resize()
             self.state.handle_resize()
 
         self.update()
@@ -65,7 +63,7 @@ class Control:
         screen.blit(fps_t,(0,0))
     
     def update_native_window_size(self):
-        x, y = window.size
+        x, y = screen.size
 
         max_window_x = 100000
         max_window_y = x / 1.4
@@ -77,8 +75,8 @@ class Control:
 
         min_window_size = (min_window_x, min_window_y)
         max_window_size = (max_window_x, max_window_y)
-        window.minimum_size = min_window_size
-        window.maximum_size = max_window_size
+        screen.minimum_size = min_window_size
+        screen.maximum_size = max_window_size
     
     def event_loop(self):
         for event in pygame.event.get():

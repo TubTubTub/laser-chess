@@ -17,7 +17,7 @@ from data.assets import MUSIC_PATHS, GRAPHICS
 from data.utils.asset_helpers import draw_background
 
 from data.constants import SettingsEventType, ShaderType, SCREEN_FLAGS, SHADER_MAP
-from data.managers.window import screen, window
+from data.managers.window import screen
 
 class Settings(_State):
     def __init__(self):
@@ -74,22 +74,22 @@ class Settings(_State):
     
     def reload_display_mode(self):
         if self._settings['displayMode'] == 'fullscreen':
-            window.set_fullscreen()
+            screen.set_fullscreen()
 
         elif self._settings['displayMode'] == 'windowed':
-            window.set_windowed()
-            window.restore()
+            screen.set_windowed()
+            screen.restore()
         
         self._widget_group.handle_resize(screen.size)
     
     def reload_shaders(self):
-        window.clear_effects()
+        screen.clear_all_effects()
 
         if self._settings['shader'] is None:
             return
         
         for shader_type in SHADER_MAP[self._settings['shader']]:
-            window.set_effect(shader_type)
+            screen.set_effect(shader_type)
     
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])

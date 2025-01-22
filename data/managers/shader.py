@@ -33,7 +33,7 @@ class ShaderManager:
         self._screen_size = screen_size
         self._opengl_buffer = self._ctx.buffer(data=opengl_quad_array)
         self._pygame_buffer = self._ctx.buffer(data=pygame_quad_array)
-        self._shader_stack = [ShaderType.BASE]
+        self._shader_stack = [ShaderType.BASE, ShaderType.BLOOM]
 
         self._vert_shaders = {}
         self._frag_shaders = {}
@@ -44,6 +44,7 @@ class ShaderManager:
         self._shader_passes = {}
 
         self.load_shader(ShaderType.BASE)
+        self.load_shader(ShaderType.BLOOM)
         self._calibration_vao = self._ctx.vertex_array(self._programs[ShaderType.BASE], [(self._pygame_buffer, '2f 2f', 'vert', 'texCoords')])
 
     def load_shader(self, shader_type, **kwargs):
@@ -58,7 +59,7 @@ class ShaderManager:
         self.create_vao(shader_type)
     
     def clear_shaders(self):
-        self._shader_stack = [ShaderType.BASE]
+        self._shader_stack = [ShaderType.BASE, ShaderType.BLOOM]
     
     def create_vao(self, shader_type):
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
@@ -261,14 +262,15 @@ class Rays:
     def apply(self, texture):
         final_texture = texture
 
-        for light_pos, light_radius, light_colour in self._lights:
-            light_topleft = (light_pos[0] - (light_radius * texture.size[1] / texture.size[0]), light_pos[1] - light_radius)
-            relative_size = (light_radius * 2 * texture.size[1] / texture.size[0], light_radius * 2)
+        for pos, radius, colour, *args in self._lights:
+            print(texture.size)
+            light_topleft = (pos[0] - (radius * texture.size[1] / texture.size[0]), pos[1] - radius)
+            relative_size = (radius * 2 * texture.size[1] / texture.size[0], radius * 2)
 
             _Crop(self._shader_manager).apply(texture, relative_pos=light_topleft, relative_size=relative_size)
             cropped_texture = self._shader_manager.get_fbo_texture(ShaderType._CROP)
 
-            _LightMap(self._shader_manager).apply(cropped_texture, light_colour)
+            _LightMap(self._shader_manager).apply(cropped_texture, colour, *args)
             light_map = self._shader_manager.get_fbo_texture(ShaderType._LIGHTMAP)
             
             _Blend(self._shader_manager).apply(final_texture, light_map, light_topleft)
@@ -282,10 +284,9 @@ class _LightMap:
 
         shader_manager.load_shader(ShaderType._SHADOWMAP)
 
-    def apply(self, texture, light_colour):
+    def apply(self, texture, colour, falloff=0.0, clamp=(-360, 359)):
         self._shader_manager.create_framebuffer(ShaderType._LIGHTMAP, size=texture.size)
         self._shader_manager._ctx.enable(self._shader_manager._ctx.BLEND)
-
         _ShadowMap(self._shader_manager).apply(texture)
 
         # shadow_map = self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP)
@@ -293,7 +294,7 @@ class _LightMap:
         # occlusionMap = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
         # occlusionMap.use(2)
 
-        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP), resolution=LIGHT_RESOLUTION, lightColour=light_colour)
+        self._shader_manager.render_to_fbo(ShaderType._LIGHTMAP, self._shader_manager.get_fbo_texture(ShaderType._SHADOWMAP), resolution=LIGHT_RESOLUTION, lightColour=colour, falloff=falloff, angleClamp=clamp)
 
         self._shader_manager._ctx.disable(self._shader_manager._ctx.BLEND)
 

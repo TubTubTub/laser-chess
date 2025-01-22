@@ -11,7 +11,7 @@ from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
-from data.managers.window import screen, window
+from data.managers.window import screen
 
 class GameView:
     def __init__(self, model):
@@ -107,7 +107,7 @@ class GameView:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
 
-            window.set_effect(ShaderType.SHAKE)
+            screen.set_effect(ShaderType.SHAKE)
 
             if laser_result.piece_colour == Colour.BLUE:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)

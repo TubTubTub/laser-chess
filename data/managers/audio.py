@@ -13,7 +13,6 @@ class AudioManager:
         self._current_channels = []
     
     def set_sfx_volume(self, volume):
-        print('settings')
         self._sfx_volume = volume
 
         for channel in self._current_channels:
@@ -30,7 +29,7 @@ class AudioManager:
     def unpause_sfx(self):
         pygame.mixer.unpause(self)
     
-    def prune_unused_channels(self):
+    def remove_unused_channels(self):
         unused_channels = []
         for channel in self._current_channels:
             if channel.get_busy() is False:
@@ -39,7 +38,7 @@ class AudioManager:
         return unused_channels
     
     def play_sfx(self, sfx):
-        unused_channels = self.prune_unused_channels()
+        unused_channels = self.remove_unused_channels()
         
         if len(unused_channels) == 0:
             channel = pygame.mixer.find_channel()
