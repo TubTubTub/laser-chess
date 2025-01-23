@@ -22,12 +22,10 @@ from data.managers.window import window
 class Config(_State):
     def __init__(self):
         super().__init__()
-        self._cursor = Cursor()
+        
         self._config = None
         self._valid_fen = True
         self._selected_preset = None
-        
-        self._widget_group = None
     
     def cleanup(self):
         print('cleaning config.py')
@@ -166,9 +164,6 @@ class Config(_State):
         else:
             self._selected_preset = None
     
-    def handle_resize(self):
-        self._widget_group.handle_resize(window.size)
-    
     def draw(self):
         draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
@@ -178,4 +173,4 @@ class Config(_State):
     
     def update(self, **kwargs):
         self._widget_group.update()
-        self.draw()
+        super().update(**kwargs)

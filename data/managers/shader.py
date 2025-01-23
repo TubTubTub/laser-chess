@@ -6,6 +6,15 @@ from random import randint
 
 shader_path = (Path(__file__).parent / '../shaders/').resolve()
 
+SHADER_PRIORITY = [
+    ShaderType.CRT,
+    ShaderType.SHAKE,
+    ShaderType.BLOOM,
+    ShaderType.RAYS,
+    ShaderType.GRAYSCALE,
+    ShaderType._BASE,
+]
+
 pygame_quad_array = array('f', [
     -1.0, 1.0, 0.0, 0.0,
     1.0, 1.0, 1.0, 0.0,
@@ -20,8 +29,9 @@ opengl_quad_array = array('f', [
     1.0, 1.0, 1.0, 1.0,
 ])
 
-HIGHLIGHT_THRESHOLD = 0.7
-HIGHLIGHT_INTENSITY = 0.3
+HIGHLIGHT_THRESHOLD = 0.9
+HIGHLIGHT_INTENSITY = 0.5
+BLOOM_INTENSITY = 1.0
 BLUR_ITERATIONS = 10
 LIGHT_RESOLUTION = 256
 SHAKE_INTENSITY = 3
@@ -34,7 +44,7 @@ class ShaderManager:
         self._screen_size = screen_size
         self._opengl_buffer = self._ctx.buffer(data=opengl_quad_array)
         self._pygame_buffer = self._ctx.buffer(data=pygame_quad_array)
-        self._shader_stack = [ShaderType.BASE, ShaderType.BLOOM]
+        self._shader_stack = [ShaderType._BASE]
 
         self._vert_shaders = {}
         self._frag_shaders = {}
@@ -44,9 +54,9 @@ class ShaderManager:
         self.framebuffers = {}
         self._shader_passes = {}
 
-        self.load_shader(ShaderType.BASE)
-        self.load_shader(ShaderType.BLOOM)
-        self._calibration_vao = self._ctx.vertex_array(self._programs[ShaderType.BASE], [(self._pygame_buffer, '2f 2f', 'vert', 'texCoords')])
+        self.load_shader(ShaderType._BASE)
+        self.load_shader(ShaderType._CALIBRATE)
+        self.create_framebuffer(ShaderType._CALIBRATE)
 
     def load_shader(self, shader_type, **kwargs):
         self._shader_passes[shader_type] = shader_pass_lookup[shader_type](self, **kwargs)
@@ -60,13 +70,16 @@ class ShaderManager:
         self.create_vao(shader_type)
     
     def clear_shaders(self):
-        self._shader_stack = [ShaderType.BASE, ShaderType.BLOOM]
+        self._shader_stack = [ShaderType._BASE]
     
     def create_vao(self, shader_type):
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
         self._programs[shader_type] = program
-
-        self._vaos[shader_type] = self._ctx.vertex_array(self._programs[shader_type], [(self._opengl_buffer, '2f 2f', 'vert', 'texCoords')])
+        
+        if shader_type == ShaderType._CALIBRATE:
+            self._vaos[shader_type] = self._ctx.vertex_array(self._programs[shader_type], [(self._pygame_buffer, '2f 2f', 'vert', 'texCoords')])
+        else:
+            self._vaos[shader_type] = self._ctx.vertex_array(self._programs[shader_type], [(self._opengl_buffer, '2f 2f', 'vert', 'texCoords')])
     
     def create_framebuffer(self, shader_type, size=None, filter=moderngl.NEAREST):
         texture_size = size or self._screen_size
@@ -94,6 +107,8 @@ class ShaderManager:
         
         self.load_shader(shader_type, **kwargs)
         self._shader_stack.append(shader_type)
+
+        self._shader_stack.sort(key=lambda shader: -SHADER_PRIORITY.index(shader))
     
     def remove_shader(self, shader_type):
         if shader_type in self._shader_stack:
@@ -102,7 +117,7 @@ class ShaderManager:
     def render_output(self):
         output_shader_type = self._shader_stack[-1]
         self._ctx.screen.use() # IMPORTANT
-
+        
         self.get_fbo_texture(output_shader_type).use(0)
         self._programs[output_shader_type]['image'] = 0
 
@@ -117,19 +132,17 @@ class ShaderManager:
         texture.swizzle = 'BGRA'
         texture.write(pygame_surface.get_view('1'))
 
-        texture.use()
-        self.framebuffers[ShaderType.BASE].use()
-        self._calibration_vao.render(mode=moderngl.TRIANGLE_STRIP)
-        texture.release()
+        self.render_to_fbo(ShaderType._CALIBRATE, texture)
 
-        return self.get_fbo_texture(ShaderType.BASE)
-
+        return self.get_fbo_texture(ShaderType._CALIBRATE)
+    
     def draw(self, surface, arguments):
         self._ctx.viewport = (0, 0, *self._screen_size)
         texture = self.calibrate_pygame_surface(surface)
 
         for shader_type in self._shader_stack:
-            self._shader_passes[shader_type].apply(texture, **arguments[shader_type])
+            self._shader_passes[shader_type].apply(texture, **arguments.get(shader_type, {}))
+            
             texture = self.get_fbo_texture(shader_type)
 
         self.render_output()
@@ -156,14 +169,14 @@ class ShaderManager:
             filter = self._textures[shader_type].filter[0]
             self.create_framebuffer(shader_type, size=self._screen_size, filter=filter) # RECREATE FRAMEBUFFER TO PREVENT SCALING ISSUES
 
-class Base:
+class _Base:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-        self._shader_manager.create_framebuffer(ShaderType.BASE)
+        self._shader_manager.create_framebuffer(ShaderType._BASE)
     
     def apply(self, texture):
-        self._shader_manager.render_to_fbo(ShaderType.BASE, texture)
+        self._shader_manager.render_to_fbo(ShaderType._BASE, texture)
 
 class Shake:
     def __init__(self, shader_manager: ShaderManager):
@@ -197,34 +210,56 @@ class Bloom:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
         
-        shader_manager.load_shader(ShaderType.BLUR)
-        shader_manager.load_shader(ShaderType.HIGHLIGHT)
+        shader_manager.load_shader(ShaderType._BLUR)
+        shader_manager.load_shader(ShaderType._HIGHLIGHT)
+        shader_manager.load_shader(ShaderType._OCCLUSION)
 
         shader_manager.create_framebuffer(ShaderType.BLOOM)
-        shader_manager.create_framebuffer(ShaderType.BLUR)
-        shader_manager.create_framebuffer(ShaderType.HIGHLIGHT)
+        shader_manager.create_framebuffer(ShaderType._BLUR)
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT)
+        shader_manager.create_framebuffer(ShaderType._OCCLUSION)
     
-    def apply(self, texture):
-        Highlight(self._shader_manager).apply(texture)
-        Blur(self._shader_manager).apply(self._shader_manager.get_fbo_texture(ShaderType.HIGHLIGHT))
+    def apply(self, texture, occlusion_surface=None, colour=None, colour_intensity=BLOOM_INTENSITY, occlusion_intensity=BLOOM_INTENSITY, brightness_intensity=BLOOM_INTENSITY):
+        if occlusion_surface:
+            glare_texture = self._shader_manager.calibrate_pygame_surface(occlusion_surface)
+            _Blur(self._shader_manager).apply(glare_texture)
+            
+            self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
+            self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=occlusion_intensity)
+
+            texture = self._shader_manager.get_fbo_texture(ShaderType.BLOOM)
+
+        if colour:
+            _Occlusion(self._shader_manager).apply(texture, occlusion_colour=colour)
+            glare_texture = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
+            _Blur(self._shader_manager).apply(glare_texture)
+            
+            self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
+            self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=colour_intensity)
+            
+            texture = self._shader_manager.get_fbo_texture(ShaderType.BLOOM)
+
+        _Highlight(self._shader_manager).apply(texture)
+        glare_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT)
+        _Blur(self._shader_manager).apply(glare_texture)
         
-        self._shader_manager.get_fbo_texture(ShaderType.BLUR).use(1)
-        self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1)
+        self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
+        self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=brightness_intensity)
 
-class Highlight:
+class _Highlight:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-        shader_manager.create_framebuffer(ShaderType.HIGHLIGHT)
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT)
     
     def apply(self, texture):
-        self._shader_manager.render_to_fbo(ShaderType.HIGHLIGHT, texture, threshold=HIGHLIGHT_THRESHOLD, intensity=HIGHLIGHT_INTENSITY)
+        self._shader_manager.render_to_fbo(ShaderType._HIGHLIGHT, texture, threshold=HIGHLIGHT_THRESHOLD, intensity=HIGHLIGHT_INTENSITY)
 
-class Blur:
+class _Blur:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-        shader_manager.create_framebuffer(ShaderType.BLUR)
+        shader_manager.create_framebuffer(ShaderType._BLUR)
 
         shader_manager.create_framebuffer("blurPing")
         shader_manager.create_framebuffer("blurPong")
@@ -234,21 +269,21 @@ class Blur:
 
         for _ in range(BLUR_ITERATIONS):
             self._shader_manager.render_to_fbo(
-                ShaderType.BLUR,
+                ShaderType._BLUR,
                 texture=self._shader_manager.get_fbo_texture("blurPong"),
                 output_fbo=self._shader_manager.framebuffers["blurPing"],
                 passes=5,
                 horizontal=True
             )
             self._shader_manager.render_to_fbo(
-                ShaderType.BLUR,
+                ShaderType._BLUR,
                 texture=self._shader_manager.get_fbo_texture("blurPing"),
                 output_fbo=self._shader_manager.framebuffers["blurPong"],
                 passes=5,
                 horizontal=False
             )
 
-        self._shader_manager.render_to_fbo(ShaderType.BLUR, self._shader_manager.get_fbo_texture("blurPong"))
+        self._shader_manager.render_to_fbo(ShaderType._BLUR, self._shader_manager.get_fbo_texture("blurPong"))
 
 class Rays:
     def __init__(self, shader_manager: ShaderManager, lights): # pos relative to screen, radius pixels
@@ -321,9 +356,9 @@ class _Occlusion:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-    def apply(self, texture):
+    def apply(self, texture, occlusion_colour=(255, 0, 0)):
         self._shader_manager.create_framebuffer(ShaderType._OCCLUSION, size=texture.size)
-        self._shader_manager.render_to_fbo(ShaderType._OCCLUSION, texture)
+        self._shader_manager.render_to_fbo(ShaderType._OCCLUSION, texture, checkColour=occlusion_colour)
 
 class _Blend:
     def __init__(self, shader_manager: ShaderManager):
@@ -354,15 +389,16 @@ class _Crop:
         self._shader_manager.render_to_fbo(ShaderType._CROP, texture, relativePos=opengl_pos, relativeSize=relative_size)
 
 shader_pass_lookup = {
-    ShaderType.CALIBRATE: lambda *args: None,
-    ShaderType.BASE: Base,
     ShaderType.SHAKE: Shake,
     ShaderType.BLOOM: Bloom,
-    ShaderType.BLUR: Blur,
-    ShaderType.HIGHLIGHT: Highlight,
     ShaderType.GRAYSCALE: Grayscale,
     ShaderType.CRT: CRT,
     ShaderType.RAYS: Rays,
+
+    ShaderType._CALIBRATE: lambda *args: None,
+    ShaderType._BASE: _Base,
+    ShaderType._BLUR: _Blur,
+    ShaderType._HIGHLIGHT: _Highlight,
     ShaderType._SHADOWMAP: _ShadowMap,
     ShaderType._OCCLUSION: _Occlusion,
     ShaderType._LIGHTMAP: _LightMap,

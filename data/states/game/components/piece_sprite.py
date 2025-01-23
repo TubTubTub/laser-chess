@@ -48,7 +48,7 @@ class _PieceSprite(pygame.sprite.Sprite):
     
     def set_geometry(self, new_position, square_size):
         self.size = square_size
-        self.rect = pygame.Rect((0, 0, square_size, square_size))
+        self.rect = pygame.FRect((0, 0, square_size, square_size))
 
         if self.coords:
             self.rect.topleft = coords_to_screen_pos(self.coords, new_position, square_size)

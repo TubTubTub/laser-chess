@@ -22,13 +22,11 @@ from data.managers.window import window
 class Browser(_State):
     def __init__(self):
         super().__init__()
-        self._cursor = Cursor()
         
         self._selected_index = None
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False
         self._games_list = []
-        self._widget_group = None
         self._page_number = 1
     
     def cleanup(self):
@@ -130,15 +128,8 @@ class Browser(_State):
                 self._page_number = widget_event.data
 
                 self.refresh_games_list()
-
-    
-    def handle_resize(self):
-        self._widget_group.handle_resize(window.size)
     
     def draw(self):
         draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
-    
-    def update(self, **kwargs):
-        self.draw()
         

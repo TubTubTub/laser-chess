@@ -1,6 +1,7 @@
 import pygame
 from data.managers.animation import animation
 from data.managers.window import window
+from data.components.cursor import Cursor
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -92,15 +93,21 @@ class _State:
         self.done = False
         self.quit = False
         self.persist = {}
+        
+        self._cursor = Cursor()
+        self._widget_group = None
     
-    def draw(self, surface):
+    def draw(self):
         raise NotImplementedError
     
     def update(self, **kwargs):
         raise NotImplementedError
 
     def handle_resize(self):
-        raise NotImplementedError
+        self._widget_group.handle_resize(window.size)
     
     def get_event(self, event):
         raise NotImplementedError
+    
+    def update(self, **kwargs):
+        self.draw()

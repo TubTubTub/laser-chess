@@ -1,7 +1,7 @@
 from data.states.game.components.move import Move
 from data.states.game.components.laser import Laser
 
-from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, Miscellaneous, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, Miscellaneous, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB, TEST_MASK
 from data.states.game.components.bitboard_collection import BitboardCollection
 from data.utils import bitboard_helpers as bb_helpers
 from collections import defaultdict
@@ -139,6 +139,8 @@ class Board:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_colour_bitboards[colour]
         else:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
+            
+        valid_possible_moves = valid_possible_moves & TEST_MASK
 
         return valid_possible_moves
     
@@ -175,7 +177,7 @@ class Board:
         sphinx_masked_bitboard = self.bitboards.combined_colour_bitboards[colour] ^ sphinx_bitboard
 
         for square in bb_helpers.occupied_squares(sphinx_masked_bitboard):
-            yield from self.generate_square_moves(square)
+            # yield from self.generate_square_moves(square)
 
             for rotation_direction in RotationDirection:
                 yield Move(MoveType.ROTATE, square, rotation_direction=rotation_direction)

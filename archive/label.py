@@ -60,9 +60,9 @@
 
 #         match self._draw_type:
 #             case 'margin':
-#                 self._label_rect = pygame.Rect(self._position[0], self._position[1], text_rect.width + (self._margin * 2), text_rect.height + (self._margin * 2))
+#                 self._label_rect = pygame.FRect(self._position[0], self._position[1], text_rect.width + (self._margin * 2), text_rect.height + (self._margin * 2))
 #             case 'size':
-#                 self._label_rect = pygame.Rect(self._position[0], self._position[1], self._width, self._height)
+#                 self._label_rect = pygame.FRect(self._position[0], self._position[1], self._width, self._height)
         
 #         text_x = self._position[0] + self._label_rect.width / 2 - text_rect.width / 2
 #         text_y = self._position[1] + self._label_rect.height / 2 - text_rect.height / 2

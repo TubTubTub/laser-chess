@@ -60,23 +60,3 @@ class Game(_State):
         self.view.draw()
         self.win_view.draw()
         self.pause_view.draw()
-
-    def update(self, **kwargs):
-        # board_clicked = self.board.clicked
-        # if board_clicked:
-        #     self.board.handle_click()
-        #     self._gui_elements['label'].text = self.board.status_text
-
-        # if self.board.has_moved_piece:
-        #     print('firing')
-        #     self.board.fire_laser()
-
-        #     game_won_by = self.board.check_win()
-
-        #     if game_won_by:
-        #         print('quit', game_won_by)
-
-        #     self.board.bitboards.flip_colour()
-            
-        #     self.board.has_moved_piece = False
-        self.draw()

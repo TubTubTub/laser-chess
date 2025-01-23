@@ -1,5 +1,5 @@
 import pygame
-from data.utils.board_helpers import create_circle_overlay, create_square_overlay, coords_to_screen_pos, screen_pos_to_coords
+from data.utils.board_helpers import coords_to_screen_pos, screen_pos_to_coords
 from data.utils.bitboard_helpers import bitboard_to_coords
 from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ShaderType
 from data.states.game.components.piece_group import PieceGroup
@@ -74,9 +74,10 @@ class GameView:
         self._square_size = self._board_size[0] / 10
         
         self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
+        self._laser_draw.handle_resize(self._board_position, self._board_size)
+        self._laser_draw.handle_resize(self._board_position, self._board_size)
+        self._overlay_draw.handle_resize(self._board_position, self._board_size)
         self._widget_group.handle_resize(window.size)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
 
         if self._laser_draw.firing:
             self.update_laser_shader()

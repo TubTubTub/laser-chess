@@ -45,7 +45,7 @@ class Text(_Widget): # Pure text
         self.image = text_surface
 
         if self._fill_colour:
-            fill_rect = pygame.Rect(0, 0, self.size[0], self.size[1])
+            fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
             pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=int(self.border_radius))
 
         font_rect_size = self._font.get_rect(self._text, size=self.font_size).size
@@ -56,7 +56,7 @@ class Text(_Widget): # Pure text
         self._font.render_to(self.image, font_position, self._text, fgcolor=self._text_colour, size=self.font_size)
 
         if self.border_width:
-            fill_rect = pygame.Rect(0, 0, self.size[0], self.size[1])
+            fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
             pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self.border_width), border_radius=int(self.border_radius))
 
     def process_event(self, event):

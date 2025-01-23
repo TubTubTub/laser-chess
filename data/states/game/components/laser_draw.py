@@ -44,12 +44,13 @@ class LaserDraw:
                 laser_types.append(LaserType.CORNER)
                 laser_rotation.append(current_direction.get_anticlockwise())
             
-            abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
-            laser_lights.append([
-                (abs_position[0] / window.size[0], abs_position[1] / window.size[1]),
-                0.3,
-                (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0)
-            ])
+            if i == 1 or i == len(laser_path) - 1:
+                abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
+                laser_lights.append([
+                    (abs_position[0] / window.size[0], abs_position[1] / window.size[1]),
+                    0.3,
+                    (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
+                ])
 
         window.set_effect(ShaderType.RAYS, lights=laser_lights)
         

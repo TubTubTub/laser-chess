@@ -17,9 +17,6 @@ from data.managers.window import window
 class Review(_State):
     def __init__(self):
         super().__init__()
-        self._cursor = Cursor()
-        
-        self._widget_group = None
 
         self._moves = []
         self._game_info = {}
@@ -177,7 +174,7 @@ class Review(_State):
                 self.refresh_widgets()
     
     def handle_resize(self, resize_end=False):
-        self._widget_group.handle_resize(window.size)
+        super().handle_resize()
         self._piece_group.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size, resize_end)
         self._laser_draw.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
     
@@ -186,6 +183,3 @@ class Review(_State):
         self._widget_group.draw()
         self._piece_group.draw(window.screen)
         self._laser_draw.draw(window.screen)
-    
-    def update(self, **kwargs):
-        self.draw()

@@ -82,7 +82,7 @@ class ScrollArea(_Widget):
     
     def calculate_widget_rect(self):
         widget_position = self.calculate_widget_position()
-        return pygame.Rect(widget_position[0] - self.position[0], self.position[1] + widget_position[1], self.size[0], self.size[1])
+        return pygame.FRect(widget_position[0] - self.position[0], self.position[1] + widget_position[1], self.size[0], self.size[1])
 
     def calculate_widget_position(self):
         if self._vertical:

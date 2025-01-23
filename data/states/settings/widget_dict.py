@@ -7,26 +7,15 @@ from data.assets import GRAPHICS
 user_settings = get_user_settings()
 
 carousel_widgets = {
-    None: Text(
+    key: Text(
         relative_position=(0, 0),
         relative_size=(0.2, 0.04),
         margin=0,
-        text='OFF',
+        text=key.replace('_', ' ').upper(),
         fit_vertical=True,
         border_width=0,
         fill_colour=(0, 0, 0, 0),
-    ),
-    **{
-        key: Text(
-            relative_position=(0, 0),
-            relative_size=(0.2, 0.04),
-            margin=0,
-            text=key.replace('_', ' ').upper(),
-            fit_vertical=True,
-            border_width=0,
-            fill_colour=(0, 0, 0, 0),
-        ) for key in SHADER_MAP.keys()
-    }
+    ) for key in SHADER_MAP.keys()
 }
 
 SETTINGS_WIDGETS = {

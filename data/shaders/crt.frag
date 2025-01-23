@@ -14,7 +14,7 @@ void main() {
   else {
     float flatness = 1.0;
 
-    if (mode == 1) flatness = 2.7;
+    if (mode == 1) flatness = 5.0;
     else if(mode == 2) flatness = 10.0;
 
     vec2 center = vec2(0.5, 0.5);

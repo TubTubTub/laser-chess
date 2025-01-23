@@ -13,10 +13,4 @@ void main(){
     float isBright = step(threshold, brightness);
 
     f_colour = vec4(vec3(pixel.rgb * intensity) * isBright, 1.0);
-
-    // if (brightness > threshold) {
-    //     f_colour = vec4(vec3(pixel.rgb * intensity), pixel.a);
-    // } else {
-    //     f_colour = vec4(0.0, 0.0, 0.0, 1.0);
-    // }
 }

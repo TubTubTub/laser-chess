@@ -21,7 +21,6 @@ from data.managers.window import window
 class Setup(_State):
     def __init__(self):
         super().__init__()
-        self._cursor = Cursor()
 
         self._bitboards = None
         self._piece_group = None
@@ -33,7 +32,6 @@ class Setup(_State):
         
         self._drag_and_drop = None
         self._overlay_draw = None
-        self._widget_group = None
     
     def cleanup(self):
         print('cleaning setup.py')
@@ -292,7 +290,7 @@ class Setup(_State):
         self._selected_tool_colour = None
                 
     def handle_resize(self, resize_end=False):
-        self._widget_group.handle_resize(window.size)
+        super().handle_resize()
         self._piece_group.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size, resize_end)
         self._drag_and_drop.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
         self._overlay_draw.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
@@ -303,6 +301,3 @@ class Setup(_State):
         self._overlay_draw.draw(window.screen)
         self._piece_group.draw(window.screen)
         self._drag_and_drop.draw(window.screen)
-    
-    def update(self, **kwargs):
-        self.draw()

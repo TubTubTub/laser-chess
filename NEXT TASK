@@ -1,2 +1,2 @@
-Fix OpenGL scaling
+Move piece THEN generate mask
 Fix Minimax

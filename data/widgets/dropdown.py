@@ -42,7 +42,7 @@ class Dropdown(_Pressable, _Widget):
     def size(self):
         max_word = sorted(self._word_list_copy, key=len)[-1]
         max_word_rect = self._font.get_rect(max_word, size=self.font_size)
-        all_words_rect = pygame.Rect(0, 0, max_word_rect.size[0], (max_word_rect.size[1] * len(self._word_list)) + (self.margin * (len(self._word_list) - 1)))
+        all_words_rect = pygame.FRect(0, 0, max_word_rect.size[0], (max_word_rect.size[1] * len(self._word_list)) + (self.margin * (len(self._word_list) - 1)))
         all_words_rect = all_words_rect.inflate(2 * self.margin, 2 * self.margin)
         return (all_words_rect.size[0] + max_word_rect.size[1], all_words_rect.size[1])
 
@@ -111,7 +111,7 @@ class Dropdown(_Pressable, _Widget):
         text_surface = pygame.transform.scale(self._empty_surface, self.size)
         self.image = text_surface
 
-        fill_rect = pygame.Rect(0, 0, self.size[0], self.size[1])
+        fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
         pygame.draw.rect(self.image, self._fill_colour, fill_rect)
         pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self.border_width))
 

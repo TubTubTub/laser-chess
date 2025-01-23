@@ -13,10 +13,8 @@ from data.control import _State
 class Settings(_State):
     def __init__(self):
         super().__init__()
-        
-        self._widget_group = None
-        self._colour_picker = None
 
+        self._colour_picker = None
         self._settings = None
     
     def cleanup(self):
@@ -76,9 +74,6 @@ class Settings(_State):
     def reload_shaders(self):
         window.clear_all_effects()
 
-        if self._settings['shader'] is None:
-            return
-        
         for shader_type in SHADER_MAP[self._settings['shader']]:
             window.set_effect(shader_type)
     
@@ -158,7 +153,7 @@ class Settings(_State):
                         self._settings['secondaryBoardColour'] = hex_colour
             
             case SettingsEventType.SHADER_PICKER_CLICK:
-                self._settings['shaders'] = widget_event.toggled
+                self._settings['shader'] = widget_event.data
                 self.reload_shaders()
 
             case SettingsEventType.OPENGL_CLICK:
@@ -168,12 +163,6 @@ class Settings(_State):
             case SettingsEventType.PARTICLES_CLICK:
                 self._settings['particles'] = widget_event.toggled
     
-    def handle_resize(self):
-        self._widget_group.handle_resize(window.size)
-    
     def draw(self):
         draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
-    
-    def update(self, **kwargs):
-        self.draw()

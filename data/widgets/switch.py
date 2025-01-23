@@ -74,5 +74,6 @@ class Switch(_Pressable, _Widget):
     
     def process_event(self, event):
         data = super().process_event(event)
+
         if data:
             return CustomEvent(**vars(data), toggled=self._is_toggled)

@@ -4,6 +4,7 @@
         "glsl": "python run.py"
     },
     "code-runner.executorMapByFileExtension": {
+        ".vert": "python run.py",
         ".frag": "python run.py"  
     },
     "code-runner.enableAppInsights": false,

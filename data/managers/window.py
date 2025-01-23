@@ -21,10 +21,6 @@ class WindowManager(pygame.Window):
             ShaderType.BLOOM: {},
             ShaderType.GRAYSCALE: {},
             ShaderType.CRT: {},
-            ShaderType.BASE: {},
-            ShaderType.BLUR: {},
-            ShaderType.HIGHLIGHT: {},
-            ShaderType.CALIBRATE: {},
             ShaderType.RAYS: {}
         }
 

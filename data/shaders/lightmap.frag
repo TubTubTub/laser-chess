@@ -13,7 +13,7 @@ uniform float resolution;
 uniform vec3 lightColour;
 uniform float falloff;
 uniform vec2 angleClamp;
-uniform float softShadow=0.0;
+uniform float softShadow=0.1;
 
 vec3 normLightColour = lightColour / 255;
 vec2 radiansClamp = angleClamp * (PI / 180);

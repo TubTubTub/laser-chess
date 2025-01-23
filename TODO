@@ -1,9 +1,8 @@
 Make bitboards a dictionary
+chromatic abbreviation
 
 Should do:
 Add empty event to widget group
-Use RectF to prevent black lines in board forming from under-rounding errors
-Extract repetitive code from states to use super() from bases
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
 Make wrapper for pressable button widgets

@@ -35,8 +35,7 @@ class BaseCPU:
         
         elif self._verbose.lower() == 'compact':
             print(self._stats)
-            print('Best score:', score)
-            print('Best move:', move, '\n')
+            print('Best score:', score, '     ', 'Best move:', move, '\n')
 
     def find_move(self, board, stop_event=None):
         raise NotImplementedError

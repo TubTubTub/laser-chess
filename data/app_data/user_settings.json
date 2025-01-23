@@ -10,5 +10,5 @@
     "colourMode": "light",
     "particles": true,
     "opengl": false,
-    "shader": null
+    "shader": "default"
 }

@@ -15,10 +15,20 @@ from random import randint
 class Menu(_State):
     def __init__(self):
         super().__init__()
-        self._cursor = Cursor()
         self._fire_laser = False
-        
-        self._widget_group = None
+
+    @property
+    def sphinx_center(self):
+        return (window.size[0] - self.sphinx_size[0] / 2, window.size[1] - self.sphinx_size[1] / 2)
+    
+    @property
+    def sphinx_size(self):
+        return (min(window.size) * 0.1, min(window.size) * 0.1)
+
+    @property
+    def sphinx_rotation(self):
+        mouse_pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] + 0.01)
+        return -get_rotational_angle(mouse_pos, self.sphinx_center)
     
     def cleanup(self):
         print('cleaning menu.py')
@@ -61,33 +71,13 @@ class Menu(_State):
                 self.next = 'browser'
                 self.done = True
     
-    def handle_resize(self):
-        self._widget_group.handle_resize(window.size)
-
-    @property
-    def sphinx_center(self):
-        return (window.size[0] - self.sphinx_size[0] / 2, window.size[1] - self.sphinx_size[1] / 2)
-    
-    @property
-    def sphinx_size(self):
-        return (min(window.size) * 0.1, min(window.size) * 0.1)
-
-    @property
-    def sphinx_rotation(self):
-        mouse_pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] + 0.01)
-        return -get_rotational_angle(mouse_pos, self.sphinx_center)
-    
     def draw_sphinx(self):
         sphinx_surface = pygame.transform.scale(GRAPHICS['sphinx_1'], self.sphinx_size)
         sphinx_surface = pygame.transform.rotate(sphinx_surface, self.sphinx_rotation - 30)
-        sphinx_rect = pygame.Rect(0, 0, *self.sphinx_size)
+        sphinx_rect = pygame.FRect(0, 0, *self.sphinx_size)
         sphinx_rect.center = self.sphinx_center
 
         window.screen.blit(sphinx_surface, sphinx_rect)
-    
-    def draw_mask(self):
-        mask = pygame.mask.from_surface(window.screen, threshold=254)
-        window.screen.blit(mask.to_surface(unsetcolor=(0, 0, 0, 0), setcolor=(255, 255, 255, 255)), ((0, 0)))
     
     def draw(self):
         # draw_background(window.screen, GRAPHICS['temp_background'])
@@ -95,8 +85,7 @@ class Menu(_State):
         window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         self.draw_sphinx()
-
-        # self.draw_mask()
+        window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=window.screen, occlusion_intensity=0.7)
     
     def update(self, **kwargs):
         if self._fire_laser:
@@ -105,9 +94,9 @@ class Menu(_State):
             window.set_effect(ShaderType.RAYS, lights=[[
                 (self.sphinx_center[0] / window.size[0], self.sphinx_center[1] / window.size[1]),
                 2.2,
-                (220, 220, 255),
+                (230, 230, 255),
                 0.99,
-                (self.sphinx_rotation - 10 + randint(-20, 20) / 40, self.sphinx_rotation + 10 + randint(-20, 20) / 40)
+                (self.sphinx_rotation - 2 + randint(-5, 5) / 40, self.sphinx_rotation + 2 + randint(-5, 5) / 40)
             ]])
 
-        self.draw()
+        super().update(**kwargs)

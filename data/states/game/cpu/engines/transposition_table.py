@@ -28,6 +28,7 @@ class TTMinimaxCPU(TranspositionTableMixin, ABMinimaxCPU):
     
     def print_stats(self, score, move):
         self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
+        self._stats['cache_entries'] = len(self._table._table)
         super().print_stats(score, move)
 
 class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
@@ -37,4 +38,5 @@ class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
     
     def print_stats(self, score, move):
         self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
+        self._stats['cache_entries'] = len(self._table._table)
         super().print_stats(score, move)
