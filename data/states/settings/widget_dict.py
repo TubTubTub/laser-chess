@@ -119,7 +119,6 @@ SETTINGS_WIDGETS = {
             margin=10,
             icon=GRAPHICS['home'],
             anchor_x='right',
-            fixed_position=True,
             event=CustomEvent(SettingsEventType.MENU_CLICK)
         )
     ],

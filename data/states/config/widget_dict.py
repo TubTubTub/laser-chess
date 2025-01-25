@@ -29,30 +29,42 @@ if default_config['TIME_ENABLED']:
 else:
     time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
+
+preview_container = Rectangle(
+    relative_position=(-0.15, 0),
+    relative_size=(0.65, 0.9),
+    anchor_x='center',
+    anchor_y='center',
+    visible=False,
+)
+
 config_container = Rectangle(
-    relative_position=(0.25, 0.1),
-    relative_size=(0.4, 0.8),
+    relative_position=(0.325, 0),
+    relative_size=(0.3, 0.9),
+    anchor_x='center',
+    anchor_y='center',
+    visible=False,
+)
+
+to_move_container = Rectangle(
+    parent=config_container,
+    relative_size=(0.9, 0.15),
+    relative_position=(0, 0.1),
     anchor_x='center'
 )
 
-preview_container = Rectangle(
-    relative_position=(-0.22, 0),
-    relative_size=(0.5, 0.4),
-    scale_mode='width',
-    anchor_x='center',
-    anchor_y='center'
-)
-
 CONFIG_WIDGETS = {
-    'config_container':
-        config_container,
     'preview_container':
         preview_container,
+    'config_container':
+        config_container,
+    'to_move_container':
+        to_move_container,
     'default': [
         TextInput(
             parent=config_container,
             relative_position=(0.3, 0.3),
-            relative_size=(0.4, 0.15),
+            relative_size=(0.45, 0.15),
             fit_vertical=True,
             placeholder='TIME CONTROL (DEFAULT 5)',
             default=str(default_config['TIME']),
@@ -70,21 +82,22 @@ CONFIG_WIDGETS = {
             margin=2
         ),
         IconButton(
-            relative_position=(0.1, 0.02),
-            relative_size=(0.05, 0.1),
+            relative_position=(0.1, 0.025),
+            relative_size=(0.075, 0.075),
             margin=10,
-            border_width=5,
-            border_radius=5,
             icon=GRAPHICS['home'],
             anchor_x='right',
-            fixed_position=True,
+            scale_mode='height',
+            fixed_position=(5, 5),
             event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
         TextButton(
             parent=preview_container,
-            relative_position=(0, 0),
-            relative_size=(0.2, 0.2),
-            text='EDIT',
+            relative_position=(0.3, 0),
+            relative_size=(0.15, 0.15),
+            text='CUSTOM',
+            anchor_y='bottom',
+            fit_vertical=False,
             text_colour=(255, 0, 0),
             margin=10,
             event=CustomEvent(ConfigEventType.SETUP_CLICK)
@@ -92,31 +105,35 @@ CONFIG_WIDGETS = {
     ],
     'fen_string_input':
     TextInput(
-        parent=config_container,
-        relative_position=(0.05, 0.05),
-        relative_size=(0.9, 0.15),
+        parent=preview_container,
+        relative_position=(0, 0),
+        relative_size=(0.55, 0.15),
         fit_vertical=False,
         placeholder='ENTER FEN STRING',
         default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
         border_width=5,
+        anchor_y='bottom',
+        anchor_x='right',
         margin=20,
         event=CustomEvent(ConfigEventType.FEN_STRING_TYPE)
     ),
     'start_button':
     TextButton(
         parent=config_container,
-        relative_position=(0.05, 0.8),
-        relative_size=(0.9, 0.15),
+        relative_position=(0, 0),
+        relative_size=(0.9, 0.3),
+        anchor_y='bottom',
+        anchor_x='center',
         text='START NEW GAME',
         text_colour=(255, 0, 0),
         margin=20,
-        minimum_width=400,
+        fit_vertical=False,
         event=CustomEvent(ConfigEventType.GAME_CLICK)
     ),
     'timer_button':
     MultipleIconButton(
         parent=config_container,
-        scale_with_height=True,
+        scale_mode='height',
         relative_position=(0.05, 0.3),
         relative_size=(0.15, 0.15),
         margin=0,
@@ -128,9 +145,10 @@ CONFIG_WIDGETS = {
     'pvp_button':
     MultipleIconButton(
         parent=config_container,
-        relative_position=(0.05, 0.55),
-        relative_size=(0.4, 0.15),
+        relative_position=(-0.225, 0.5),
+        relative_size=(0.45, 0.15),
         margin=0,
+        anchor_x='center',
         border_width=5,
         border_radius=5,
         icons_dict=pvp_icons,
@@ -140,8 +158,9 @@ CONFIG_WIDGETS = {
     'pvc_button':
     MultipleIconButton(
         parent=config_container,
-        relative_position=(0.55, 0.55),
-        relative_size=(0.4, 0.15),
+        relative_position=(0.225, 0.5),
+        relative_size=(0.45, 0.15),
+        anchor_x='center',
         margin=0,
         border_width=5,
         border_radius=5,
@@ -164,41 +183,53 @@ CONFIG_WIDGETS = {
     BoardThumbnail(
         parent=preview_container,
         relative_position=(0, 0),
-        relative_width=0.6,
+        relative_width=0.7,
         scale_mode='width',
-        anchor_x='center',
+        anchor_x='right',
     ),
     'preset_1':
     BoardThumbnailButton(
         parent=preview_container,
-        relative_width=0.3,
-        relative_position=(0, 0.3),
+        relative_width=0.25,
+        relative_position=(0, 0),
         scale_mode='width',
-        anchor_y='bottom',
         fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
     ),
     'preset_2':
     BoardThumbnailButton(
         parent=preview_container,
-        relative_width=0.3,
-        relative_position=(0, 0.3),
+        relative_width=0.25,
+        relative_position=(0, 0.35),
         scale_mode='width',
-        anchor_x='center',
-        anchor_y='bottom',
         fen_string="sc3ncfcncra2/10/3Pd2pa3/paPc2Pbra2pbPd/pbPd2Rapd2paPc/3Pc2pb3/10/2RaNaFaNa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
     ),
     'preset_3':
     BoardThumbnailButton(
         parent=preview_container,
-        relative_width=0.3,
-        relative_position=(0.3, 0.3),
+        relative_width=0.25,
+        relative_position=(0, 0.7),
         scale_mode='width',
-        anchor_x='right',
-        anchor_y='bottom',
         fen_string="sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
+    ),
+    'to_move_icon':
+    Icon(
+        parent=to_move_container,
+        scale_mode='height',
+        relative_position=(0, 0),
+        relative_size=(1, 1),
+        icon=GRAPHICS['pharoah_1'],
+        anchor_x='right',
+    ),
+    'to_move_text':
+    Text(
+        parent=to_move_container,
+        relative_position=(0, 0),
+        relative_size=(0.75, 1),
+        fit_vertical=False,
+        text='TO MOVE',
     ),
     'cpu_depth_carousel':
     Carousel(

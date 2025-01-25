@@ -20,43 +20,30 @@ class ReactiveButton(_Pressable, _Widget):
         self._widget_keys = CircularLinkedList(list(self._widgets_dict.keys()))
         self._widget_key = self._widget_keys.get_head()
         self._widget = self._widgets_dict[self._widget_key.data]
-        
-        if center:
-            self._relative_position = (kwargs.get('relative_position')[0] + (self._widget.rect.width / self.surface_size[0] / 2), kwargs.get('relative_position')[1] + (self._widget.rect.height / self.surface_size[1] / 2))
-            self._center = True
-        else:
-            self._relative_position = kwargs.get('relative_position')
-            self._center = False
-    
-    def set_image(self):
-        self._widget.set_image()
-        self.image = self._widget.image
-    
-    def set_geometry(self):
-        if self._center:
-            self.rect = self.image.get_rect()
-            self.rect.center = self.position
-            self._widget.set_geometry()
-            self._widget.rect.center = self.rect.center
-        else:
-            super().set_geometry()
-            self._widget.set_geometry()
-            self._widget.rect.topleft = self.rect.topleft
 
-    def set_surface_size(self, new_surface_size):
-        super().set_surface_size(new_surface_size)
-        self._widget.set_surface_size(new_surface_size)
+        self._center = center
+    
+    @property
+    def position(self):
+        position = super().position
+
+        if self._center:
+            self._size_diff = (self.size[0] - self.rect.width, self.size[1] - self.rect.height)
+            return (position[0] + self._size_diff[0] / 2, position[1] + self._size_diff[1] / 2)
+        else:
+            return position
+    
+    def set_widget(self, widget_key):
+        self._widget_key = widget_key
+        self._widget = self._widgets_dict[self._widget_key.data]
+        self._widget.set_surface_size(self._raw_surface_size)
     
     def set_next_widget(self):
-        self._widget_key = self._widget_key.next
-        self._widget = self._widgets_dict[self._widget_key.data]
-
+        self.set_widget(self._widget_key.next)
         self.set_image()
     
     def set_previous_widget(self):
-        self._widget_key = self._widget_key.previous
-        self._widget = self._widgets_dict[self._widget_key.data]
-
+        self.set_widget(self._widget_key.previous)
         self.set_image()
 
     def set_to_key(self, key):
@@ -68,9 +55,21 @@ class ReactiveButton(_Pressable, _Widget):
                 self.set_image()
                 self.set_geometry()
                 return
-        
-            self._widget_key = self._widget_key.next
-            self._widget = self._widgets_dict[self._widget_key.data]
+
+            self.set_next_widget()
+    
+    def set_image(self):
+        self._widget.set_image()
+        self.image = self._widget.image
+    
+    def set_geometry(self):
+        super().set_geometry()
+        self._widget.set_geometry()
+        self._widget.rect.topleft = self.rect.topleft
+
+    def set_surface_size(self, new_surface_size):
+        super().set_surface_size(new_surface_size)
+        self._widget.set_surface_size(new_surface_size)
         
     def process_event(self, event):
         widget_event = super().process_event(event)

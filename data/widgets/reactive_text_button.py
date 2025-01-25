@@ -3,6 +3,7 @@ from data.constants import WidgetState
 from data.widgets.text import Text
 from data.widgets.reactive_button import ReactiveButton
 from data.managers.theme import theme
+
 ENLARGE_FACTOR = 1.2
 
 class ReactiveTextButton(ReactiveButton):

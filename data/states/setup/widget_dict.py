@@ -33,7 +33,6 @@ SETUP_WIDGETS = {
             border_radius=5,
             margin=10,
             anchor_x='right',
-            fixed_position=True,
             event=CustomEvent(SetupEventType.MENU_CLICK)
         ),
         IconButton(

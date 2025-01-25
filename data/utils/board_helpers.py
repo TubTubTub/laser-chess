@@ -20,7 +20,7 @@ def create_board(board_size, primary_colour, secondary_colour, font=FONTS['defau
         square_x = x * square_size
         square_y = y * square_size
 
-        pygame.draw.rect(board_surface, square_colour, (square_x, square_y, square_size, square_size))
+        pygame.draw.rect(board_surface, square_colour, (square_x, square_y, square_size + 1, square_size + 1)) # +1 to fill in black lines
 
         if y == 7:
             text_position = (square_x + square_size * 0.7, square_y + square_size * 0.55)

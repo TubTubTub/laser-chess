@@ -32,7 +32,7 @@ class Menu(_State):
     
     def cleanup(self):
         print('cleaning menu.py')
-
+        window.clear_apply_arguments(ShaderType.BLOOM)
         return None
     
     def startup(self, persist=None):

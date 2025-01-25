@@ -34,9 +34,12 @@ class WindowManager(pygame.Window):
     def set_apply_arguments(self, effect, **kwargs):
         self.shader_arguments[effect] = kwargs
     
+    def clear_apply_arguments(self, effect):
+        self.shader_arguments[effect] = {}
+    
     def clear_effect(self, effect):
         self._shader_manager.remove_shader(effect)
-        self.shader_arguments[effect] = {}
+        self.clear_apply_arguments(effect)
     
     def clear_all_effects(self):
         self._shader_manager.clear_shaders()

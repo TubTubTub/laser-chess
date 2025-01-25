@@ -122,6 +122,7 @@ class Carousel(_Widget):
         if left_arrow_event:
             self._widget_key = self._widget_key.previous
             self._widget = self._widgets_dict[self._widget_key.data]
+            self._widget.set_surface_size(self._raw_surface_size)
 
             self.set_image()
             self.set_geometry()
@@ -130,6 +131,7 @@ class Carousel(_Widget):
         elif right_arrow_event:
             self._widget_key = self._widget_key.next
             self._widget = self._widgets_dict[self._widget_key.data]
+            self._widget.set_surface_size(self._raw_surface_size)
 
             self.set_image()
             self.set_geometry()

@@ -33,9 +33,9 @@ class _Widget(pygame.sprite.Sprite):
         self._relative_border_width = theme['borderWidth'] / self._raw_surface_size[1]
         self._relative_border_radius = theme['borderRadius'] / self._raw_surface_size[1]
         
-        self._anchor_x = kwargs.get('anchor_x')
-        self._anchor_y = kwargs.get('anchor_y')
-        self._fixed_position = (self._relative_position[0] * self.surface_size[0], self._relative_position[1] * self.surface_size[1]) if kwargs.get('fixed_position') else None
+        self._anchor_x = kwargs.get('anchor_x') or 'left'
+        self._anchor_y = kwargs.get('anchor_y') or 'top'
+        self._fixed_position = kwargs.get('fixed_position')
 
         self._border_colour = pygame.Color(theme['borderPrimary'])
         self._text_colour = pygame.Color(theme['textPrimary'])
@@ -142,7 +142,28 @@ class _Widget(pygame.sprite.Sprite):
     
     def set_geometry(self):
         self.rect = self.image.get_rect()
-        self.rect.topleft = self.position
+
+        if self._anchor_x == 'left':
+            if self._anchor_y == 'top':
+                self.rect.topleft = self.position
+            elif self._anchor_y == 'bottom':
+                self.rect.bottomleft = self.position
+            elif self._anchor_y == 'center':
+                self.rect.topleft = self.position
+        elif self._anchor_x == 'right':
+            if self._anchor_y == 'top':
+                self.rect.topright = self.position
+            elif self._anchor_y == 'bottom':
+                self.rect.bottomright = self.position
+            elif self._anchor_y == 'center':
+                self.rect.topright = self.position
+        elif self._anchor_x == 'center':
+            if self._anchor_y == 'top':
+                self.rect.topleft = self.position
+            elif self._anchor_y == 'bottom':
+                self.rect.bottomleft = self.position
+            elif self._anchor_y == 'center':
+                self.rect.topleft = self.position
     
     def set_surface_size(self, new_surface_size):
         self._raw_surface_size = new_surface_size
