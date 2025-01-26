@@ -16,9 +16,15 @@ class ScrollArea(_Widget):
 
         self._widget.register_get_rect(self.calculate_widget_rect)
 
-        anchor_x = 'right' if self._vertical else 'left'
-        anchor_y = 'bottom' if not self._vertical else 'right'
-        scale_mode = 'height' if self._vertical else 'width'
+        if self._vertical:
+            anchor_x = 'right'
+            anchor_y = 'top'
+            scale_mode = 'height'
+        else:
+            anchor_x = 'left'
+            anchor_y = 'bottom'
+            scale_mode = 'width'
+
         self._scrollbar = _Scrollbar(
             parent=self,
             relative_position=(0, 0),
@@ -93,10 +99,10 @@ class ScrollArea(_Widget):
     def calculate_relative_scrollbar_position(self):
         if self._vertical:
             vertical_offset = (self.size[1] - self.scrollbar_size[1]) * self._scroll_percentage
-            scrollbar_position = (self.size[0] * SCROLLBAR_WIDTH_FACTOR, vertical_offset)
+            scrollbar_position = (0, vertical_offset)
         else:
             horizontal_offset = (self.size[0] - self.scrollbar_size[0]) * self._scroll_percentage
-            scrollbar_position = (horizontal_offset, self.size[1] * SCROLLBAR_WIDTH_FACTOR)
+            scrollbar_position = (horizontal_offset, 0)
 
         return (scrollbar_position[0] / self.size[0], scrollbar_position[1] / self.size[1])
     

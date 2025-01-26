@@ -14,6 +14,10 @@ class Icon(_Widget):
         self.set_image()
         self.set_geometry()
     
+    def set_icon(self, icon):
+        self._icon = icon
+        self.set_image()
+    
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
         pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self.border_radius))

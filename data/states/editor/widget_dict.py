@@ -8,37 +8,55 @@ from data.utils.asset_helpers import get_dimmed_icon
 from data.managers.theme import theme
 
 blue_pieces_container = Rectangle(
-    relative_position=(-0.25, 0),
-    relative_size=(0.05, 0.5),
+    relative_position=(0.25, 0),
+    relative_size=(0.13, 0.65),
+    scale_mode='height',
     anchor_y='center',
     anchor_x='center'
 )
 
 red_pieces_container = Rectangle(
-    relative_position=(0.25, 0),
-    relative_size=(0.05, 0.5),
+    relative_position=(-0.25, 0),
+    relative_size=(0.13, 0.65),
+    scale_mode='height',
     anchor_y='center',
     anchor_x='center'
 )
 
-SETUP_WIDGETS = {
+bottom_actions_container = Rectangle(
+    relative_position=(0, 0.05),
+    relative_size=(0.3, 0.1),
+    anchor_x='center',
+    anchor_y='bottom'
+)
+
+top_actions_container = Rectangle(
+    relative_position=(0, 0.05),
+    relative_size=(0.3, 0.1),
+    anchor_x='center',
+    scale_mode='height'
+)
+
+EDITOR_WIDGETS = {
     'default': [
         red_pieces_container,
         blue_pieces_container,
+        bottom_actions_container,
+        top_actions_container,
         IconButton(
-            relative_position=(0.1, 0.02),
-            relative_size=(0.05, 0.1),
+            relative_position=(0, 0),
+            fixed_position=(5, 5),
+            relative_size=(0.075, 0.075),
             icon=GRAPHICS['home'],
-            border_width=5,
-            border_radius=5,
+            scale_mode='height',
             margin=10,
             anchor_x='right',
             event=CustomEvent(SetupEventType.MENU_CLICK)
         ),
         IconButton(
-            relative_position=(-0.025, 0.15),
-            relative_size=(0.1, 0.1),
-            anchor_y='bottom',
+            parent=bottom_actions_container,
+            relative_position=(0.075, -1),
+            relative_size=(1, 1),
             anchor_x='center',
             margin=10,
             icon=GRAPHICS['clockwise_arrow'],
@@ -46,9 +64,9 @@ SETUP_WIDGETS = {
             event=CustomEvent(SetupEventType.ROTATE_PIECE_CLICK, rotation_direction=RotationDirection.CLOCKWISE)
         ),
         IconButton(
-            relative_position=(0.025, 0.15),
-            relative_size=(0.1, 0.1),
-            anchor_y='bottom',
+            parent=bottom_actions_container,
+            relative_position=(-0.075, -1),
+            relative_size=(1, 1),
             anchor_x='center',
             margin=10,
             icon=GRAPHICS['anticlockwise_arrow'],
@@ -56,55 +74,53 @@ SETUP_WIDGETS = {
             event=CustomEvent(SetupEventType.ROTATE_PIECE_CLICK, rotation_direction=RotationDirection.ANTICLOCKWISE)
         ),
         IconButton(
-            relative_position=(0.1, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=top_actions_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
+            anchor_x='right',
             margin=10,
-            border_width=5,
-            border_radius=10,
             icon=GRAPHICS['copy'],
             event=CustomEvent(SetupEventType.COPY_CLICK),
         ),
         IconButton(
-            relative_position=(0.25, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=top_actions_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
             margin=10,
-            border_width=5,
-            border_radius=10,
             fill_colour=(255, 0, 0),
             icon=GRAPHICS['trash'],
             event=CustomEvent(SetupEventType.EMPTY_CLICK),
         ),
         IconButton(
-            relative_position=(0.3, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=top_actions_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
             margin=10,
-            border_width=5,
-            border_radius=10,
+            anchor_x='center',
             fill_colour=(255, 0, 0),
             icon=GRAPHICS['reset'],
             event=CustomEvent(SetupEventType.RESET_CLICK),
         ),
         IconButton(
-            relative_position=(0.2, 0.8),
+            relative_position=(0, 0),
+            fixed_position=(10, 0),
+            anchor_x='right',
+            anchor_y='center',
             relative_size=(0.1, 0.1),
             scale_mode='height',
-            margin=10,
-            border_width=5,
-            border_radius=10,
             fill_colour=(0, 255, 0),
             icon=GRAPHICS['right_arrow'],
             event=CustomEvent(SetupEventType.START_CLICK),
         ),
         IconButton(
-            relative_position=(0.1, 0.1),
+            relative_position=(0, 0),
+            fixed_position=(10, 0),
+            anchor_y='center',
             relative_size=(0.1, 0.1),
             scale_mode='height',
-            margin=10,
-            border_width=5,
-            border_radius=10,
             icon=GRAPHICS['return'],
             event=CustomEvent(SetupEventType.CONFIG_CLICK),
         )
@@ -113,8 +129,9 @@ SETUP_WIDGETS = {
     'red_piece_buttons': {},
     'erase_button':
     MultipleIconButton(
-        relative_position=(0.2, 0.1),
-        relative_size=(0.1, 0.1),
+        parent=red_pieces_container,
+        relative_position=(0, 0),
+        relative_size=(0.2, 0.2),
         scale_mode='height',
         margin=10,
         border_width=5,
@@ -124,8 +141,9 @@ SETUP_WIDGETS = {
     ),
     'move_button':
     MultipleIconButton(
-        relative_position=(0.3, 0.1),
-        relative_size=(0.1, 0.1),
+        parent=blue_pieces_container,
+        relative_position=(0, 0),
+        relative_size=(0.2, 0.2),
         scale_mode='height',
         margin=10,
         border_width=5,
@@ -143,9 +161,11 @@ SETUP_WIDGETS = {
     ),
     'blue_start_button':
     MultipleIconButton(
-        relative_position=(0.05, 0.55),
-        relative_size=(0.1, 0.1),
+        parent=bottom_actions_container,
+        relative_position=(0, -1),
+        relative_size=(1, 1),
         scale_mode='height',
+        anchor_x='right',
         margin=0,
         border_width=5,
         border_radius=5,
@@ -154,8 +174,9 @@ SETUP_WIDGETS = {
     ),
     'red_start_button':
     MultipleIconButton(
-        relative_position=(0.15, 0.55),
-        relative_size=(0.1, 0.1),
+        parent=bottom_actions_container,
+        relative_position=(0, -1),
+        relative_size=(1, 1),
         scale_mode='height',
         margin=0,
         border_width=5,
@@ -169,12 +190,11 @@ for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX
     blue_icon = GRAPHICS[f'{piece.name.lower()}_1']
     dimmed_blue_icon = get_dimmed_icon(blue_icon)
 
-    SETUP_WIDGETS['blue_piece_buttons'][piece] = MultipleIconButton(
+    EDITOR_WIDGETS['blue_piece_buttons'][piece] = MultipleIconButton(
         parent=blue_pieces_container,
-        relative_position=(0, index / 4),
-        relative_size=(0.25, 0.25),
+        relative_position=(0, (index + 1) / 5),
+        relative_size=(0.2, 0.2),
         scale_mode='height',
-        anchor_x='center',
         margin=10,
         icons_dict={True: blue_icon, False: dimmed_blue_icon},
         event=CustomEvent(SetupEventType.PICK_PIECE_CLICK, piece=piece, active_colour=Colour.BLUE)
@@ -183,12 +203,11 @@ for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX
     red_icon = GRAPHICS[f'{piece.name.lower()}_2']
     dimmed_red_icon = get_dimmed_icon(red_icon)
 
-    SETUP_WIDGETS['red_piece_buttons'][piece] = MultipleIconButton(
+    EDITOR_WIDGETS['red_piece_buttons'][piece] = MultipleIconButton(
         parent=red_pieces_container,
-        relative_position=(0, index / 4),
-        relative_size=(0.25, 0.25),
+        relative_position=(0, (index + 1) / 5),
+        relative_size=(0.2, 0.2),
         scale_mode='height',
-        anchor_x='center',
         margin=10,
         icons_dict={True: red_icon, False: dimmed_red_icon},
         event=CustomEvent(SetupEventType.PICK_PIECE_CLICK, piece=piece, active_colour=Colour.RED)

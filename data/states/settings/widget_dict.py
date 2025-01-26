@@ -18,10 +18,19 @@ carousel_widgets = {
     ) for key in SHADER_MAP.keys()
 }
 
+reset_container = Rectangle(
+    relative_size=(0.2, 0.2),
+    relative_position=(0, 0),
+    fixed_position=(5, 5),
+    anchor_x='right',
+    anchor_y='bottom',
+)
+
 SETTINGS_WIDGETS = {
     'default': [
+        reset_container,
         Text(
-            relative_position=(0.01, 0.2),
+            relative_position=(0.01, 0.1),
             text='Display mode',
             relative_size=(0.4, 0.04),
             center=False,
@@ -30,7 +39,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.3),
+            relative_position=(0.01, 0.2),
             text='Music',
             relative_size=(0.4, 0.04),
             center=False,
@@ -39,7 +48,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.4),
+            relative_position=(0.01, 0.3),
             text='SFX',
             relative_size=(0.4, 0.04),
             center=False,
@@ -48,7 +57,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.5),
+            relative_position=(0.01, 0.4),
             text='Primary board colour',
             relative_size=(0.4, 0.04),
             center=False,
@@ -57,7 +66,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.6),
+            relative_position=(0.01, 0.5),
             text='Secondary board colour',
             relative_size=(0.4, 0.04),
             center=False,
@@ -66,7 +75,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.7),
+            relative_position=(0.01, 0.6),
             text='Particles',
             relative_size=(0.4, 0.04),
             center=False,
@@ -75,7 +84,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.8),
+            relative_position=(0.01, 0.7),
             text='Shaders (OPENGL GPU REQUIRED)',
             relative_size=(0.4, 0.04),
             center=False,
@@ -84,7 +93,7 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
-            relative_position=(0.01, 0.9),
+            relative_position=(0.01, 0.8),
             text='Super Secret Settings',
             relative_size=(0.4, 0.04),
             center=False,
@@ -93,38 +102,39 @@ SETTINGS_WIDGETS = {
             fill_colour=(0, 0, 0, 0)
         ),
         TextButton(
-            relative_position=(0.3, 0.2),
-            relative_size=(0.3, 0.1),
-            text='DISCARD CHANGES',
-            anchor_x='right',
-            anchor_y='bottom',
-            text_colour=(255, 0, 0),
+            parent=reset_container,
+            relative_position=(-1, -1),
+            relative_size=(1, 0.5),
+            fit_vertical=False,
             margin=10,
+            text='DISCARD CHANGES',
+            text_colour=(255, 0, 0),
             event=CustomEvent(SettingsEventType.RESET_USER)
         ),
         TextButton(
-            relative_position=(0.3, 0.1),
-            relative_size=(0.3, 0.1),
-            text='RESET TO DEFAULT',
-            anchor_x='right',
-            anchor_y='bottom',
-            text_colour=(255, 0, 0),
+            parent=reset_container,
+            relative_position=(-1, -0.5),
+            relative_size=(1, 0.5),
+            fit_vertical=False,
             margin=10,
+            text='RESET TO DEFAULT',
+            text_colour=(255, 0, 0),
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
         IconButton(
-            relative_position=(0.1, 0.05),
-            relative_size=(0.1, 0.1),
+            relative_position=(0, 0),
+            relative_size=(0.075, 0.075),
             scale_mode='height',
             margin=10,
             icon=GRAPHICS['home'],
             anchor_x='right',
+            fixed_position=(5, 5),
             event=CustomEvent(SettingsEventType.MENU_CLICK)
         )
     ],
     'display_mode_dropdown':
     Dropdown(
-        relative_position=(0.4, 0.2),
+        relative_position=(0.4, 0.1),
         relative_width=0.2,
         word_list=['fullscreen', 'windowed'],
         fill_colour=(255, 100, 100),
@@ -132,7 +142,7 @@ SETTINGS_WIDGETS = {
     ),
     'primary_colour_button':
     ColourButton(
-        relative_position=(0.4, 0.5),
+        relative_position=(0.4, 0.4),
         relative_size=(0.08, 0.05),
         fill_colour=user_settings['primaryBoardColour'],
         border_width=5,
@@ -140,7 +150,7 @@ SETTINGS_WIDGETS = {
     ),
     'secondary_colour_button':
     ColourButton(
-        relative_position=(0.4, 0.6),
+        relative_position=(0.4, 0.5),
         relative_size=(0.08, 0.05),
         fill_colour=user_settings['secondaryBoardColour'],
         border_width=5,
@@ -148,7 +158,7 @@ SETTINGS_WIDGETS = {
     ),
     'music_volume_slider':
     VolumeSlider(
-        relative_position=(0.4, 0.3),
+        relative_position=(0.4, 0.2),
         relative_length=(0.5),
         default_volume=user_settings['musicVolume'],
         border_width=5,
@@ -156,7 +166,7 @@ SETTINGS_WIDGETS = {
     ),
     'sfx_volume_slider':
     VolumeSlider(
-        relative_position=(0.4, 0.4),
+        relative_position=(0.4, 0.3),
         relative_length=(0.5),
         default_volume=user_settings['sfxVolume'],
         border_width=5,
@@ -164,7 +174,7 @@ SETTINGS_WIDGETS = {
     ),
     'shader_carousel':
     Carousel(
-        relative_position = (0.4, 0.9),
+        relative_position = (0.4, 0.8),
         margin=5,
         border_width=0,
         fill_colour=(0, 0, 0, 0),
@@ -173,14 +183,14 @@ SETTINGS_WIDGETS = {
     ),
     'particles_switch':
     Switch(
-        relative_position=(0.4, 0.7),
+        relative_position=(0.4, 0.6),
         relative_height=0.04,
         fill_colour=(0, 0, 255),
         event=CustomEvent(SettingsEventType.PARTICLES_CLICK)
     ),
     'opengl_switch':
     Switch(
-        relative_position=(0.4, 0.8),
+        relative_position=(0.4, 0.7),
         relative_height=0.04,
         fill_colour=(0, 0, 255),
         event=CustomEvent(SettingsEventType.OPENGL_CLICK)

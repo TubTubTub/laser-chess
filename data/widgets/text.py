@@ -34,7 +34,7 @@ class Text(_Widget): # Pure text
             else:
                 self._relative_font_size = ideal_font_size
 
-    def update_text(self, new_text):
+    def set_text(self, new_text):
         self._text = new_text
 
         self.resize_text()

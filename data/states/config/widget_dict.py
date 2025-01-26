@@ -2,7 +2,7 @@ import pygame
 from data.widgets import *
 from data.states.config.default_config import default_config
 from data.components.custom_event import CustomEvent
-from data.constants import ConfigEventType
+from data.constants import ConfigEventType, Colour
 from data.assets import GRAPHICS
 from data.utils.asset_helpers import get_dimmed_icon
 
@@ -29,6 +29,10 @@ if default_config['TIME_ENABLED']:
 else:
     time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
+if default_config['COLOUR'] == Colour.BLUE:
+    colour_icons = {Colour.BLUE: GRAPHICS['pharoah_1'], Colour.RED: GRAPHICS['pharoah_2']}
+else:
+    colour_icons = {Colour.RED: GRAPHICS['pharoah_2'], Colour.BLUE: GRAPHICS['pharoah_1']}
 
 preview_container = Rectangle(
     relative_position=(-0.15, 0),
@@ -64,7 +68,7 @@ CONFIG_WIDGETS = {
         TextInput(
             parent=config_container,
             relative_position=(0.3, 0.3),
-            relative_size=(0.45, 0.15),
+            relative_size=(0.65, 0.15),
             fit_vertical=True,
             placeholder='TIME CONTROL (DEFAULT 5)',
             default=str(default_config['TIME']),
@@ -79,10 +83,11 @@ CONFIG_WIDGETS = {
             relative_position=(0.75, 0.3),
             relative_size=(0.2, 0.15),
             text='MINS',
-            margin=2
+            border_width=0,
+            fill_colour=(0, 0, 0, 0)
         ),
         IconButton(
-            relative_position=(0.1, 0.025),
+            relative_position=(0, 0),
             relative_size=(0.075, 0.075),
             margin=10,
             icon=GRAPHICS['home'],
@@ -214,14 +219,15 @@ CONFIG_WIDGETS = {
         fen_string="sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
     ),
-    'to_move_icon':
-    Icon(
+    'to_move_button':
+    MultipleIconButton(
         parent=to_move_container,
         scale_mode='height',
         relative_position=(0, 0),
         relative_size=(1, 1),
-        icon=GRAPHICS['pharoah_1'],
-        anchor_x='right',
+        icons_dict=colour_icons,
+        anchor_x='left',
+        event=CustomEvent(ConfigEventType.COLOUR_CLICK)
     ),
     'to_move_text':
     Text(
@@ -230,6 +236,7 @@ CONFIG_WIDGETS = {
         relative_size=(0.75, 1),
         fit_vertical=False,
         text='TO MOVE',
+        anchor_x='right'
     ),
     'cpu_depth_carousel':
     Carousel(

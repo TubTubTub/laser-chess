@@ -13,69 +13,86 @@ browser_strip = BrowserStrip(
 )
 
 number_of_pages = get_number_of_games() // GAMES_PER_PAGE + 1
+
 carousel_widgets = {
     i: Text(
         relative_position=(0, 0),
         relative_size=(0.3, 0.1),
         text=f"PAGE {i} OF {number_of_pages}",
+        fill_colour=(0, 0, 0, 0),
         fit_vertical=True,
         border_width=0,
     )
     for i in range(1, number_of_pages + 1)
 }
 
+sort_by_container = Rectangle(
+    relative_size=(0.5, 0.1),
+    relative_position=(0.01, 0.75),
+    anchor_x='right',
+    visible=True
+)
+
+buttons_container = Rectangle(
+    relative_position=(0, 0.025),
+    relative_size=(0.5, 0.1),
+    scale_mode='height',
+    anchor_x='center'
+)
+
 BROWSER_WIDGETS = {
     'default': [
+        buttons_container,
+        sort_by_container,
         IconButton(
-            relative_position=(0.075, 0.05),
-            relative_size=(0.1, 0.1),
+            relative_position=(0, 0),
+            fixed_position=(5, 5),
+            relative_size=(0.075, 0.075),
+            icon=GRAPHICS['home'],
             scale_mode='height',
             margin=10,
-            border_width=5,
-            border_radius=5,
-            fixed_width=True,
             anchor_x='right',
-            icon=GRAPHICS['home'],
             event=CustomEvent(BrowserEventType.MENU_CLICK)
         ),
         IconButton(
-            relative_position=(0.1, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=buttons_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
-            border_width=5,
-            border_radius=10,
             icon=GRAPHICS['copy'],
+            margin=10,
             event=CustomEvent(BrowserEventType.COPY_CLICK),
         ),
         IconButton(
-            relative_position=(0.25, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=buttons_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
-            border_width=5,
-            border_radius=10,
+            anchor_x='center',
             fill_colour=(255, 0, 0),
+            margin=10,
             icon=GRAPHICS['trash'],
             event=CustomEvent(BrowserEventType.DELETE_CLICK),
         ),
         IconButton(
-            relative_position=(0.4, 0.8),
-            relative_size=(0.1, 0.1),
+            parent=buttons_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
             scale_mode='height',
+            anchor_x='right',
             margin=10,
-            border_width=5,
-            border_radius=10,
             icon=GRAPHICS['review'],
             event=CustomEvent(BrowserEventType.REVIEW_CLICK),
         ),
         Text(
-            relative_position=(0.4, 0.8),
-            relative_size=(0.3, 0.075),
+            parent=sort_by_container,
+            relative_position=(-1, 0),
+            relative_size=(0.3, 1),
+            fit_vertical=False,
             text='SORT BY:',
-            fill_colour=(0, 0, 0, 0),
             border_width=0,
             margin=0,
+            fill_colour=(0, 0, 0, 0),
             text_colour=(255, 255, 255)
         )
     ],
@@ -90,26 +107,32 @@ BROWSER_WIDGETS = {
     ),
     'filter_column_dropdown':
     Dropdown(
-        relative_position=(0.65, 0.8),
-        relative_height=0.075,
+        parent=sort_by_container,
+        relative_position=(1.25, 0),
+        relative_height=0.75,
+        anchor_x='right',
+        anchor_y='center',
         word_list=['time', 'moves', 'winner'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_COLUMN_CLICK)
     ),
     'filter_ascend_dropdown':
     Dropdown(
-        relative_position=(0.85, 0.8),
-        relative_height=0.075,
+        parent=sort_by_container,
+        relative_position=(1, 0),
+        relative_height=0.75,
+        anchor_x='right',
+        anchor_y='center',
         word_list=['desc', 'asc'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)
     ),
     'page_carousel':
     Carousel(
-        relative_position = (0, 0.03),
-        anchor_x='center',
+        relative_position=(0.01, 0.75),
         margin=5,
         border_width=0,
+        fill_colour=(0, 0, 0, 0),
         widgets_dict=carousel_widgets,
         event=CustomEvent(BrowserEventType.PAGE_CLICK),
     )

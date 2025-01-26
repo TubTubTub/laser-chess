@@ -1,4 +1,3 @@
-import pygame
 from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import ReviewEventType, Colour
@@ -6,54 +5,80 @@ from data.assets import GRAPHICS
 
 MOVE_LIST_WIDTH = 0.2
 
+right_container = Rectangle(
+    relative_position=(0.05, 0),
+    relative_size=(0.2, 0.7),
+    anchor_y='center',
+    anchor_x='right'
+)
+
 info_container = Rectangle(
-    relative_position=(0.35, 0.2),
-    relative_size=(0.2, 0.3),
+    parent=right_container,
+    relative_position=(-1, 0.5),
+    relative_size=(1, 0.5),
+    visible=True
+)
+
+arrow_container = Rectangle(
+    relative_position=(0, 0.05),
+    relative_size=(0.4, 0.1),
     anchor_x='center',
-    anchor_y='center'
+    anchor_y='bottom'
 )
 
 move_list = MoveList(
-    relative_position=(0, 0),
-    relative_width=MOVE_LIST_WIDTH,
-    minimum_height=390,
+    parent=right_container,
+    relative_position=(-1, 0),
+    relative_width=1,
+    minimum_height=300,
     fill_colour=(100, 100, 100),
     move_list=[]
 )
 
 REVIEW_WIDGETS = {
+    'move_list':
+        move_list,
+    'scroll_area':
+    ScrollArea(
+        parent=right_container,
+        relative_position=(-1, 0),
+        relative_size=(1, 0.5),
+        vertical=True,
+        widget=move_list
+    ),
     'default': [
         info_container,
+        arrow_container,
+        right_container,
         IconButton(
-            relative_position=(0.1, 0.02),
-            relative_size=(0.05, 0.1),
+            relative_position=(0, 0),
+            fixed_position=(5, 5),
+            relative_size=(0.075, 0.075),
             icon=GRAPHICS['home'],
-            border_width=5,
-            border_radius=5,
+            scale_mode='height',
             margin=10,
             anchor_x='right',
             event=CustomEvent(ReviewEventType.MENU_CLICK)
         ),
         IconButton(
-            relative_position=(-0.15, 0.15),
-            relative_size=(0.1, 0.1),
-            fill_colour=(0, 0, 0),
-            anchor_y='bottom',
-            anchor_x='center',
-            margin=10,
-            icon=GRAPHICS['back'],
+            parent=arrow_container,
+            relative_position=(0, -1),
+            relative_size=(1, 1),
             scale_mode='height',
+            margin=10,
+            fill_colour=(0, 0, 0),
+            icon=GRAPHICS['back'],
             event=CustomEvent(ReviewEventType.PREVIOUS_CLICK)
         ),
         IconButton(
-            relative_position=(0.15, 0.15),
-            relative_size=(0.1, 0.1),
-            fill_colour=(0, 0, 0),
-            anchor_y='bottom',
-            anchor_x='center',
-            margin=10,
-            icon=GRAPHICS['next'],
+            parent=arrow_container,
+            relative_position=(0, -1),
+            relative_size=(1, 1),
             scale_mode='height',
+            anchor_x='right',
+            margin=10,
+            fill_colour=(0, 0, 0),
+            icon=GRAPHICS['next'],
             event=CustomEvent(ReviewEventType.NEXT_CLICK)
         ),
     ],
@@ -68,29 +93,37 @@ REVIEW_WIDGETS = {
     'move_number_text':
     Text(
         parent=info_container,
-        relative_size=(0.9, 0.3),
-        relative_position=(0.05, 0.65),
-        border_width=0,
-        fit_vertical=False,
+        relative_position=(0, 0),
+        relative_size=(1, 0.3),
+        anchor_y='bottom',
         text='MOVE NO:',
+        fit_vertical=False,
+        margin=10,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
     ),
     'move_colour_text':
     Text(
         parent=info_container,
-        relative_size=(0.9, 0.3),
-        relative_position=(0.05, 0.35),
-        border_width=0,
-        fit_vertical=False,
+        relative_size=(1, 0.3),
+        relative_position=(0, 0),
+        anchor_y='center',
         text='TO MOVE',
+        fit_vertical=False,
+        margin=10,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
     ),
     'winner_text':
     Text(
         parent=info_container,
-        relative_size=(0.9, 0.3),
-        relative_position=(0.05, 0.05),
-        border_width=0,
-        fit_vertical=False,
+        relative_size=(1, 0.3),
+        relative_position=(0, 0),
         text='WINNER:',
+        fit_vertical=False,
+        margin=10,
+        border_width=0,
+        fill_colour=(0, 0, 0, 0),
     ),
     'blue_timer':
     Timer(
@@ -116,23 +149,13 @@ REVIEW_WIDGETS = {
     PieceDisplay(
         relative_position=(0.05, 0.05),
         relative_size=(0.2, 0.1),
+        anchor_y='bottom',
         active_colour=Colour.BLUE
     ),
     'red_piece_display':
     PieceDisplay(
-        relative_position=(0.75, 0.05),
+        relative_position=(0.05, 0.05),
         relative_size=(0.2, 0.1),
         active_colour=Colour.RED
-    ),
-    'move_list':
-        move_list,
-    'scroll_area':
-    ScrollArea(
-        relative_position=(0.25, -0.15),
-        relative_size=(MOVE_LIST_WIDTH, 0.4),
-        anchor_x='right',
-        anchor_y='center',
-        vertical=True,
-        widget=move_list
     ),
 }

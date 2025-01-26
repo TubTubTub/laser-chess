@@ -1,6 +1,5 @@
 import pygame
 from data.widgets.bases import _Widget
-from data.assets import FONTS
 from data.utils.font_helpers import width_to_font_size
 
 class MoveList(_Widget):
@@ -10,8 +9,7 @@ class MoveList(_Widget):
         self._relative_width = relative_width * self.surface_size[0] / self.surface_size[1]
         self._relative_minimum_height = minimum_height / self.surface_size[1]
         self._move_list = move_list
-
-        self._relative_font_size = width_to_font_size(self._font, relative_width * self.surface_size[1] / 3) / self.surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.surface_size[0] / 5) / self.surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -21,8 +19,13 @@ class MoveList(_Widget):
     @property
     def size(self):
         font_metrics = self._font.get_metrics('j', size=self.font_size)
+
+        width = self._relative_width * self.surface_size[0]
+        minimum_height = self._relative_minimum_height * self.surface_size[0]
         row_gap = font_metrics[0][3] - font_metrics[0][2]
-        return (self._relative_width * self.surface_size[1], max(self._relative_minimum_height * self.surface_size[1], row_gap * (2 * ((len(self._move_list) + 1) // 2) + 1) ))
+        number_of_rows = 2 * ((len(self._move_list) + 1) // 2) + 1
+
+        return (width, max(minimum_height, row_gap * number_of_rows))
     
     def register_get_rect(self, get_rect_func):
         pass

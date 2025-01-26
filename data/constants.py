@@ -145,6 +145,7 @@ class ConfigEventType(StrEnum):
     CPU_DEPTH_CLICK = auto()
     PRESET_CLICK = auto()
     SETUP_CLICK = auto()
+    COLOUR_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0

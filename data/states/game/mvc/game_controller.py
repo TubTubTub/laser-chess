@@ -55,9 +55,11 @@ class GameController:
         match game_event.type:
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
+                return
             
             case GameEventType.GAME_CLICK:
                 self.cleanup('game')
+                return
 
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
@@ -91,6 +93,10 @@ class GameController:
                 
             case GameEventType.TIMER_END:
                 self._model.set_winner(widget_event.active_colour.get_flipped_colour())
+                return
+            
+            case GameEventType.MENU_CLICK:
+                self.cleanup('menu')
                 return
             
             case _:

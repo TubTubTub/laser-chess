@@ -45,6 +45,7 @@ class Config(_State):
         
         self.set_fen_string(self._config['FEN_STRING'])
         self.toggle_pvc(self._config['CPU_ENABLED'])
+        self.set_active_colour(self._config['COLOUR'])
 
         CONFIG_WIDGETS['cpu_depth_carousel'].set_to_key(2)
         if self._config['CPU_ENABLED']:
@@ -86,7 +87,7 @@ class Config(_State):
             self.remove_depth_picker()
     
     def set_fen_string(self, new_fen_string):
-        CONFIG_WIDGETS['fen_string_input'].update_text(new_fen_string)
+        CONFIG_WIDGETS['fen_string_input'].set_text(new_fen_string)
         self._config['FEN_STRING'] = new_fen_string
 
         self.set_preset_overlay(new_fen_string)
@@ -96,9 +97,9 @@ class Config(_State):
             CONFIG_WIDGETS['invalid_fen_string'].kill()
 
             if new_fen_string[-1].lower() == 'r':
-                self._config['COLOUR'] = Colour.RED
+                self.set_active_colour(Colour.RED)
             else:
-                self._config['COLOUR'] = Colour.BLUE
+                self.set_active_colour(Colour.BLUE)
             
             self._valid_fen = True
         except:
@@ -149,8 +150,12 @@ class Config(_State):
                 self.set_fen_string(widget_event.fen_string)
             
             case ConfigEventType.SETUP_CLICK:
-                self.next = 'setup'
+                self.next = 'editor'
                 self.done = True
+            
+            case ConfigEventType.COLOUR_CLICK:
+                self.set_active_colour(widget_event.data.get_flipped_colour())
+    
     
     def set_preset_overlay(self, fen_string):
         fen_string_widget_map = {
@@ -163,6 +168,21 @@ class Config(_State):
             self._selected_preset = CONFIG_WIDGETS[fen_string_widget_map[fen_string]]
         else:
             self._selected_preset = None
+    
+    def set_active_colour(self, colour):
+        if self._config['COLOUR'] != colour:
+            CONFIG_WIDGETS['to_move_button'].set_next_icon()
+
+        self._config['COLOUR'] = colour
+        
+        if colour == Colour.BLUE:
+            CONFIG_WIDGETS['to_move_text'].set_text('BLUE TO MOVE')
+        else:
+            CONFIG_WIDGETS['to_move_text'].set_text('RED TO MOVE')
+        
+        if self._valid_fen:
+            self._config['FEN_STRING'] = self._config['FEN_STRING'][:-1] + colour.name[0].lower()
+            CONFIG_WIDGETS['fen_string_input'].set_text(self._config['FEN_STRING'])
     
     def draw(self):
         draw_background(window.screen, GRAPHICS['temp_background'])

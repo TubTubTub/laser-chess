@@ -2,7 +2,7 @@ import pygame
 import pyperclip
 from data.control import _State
 from data.components.widget_group import WidgetGroup
-from data.states.setup.widget_dict import SETUP_WIDGETS
+from data.states.editor.widget_dict import EDITOR_WIDGETS
 from data.constants import SetupEventType, Colour, RotationDirection, Piece, Rotation
 from data.states.game.components.bitboard_collection import BitboardCollection
 from data.states.game.components.overlay_draw import OverlayDraw
@@ -18,7 +18,7 @@ from data.managers.audio import audio
 from data.managers.animation import animation
 from data.managers.window import window
 
-class Setup(_State):
+class Editor(_State):
     def __init__(self):
         super().__init__()
 
@@ -34,34 +34,33 @@ class Setup(_State):
         self._overlay_draw = None
     
     def cleanup(self):
-        print('cleaning setup.py')
+        print('cleaning editor.py')
 
         self.deselect_tool()
 
         return encode_fen_string(self._bitboards)
     
     def startup(self, persist):
-        print('starting setup.py')
-        self._widget_group = WidgetGroup(SETUP_WIDGETS)
+        print('starting editor.py')
+        self._widget_group = WidgetGroup(EDITOR_WIDGETS)
         self._widget_group.handle_resize(window.size)
 
-        self._drag_and_drop = DragAndDrop(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
-        self._overlay_draw = OverlayDraw(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+        self._drag_and_drop = DragAndDrop(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
+        self._overlay_draw = OverlayDraw(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
         self._bitboards = BitboardCollection(persist['FEN_STRING'])
-        self._initial_fen_string = persist['FEN_STRING']
         self._piece_group = PieceGroup()
+
         self._selected_coords = None
         self._selected_tool = None
         self._selected_tool_colour = None
+        self._initial_fen_string = persist['FEN_STRING']
         self._starting_colour = Colour.BLUE
-
-        self.set_starting_colour(Colour.BLUE)
-
-        # audio.play_music(MUSIC_PATHS['setup'])
         
         self.refresh_pieces()
         self.set_starting_colour(Colour.BLUE if persist['FEN_STRING'][-1].lower() == 'b' else Colour.RED)
         self.draw()
+        
+        # audio.play_music(MUSIC_PATHS['setup'])
     
     @property
     def selected_coords(self):
@@ -78,7 +77,7 @@ class Setup(_State):
             return
         
         if event.type == pygame.MOUSEBUTTONDOWN:
-            clicked_coords = screen_pos_to_coords(event.pos, SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+            clicked_coords = screen_pos_to_coords(event.pos, EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
 
             if clicked_coords:
                 self.selected_coords = clicked_coords
@@ -97,7 +96,7 @@ class Setup(_State):
                 return
         
         if event.type == pygame.MOUSEBUTTONUP:
-            clicked_coords = screen_pos_to_coords(event.pos, SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+            clicked_coords = screen_pos_to_coords(event.pos, EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
 
             if self._drag_and_drop.dragged_sprite:
                 self.remove_dragged_piece(clicked_coords)
@@ -171,19 +170,19 @@ class Setup(_State):
         self.refresh_pieces()
     
     def refresh_pieces(self):
-        self._piece_group.initialise_pieces(self._bitboards.convert_to_piece_list(), SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+        self._piece_group.initialise_pieces(self._bitboards.convert_to_piece_list(), EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
     
     def set_starting_colour(self, new_colour):
         if new_colour == Colour.BLUE:
-            SETUP_WIDGETS['blue_start_button'].set_locked(True)
-            SETUP_WIDGETS['red_start_button'].set_locked(False)
+            EDITOR_WIDGETS['blue_start_button'].set_locked(True)
+            EDITOR_WIDGETS['red_start_button'].set_locked(False)
         elif new_colour == Colour.RED:
-            SETUP_WIDGETS['blue_start_button'].set_locked(False)
-            SETUP_WIDGETS['red_start_button'].set_locked(True)
+            EDITOR_WIDGETS['blue_start_button'].set_locked(False)
+            EDITOR_WIDGETS['red_start_button'].set_locked(True)
         
         if new_colour != self._starting_colour:
-            SETUP_WIDGETS['blue_start_button'].set_next_icon()
-            SETUP_WIDGETS['red_start_button'].set_next_icon()
+            EDITOR_WIDGETS['blue_start_button'].set_next_icon()
+            EDITOR_WIDGETS['red_start_button'].set_next_icon()
         
         self._starting_colour = new_colour
         self._bitboards.active_colour = new_colour
@@ -260,14 +259,14 @@ class Setup(_State):
         self.deselect_tool()
 
         if piece == 'ERASE':
-            SETUP_WIDGETS['erase_button'].set_locked(True)
-            SETUP_WIDGETS['erase_button'].set_next_icon()
+            EDITOR_WIDGETS['erase_button'].set_locked(True)
+            EDITOR_WIDGETS['erase_button'].set_next_icon()
         elif piece == 'MOVE':
-            SETUP_WIDGETS['move_button'].set_locked(True)
-            SETUP_WIDGETS['move_button'].set_next_icon()
+            EDITOR_WIDGETS['move_button'].set_locked(True)
+            EDITOR_WIDGETS['move_button'].set_next_icon()
         else:
-            SETUP_WIDGETS[dict_name_map[colour]][piece].set_locked(True)
-            SETUP_WIDGETS[dict_name_map[colour]][piece].set_next_icon()
+            EDITOR_WIDGETS[dict_name_map[colour]][piece].set_locked(True)
+            EDITOR_WIDGETS[dict_name_map[colour]][piece].set_next_icon()
         
         self._selected_tool = piece
         self._selected_tool_colour = colour
@@ -277,23 +276,23 @@ class Setup(_State):
 
         if self._selected_tool:
             if self._selected_tool == 'ERASE':
-                SETUP_WIDGETS['erase_button'].set_locked(False)
-                SETUP_WIDGETS['erase_button'].set_next_icon()
+                EDITOR_WIDGETS['erase_button'].set_locked(False)
+                EDITOR_WIDGETS['erase_button'].set_next_icon()
             elif self._selected_tool == 'MOVE':
-                SETUP_WIDGETS['move_button'].set_locked(False)
-                SETUP_WIDGETS['move_button'].set_next_icon()
+                EDITOR_WIDGETS['move_button'].set_locked(False)
+                EDITOR_WIDGETS['move_button'].set_next_icon()
             else:
-                SETUP_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_locked(False)
-                SETUP_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_next_icon()
+                EDITOR_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_locked(False)
+                EDITOR_WIDGETS[dict_name_map[self._selected_tool_colour]][self._selected_tool].set_next_icon()
         
         self._selected_tool = None
         self._selected_tool_colour = None
                 
     def handle_resize(self, resize_end=False):
         super().handle_resize()
-        self._piece_group.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size, resize_end)
-        self._drag_and_drop.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
-        self._overlay_draw.handle_resize(SETUP_WIDGETS['chessboard'].position, SETUP_WIDGETS['chessboard'].size)
+        self._piece_group.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size, resize_end)
+        self._drag_and_drop.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
+        self._overlay_draw.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
     
     def draw(self):
         draw_background(window.screen, GRAPHICS['temp_background'])

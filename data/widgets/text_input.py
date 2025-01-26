@@ -61,6 +61,22 @@ class TextInput(_Pressable, Text):
             self._text_colour = self._placeholder_colour
         else:
             self._text_colour = self._text_colour_copy
+    
+    @property
+    def cursor_size(self):
+        cursor_height = (self.size[1] - self.border_width * 2) * 0.75
+        return (cursor_height * 0.1, cursor_height)
+
+    @property
+    def cursor_position(self):
+        current_width = (self.margin / 2)
+        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self.font_size)):
+            if index == self._cursor_index:
+                return (current_width - self.cursor_size[0], (self.size[1] - self.cursor_size[1]) / 2)
+            
+            glyph_width = metrics[4]
+            current_width += glyph_width
+        return (current_width - self.cursor_size[0], (self.size[1] - self.cursor_size[1]) / 2)
 
     def hover_func(self):
         self.set_state_colour(WidgetState.HOVER)
@@ -85,21 +101,6 @@ class TextInput(_Pressable, Text):
         self._fill_colour = self._colours[state]
 
         self.set_image()
-
-    def calculate_cursor_size(self):
-        cursor_height = (self.size[1] - self.border_width * 2) * 0.75
-        return (cursor_height * 0.1, cursor_height)
-
-    def calculate_cursor_position(self):
-        current_width = (self.margin / 2)
-        cursor_size = self.calculate_cursor_size()
-        for index, metrics in enumerate(self._font.get_metrics(self._text, size=self.font_size)):
-            if index == self._cursor_index:
-                return (current_width - cursor_size[0], (self.size[1] - cursor_size[1]) / 2)
-            
-            glyph_width = metrics[4]
-            current_width += glyph_width
-        return (current_width - cursor_size[0], (self.size[1] - cursor_size[1]) / 2)
     
     def relative_x_to_cursor_index(self, relative_x):
         current_width = 0
@@ -125,7 +126,7 @@ class TextInput(_Pressable, Text):
             self._cursor_index = mouse_pos
             return
 
-        relative_x = mouse_pos[0] - (self.margin / 2) - self.position[0]
+        relative_x = mouse_pos[0] - (self.margin / 2) - self.rect.left
         relative_x = max(0, relative_x)
         self._cursor_index = self.relative_x_to_cursor_index(relative_x)
     
@@ -146,8 +147,8 @@ class TextInput(_Pressable, Text):
         self.set_cursor_index(None)
         self.set_image()
     
-    def update_text(self, new_text):
-        super().update_text(new_text)
+    def set_text(self, new_text):
+        super().set_text(new_text)
         return CustomEvent(**vars(self._event), text=self.get_text())
     
     def process_event(self, event):
@@ -229,11 +230,9 @@ class TextInput(_Pressable, Text):
         super().set_image()
 
         if self._cursor_index is not None:
-            cursor_size = self.calculate_cursor_size()
-            cursor_position = self.calculate_cursor_position()
-            scaled_cursor = pygame.transform.scale(self._empty_cursor, cursor_size)
+            scaled_cursor = pygame.transform.scale(self._empty_cursor, self.cursor_size)
             scaled_cursor.fill(self._cursor_colour)
-            self.image.blit(scaled_cursor, cursor_position)
+            self.image.blit(scaled_cursor, self.cursor_position)
     
     def update(self):
         super().update()

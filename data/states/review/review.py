@@ -58,7 +58,7 @@ class Review(_State):
         REVIEW_WIDGETS['move_list'].kill()
         REVIEW_WIDGETS['scroll_area'].set_image()
 
-        REVIEW_WIDGETS['winner_text'].update_text(f'WINNER: {get_winner_string(self._game_info['winner'])}')
+        REVIEW_WIDGETS['winner_text'].set_text(f'WINNER: {get_winner_string(self._game_info['winner'])}')
         REVIEW_WIDGETS['blue_piece_display'].reset_piece_list()
         REVIEW_WIDGETS['red_piece_display'].reset_piece_list()
     
@@ -69,8 +69,8 @@ class Review(_State):
             REVIEW_WIDGETS['red_timer'].kill()
     
     def refresh_widgets(self):
-        REVIEW_WIDGETS['move_number_text'].update_text(f'MOVE NO: {(self._move_index + 1) / 2:.1f} / {len(self._moves) / 2:.1f}')
-        REVIEW_WIDGETS['move_colour_text'].update_text(f'{self.calculate_colour(self._move_index + 1).name} TO MOVE')
+        REVIEW_WIDGETS['move_number_text'].set_text(f'MOVE NO: {(self._move_index + 1) / 2:.1f} / {len(self._moves) / 2:.1f}')
+        REVIEW_WIDGETS['move_colour_text'].set_text(f'{self.calculate_colour(self._move_index + 1).name} TO MOVE')
         
         if self._game_info['time_enabled']:
             if self._move_index == -1:
