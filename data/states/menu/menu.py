@@ -2,7 +2,7 @@ import pygame
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType, ShaderType
+from data.constants import MenuEventType, ShaderType, CursorMode
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
@@ -37,6 +37,7 @@ class Menu(_State):
     
     def startup(self, persist=None):
         print('starting menu.py')
+        self._cursor.set_mode(CursorMode.ARROW)
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._fire_laser = False

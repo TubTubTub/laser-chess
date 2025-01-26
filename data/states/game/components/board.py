@@ -140,7 +140,7 @@ class Board:
         else:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
             
-        valid_possible_moves = valid_possible_moves & TEST_MASK
+        # valid_possible_moves = valid_possible_moves & TEST_MASK
 
         return valid_possible_moves
     

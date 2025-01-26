@@ -9,7 +9,7 @@ class MoveList(_Widget):
         self._relative_width = relative_width * self.surface_size[0] / self.surface_size[1]
         self._relative_minimum_height = minimum_height / self.surface_size[1]
         self._move_list = move_list
-        self._relative_font_size = width_to_font_size(self._font, self.surface_size[0] / 5) / self.surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.surface_size[0] / 6) / self.surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -57,6 +57,7 @@ class MoveList(_Widget):
                 text_position = (self.size[0] / 5, row_gap * (1 + 2 * (index // 2)))
             else:
                 text_position = (self.size[0] * 3 / 5, row_gap * (1 + 2 * (index // 2)))
+                
             self._font.render_to(self.image, text_position, text=move, size=self.font_size, fgcolor=self._text_colour)
 
             move_number = (index // 2) + 1

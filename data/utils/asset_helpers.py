@@ -90,7 +90,7 @@ def get_next_corner(vertex, rect_size):
         return (0, 0)
 
 def pil_image_to_surface(pil_image):
-    return pygame.image.fromstring(pil_image.tobytes(), pil_image.size, pil_image.mode).convert()
+    return pygame.image.frombytes(pil_image.tobytes(), pil_image.size, pil_image.mode).convert()
 
 def calculate_frame_index(elapsed_milliseconds, start_index, end_index, fps):
     ms_per_frame = int(1000 / fps)

@@ -1,7 +1,7 @@
 import pygame
 from data.managers.animation import animation
 from data.managers.window import window
-from data.components.cursor import Cursor
+from data.managers.cursor import CursorManager
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -9,7 +9,7 @@ start_ticks = pygame.time.get_ticks()
 class Control:
     def __init__(self):
         self.done = False
-        self.clock = pygame.time.Clock()
+        self._clock = pygame.time.Clock()
         """temp for fps display counter"""
         self.font = pygame.font.SysFont("Arial" , 18 , bold=True)
         self._int = '0'
@@ -37,7 +37,7 @@ class Control:
         elif self.state.done:
             self.flip_state()
 
-        self.clock.tick(FPS)
+        self._clock.tick(FPS)
         animation.set_delta_time()
 
         self.state.update()
@@ -59,7 +59,7 @@ class Control:
         self.update()
     
     def draw_fps(self):
-        fps = str(int(self.clock.get_fps()))
+        fps = str(int(self._clock.get_fps()))
         fps_t = self.font.render(fps , 1, pygame.Color("RED"), True)
         window.screen.blit(fps_t,(0,0))
     
@@ -94,7 +94,7 @@ class _State:
         self.quit = False
         self.persist = {}
         
-        self._cursor = Cursor()
+        self._cursor = CursorManager()
         self._widget_group = None
     
     def draw(self):
