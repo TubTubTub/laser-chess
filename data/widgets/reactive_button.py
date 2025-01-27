@@ -5,7 +5,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import WidgetState
 
 class ReactiveButton(_Pressable, _Widget):
-    def __init__(self, widgets_dict, event, center=True, **kwargs):
+    def __init__(self, widgets_dict, event, center=False, **kwargs):
         _Pressable.__init__(
             self,
             event=event,

@@ -7,7 +7,7 @@ from data.widgets.scrollbar import _Scrollbar
 
 from data.widgets.board_thumbnail_button import BoardThumbnailButton
 from data.widgets.multiple_icon_button import MultipleIconButton
-from data.widgets.reactive_text_button import ReactiveTextButton
+from data.widgets.reactive_icon_button import ReactiveIconButton
 from data.widgets.board_thumbnail import BoardThumbnail
 from data.widgets.reactive_button import ReactiveButton
 from data.widgets.volume_slider import VolumeSlider
@@ -30,4 +30,4 @@ from data.widgets.timer import Timer
 from data.widgets.text import Text
 from data.widgets.icon import Icon
 
-__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList', 'BoardThumbnail', 'BrowserStrip', 'BrowserItem', 'PieceDisplay', 'BoardThumbnailButton', 'ReactiveButton', 'ReactiveTextButton']
+__all__ = ['Text', 'TextButton', 'ColourPicker', 'ColourButton', 'Switch', 'Dropdown', 'IconButton', 'Icon', 'VolumeSlider', 'TextInput', 'MultipleIconButton', 'Carousel', 'Timer', 'Rectangle', 'Chessboard', 'ScrollArea', 'MoveList', 'BoardThumbnail', 'BrowserStrip', 'BrowserItem', 'PieceDisplay', 'BoardThumbnailButton', 'ReactiveButton', 'ReactiveIconButton']

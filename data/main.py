@@ -30,7 +30,7 @@ def load_states():
     states[0] = app
     states[1] = state_dict
 
-start = time.perf_counter()
+# start = time.perf_counter()
 loading_screen = LoadingScreen(load_states)
 # load_states()
 # end = time.perf_counter()

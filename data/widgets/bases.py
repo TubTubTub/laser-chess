@@ -61,7 +61,7 @@ class _Widget(pygame.sprite.Sprite):
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._raw_surface_size[1]
 
-            if (self._relative_margin * 2) >= min(self._relative_size[0], self._relative_size[1]):
+            if (self._relative_margin * 2) > min(self._relative_size[0], self._relative_size[1]):
                 raise ValueError('(_Widget.__init__) Margin larger than specified size!')
         
         if 'border_width' in kwargs:

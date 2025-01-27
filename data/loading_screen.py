@@ -10,6 +10,12 @@ FPS = 30
 start_ticks = pygame.time.get_ticks()
 logo_gfx_path = (Path(__file__).parent / '../resources/graphics/loading.png').resolve()
 
+def easeOutBack(progress):
+    c1 = 1.70158
+    c3 = c1 + 1
+
+    return 1 + c3 * pow(progress - 1, 3) + c1 * pow(progress - 1, 2)
+
 class LoadingScreen:
     def __init__(self, target_func):
         self._clock = pygame.time.Clock()
@@ -18,9 +24,22 @@ class LoadingScreen:
 
         self._logo_surface = load_gfx(logo_gfx_path)
         self._logo_surface = pygame.transform.scale(self._logo_surface, (50, 50))
-        self._logo_position = ((window.screen.size[0] - self._logo_surface.size[0]) / 2, (window.screen.size[1] - self._logo_surface.size[1]) / 2)
 
         self.run()
+    
+    @property
+    def logo_position(self):
+        duration = 1000
+        displacement = 50
+        elapsed_ticks = pygame.time.get_ticks() - start_ticks
+        progress = min(1, elapsed_ticks / duration)
+        center_pos = ((window.screen.size[0] - self._logo_surface.size[0]) / 2, (window.screen.size[1] - self._logo_surface.size[1]) / 2)
+
+        return (center_pos[0], center_pos[1] + displacement - displacement * easeOutBack(progress))
+    
+    @property
+    def logo_opacity(self):
+        return min(255, (pygame.time.get_ticks() - start_ticks) / 5)
     
     def event_loop(self):
         for event in pygame.event.get():
@@ -31,9 +50,8 @@ class LoadingScreen:
     def draw(self):
         window.screen.fill((0, 0, 0))
 
-        opacity = min(255, (pygame.time.get_ticks() - start_ticks) / 5)
-        self._logo_surface.set_alpha(opacity)
-        window.screen.blit(self._logo_surface, self._logo_position)
+        self._logo_surface.set_alpha(self.logo_opacity)
+        window.screen.blit(self._logo_surface, self.logo_position)
         
         window.update()
 

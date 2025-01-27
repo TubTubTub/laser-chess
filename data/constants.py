@@ -43,7 +43,7 @@ class ShaderType(StrEnum):
 
 SHADER_MAP = {
     'default': [
-        ShaderType.BLOOM
+        # ShaderType.BLOOM
     ],
     'retro': [
         ShaderType.CRT
