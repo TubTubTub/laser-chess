@@ -4,9 +4,10 @@ from data.widgets.text import Text
 from data.widgets.bases import _Pressable
 from data.components.custom_event import CustomEvent
 from data.managers.animation import animation
-from data.constants import WidgetState
+from data.constants import WidgetState, CursorMode
 from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
+from data.managers.cursor import cursor
 
 class TextInput(_Pressable, Text):
     def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
@@ -157,6 +158,14 @@ class TextInput(_Pressable, Text):
         current_state = self.get_widget_state()
         
         match event.type:
+            case pygame.MOUSEMOTION:
+                if self.rect.collidepoint(event.pos):
+                    cursor.set_mode(CursorMode.IBEAM)
+                else:
+                    cursor.set_mode(CursorMode.ARROW)
+                
+                return
+            
             case pygame.MOUSEBUTTONUP:
                 if previous_state == WidgetState.PRESS:
                     self.focus_input(event.pos)

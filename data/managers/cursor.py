@@ -8,15 +8,16 @@ class CursorManager:
 
     def set_mode(self, mode):
         pygame.mouse.set_visible(True)
+        
         match mode:
             case CursorMode.ARROW:
-                pygame.mouse.set_cursor((5, 5), GRAPHICS['cursor'])
+                pygame.mouse.set_cursor((5, 5), GRAPHICS['arrow'])
             case CursorMode.IBEAM:
-                pygame.mouse.set_cursor((5, 5), GRAPHICS['cursor'])
+                pygame.mouse.set_cursor((5, 5), GRAPHICS['ibeam'])
             case CursorMode.OPENHAND:
-                pygame.mouse.set_cursor((5, 5), GRAPHICS['cursor'])
+                pygame.mouse.set_cursor((5, 5), GRAPHICS['hand_open'])
             case CursorMode.CLOSEDHAND:
-                pygame.mouse.set_cursor((5, 5), GRAPHICS['cursor'])
+                pygame.mouse.set_cursor((5, 5), GRAPHICS['hand_closed'])
             case CursorMode.NO:
                 pygame.mouse.set_visible(False)
 

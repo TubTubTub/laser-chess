@@ -1,11 +1,13 @@
 import pygame
-from data.constants import ImageType
+from data.constants import ImageType, CursorMode
 from data.states.game.components.piece_sprite import create_piece
+from data.managers.cursor import cursor
 
 class DragAndDrop:
-    def __init__(self, board_position, board_size):
+    def __init__(self, board_position, board_size, change_cursor = True):
         self._board_position = board_position
         self._board_size = board_size
+        self._change_cursor = change_cursor
 
         self.dragged_sprite = None
     
@@ -15,9 +17,15 @@ class DragAndDrop:
         sprite.set_image(ImageType.HIGH_RES)
 
         self.dragged_sprite = sprite
+
+        if self._change_cursor:
+            cursor.set_mode(CursorMode.CLOSEDHAND)
     
     def remove_dragged_piece(self):
         self.dragged_sprite = None
+
+        if self._change_cursor:
+            cursor.set_mode(CursorMode.OPENHAND)
     
     def get_dragged_info(self):
         return self.dragged_sprite.type, self.dragged_sprite.colour, self.dragged_sprite.rotation
