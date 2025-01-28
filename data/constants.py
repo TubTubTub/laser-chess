@@ -110,6 +110,7 @@ class GameEventType(StrEnum):
     PAUSE_CLICK = auto()
     MENU_CLICK = auto()
     GAME_CLICK = auto()
+    PIECE_DROP = auto()
     UPDATE_PIECES = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()

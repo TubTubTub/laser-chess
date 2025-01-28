@@ -27,12 +27,16 @@ class Chessboard(_Widget):
         self.image = pygame.transform.smoothscale(self._board_surface, self.size)
     
     def process_event(self, event):
-        if self._change_cursor and event.type == pygame.MOUSEMOTION:
+        if self._change_cursor and event.type in [pygame.MOUSEMOTION, pygame.MOUSEBUTTONUP, pygame.MOUSEBUTTONDOWN]:
+            current_cursor = cursor.get_mode()
+
             if self.rect.collidepoint(event.pos):
-                if self._cursor_is_hand is False:
-                    self._cursor_is_hand = True
+                if current_cursor == CursorMode.ARROW:
+                    cursor.set_mode(CursorMode.OPENHAND)
+                elif current_cursor == CursorMode.OPENHAND and (pygame.mouse.get_pressed()[0] is True or event.type == pygame.MOUSEBUTTONDOWN):
+                    cursor.set_mode(CursorMode.CLOSEDHAND)
+                elif current_cursor == CursorMode.CLOSEDHAND and (pygame.mouse.get_pressed()[0] is False or event.type == pygame.MOUSEBUTTONUP):
                     cursor.set_mode(CursorMode.OPENHAND)
             else:
-                if self._cursor_is_hand:
-                    self._cursor_is_hand = False
+                if current_cursor == CursorMode.OPENHAND or (current_cursor == CursorMode.CLOSEDHAND and event.type == pygame.MOUSEBUTTONUP):
                     cursor.set_mode(CursorMode.ARROW)

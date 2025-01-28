@@ -6,6 +6,7 @@ from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.states.game.components.overlay_draw import OverlayDraw
 from data.states.game.components.particles_draw import ParticlesDraw
+from data.states.game.components.father import DragAndDrop
 from data.utils.data_helpers import get_user_settings
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.widget_group import WidgetGroup
@@ -37,6 +38,7 @@ class GameView:
         self._cursor = Cursor()
         self._laser_draw = LaserDraw(self._board_position, self._board_size)
         self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
+        self._drag_and_drop = DragAndDrop(self._board_position, self._board_size)
         self._particles_draw = ParticlesDraw()
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
@@ -77,6 +79,7 @@ class GameView:
         self._laser_draw.handle_resize(self._board_position, self._board_size)
         self._laser_draw.handle_resize(self._board_position, self._board_size)
         self._overlay_draw.handle_resize(self._board_position, self._board_size)
+        self._drag_and_drop.handle_resize(self._board_position, self._board_size)
         self._widget_group.handle_resize(window.size)
 
         if self._laser_draw.firing:
@@ -176,6 +179,7 @@ class GameView:
         self._piece_group.draw(window.screen)
         self._laser_draw.draw(window.screen)
         self._particles_draw.draw(window.screen)
+        self._drag_and_drop.draw(window.screen)
 
     def process_model_event(self, event):
         try:
@@ -191,14 +195,29 @@ class GameView:
     def get_selected_coords(self):
         return self._selected_coords
 
+    def set_dragged_piece(self, piece, colour, rotation):
+        self._drag_and_drop.set_dragged_piece(piece, colour, rotation)
+        print('SettInG DRAGGED',piece, colour, rotation)
+    
+    def remove_dragged_piece(self):
+        self._drag_and_drop.remove_dragged_piece()
+        print('REMOVE DRAGGED')
+
     def convert_mouse_pos(self, event):
         clicked_coords = screen_pos_to_coords(event.pos, self._board_position, self._board_size)
 
-        if clicked_coords:
-            return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if clicked_coords:
+                return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
 
-        elif self._cursor.get_sprite_collision(event.pos, self._widget_group) is None:
-            return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+            elif self._cursor.get_sprite_collision(event.pos, self._widget_group) is None:
+                return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if self._drag_and_drop.dragged_sprite:
+                piece, colour, rotation = self._drag_and_drop.get_dragged_info()
+                piece_dragged = self._drag_and_drop.remove_dragged_piece()
+                return CustomEvent.create_event(GameEventType.PIECE_DROP, coords=clicked_coords, piece=piece, colour=colour, rotation=rotation, remove_overlay=piece_dragged)
 
     def process_widget_event(self, event):
         return self._widget_group.process_event(event)

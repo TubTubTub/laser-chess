@@ -86,7 +86,7 @@ BROWSER_WIDGETS = {
         ),
         Text(
             parent=sort_by_container,
-            relative_position=(-1, 0),
+            relative_position=(0, 0),
             relative_size=(0.3, 1),
             fit_vertical=False,
             text='SORT BY:',
@@ -108,7 +108,7 @@ BROWSER_WIDGETS = {
     'filter_column_dropdown':
     Dropdown(
         parent=sort_by_container,
-        relative_position=(1.25, 0),
+        relative_position=(0.25, 0),
         relative_height=0.75,
         anchor_x='right',
         anchor_y='center',
@@ -119,7 +119,7 @@ BROWSER_WIDGETS = {
     'filter_ascend_dropdown':
     Dropdown(
         parent=sort_by_container,
-        relative_position=(1, 0),
+        relative_position=(0, 0),
         relative_height=0.75,
         anchor_x='right',
         anchor_y='center',

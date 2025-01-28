@@ -20,7 +20,7 @@ class TextInput(_Pressable, Text):
             up_func=self.up_func,
             play_sfx=False
         )
-        Text.__init__(self, text="", font=FONTS['comicsans'], center=False, **kwargs)
+        Text.__init__(self, text="", center=False, **kwargs)
 
         pygame.key.set_repeat(500, 50)
 
@@ -138,6 +138,7 @@ class TextInput(_Pressable, Text):
 
         self.set_cursor_index(mouse_pos)
         self.set_image()
+        cursor.set_mode(CursorMode.IBEAM)
     
     def unfocus_input(self):
         if self._text == '':
@@ -147,6 +148,7 @@ class TextInput(_Pressable, Text):
 
         self.set_cursor_index(None)
         self.set_image()
+        cursor.set_mode(CursorMode.ARROW)
     
     def set_text(self, new_text):
         super().set_text(new_text)
@@ -159,10 +161,15 @@ class TextInput(_Pressable, Text):
         
         match event.type:
             case pygame.MOUSEMOTION:
+                if self._cursor_index is None:
+                    return
+                
                 if self.rect.collidepoint(event.pos):
-                    cursor.set_mode(CursorMode.IBEAM)
+                    if cursor.get_mode() != CursorMode.IBEAM:
+                        cursor.set_mode(CursorMode.IBEAM)
                 else:
-                    cursor.set_mode(CursorMode.ARROW)
+                    if cursor.get_mode() == CursorMode.IBEAM:
+                        cursor.set_mode(CursorMode.ARROW)
                 
                 return
             

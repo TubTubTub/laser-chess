@@ -6,6 +6,7 @@ required_args = {
     GameEventType.SET_LASER: ['laser_result'],
     GameEventType.UPDATE_PIECES: ['move_notation'],
     GameEventType.TIMER_END: ['active_colour'],
+    GameEventType.PIECE_DROP: ['coords', 'piece', 'colour', 'rotation', 'remove_overlay'],
     SettingsEventType.COLOUR_SLIDER_SLIDE: ['colour'],
     SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK: ['colour'],
     SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK: ['colour'],

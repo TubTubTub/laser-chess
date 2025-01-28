@@ -14,7 +14,7 @@ right_container = Rectangle(
 
 info_container = Rectangle(
     parent=right_container,
-    relative_position=(-1, 0.5),
+    relative_position=(0, 0.5),
     relative_size=(1, 0.5),
     visible=True
 )
@@ -28,7 +28,7 @@ arrow_container = Rectangle(
 
 move_list = MoveList(
     parent=right_container,
-    relative_position=(-1, 0),
+    relative_position=(0, 0),
     relative_width=1,
     minimum_height=300,
     fill_colour=(100, 100, 100),
@@ -41,7 +41,7 @@ REVIEW_WIDGETS = {
     'scroll_area':
     ScrollArea(
         parent=right_container,
-        relative_position=(-1, 0),
+        relative_position=(0, 0),
         relative_size=(1, 0.5),
         vertical=True,
         widget=move_list
@@ -62,7 +62,7 @@ REVIEW_WIDGETS = {
         ),
         IconButton(
             parent=arrow_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             margin=10,
@@ -72,7 +72,7 @@ REVIEW_WIDGETS = {
         ),
         IconButton(
             parent=arrow_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',

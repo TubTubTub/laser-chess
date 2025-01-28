@@ -30,7 +30,7 @@ move_list = MoveList(
 
 resign_button = TextButton(
     parent=right_container,
-    relative_position=(-1, 0),
+    relative_position=(0, 0),
     relative_size=(0.5, 0.2),
     fit_vertical=False,
     anchor_y='bottom',
@@ -41,7 +41,7 @@ resign_button = TextButton(
 
 draw_button = TextButton(
     parent=right_container,
-    relative_position=(-0.5, 0),
+    relative_position=(0.5, 0),
     relative_size=(0.5, 0.2),
     fit_vertical=False,
     anchor_y='bottom',
@@ -56,7 +56,7 @@ GAME_WIDGETS = {
     'scroll_area':
     ScrollArea(
         parent=right_container,
-        relative_position=(-1, 0),
+        relative_position=(0, 0),
         relative_size=(1, 0.8),
         vertical=True,
         widget=move_list
@@ -76,7 +76,7 @@ GAME_WIDGETS = {
         ),
         IconButton(
             parent=rotate_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',
@@ -86,7 +86,7 @@ GAME_WIDGETS = {
         ),
         IconButton(
             parent=rotate_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             margin=10,
@@ -97,7 +97,7 @@ GAME_WIDGETS = {
         draw_button,
         Icon(
             parent=resign_button,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(0.75, 0.75),
             fill_colour=(0, 0, 0, 0),
             scale_mode='height',
@@ -108,7 +108,7 @@ GAME_WIDGETS = {
         ),
         Icon(
             parent=draw_button,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(0.75, 0.75),
             fill_colour=(0, 0, 0, 0),
             scale_mode='height',

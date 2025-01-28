@@ -37,7 +37,6 @@ class Menu(_State):
     
     def startup(self, persist=None):
         print('starting menu.py')
-        self._cursor.set_mode(CursorMode.ARROW)
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._fire_laser = False

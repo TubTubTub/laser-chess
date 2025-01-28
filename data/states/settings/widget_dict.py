@@ -103,7 +103,7 @@ SETTINGS_WIDGETS = {
         ),
         TextButton(
             parent=reset_container,
-            relative_position=(-1, -1),
+            relative_position=(0, 0),
             relative_size=(1, 0.5),
             fit_vertical=False,
             margin=10,
@@ -113,7 +113,7 @@ SETTINGS_WIDGETS = {
         ),
         TextButton(
             parent=reset_container,
-            relative_position=(-1, -0.5),
+            relative_position=(0, 0.5),
             relative_size=(1, 0.5),
             fit_vertical=False,
             margin=10,

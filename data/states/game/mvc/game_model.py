@@ -118,17 +118,23 @@ class GameModel:
         self._cpu_thread.kill_thread()
         self.states['AWAITING_CPU'] = False
     
-    def is_selectable(self, src_bitboard):
-        return is_occupied(self._board.bitboards.combined_colour_bitboards[self.states['ACTIVE_COLOUR']], src_bitboard)
+    def is_selectable(self, bitboard):
+        return is_occupied(self._board.bitboards.combined_colour_bitboards[self.states['ACTIVE_COLOUR']], bitboard)
     
-    def get_available_moves(self, src_bitboard):
-        if (src_bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
-            return self._board.get_valid_squares(src_bitboard)
+    def get_available_moves(self, bitboard):
+        if (bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
+            return self._board.get_valid_squares(bitboard)
         
         return EMPTY_BB
 
     def get_piece_list(self):
         return self._board.get_piece_list()
+
+    def get_piece_info(self, bitboard):
+        colour = self._board.bitboards.get_colour_on(bitboard)
+        rotation = self._board.bitboards.get_rotation_on(bitboard)
+        piece = self._board.bitboards.get_piece_on(bitboard, colour)
+        return (piece, colour, rotation)
 
     def get_fen_string(self):
         return encode_fen_string(self._board.bitboards)

@@ -12,7 +12,7 @@ class Rectangle(_Widget):
         self.set_geometry()
     
     def set_image(self):
-        self.image = pygame.transform.scale(self._empty_surface, self.size) 
+        self.image = pygame.transform.scale(self._empty_surface, self.size)
         if self._visible:
             pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self.border_radius))
 

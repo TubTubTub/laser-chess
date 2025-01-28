@@ -1,10 +1,10 @@
 import pygame
 from data.utils.data_helpers import get_user_settings
-from data.assets import FONTS
+from data.assets import DEFAULT_FONT
 
 user_settings = get_user_settings()
 
-def create_board(board_size, primary_colour, secondary_colour, font=FONTS['default']):
+def create_board(board_size, primary_colour, secondary_colour, font=DEFAULT_FONT):
     square_size = board_size[0] / 10
     board_surface = pygame.Surface(board_size)
 

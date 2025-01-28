@@ -39,7 +39,7 @@ preview_container = Rectangle(
     relative_size=(0.65, 0.9),
     anchor_x='center',
     anchor_y='center',
-    visible=False,
+    visible=True,
 )
 
 config_container = Rectangle(

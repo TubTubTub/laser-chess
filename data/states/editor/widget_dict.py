@@ -162,7 +162,7 @@ EDITOR_WIDGETS = {
     'blue_start_button':
     MultipleIconButton(
         parent=bottom_actions_container,
-        relative_position=(0, -1),
+        relative_position=(0, 0),
         relative_size=(1, 1),
         scale_mode='height',
         anchor_x='right',
@@ -175,7 +175,7 @@ EDITOR_WIDGETS = {
     'red_start_button':
     MultipleIconButton(
         parent=bottom_actions_container,
-        relative_position=(0, -1),
+        relative_position=(0, 0),
         relative_size=(1, 1),
         scale_mode='height',
         margin=0,
