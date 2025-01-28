@@ -14,8 +14,6 @@ MENU_WIDGETS = {
             base_icon=GRAPHICS['play_base'],
             hover_icon=GRAPHICS['play_hover'],
             press_icon=GRAPHICS['play_press'],
-            fit_icon=True,
-            fill_colour=(0, 0, 0, 0),
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         ReactiveIconButton(
@@ -25,8 +23,6 @@ MENU_WIDGETS = {
             base_icon=GRAPHICS['review_base'],
             hover_icon=GRAPHICS['review_hover'],
             press_icon=GRAPHICS['review_press'],
-            fit_icon=True,
-            fill_colour=(0, 0, 0, 0),
             event=CustomEvent(MenuEventType.BROWSER_CLICK)
         ),
         ReactiveIconButton(
@@ -36,8 +32,6 @@ MENU_WIDGETS = {
             base_icon=GRAPHICS['settings_base'],
             hover_icon=GRAPHICS['settings_hover'],
             press_icon=GRAPHICS['settings_press'],
-            fit_icon=True,
-            fill_colour=(0, 0, 0, 0),
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
         Icon(

@@ -10,7 +10,6 @@ Use logging package
 Make variables like board position properties
 Fix opengl support
 Refactor linked list code
-Fix main menu text positioning
 Add help button
 
 Ambitious:

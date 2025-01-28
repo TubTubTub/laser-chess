@@ -65,6 +65,17 @@ CONFIG_WIDGETS = {
     'to_move_container':
         to_move_container,
     'default': [
+        ReactiveIconButton(
+            relative_position=(0, 0),
+            relative_size=(0.075, 0.075),
+            anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
+            event=CustomEvent(ConfigEventType.MENU_CLICK)
+        ),
         TextInput(
             parent=config_container,
             relative_position=(0.3, 0.3),
@@ -85,16 +96,6 @@ CONFIG_WIDGETS = {
             text='MINS',
             border_width=0,
             fill_colour=(0, 0, 0, 0)
-        ),
-        IconButton(
-            relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
-            margin=10,
-            icon=GRAPHICS['home'],
-            anchor_x='right',
-            scale_mode='height',
-            fixed_position=(5, 5),
-            event=CustomEvent(ConfigEventType.MENU_CLICK)
         ),
         TextButton(
             parent=preview_container,
