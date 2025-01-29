@@ -210,8 +210,8 @@ class GameView:
             if clicked_coords:
                 return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
 
-            elif self._cursor.get_sprite_collision(event.pos, self._widget_group) is None:
-                return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
+            else:
+                return None
 
         elif event.type == pygame.MOUSEBUTTONUP:
             if self._drag_and_drop.dragged_sprite:

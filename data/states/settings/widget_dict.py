@@ -3,6 +3,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType, SHADER_MAP
 from data.utils.data_helpers import get_user_settings
 from data.assets import GRAPHICS
+from data.managers.theme import theme
 
 user_settings = get_user_settings()
 
@@ -108,7 +109,7 @@ SETTINGS_WIDGETS = {
             fit_vertical=False,
             margin=10,
             text='DISCARD CHANGES',
-            text_colour=(255, 0, 0),
+            text_colour=theme['textSecondary'],
             event=CustomEvent(SettingsEventType.RESET_USER)
         ),
         TextButton(
@@ -118,7 +119,7 @@ SETTINGS_WIDGETS = {
             fit_vertical=False,
             margin=10,
             text='RESET TO DEFAULT',
-            text_colour=(255, 0, 0),
+            text_colour=theme['textSecondary'],
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
         ),
         IconButton(
@@ -185,14 +186,16 @@ SETTINGS_WIDGETS = {
     Switch(
         relative_position=(0.4, 0.6),
         relative_height=0.04,
-        fill_colour=(0, 0, 255),
+        fill_colour=theme['fillSecondary'],
+        off_colour=theme['fillPrimary'],
         event=CustomEvent(SettingsEventType.PARTICLES_CLICK)
     ),
     'opengl_switch':
     Switch(
         relative_position=(0.4, 0.7),
         relative_height=0.04,
-        fill_colour=(0, 0, 255),
+        fill_colour=theme['fillSecondary'],
+        off_colour=theme['fillPrimary'],
         event=CustomEvent(SettingsEventType.OPENGL_CLICK)
     ),
 }

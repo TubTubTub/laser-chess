@@ -2,7 +2,6 @@ Make bitboards a dictionary
 chromatic abbreviation
 
 Should do:
-Add empty event to widget group
 Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
 Set MOUSEBUTTONDOWN events to only left-click
 Make wrapper for pressable button widgets
@@ -21,3 +20,4 @@ Maybe separate text background code into a new label class
 Add Ctrl + A and mouse drag to text input widget
 Make ScrollArea use parent keyword
 Remove Miscllaenous Draw and replace with third Colour option
+Standardise font size

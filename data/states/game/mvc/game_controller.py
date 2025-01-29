@@ -109,6 +109,7 @@ class GameController:
             game_event = self._view.convert_mouse_pos(event)
 
             if game_event is None:
+                self._view.set_overlay_coords(None, None) # MIGHT NEED TO CHECK FOR GAME WIDGET EVENT TOO
                 return
 
             match game_event.type:
@@ -138,10 +139,6 @@ class GameController:
                         available_bitboard = self._model.get_available_moves(clicked_bitboard)
                         self._view.set_overlay_coords(bb_helpers.bitboard_to_coords_list(available_bitboard), clicked_coords)
                         self._view.set_dragged_piece(*self._model.get_piece_info(clicked_bitboard))
-
-                case GameEventType.EMPTY_CLICK:
-                    self._view.set_overlay_coords(None, None)
-                    return
 
                 case GameEventType.PIECE_DROP:
                     hovered_coords = game_event.coords

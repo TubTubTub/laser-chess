@@ -106,7 +106,6 @@ class BrowserEventType(StrEnum):
 class GameEventType(StrEnum):
     BOARD_CLICK = auto()
     PIECE_CLICK = auto()
-    EMPTY_CLICK = auto()
     PAUSE_CLICK = auto()
     MENU_CLICK = auto()
     GAME_CLICK = auto()

@@ -3,6 +3,7 @@ from data.widgets.bases import _Widget, _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_switch
 from data.components.custom_event import CustomEvent
+from data.managers.theme import theme
 
 class Switch(_Pressable, _Widget):
     def __init__(self, relative_height, event, **kwargs):
@@ -17,7 +18,8 @@ class Switch(_Pressable, _Widget):
 
         self._is_toggled = False
 
-        self._background_colour = self._fill_colour
+        self._on_colour = self._fill_colour
+        self._off_colour = kwargs.get('off_colour') or theme['fillPrimary']
         self._thumb_colour = None
         self.initialise_new_colours((255, 255, 255))
         self.set_toggle_state(False)
@@ -28,9 +30,9 @@ class Switch(_Pressable, _Widget):
     def set_toggle_state(self, is_toggled):
         self._is_toggled = is_toggled
         if is_toggled:
-            self._fill_colour = self._background_colour
+            self._fill_colour = self._on_colour
         else:
-            self._fill_colour = (50, 50, 50)
+            self._fill_colour = self._off_colour
 
         self.set_image()
 
