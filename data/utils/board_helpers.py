@@ -24,11 +24,11 @@ def create_board(board_size, primary_colour, secondary_colour, font=DEFAULT_FONT
 
         if y == 7:
             text_position = (square_x + square_size * 0.7, square_y + square_size * 0.55)
-            text_size = square_size / 2
+            text_size = square_size / 3
             font.render_to(board_surface, text_position, str(chr(x + 1 + 96)), fgcolor=(10, 10, 10, 175), size=text_size)
         if x == 0:
             text_position = (square_x + square_size * 0.1, square_y + square_size * 0.1)
-            text_size = square_size / 2
+            text_size = square_size / 3
             font.render_to(board_surface, text_position, str(7-y + 1), fgcolor=(10, 10, 10, 175), size=text_size)
     
     return board_surface

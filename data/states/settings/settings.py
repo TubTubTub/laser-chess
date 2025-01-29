@@ -2,7 +2,7 @@ import pygame
 from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
 from data.utils.asset_helpers import draw_background
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
-from data.constants import SettingsEventType, SHADER_MAP
+from data.constants import SettingsEventType, WidgetState, SHADER_MAP
 from data.components.widget_group import WidgetGroup
 from data.assets import MUSIC_PATHS, GRAPHICS
 from data.managers.window import window
@@ -42,18 +42,18 @@ class Settings(_State):
 
         self.draw()
     
-    def create_colour_picker(self, relative_position, button_type):
+    def create_colour_picker(self, mouse_pos, button_type):
         if button_type == SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK:
-            fill_colour = self._settings['primaryBoardColour']
+            selected_colour = self._settings['primaryBoardColour']
             event_type = SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK
         else:
-            fill_colour = self._settings['secondaryBoardColour']
+            selected_colour = self._settings['secondaryBoardColour']
             event_type = SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK
 
         self._colour_picker = ColourPicker(
-            relative_position=relative_position,
+            relative_position=(mouse_pos[0] / window.size[0], mouse_pos[1] / window.size[1]),
             relative_width=0.15,
-            fill_colour=fill_colour,
+            selected_colour=selected_colour,
             event_type=event_type
         )
         self._widget_group.add(self._colour_picker)
@@ -137,8 +137,7 @@ class Settings(_State):
                 if self._colour_picker:
                     self.remove_colour_picker()
 
-                relative_position = (event.pos[0] / window.size[0], event.pos[1] / window.size[1])
-                self.create_colour_picker(relative_position, widget_event.type)
+                self.create_colour_picker(event.pos, widget_event.type)
             
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
                 if widget_event.colour:
@@ -147,9 +146,11 @@ class Settings(_State):
 
                     if widget_event.type == SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK:
                         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(widget_event.colour)
+                        SETTINGS_WIDGETS['primary_colour_button'].set_state_colour(WidgetState.BASE)
                         self._settings['primaryBoardColour'] = hex_colour
                     elif widget_event.type == SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
                         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
+                        SETTINGS_WIDGETS['secondary_colour_button'].set_state_colour(WidgetState.BASE)
                         self._settings['secondaryBoardColour'] = hex_colour
             
             case SettingsEventType.SHADER_PICKER_CLICK:

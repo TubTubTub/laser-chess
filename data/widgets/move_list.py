@@ -9,7 +9,7 @@ class MoveList(_Widget):
         self._relative_width = relative_width * self.surface_size[0] / self.surface_size[1]
         self._relative_minimum_height = minimum_height / self.surface_size[1]
         self._move_list = move_list
-        self._relative_font_size = width_to_font_size(self._font, self.surface_size[0] / 6) / self.surface_size[1]
+        self._relative_font_size = width_to_font_size(self._font, self.surface_size[0] / 3.5) / self.surface_size[1]
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
         
@@ -20,8 +20,8 @@ class MoveList(_Widget):
     def size(self):
         font_metrics = self._font.get_metrics('j', size=self.font_size)
 
-        width = self._relative_width * self.surface_size[0]
-        minimum_height = self._relative_minimum_height * self.surface_size[0]
+        width = self._relative_width * self.surface_size[1]
+        minimum_height = self._relative_minimum_height * self.surface_size[1]
         row_gap = font_metrics[0][3] - font_metrics[0][2]
         number_of_rows = 2 * ((len(self._move_list) + 1) // 2) + 1
 

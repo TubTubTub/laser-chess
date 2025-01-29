@@ -25,7 +25,7 @@ red_pieces_container = Rectangle(
 
 bottom_actions_container = Rectangle(
     relative_position=(0, 0.05),
-    relative_size=(0.3, 0.1),
+    relative_size=(0.4, 0.1),
     anchor_x='center',
     anchor_y='bottom'
 )
@@ -43,85 +43,92 @@ EDITOR_WIDGETS = {
         blue_pieces_container,
         bottom_actions_container,
         top_actions_container,
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
-            fixed_position=(5, 5),
             relative_size=(0.075, 0.075),
-            icon=GRAPHICS['home'],
-            scale_mode='height',
-            margin=10,
             anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
             event=CustomEvent(SetupEventType.MENU_CLICK)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=bottom_actions_container,
-            relative_position=(0.075, -1),
+            relative_position=(0.06, 0),
             relative_size=(1, 1),
             anchor_x='center',
-            margin=10,
-            icon=GRAPHICS['clockwise_arrow'],
             scale_mode='height',
+            base_icon=GRAPHICS['clockwise_arrow_base'],
+            hover_icon=GRAPHICS['clockwise_arrow_hover'],
+            press_icon=GRAPHICS['clockwise_arrow_press'],
             event=CustomEvent(SetupEventType.ROTATE_PIECE_CLICK, rotation_direction=RotationDirection.CLOCKWISE)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=bottom_actions_container,
-            relative_position=(-0.075, -1),
+            relative_position=(-0.06, 0),
             relative_size=(1, 1),
             anchor_x='center',
-            margin=10,
-            icon=GRAPHICS['anticlockwise_arrow'],
             scale_mode='height',
+            base_icon=GRAPHICS['anticlockwise_arrow_base'],
+            hover_icon=GRAPHICS['anticlockwise_arrow_hover'],
+            press_icon=GRAPHICS['anticlockwise_arrow_press'],
             event=CustomEvent(SetupEventType.ROTATE_PIECE_CLICK, rotation_direction=RotationDirection.ANTICLOCKWISE)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=top_actions_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',
-            margin=10,
-            icon=GRAPHICS['copy'],
+            base_icon=GRAPHICS['copy_base'],
+            hover_icon=GRAPHICS['copy_hover'],
+            press_icon=GRAPHICS['copy_press'],
             event=CustomEvent(SetupEventType.COPY_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=top_actions_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
-            fill_colour=(255, 0, 0),
-            icon=GRAPHICS['trash'],
+            base_icon=GRAPHICS['delete_base'],
+            hover_icon=GRAPHICS['delete_hover'],
+            press_icon=GRAPHICS['delete_press'],
             event=CustomEvent(SetupEventType.EMPTY_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=top_actions_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
             anchor_x='center',
-            fill_colour=(255, 0, 0),
-            icon=GRAPHICS['reset'],
+            base_icon=GRAPHICS['discard_arrow_base'],
+            hover_icon=GRAPHICS['discard_arrow_hover'],
+            press_icon=GRAPHICS['discard_arrow_press'],
             event=CustomEvent(SetupEventType.RESET_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
             fixed_position=(10, 0),
+            relative_size=(0.1, 0.1),
             anchor_x='right',
             anchor_y='center',
-            relative_size=(0.1, 0.1),
             scale_mode='height',
-            fill_colour=(0, 255, 0),
-            icon=GRAPHICS['right_arrow'],
+            base_icon=GRAPHICS['play_arrow_base'],
+            hover_icon=GRAPHICS['play_arrow_hover'],
+            press_icon=GRAPHICS['play_arrow_press'],
             event=CustomEvent(SetupEventType.START_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
             fixed_position=(10, 0),
-            anchor_y='center',
             relative_size=(0.1, 0.1),
+            anchor_y='center',
             scale_mode='height',
-            icon=GRAPHICS['return'],
+            base_icon=GRAPHICS['return_arrow_base'],
+            hover_icon=GRAPHICS['return_arrow_hover'],
+            press_icon=GRAPHICS['return_arrow_press'],
             event=CustomEvent(SetupEventType.CONFIG_CLICK),
         )
     ],

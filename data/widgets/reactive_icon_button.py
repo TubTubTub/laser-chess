@@ -28,6 +28,7 @@ class ReactiveIconButton(ReactiveButton):
     def __init__(self, base_icon, hover_icon, press_icon, **kwargs):
         widgets_dict = {
             WidgetState.BASE: Icon(
+                parent=kwargs.get('parent'),
                 relative_size=kwargs.get('relative_size'),
                 relative_position=(0, 0),
                 icon=base_icon,
@@ -37,6 +38,7 @@ class ReactiveIconButton(ReactiveButton):
                 fit_icon=True,
             ),
             WidgetState.HOVER: Icon(
+                parent=kwargs.get('parent'),
                 relative_size=kwargs.get('relative_size'),
                 relative_position=(0, 0),
                 icon=hover_icon,
@@ -46,6 +48,7 @@ class ReactiveIconButton(ReactiveButton):
                 fit_icon=True,
             ),
             WidgetState.PRESS: Icon(
+                parent=kwargs.get('parent'),
                 relative_size=kwargs.get('relative_size'),
                 relative_position=(0, 0),
                 icon=press_icon,

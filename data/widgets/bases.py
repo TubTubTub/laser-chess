@@ -189,6 +189,22 @@ class _Pressable:
         self._event = event
 
         self._widget_state = WidgetState.BASE
+
+        self._colours = {}
+    
+    def set_state_colour(self, state):
+        self._fill_colour = self._colours[state]
+
+        self.set_image()
+    
+    def initialise_new_colours(self, colour):
+        r, g, b, a = pygame.Color(colour).rgba
+
+        self._colours = {
+            WidgetState.BASE: pygame.Color(r, g, b, a),
+            WidgetState.HOVER: pygame.Color(min(r + 25, 255), min(g + 25, 255), min(b + 25, 255), a),
+            WidgetState.PRESS: pygame.Color(min(r + 50, 255), min(g + 50, 255), min(b + 50, 255), a)
+        }
     
     def get_widget_state(self):
         return self._widget_state

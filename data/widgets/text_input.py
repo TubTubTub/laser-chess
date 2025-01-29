@@ -15,12 +15,15 @@ class TextInput(_Pressable, Text):
         _Pressable.__init__(
             self,
             event=None,
-            hover_func=self.hover_func,
-            down_func=self.down_func,
-            up_func=self.up_func,
+            hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
+            down_func=lambda: self.set_state_colour(WidgetState.PRESS),
+            up_func=lambda: self.set_state_colour(WidgetState.BASE),
             play_sfx=False
         )
         Text.__init__(self, text="", center=False, **kwargs)
+        
+        self.initialise_new_colours(self._fill_colour)
+        self.set_state_colour(WidgetState.BASE)
 
         pygame.key.set_repeat(500, 50)
 
@@ -29,7 +32,6 @@ class TextInput(_Pressable, Text):
         self._cursor_colour_copy = cursor_colour
         self._placeholder_colour = placeholder_colour
         self._text_colour_copy = self._text_colour
-        self.initialise_new_colours(self._fill_colour)
 
         self._placeholder_text = placeholder
         self._is_placeholder = None
@@ -78,30 +80,6 @@ class TextInput(_Pressable, Text):
             glyph_width = metrics[4]
             current_width += glyph_width
         return (current_width - self.cursor_size[0], (self.size[1] - self.cursor_size[1]) / 2)
-
-    def hover_func(self):
-        self.set_state_colour(WidgetState.HOVER)
-    def down_func(self):
-        self.set_state_colour(WidgetState.PRESS)
-    def up_func(self):
-        self.set_state_colour(WidgetState.BASE)
-            
-    def initialise_new_colours(self, new_colour):
-        r, g, b, a = pygame.Color(new_colour).rgba
-
-        self._colours = {
-            WidgetState.BASE: new_colour,
-            WidgetState.HOVER: pygame.Color(max(r - 25, 0), max(g - 25, 0), max(b - 25, 0), a),
-            WidgetState.PRESS: pygame.Color(max(r - 50, 0), max(g - 50, 0), max(b - 50, 0), a)
-        }
-    
-    def set_state_colour(self, state):
-        if self._fill_colour is None:
-            return
-        
-        self._fill_colour = self._colours[state]
-
-        self.set_image()
     
     def relative_x_to_cursor_index(self, relative_x):
         current_width = 0

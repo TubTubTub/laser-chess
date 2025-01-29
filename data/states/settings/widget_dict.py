@@ -30,6 +30,17 @@ reset_container = Rectangle(
 SETTINGS_WIDGETS = {
     'default': [
         reset_container,
+        ReactiveIconButton(
+            relative_position=(0, 0),
+            relative_size=(0.075, 0.075),
+            anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
+            event=CustomEvent(SettingsEventType.MENU_CLICK)
+        ),
         Text(
             relative_position=(0.01, 0.1),
             text='Display mode',
@@ -121,16 +132,6 @@ SETTINGS_WIDGETS = {
             text='RESET TO DEFAULT',
             text_colour=theme['textSecondary'],
             event=CustomEvent(SettingsEventType.RESET_DEFAULT)
-        ),
-        IconButton(
-            relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
-            scale_mode='height',
-            margin=10,
-            icon=GRAPHICS['home'],
-            anchor_x='right',
-            fixed_position=(5, 5),
-            event=CustomEvent(SettingsEventType.MENU_CLICK)
         )
     ],
     'display_mode_dropdown':
@@ -186,16 +187,12 @@ SETTINGS_WIDGETS = {
     Switch(
         relative_position=(0.4, 0.6),
         relative_height=0.04,
-        fill_colour=theme['fillSecondary'],
-        off_colour=theme['fillPrimary'],
         event=CustomEvent(SettingsEventType.PARTICLES_CLICK)
     ),
     'opengl_switch':
     Switch(
         relative_position=(0.4, 0.7),
         relative_height=0.04,
-        fill_colour=theme['fillSecondary'],
-        off_colour=theme['fillPrimary'],
         event=CustomEvent(SettingsEventType.OPENGL_CLICK)
     ),
 }

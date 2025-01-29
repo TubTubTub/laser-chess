@@ -244,35 +244,35 @@ CONFIG_WIDGETS = {
     'cpu_depth_carousel':
     Carousel(
         parent=config_container,
-        relative_position=(0.05, 0.7),
-        margin=5,
+        relative_position=(0, 0.65),
         event=CustomEvent(ConfigEventType.CPU_DEPTH_CLICK),
+        anchor_x='center',
         border_width=0,
         fill_colour=(0, 0, 0, 0),
         widgets_dict={
             2: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="EASY",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)
             ),
             3: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="MEDIUM",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)
             ),
             4: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="HARD",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)

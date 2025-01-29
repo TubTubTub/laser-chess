@@ -19,27 +19,12 @@ class _Scrollbar(_Pressable, _Widget):
         self._last_mouse_px = None
 
         self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
-
+        
         self.initialise_new_colours(self._fill_colour)
+        self.set_state_colour(WidgetState.BASE)
 
         self.set_image()
         self.set_geometry()
-
-    def initialise_new_colours(self, new_colour):
-        r, g, b = new_colour.rgb
-
-        self._colours = {
-            WidgetState.BASE: new_colour,
-            WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
-            WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
-        }
-
-        self.set_state_colour(WidgetState.BASE)
-    
-    def set_state_colour(self, state):
-        self._fill_colour = self._colours[state]
-
-        self.set_image()
     
     def down_func(self):
         if self._vertical:

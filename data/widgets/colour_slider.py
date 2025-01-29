@@ -31,7 +31,7 @@ class _ColourSlider(_Widget):
     @property
     def selected_colour(self):
         colour = pygame.Color(0)
-        colour.hsva = (int(self._selected_percent * 360), 100, 100)
+        colour.hsva = (int(self._selected_percent * 360), 100, 100, 100)
         return colour
     
     def calculate_gradient_percent(self, mouse_pos):
@@ -66,9 +66,17 @@ class _ColourSlider(_Widget):
         self.image.blit(thumb_surface, self.thumb_position)
     
     def process_event(self, event):
-        if event.type == pygame.MOUSEMOTION:
-            self._thumb.process_event(event)
+        if event.type not in [pygame.MOUSEMOTION, pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
+            return
+        
+        before_state = self._thumb.state
+        self._thumb.process_event(event)
+        after_state = self._thumb.state
 
+        if before_state != after_state:
+            self.set_image()
+
+        if event.type == pygame.MOUSEMOTION:
             if self._thumb.state == WidgetState.PRESS:
                 selected_percent = self.calculate_gradient_percent(event.pos)
                 self._last_mouse_x = event.pos[0]
@@ -78,9 +86,9 @@ class _ColourSlider(_Widget):
 
                     return self.selected_colour
 
-        elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
-            if event.type == pygame.MOUSEBUTTONUP:
-                self._last_mouse_x = None
+        if event.type == pygame.MOUSEBUTTONUP:
+            self._last_mouse_x = None
+            return self.selected_colour
 
-            self._thumb.process_event(event)
+        if event.type == pygame.MOUSEBUTTONDOWN or before_state != after_state:
             return self.selected_colour

@@ -6,7 +6,7 @@ from data.components.custom_event import CustomEvent
 from data.managers.theme import theme
 
 class Switch(_Pressable, _Widget):
-    def __init__(self, relative_height, event, **kwargs):
+    def __init__(self, relative_height, event, fill_colour=theme['fillTertiary'], on_colour=theme['fillSecondary'], off_colour=theme['fillPrimary'], **kwargs):
         _Pressable.__init__(
             self,
             event=event,
@@ -14,15 +14,17 @@ class Switch(_Pressable, _Widget):
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=self.up_func,
         )
-        _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_mode='height', **kwargs)
+        _Widget.__init__(self, relative_size=(relative_height * 2, relative_height), scale_mode='height',fill_colour=fill_colour, **kwargs)
 
-        self._is_toggled = False
+        self._on_colour = on_colour
+        self._off_colour = off_colour
+        self._background_colour = None
 
-        self._on_colour = self._fill_colour
-        self._off_colour = kwargs.get('off_colour') or theme['fillPrimary']
-        self._thumb_colour = None
-        self.initialise_new_colours((255, 255, 255))
+        self._is_toggled = None
         self.set_toggle_state(False)
+        
+        self.initialise_new_colours(self._fill_colour)
+        self.set_state_colour(WidgetState.BASE)
 
         self.set_image()
         self.set_geometry()
@@ -30,25 +32,9 @@ class Switch(_Pressable, _Widget):
     def set_toggle_state(self, is_toggled):
         self._is_toggled = is_toggled
         if is_toggled:
-            self._fill_colour = self._on_colour
+            self._background_colour = self._on_colour
         else:
-            self._fill_colour = self._off_colour
-
-        self.set_image()
-
-    def initialise_new_colours(self, new_colour):
-        r, g, b = pygame.Color(new_colour).rgb
-
-        self._colours = {
-            WidgetState.BASE: new_colour,
-            WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
-            WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
-        }
-
-        self.set_state_colour(WidgetState.BASE)
-    
-    def set_state_colour(self, state):
-        self._thumb_colour = self._colours[state]
+            self._background_colour = self._off_colour
 
         self.set_image()
     
@@ -68,10 +54,10 @@ class Switch(_Pressable, _Widget):
         else:
             thumb_center = (margin + thumb_radius, self.size[1] / 2)
         
-        pygame.draw.circle(self.image, self._thumb_colour, thumb_center, thumb_radius)
+        pygame.draw.circle(self.image, self._fill_colour, thumb_center, thumb_radius)
 
     def set_image(self):
-        self.image = create_switch(self.size, self._fill_colour)
+        self.image = create_switch(self.size, self._background_colour)
         self.draw_thumb()
     
     def process_event(self, event):

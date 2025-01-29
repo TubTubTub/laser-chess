@@ -3,13 +3,14 @@
         "light": {
             
             "text": {
-                "primary": "0x95e0cc",
+                "primary": "0xdaf2e9",
                 "secondary": "0xf14e52",
                 "error": "0xf14e52"
             },
             "fill": {
                 "primary": "0x1c2638",
                 "secondary": "0xf14e52",
+                "tertiary": "0xdaf2e9",
                 "error": "0x9b222b"
             },
             "border": {

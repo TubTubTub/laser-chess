@@ -2,9 +2,10 @@ import pygame
 from data.widgets.bases import _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_thumb
+from data.managers.theme import theme
 
 class _SliderThumb(_Pressable):
-    def __init__(self, radius, border_colour=(255, 255, 255)):
+    def __init__(self, radius, border_colour=theme['borderPrimary'], fill_colour=theme['fillPrimary']):
         super().__init__(
             event=None,
             down_func=self.down_func,
@@ -13,29 +14,12 @@ class _SliderThumb(_Pressable):
             prolonged=True,
             play_sfx=False
         )
-
-        self._border_colour  = border_colour
+        self._border_colour = border_colour
         self._radius = radius
         self._percent = None
 
         self.state = WidgetState.BASE
-
-        self._colours = {
-            WidgetState.BASE: None,
-            WidgetState.HOVER: None,
-            WidgetState.PRESS: None
-        }
-    
-    def initialise_new_colours(self, new_colour):
-        new_colour = new_colour.rgb
-
-        r, g, b = new_colour
-
-        self._colours = {
-            WidgetState.BASE: new_colour,
-            WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
-            WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
-        }
+        self.initialise_new_colours(fill_colour)
     
     def get_position(self):
         return (self.rect.x, self.rect.y)

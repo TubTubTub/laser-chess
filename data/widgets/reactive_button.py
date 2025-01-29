@@ -22,6 +22,8 @@ class ReactiveButton(_Pressable, _Widget):
         self._widget = self._widgets_dict[self._widget_key.data]
 
         self._center = center
+        
+        self.initialise_new_colours(self._fill_colour)
     
     @property
     def position(self):
