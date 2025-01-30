@@ -5,13 +5,13 @@ import pygame.freetype
 from data.utils.asset_helpers import gif_to_frames, pil_image_to_surface
 
 def convert_gfx_alpha(image, colorkey=(0, 0, 0)):
-    if image.get_alpha():
+    # if image.get_alpha():
         return image.convert_alpha()
-    else:
-        image = image.convert((255, 0, 0))
-        image.set_colorkey(colorkey)
+    # else:
+    #     image = image.convert_alpha()
+    #     image.set_colorkey(colorkey)
 
-        return image
+    #     return image
 
 def load_gfx(path, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", ".gif")):
     file_path = Path(path)
@@ -56,7 +56,7 @@ def load_all_gfx(directory, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", 
         
     return graphics
 
-def load_all_fonts(directory, accept=(".ttf")):
+def load_all_fonts(directory, accept=(".ttf", ".otf")):
     fonts = {}
     
     for file in Path(directory).rglob('*'):

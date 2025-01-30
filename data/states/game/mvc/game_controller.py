@@ -105,10 +105,11 @@ class GameController:
     def handle_game_event(self, event):
         self.handle_game_widget_event(event)
         
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
             game_event = self._view.convert_mouse_pos(event)
 
             if game_event is None:
+                self._view.set_overlay_coords(None, None) # MIGHT NEED TO CHECK FOR GAME WIDGET EVENT TOO
                 return
 
             match game_event.type:
@@ -121,6 +122,10 @@ class GameController:
                     selected_coords = self._view.get_selected_coords()
 
                     if selected_coords:
+                        if clicked_coords == selected_coords:
+                            self._view.set_dragged_piece(*self._model.get_piece_info(clicked_bitboard))
+                            return
+                        
                         selected_bitboard = bb_helpers.coords_to_bitboard(selected_coords)
                         available_bitboard = self._model.get_available_moves(selected_bitboard)
 
@@ -133,10 +138,25 @@ class GameController:
                     elif self._model.is_selectable(clicked_bitboard):
                         available_bitboard = self._model.get_available_moves(clicked_bitboard)
                         self._view.set_overlay_coords(bb_helpers.bitboard_to_coords_list(available_bitboard), clicked_coords)
+                        self._view.set_dragged_piece(*self._model.get_piece_info(clicked_bitboard))
 
-                case GameEventType.EMPTY_CLICK:
-                    self._view.set_overlay_coords(None, None)
-                    return
+                case GameEventType.PIECE_DROP:
+                    hovered_coords = game_event.coords
+
+                    if hovered_coords:
+                        hovered_bitboard = bb_helpers.coords_to_bitboard(hovered_coords)
+                        selected_coords = self._view.get_selected_coords()
+                        selected_bitboard = bb_helpers.coords_to_bitboard(selected_coords)
+                        available_bitboard = self._model.get_available_moves(selected_bitboard)
+
+                        if bb_helpers.is_occupied(hovered_bitboard, available_bitboard):
+                            move = Move.instance_from_coords(MoveType.MOVE, selected_coords, hovered_coords)
+                            self.make_move(move)
+
+                    if game_event.remove_overlay:
+                        self._view.set_overlay_coords(None, None)
+
+                    self._view.remove_dragged_piece()
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')

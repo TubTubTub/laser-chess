@@ -18,7 +18,7 @@ class ColourPicker(_Widget):
             relative_width=0.5,
             event_type=event_type
         )
-        self._square.set_colour(kwargs.get('fill_colour'))
+        self._square.set_colour(kwargs.get('selected_colour'))
 
         self._slider = _ColourSlider(
             parent=self,
@@ -27,14 +27,14 @@ class ColourPicker(_Widget):
             border_width=self.border_width,
             border_colour=self._border_colour
         )
-        self._slider.set_colour(kwargs.get('fill_colour'))
+        self._slider.set_colour(kwargs.get('selected_colour'))
 
         self._display = _ColourDisplay(
             parent=self,
             relative_position=(0.7, 0.1),
             relative_size=(0.2, 0.5)
         )
-        self._display.set_colour(kwargs.get('fill_colour'))
+        self._display.set_colour(kwargs.get('selected_colour'))
 
         self._event_type = event_type
         self._hover_event_type = event_type
@@ -47,7 +47,7 @@ class ColourPicker(_Widget):
 
     def set_image(self):
         self.image = pygame.Surface(self.size)
-        self.image.fill((100, 100, 100))
+        self.image.fill(self._fill_colour)
 
         self._square.set_image()
         self._square.set_geometry()

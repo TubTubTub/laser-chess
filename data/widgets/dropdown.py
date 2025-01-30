@@ -31,9 +31,10 @@ class Dropdown(_Pressable, _Widget):
         self._hovered_index = None
 
         self._empty_surface = pygame.Surface((0, 0))
-    
-        self._overlay_colour = None
-        self.initialise_new_colours((255, 255, 255))
+        self._background_colour = self._fill_colour
+        
+        self.initialise_new_colours(self._fill_colour)
+        self.set_state_colour(WidgetState.BASE)
 
         self.set_image()
         self.set_geometry()
@@ -88,22 +89,6 @@ class Dropdown(_Pressable, _Widget):
         self.set_state_colour(WidgetState.BASE)
         self.set_geometry()
     
-    def initialise_new_colours(self, new_colour):
-        r, g, b = pygame.Color(new_colour).rgb
-
-        self._colours = {
-            WidgetState.BASE: new_colour,
-            WidgetState.HOVER: (max(r - 25, 0), max(g - 25, 0), max(b - 25, 0)),
-            WidgetState.PRESS: (max(r - 50, 0), max(g - 50, 0), max(b - 50, 0))
-        }
-
-        self.set_state_colour(WidgetState.BASE)
-    
-    def set_state_colour(self, state):
-        self._overlay_colour = self._colours[state]
-
-        self.set_image()
-    
     def calculate_hovered_index(self, mouse_pos):
         return int(mouse_pos[1] // (self.size[1] / len(self._word_list)))
 
@@ -112,17 +97,20 @@ class Dropdown(_Pressable, _Widget):
         self.image = text_surface
 
         fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
-        pygame.draw.rect(self.image, self._fill_colour, fill_rect)
+        pygame.draw.rect(self.image, self._background_colour, fill_rect)
         pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self.border_width))
 
         word_box_height = (self.size[1] - (2 * self.margin) - ((len(self._word_list) - 1) * self.margin)) / len(self._word_list)
 
-        arrow_surface = pygame.transform.scale(GRAPHICS['dropdown_arrow'], (word_box_height, word_box_height))
-        arrow_position = (self.size[0] - word_box_height - self.margin * 0.5, word_box_height / 4)
+        arrow_size = (GRAPHICS['dropdown_arrow_open'].width / GRAPHICS['dropdown_arrow_open'].height * word_box_height, word_box_height)
+        open_arrow_surface = pygame.transform.scale(GRAPHICS['dropdown_arrow_open'], arrow_size)
+        closed_arrow_surface = pygame.transform.scale(GRAPHICS['dropdown_arrow_close'], arrow_size)
+        arrow_position = (self.size[0] - arrow_size[0] - self.margin, (word_box_height) / 3)
+
         if self._expanded:
-            self.image.blit(pygame.transform.rotate(arrow_surface, 180), arrow_position)
+            self.image.blit(closed_arrow_surface, arrow_position)
         else:
-            self.image.blit(arrow_surface, arrow_position)
+            self.image.blit(open_arrow_surface, arrow_position)
 
         for index, word in enumerate(self._word_list):
             word_position = (self.margin, self.margin + (word_box_height + self.margin) * index)
@@ -130,6 +118,6 @@ class Dropdown(_Pressable, _Widget):
         
         if self._hovered_index is not None:
             overlay_surface = pygame.Surface((self.size[0], word_box_height + 2 * self.margin), pygame.SRCALPHA)
-            overlay_surface.fill((*self._overlay_colour, 128))
+            overlay_surface.fill((*self._fill_colour.rgb, 128))
             overlay_position = (0, (word_box_height + self.margin) * self._hovered_index)
             self.image.blit(overlay_surface, overlay_position)

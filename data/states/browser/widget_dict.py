@@ -20,7 +20,7 @@ carousel_widgets = {
         relative_size=(0.3, 0.1),
         text=f"PAGE {i} OF {number_of_pages}",
         fill_colour=(0, 0, 0, 0),
-        fit_vertical=True,
+        fit_vertical=False,
         border_width=0,
     )
     for i in range(1, number_of_pages + 1)
@@ -44,56 +44,57 @@ BROWSER_WIDGETS = {
     'default': [
         buttons_container,
         sort_by_container,
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
-            fixed_position=(5, 5),
             relative_size=(0.075, 0.075),
-            icon=GRAPHICS['home'],
-            scale_mode='height',
-            margin=10,
             anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
             event=CustomEvent(BrowserEventType.MENU_CLICK)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=buttons_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
-            icon=GRAPHICS['copy'],
-            margin=10,
+            base_icon=GRAPHICS['copy_base'],
+            hover_icon=GRAPHICS['copy_hover'],
+            press_icon=GRAPHICS['copy_press'],
             event=CustomEvent(BrowserEventType.COPY_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=buttons_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='center',
-            fill_colour=(255, 0, 0),
-            margin=10,
-            icon=GRAPHICS['trash'],
+            base_icon=GRAPHICS['delete_base'],
+            hover_icon=GRAPHICS['delete_hover'],
+            press_icon=GRAPHICS['delete_press'],
             event=CustomEvent(BrowserEventType.DELETE_CLICK),
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=buttons_container,
             relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',
-            margin=10,
-            icon=GRAPHICS['review'],
+            base_icon=GRAPHICS['review_base'],
+            hover_icon=GRAPHICS['review_hover'],
+            press_icon=GRAPHICS['review_press'],
             event=CustomEvent(BrowserEventType.REVIEW_CLICK),
         ),
         Text(
             parent=sort_by_container,
-            relative_position=(-1, 0),
+            relative_position=(0, 0),
             relative_size=(0.3, 1),
             fit_vertical=False,
             text='SORT BY:',
             border_width=0,
-            margin=0,
-            fill_colour=(0, 0, 0, 0),
-            text_colour=(255, 255, 255)
+            fill_colour=(0, 0, 0, 0)
         )
     ],
     'browser_strip':
@@ -108,10 +109,9 @@ BROWSER_WIDGETS = {
     'filter_column_dropdown':
     Dropdown(
         parent=sort_by_container,
-        relative_position=(1.25, 0),
+        relative_position=(0.3, 0),
         relative_height=0.75,
         anchor_x='right',
-        anchor_y='center',
         word_list=['time', 'moves', 'winner'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_COLUMN_CLICK)
@@ -119,10 +119,9 @@ BROWSER_WIDGETS = {
     'filter_ascend_dropdown':
     Dropdown(
         parent=sort_by_container,
-        relative_position=(1, 0),
+        relative_position=(0, 0),
         relative_height=0.75,
         anchor_x='right',
-        anchor_y='center',
         word_list=['desc', 'asc'],
         fill_colour=(255, 100, 100),
         event=CustomEvent(BrowserEventType.FILTER_ASCEND_CLICK)
@@ -131,8 +130,6 @@ BROWSER_WIDGETS = {
     Carousel(
         relative_position=(0.01, 0.75),
         margin=5,
-        border_width=0,
-        fill_colour=(0, 0, 0, 0),
         widgets_dict=carousel_widgets,
         event=CustomEvent(BrowserEventType.PAGE_CLICK),
     )

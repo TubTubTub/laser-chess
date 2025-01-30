@@ -1,5 +1,6 @@
 import pygame
 from math import sqrt
+from data.constants import WidgetState
 
 def create_slider(size, fill_colour, border_width, border_colour):
     gradient_surface = pygame.Surface(size, pygame.SRCALPHA)

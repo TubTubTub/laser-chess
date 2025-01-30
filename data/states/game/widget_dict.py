@@ -24,13 +24,12 @@ move_list = MoveList(
     relative_position=(0, 0),
     relative_width=1,
     minimum_height=300,
-    fill_colour=(100, 100, 100),
     move_list=[]
 )
 
 resign_button = TextButton(
     parent=right_container,
-    relative_position=(-1, 0),
+    relative_position=(0, 0),
     relative_size=(0.5, 0.2),
     fit_vertical=False,
     anchor_y='bottom',
@@ -41,7 +40,7 @@ resign_button = TextButton(
 
 draw_button = TextButton(
     parent=right_container,
-    relative_position=(-0.5, 0),
+    relative_position=(0.5, 0),
     relative_size=(0.5, 0.2),
     fit_vertical=False,
     anchor_y='bottom',
@@ -56,7 +55,7 @@ GAME_WIDGETS = {
     'scroll_area':
     ScrollArea(
         parent=right_container,
-        relative_position=(-1, 0),
+        relative_position=(0, 0),
         relative_size=(1, 0.8),
         vertical=True,
         widget=move_list
@@ -64,40 +63,43 @@ GAME_WIDGETS = {
     'default': [
         right_container,
         rotate_container,
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
-            fixed_position=(5, 5),
             relative_size=(0.075, 0.075),
-            icon=GRAPHICS['home'],
-            scale_mode='height',
-            margin=10,
             anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=rotate_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',
-            margin=10,
-            icon=GRAPHICS['clockwise_arrow'],
+            base_icon=GRAPHICS['clockwise_arrow_base'],
+            hover_icon=GRAPHICS['clockwise_arrow_hover'],
+            press_icon=GRAPHICS['clockwise_arrow_press'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.CLOCKWISE)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=rotate_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
-            icon=GRAPHICS['anticlockwise_arrow'],
+            base_icon=GRAPHICS['anticlockwise_arrow_base'],
+            hover_icon=GRAPHICS['anticlockwise_arrow_hover'],
+            press_icon=GRAPHICS['anticlockwise_arrow_press'],
             event=CustomEvent(GameEventType.ROTATE_PIECE, rotation_direction=RotationDirection.ANTICLOCKWISE)
         ),
         resign_button,
         draw_button,
         Icon(
             parent=resign_button,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(0.75, 0.75),
             fill_colour=(0, 0, 0, 0),
             scale_mode='height',
@@ -108,7 +110,7 @@ GAME_WIDGETS = {
         ),
         Icon(
             parent=draw_button,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(0.75, 0.75),
             fill_colour=(0, 0, 0, 0),
             scale_mode='height',

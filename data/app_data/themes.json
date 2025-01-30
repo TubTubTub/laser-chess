@@ -3,17 +3,18 @@
         "light": {
             
             "text": {
-                "primary": "0xFF0000",
-                "secondary": "0x00FF00",
-                "error": ""
+                "primary": "0xdaf2e9",
+                "secondary": "0xf14e52",
+                "error": "0xf14e52"
             },
             "fill": {
-                "primary": "0xAAAAAA",
-                "secondary": "0xAAAAAA",
-                "error": ""
+                "primary": "0x1c2638",
+                "secondary": "0xf14e52",
+                "tertiary": "0xdaf2e9",
+                "error": "0x9b222b"
             },
             "border": {
-                "primary": "0x0000FF",
+                "primary": "0x9b222b",
                 "secondary": ""
             }
 
@@ -38,8 +39,8 @@
         }
     },
     "dimensions": {
-        "borderRadius": 10,
+        "borderRadius": 3,
         "borderWidth": 5,
-        "margin": 5
+        "margin": 10
     }
 }

@@ -5,6 +5,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import ConfigEventType, Colour
 from data.assets import GRAPHICS
 from data.utils.asset_helpers import get_dimmed_icon
+from data.managers.theme import theme
 
 def float_validator(num_string):
     try:
@@ -39,7 +40,6 @@ preview_container = Rectangle(
     relative_size=(0.65, 0.9),
     anchor_x='center',
     anchor_y='center',
-    visible=False,
 )
 
 config_container = Rectangle(
@@ -47,7 +47,6 @@ config_container = Rectangle(
     relative_size=(0.3, 0.9),
     anchor_x='center',
     anchor_y='center',
-    visible=False,
 )
 
 to_move_container = Rectangle(
@@ -55,6 +54,14 @@ to_move_container = Rectangle(
     relative_size=(0.9, 0.15),
     relative_position=(0, 0.1),
     anchor_x='center'
+)
+
+board_thumbnail = BoardThumbnail(
+    parent=preview_container,
+    relative_position=(0, 0),
+    relative_width=0.7,
+    scale_mode='width',
+    anchor_x='right',
 )
 
 CONFIG_WIDGETS = {
@@ -65,6 +72,17 @@ CONFIG_WIDGETS = {
     'to_move_container':
         to_move_container,
     'default': [
+        ReactiveIconButton(
+            relative_position=(0, 0),
+            relative_size=(0.075, 0.075),
+            anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
+            event=CustomEvent(ConfigEventType.MENU_CLICK)
+        ),
         TextInput(
             parent=config_container,
             relative_position=(0.3, 0.3),
@@ -86,16 +104,6 @@ CONFIG_WIDGETS = {
             border_width=0,
             fill_colour=(0, 0, 0, 0)
         ),
-        IconButton(
-            relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
-            margin=10,
-            icon=GRAPHICS['home'],
-            anchor_x='right',
-            scale_mode='height',
-            fixed_position=(5, 5),
-            event=CustomEvent(ConfigEventType.MENU_CLICK)
-        ),
         TextButton(
             parent=preview_container,
             relative_position=(0.3, 0),
@@ -103,7 +111,6 @@ CONFIG_WIDGETS = {
             text='CUSTOM',
             anchor_y='bottom',
             fit_vertical=False,
-            text_colour=(255, 0, 0),
             margin=10,
             event=CustomEvent(ConfigEventType.SETUP_CLICK)
         )
@@ -130,7 +137,7 @@ CONFIG_WIDGETS = {
         anchor_y='bottom',
         anchor_x='center',
         text='START NEW GAME',
-        text_colour=(255, 0, 0),
+        text_colour=theme['textSecondary'],
         margin=20,
         fit_vertical=False,
         event=CustomEvent(ConfigEventType.GAME_CLICK)
@@ -175,23 +182,19 @@ CONFIG_WIDGETS = {
     ),
     'invalid_fen_string':
     Text(
-        parent=config_container,
-        relative_position=(0.05, 0.2),
+        parent=board_thumbnail,
+        relative_position=(0, 0),
         relative_size=(0.9, 0.1),
-        minimum_width=400,
+        fit_vertical=False,
+        anchor_x='center',
+        anchor_y='center',
         text='INVALID FEN STRING!',
         margin=10,
-        fill_colour=(100, 0, 0),
-        text_colour=(255, 0, 0),
+        fill_colour=theme['fillError'],
+        text_colour=theme['textError'],
     ),
     'board_thumbnail':
-    BoardThumbnail(
-        parent=preview_container,
-        relative_position=(0, 0),
-        relative_width=0.7,
-        scale_mode='width',
-        anchor_x='right',
-    ),
+        board_thumbnail,
     'preset_1':
     BoardThumbnailButton(
         parent=preview_container,
@@ -241,35 +244,35 @@ CONFIG_WIDGETS = {
     'cpu_depth_carousel':
     Carousel(
         parent=config_container,
-        relative_position=(0.05, 0.7),
-        margin=5,
+        relative_position=(0, 0.65),
         event=CustomEvent(ConfigEventType.CPU_DEPTH_CLICK),
+        anchor_x='center',
         border_width=0,
         fill_colour=(0, 0, 0, 0),
         widgets_dict={
             2: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="EASY",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)
             ),
             3: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="MEDIUM",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)
             ),
             4: Text(
+                parent=config_container,
                 relative_position=(0, 0),
-                relative_size=(0.3, 0.09),
+                relative_size=(0.8, 0.075),
                 text="HARD",
-                text_colour=(255, 255, 255),
                 margin=0,
                 border_width=0,
                 fill_colour=(0, 0, 0, 0)

@@ -72,6 +72,8 @@ class Editor(_State):
         self._selected_coords = new_coords
     
     def get_event(self, event):
+        widget_event = self._widget_group.process_event(event)
+
         if event.type == pygame.VIDEORESIZE:
             self.handle_resize(resize_end=True)
             return
@@ -101,11 +103,9 @@ class Editor(_State):
             if self._drag_and_drop.dragged_sprite:
                 self.remove_dragged_piece(clicked_coords)
                 return
-        
-        widget_event = self._widget_group.process_event(event)
 
         if widget_event is None:
-            if event.type == pygame.MOUSEBUTTONDOWN and self._cursor.get_sprite_collision(event.pos, self._widget_group) is None:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 self.selected_coords = None
 
             return

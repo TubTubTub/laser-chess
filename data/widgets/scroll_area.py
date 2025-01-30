@@ -1,6 +1,7 @@
 import pygame
 from data.widgets.bases import _Widget
 from data.widgets.scrollbar import _Scrollbar
+from data.managers.theme import theme
 
 SCROLLBAR_WIDTH_FACTOR = 0.05
 
@@ -31,6 +32,7 @@ class ScrollArea(_Widget):
             relative_size=None,
             anchor_x=anchor_x,
             anchor_y=anchor_y,
+            fill_colour=theme['borderPrimary'],
             scale_mode=scale_mode,
             vertical=vertical,
         )

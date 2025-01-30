@@ -14,7 +14,7 @@ right_container = Rectangle(
 
 info_container = Rectangle(
     parent=right_container,
-    relative_position=(-1, 0.5),
+    relative_position=(0, 0.5),
     relative_size=(1, 0.5),
     visible=True
 )
@@ -28,10 +28,9 @@ arrow_container = Rectangle(
 
 move_list = MoveList(
     parent=right_container,
-    relative_position=(-1, 0),
+    relative_position=(0, 0),
     relative_width=1,
     minimum_height=300,
-    fill_colour=(100, 100, 100),
     move_list=[]
 )
 
@@ -41,7 +40,7 @@ REVIEW_WIDGETS = {
     'scroll_area':
     ScrollArea(
         parent=right_container,
-        relative_position=(-1, 0),
+        relative_position=(0, 0),
         relative_size=(1, 0.5),
         vertical=True,
         widget=move_list
@@ -50,35 +49,36 @@ REVIEW_WIDGETS = {
         info_container,
         arrow_container,
         right_container,
-        IconButton(
+        ReactiveIconButton(
             relative_position=(0, 0),
-            fixed_position=(5, 5),
             relative_size=(0.075, 0.075),
-            icon=GRAPHICS['home'],
-            scale_mode='height',
-            margin=10,
             anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['home_base'],
+            hover_icon=GRAPHICS['home_hover'],
+            press_icon=GRAPHICS['home_press'],
+            fixed_position=(5, 5),
             event=CustomEvent(ReviewEventType.MENU_CLICK)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=arrow_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
-            margin=10,
-            fill_colour=(0, 0, 0),
-            icon=GRAPHICS['back'],
+            base_icon=GRAPHICS['left_arrow_filled_base'],
+            hover_icon=GRAPHICS['left_arrow_filled_hover'],
+            press_icon=GRAPHICS['left_arrow_filled_press'],
             event=CustomEvent(ReviewEventType.PREVIOUS_CLICK)
         ),
-        IconButton(
+        ReactiveIconButton(
             parent=arrow_container,
-            relative_position=(0, -1),
+            relative_position=(0, 0),
             relative_size=(1, 1),
             scale_mode='height',
             anchor_x='right',
-            margin=10,
-            fill_colour=(0, 0, 0),
-            icon=GRAPHICS['next'],
+            base_icon=GRAPHICS['right_arrow_filled_base'],
+            hover_icon=GRAPHICS['right_arrow_filled_hover'],
+            press_icon=GRAPHICS['right_arrow_filled_press'],
             event=CustomEvent(ReviewEventType.NEXT_CLICK)
         ),
     ],

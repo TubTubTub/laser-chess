@@ -24,7 +24,7 @@ class MultipleIconButton(IconButton):
         self._locked = is_locked
         if self._locked:
             r, g, b, a  = pygame.Color(self._fill_colour_copy).rgba
-            self.initialise_new_colours((max(r - 50, 0), max(g - 50, 0), max(b - 50, 0), a))
+            self.initialise_new_colours((max(r + 50, 0), max(g + 50, 0), max(b + 50, 0), a))
         else:
             self.initialise_new_colours(self._fill_colour_copy)
 

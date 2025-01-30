@@ -8,7 +8,7 @@ class Timer(Text):
         self._active = False
         self._times_out_callback = None
         self._event = event
-        super().__init__(text=self.format_to_text(), **kwargs)
+        super().__init__(text=self.format_to_text(), fit_vertical=False, **kwargs)
     
     def register_end_callback(self, callback):
         self._times_out_callback = callback

@@ -4,10 +4,9 @@ from data.components.circular_linked_list import CircularLinkedList
 from data.managers.audio import audio
 from data.managers.theme import theme
 from data.managers.window import window
-from data.assets import SFX, FONTS
+from data.assets import SFX, FONTS, DEFAULT_FONT
 
 DEFAULT_SURFACE_SIZE = window.screen.size
-DEFAULT_FONT = FONTS['default']
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
 COUNT = 0
 
@@ -102,14 +101,14 @@ class _Widget(pygame.sprite.Sprite):
         if self._anchor_x == 'left':
             x = x
         elif self._anchor_x == 'right':
-            x = self.surface_size[0] - x
+            x = self.surface_size[0] - x - self.size[0]
         elif self._anchor_x == 'center':
             x = (self.surface_size[0] / 2 - self.size[0] / 2) + x
 
         if self._anchor_y == 'top':
             y = y
         elif self._anchor_y == 'bottom':
-            y = self.surface_size[1] - y
+            y = self.surface_size[1] - y - self.size[1]
         elif self._anchor_y == 'center':
             y = (self.surface_size[1] / 2 - self.size[1] / 2) + y
 
@@ -148,21 +147,21 @@ class _Widget(pygame.sprite.Sprite):
             if self._anchor_y == 'top':
                 self.rect.topleft = self.position
             elif self._anchor_y == 'bottom':
-                self.rect.bottomleft = self.position
+                self.rect.topleft = self.position
             elif self._anchor_y == 'center':
                 self.rect.topleft = self.position
         elif self._anchor_x == 'right':
             if self._anchor_y == 'top':
-                self.rect.topright = self.position
+                self.rect.topleft = self.position
             elif self._anchor_y == 'bottom':
-                self.rect.bottomright = self.position
+                self.rect.topleft = self.position
             elif self._anchor_y == 'center':
-                self.rect.topright = self.position
+                self.rect.topleft = self.position
         elif self._anchor_x == 'center':
             if self._anchor_y == 'top':
                 self.rect.topleft = self.position
             elif self._anchor_y == 'bottom':
-                self.rect.bottomleft = self.position
+                self.rect.topleft = self.position
             elif self._anchor_y == 'center':
                 self.rect.topleft = self.position
     
@@ -191,6 +190,22 @@ class _Pressable:
         self._event = event
 
         self._widget_state = WidgetState.BASE
+
+        self._colours = {}
+    
+    def set_state_colour(self, state):
+        self._fill_colour = self._colours[state]
+
+        self.set_image()
+    
+    def initialise_new_colours(self, colour):
+        r, g, b, a = pygame.Color(colour).rgba
+
+        self._colours = {
+            WidgetState.BASE: pygame.Color(r, g, b, a),
+            WidgetState.HOVER: pygame.Color(min(r + 25, 255), min(g + 25, 255), min(b + 25, 255), a),
+            WidgetState.PRESS: pygame.Color(min(r + 50, 255), min(g + 50, 255), min(b + 50, 255), a)
+        }
     
     def get_widget_state(self):
         return self._widget_state
