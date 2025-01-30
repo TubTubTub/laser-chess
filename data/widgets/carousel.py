@@ -11,9 +11,8 @@ class Carousel(_Widget):
         super().__init__(relative_size=None, **kwargs)
 
         self._widgets_dict = widgets_dict
-        self._widget_keys = CircularLinkedList(list(self._widgets_dict.keys()))
-        self._widget_key = self._widget_keys.get_head()
-        self._widget = self._widgets_dict[self._widget_key.data]
+        self._widgets_list = CircularLinkedList(list(self._widgets_dict.keys()))
+        self._widget = self._widgets_dict[self.current_key]
 
         max_widget_size = (0, 0)
         for widget in self._widgets_dict.values():
@@ -52,6 +51,10 @@ class Carousel(_Widget):
 
         self.set_image()
         self.set_geometry()
+    
+    @property
+    def current_key(self):
+        return self._widgets_list.get_head().data
 
     @property
     def max_widget_size(self):
@@ -74,15 +77,14 @@ class Carousel(_Widget):
         return (self.size[0] - self.arrow_length, (self.size[1] - self.arrow_length) / 2)
 
     def set_to_key(self, key):
-        if self._widget_keys.data_in_list(key) is False:
+        if self._widgets_list.data_in_list(key) is False:
             raise ValueError('(Carousel.set_to_key) Key not found!', key)
         
         for _ in range(len(self._widgets_dict)):
-            if self._widget_key.data == key:
+            if self.current_key == key:
                 return
         
-            self._widget_key = self._widget_key.next
-            self._widget = self._widgets_dict[self._widget_key.data]
+            self._widget = self._widgets_dict[self.current_key]
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
@@ -120,22 +122,20 @@ class Carousel(_Widget):
         right_arrow_event = self._right_arrow.process_event(event)
 
         if left_arrow_event:
-            self._widget_key = self._widget_key.previous
-            self._widget = self._widgets_dict[self._widget_key.data]
+            self._widgets_list.unshift_head()
+            self._widget = self._widgets_dict[self.current_key]
             self._widget.set_surface_size(self._raw_surface_size)
-
-            self.set_image()
-            self.set_geometry()
-            return CustomEvent(**vars(self._event), data=self._widget_key.data)
 
         elif right_arrow_event:
-            self._widget_key = self._widget_key.next
-            self._widget = self._widgets_dict[self._widget_key.data]
+            self._widgets_list.shift_head()
+            self._widget = self._widgets_dict[self.current_key]
             self._widget.set_surface_size(self._raw_surface_size)
 
+        if left_arrow_event or right_arrow_event:
             self.set_image()
             self.set_geometry()
-            return CustomEvent(**vars(self._event), data=self._widget_key.data)
+
+            return CustomEvent(**vars(self._event), data=self.current_key)
         
         elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION] and self.rect.collidepoint(event.pos):
             self.set_image()

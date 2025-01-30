@@ -1,5 +1,6 @@
 import pygame
 from data.constants import WidgetState
+from data.components.circular_linked_list import CircularLinkedList
 from data.managers.audio import audio
 from data.managers.theme import theme
 from data.managers.window import window
@@ -243,3 +244,36 @@ class _Pressable:
                         else:
                             self._widget_state = WidgetState.BASE
                             self._up_func()
+
+class _Circular:
+    def __init__(self, items_dict, **kwargs):
+        self._items_dict = items_dict
+        self._keys_list = CircularLinkedList(list(items_dict.values()))
+    
+    @property
+    def current_key(self):
+        return self._keys_list.get_head().data
+
+    @property
+    def current_item(self):
+        return self._items_dict[self.current_key]
+    
+    def set_next_item(self):
+        self._keys_list.shift()
+
+        self.set_image()
+    
+    def set_previous_item(self):
+        self._keys_list.unshift()
+
+        self.set_image()
+
+    def set_to_key(self, key):
+        if self._keys_list.data_in_list(key) is False:
+            raise ValueError('(_Circular.set_to_key) Key not found:', key)
+        
+        for _ in range(len(self._widgets_dict)):
+            if self.current_key == key:
+                return
+
+            self._keys_list.shift()

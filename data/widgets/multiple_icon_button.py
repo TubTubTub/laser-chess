@@ -7,15 +7,18 @@ from data.constants import WidgetState
 class MultipleIconButton(IconButton):
     def __init__(self, icons_dict, **kwargs):
         self._icons_dict = icons_dict
-        self._icons = CircularLinkedList(list(self._icons_dict.keys()))
-        self._icon_key = self._icons.get_head()
-        self._icon = self._icons_dict[self._icon_key.data]
+        self._icons_list = CircularLinkedList(list(self._icons_dict.keys()))
+        self._icon = self._icons_dict[self.current_key]
 
         super().__init__(icon=self._icon, **kwargs)
 
         self._fill_colour_copy = self._fill_colour
         
         self._locked = None
+    
+    @property
+    def current_key(self):
+        return self._icons_list.get_head().data
     
     def set_locked(self, is_locked):
         self._locked = is_locked
@@ -31,8 +34,8 @@ class MultipleIconButton(IconButton):
             self.set_state_colour(WidgetState.BASE)
     
     def set_next_icon(self):
-        self._icon_key = self._icon_key.next
-        self._icon = self._icons_dict[self._icon_key.data]
+        self._icons_list.shift_head()
+        self._icon = self._icons_dict[self.current_key]
 
         self.set_image()
         
@@ -40,4 +43,4 @@ class MultipleIconButton(IconButton):
         widget_event = super().process_event(event)
 
         if widget_event:
-            return CustomEvent(**vars(widget_event), data=self._icon_key.data)
+            return CustomEvent(**vars(widget_event), data=self.current_key)

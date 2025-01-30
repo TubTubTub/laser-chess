@@ -84,6 +84,9 @@ class Control:
             if event.type == pygame.QUIT:
                 self.done = True
             
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button != 1: # ONLY PROCESS LEFT CLICKS
+                return
+            
             self.state.get_event(event)
 
 class _State:

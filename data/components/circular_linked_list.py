@@ -122,5 +122,11 @@ class CircularLinkedList: # Doubly-linked circular linked list
             if current_node == self._head:
                 return False
     
+    def shift_head(self):
+        self._head = self._head.next
+
+    def unshift_head(self):
+        self._head = self._head.previous
+    
     def get_head(self):
         return self._head

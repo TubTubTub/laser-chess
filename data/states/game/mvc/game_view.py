@@ -29,19 +29,28 @@ class GameView:
         self._widget_group = WidgetGroup(GAME_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self.initialise_widgets()
-        
-        self._board_size = GAME_WIDGETS['chessboard'].size
-        self._board_position = GAME_WIDGETS['chessboard'].position
-        self._square_size = self._board_size[0] / 10
 
         self._cursor = Cursor()
-        self._laser_draw = LaserDraw(self._board_position, self._board_size)
-        self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
+        self._laser_draw = LaserDraw(self.board_position, self.board_size)
+        self._overlay_draw = OverlayDraw(self.board_position, self.board_size)
         self._particles_draw = ParticlesDraw()
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
         self.set_status_text(StatusText.PLAYER_MOVE)
+    
+    @property
+    def board_position(self):
+        return GAME_WIDGETS['chessboard'].position
+    
+    @property
+    def board_size(self):
+        return GAME_WIDGETS['chessboard'].size
+
+    @property
+    def square_size(self):
+        return self.board_size[0] / 10
+
     
     def initialise_widgets(self):
         GAME_WIDGETS['move_list'].reset_move_list()
@@ -69,14 +78,10 @@ class GameView:
                 GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
     
     def handle_resize(self, resize_end=False):
-        self._board_size = GAME_WIDGETS['chessboard'].size
-        self._board_position = GAME_WIDGETS['chessboard'].position
-        self._square_size = self._board_size[0] / 10
-        
-        self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
-        self._overlay_draw.handle_resize(self._board_position, self._board_size)
+        self._piece_group.handle_resize(self.board_position, self.board_size, resize_end)
+        self._laser_draw.handle_resize(self.board_position, self.board_size)
+        self._laser_draw.handle_resize(self.board_position, self.board_size)
+        self._overlay_draw.handle_resize(self.board_position, self.board_size)
         self._widget_group.handle_resize(window.size)
 
         if self._laser_draw.firing:
@@ -84,7 +89,7 @@ class GameView:
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
-        self._piece_group.initialise_pieces(piece_list, self._board_position, self._board_size)
+        self._piece_group.initialise_pieces(piece_list, self.board_position, self.board_size)
 
         if event:
             GAME_WIDGETS['move_list'].append_to_move_list(event.move_notation)
@@ -123,14 +128,14 @@ class GameView:
                     laser_result.piece_hit,
                     laser_result.piece_colour,
                     laser_result.piece_rotation,
-                    coords_to_screen_pos(coords_to_remove, self._board_position, self._square_size),
-                    self._square_size
+                    coords_to_screen_pos(coords_to_remove, self.board_position, self.square_size),
+                    self.square_size
                 )
                 self._particles_draw.add_sparks(
                     3,
                     (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255),
                     coords_to_screen_pos(laser_result.laser_path[0][0],
-                    self._board_position, self._square_size)
+                    self.board_position, self.square_size)
                 )
 
             window.set_effect(ShaderType.SHAKE)
@@ -192,7 +197,7 @@ class GameView:
         return self._selected_coords
 
     def convert_mouse_pos(self, event):
-        clicked_coords = screen_pos_to_coords(event.pos, self._board_position, self._board_size)
+        clicked_coords = screen_pos_to_coords(event.pos, self.board_position, self.board_size)
 
         if clicked_coords:
             return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)

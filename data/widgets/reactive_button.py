@@ -17,8 +17,8 @@ class ReactiveButton(_Pressable, _Widget):
         _Widget.__init__(self, **kwargs)
 
         self._widgets_dict = widgets_dict
-        self._widget_keys = CircularLinkedList(list(self._widgets_dict.keys()))
-        self._widget_key = self._widget_keys.get_head()
+        self._widgets_list = CircularLinkedList(list(self._widgets_dict.keys()))
+        self._widget_key = self._widgets_list.get_head()
         self._widget = self._widgets_dict[self._widget_key.data]
 
         self._center = center
@@ -47,7 +47,7 @@ class ReactiveButton(_Pressable, _Widget):
         self.set_image()
 
     def set_to_key(self, key):
-        if self._widget_keys.data_in_list(key) is False:
+        if self._widgets_list.data_in_list(key) is False:
             raise ValueError('(ReactiveButton.set_to_key) Key not found!', key)
         
         for _ in range(len(self._widgets_dict)):
