@@ -1,10 +1,8 @@
-import pygame
-from data.widgets.bases import _Widget, _Pressable
-from data.components.circular_linked_list import CircularLinkedList
+from data.widgets.bases import _Widget, _Pressable, _Circular
 from data.components.custom_event import CustomEvent
 from data.constants import WidgetState
 
-class ReactiveButton(_Pressable, _Widget):
+class ReactiveButton(_Pressable, _Circular, _Widget):
     def __init__(self, widgets_dict, event, center=False, **kwargs):
         _Pressable.__init__(
             self,
@@ -13,13 +11,8 @@ class ReactiveButton(_Pressable, _Widget):
             down_func=lambda: self.set_to_key(WidgetState.PRESS),
             up_func=lambda: self.set_to_key(WidgetState.BASE),
         )
-
+        _Circular.__init__(self, items_dict=widgets_dict)
         _Widget.__init__(self, **kwargs)
-
-        self._widgets_dict = widgets_dict
-        self._widgets_list = CircularLinkedList(list(self._widgets_dict.keys()))
-        self._widget_key = self._widgets_list.get_head()
-        self._widget = self._widgets_dict[self._widget_key.data]
 
         self._center = center
         
@@ -35,47 +28,23 @@ class ReactiveButton(_Pressable, _Widget):
         else:
             return position
     
-    def set_widget(self, widget_key):
-        self._widget_key = widget_key
-        self._widget = self._widgets_dict[self._widget_key.data]
-        self._widget.set_surface_size(self._raw_surface_size)
-    
-    def set_next_widget(self):
-        self.set_widget(self._widget_key.next)
-        self.set_image()
-    
-    def set_previous_widget(self):
-        self.set_widget(self._widget_key.previous)
-        self.set_image()
-
-    def set_to_key(self, key):
-        if self._widgets_list.data_in_list(key) is False:
-            raise ValueError('(ReactiveButton.set_to_key) Key not found!', key)
-        
-        for _ in range(len(self._widgets_dict)):
-            if self._widget_key.data == key:
-                self.set_image()
-                self.set_geometry()
-                return
-
-            self.set_next_widget()
-    
     def set_image(self):
-        self._widget.set_image()
-        self.image = self._widget.image
+        self.current_item.set_image()
+        self.image = self.current_item.image
     
     def set_geometry(self):
         super().set_geometry()
-        self._widget.set_geometry()
-        self._widget.rect.topleft = self.rect.topleft
+        self.current_item.set_geometry()
+        self.current_item.rect.topleft = self.rect.topleft
 
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
-        self._widget.set_surface_size(new_surface_size)
+        for item in self._items_dict.values():
+            item.set_surface_size(new_surface_size)
         
     def process_event(self, event):
         widget_event = super().process_event(event)
-        self._widget.process_event(event)
+        self.current_item.process_event(event)
 
         if widget_event:
-            return CustomEvent(**vars(widget_event), data=self._widget_key.data)
+            return CustomEvent(**vars(widget_event), data=self.current_key)

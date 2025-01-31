@@ -1,8 +1,9 @@
 import pygame
 from data.widgets.bases import _Widget
+from data.utils.widget_helpers import create_text_box
 
 class Icon(_Widget):
-    def __init__(self, icon, stretch=False, is_mask=False, smooth=False, fit_icon=False, **kwargs):
+    def __init__(self, icon, stretch=False, is_mask=False, smooth=False, fit_icon=False, box_colours=None, **kwargs):
         super().__init__(**kwargs)
 
         if fit_icon:
@@ -13,6 +14,7 @@ class Icon(_Widget):
         self._is_mask = is_mask
         self._stretch = stretch
         self._smooth = smooth
+        self._box_colours = box_colours
         
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
@@ -24,8 +26,13 @@ class Icon(_Widget):
         self.set_image()
     
     def set_image(self):
-        self.image = pygame.transform.scale(self._empty_surface, self.size)
-        pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self.border_radius))
+        if self._box_colours:
+            self.image = create_text_box(self.size, self.border_width, self._box_colours)
+        else:
+            self.image = pygame.transform.scale(self._empty_surface, self.size)
+
+            if self._fill_colour:
+                pygame.draw.rect(self.image, self._fill_colour, self.image.get_rect(), border_radius=int(self.border_radius))
 
         if self._stretch:
             if self._smooth:
@@ -50,7 +57,7 @@ class Icon(_Widget):
         else:
             self.image.blit(scaled_icon, icon_position)
 
-        if self.border_width:
+        if self._box_colours is None and self.border_width:
             pygame.draw.rect(self.image, self._border_colour, self.image.get_rect(), width=int(self.border_width), border_radius=int(self.border_radius))
     
     def process_event(self, event):

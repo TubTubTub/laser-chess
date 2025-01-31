@@ -2,7 +2,7 @@ import pygame
 from random import randint
 from data.constants import ImageType
 from data.utils.asset_helpers import get_perimeter_sample, get_vector, get_angle_between_vectors, get_next_corner
-from data.states.game.components.piece_sprite import create_piece
+from data.states.game.components.piece_sprite import PieceSprite
 
 class ParticlesDraw:
     def __init__(self, gravity=0.2, rotation=180, shrink=0.5, opacity=150):
@@ -61,9 +61,9 @@ class ParticlesDraw:
         return fragment_list
     
     def add_captured_piece(self, piece, colour, rotation, position, size):
-        piece_sprite = create_piece(piece, colour, rotation)
+        piece_sprite = PieceSprite(piece, colour, rotation)
         piece_sprite.set_geometry((0, 0), size)
-        piece_sprite.set_image(ImageType.LOW_RES)
+        piece_sprite.set_image()
 
         particles = self.fragment_image(piece_sprite.image, 5)
 

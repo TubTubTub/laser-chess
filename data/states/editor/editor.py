@@ -105,7 +105,7 @@ class Editor(_State):
                 return
 
         if widget_event is None:
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and self._widget_group.on_widget(event.pos) is False:
                 self.selected_coords = None
 
             return
@@ -290,7 +290,7 @@ class Editor(_State):
                 
     def handle_resize(self, resize_end=False):
         super().handle_resize()
-        self._piece_group.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size, resize_end)
+        self._piece_group.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
         self._drag_and_drop.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
         self._overlay_draw.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
     

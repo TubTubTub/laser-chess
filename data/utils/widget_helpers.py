@@ -76,3 +76,13 @@ def create_switch(size, colour):
     pygame.draw.rect(switch_surface, colour, (0, 0, size[0], size[1]), border_radius=int(size[1] / 2))
 
     return switch_surface
+
+def create_text_box(size, border_width, colours):
+    surface = pygame.Surface(size, pygame.SRCALPHA)
+
+    pygame.draw.rect(surface, colours[0], (0, 0, *size))
+    pygame.draw.rect(surface, colours[2], (border_width, border_width, size[0] - 2 * border_width, size[1] - 2 * border_width))
+    pygame.draw.rect(surface, colours[3], (border_width, border_width, size[0] - 2 * border_width, border_width))
+    pygame.draw.rect(surface, colours[1], (border_width, size[1] - 2 * border_width, size[0] - 2 * border_width, border_width))
+
+    return surface

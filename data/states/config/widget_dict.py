@@ -4,7 +4,7 @@ from data.states.config.default_config import default_config
 from data.components.custom_event import CustomEvent
 from data.constants import ConfigEventType, Colour
 from data.assets import GRAPHICS
-from data.utils.asset_helpers import get_dimmed_icon
+from data.utils.asset_helpers import get_highlighted_icon
 from data.managers.theme import theme
 
 def float_validator(num_string):
@@ -15,25 +15,25 @@ def float_validator(num_string):
         return False
 
 if default_config['CPU_ENABLED']:
-    pvp_icons = {False: GRAPHICS['pvp_button'], True: GRAPHICS['pvp_button']}
-    pvc_icons = {True: GRAPHICS['pvc_button'], False: GRAPHICS['pvc_button']}
+    pvp_icons = {False: GRAPHICS['swords'], True: GRAPHICS['swords']}
+    pvc_icons = {True: GRAPHICS['robot'], False: GRAPHICS['robot']}
     pvc_locked = True
     pvp_locked = False
 else:
-    pvp_icons = {True: GRAPHICS['pvp_button'], False: GRAPHICS['pvp_button']}
-    pvc_icons = {False: GRAPHICS['pvc_button'], True: GRAPHICS['pvc_button']}
+    pvp_icons = {True: GRAPHICS['swords'], False: GRAPHICS['swords']}
+    pvc_icons = {False: GRAPHICS['robot'], True: GRAPHICS['robot']}
     pvc_locked = False
     pvp_locked = True
 
 if default_config['TIME_ENABLED']:
-    time_enabled_icons = {True: GRAPHICS['timer'], False: get_dimmed_icon(GRAPHICS['timer'])}
+    time_enabled_icons = {True: GRAPHICS['timer'], False: get_highlighted_icon(GRAPHICS['timer'])}
 else:
-    time_enabled_icons = {False: get_dimmed_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
+    time_enabled_icons = {False: get_highlighted_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
 if default_config['COLOUR'] == Colour.BLUE:
-    colour_icons = {Colour.BLUE: GRAPHICS['pharoah_1'], Colour.RED: GRAPHICS['pharoah_2']}
+    colour_icons = {Colour.BLUE: GRAPHICS['pharoah_0_a'], Colour.RED: GRAPHICS['pharoah_1_a']}
 else:
-    colour_icons = {Colour.RED: GRAPHICS['pharoah_2'], Colour.BLUE: GRAPHICS['pharoah_1']}
+    colour_icons = {Colour.RED: GRAPHICS['pharoah_1_a'], Colour.BLUE: GRAPHICS['pharoah_0_a']}
 
 preview_container = Rectangle(
     relative_position=(-0.15, 0),
@@ -71,6 +71,8 @@ CONFIG_WIDGETS = {
         config_container,
     'to_move_container':
         to_move_container,
+    'board_thumbnail':
+        board_thumbnail,
     'default': [
         ReactiveIconButton(
             relative_position=(0, 0),
@@ -137,6 +139,7 @@ CONFIG_WIDGETS = {
         anchor_y='bottom',
         anchor_x='center',
         text='START NEW GAME',
+        strength=0.1,
         text_colour=theme['textSecondary'],
         margin=20,
         fit_vertical=False,
@@ -148,7 +151,7 @@ CONFIG_WIDGETS = {
         scale_mode='height',
         relative_position=(0.05, 0.3),
         relative_size=(0.15, 0.15),
-        margin=0,
+        margin=10,
         border_width=5,
         border_radius=5,
         icons_dict=time_enabled_icons,
@@ -159,7 +162,7 @@ CONFIG_WIDGETS = {
         parent=config_container,
         relative_position=(-0.225, 0.5),
         relative_size=(0.45, 0.15),
-        margin=0,
+        margin=10,
         anchor_x='center',
         border_width=5,
         border_radius=5,
@@ -173,7 +176,7 @@ CONFIG_WIDGETS = {
         relative_position=(0.225, 0.5),
         relative_size=(0.45, 0.15),
         anchor_x='center',
-        margin=0,
+        margin=10,
         border_width=5,
         border_radius=5,
         icons_dict=pvc_icons,
@@ -193,8 +196,6 @@ CONFIG_WIDGETS = {
         fill_colour=theme['fillError'],
         text_colour=theme['textError'],
     ),
-    'board_thumbnail':
-        board_thumbnail,
     'preset_1':
     BoardThumbnailButton(
         parent=preview_container,

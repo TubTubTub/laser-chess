@@ -11,6 +11,7 @@ def scale_and_cache(image, target_size):
 @cache
 def smoothscale_and_cache(image, target_size):
     return pygame.transform.smoothscale(image, target_size)
+
 def gif_to_frames(path):
     try:
         image = Image.open(path)
@@ -105,7 +106,7 @@ def draw_background(screen, background, current_time=0):
         scaled_background = scale_and_cache(background, screen.size)
         screen.blit(scaled_background, (0, 0))
 
-def get_dimmed_icon(icon):
+def get_highlighted_icon(icon):
     icon_copy = icon.copy()
     overlay = pygame.Surface((icon.get_width(), icon.get_height()), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 128))

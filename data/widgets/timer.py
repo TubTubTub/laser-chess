@@ -1,14 +1,19 @@
 import pygame
 from data.widgets.text import Text
 from data.managers.animation import animation
+from data.components.custom_event import CustomEvent
+from data.constants import WidgetState, Colour, BLUE_BUTTON_COLOURS, RED_BUTTON_COLOURS
 
 class Timer(Text):
-    def __init__(self, event=None, start_mins=60, **kwargs):
+    def __init__(self, active_colour, event=None, start_mins=60, **kwargs):
         self._current_ms = float(start_mins) * 60 * 1000
         self._active = False
         self._times_out_callback = None
         self._event = event
-        super().__init__(text=self.format_to_text(), fit_vertical=False, **kwargs)
+        self._active_colour = active_colour
+        box_colours = BLUE_BUTTON_COLOURS[WidgetState.BASE] if active_colour == Colour.BLUE else RED_BUTTON_COLOURS[WidgetState.BASE]
+
+        super().__init__(text=self.format_to_text(), fit_vertical=False, box_colours=box_colours, **kwargs)
     
     def register_end_callback(self, callback):
         self._times_out_callback = callback
@@ -48,4 +53,4 @@ class Timer(Text):
 
     def process_event(self, event):
         if self._current_ms <= 0:
-            return self._event
+            return CustomEvent(**vars(self._event), active_colour=self._active_colour)

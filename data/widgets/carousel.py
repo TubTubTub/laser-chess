@@ -1,22 +1,19 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases import _Widget, _Circular
 from data.widgets.reactive_icon_button import ReactiveIconButton
 from data.components.circular_linked_list import CircularLinkedList
 from data.assets import GRAPHICS
 from data.constants import Miscellaneous
 from data.components.custom_event import CustomEvent
 
-class Carousel(_Widget):
+class Carousel(_Circular, _Widget):
     def __init__(self, event, widgets_dict, **kwargs):
-        super().__init__(relative_size=None, **kwargs)
-
-        self._widgets_dict = widgets_dict
-        self._widgets_list = CircularLinkedList(list(self._widgets_dict.keys()))
-        self._widget = self._widgets_dict[self.current_key]
+        _Circular.__init__(self, items_dict=widgets_dict)
+        _Widget.__init__(self, relative_size=None, **kwargs)
 
         max_widget_size = (
-            max([widget.rect.width for widget in self._widgets_dict.values()]),
-            max([widget.rect.height for widget in self._widgets_dict.values()])
+            max([widget.rect.width for widget in widgets_dict.values()]),
+            max([widget.rect.height for widget in widgets_dict.values()])
         )
 
         self._relative_max_widget_size = (max_widget_size[0] / self.surface_size[1], max_widget_size[1] / self.surface_size[1])
@@ -46,10 +43,6 @@ class Carousel(_Widget):
 
         self.set_image()
         self.set_geometry()
-    
-    @property
-    def current_key(self):
-        return self._widgets_list.get_head().data
 
     @property
     def max_widget_size(self):
@@ -72,65 +65,54 @@ class Carousel(_Widget):
     @property
     def right_arrow_position(self):
         return (self.size[0] - self.arrow_size[0], (self.size[1] - self.arrow_size[1]) / 2)
-
-    def set_to_key(self, key):
-        if self._widgets_list.data_in_list(key) is False:
-            raise ValueError('(Carousel.set_to_key) Key not found!', key)
-        
-        for _ in range(len(self._widgets_dict)):
-            if self.current_key == key:
-                return
-        
-            self._widget = self._widgets_dict[self.current_key]
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
         self.image.fill(self._fill_colour)
 
         if self.border_width:
-            print(self.border_radius)
             pygame.draw.rect(self.image, self._border_colour, (0, 0, *self.size), width=int(self.border_width), border_radius=int(self.border_radius))
 
         self._left_arrow.set_image()
         self.image.blit(self._left_arrow.image, self.left_arrow_position)
 
-        self._widget.set_image()
-        self.image.blit(self._widget.image, ((self.size[0] - self._widget.rect.size[0]) / 2, (self.size[1] - self._widget.rect.size[1]) / 2))
+        self.current_item.set_image()
+        self.image.blit(self.current_item.image, ((self.size[0] - self.current_item.rect.size[0]) / 2, (self.size[1] - self.current_item.rect.size[1]) / 2))
 
         self._right_arrow.set_image()
         self.image.blit(self._right_arrow.image, self.right_arrow_position)
     
     def set_geometry(self):
         super().set_geometry()
-
-        self._widget.set_geometry()
+    
+        self.current_item.set_geometry()
         self._left_arrow.set_geometry()
         self._right_arrow.set_geometry()
 
-        self._widget.rect.center = self.rect.center
+        self.current_item.rect.center = self.rect.center
         self._left_arrow.rect.topleft = (self.position[0] + self.left_arrow_position[0], self.position[1] + self.left_arrow_position[1])
         self._right_arrow.rect.topleft = (self.position[0] + self.right_arrow_position[0], self.position[1] + self.right_arrow_position[1])
     
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
-        self._widget.set_surface_size(new_surface_size)
         self._left_arrow.set_surface_size(new_surface_size)
         self._right_arrow.set_surface_size(new_surface_size)
+
+        for item in self._items_dict.values():
+            item.set_surface_size(new_surface_size)
     
     def process_event(self, event):
-        self._widget.process_event(event)
+        self.current_item.process_event(event)
         left_arrow_event = self._left_arrow.process_event(event)
         right_arrow_event = self._right_arrow.process_event(event)
         
         if left_arrow_event:
-            self._widgets_list.unshift_head()
-            self._widget = self._widgets_dict[self.current_key]
-            self._widget.set_surface_size(self._raw_surface_size)
+            self.set_previous_item()
+            self.current_item.set_surface_size(self._raw_surface_size)
 
         elif right_arrow_event:
-            self._widgets_list.shift_head()
-            self._widget = self._widgets_dict[self.current_key]
-            self._widget.set_surface_size(self._raw_surface_size)
+            self.set_next_item()
+            self.current_item.set_surface_size(self._raw_surface_size)
 
         if left_arrow_event or right_arrow_event:
             self.set_image()

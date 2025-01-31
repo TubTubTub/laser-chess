@@ -13,6 +13,7 @@ class WinView:
         # self._model.register_listener(self.process_model_event, 'win')
 
         self._widget_group = WidgetGroup(WIN_WIDGETS)
+        self._widget_group.handle_resize(window.size)
     
     def handle_resize(self):
         self._widget_group.handle_resize(window.size)

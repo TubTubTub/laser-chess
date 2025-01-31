@@ -63,7 +63,7 @@ class Settings(_State):
     
     def reload_display_mode(self):
         if self._settings['displayMode'] == 'fullscreen':
-            window.set_fullscreen()
+            window.set_fullscreen(desktop=True)
 
         elif self._settings['displayMode'] == 'windowed':
             window.set_windowed()
@@ -80,6 +80,8 @@ class Settings(_State):
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
+        SETTINGS_WIDGETS['primary_colour_button'].set_state_colour(WidgetState.BASE)
+        SETTINGS_WIDGETS['secondary_colour_button'].set_state_colour(WidgetState.BASE)
         SETTINGS_WIDGETS['music_volume_slider'].set_volume(self._settings['musicVolume'])
         SETTINGS_WIDGETS['sfx_volume_slider'].set_volume(self._settings['sfxVolume'])
         SETTINGS_WIDGETS['display_mode_dropdown'].set_selected_word(self._settings['displayMode'])

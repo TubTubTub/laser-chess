@@ -1,8 +1,8 @@
+from data.widgets.bases import _Pressable, _Widget, _Circular
 from data.widgets.colour_display import _ColourDisplay
 from data.widgets.colour_square import _ColourSquare
 from data.widgets.colour_slider import _ColourSlider
 from data.widgets.slider_thumb import _SliderThumb
-from data.widgets.bases import _Pressable, _Widget
 from data.widgets.scrollbar import _Scrollbar
 
 from data.widgets.board_thumbnail_button import BoardThumbnailButton

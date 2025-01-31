@@ -1,6 +1,6 @@
 import pygame
 from data.constants import ImageType, CursorMode
-from data.states.game.components.piece_sprite import create_piece
+from data.states.game.components.piece_sprite import PieceSprite
 from data.managers.cursor import cursor
 
 DRAG_THRESHOLD = 500
@@ -15,9 +15,9 @@ class DragAndDrop:
         self.dragged_sprite = None
     
     def set_dragged_piece(self, piece, colour, rotation):
-        sprite = create_piece(piece=piece, colour=colour, rotation=rotation)
+        sprite = PieceSprite(piece=piece, colour=colour, rotation=rotation)
         sprite.set_geometry((0, 0), self._board_size[0] / 10)
-        sprite.set_image(ImageType.HIGH_RES)
+        sprite.set_image()
 
         self.dragged_sprite = sprite
         self._ticks_since_drag = pygame.time.get_ticks()

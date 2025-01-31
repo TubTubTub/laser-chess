@@ -1,24 +1,17 @@
 import pygame
-from data.widgets.icon_button import IconButton
-from data.components.circular_linked_list import CircularLinkedList
 from data.components.custom_event import CustomEvent
+from data.widgets.icon_button import IconButton
+from data.widgets.bases import _Circular
 from data.constants import WidgetState
 
-class MultipleIconButton(IconButton):
+class MultipleIconButton(_Circular, IconButton):
     def __init__(self, icons_dict, **kwargs):
-        self._icons_dict = icons_dict
-        self._icons_list = CircularLinkedList(list(self._icons_dict.keys()))
-        self._icon = self._icons_dict[self.current_key]
-
-        super().__init__(icon=self._icon, **kwargs)
+        _Circular.__init__(self, items_dict=icons_dict)
+        IconButton.__init__(self, icon=self.current_item, **kwargs)
 
         self._fill_colour_copy = self._fill_colour
         
         self._locked = None
-    
-    @property
-    def current_key(self):
-        return self._icons_list.get_head().data
     
     def set_locked(self, is_locked):
         self._locked = is_locked
@@ -34,9 +27,8 @@ class MultipleIconButton(IconButton):
             self.set_state_colour(WidgetState.BASE)
     
     def set_next_icon(self):
-        self._icons_list.shift_head()
-        self._icon = self._icons_dict[self.current_key]
-
+        super().set_next_item()
+        self._icon = self.current_item
         self.set_image()
         
     def process_event(self, event):

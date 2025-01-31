@@ -84,20 +84,16 @@ class GameController:
             case GameEventType.RESIGN_CLICK:
                 self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
                 self._view.set_status_text(StatusText.WIN)
-                return
                 
             case GameEventType.DRAW_CLICK:
                 self._model.set_winner(Miscellaneous.DRAW)
                 self._view.set_status_text(StatusText.DRAW)
-                return
                 
             case GameEventType.TIMER_END:
                 self._model.set_winner(widget_event.active_colour.get_flipped_colour())
-                return
             
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
-                return
             
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
@@ -157,6 +153,9 @@ class GameController:
                         self._view.set_overlay_coords(None, None)
 
                     self._view.remove_dragged_piece()
+                
+                case GameEventType.EMPTY_CLICK:
+                    return
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)')

@@ -2,6 +2,7 @@ import pygame
 from data.widgets.bases import _Widget
 from data.utils.font_helpers import height_to_font_size
 from data.utils.browser_helpers import get_winner_string
+from data.utils.asset_helpers import scale_and_cache
 from data.widgets.board_thumbnail import BoardThumbnail
 from data.constants import Colour
 from data.constants import Miscellaneous
@@ -28,7 +29,7 @@ class BrowserItem(_Widget):
     
     def set_image(self):
         self.image = pygame.Surface(self.size, pygame.SRCALPHA)
-        resized_board = pygame.transform.smoothscale(self._board_thumbnail.image, (self.size[0], self.size[0] * 0.8))
+        resized_board = scale_and_cache(self._board_thumbnail.image, (self.size[0], self.size[0] * 0.8))
         self.image.blit(resized_board, (0, 0))
 
         get_line_y = lambda line: (self.size[0] * 0.8) + ((self.size[0] * 0.8) / FONT_DIVISION) * line

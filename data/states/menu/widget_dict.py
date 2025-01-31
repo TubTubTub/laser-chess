@@ -16,6 +16,17 @@ MENU_WIDGETS = {
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
         ),
         ReactiveIconButton(
+            relative_position=None,
+            fixed_position=(5, 5),
+            relative_size=(0.075, 0.075),
+            scale_mode='height',
+            anchor_x='right',
+            base_icon=GRAPHICS['quit_base'],
+            hover_icon=GRAPHICS['quit_hover'],
+            press_icon=GRAPHICS['quit_press'],
+            event=CustomEvent(MenuEventType.QUIT_CLICK)
+        ),
+        ReactiveIconButton(
             relative_position=(0.05, 0),
             relative_size=(0, 0.15),
             anchor_y='center',

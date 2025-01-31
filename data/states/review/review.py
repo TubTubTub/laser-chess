@@ -50,7 +50,6 @@ class Review(_State):
         self.refresh_widgets()
 
         # audio.play_music(MUSIC_PATHS['menu'])
-        print(self._moves)
         self.draw()
     
     def initialise_widgets(self):
@@ -175,7 +174,7 @@ class Review(_State):
     
     def handle_resize(self, resize_end=False):
         super().handle_resize()
-        self._piece_group.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size, resize_end)
+        self._piece_group.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
         self._laser_draw.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
     
     def draw(self):

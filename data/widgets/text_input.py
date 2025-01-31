@@ -1,17 +1,19 @@
 import pygame
 import pyperclip
 from data.widgets.text import Text
-from data.widgets.bases import _Pressable
+from data.widgets.bases import _Pressable, _Box
 from data.components.custom_event import CustomEvent
 from data.managers.animation import animation
-from data.constants import WidgetState, CursorMode
+from data.constants import WidgetState, CursorMode, INPUT_COLOURS
 from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
 from data.managers.cursor import cursor
+from data.managers.theme import theme
 
-class TextInput(_Pressable, Text):
-    def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=(0, 0, 0), **kwargs):
+class TextInput(_Box, _Pressable, Text):
+    def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=theme['textSecondary'], **kwargs):
         self._cursor_index = None
+        _Box.__init__(self, box_colours=INPUT_COLOURS)
         _Pressable.__init__(
             self,
             event=None,
@@ -20,7 +22,7 @@ class TextInput(_Pressable, Text):
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
             play_sfx=False
         )
-        Text.__init__(self, text="", center=False, **kwargs)
+        Text.__init__(self, text="", center=False, box_colours=INPUT_COLOURS[WidgetState.BASE], **kwargs)
         
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)

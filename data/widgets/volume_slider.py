@@ -5,6 +5,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider
+from data.utils.asset_helpers import smoothscale_and_cache
 from data.managers.theme import theme
 
 class VolumeSlider(_Widget):
@@ -50,7 +51,7 @@ class VolumeSlider(_Widget):
         return (relative_x + self.position[0], relative_y + self.position[1])
     
     def set_image(self):
-        gradient_scaled = pygame.transform.smoothscale(self._gradient_surface, self.calculate_slider_size())
+        gradient_scaled = smoothscale_and_cache(self._gradient_surface, self.calculate_slider_size())
         gradient_position = self.calculate_slider_position()
 
         self.image = pygame.transform.scale(self._empty_surface, (self.size))

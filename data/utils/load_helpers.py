@@ -46,6 +46,16 @@ def load_all_gfx(directory, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", 
         path = Path(directory / file)
 
         if extension.lower() in accept:
+            if name == 'piece_spritesheet':
+                data = load_spritesheet(
+                    path,
+                    (16, 16),
+                    ['pyramid_1', 'scarab_1', 'anubis_1', 'pharoah_1', 'sphinx_1', 'pyramid_0', 'scarab_0', 'anubis_0', 'pharoah_0', 'sphinx_0'],
+                    ['_a', '_b', '_c', '_d'])
+                
+                graphics = graphics | data
+                continue
+
             data = load_gfx(path, colorkey, accept)
 
             if isinstance(data, list):
@@ -55,6 +65,23 @@ def load_all_gfx(directory, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", 
                 graphics[name] = data
         
     return graphics
+
+def load_spritesheet(path, sprite_size, col_names, row_names):
+    spritesheet = load_gfx(path)
+    col_count = int(spritesheet.width / sprite_size[0])
+    row_count = int(spritesheet.height / sprite_size[1])
+
+    sprite_dict = {}
+
+    for column in range(col_count):
+        for row in range(row_count):
+            surface = pygame.Surface(sprite_size, pygame.SRCALPHA)
+            name = col_names[column] + row_names[row]
+
+            surface.blit(spritesheet, (0, 0), (column * sprite_size[0], row * sprite_size[1], *sprite_size))
+            sprite_dict[name] = surface
+    
+    return sprite_dict
 
 def load_all_fonts(directory, accept=(".ttf", ".otf")):
     fonts = {}

@@ -1,6 +1,6 @@
 import pygame
-from data.constants import EMPTY_BB, Colour, ImageType
-from data.states.game.components.piece_sprite import EmptyPiece, create_piece
+from data.constants import EMPTY_BB, Colour, ImageType, Piece
+from data.states.game.components.piece_sprite import PieceSprite
 from data.utils.board_helpers import coords_to_screen_pos
 from data.utils import bitboard_helpers as bb_helpers
 
@@ -23,26 +23,21 @@ class PieceGroup(pygame.sprite.Group):
                 else:
                     colour = Colour.RED
 
-                piece = create_piece(piece=piece_and_rotation[0], colour=colour, rotation=piece_and_rotation[1])
+                piece = PieceSprite(piece=Piece(piece_and_rotation[0].lower()), colour=colour, rotation=piece_and_rotation[1])
                 piece.set_coords((x, y))
                 piece.set_geometry(board_position, board_size[0] / 10)
-                piece.set_image(ImageType.HIGH_RES)
+                piece.set_image()
                 self.add(piece)
     
     def set_geometry(self, board_position, board_size):
         for sprite in self.sprites():
             sprite.set_geometry(board_position, board_size[0] / 10)
     
-    def handle_resize(self, board_position, board_size, resize_end=False):
+    def handle_resize(self, board_position, board_size):
         self.set_geometry(board_position, board_size)
 
-        if resize_end:
-            image_res = ImageType.HIGH_RES
-        else:
-            image_res = ImageType.LOW_RES
-
         for sprite in self.sprites():
-            sprite.set_image(image_res)
+            sprite.set_image()
     
     def remove_piece(self, coords):
         for sprite in self.sprites():

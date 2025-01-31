@@ -35,20 +35,10 @@ move_list = MoveList(
 )
 
 REVIEW_WIDGETS = {
-    'move_list':
-        move_list,
-    'scroll_area':
-    ScrollArea(
-        parent=right_container,
-        relative_position=(0, 0),
-        relative_size=(1, 0.5),
-        vertical=True,
-        widget=move_list
-    ),
     'default': [
-        info_container,
         arrow_container,
         right_container,
+        info_container,
         ReactiveIconButton(
             relative_position=(0, 0),
             relative_size=(0.075, 0.075),
@@ -82,6 +72,16 @@ REVIEW_WIDGETS = {
             event=CustomEvent(ReviewEventType.NEXT_CLICK)
         ),
     ],
+    'move_list':
+        move_list,
+    'scroll_area':
+    ScrollArea(
+        parent=right_container,
+        relative_position=(0, 0),
+        relative_size=(1, 0.5),
+        vertical=True,
+        widget=move_list
+    ),
     'chessboard':
     Chessboard(
         relative_position=(0, 0),
@@ -127,15 +127,17 @@ REVIEW_WIDGETS = {
     ),
     'blue_timer':
     Timer(
-        relative_position=(0.05, -0.05),
-        anchor_y='center',
-        relative_size=(0.1, 0.1),
-    ),
-    'red_timer':
-    Timer(
         relative_position=(0.05, 0.05),
         anchor_y='center',
         relative_size=(0.1, 0.1),
+        active_colour=Colour.BLUE,
+    ),
+    'red_timer':
+    Timer(
+        relative_position=(0.05, -0.05),
+        anchor_y='center',
+        relative_size=(0.1, 0.1),
+        active_colour=Colour.RED
     ),
     'timer_disabled_text':
     Text(

@@ -32,8 +32,9 @@ class GameView:
         self.initialise_widgets()
 
         self._cursor = Cursor()
-        self._laser_draw = LaserDraw(self._board_position, self._board_size)
-        self._overlay_draw = OverlayDraw(self._board_position, self._board_size)
+        self._laser_draw = LaserDraw(self.board_position, self.board_size)
+        self._overlay_draw = OverlayDraw(self.board_position, self.board_size)
+        self._drag_and_drop = DragAndDrop(self.board_position, self.board_size)
         self._particles_draw = ParticlesDraw()
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
@@ -79,14 +80,10 @@ class GameView:
                 GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
     
     def handle_resize(self, resize_end=False):
-        self._board_size = GAME_WIDGETS['chessboard'].size
-        self._board_position = GAME_WIDGETS['chessboard'].position
-        self._square_size = self._board_size[0] / 10
-        
-        self._piece_group.handle_resize(self._board_position, self._board_size, resize_end)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
-        self._laser_draw.handle_resize(self._board_position, self._board_size)
-        self._overlay_draw.handle_resize(self._board_position, self._board_size)
+        self._piece_group.handle_resize(self.board_position, self.board_size)
+        self._laser_draw.handle_resize(self.board_position, self.board_size)
+        self._laser_draw.handle_resize(self.board_position, self.board_size)
+        self._overlay_draw.handle_resize(self.board_position, self.board_size)
         self._widget_group.handle_resize(window.size)
 
         if self._laser_draw.firing:
@@ -204,11 +201,9 @@ class GameView:
 
     def set_dragged_piece(self, piece, colour, rotation):
         self._drag_and_drop.set_dragged_piece(piece, colour, rotation)
-        print('SettInG DRAGGED',piece, colour, rotation)
     
     def remove_dragged_piece(self):
         self._drag_and_drop.remove_dragged_piece()
-        print('REMOVE DRAGGED')
 
     def convert_mouse_pos(self, event):
         clicked_coords = screen_pos_to_coords(event.pos, self.board_position, self.board_size)
@@ -216,6 +211,9 @@ class GameView:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if clicked_coords:
                 return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
+            
+            elif self._widget_group.on_widget(event.pos):
+                return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
 
             else:
                 return None

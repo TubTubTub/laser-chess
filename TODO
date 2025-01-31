@@ -2,14 +2,11 @@ Make bitboards a dictionary
 chromatic abbreviation
 
 Should do:
-Add empty event to widget group
-Refactor colour slider code (+ add hover colour change, colour slider thumb center does not jump to mouse position)
-Set MOUSEBUTTONDOWN events to only left-click
 Make wrapper for pressable button widgets
 Use logging package
 Fix opengl support
-Refactor linked list code
 Add help button
+Fix fullscreen
 
 Ambitious:
 Switch sphinx direction

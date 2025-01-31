@@ -115,7 +115,7 @@ class ScrollArea(_Widget):
     
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
-        self.image.fill((100, 100, 100))
+        self.image.fill(theme['fillPrimary'])
 
         self._widget.set_image()
         self.image.blit(self._widget.image, self.calculate_widget_position())
@@ -134,13 +134,13 @@ class ScrollArea(_Widget):
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
         self._widget.set_surface_size(new_surface_size)
-        # self._scrollbar.set_surface_size(new_surface_size)
+        self._scrollbar.set_surface_size(new_surface_size)
     
     def process_event(self, event):
         # WAITING FOR PYGAME-CE 2.5.3 TO RELEASE TO FIX SCROLL FLAGS
         # self.image.scroll(0, SCROLL_FACTOR)
         # self.image.scroll(0, -SCROLL_FACTOR)
-
+        
         offset = self._scrollbar.process_event(event)
 
         if offset is not None:

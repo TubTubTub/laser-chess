@@ -3,7 +3,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import SetupEventType, RotationDirection
 from data.assets import GRAPHICS
 from data.constants import Piece, Colour
-from data.utils.asset_helpers import get_dimmed_icon
+from data.utils.asset_helpers import get_highlighted_icon
 
 from data.managers.theme import theme
 
@@ -141,9 +141,7 @@ EDITOR_WIDGETS = {
         relative_size=(0.2, 0.2),
         scale_mode='height',
         margin=10,
-        border_width=5,
-        border_radius=10,
-        icons_dict={True: GRAPHICS['erase'], False: get_dimmed_icon(GRAPHICS['erase'])},
+        icons_dict={True: GRAPHICS['eraser'], False: get_highlighted_icon(GRAPHICS['eraser'])},
         event=CustomEvent(SetupEventType.ERASE_CLICK),
     ),
     'move_button':
@@ -153,9 +151,7 @@ EDITOR_WIDGETS = {
         relative_size=(0.2, 0.2),
         scale_mode='height',
         margin=10,
-        border_width=5,
-        border_radius=10,
-        icons_dict={True: GRAPHICS['point'], False: get_dimmed_icon(GRAPHICS['point'])},
+        icons_dict={True: GRAPHICS['finger'], False: get_highlighted_icon(GRAPHICS['finger'])},
         event=CustomEvent(SetupEventType.MOVE_CLICK),
     ),
     'chessboard':
@@ -176,7 +172,7 @@ EDITOR_WIDGETS = {
         margin=0,
         border_width=5,
         border_radius=5,
-        icons_dict={False: get_dimmed_icon(GRAPHICS['pharoah_1']), True: GRAPHICS['pharoah_1']},
+        icons_dict={False: get_highlighted_icon(GRAPHICS['pharoah_0_a']), True: GRAPHICS['pharoah_0_a']},
         event=CustomEvent(SetupEventType.BLUE_START_CLICK)
     ),
     'red_start_button':
@@ -188,14 +184,14 @@ EDITOR_WIDGETS = {
         margin=0,
         border_width=5,
         border_radius=5,
-        icons_dict={True: GRAPHICS['pharoah_2'], False: get_dimmed_icon(GRAPHICS['pharoah_2'])},
+        icons_dict={True: GRAPHICS['pharoah_1_a'], False: get_highlighted_icon(GRAPHICS['pharoah_1_a'])},
         event=CustomEvent(SetupEventType.RED_START_CLICK)
     )
 }
 
 for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX]):
-    blue_icon = GRAPHICS[f'{piece.name.lower()}_1']
-    dimmed_blue_icon = get_dimmed_icon(blue_icon)
+    blue_icon = GRAPHICS[f'{piece.name.lower()}_0_a']
+    dimmed_blue_icon = get_highlighted_icon(blue_icon)
 
     EDITOR_WIDGETS['blue_piece_buttons'][piece] = MultipleIconButton(
         parent=blue_pieces_container,
@@ -206,9 +202,10 @@ for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX
         icons_dict={True: blue_icon, False: dimmed_blue_icon},
         event=CustomEvent(SetupEventType.PICK_PIECE_CLICK, piece=piece, active_colour=Colour.BLUE)
     )
+    
+    red_icon = GRAPHICS[f'{piece.name.lower()}_1_a']
 
-    red_icon = GRAPHICS[f'{piece.name.lower()}_2']
-    dimmed_red_icon = get_dimmed_icon(red_icon)
+    dimmed_red_icon = get_highlighted_icon(red_icon)
 
     EDITOR_WIDGETS['red_piece_buttons'][piece] = MultipleIconButton(
         parent=red_pieces_container,

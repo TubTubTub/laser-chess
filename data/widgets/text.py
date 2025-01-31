@@ -1,12 +1,17 @@
 import pygame
 from data.widgets.bases import _Widget
+from data.constants import WidgetState
 from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
+from data.utils.widget_helpers import create_text_box
+from data.assets import GRAPHICS
 
 class Text(_Widget): # Pure text
-    def __init__(self, text, center=True, fit_vertical=True, **kwargs):
+    def __init__(self, text, center=True, fit_vertical=True, box_colours=None, strength=0.05, **kwargs):
         super().__init__(**kwargs)
         self._text = text
         self._fit_vertical = fit_vertical
+        self._strength = strength
+        self._box_colours = box_colours
 
         if fit_vertical:
             self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
@@ -41,13 +46,17 @@ class Text(_Widget): # Pure text
         self.set_image()
     
     def set_image(self):
-        text_surface = pygame.transform.scale(self._empty_surface, self.size)
-        self.image = text_surface
+        if self._box_colours:
+            self.image = create_text_box(self.size, self.border_width, self._box_colours)
+        else:
+            text_surface = pygame.transform.scale(self._empty_surface, self.size)
+            self.image = text_surface
 
-        if self._fill_colour:
-            fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
-            pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=int(self.border_radius))
+            if self._fill_colour:
+                fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
+                pygame.draw.rect(self.image, self._fill_colour, fill_rect, border_radius=int(self.border_radius))
 
+        self._font.strength = self._strength
         font_rect_size = self._font.get_rect(self._text, size=self.font_size).size
         if self._center:
             font_position = ((self.size[0] - font_rect_size[0]) / 2, (self.size[1] - font_rect_size[1]) / 2)
@@ -55,7 +64,7 @@ class Text(_Widget): # Pure text
             font_position = (self.margin / 2, (self.size[1] - font_rect_size[1]) / 2)
         self._font.render_to(self.image, font_position, self._text, fgcolor=self._text_colour, size=self.font_size)
 
-        if self.border_width:
+        if self._box_colours is None and self.border_width:
             fill_rect = pygame.FRect(0, 0, self.size[0], self.size[1])
             pygame.draw.rect(self.image, self._border_colour, fill_rect, width=int(self.border_width), border_radius=int(self.border_radius))
 

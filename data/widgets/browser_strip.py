@@ -50,6 +50,7 @@ class BrowserStrip(_Widget):
     def set_image(self):
         self.image = pygame.Surface(self.size, pygame.SRCALPHA)
         browser_list = []
+        
         for index, item in enumerate(self._items_list):
             item.set_image()
             browser_list.append((item.image, (index * (self.item_width + self.margin) + self.margin, self.margin)))
@@ -60,17 +61,18 @@ class BrowserStrip(_Widget):
             border_position = (self._selected_index * (self.item_width + self.margin), 0)
             border_size = (self.item_width + 2 * self.margin, self.size[1])
             pygame.draw.rect(self.image, (255, 255, 255), (*border_position, *border_size), width=int(self.item_width / 20))
-    
+
     def set_geometry(self):
         super().set_geometry()
         for item in self._items_list:
             item.set_geometry()
-    
+
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
+
         for item in self._items_list:
             item.set_surface_size(new_surface_size)
-    
+            
     def process_event(self, event, scrolled_pos):
         parent_pos = self._get_rect().topleft
         self.rect.topleft = parent_pos

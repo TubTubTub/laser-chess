@@ -68,6 +68,24 @@ class WidgetState(StrEnum):
     HOVER = auto()
     PRESS = auto()
 
+BLUE_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x1c2638', '0x23495d', '0x39707a', '0x95e0cc'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x23495d', '0x39707a', '0x95e0cc'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x1c2638', '0x23495d', '0x39707a']
+}
+
+INPUT_COLOURS = {
+    WidgetState.BASE: ['0x1c2638', '0x39707a', '0x23495d', '0x95e0cc'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x39707a', '0x23495d', '0x95e0cc'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x23495d', '0x1c2638', '0x39707a']
+}
+
+RED_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x000000', '0x1c2638', '0x9b222b', '0xf14e52'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x1c2638', '0x9b222b', '0xf14e52'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x23495d', '0xf14e52', '0x95e0cc']
+}
+
 class StatusText(StrEnum):
     PLAYER_MOVE = auto()
     CPU_MOVE = auto()
@@ -110,6 +128,7 @@ class GameEventType(StrEnum):
     MENU_CLICK = auto()
     GAME_CLICK = auto()
     PIECE_DROP = auto()
+    EMPTY_CLICK = auto()
     UPDATE_PIECES = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()
@@ -121,6 +140,7 @@ class MenuEventType(StrEnum):
     CONFIG_CLICK = auto()
     SETTINGS_CLICK = auto()
     BROWSER_CLICK = auto()
+    QUIT_CLICK = auto()
 
 class SettingsEventType(StrEnum):
     RESET_DEFAULT = auto()

@@ -8,7 +8,8 @@ right_container = Rectangle(
     relative_size=(0.2, 0.5),
     anchor_y='center',
     anchor_x='right',
-    visible=False,
+    visible=True,
+    fill_colour=(0, 0, 0, 0)
 )
 
 rotate_container = Rectangle(
@@ -50,16 +51,6 @@ draw_button = TextButton(
 )
 
 GAME_WIDGETS = {
-    'move_list':
-        move_list,
-    'scroll_area':
-    ScrollArea(
-        parent=right_container,
-        relative_position=(0, 0),
-        relative_size=(1, 0.8),
-        vertical=True,
-        widget=move_list
-    ),
     'default': [
         right_container,
         rotate_container,
@@ -120,19 +111,31 @@ GAME_WIDGETS = {
             icon=GRAPHICS['draw']
         ),
     ],
-    'blue_timer':
-    Timer(
-        relative_position=(0.05, -0.05),
-        anchor_y='center',
-        relative_size=(0.1, 0.1),
-        event=CustomEvent(GameEventType.TIMER_END, active_colour=Colour.BLUE),
+    'scroll_area': # REMEMBER SCROLL AREA AFTER CONTAINER FOR RESIZING
+    ScrollArea(
+        parent=right_container,
+        relative_position=(0, 0),
+        relative_size=(1, 0.8),
+        vertical=True,
+        widget=move_list
     ),
-    'red_timer':
+    'move_list':
+        move_list,
+    'blue_timer':
     Timer(
         relative_position=(0.05, 0.05),
         anchor_y='center',
         relative_size=(0.1, 0.1),
-        event=CustomEvent(GameEventType.TIMER_END, active_colour=Colour.RED),
+        active_colour=Colour.BLUE,
+        event=CustomEvent(GameEventType.TIMER_END),
+    ),
+    'red_timer':
+    Timer(
+        relative_position=(0.05, -0.05),
+        anchor_y='center',
+        relative_size=(0.1, 0.1),
+        active_colour=Colour.RED,
+        event=CustomEvent(GameEventType.TIMER_END),
     ),
     'status_text':
     Text(

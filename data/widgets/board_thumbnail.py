@@ -48,7 +48,7 @@ class BoardThumbnail(_Widget):
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
         self._board.set_surface_size(new_surface_size)
-        self._piece_group.handle_resize((0, 0), self.size, resize_end=False) # ONLY RENDERS PIECES IN LOW QUALITY
+        self._piece_group.handle_resize((0, 0), self.size)
     
     def process_event(self, event):
         pass

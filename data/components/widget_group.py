@@ -39,3 +39,8 @@ class WidgetGroup(pygame.sprite.Group):
         dirty = self.lostsprites
 
         return dirty
+    
+    def on_widget(self, mouse_pos):
+        test_sprite = pygame.sprite.Sprite()
+        test_sprite.rect = pygame.FRect(*mouse_pos, 1, 1)
+        return pygame.sprite.spritecollideany(test_sprite, self)

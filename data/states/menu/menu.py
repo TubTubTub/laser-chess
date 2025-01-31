@@ -1,4 +1,7 @@
 import pygame
+import sys
+from random import randint
+
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
@@ -10,7 +13,6 @@ from data.managers.audio import audio
 from data.managers.animation import animation
 from data.managers.window import window
 from data.utils.asset_helpers import get_rotational_angle
-from random import randint
 
 class Menu(_State):
     def __init__(self):
@@ -70,6 +72,10 @@ class Menu(_State):
             case MenuEventType.BROWSER_CLICK:
                 self.next = 'browser'
                 self.done = True
+            case MenuEventType.QUIT_CLICK:
+                pygame.quit()
+                sys.exit()
+                print('quitting...')
     
     def draw_sphinx(self):
         sphinx_surface = pygame.transform.scale(GRAPHICS['sphinx_1'], self.sphinx_size)

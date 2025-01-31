@@ -3,6 +3,7 @@ from data.widgets.bases import _Widget
 from data.widgets.slider_thumb import _SliderThumb
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_gradient
+from data.utils.asset_helpers import smoothscale_and_cache
 
 class _ColourSlider(_Widget):
     def __init__(self, relative_width, **kwargs):
@@ -52,7 +53,7 @@ class _ColourSlider(_Widget):
         self.set_image()
     
     def set_image(self):
-        gradient_scaled = pygame.transform.smoothscale(self._gradient_surface, self.gradient_size)
+        gradient_scaled = smoothscale_and_cache(self._gradient_surface, self.gradient_size)
         gradient_position = self.gradient_position
 
         self.image = pygame.transform.scale(self._empty_surface, (self.size))

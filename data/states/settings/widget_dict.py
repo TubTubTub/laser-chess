@@ -10,7 +10,7 @@ user_settings = get_user_settings()
 carousel_widgets = {
     key: Text(
         relative_position=(0, 0),
-        relative_size=(0.2, 0.04),
+        relative_size=(0.25, 0.04),
         margin=0,
         text=key.replace('_', ' ').upper(),
         fit_vertical=True,

@@ -44,11 +44,11 @@ class Browser(_State):
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False
 
+        self.refresh_games_list() # BEFORE RESIZE TO FILL WIDGET BEFORE RESIZING
+
         self._widget_group = WidgetGroup(BROWSER_WIDGETS)
         self._widget_group.handle_resize(window.size)
         BROWSER_WIDGETS['browser_strip'].kill()
-
-        self.refresh_games_list()
 
         self.draw()
     
@@ -72,9 +72,11 @@ class Browser(_State):
         start_row = (self._page_number - 1) * GAMES_PER_PAGE + 1
         end_row = (self._page_number) * GAMES_PER_PAGE
         self._games_list = get_ordered_games(column_map[filter_column], ascend_map[filter_ascend], start_row=start_row, end_row=end_row)
+        
         BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
+        BROWSER_WIDGETS['browser_strip'].set_surface_size(window.size)
         BROWSER_WIDGETS['scroll_area'].set_image()
-    
+
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
