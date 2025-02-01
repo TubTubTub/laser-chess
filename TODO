@@ -2,7 +2,6 @@ Make bitboards a dictionary
 chromatic abbreviation
 
 Should do:
-Make wrapper for pressable button widgets
 Use logging package
 Fix opengl support
 Add help button
@@ -13,7 +12,6 @@ Switch sphinx direction
 Log-in
 
 Miscellaneous:
-Maybe separate text background code into a new label class
 Add Ctrl + A and mouse drag to text input widget
 Make ScrollArea use parent keyword
 Remove Miscllaenous Draw and replace with third Colour option

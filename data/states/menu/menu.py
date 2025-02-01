@@ -11,6 +11,12 @@ from data.utils.asset_helpers import scale_and_cache
 from data.managers.audio import audio
 from data.managers.window import window
 from data.utils.asset_helpers import get_rotational_angle
+from data.managers.logs import logger
+import logging
+
+logser = logging.getLogger(__name__)
+
+logser.info('LOGGING TEST')
 
 class Menu(_State):
     def __init__(self):

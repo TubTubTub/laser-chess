@@ -1,4 +1,3 @@
-import pygame
 from data.widgets.bases import _Pressable, _Box
 from data.widgets.icon import Icon
 from data.constants import WidgetState, RED_BUTTON_COLOURS
@@ -17,6 +16,3 @@ class IconButton(_Box, _Pressable, Icon):
         
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)
-    
-    def process_event(self, event):
-        return super().process_event(event)

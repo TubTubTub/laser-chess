@@ -41,6 +41,7 @@ class ShaderType(StrEnum):
     _BLEND = auto()
     _CROP = auto()
     _BACKGROUND_WAVES = auto()
+    _BACKGROUND_BALATRO = auto()
 
 SHADER_MAP = {
     'default': [

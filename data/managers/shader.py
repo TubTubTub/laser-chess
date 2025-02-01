@@ -90,7 +90,7 @@ class ShaderManager:
         self._textures[shader_type] = texture
         self.framebuffers[shader_type] = self._ctx.framebuffer(color_attachments=[self._textures[shader_type]])
     
-    def render_to_fbo(self, shader_type, texture, output_fbo=None, program_type=None, **kwargs):
+    def render_to_fbo(self, shader_type, texture, output_fbo=None, program_type=None, use_image=True, **kwargs):
         fbo = output_fbo or self.framebuffers[shader_type]
         program = self._programs[program_type] if program_type else self._programs[shader_type]
         vao= self._vaos[program_type] if program_type else self._vaos[shader_type]
@@ -98,7 +98,8 @@ class ShaderManager:
         fbo.use()
         texture.use(0)
 
-        program['image'] = 0
+        if use_image:
+            program['image'] = 0
         for uniform, value in kwargs.items():
             program[uniform] = value
             
@@ -178,13 +179,16 @@ class _Base:
 
         self._shader_manager.create_framebuffer(ShaderType.BASE)
         self._shader_manager.create_vao(ShaderType._BACKGROUND_WAVES)
+        self._shader_manager.create_vao(ShaderType._BACKGROUND_BALATRO)
     
     def apply(self, texture, background_type=1):
         base_texture = self._shader_manager.get_fbo_texture(ShaderType.BASE)
         
         match background_type:
             case 1:
-                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_WAVES, time=pygame.time.get_ticks() / 1000)
+                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_WAVES, use_image=False, time=pygame.time.get_ticks() / 1000)
+            case 2:
+                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_BALATRO, time=pygame.time.get_ticks() / 1000, screenResolution=base_texture.size)
 
         background = self._shader_manager.get_fbo_texture(ShaderType.BASE)
         background.use(1)
