@@ -1,2 +1,3 @@
-Move piece THEN generate mask
+Change background shader
+Resign and draw icons
 Fix Minimax

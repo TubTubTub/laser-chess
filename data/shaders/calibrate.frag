@@ -6,5 +6,5 @@ in vec2 uvs;
 out vec4 f_colour;
 
 void main() {
-    f_colour = vec4(texture(image, uvs).rgb, 1.0);
+    f_colour = vec4(texture(image, uvs).rgba);
 }

@@ -1,13 +1,12 @@
 import pygame
 from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
-from data.utils.asset_helpers import draw_background
+from data.constants import SettingsEventType, WidgetState, ShaderType, SHADER_MAP
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
-from data.constants import SettingsEventType, WidgetState, SHADER_MAP
 from data.components.widget_group import WidgetGroup
-from data.assets import MUSIC_PATHS, GRAPHICS
 from data.managers.window import window
 from data.managers.audio import audio
 from data.widgets import ColourPicker
+from data.assets import MUSIC_PATHS
 from data.control import _State
 
 class Settings(_State):
@@ -29,6 +28,7 @@ class Settings(_State):
     
     def startup(self, persist=None):
         print('starting settings.py')
+        window.set_apply_arguments(ShaderType.BASE, background_type=1)
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._settings = get_user_settings()
@@ -122,7 +122,6 @@ class Settings(_State):
                 
                 self.reload_display_mode()
 
-
             case SettingsEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
@@ -167,5 +166,5 @@ class Settings(_State):
                 self._settings['particles'] = widget_event.toggled
     
     def draw(self):
-        draw_background(window.screen, GRAPHICS['temp_background'])
+        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()

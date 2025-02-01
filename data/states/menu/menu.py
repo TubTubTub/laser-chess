@@ -5,12 +5,10 @@ from random import randint
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
-from data.constants import MenuEventType, ShaderType, CursorMode
-from data.components.cursor import Cursor
+from data.constants import MenuEventType, ShaderType
 from data.assets import GRAPHICS, MUSIC_PATHS
-from data.utils.asset_helpers import draw_background
+from data.utils.asset_helpers import scale_and_cache
 from data.managers.audio import audio
-from data.managers.animation import animation
 from data.managers.window import window
 from data.utils.asset_helpers import get_rotational_angle
 
@@ -39,6 +37,7 @@ class Menu(_State):
     
     def startup(self, persist=None):
         print('starting menu.py')
+        window.set_apply_arguments(ShaderType.BASE, background_type=1)
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._fire_laser = False
@@ -78,7 +77,7 @@ class Menu(_State):
                 print('quitting...')
     
     def draw_sphinx(self):
-        sphinx_surface = pygame.transform.scale(GRAPHICS['sphinx_1'], self.sphinx_size)
+        sphinx_surface = scale_and_cache(GRAPHICS['sphinx_1'], self.sphinx_size)
         sphinx_surface = pygame.transform.rotate(sphinx_surface, self.sphinx_rotation - 30)
         sphinx_rect = pygame.FRect(0, 0, *self.sphinx_size)
         sphinx_rect.center = self.sphinx_center
@@ -86,11 +85,10 @@ class Menu(_State):
         window.screen.blit(sphinx_surface, sphinx_rect)
     
     def draw(self):
-        # draw_background(window.screen, GRAPHICS['temp_background'])
-        
         window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         self.draw_sphinx()
+
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=window.screen, occlusion_intensity=0.7)
     
     def update(self, **kwargs):

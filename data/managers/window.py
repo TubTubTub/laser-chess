@@ -17,6 +17,7 @@ class WindowManager(pygame.Window):
         self.screen = pygame.Surface(self.size, pygame.SRCALPHA)
 
         self.shader_arguments = {
+            ShaderType.BASE: {},
             ShaderType.SHAKE: {},
             ShaderType.BLOOM: {},
             ShaderType.GRAYSCALE: {},
@@ -51,7 +52,6 @@ class WindowManager(pygame.Window):
         # native_surface = self.get_surface()
         # native_surface.fill((0, 0, 0))
         # native_surface.blit(self.screen, (0, 0))
-
         self._shader_manager.draw(self.screen, self.shader_arguments)
         self.flip()
     

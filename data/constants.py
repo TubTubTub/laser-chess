@@ -25,13 +25,13 @@ class CursorMode(IntEnum):
     NO = auto()
 
 class ShaderType(StrEnum):
+    BASE = auto()
     SHAKE = auto()
     BLOOM = auto()
     GRAYSCALE = auto()
     CRT = auto()
     RAYS = auto()
     
-    _BASE = auto()
     _BLUR = auto()
     _HIGHLIGHT = auto()
     _CALIBRATE = auto()
@@ -40,6 +40,7 @@ class ShaderType(StrEnum):
     _OCCLUSION = auto()
     _BLEND = auto()
     _CROP = auto()
+    _BACKGROUND_WAVES = auto()
 
 SHADER_MAP = {
     'default': [

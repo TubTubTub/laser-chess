@@ -1,3 +1,4 @@
+import pygame
 from data.constants import ShaderType
 from array import array
 from pathlib import Path
@@ -12,7 +13,7 @@ SHADER_PRIORITY = [
     ShaderType.BLOOM,
     ShaderType.RAYS,
     ShaderType.GRAYSCALE,
-    ShaderType._BASE,
+    ShaderType.BASE,
 ]
 
 pygame_quad_array = array('f', [
@@ -44,7 +45,7 @@ class ShaderManager:
         self._screen_size = screen_size
         self._opengl_buffer = self._ctx.buffer(data=opengl_quad_array)
         self._pygame_buffer = self._ctx.buffer(data=pygame_quad_array)
-        self._shader_stack = [ShaderType._BASE]
+        self._shader_stack = [ShaderType.BASE]
 
         self._vert_shaders = {}
         self._frag_shaders = {}
@@ -53,26 +54,26 @@ class ShaderManager:
         self._textures = {}
         self.framebuffers = {}
         self._shader_passes = {}
-
-        self.load_shader(ShaderType._BASE)
+        
+        self.load_shader(ShaderType.BASE)
         self.load_shader(ShaderType._CALIBRATE)
         self.create_framebuffer(ShaderType._CALIBRATE)
 
     def load_shader(self, shader_type, **kwargs):
         self._shader_passes[shader_type] = shader_pass_lookup[shader_type](self, **kwargs)
 
+        self.create_vao(shader_type)
+    
+    def clear_shaders(self):
+        self._shader_stack = [ShaderType.BASE]
+    
+    def create_vao(self, shader_type):
         vert_path = Path(shader_path / 'base.vert').resolve()
-        frag_path = Path(shader_path / (shader_type.replace('_', '') + '.frag')).resolve()
+        frag_path = Path(shader_path / (shader_type.replace('_', '', 1) + '.frag')).resolve()
 
         self._vert_shaders[shader_type] = vert_path.read_text()
         self._frag_shaders[shader_type] = frag_path.read_text()
 
-        self.create_vao(shader_type)
-    
-    def clear_shaders(self):
-        self._shader_stack = [ShaderType._BASE]
-    
-    def create_vao(self, shader_type):
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
         self._programs[shader_type] = program
         
@@ -89,16 +90,19 @@ class ShaderManager:
         self._textures[shader_type] = texture
         self.framebuffers[shader_type] = self._ctx.framebuffer(color_attachments=[self._textures[shader_type]])
     
-    def render_to_fbo(self, shader_type, texture, output_fbo=None, **kwargs):
+    def render_to_fbo(self, shader_type, texture, output_fbo=None, program_type=None, **kwargs):
         fbo = output_fbo or self.framebuffers[shader_type]
+        program = self._programs[program_type] if program_type else self._programs[shader_type]
+        vao= self._vaos[program_type] if program_type else self._vaos[shader_type]
+
         fbo.use()
         texture.use(0)
 
-        self._programs[shader_type]['image'] = 0
+        program['image'] = 0
         for uniform, value in kwargs.items():
-            self._programs[shader_type][uniform] = value
+            program[uniform] = value
             
-        self._vaos[shader_type].render(mode=moderngl.TRIANGLE_STRIP)
+        vao.render(mode=moderngl.TRIANGLE_STRIP)
     
     def apply_shader(self, shader_type, **kwargs):
         if shader_type in self._shader_stack:
@@ -114,7 +118,7 @@ class ShaderManager:
         if shader_type in self._shader_stack:
             self._shader_stack.remove(shader_type)
     
-    def render_output(self):
+    def render_output(self, texture):
         output_shader_type = self._shader_stack[-1]
         self._ctx.screen.use() # IMPORTANT
         
@@ -142,10 +146,9 @@ class ShaderManager:
 
         for shader_type in self._shader_stack:
             self._shader_passes[shader_type].apply(texture, **arguments.get(shader_type, {}))
-            
             texture = self.get_fbo_texture(shader_type)
 
-        self.render_output()
+        self.render_output(texture)
     
     def __del__(self):
         self.cleanup()
@@ -173,10 +176,19 @@ class _Base:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-        self._shader_manager.create_framebuffer(ShaderType._BASE)
+        self._shader_manager.create_framebuffer(ShaderType.BASE)
+        self._shader_manager.create_vao(ShaderType._BACKGROUND_WAVES)
     
-    def apply(self, texture):
-        self._shader_manager.render_to_fbo(ShaderType._BASE, texture)
+    def apply(self, texture, background_type=1):
+        base_texture = self._shader_manager.get_fbo_texture(ShaderType.BASE)
+        
+        match background_type:
+            case 1:
+                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_WAVES, time=pygame.time.get_ticks() / 1000)
+
+        background = self._shader_manager.get_fbo_texture(ShaderType.BASE)
+        background.use(1)
+        self._shader_manager.render_to_fbo(ShaderType.BASE, texture, background=1)
 
 class Shake:
     def __init__(self, shader_manager: ShaderManager):
@@ -396,7 +408,7 @@ shader_pass_lookup = {
     ShaderType.RAYS: Rays,
 
     ShaderType._CALIBRATE: lambda *args: None,
-    ShaderType._BASE: _Base,
+    ShaderType.BASE: _Base,
     ShaderType._BLUR: _Blur,
     ShaderType._HIGHLIGHT: _Highlight,
     ShaderType._SHADOWMAP: _ShadowMap,

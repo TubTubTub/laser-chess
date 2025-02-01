@@ -185,7 +185,7 @@ class Config(_State):
             CONFIG_WIDGETS['fen_string_input'].set_text(self._config['FEN_STRING'])
     
     def draw(self):
-        draw_background(window.screen, GRAPHICS['temp_background'])
+        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
 
         if self._selected_preset:
