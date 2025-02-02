@@ -11,7 +11,7 @@ from data.managers.audio import audio
 
 from data.assets import GRAPHICS
 
-from data.constants import BrowserEventType, GAMES_PER_PAGE
+from data.constants import BrowserEventType, ShaderType, GAMES_PER_PAGE
 
 from data.database.database_helpers import delete_game, get_ordered_games
 
@@ -40,6 +40,7 @@ class Browser(_State):
     def startup(self, persist=None):
         print('starting browser.py')
         # audio.play_music(MUSIC_PATHS['menu'])
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_WAVES)
 
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False
@@ -132,6 +133,6 @@ class Browser(_State):
                 self.refresh_games_list()
     
     def draw(self):
-        draw_background(window.screen, GRAPHICS['temp_background'])
+        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         

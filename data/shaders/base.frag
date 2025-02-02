@@ -9,7 +9,7 @@ out vec4 f_colour;
 void main() {
     vec4 colour = texture(image, uvs);
 
-	if (colour.a > 0.1) {
+	if (colour.a == 1.0) {
 		f_colour = colour;
 	} else {
 		f_colour = texture(background, uvs);

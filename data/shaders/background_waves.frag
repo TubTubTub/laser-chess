@@ -9,7 +9,6 @@ uniform int total_phases=20;
 uniform vec4 bottom_color=vec4(0.38, 0.04, 0.71, 1.0);
 uniform vec4 top_color=vec4(0.15, 0.02, 0.49, 1.0);
 
-uniform sampler2D image;
 uniform float time;
 
 in vec2 uvs;
@@ -44,5 +43,5 @@ void main() {
 	if (d > s + 1.0 / t) i++;
 	i = clamp(i, 0.0, t - 1.0);
 	
-	f_colour = lerp(top_color, bottom_color, i / (t - 1.0)) + texture(image, uvs) * 0.001;
+	f_colour = lerp(top_color, bottom_color, i / (t - 1.0));
 }

@@ -28,7 +28,7 @@ class Settings(_State):
     
     def startup(self, persist=None):
         print('starting settings.py')
-        window.set_apply_arguments(ShaderType.BASE, background_type=1)
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._settings = get_user_settings()
@@ -166,5 +166,4 @@ class Settings(_State):
                 self._settings['particles'] = widget_event.toggled
     
     def draw(self):
-        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()

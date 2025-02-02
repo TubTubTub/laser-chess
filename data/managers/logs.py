@@ -4,10 +4,8 @@ from pathlib import Path
 import logging
 
 config_path = (Path(__file__).parent / '../app_data/logs_config.json').resolve()
+config = load_json(config_path)
+logging.config.dictConfig(config)
 
-class LogsManager:
-    def __init__(self):
-        config = load_json(config_path)
-        logging.config.dictConfig(config)
-
-logger = LogsManager()
+def initialise_logger(file_path):
+    return logging.getLogger(Path(file_path).name)

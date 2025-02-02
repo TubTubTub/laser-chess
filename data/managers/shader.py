@@ -73,7 +73,7 @@ class ShaderManager:
 
         self._vert_shaders[shader_type] = vert_path.read_text()
         self._frag_shaders[shader_type] = frag_path.read_text()
-
+        
         program = self._ctx.program(vertex_shader=self._vert_shaders[shader_type], fragment_shader=self._frag_shaders[shader_type])
         self._programs[shader_type] = program
         
@@ -173,25 +173,61 @@ class ShaderManager:
             filter = self._textures[shader_type].filter[0]
             self.create_framebuffer(shader_type, size=self._screen_size, filter=filter) # RECREATE FRAMEBUFFER TO PREVENT SCALING ISSUES
 
-class _Base:
+class Base:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
         self._shader_manager.create_framebuffer(ShaderType.BASE)
         self._shader_manager.create_vao(ShaderType._BACKGROUND_WAVES)
         self._shader_manager.create_vao(ShaderType._BACKGROUND_BALATRO)
+        self._shader_manager.create_vao(ShaderType._BACKGROUND_LASERS)
+        self._shader_manager.create_vao(ShaderType._BACKGROUND_GRADIENT)
     
-    def apply(self, texture, background_type=1):
+    def apply(self, texture, background_type=None):
         base_texture = self._shader_manager.get_fbo_texture(ShaderType.BASE)
         
         match background_type:
-            case 1:
-                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_WAVES, use_image=False, time=pygame.time.get_ticks() / 1000)
-            case 2:
-                self._shader_manager.render_to_fbo(ShaderType.BASE, texture=base_texture, program_type=ShaderType._BACKGROUND_BALATRO, time=pygame.time.get_ticks() / 1000, screenResolution=base_texture.size)
+            case ShaderType._BACKGROUND_WAVES:
+                self._shader_manager.render_to_fbo(
+                    ShaderType.BASE,
+                    texture=base_texture,
+                    program_type=ShaderType._BACKGROUND_WAVES,
+                    use_image=False,
+                    time=pygame.time.get_ticks() / 1000
+                )
+            case ShaderType._BACKGROUND_BALATRO:
+                self._shader_manager.render_to_fbo(
+                    ShaderType.BASE,
+                    texture=base_texture,
+                    program_type=ShaderType._BACKGROUND_BALATRO,
+                    use_image=False,
+                    time=pygame.time.get_ticks() / 1000,
+                    screenSize=base_texture.size
+                )
+            case ShaderType._BACKGROUND_LASERS:
+                self._shader_manager.render_to_fbo(
+                    ShaderType.BASE,
+                    texture=base_texture,
+                    program_type=ShaderType._BACKGROUND_LASERS,
+                    use_image=False,
+                    time=pygame.time.get_ticks() / 1000,
+                   screenSize=base_texture.size
+                )
+            case ShaderType._BACKGROUND_GRADIENT:
+                self._shader_manager.render_to_fbo(
+                    ShaderType.BASE,
+                    texture=base_texture,
+                    program_type=ShaderType._BACKGROUND_GRADIENT,
+                    use_image=False,
+                    time=pygame.time.get_ticks() / 1000,
+                   screenSize=base_texture.size
+                )
+            case None:
+                pass
+            case _:
+                raise ValueError('(shader.py) Unknown background type:', background_type)
 
-        background = self._shader_manager.get_fbo_texture(ShaderType.BASE)
-        background.use(1)
+        self._shader_manager.get_fbo_texture(ShaderType.BASE).use(1)
         self._shader_manager.render_to_fbo(ShaderType.BASE, texture, background=1)
 
 class Shake:
@@ -412,7 +448,7 @@ shader_pass_lookup = {
     ShaderType.RAYS: Rays,
 
     ShaderType._CALIBRATE: lambda *args: None,
-    ShaderType.BASE: _Base,
+    ShaderType.BASE: Base,
     ShaderType._BLUR: _Blur,
     ShaderType._HIGHLIGHT: _Highlight,
     ShaderType._SHADOWMAP: _ShadowMap,

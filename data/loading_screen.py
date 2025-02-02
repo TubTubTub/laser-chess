@@ -40,6 +40,10 @@ class LoadingScreen:
     @property
     def logo_opacity(self):
         return min(255, (pygame.time.get_ticks() - start_ticks) / 5)
+
+    @property
+    def duration_not_over(self):
+        return (pygame.time.get_ticks() - start_ticks) < 1500
     
     def event_loop(self):
         for event in pygame.event.get():
@@ -56,7 +60,7 @@ class LoadingScreen:
         window.update()
 
     def run(self):
-        while self._thread.is_alive():
+        while self._thread.is_alive() or self.duration_not_over:
             self.event_loop()
             self.draw()
             self._clock.tick(FPS)

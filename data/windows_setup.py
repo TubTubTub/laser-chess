@@ -5,11 +5,12 @@ import ctypes
 import sys
 
 def wndProc(oldWndProc, draw_callback, hWnd, message, wParam, lParam):
-    if message == win32con.WM_SIZING:
+    if message == win32con.WM_SIZING or message == win32con.WM_TIMER: # Don't know what WM_TIMER does
         draw_callback(resize=True)
         win32gui.RedrawWindow(hWnd, None, None, win32con.RDW_INVALIDATE | win32con.RDW_ERASE)
     elif message == win32con.WM_MOVE:
         draw_callback(resize=False)
+
     return win32gui.CallWindowProc(oldWndProc, hWnd, message, wParam, lParam)
 
 def set_win_resize_func(resize_function):

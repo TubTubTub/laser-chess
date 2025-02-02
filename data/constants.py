@@ -2,7 +2,7 @@ import pygame
 from enum import IntEnum, StrEnum, auto
 
 BG_COLOUR = (0, 0, 0)
-PAUSE_COLOUR = (50, 50, 50, 200)
+PAUSE_COLOUR = (50, 50, 50, 128)
 OVERLAY_COLOUR_LIGHT = (255, 0, 0, 128)
 OVERLAY_COLOUR_DARK = (255, 0, 0, 196)
 SCREEN_SIZE = (1200, 600)
@@ -42,6 +42,8 @@ class ShaderType(StrEnum):
     _CROP = auto()
     _BACKGROUND_WAVES = auto()
     _BACKGROUND_BALATRO = auto()
+    _BACKGROUND_LASERS = auto()
+    _BACKGROUND_GRADIENT = auto()
 
 SHADER_MAP = {
     'default': [

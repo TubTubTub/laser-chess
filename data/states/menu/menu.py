@@ -11,12 +11,9 @@ from data.utils.asset_helpers import scale_and_cache
 from data.managers.audio import audio
 from data.managers.window import window
 from data.utils.asset_helpers import get_rotational_angle
-from data.managers.logs import logger
-import logging
+from data.managers.logs import initialise_logger
 
-logser = logging.getLogger(__name__)
-
-logser.info('LOGGING TEST')
+logger = initialise_logger(__file__)
 
 class Menu(_State):
     def __init__(self):
@@ -37,13 +34,13 @@ class Menu(_State):
         return -get_rotational_angle(mouse_pos, self.sphinx_center)
     
     def cleanup(self):
-        print('cleaning menu.py')
+        logger.info('cleaning menu.py')
         window.clear_apply_arguments(ShaderType.BLOOM)
         return None
     
     def startup(self, persist=None):
-        print('starting menu.py')
-        window.set_apply_arguments(ShaderType.BASE, background_type=1)
+        logger.info('starting menu.py')
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._fire_laser = False
@@ -91,7 +88,6 @@ class Menu(_State):
         window.screen.blit(sphinx_surface, sphinx_rect)
     
     def draw(self):
-        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
         self.draw_sphinx()
 

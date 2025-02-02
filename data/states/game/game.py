@@ -7,7 +7,7 @@ from data.states.game.mvc.pause_view import PauseView
 from data.states.game.mvc.win_view import WinView
 
 from data.components.game_entry import GameEntry
-from data.constants import BG_COLOUR
+from data.constants import ShaderType, BG_COLOUR
 from data.control import _State
 from data.database.database_helpers import insert_into_games
 
@@ -32,6 +32,7 @@ class Game(_State):
         self.done = True
     
     def startup(self, persist):
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_LASERS)
         binded_startup = partial(self.startup, persist)
         
         self.model = GameModel(persist)
@@ -56,7 +57,6 @@ class Game(_State):
         self.pause_view.handle_resize()
 
     def draw(self):
-        window.screen.fill(BG_COLOUR)
         self.view.draw()
         self.win_view.draw()
         self.pause_view.draw()

@@ -5,7 +5,7 @@ from data.states.review.widget_dict import REVIEW_WIDGETS
 from data.states.game.components.board import Board
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
-from data.constants import ReviewEventType, Colour
+from data.constants import ReviewEventType, Colour, ShaderType
 from data.components.cursor import Cursor
 from data.assets import GRAPHICS, MUSIC_PATHS
 from data.utils.asset_helpers import draw_background
@@ -33,6 +33,7 @@ class Review(_State):
     
     def startup(self, persist):
         print('starting review.py')
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)
         self._widget_group.handle_resize(window.size)
 

@@ -97,6 +97,7 @@ GAME_WIDGETS = {
             anchor_y='center',
             border_radius=0,
             border_width=0,
+            margin=5,
             icon=GRAPHICS['resign']
         ),
         Icon(
@@ -108,6 +109,7 @@ GAME_WIDGETS = {
             anchor_y='center',
             border_radius=0,
             border_width=0,
+            margin=5,
             icon=GRAPHICS['draw']
         ),
     ],
