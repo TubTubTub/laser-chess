@@ -1,0 +1,28 @@
+UI asset pack Demo (by Franuka) v1.0
+-------------------------
+Thank you for getting this asset pack demo!
+Make sure to check my other assets to complement this one (https://franuka.itch.io/)
+
+TERMS OF USE:
+------------
+* You may use this pack on both commercial AND non-commercial projects, just remember to add a link to my itch page and/or Twitter/X, it helps a lot :) (Links below)
+* You can edit this pack, but you can not redistribute it as is or resell it elsewhere. Feel free to send me a message regarding specific cases. Thanks!
+---
+Included are UI assets in three sizes: 100% (16x16px grid), 200% (32x32px grid) and 300% (48x48px grid), in .png format, transparent background. There's also a .ttf pixel font for texts.
+
+// The full version includes another font (for titles), many more backgrounds, buttons, etc., icons, a spellbook and more!
+(https://franuka.itch.io/rpg-ui-pack)
+
+FONTS:
+------
+* In terms of font size, 'FantasyRPGtext' should be used at multiples of 8. This is important to retain the pixel look, since these are not vectorial fonts.
+
+---
+All assets were created from scratch by me.
+* Contact: franukai@gmail.com
+* Instagram: https://www.instagram.com/franuka.art/
+* Twitter/X: https://twitter.com/franuka_art
+* Other projects and games on Itch.io: https://franuka.itch.io/
+
+If you like what I do, consider supporting me by buying my packs, sharing, or sending your feedback.
+Have a good time making your games, and send me a link if you make something cool, I'd love to check your projects! :)

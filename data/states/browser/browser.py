@@ -49,6 +49,7 @@ class Browser(_State):
 
         self._widget_group = WidgetGroup(BROWSER_WIDGETS)
         self._widget_group.handle_resize(window.size)
+        BROWSER_WIDGETS['help'].kill()
         BROWSER_WIDGETS['browser_strip'].kill()
 
         self.draw()
@@ -80,6 +81,9 @@ class Browser(_State):
 
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
+
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+            BROWSER_WIDGETS['help'].kill()
 
         if widget_event is None:
             return
@@ -131,8 +135,9 @@ class Browser(_State):
                 self._page_number = widget_event.data
 
                 self.refresh_games_list()
+            
+            case BrowserEventType.HELP_CLICK:
+                self._widget_group.add(BROWSER_WIDGETS['help'])
     
     def draw(self):
-        window.screen.fill((0, 0, 0, 0))
         self._widget_group.draw()
-        

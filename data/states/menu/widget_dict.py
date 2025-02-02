@@ -1,11 +1,49 @@
 from data.widgets import *
 from data.components.custom_event import CustomEvent
-from data.constants import MenuEventType, WidgetState
+from data.constants import MenuEventType
 from data.assets import GRAPHICS
 from data.managers.theme import theme
 
+top_right_container = Rectangle(
+    relative_position=(0, 0),
+    relative_size=(0.15, 0.075),
+    fixed_position=(5, 5),
+    anchor_x='right',
+    scale_mode='height'
+)
+
 MENU_WIDGETS = {
+    'credits':
+    Icon(
+        relative_position=(0, 0),
+        relative_size=(0.7, 0.7),
+        icon=GRAPHICS['credits'],
+        anchor_x='center',
+        anchor_y='center',
+        margin=50
+    ),
     'default': [
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
+            anchor_x='right',
+            scale_mode='height',
+            base_icon=GRAPHICS['quit_base'],
+            hover_icon=GRAPHICS['quit_hover'],
+            press_icon=GRAPHICS['quit_press'],
+            event=CustomEvent(MenuEventType.QUIT_CLICK)
+        ),
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
+            scale_mode='height',
+            base_icon=GRAPHICS['credits_base'],
+            hover_icon=GRAPHICS['credits_hover'],
+            press_icon=GRAPHICS['credits_press'],
+            event=CustomEvent(MenuEventType.CREDITS_CLICK)
+        ),
         ReactiveIconButton(
             relative_position=(0.05, -0.2),
             relative_size=(0, 0.15),
@@ -14,17 +52,6 @@ MENU_WIDGETS = {
             hover_icon=GRAPHICS['play_text_hover'],
             press_icon=GRAPHICS['play_text_press'],
             event=CustomEvent(MenuEventType.CONFIG_CLICK)
-        ),
-        ReactiveIconButton(
-            relative_position=None,
-            fixed_position=(5, 5),
-            relative_size=(0.075, 0.075),
-            scale_mode='height',
-            anchor_x='right',
-            base_icon=GRAPHICS['quit_base'],
-            hover_icon=GRAPHICS['quit_hover'],
-            press_icon=GRAPHICS['quit_press'],
-            event=CustomEvent(MenuEventType.QUIT_CLICK)
         ),
         ReactiveIconButton(
             relative_position=(0.05, 0),

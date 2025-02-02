@@ -34,21 +34,47 @@ move_list = MoveList(
     move_list=[]
 )
 
+top_right_container = Rectangle(
+    relative_position=(0, 0),
+    relative_size=(0.15, 0.075),
+    fixed_position=(5, 5),
+    anchor_x='right',
+    scale_mode='height'
+)
+
 REVIEW_WIDGETS = {
+    'help':
+    Icon(
+        relative_position=(0, 0),
+        relative_size=(0.9, 0.9),
+        icon=GRAPHICS['temp_background'],
+        anchor_x='center',
+        anchor_y='center'
+    ),
     'default': [
         arrow_container,
         right_container,
         info_container,
         ReactiveIconButton(
+            parent=top_right_container,
             relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
+            relative_size=(1, 1),
             anchor_x='right',
             scale_mode='height',
             base_icon=GRAPHICS['home_base'],
             hover_icon=GRAPHICS['home_hover'],
             press_icon=GRAPHICS['home_press'],
-            fixed_position=(5, 5),
             event=CustomEvent(ReviewEventType.MENU_CLICK)
+        ),
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
+            scale_mode='height',
+            base_icon=GRAPHICS['help_base'],
+            hover_icon=GRAPHICS['help_hover'],
+            press_icon=GRAPHICS['help_press'],
+            event=CustomEvent(ReviewEventType.HELP_CLICK)
         ),
         ReactiveIconButton(
             parent=arrow_container,

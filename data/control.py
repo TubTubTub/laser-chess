@@ -99,6 +99,7 @@ class _State:
         
         self._cursor = CursorManager()
         self._widget_group = None
+        self._help = False
     
     def draw(self):
         raise NotImplementedError

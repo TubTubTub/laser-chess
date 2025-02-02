@@ -38,6 +38,7 @@ class Review(_State):
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)
         self._widget_group.handle_resize(window.size)
+        REVIEW_WIDGETS['help'].kill()
 
         self._moves = GameEntry.parse_moves(persist.pop('moves', ''))
         self._game_info = persist
@@ -115,6 +116,8 @@ class Review(_State):
         if event.type == pygame.VIDEORESIZE:
             self.handle_resize(resize_end=True)
             return
+        elif event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+            REVIEW_WIDGETS['help'].kill()
 
         widget_event = self._widget_group.process_event(event)
 
@@ -174,6 +177,9 @@ class Review(_State):
                 
                 self.refresh_pieces()
                 self.refresh_widgets()
+            
+            case ReviewEventType.HELP_CLICK:
+                self._widget_group.add(REVIEW_WIDGETS['help'])
     
     def handle_resize(self, resize_end=False):
         super().handle_resize()
@@ -181,7 +187,6 @@ class Review(_State):
         self._laser_draw.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
     
     def draw(self):
-        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
         self._piece_group.draw(window.screen)
         self._laser_draw.draw(window.screen)

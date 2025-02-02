@@ -295,7 +295,6 @@ class Editor(_State):
         self._overlay_draw.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
     
     def draw(self):
-        draw_background(window.screen, GRAPHICS['temp_background'])
         self._widget_group.draw()
         self._overlay_draw.draw(window.screen)
         self._piece_group.draw(window.screen)

@@ -40,20 +40,46 @@ buttons_container = Rectangle(
     anchor_x='center'
 )
 
+top_right_container = Rectangle(
+    relative_position=(0, 0),
+    relative_size=(0.15, 0.075),
+    fixed_position=(5, 5),
+    anchor_x='right',
+    scale_mode='height'
+)
+
 BROWSER_WIDGETS = {
+    'help':
+    Icon(
+        relative_position=(0, 0),
+        relative_size=(0.9, 0.9),
+        icon=GRAPHICS['temp_background'],
+        anchor_x='center',
+        anchor_y='center'
+    ),
     'default': [
         buttons_container,
         sort_by_container,
         ReactiveIconButton(
+            parent=top_right_container,
             relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
+            relative_size=(1, 1),
             anchor_x='right',
             scale_mode='height',
             base_icon=GRAPHICS['home_base'],
             hover_icon=GRAPHICS['home_hover'],
             press_icon=GRAPHICS['home_press'],
-            fixed_position=(5, 5),
             event=CustomEvent(BrowserEventType.MENU_CLICK)
+        ),
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
+            scale_mode='height',
+            base_icon=GRAPHICS['help_base'],
+            hover_icon=GRAPHICS['help_hover'],
+            press_icon=GRAPHICS['help_press'],
+            event=CustomEvent(BrowserEventType.HELP_CLICK)
         ),
         ReactiveIconButton(
             parent=buttons_container,
@@ -102,7 +128,7 @@ BROWSER_WIDGETS = {
     'scroll_area':
     ScrollArea(
         relative_position=(0.0, 0.15),
-        relative_size=(0.5, BROWSER_HEIGHT),
+        relative_size=(1, BROWSER_HEIGHT),
         vertical=False,
         widget=browser_strip
     ),

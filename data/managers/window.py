@@ -73,15 +73,18 @@ class WindowManager(pygame.Window):
         if is_opengl:
             self.screen.fill((0, 0, 0, 0))
         else:
+            self.screen.fill((0, 0, 0))
             draw_background(self.screen, self._background_image)
     
     def update(self):
         self.draw()
     
     def handle_resize(self):
+        self.screen = pygame.Surface(self.size, pygame.SRCALPHA)
         if is_opengl:
             self._shader_manager.handle_resize(self.size)
+        else:
+            draw_background(self.screen, self._background_image)
 
-        self.screen = pygame.Surface(self.size, pygame.SRCALPHA)
 
-window = WindowManager(size=SCREEN_SIZE, resizable=True, opengl=is_opengl, fullscreen=is_fullscreen)
+window = WindowManager(size=SCREEN_SIZE, resizable=True, opengl=is_opengl, fullscreen_desktop=is_fullscreen)

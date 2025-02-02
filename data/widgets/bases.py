@@ -1,14 +1,14 @@
 import pygame
-from data.constants import WidgetState
+from data.constants import WidgetState, SCREEN_SIZE
 from data.components.circular_linked_list import CircularLinkedList
 from data.managers.audio import audio
 from data.managers.theme import theme
 from data.managers.window import window
 from data.assets import SFX, FONTS, DEFAULT_FONT
 
-DEFAULT_SURFACE_SIZE = window.screen.size
+DEFAULT_SURFACE_SIZE = SCREEN_SIZE
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
-COUNT = 0
+# COUNT = 0
 
 class _Widget(pygame.sprite.Sprite):
     def __init__(self, **kwargs):
@@ -93,10 +93,13 @@ class _Widget(pygame.sprite.Sprite):
     
     @property
     def position(self):
+        x, y = None, None
         if self._fixed_position:
             x, y = self._fixed_position
-        else:
-            x, y = (self._relative_position[0] * self.surface_size[0], self._relative_position[1] * self.surface_size[1])
+        if x is None:
+            x = self._relative_position[0] * self.surface_size[0]
+        if y is None:
+            y = self._relative_position[1] * self.surface_size[1]
 
         if self._anchor_x == 'left':
             x = x

@@ -50,20 +50,46 @@ draw_button = TextButton(
     event=CustomEvent(GameEventType.DRAW_CLICK)
 )
 
+top_right_container = Rectangle(
+    relative_position=(0, 0),
+    relative_size=(0.15, 0.075),
+    fixed_position=(5, 5),
+    anchor_x='right',
+    scale_mode='height'
+)
+
 GAME_WIDGETS = {
+    'help':
+    Icon(
+        relative_position=(0, 0),
+        relative_size=(0.9, 0.9),
+        icon=GRAPHICS['temp_background'],
+        anchor_x='center',
+        anchor_y='center'
+    ),
     'default': [
         right_container,
         rotate_container,
         ReactiveIconButton(
+            parent=top_right_container,
             relative_position=(0, 0),
-            relative_size=(0.075, 0.075),
+            relative_size=(1, 1),
             anchor_x='right',
             scale_mode='height',
             base_icon=GRAPHICS['home_base'],
             hover_icon=GRAPHICS['home_hover'],
             press_icon=GRAPHICS['home_press'],
-            fixed_position=(5, 5),
             event=CustomEvent(GameEventType.MENU_CLICK)
+        ),
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0, 0),
+            relative_size=(1, 1),
+            scale_mode='height',
+            base_icon=GRAPHICS['help_base'],
+            hover_icon=GRAPHICS['help_hover'],
+            press_icon=GRAPHICS['help_press'],
+            event=CustomEvent(GameEventType.HELP_CLICK)
         ),
         ReactiveIconButton(
             parent=rotate_container,

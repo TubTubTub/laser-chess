@@ -57,6 +57,7 @@ class GameView:
     def initialise_widgets(self):
         GAME_WIDGETS['move_list'].reset_move_list()
         GAME_WIDGETS['move_list'].kill()
+        GAME_WIDGETS['help'].kill()
 
         GAME_WIDGETS['scroll_area'].set_image()
         
@@ -211,9 +212,6 @@ class GameView:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if clicked_coords:
                 return CustomEvent.create_event(GameEventType.BOARD_CLICK, coords=clicked_coords)
-            
-            elif self._widget_group.on_widget(event.pos):
-                return CustomEvent.create_event(GameEventType.EMPTY_CLICK)
 
             else:
                 return None
@@ -223,6 +221,12 @@ class GameView:
                 piece, colour, rotation = self._drag_and_drop.get_dragged_info()
                 piece_dragged = self._drag_and_drop.remove_dragged_piece()
                 return CustomEvent.create_event(GameEventType.PIECE_DROP, coords=clicked_coords, piece=piece, colour=colour, rotation=rotation, remove_overlay=piece_dragged)
+    
+    def add_help_screen(self):
+        self._widget_group.add(GAME_WIDGETS['help'])
+            
+    def remove_help_screen(self):
+        GAME_WIDGETS['help'].kill()
 
     def process_widget_event(self, event):
         return self._widget_group.process_event(event)

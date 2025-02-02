@@ -115,6 +115,7 @@ class ReviewEventType(StrEnum):
     MENU_CLICK = auto()
     PREVIOUS_CLICK = auto()
     NEXT_CLICK = auto()
+    HELP_CLICK = auto()
 
 class BrowserEventType(StrEnum):
     MENU_CLICK = auto()
@@ -125,6 +126,7 @@ class BrowserEventType(StrEnum):
     FILTER_COLUMN_CLICK = auto()
     FILTER_ASCEND_CLICK = auto()
     PAGE_CLICK = auto()
+    HELP_CLICK = auto()
 
 class GameEventType(StrEnum):
     BOARD_CLICK = auto()
@@ -132,8 +134,8 @@ class GameEventType(StrEnum):
     PAUSE_CLICK = auto()
     MENU_CLICK = auto()
     GAME_CLICK = auto()
+    HELP_CLICK = auto()
     PIECE_DROP = auto()
-    EMPTY_CLICK = auto()
     UPDATE_PIECES = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()
@@ -146,6 +148,7 @@ class MenuEventType(StrEnum):
     SETTINGS_CLICK = auto()
     BROWSER_CLICK = auto()
     QUIT_CLICK = auto()
+    CREDITS_CLICK = auto()
 
 class SettingsEventType(StrEnum):
     RESET_DEFAULT = auto()
@@ -177,6 +180,7 @@ class ConfigEventType(StrEnum):
     PRESET_CLICK = auto()
     SETUP_CLICK = auto()
     COLOUR_CLICK = auto()
+    HELP_CLICK = auto()
 
 class Colour(IntEnum):
     BLUE = 0

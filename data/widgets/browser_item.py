@@ -13,7 +13,7 @@ class BrowserItem(_Widget):
     def __init__(self, relative_width, game, **kwargs):
         super().__init__(relative_size=(relative_width, relative_width * 2), scale_mode='height', **kwargs)
         
-        line_height = (self.size[1] / 2) / FONT_DIVISION
+        line_height = (self.size[1] / 3) / FONT_DIVISION
         self._relative_font_size = height_to_font_size(self._font, line_height) / self.surface_size[1]
 
         self._game = game

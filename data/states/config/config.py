@@ -39,6 +39,7 @@ class Config(_State):
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(window.size)
         CONFIG_WIDGETS['invalid_fen_string'].kill()
+        CONFIG_WIDGETS['help'].kill()
 
         self._config = default_config
 
@@ -113,6 +114,9 @@ class Config(_State):
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+            CONFIG_WIDGETS['help'].kill()
+
         if widget_event is None:
             return
 
@@ -157,7 +161,9 @@ class Config(_State):
             
             case ConfigEventType.COLOUR_CLICK:
                 self.set_active_colour(widget_event.data.get_flipped_colour())
-    
+            
+            case ConfigEventType.HELP_CLICK:
+                self._widget_group.add(CONFIG_WIDGETS['help'])
     
     def set_preset_overlay(self, fen_string):
         fen_string_widget_map = {
@@ -188,6 +194,9 @@ class Config(_State):
     
     def draw(self):
         self._widget_group.draw()
+
+        if self._help:
+            pygame.draw.rect(window.screen, 'green', (10, 10, 1000, 1000))
 
         if self._selected_preset:
             pygame.draw.rect(window.screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))

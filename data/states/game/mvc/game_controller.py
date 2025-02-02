@@ -95,17 +95,27 @@ class GameController:
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
             
+            case GameEventType.HELP_CLICK:
+                self._view.add_help_screen()
+            
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
+        
+        return widget_event.type
 
     def handle_game_event(self, event):
-        self.handle_game_widget_event(event)
+        widget_event = self.handle_game_widget_event(event)
         
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             game_event = self._view.convert_mouse_pos(event)
 
             if game_event is None:
-                self._view.set_overlay_coords(None, None) # MIGHT NEED TO CHECK FOR GAME WIDGET EVENT TOO
+                if widget_event is None:
+                    if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+                        self._view.remove_help_screen()
+                    if event.type == pygame.MOUSEBUTTONUP:
+                        self._view.set_overlay_coords(None, None)
+                    
                 return
 
             match game_event.type:
@@ -153,12 +163,9 @@ class GameController:
                         self._view.set_overlay_coords(None, None)
 
                     self._view.remove_dragged_piece()
-                
-                case GameEventType.EMPTY_CLICK:
-                    return
 
                 case _:
-                    raise Exception('Unhandled event type (GameController.handle_event)')
+                    raise Exception('Unhandled event type (GameController.handle_event)', game_event.type)
     
     def handle_event(self, event):
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:

@@ -45,6 +45,7 @@ class Menu(_State):
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)
+        MENU_WIDGETS['credits'].kill()
         self._fire_laser = False
 
         audio.play_music(MUSIC_PATHS['menu'])
@@ -52,6 +53,8 @@ class Menu(_State):
         self.draw()
     
     def get_event(self, event):
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+            MENU_WIDGETS['credits'].kill()
         if event.type == pygame.MOUSEBUTTONDOWN:
             self._fire_laser = True
         elif event.type == pygame.MOUSEBUTTONUP:
@@ -81,6 +84,8 @@ class Menu(_State):
                 pygame.quit()
                 sys.exit()
                 print('quitting...')
+            case MenuEventType.CREDITS_CLICK:
+                self._widget_group.add(MENU_WIDGETS['credits'])
     
     def draw_sphinx(self):
         sphinx_surface = scale_and_cache(GRAPHICS['sphinx_0_b'], self.sphinx_size)

@@ -41,13 +41,6 @@ class ScrollArea(_Widget):
 
         self.set_image()
         self.set_geometry()
-
-    @property
-    def size(self):
-        if self._vertical:
-            return (self._relative_size[0] * self.surface_size[1], self._relative_size[1] * self.surface_size[1])
-        else:
-            return (self._relative_size[0] * self.surface_size[0], self._relative_size[1] * self.surface_size[1])
     
     @property
     def scroll_factor(self):

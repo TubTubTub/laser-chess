@@ -2,10 +2,7 @@ Make bitboards a dictionary
 chromatic abbreviation
 
 Should do:
-Use logging package
-Fix opengl support
 Add help button
-Fix fullscreen
 
 Ambitious:
 Switch sphinx direction
@@ -16,3 +13,4 @@ Add Ctrl + A and mouse drag to text input widget
 Make ScrollArea use parent keyword
 Remove Miscllaenous Draw and replace with third Colour option
 Standardise font size
+Fix SFX
