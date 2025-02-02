@@ -1,6 +1,7 @@
 # version 330 core
 
 uniform sampler2D image;
+uniform sampler2D mask;
 uniform vec3 checkColour;
 
 vec3 normColour = checkColour / 255;
@@ -14,6 +15,6 @@ void main() {
     if (pixel.rgb == normColour) {
         f_colour = vec4(normColour, 1.0);
     } else {
-        f_colour = vec4(0.0, 0.0, 0.0, 1.0);
+        f_colour = texture(mask, uvs);
     }
 }

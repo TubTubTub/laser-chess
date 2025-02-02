@@ -28,12 +28,14 @@ class Review(_State):
     
     def cleanup(self):
         print('cleaning review.py')
+        window.clear_apply_arguments(ShaderType.BLOOM)
 
         return None
     
     def startup(self, persist):
         print('starting review.py')
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
+        window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)
         self._widget_group.handle_resize(window.size)
 

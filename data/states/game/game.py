@@ -21,6 +21,7 @@ class Game(_State):
     
     def cleanup(self):
         print('cleaning game.py')
+        window.clear_apply_arguments(ShaderType.BLOOM)
 
         game_entry = GameEntry(self.model.states, final_fen_string=self.model.get_fen_string())
         insert_into_games(game_entry.convert_to_row())
@@ -33,6 +34,7 @@ class Game(_State):
     
     def startup(self, persist):
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_LASERS)
+        window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         binded_startup = partial(self.startup, persist)
         
         self.model = GameModel(persist)

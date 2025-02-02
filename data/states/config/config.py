@@ -13,7 +13,7 @@ from data.managers.theme import theme
 
 from data.assets import MUSIC_PATHS, GRAPHICS
 
-from data.constants import ConfigEventType, Colour
+from data.constants import ConfigEventType, Colour, ShaderType
 
 from data.utils.asset_helpers import draw_background
 
@@ -29,11 +29,13 @@ class Config(_State):
     
     def cleanup(self):
         print('cleaning config.py')
+        window.clear_apply_arguments(ShaderType.BLOOM)
 
         return self._config
     
     def startup(self, persist=None):
         print('starting config.py')
+        window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(window.size)
         CONFIG_WIDGETS['invalid_fen_string'].kill()

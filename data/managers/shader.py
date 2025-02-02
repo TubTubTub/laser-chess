@@ -31,9 +31,8 @@ opengl_quad_array = array('f', [
 ])
 
 HIGHLIGHT_THRESHOLD = 0.9
-HIGHLIGHT_INTENSITY = 0.5
-BLOOM_INTENSITY = 1.0
-BLUR_ITERATIONS = 2
+BLOOM_INTENSITY = 0.6
+BLUR_ITERATIONS = 4
 LIGHT_RESOLUTION = 256
 SHAKE_INTENSITY = 3
 
@@ -236,8 +235,8 @@ class Shake:
 
         self._shader_manager.create_framebuffer(ShaderType.SHAKE)
     
-    def apply(self, texture):
-        displacement = (randint(-SHAKE_INTENSITY, SHAKE_INTENSITY) / 1000, randint(-SHAKE_INTENSITY, SHAKE_INTENSITY) / 1000)
+    def apply(self, texture, intensity=SHAKE_INTENSITY):
+        displacement = (randint(-intensity, intensity) / 1000, randint(-intensity, intensity) / 1000)
         self._shader_manager.render_to_fbo(ShaderType.SHAKE, texture, displacement=displacement)
 
 class Grayscale:
@@ -263,49 +262,56 @@ class Bloom:
         self._shader_manager = shader_manager
         
         shader_manager.load_shader(ShaderType._BLUR)
-        shader_manager.load_shader(ShaderType._HIGHLIGHT)
+        shader_manager.load_shader(ShaderType._HIGHLIGHT_BRIGHTNESS)
+        shader_manager.load_shader(ShaderType._HIGHLIGHT_COLOUR)
         shader_manager.load_shader(ShaderType._OCCLUSION)
 
         shader_manager.create_framebuffer(ShaderType.BLOOM)
         shader_manager.create_framebuffer(ShaderType._BLUR)
-        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT)
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_BRIGHTNESS)
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_COLOUR)
         shader_manager.create_framebuffer(ShaderType._OCCLUSION)
     
-    def apply(self, texture, occlusion_surface=None, colour=None, colour_intensity=BLOOM_INTENSITY, occlusion_intensity=BLOOM_INTENSITY, brightness_intensity=BLOOM_INTENSITY):
+    def apply(self, texture, occlusion_surface=None, occlusion_colours=[], occlusion_intensity=BLOOM_INTENSITY, brightness_intensity=BLOOM_INTENSITY, colour_intensity=BLOOM_INTENSITY):
         if occlusion_surface:
-            glare_texture = self._shader_manager.calibrate_pygame_surface(occlusion_surface)
-            _Blur(self._shader_manager).apply(glare_texture)
+            occlusion_glare_texture = self._shader_manager.calibrate_pygame_surface(occlusion_surface)
+            _Blur(self._shader_manager).apply(occlusion_glare_texture)
             
             self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
             self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=occlusion_intensity)
 
             texture = self._shader_manager.get_fbo_texture(ShaderType.BLOOM)
-
-        if colour:
-            _Occlusion(self._shader_manager).apply(texture, occlusion_colour=colour)
-            glare_texture = self._shader_manager.get_fbo_texture(ShaderType._OCCLUSION)
-            _Blur(self._shader_manager).apply(glare_texture)
             
-            self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
-            self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=colour_intensity)
-            
-            texture = self._shader_manager.get_fbo_texture(ShaderType.BLOOM)
+        _Highlight_Brightness(self._shader_manager).apply(texture, intensity=brightness_intensity)
+        highlight_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT_BRIGHTNESS)
 
-        _Highlight(self._shader_manager).apply(texture)
-        glare_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT)
-        _Blur(self._shader_manager).apply(glare_texture)
+        for colour in occlusion_colours:
+            _Highlight_Colour(self._shader_manager).apply(texture, old_highlight=highlight_texture, colour=colour, intensity=colour_intensity)
+            highlight_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT_COLOUR)
+
+        _Blur(self._shader_manager).apply(highlight_texture)
         
         self._shader_manager.get_fbo_texture(ShaderType._BLUR).use(1)
-        self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=brightness_intensity)
+        self._shader_manager.render_to_fbo(ShaderType.BLOOM, texture, blurredImage=1, intensity=BLOOM_INTENSITY)
 
-class _Highlight:
+class _Highlight_Brightness:
     def __init__(self, shader_manager: ShaderManager):
         self._shader_manager = shader_manager
 
-        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT)
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_BRIGHTNESS)
     
-    def apply(self, texture):
-        self._shader_manager.render_to_fbo(ShaderType._HIGHLIGHT, texture, threshold=HIGHLIGHT_THRESHOLD, intensity=HIGHLIGHT_INTENSITY)
+    def apply(self, texture, intensity):
+        self._shader_manager.render_to_fbo(ShaderType._HIGHLIGHT_BRIGHTNESS, texture, threshold=HIGHLIGHT_THRESHOLD, intensity=intensity)
+
+class _Highlight_Colour:
+    def __init__(self, shader_manager: ShaderManager):
+        self._shader_manager = shader_manager
+
+        shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_COLOUR)
+    
+    def apply(self, texture, old_highlight, colour, intensity):
+        old_highlight.use(1)
+        self._shader_manager.render_to_fbo(ShaderType._HIGHLIGHT_COLOUR, texture, highlight=1, colour=colour, threshold=0.1, intensity=intensity)
 
 class _Blur:
     def __init__(self, shader_manager: ShaderManager):
@@ -450,7 +456,8 @@ shader_pass_lookup = {
     ShaderType._CALIBRATE: lambda *args: None,
     ShaderType.BASE: Base,
     ShaderType._BLUR: _Blur,
-    ShaderType._HIGHLIGHT: _Highlight,
+    ShaderType._HIGHLIGHT_BRIGHTNESS: _Highlight_Brightness,
+    ShaderType._HIGHLIGHT_COLOUR: _Highlight_Colour,
     ShaderType._SHADOWMAP: _ShadowMap,
     ShaderType._OCCLUSION: _Occlusion,
     ShaderType._LIGHTMAP: _LightMap,

@@ -33,7 +33,8 @@ class ShaderType(StrEnum):
     RAYS = auto()
     
     _BLUR = auto()
-    _HIGHLIGHT = auto()
+    _HIGHLIGHT_BRIGHTNESS = auto()
+    _HIGHLIGHT_COLOUR = auto()
     _CALIBRATE = auto()
     _LIGHTMAP = auto()
     _SHADOWMAP = auto()
@@ -47,7 +48,7 @@ class ShaderType(StrEnum):
 
 SHADER_MAP = {
     'default': [
-        # ShaderType.BLOOM
+        ShaderType.BLOOM
     ],
     'retro': [
         ShaderType.CRT
