@@ -1,5 +1,4 @@
 Make bitboards a dictionary
-chromatic abbreviation
 
 Should do:
 Add help button
@@ -9,7 +8,6 @@ Switch sphinx direction
 Log-in
 
 Miscellaneous:
-Add Ctrl + A and mouse drag to text input widget
 Make ScrollArea use parent keyword
 Standardise font size
 Fix SFX

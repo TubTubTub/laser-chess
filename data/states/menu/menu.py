@@ -27,10 +27,12 @@ class Menu(_State):
         logger.info('cleaning menu.py')
         window.clear_apply_arguments(ShaderType.BLOOM)
         window.clear_apply_arguments(ShaderType.SHAKE)
+        window.clear_effect(ShaderType.CHROMATIC_ABBREVIATION)
         return None
     
     def startup(self, persist=None):
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
+        window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
 
         self._widget_group = WidgetGroup(MENU_WIDGETS)
         self._widget_group.handle_resize(window.size)

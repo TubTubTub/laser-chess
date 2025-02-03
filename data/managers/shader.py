@@ -9,9 +9,9 @@ shader_path = (Path(__file__).parent / '../shaders/').resolve()
 
 SHADER_PRIORITY = [
     ShaderType.CRT,
-    ShaderType.CHROMATIC_ABBREVIATION,
     ShaderType.SHAKE,
     ShaderType.BLOOM,
+    ShaderType.CHROMATIC_ABBREVIATION,
     ShaderType.RAYS,
     ShaderType.GRAYSCALE,
     ShaderType.BASE,
