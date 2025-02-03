@@ -1,8 +1,8 @@
 from data.constants import ShaderType
 from data.managers.shader import ShaderManager
-from data.managers.shader_classes.crop import _Crop
-from data.managers.shader_classes.lightmap import _Lightmap
-from data.managers.shader_classes.blend import _Blend
+from data.shaders.classes.crop import _Crop
+from data.shaders.classes.lightmap import _Lightmap
+from data.shaders.classes.blend import _Blend
 
 class Rays:
     def __init__(self, shader_manager: ShaderManager, lights): # pos relative to screen, radius pixels
@@ -31,7 +31,7 @@ class Rays:
             else:
                 occlusion_texture = None
 
-            _LightMap(self._shader_manager).apply(cropped_texture, colour, occlusion_texture, *args)
+            _Lightmap(self._shader_manager).apply(cropped_texture, colour, occlusion_texture, *args)
             light_map = self._shader_manager.get_fbo_texture(ShaderType._LIGHTMAP)
             
             _Blend(self._shader_manager).apply(final_texture, light_map, light_topleft)

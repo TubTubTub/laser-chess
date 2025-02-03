@@ -48,7 +48,7 @@ class LaserDraw:
                 abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
                 laser_lights.append([
                     (abs_position[0] / window.size[0], abs_position[1] / window.size[1]),
-                    0.3,
+                    0.5,
                     (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
                 ])
 

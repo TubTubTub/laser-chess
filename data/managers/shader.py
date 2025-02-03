@@ -2,6 +2,7 @@ from pathlib import Path
 from array import array
 import moderngl
 from data.constants import ShaderType
+from data.shaders.classes import shader_pass_lookup
 
 shader_path = (Path(__file__).parent / '../shaders/').resolve()
 
@@ -59,8 +60,8 @@ class ShaderManager:
         self._shader_stack = [ShaderType.BASE]
     
     def create_vao(self, shader_type):
-        vert_path = Path(shader_path / 'base.vert').resolve()
-        frag_path = Path(shader_path / (shader_type.replace('_', '', 1) + '.frag')).resolve()
+        vert_path = Path(shader_path / 'vertex/base.vert').resolve()
+        frag_path = Path(shader_path / f'fragments/{shader_type.replace('_', '', 1)}.frag').resolve()
 
         self._vert_shaders[shader_type] = vert_path.read_text()
         self._frag_shaders[shader_type] = frag_path.read_text()

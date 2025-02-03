@@ -1,7 +1,6 @@
 from sys import platform
 import data.setup
 from data.loading_screen import LoadingScreen
-# import time
 
 states = [None, None]
 
@@ -30,11 +29,7 @@ def load_states():
     states[0] = app
     states[1] = state_dict
 
-# start = time.perf_counter()
 loading_screen = LoadingScreen(load_states)
-# load_states()
-# end = time.perf_counter()
-# print(end - start)
 
 def main():
     app, state_dict = states

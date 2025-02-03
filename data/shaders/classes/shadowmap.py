@@ -1,7 +1,7 @@
 import moderngl
 from data.constants import ShaderType
 from data.managers.shader import ShaderManager
-from data.managers.shader_classes.occlusion import _Occlusion
+from data.shaders.classes.occlusion import _Occlusion
 
 LIGHT_RESOLUTION = 256
 

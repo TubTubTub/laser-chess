@@ -1,8 +1,8 @@
 from data.constants import ShaderType
 from data.managers.shader import ShaderManager
-from data.managers.shader_classes.blur import _Blur
-from data.managers.shader_classes.highlight_colour import _HighlightColour
-from data.managers.shader_classes.highlight_brightness import _HighlightBrightness
+from data.shaders.classes.blur import _Blur
+from data.shaders.classes.highlight_colour import _HighlightColour
+from data.shaders.classes.highlight_brightness import _HighlightBrightness
 
 
 BLOOM_INTENSITY = 0.6
