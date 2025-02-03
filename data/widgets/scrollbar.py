@@ -1,6 +1,8 @@
 import pygame
-from data.widgets.bases import _Widget, _Pressable
+from data.widgets.bases.widget import _Widget
+from data.widgets.bases.pressable import _Pressable
 from data.constants import WidgetState, Miscellaneous
+
 # self.set_state_colour(WidgetState.HOVER)
 class _Scrollbar(_Pressable, _Widget):
     def __init__(self, vertical, **kwargs):

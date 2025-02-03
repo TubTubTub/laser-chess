@@ -31,6 +31,7 @@ class ShaderType(StrEnum):
     GRAYSCALE = auto()
     CRT = auto()
     RAYS = auto()
+    CHROMATIC_ABBREVIATION = auto()
     
     _BLUR = auto()
     _HIGHLIGHT_BRIGHTNESS = auto()
@@ -97,7 +98,7 @@ class StatusText(StrEnum):
     WIN = auto()
     DRAW = auto()
 
-class SetupEventType(StrEnum):
+class EditorEventType(StrEnum):
     MENU_CLICK = auto()
     PICK_PIECE_CLICK = auto()
     ROTATE_PIECE_CLICK = auto()
@@ -110,6 +111,7 @@ class SetupEventType(StrEnum):
     CONFIG_CLICK = auto()
     ERASE_CLICK = auto()
     MOVE_CLICK = auto()
+    HELP_CLICK = auto()
 
 class ReviewEventType(StrEnum):
     MENU_CLICK = auto()

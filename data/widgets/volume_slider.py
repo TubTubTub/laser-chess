@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.widgets.slider_thumb import _SliderThumb
 from data.components.custom_event import CustomEvent
 from data.constants import SettingsEventType

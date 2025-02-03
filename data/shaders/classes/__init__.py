@@ -1,5 +1,6 @@
+from data.shaders.classes.chromatic_abbreviation import ChromaticAbbreviation
 from data.shaders.classes.highlight_brightness import _HighlightBrightness
-from data.shaders.classes.highlight_colour import _Highlight_Colour
+from data.shaders.classes.highlight_colour import _HighlightColour
 from data.shaders.classes.shadowmap import _Shadowmap
 from data.shaders.classes.occlusion import _Occlusion
 from data.shaders.classes.grayscale import Grayscale
@@ -21,9 +22,10 @@ shader_pass_lookup = {
     ShaderType.BASE: Base,
     ShaderType.RAYS: Rays,
     ShaderType.CRT: CRT,
+    ShaderType.CHROMATIC_ABBREVIATION: ChromaticAbbreviation,
 
     ShaderType._HIGHLIGHT_BRIGHTNESS: _HighlightBrightness,
-    ShaderType._HIGHLIGHT_COLOUR: _Highlight_Colour,
+    ShaderType._HIGHLIGHT_COLOUR: _HighlightColour,
     ShaderType._CALIBRATE: lambda *args: None,
     ShaderType._SHADOWMAP: _Shadowmap,
     ShaderType._OCCLUSION: _Occlusion,

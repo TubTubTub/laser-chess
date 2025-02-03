@@ -141,9 +141,6 @@ class GameView:
                     self.board_position, self.square_size)
                 )
 
-            window.set_effect(ShaderType.SHAKE)
-            animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
-
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
         self.update_laser_shader()
     

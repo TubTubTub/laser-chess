@@ -1,4 +1,4 @@
-from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, BrowserEventType, SetupEventType
+from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
 
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
@@ -22,8 +22,8 @@ required_args = {
     ConfigEventType.PRESET_CLICK: ['fen_string'],
     BrowserEventType.BROWSER_STRIP_CLICK: ['selected_index'],
     BrowserEventType.PAGE_CLICK: ['data'],
-    SetupEventType.PICK_PIECE_CLICK: ['piece', 'active_colour'],
-    SetupEventType.ROTATE_PIECE_CLICK: ['rotation_direction'],
+    EditorEventType.PICK_PIECE_CLICK: ['piece', 'active_colour'],
+    EditorEventType.ROTATE_PIECE_CLICK: ['rotation_direction'],
 }
 
 class CustomEvent():

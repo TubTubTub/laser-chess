@@ -1,10 +1,10 @@
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 
 HIGHLIGHT_THRESHOLD = 0.9
 
 class _HighlightBrightness:
-    def __init__(self, shader_manager: ShaderManager):
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
 
         shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_BRIGHTNESS)

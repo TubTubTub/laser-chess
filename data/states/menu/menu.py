@@ -20,6 +20,32 @@ class Menu(_State):
     def __init__(self):
         super().__init__()
         self._fire_laser = False
+        self._bloom_mask = None
+        self._laser_mask = None
+    
+    def cleanup(self):
+        logger.info('cleaning menu.py')
+        window.clear_apply_arguments(ShaderType.BLOOM)
+        window.clear_apply_arguments(ShaderType.SHAKE)
+        return None
+    
+    def startup(self, persist=None):
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
+
+        self._widget_group = WidgetGroup(MENU_WIDGETS)
+        self._widget_group.handle_resize(window.size)
+        MENU_WIDGETS['credits'].kill()
+
+        self._fire_laser = False
+        self._bloom_mask = None
+        self._laser_mask = None
+
+
+        audio.play_music(MUSIC_PATHS['menu'])
+
+        logger.info('starting menu.py')
+        self.draw()
+        self.update_masks()
 
     @property
     def sphinx_center(self):
@@ -33,24 +59,6 @@ class Menu(_State):
     def sphinx_rotation(self):
         mouse_pos = (pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1] + 0.01)
         return -get_rotational_angle(mouse_pos, self.sphinx_center)
-    
-    def cleanup(self):
-        logger.info('cleaning menu.py')
-        window.clear_apply_arguments(ShaderType.BLOOM)
-        window.clear_apply_arguments(ShaderType.SHAKE)
-        return None
-    
-    def startup(self, persist=None):
-        logger.info('starting menu.py')
-        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
-        self._widget_group = WidgetGroup(MENU_WIDGETS)
-        self._widget_group.handle_resize(window.size)
-        MENU_WIDGETS['credits'].kill()
-        self._fire_laser = False
-
-        audio.play_music(MUSIC_PATHS['menu'])
-
-        self.draw()
     
     def get_event(self, event):
         if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
@@ -95,21 +103,26 @@ class Menu(_State):
 
         window.screen.blit(sphinx_surface, sphinx_rect)
     
+    def update_masks(self):
+        self.draw()
+        
+        widget_mask = window.screen.copy()
+        laser_mask = pygame.mask.from_surface(widget_mask)
+        laser_mask = laser_mask.to_surface(setcolor=(255, 0, 0, 255), unsetcolor=(0, 0, 0, 255))
+        pygame.draw.rect(laser_mask, (0, 0, 0), (window.screen.width - self.sphinx_size[0], window.screen.height - self.sphinx_size[1], *self.sphinx_size))
+        pygame.draw.rect(widget_mask, (0, 0, 0, 255), (window.screen.width - 50, 0, 50, 50))
+
+        self._bloom_mask = widget_mask
+        self._laser_mask = laser_mask
+    
     def draw(self):
         self._widget_group.draw()
         self.draw_sphinx()
 
-        widget_mask = window.screen.copy()
-
         if self._fire_laser:
-            laser_mask = pygame.mask.from_surface(widget_mask)
-            laser_mask = laser_mask.to_surface(setcolor=(255, 0, 0, 255), unsetcolor=(0, 0, 0, 255))
-            pygame.draw.rect(laser_mask, (0, 0, 0), (window.screen.width - self.sphinx_size[0], window.screen.height - self.sphinx_size[1], *self.sphinx_size))
+            window.set_apply_arguments(ShaderType.RAYS, occlusion=self._laser_mask)
 
-            window.set_apply_arguments(ShaderType.RAYS, occlusion=laser_mask)
-
-        pygame.draw.rect(widget_mask, (0, 0, 0, 255), (window.screen.width - 50, 0, 50, 50))
-        window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=widget_mask, occlusion_intensity=0.3, brightness_intensity=0.6)
+        window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=self._bloom_mask, occlusion_intensity=0.3, brightness_intensity=0.6)
     
     def update(self, **kwargs):
         if self._fire_laser:
@@ -126,3 +139,7 @@ class Menu(_State):
             window.set_apply_arguments(ShaderType.SHAKE, intensity=1)
 
         super().update(**kwargs)
+    
+    def handle_resize(self):
+        super().handle_resize()
+        self.update_masks()

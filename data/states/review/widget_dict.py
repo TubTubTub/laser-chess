@@ -55,6 +55,7 @@ REVIEW_WIDGETS = {
         arrow_container,
         right_container,
         info_container,
+        top_right_container,
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),

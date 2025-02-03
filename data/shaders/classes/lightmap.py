@@ -1,12 +1,12 @@
 import pygame
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 from data.shaders.classes.shadowmap import _Shadowmap
 
 LIGHT_RESOLUTION = 256
 
 class _Lightmap:
-    def __init__(self, shader_manager: ShaderManager):
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
 
         shader_manager.load_shader(ShaderType._SHADOWMAP)

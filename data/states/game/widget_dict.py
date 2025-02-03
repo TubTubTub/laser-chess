@@ -70,6 +70,7 @@ GAME_WIDGETS = {
     'default': [
         right_container,
         rotate_container,
+        top_right_container,
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),
@@ -207,7 +208,6 @@ PAUSE_WIDGETS = {
             anchor_y='center',
             text='GO TO MENU',
             fit_vertical=False,
-            text_colour=(255, 0, 0),
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
@@ -217,7 +217,6 @@ PAUSE_WIDGETS = {
             anchor_y='center',
             text='RESUME GAME',
             fit_vertical=False,
-            text_colour=(255, 0, 0),
             event=CustomEvent(GameEventType.PAUSE_CLICK)
         )
     ]

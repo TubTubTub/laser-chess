@@ -3,7 +3,7 @@ import pyperclip
 from data.control import _State
 from data.components.widget_group import WidgetGroup
 from data.states.editor.widget_dict import EDITOR_WIDGETS
-from data.constants import SetupEventType, Colour, RotationDirection, Piece, Rotation
+from data.constants import EditorEventType, Colour, RotationDirection, Piece, Rotation
 from data.states.game.components.bitboard_collection import BitboardCollection
 from data.states.game.components.overlay_draw import OverlayDraw
 from data.states.game.components.piece_group import PieceGroup
@@ -47,6 +47,7 @@ class Editor(_State):
         logger.info('starting editor.py')
         self._widget_group = WidgetGroup(EDITOR_WIDGETS)
         self._widget_group.handle_resize(window.size)
+        EDITOR_WIDGETS['help'].kill()
 
         self._drag_and_drop = DragAndDrop(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
         self._overlay_draw = OverlayDraw(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
@@ -76,6 +77,9 @@ class Editor(_State):
     
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
+
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+            EDITOR_WIDGETS['help'].kill()
 
         if event.type == pygame.VIDEORESIZE:
             self.handle_resize(resize_end=True)
@@ -117,56 +121,59 @@ class Editor(_State):
             case None:
                 return
 
-            case SetupEventType.MENU_CLICK:
+            case EditorEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
             
-            case SetupEventType.PICK_PIECE_CLICK:
+            case EditorEventType.PICK_PIECE_CLICK:
                 if widget_event.piece == self._selected_tool and widget_event.active_colour == self._selected_tool_colour:
                     self.deselect_tool()
                 else:
                     self.select_tool(widget_event.piece, widget_event.active_colour)
             
-            case SetupEventType.ROTATE_PIECE_CLICK:
+            case EditorEventType.ROTATE_PIECE_CLICK:
                 self.rotate_piece(widget_event.rotation_direction)
             
-            case SetupEventType.EMPTY_CLICK:
+            case EditorEventType.EMPTY_CLICK:
                 self._bitboards = BitboardCollection(fen_string='sc9/10/10/10/10/10/10/9Sa b')
                 self.refresh_pieces()
             
-            case SetupEventType.RESET_CLICK:
+            case EditorEventType.RESET_CLICK:
                 self.reset_board()
             
-            case SetupEventType.COPY_CLICK:
+            case EditorEventType.COPY_CLICK:
                 logger.info('COPYING TO CLIPBOARD:', encode_fen_string(self._bitboards))
                 pyperclip.copy(encode_fen_string(self._bitboards))
             
-            case SetupEventType.BLUE_START_CLICK:
+            case EditorEventType.BLUE_START_CLICK:
                 self.set_starting_colour(Colour.BLUE)
             
-            case SetupEventType.RED_START_CLICK:
+            case EditorEventType.RED_START_CLICK:
                 self.set_starting_colour(Colour.RED)
             
-            case SetupEventType.START_CLICK:
+            case EditorEventType.START_CLICK:
                 self.next = 'config'
                 self.done = True
             
-            case SetupEventType.CONFIG_CLICK:
+            case EditorEventType.CONFIG_CLICK:
                 self.reset_board()
                 self.next = 'config'
                 self.done = True
             
-            case SetupEventType.ERASE_CLICK:
+            case EditorEventType.ERASE_CLICK:
                 if self._selected_tool == 'ERASE':
                     self.deselect_tool()
                 else:
                     self.select_tool('ERASE', None)
             
-            case SetupEventType.MOVE_CLICK:
+            case EditorEventType.MOVE_CLICK:
                 if self._selected_tool == 'MOVE':
                     self.deselect_tool()
                 else:
                     self.select_tool('MOVE', None)
+            
+            case EditorEventType.HELP_CLICK:
+                self._widget_group.add(EDITOR_WIDGETS['help'])
     
     def reset_board(self):
         self._bitboards = BitboardCollection(self._initial_fen_string)

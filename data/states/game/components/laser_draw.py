@@ -53,6 +53,7 @@ class LaserDraw:
                 ])
 
         window.set_effect(ShaderType.RAYS, lights=laser_lights)
+        window.set_effect(ShaderType.SHAKE)
         
         if laser_result.hit_square_bitboard != EMPTY_BB:
             laser_types[-1] = LaserType.END
@@ -62,6 +63,7 @@ class LaserDraw:
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
         self._laser_lists.append((laser_path, laser_colour))
 
+        animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
         animation.set_timer(1000, self.remove_laser)
     
     def remove_laser(self):
@@ -69,6 +71,7 @@ class LaserDraw:
 
         if len(self._laser_lists) == 0:
             window.clear_effect(ShaderType.RAYS)
+            window.clear_effect(ShaderType.CHROMATIC_ABBREVIATION)
     
     def draw_laser(self, screen, laser_list, glow=True):
         laser_path, laser_colour = laser_list

@@ -3,11 +3,13 @@ from array import array
 import moderngl
 from data.constants import ShaderType
 from data.shaders.classes import shader_pass_lookup
+from data.shaders.protocol import SMProtocol
 
 shader_path = (Path(__file__).parent / '../shaders/').resolve()
 
 SHADER_PRIORITY = [
     ShaderType.CRT,
+    ShaderType.CHROMATIC_ABBREVIATION,
     ShaderType.SHAKE,
     ShaderType.BLOOM,
     ShaderType.RAYS,
@@ -20,7 +22,7 @@ pygame_quad_array = array('f', [
     1.0, 1.0, 1.0, 0.0,
     -1.0, -1.0, 0.0, 1.0,
     1.0, -1.0, 1.0, 1.0,
-])
+])  
 
 opengl_quad_array = array('f', [
     -1.0, -1.0, 0.0, 0.0,
@@ -29,7 +31,7 @@ opengl_quad_array = array('f', [
     1.0, 1.0, 1.0, 1.0,
 ])
 
-class ShaderManager:
+class ShaderManager(SMProtocol):
     def __init__(self, ctx: moderngl.Context, screen_size):
         self._ctx = ctx
         self._ctx.gc_mode = 'auto'
@@ -60,8 +62,9 @@ class ShaderManager:
         self._shader_stack = [ShaderType.BASE]
     
     def create_vao(self, shader_type):
+        frag_name = shader_type[1:] if shader_type[0] == '_' else shader_type
         vert_path = Path(shader_path / 'vertex/base.vert').resolve()
-        frag_path = Path(shader_path / f'fragments/{shader_type.replace('_', '', 1)}.frag').resolve()
+        frag_path = Path(shader_path / f'fragments/{frag_name}.frag').resolve()
 
         self._vert_shaders[shader_type] = vert_path.read_text()
         self._frag_shaders[shader_type] = frag_path.read_text()

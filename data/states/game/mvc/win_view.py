@@ -2,13 +2,11 @@ import pygame
 from data.constants import Colour, Miscellaneous
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
-from data.components.cursor import Cursor
 from data.managers.window import window
 
 class WinView:
     def __init__(self, model):
         self._model = model
-        self._cursor = Cursor()
 
         # self._model.register_listener(self.process_model_event, 'win')
 

@@ -1,8 +1,8 @@
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 
-class _Highlight_Colour:
-    def __init__(self, shader_manager: ShaderManager):
+class _HighlightColour:
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
 
         shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_COLOUR)

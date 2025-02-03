@@ -1,11 +1,11 @@
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 from data.shaders.classes.crop import _Crop
 from data.shaders.classes.lightmap import _Lightmap
 from data.shaders.classes.blend import _Blend
 
 class Rays:
-    def __init__(self, shader_manager: ShaderManager, lights): # pos relative to screen, radius pixels
+    def __init__(self, shader_manager: SMProtocol, lights): # pos relative to screen, radius pixels
         self._shader_manager = shader_manager
         self._lights = lights
 

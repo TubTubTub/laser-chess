@@ -23,6 +23,7 @@ MENU_WIDGETS = {
         margin=50
     ),
     'default': [
+        top_right_container,
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),

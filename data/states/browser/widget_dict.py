@@ -60,6 +60,7 @@ BROWSER_WIDGETS = {
     'default': [
         buttons_container,
         sort_by_container,
+        top_right_container,
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),

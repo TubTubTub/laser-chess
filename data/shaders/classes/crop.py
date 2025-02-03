@@ -1,8 +1,8 @@
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 
 class _Crop:
-    def __init__(self, shader_manager: ShaderManager):
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
 
     def apply(self, texture, relative_pos, relative_size):

@@ -1,12 +1,12 @@
 import moderngl
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 from data.shaders.classes.occlusion import _Occlusion
 
 LIGHT_RESOLUTION = 256
 
 class _Shadowmap:
-    def __init__(self, shader_manager: ShaderManager):
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
 
         shader_manager.load_shader(ShaderType._OCCLUSION)

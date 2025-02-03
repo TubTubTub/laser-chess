@@ -1,5 +1,5 @@
 from data.constants import ShaderType
-from data.managers.shader import ShaderManager
+from data.shaders.protocol import SMProtocol
 from data.shaders.classes.blur import _Blur
 from data.shaders.classes.highlight_colour import _HighlightColour
 from data.shaders.classes.highlight_brightness import _HighlightBrightness
@@ -8,7 +8,7 @@ from data.shaders.classes.highlight_brightness import _HighlightBrightness
 BLOOM_INTENSITY = 0.6
 
 class Bloom:
-    def __init__(self, shader_manager: ShaderManager):
+    def __init__(self, shader_manager: SMProtocol):
         self._shader_manager = shader_manager
         
         shader_manager.load_shader(ShaderType._BLUR)
@@ -32,11 +32,11 @@ class Bloom:
 
             texture = self._shader_manager.get_fbo_texture(ShaderType.BLOOM)
             
-        _Highlight_Brightness(self._shader_manager).apply(texture, intensity=brightness_intensity)
+        _HighlightBrightness(self._shader_manager).apply(texture, intensity=brightness_intensity)
         highlight_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT_BRIGHTNESS)
 
         for colour in occlusion_colours:
-            _Highlight_Colour(self._shader_manager).apply(texture, old_highlight=highlight_texture, colour=colour, intensity=colour_intensity)
+            _HighlightColour(self._shader_manager).apply(texture, old_highlight=highlight_texture, colour=colour, intensity=colour_intensity)
             highlight_texture = self._shader_manager.get_fbo_texture(ShaderType._HIGHLIGHT_COLOUR)
 
         _Blur(self._shader_manager).apply(highlight_texture)
