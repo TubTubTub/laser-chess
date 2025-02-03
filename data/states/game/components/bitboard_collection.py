@@ -2,6 +2,9 @@ from data.constants import Rank, File, Piece, Colour, Rotation, RotationIndex, E
 from data.states.game.components.fen_parser import parse_fen_string
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.cpu.zobrist_hasher import ZobristHasher
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class BitboardCollection():
     def __init__(self, fen_string):
@@ -17,7 +20,7 @@ class BitboardCollection():
                 self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
                 self.initialise_hash()
         except ValueError as error:
-            print('(BitboardCollection.__init__) Please input a valid FEN string:', error)
+            logger.info('Please input a valid FEN string:', error)
             raise error
     
     def __str__(self):

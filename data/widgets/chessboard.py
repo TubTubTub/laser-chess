@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.utils.board_helpers import create_board
 from data.utils.data_helpers import get_user_settings
 from data.constants import CursorMode

@@ -2,6 +2,9 @@ import pygame
 from data.constants import GameEventType, MoveType, StatusText, Miscellaneous
 from data.utils import bitboard_helpers as bb_helpers
 from data.states.game.components.move import Move
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class GameController:
     def __init__(self, model, view, win_view, pause_view, to_menu, to_new_game):
@@ -75,7 +78,7 @@ class GameController:
                 src_coords = self._view.get_selected_coords()
 
                 if src_coords is None:
-                    print('None square selected')
+                    logger.info('None square selected')
                     return
 
                 move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=widget_event.rotation_direction)
@@ -180,5 +183,5 @@ class GameController:
             if event.key == pygame.K_ESCAPE:
                 self._model.toggle_paused()
             elif event.key == pygame.K_l:
-                print('\nSTOPPING CPU')
+                logger.info('\nSTOPPING CPU')
                 self._model._cpu_thread.stop_cpu() #temp

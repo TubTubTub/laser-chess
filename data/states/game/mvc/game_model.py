@@ -9,6 +9,9 @@ from data.utils.bitboard_helpers import is_occupied
 from data.utils import input_helpers as ip_helpers
 from data.components.custom_event import CustomEvent
 from data.constants import Colour, GameEventType, EMPTY_BB
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class GameModel:
     def __init__(self, game_config):
@@ -76,11 +79,11 @@ class GameModel:
                 rotation = ip_helpers.parse_rotation(input("Enter rotation (a/b/c/d): "))
                 return Move.instance_from_notation(move_type, src_square, dest_square, rotation)
             except ValueError as error:
-                print('Input error (Board.get_move): ' + str(error))
+                logger.warning('Input error (Board.get_move): ' + str(error))
     
     def make_move(self, move):
         #SWAPPED ACTIVE COLOUR TO BOTTOM SO MIGHT BE BUGGY
-        # print(f'PLAYER MOVE: {self._board.get_active_colour().name}')
+        # logger.info(f'PLAYER MOVE: {self._board.get_active_colour().name}')
         colour = self._board.bitboards.get_colour_on(move.src)
         piece = self._board.bitboards.get_piece_on(move.src, colour)
         laser_result = self._board.apply_move(move, add_hash=True)
@@ -109,7 +112,7 @@ class GameModel:
         self._cpu_thread.start_cpu(self.get_board())
     
     def cpu_callback(self, move):
-        print('MAKING MOVE', move)
+        logger.info('MAKING MOVE', move)
         if self.states['WINNER'] is None:
             self.make_move(move)
             self.states['AWAITING_CPU'] = False

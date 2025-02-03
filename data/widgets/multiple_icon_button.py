@@ -1,7 +1,7 @@
 import pygame
 from data.components.custom_event import CustomEvent
 from data.widgets.icon_button import IconButton
-from data.widgets.bases import _Circular
+from data.widgets.bases.circular import _Circular
 from data.constants import WidgetState
 
 class MultipleIconButton(_Circular, IconButton):

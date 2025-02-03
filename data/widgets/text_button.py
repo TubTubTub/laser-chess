@@ -1,4 +1,5 @@
-from data.widgets.bases import _Pressable, _Box
+from data.widgets.bases.pressable import _Pressable
+from data.widgets.bases.box import _Box
 from data.widgets.text import Text
 from data.constants import WidgetState, BLUE_BUTTON_COLOURS
 

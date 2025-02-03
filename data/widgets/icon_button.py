@@ -1,4 +1,5 @@
-from data.widgets.bases import _Pressable, _Box
+from data.widgets.bases.pressable import _Pressable
+from data.widgets.bases.box import _Box
 from data.widgets.icon import Icon
 from data.constants import WidgetState, RED_BUTTON_COLOURS
 

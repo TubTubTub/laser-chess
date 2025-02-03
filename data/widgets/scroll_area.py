@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.base.w    s import _Widget
 from data.widgets.scrollbar import _Scrollbar
 from data.managers.theme import theme
 

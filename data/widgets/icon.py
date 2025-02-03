@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.utils.widget_helpers import create_text_box
 
 class Icon(_Widget):

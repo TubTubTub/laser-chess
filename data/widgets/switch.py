@@ -1,5 +1,6 @@
 import pygame
-from data.widgets.bases import _Widget, _Pressable
+from data.widgets.bases.widget import _Widget
+from data.widgets.bases.pressable import _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_switch
 from data.components.custom_event import CustomEvent

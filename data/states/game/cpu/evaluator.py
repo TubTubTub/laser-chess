@@ -2,6 +2,9 @@ from data.constants import Colour, Piece, Score
 from data.utils.bitboard_helpers import index_to_bitboard, pop_count, occupied_squares, bitboard_to_index
 from data.states.game.components.psqt import PSQT, FLIP
 import random
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Evaluator:
     def __init__(self, verbose=True):
@@ -15,10 +18,10 @@ class Evaluator:
         red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
 
         if (self._verbose):
-            print('\nPosition:', self.evaluate_position(board, Colour.BLUE), self.evaluate_position(board, Colour.RED))
-            print('Mobility:', self.evaluate_mobility(board, Colour.BLUE), self.evaluate_mobility(board, Colour.RED))
-            print('Safety:', self.evaluate_pharoah_safety(board, Colour.BLUE), self.evaluate_pharoah_safety(board, Colour.RED))
-            print('Overall score', blue_score - red_score)
+            logger.info('\nPosition:', self.evaluate_position(board, Colour.BLUE), self.evaluate_position(board, Colour.RED))
+            logger.info('Mobility:', self.evaluate_mobility(board, Colour.BLUE), self.evaluate_mobility(board, Colour.RED))
+            logger.info('Safety:', self.evaluate_pharoah_safety(board, Colour.BLUE), self.evaluate_pharoah_safety(board, Colour.RED))
+            logger.info('Overall score', blue_score - red_score)
 
         if absolute and board.get_active_colour() == Colour.RED:
             return red_score - blue_score

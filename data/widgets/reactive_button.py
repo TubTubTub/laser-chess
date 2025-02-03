@@ -1,4 +1,6 @@
-from data.widgets.bases import _Widget, _Pressable, _Circular
+from data.widgets.bases.widget import _Widget
+from data.widgets.bases.pressable import _Pressable
+from data.widgets.bases..circular import _Circular
 from data.components.custom_event import CustomEvent
 from data.constants import WidgetState
 

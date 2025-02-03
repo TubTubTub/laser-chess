@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.widgets.chessboard import Chessboard
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.bitboard_collection import BitboardCollection

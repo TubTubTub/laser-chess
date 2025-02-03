@@ -13,6 +13,9 @@ from data.utils.browser_helpers import get_winner_string
 from data.managers.audio import audio
 from data.components.game_entry import GameEntry
 from data.managers.window import window
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Review(_State):
     def __init__(self):
@@ -27,13 +30,13 @@ class Review(_State):
         self._laser_draw = None
     
     def cleanup(self):
-        print('cleaning review.py')
+        logger.info('cleaning review.py')
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         return None
     
     def startup(self, persist):
-        print('starting review.py')
+        logger.info('starting review.py')
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)

@@ -1,5 +1,6 @@
 import pygame
-from data.widgets.bases import _Widget, _Pressable
+from data.widgets.bases.widget import _Widget
+from data.widgets.bases.pressable import _Pressable
 from data.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):

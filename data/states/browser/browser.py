@@ -18,6 +18,9 @@ from data.database.database_helpers import delete_game, get_ordered_games
 from data.utils.asset_helpers import draw_background
 
 from data.managers.window import window
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Browser(_State):
     def __init__(self):
@@ -30,7 +33,7 @@ class Browser(_State):
         self._page_number = 1
     
     def cleanup(self):
-        print('cleaning browser.py')
+        logger.info('cleaning browser.py')
 
         if self._selected_index is not None:
             return self._games_list[self._selected_index]
@@ -38,7 +41,7 @@ class Browser(_State):
         return None
     
     def startup(self, persist=None):
-        print('starting browser.py')
+        logger.info('starting browser.py')
         # audio.play_music(MUSIC_PATHS['menu'])
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_WAVES)
 
@@ -99,7 +102,7 @@ class Browser(_State):
             case BrowserEventType.COPY_CLICK:
                 if self._selected_index is None:
                     return
-                print('COPYING TO CLIPBOARD:', self._games_list[self._selected_index]['fen_string'])
+                logger.info('COPYING TO CLIPBOARD:', self._games_list[self._selected_index]['fen_string'])
                 pyperclip.copy(self._games_list[self._selected_index]['fen_string'])
 
             case BrowserEventType.DELETE_CLICK:

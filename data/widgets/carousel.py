@@ -1,5 +1,6 @@
 import pygame
-from data.widgets.bases import _Widget, _Circular
+from data.widgets.bases.widget import _Widget
+from data.widgets.bases.circular import _Circular
 from data.widgets.reactive_icon_button import ReactiveIconButton
 from data.components.circular_linked_list import CircularLinkedList
 from data.assets import GRAPHICS

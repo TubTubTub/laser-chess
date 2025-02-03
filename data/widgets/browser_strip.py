@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.widgets.browser_item import BrowserItem
 from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent

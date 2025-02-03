@@ -164,7 +164,7 @@ class GameView:
     def toggle_timer(self, colour, is_active):
         if colour == Colour.BLUE:
             GAME_WIDGETS['blue_timer'].set_active(is_active)
-        else:
+        elif colour == Colour.RED:
             GAME_WIDGETS['red_timer'].set_active(is_active)
     
     def update_laser_shader(self):

@@ -1,6 +1,9 @@
 from data.constants import MoveType, Colour, RotationDirection
 from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords, bitboard_to_notation, print_bitboard
 import re
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Move():
     def __init__(self, move_type, src, dest=None, rotation_direction=None):
@@ -61,7 +64,7 @@ class Move():
                 raise ValueError('(Move.instance_from_notation) Invalid move type:', move_type)
 
         except Exception as error:
-            print('(Move.instance_from_notation) Error occured while parsing:', error)
+            logger.info('(Move.instance_from_notation) Error occured while parsing:', error)
             raise error
     
     @classmethod
@@ -77,7 +80,7 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation)
         except Exception as error:
-            print('Error (Move.instance_from):', error)
+            logger.info('Error (Move.instance_from):', error)
             raise error
     
     @classmethod
@@ -88,7 +91,7 @@ class Move():
             
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
-            print('Error (Move.instance_from_coords):', error)
+            logger.info('Error (Move.instance_from_coords):', error)
             raise error
 
     @classmethod
@@ -96,5 +99,5 @@ class Move():
         try:
             return move_cls(move_type, src_bitboard, dest_bitboard, rotation_direction)
         except Exception as error:
-            print('Error (Move.instance_from_bitboards):', error)
+            logger.info('Error (Move.instance_from_bitboards):', error)
             raise error

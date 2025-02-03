@@ -1,5 +1,8 @@
 import threading
 import time
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class CPUThread(threading.Thread):
     def __init__(self, cpu, verbose=False):
@@ -32,4 +35,4 @@ class CPUThread(threading.Thread):
             else:
                 time.sleep(1)
                 if self._verbose:
-                    print(f'(CPUThread.run) Thread {threading.get_native_id()} idling...')
+                    logger.debug(f'(CPUThread.run) Thread {threading.get_native_id()} idling...')

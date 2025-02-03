@@ -2,6 +2,9 @@ from data.states.game.cpu.evaluator import Evaluator
 from data.constants import Colour, Score, Miscellaneous
 from pprint import pprint
 import time
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class BaseCPU:
     def __init__(self, callback, verbose=True):
@@ -28,14 +31,14 @@ class BaseCPU:
         self._stats['ms_per_node'] = round(self._stats['time_taken'] / self._stats['nodes'], 3)
 
         if self._verbose is True:
-            print(f'\n{self.__str__()} Search Results:', '\n')
-            pprint(self._stats, sort_dicts=False)
-            print('\n' + 'Best score:', score)
-            print('Best move:', move, '\n')
+            logger.info(f'\n{self.__str__()} Search Results:', '\n')
+            logger.info(self._stats, sort_dicts=False)
+            logger.info('\n' + 'Best score:', score)
+            logger.info('Best move:', move, '\n')
         
         elif self._verbose.lower() == 'compact':
-            print(self._stats)
-            print('Best score:', score, '     ', 'Best move:', move, '\n')
+            logger.info(self._stats)
+            logger.info('Best score:', score, '     ', 'Best move:', move, '\n')
 
     def find_move(self, board, stop_event=None):
         raise NotImplementedError

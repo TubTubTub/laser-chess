@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.utils.font_helpers import height_to_font_size
 from data.utils.browser_helpers import get_winner_string
 from data.utils.asset_helpers import scale_and_cache

@@ -1,4 +1,7 @@
 from data.constants import Rank, File, EMPTY_BB
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 def print_bitboard(bitboard):
     if (bitboard >= (2 ** 80)):
@@ -16,7 +19,7 @@ def print_bitboard(bitboard):
 
         characters += '\n\n'
     
-    print('\n' + characters + '\n')
+    logger.info('\n' + characters + '\n')
 
 def is_occupied(bitboard, target_bitboard):
     return (target_bitboard & bitboard) != EMPTY_BB

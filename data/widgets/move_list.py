@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.utils.font_helpers import width_to_font_size
 
 class MoveList(_Widget):

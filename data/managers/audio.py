@@ -1,5 +1,8 @@
 import pygame
 from data.utils.data_helpers import get_user_settings
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 user_settings = get_user_settings()
 
 class AudioManager:
@@ -46,7 +49,7 @@ class AudioManager:
             channel = unused_channels[0]
 
         if channel is None:
-            print('No available channel for SFX (audio.py)')
+            logger.info('No available channel for SFX')
             return
         
         self._current_channels.append(channel)

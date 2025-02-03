@@ -8,6 +8,9 @@ from data.managers.audio import audio
 from data.widgets import ColourPicker
 from data.assets import MUSIC_PATHS
 from data.control import _State
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Settings(_State):
     def __init__(self):
@@ -17,26 +20,26 @@ class Settings(_State):
         self._settings = None
     
     def cleanup(self):
-        print('cleaning settings.py')
-        # print('\nUPDATING SETTINGS:', )
-        # pprint.pprint(self._settings)
-        # print('')
+        logger.info('cleaning settings.py')
+        # logger.info('\nUPDATING SETTINGS:', )
+        # plogger.info.plogger.info(self._settings)
+        # logger.info('')
 
         update_user_settings(self._settings)
 
         return None
     
     def startup(self, persist=None):
-        print('starting settings.py')
+        logger.info('starting settings.py')
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
         self._widget_group.handle_resize(window.size)
         self._settings = get_user_settings()
         self.reload_settings()
 
-        # print('\nGETTING USER SETTINGS:')
-        # pprint.pprint(self._settings)
-        # print('')
+        # logger.info('\nGETTING USER SETTINGS:')
+        # pprint(self._settings)
+        # logger.info('')
 
         audio.play_music(MUSIC_PATHS['menu'])
 

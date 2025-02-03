@@ -83,7 +83,7 @@ class Menu(_State):
             case MenuEventType.QUIT_CLICK:
                 pygame.quit()
                 sys.exit()
-                print('quitting...')
+                logger.info('quitting...')
             case MenuEventType.CREDITS_CLICK:
                 self._widget_group.add(MENU_WIDGETS['credits'])
     

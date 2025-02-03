@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.states.game.components.piece_sprite import PieceSprite
 from data.constants import Score, Rotation, WidgetState, Colour, BLUE_BUTTON_COLOURS, RED_BUTTON_COLOURS
 from data.utils.widget_helpers import create_text_box

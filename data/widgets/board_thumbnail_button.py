@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Pressable
+from data.widgets.bases.pressable import _Pressable
 from data.widgets.board_thumbnail import BoardThumbnail
 from data.constants import WidgetState
 from data.components.custom_event import CustomEvent

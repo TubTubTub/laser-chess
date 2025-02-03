@@ -1,7 +1,8 @@
 import pygame
 import pyperclip
 from data.widgets.text import Text
-from data.widgets.bases import _Pressable, _Box
+from data.widgets.bases.pressable import _Pressable
+from data.widgets.bases.box import _Box
 from data.components.custom_event import CustomEvent
 from data.managers.animation import animation
 from data.constants import WidgetState, CursorMode, INPUT_COLOURS
@@ -9,6 +10,9 @@ from data.assets import FONTS
 from data.utils.font_helpers import height_to_font_size
 from data.managers.cursor import cursor
 from data.managers.theme import theme
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class TextInput(_Box, _Pressable, Text):
     def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=theme['textSecondary'], **kwargs):
@@ -166,7 +170,7 @@ class TextInput(_Box, _Pressable, Text):
 
                 if event.mod & (pygame.KMOD_CTRL):
                     if event.key == pygame.K_c:
-                        print('COPIED')
+                        logger.info('COPIED')
                     
                     elif event.key == pygame.K_v:
                         pasted_text = pyperclip.paste()

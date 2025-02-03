@@ -17,6 +17,9 @@ from data.states.game.components.fen_parser import encode_fen_string
 from data.managers.audio import audio
 from data.managers.animation import animation
 from data.managers.window import window
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Editor(_State):
     def __init__(self):
@@ -34,14 +37,14 @@ class Editor(_State):
         self._overlay_draw = None
     
     def cleanup(self):
-        print('cleaning editor.py')
+        logger.info('cleaning editor.py')
 
         self.deselect_tool()
 
         return encode_fen_string(self._bitboards)
     
     def startup(self, persist):
-        print('starting editor.py')
+        logger.info('starting editor.py')
         self._widget_group = WidgetGroup(EDITOR_WIDGETS)
         self._widget_group.handle_resize(window.size)
 
@@ -135,7 +138,7 @@ class Editor(_State):
                 self.reset_board()
             
             case SetupEventType.COPY_CLICK:
-                print('COPYING TO CLIPBOARD:', encode_fen_string(self._bitboards))
+                logger.info('COPYING TO CLIPBOARD:', encode_fen_string(self._bitboards))
                 pyperclip.copy(encode_fen_string(self._bitboards))
             
             case SetupEventType.BLUE_START_CLICK:

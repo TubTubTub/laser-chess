@@ -135,7 +135,7 @@ class Board:
 
         possible_moves = target_top_left | target_top_middle | target_top_right | target_middle_right |	target_bottom_right | target_bottom_middle | target_bottom_left | target_middle_left
         
-        if colour:
+        if colour is not None:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_colour_bitboards[colour]
         else:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard

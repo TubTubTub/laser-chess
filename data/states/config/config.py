@@ -18,6 +18,9 @@ from data.constants import ConfigEventType, Colour, ShaderType
 from data.utils.asset_helpers import draw_background
 
 from data.managers.window import window
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
 
 class Config(_State):
     def __init__(self):
@@ -28,13 +31,13 @@ class Config(_State):
         self._selected_preset = None
     
     def cleanup(self):
-        print('cleaning config.py')
+        logger.info('cleaning config.py')
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         return self._config
     
     def startup(self, persist=None):
-        print('starting config.py')
+        logger.info('starting config.py')
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
         self._widget_group = WidgetGroup(CONFIG_WIDGETS)
         self._widget_group.handle_resize(window.size)
@@ -185,7 +188,7 @@ class Config(_State):
         
         if colour == Colour.BLUE:
             CONFIG_WIDGETS['to_move_text'].set_text('BLUE TO MOVE')
-        else:
+        elif colour == Colour.RED:
             CONFIG_WIDGETS['to_move_text'].set_text('RED TO MOVE')
         
         if self._valid_fen:

@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.constants import WidgetState
 from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
 from data.utils.widget_helpers import create_text_box

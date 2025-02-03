@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 
 class _ColourDisplay(_Widget):
     def __init__(self, **kwargs):

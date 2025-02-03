@@ -15,12 +15,16 @@ from functools import partial
 
 from data.managers.window import window
 
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__name__)
+
 class Game(_State):
     def __init__(self):
         super().__init__()
     
     def cleanup(self):
-        print('cleaning game.py')
+        logger.info('cleaning game.py')
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         game_entry = GameEntry(self.model.states, final_fen_string=self.model.get_fen_string())
@@ -44,7 +48,7 @@ class Game(_State):
         self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, binded_startup)
 
         self.view.draw()
-        print('starting game.py')
+        logger.info('starting game.py')
     
     def get_event(self, event):
         '''Handle gui events before board events because selected square gets cancelled in board events'''

@@ -1,5 +1,5 @@
 import pygame
-from data.widgets.bases import _Widget
+from data.widgets.bases.widget import _Widget
 from data.widgets.colour_square import _ColourSquare
 from data.widgets.colour_slider import _ColourSlider
 from data.widgets.colour_display import _ColourDisplay
