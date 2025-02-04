@@ -37,16 +37,14 @@ class Editor(_State):
         self._overlay_draw = None
     
     def cleanup(self):
-        logger.info('cleaning editor.py')
+        super().cleanup()
 
         self.deselect_tool()
 
         return encode_fen_string(self._bitboards)
     
     def startup(self, persist):
-        logger.info('starting editor.py')
-        self._widget_group = WidgetGroup(EDITOR_WIDGETS)
-        self._widget_group.handle_resize(window.size)
+        super().startup(EDITOR_WIDGETS, music=MUSIC_PATHS['setup'])
         EDITOR_WIDGETS['help'].kill()
 
         self._drag_and_drop = DragAndDrop(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
@@ -63,8 +61,6 @@ class Editor(_State):
         self.refresh_pieces()
         self.set_starting_colour(Colour.BLUE if persist['FEN_STRING'][-1].lower() == 'b' else Colour.RED)
         self.draw()
-        
-        # audio.play_music(MUSIC_PATHS['setup'])
     
     @property
     def selected_coords(self):
@@ -80,10 +76,6 @@ class Editor(_State):
 
         if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             EDITOR_WIDGETS['help'].kill()
-
-        if event.type == pygame.VIDEORESIZE:
-            self.handle_resize(resize_end=True)
-            return
         
         if event.type == pygame.MOUSEBUTTONDOWN:
             clicked_coords = screen_pos_to_coords(event.pos, EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
@@ -298,7 +290,7 @@ class Editor(_State):
         self._selected_tool = None
         self._selected_tool_colour = None
                 
-    def handle_resize(self, resize_end=False):
+    def handle_resize(self):
         super().handle_resize()
         self._piece_group.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)
         self._drag_and_drop.handle_resize(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)

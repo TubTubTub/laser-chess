@@ -1,7 +1,12 @@
 import pygame
 from data.managers.animation import animation
 from data.managers.window import window
+from data.managers.audio import audio
 from data.managers.cursor import CursorManager
+from data.components.widget_group import WidgetGroup
+from data.managers.logs import initialise_logger
+
+logger = initialise_logger(__file__)
 
 FPS = 60
 start_ticks = pygame.time.get_ticks()
@@ -99,7 +104,19 @@ class _State:
         
         self._cursor = CursorManager()
         self._widget_group = None
-        self._help = False
+    
+    def startup(self, widgets=None, music=None):
+        if widgets:
+            self._widget_group = WidgetGroup(widgets)
+            self._widget_group.handle_resize(window.size)
+
+        if music:
+            audio.play_music(music)
+
+        logger.info(f'starting {__class__.__name__.lower()}.py')
+    
+    def cleanup(self):
+        logger.info(f'cleaning {__class__.__name__.lower()}.py')
     
     def draw(self):
         raise NotImplementedError
