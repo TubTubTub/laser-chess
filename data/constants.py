@@ -292,11 +292,6 @@ class MoveType(StrEnum):
     MOVE = 'm'
     ROTATE = 'r'
 
-class ImageType(StrEnum):
-    HIGH_RES = 'high'
-    LOW_RES = 'low'
-    EMPTY = 'empty'
-
 class LaserType(IntEnum):
     END = 0
     STRAIGHT = 1

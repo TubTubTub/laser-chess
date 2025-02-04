@@ -9,5 +9,5 @@ Log-in
 
 Miscellaneous:
 Make ScrollArea use parent keyword
-Standardise font size
 Fix SFX
+Refactor move and capture code

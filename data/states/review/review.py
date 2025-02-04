@@ -7,7 +7,7 @@ from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.constants import ReviewEventType, Colour, ShaderType
 from data.components.cursor import Cursor
-from data.assets import GRAPHICS, MUSIC_PATHS
+from data.assets import GRAPHICS, MUSIC_PATHS, SFX
 from data.utils.asset_helpers import draw_background
 from data.utils.browser_helpers import get_winner_string
 from data.managers.audio import audio
@@ -40,6 +40,8 @@ class Review(_State):
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
+        
+        self._widget_group = WidgetGroup(REVIEW_WIDGETS)
         self._widget_group.handle_resize(window.size)
         REVIEW_WIDGETS['help'].kill()
 
@@ -149,6 +151,10 @@ class Review(_State):
                         REVIEW_WIDGETS['red_piece_display'].remove_piece(laser_result.piece_hit)
                     elif laser_result.piece_colour == Colour.RED:
                         REVIEW_WIDGETS['blue_piece_display'].remove_piece(laser_result.piece_hit)
+                    
+                    audio.play_sfx(SFX['piece_destroy'])
+                else:
+                    audio.play_sfx(SFX['piece_move'])
                 
                 REVIEW_WIDGETS['move_list'].pop_from_move_list()
                 

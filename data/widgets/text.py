@@ -6,7 +6,7 @@ from data.utils.widget_helpers import create_text_box
 from data.assets import GRAPHICS
 
 class Text(_Widget): # Pure text
-    def __init__(self, text, center=True, fit_vertical=True, box_colours=None, strength=0.05, **kwargs):
+    def __init__(self, text, center=True, fit_vertical=True, box_colours=None, strength=0.05, font_size=None, **kwargs):
         super().__init__(**kwargs)
         self._text = text
         self._fit_vertical = fit_vertical
@@ -17,6 +17,9 @@ class Text(_Widget): # Pure text
             self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
         else:
             self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
+        
+        if font_size:
+            self._relative_font_size = font_size / self.surface_size[1]
         
         self._center = center
         self.rect = self._font.get_rect(self._text, size=self.font_size)

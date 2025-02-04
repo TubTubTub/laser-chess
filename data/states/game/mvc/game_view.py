@@ -13,7 +13,8 @@ from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
 from data.components.cursor import Cursor
 from data.managers.window import window
-from data.managers.animation import animation
+from data.managers.audio import audio
+from data.assets import SFX
 
 class GameView:
     def __init__(self, model):
@@ -117,6 +118,7 @@ class GameView:
     
     def handle_set_laser(self, event):
         laser_result = event.laser_result
+
         if laser_result.hit_square_bitboard:
             coords_to_remove = bitboard_to_coords(laser_result.hit_square_bitboard)
             self._piece_group.remove_piece(coords_to_remove)
@@ -125,6 +127,8 @@ class GameView:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
             elif laser_result.piece_colour == Colour.RED:
                 GAME_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
+            
+            audio.play_sfx(SFX['piece_destroy'])
 
             if self._user_settings['particles']:
                 self._particles_draw.add_captured_piece(
@@ -140,6 +144,8 @@ class GameView:
                     coords_to_screen_pos(laser_result.laser_path[0][0],
                     self.board_position, self.square_size)
                 )
+        else:
+            audio.play_sfx(SFX['piece_move'])
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
         self.update_laser_shader()

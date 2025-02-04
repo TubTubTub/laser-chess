@@ -1,9 +1,10 @@
 import pygame
 from data.constants import LaserType
 from data.utils.board_helpers import coords_to_screen_pos
-from data.assets import GRAPHICS
+from data.assets import GRAPHICS, SFX
 from data.constants import EMPTY_BB, ShaderType, Colour
 from data.managers.animation import animation
+from data.managers.audio import audio
 from data.managers.window import window
 
 type_to_image = {
@@ -65,6 +66,8 @@ class LaserDraw:
 
         animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
         animation.set_timer(1000, self.remove_laser)
+
+        audio.play_sfx(SFX['laser'])
     
     def remove_laser(self):
         self._laser_lists.pop(0)

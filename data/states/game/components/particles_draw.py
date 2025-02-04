@@ -1,6 +1,5 @@
 import pygame
 from random import randint
-from data.constants import ImageType
 from data.utils.asset_helpers import get_perimeter_sample, get_vector, get_angle_between_vectors, get_next_corner
 from data.states.game.components.piece_sprite import PieceSprite
 
