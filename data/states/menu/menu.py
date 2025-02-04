@@ -24,28 +24,25 @@ class Menu(_State):
         self._laser_mask = None
     
     def cleanup(self):
-        logger.info('cleaning menu.py')
+        super().cleanup()
+
         window.clear_apply_arguments(ShaderType.BLOOM)
         window.clear_apply_arguments(ShaderType.SHAKE)
         window.clear_effect(ShaderType.CHROMATIC_ABBREVIATION)
+        
         return None
     
     def startup(self, persist=None):
+        super().startup(MENU_WIDGETS, MUSIC_PATHS['menu'])
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
 
-        self._widget_group = WidgetGroup(MENU_WIDGETS)
-        self._widget_group.handle_resize(window.size)
         MENU_WIDGETS['credits'].kill()
 
         self._fire_laser = False
         self._bloom_mask = None
         self._laser_mask = None
 
-
-        audio.play_music(MUSIC_PATHS['menu'])
-
-        logger.info('starting menu.py')
         self.draw()
         self.update_masks()
 

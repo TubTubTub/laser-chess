@@ -31,16 +31,16 @@ class Config(_State):
         self._selected_preset = None
     
     def cleanup(self):
-        logger.info('cleaning config.py')
+        super().cleanup()
+        
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         return self._config
     
     def startup(self, persist=None):
-        logger.info('starting config.py')
+        super().startup(CONFIG_WIDGETS, music=MUSIC_PATHS['cpu_hard'])
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
-        self._widget_group = WidgetGroup(CONFIG_WIDGETS)
-        self._widget_group.handle_resize(window.size)
+
         CONFIG_WIDGETS['invalid_fen_string'].kill()
         CONFIG_WIDGETS['help'].kill()
 
@@ -60,8 +60,6 @@ class Config(_State):
             self.remove_depth_picker()
 
         self.draw()
-
-        audio.play_music(MUSIC_PATHS['cpu_hard'])
     
     def create_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))

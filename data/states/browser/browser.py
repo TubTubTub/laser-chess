@@ -33,25 +33,22 @@ class Browser(_State):
         self._page_number = 1
     
     def cleanup(self):
-        logger.info('cleaning browser.py')
-
+        super().cleanup()
+        
         if self._selected_index is not None:
             return self._games_list[self._selected_index]
 
         return None
     
     def startup(self, persist=None):
-        logger.info('starting browser.py')
-        # audio.play_music(MUSIC_PATHS['menu'])
-        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_WAVES)
+        self.refresh_games_list() # BEFORE RESIZE TO FILL WIDGET BEFORE RESIZING
+        super().startup(BROWSER_WIDGETS, music=None)
 
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False
 
-        self.refresh_games_list() # BEFORE RESIZE TO FILL WIDGET BEFORE RESIZING
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_WAVES)
 
-        self._widget_group = WidgetGroup(BROWSER_WIDGETS)
-        self._widget_group.handle_resize(window.size)
         BROWSER_WIDGETS['help'].kill()
         BROWSER_WIDGETS['browser_strip'].kill()
 

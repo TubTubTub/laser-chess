@@ -24,7 +24,8 @@ class Game(_State):
         super().__init__()
     
     def cleanup(self):
-        logger.info('cleaning game.py')
+        super().cleanup()
+        
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         game_entry = GameEntry(self.model.states, final_fen_string=self.model.get_fen_string())
@@ -37,6 +38,7 @@ class Game(_State):
         self.done = True
     
     def startup(self, persist):
+        super().startup()
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_LASERS)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         binded_startup = partial(self.startup, persist)
@@ -48,14 +50,9 @@ class Game(_State):
         self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, binded_startup)
 
         self.view.draw()
-        logger.info('starting game.py')
     
     def get_event(self, event):
-        '''Handle gui events before board events because selected square gets cancelled in board events'''
-        if event.type == pygame.VIDEORESIZE:
-            self.view.handle_resize(resize_end=True)
-        else:
-            self.controller.handle_event(event)
+        self.controller.handle_event(event)
     
     def handle_resize(self):
         self.view.handle_resize()

@@ -20,28 +20,18 @@ class Settings(_State):
         self._settings = None
     
     def cleanup(self):
-        logger.info('cleaning settings.py')
-        # logger.info('\nUPDATING SETTINGS:', )
-        # plogger.info.plogger.info(self._settings)
-        # logger.info('')
+        super().cleanup()
 
         update_user_settings(self._settings)
 
         return None
     
     def startup(self, persist=None):
-        logger.info('starting settings.py')
+        super().startup(SETTINGS_WIDGETS, MUSIC_PATHS['menu'])
+
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
-        self._widget_group = WidgetGroup(SETTINGS_WIDGETS)
-        self._widget_group.handle_resize(window.size)
         self._settings = get_user_settings()
         self.reload_settings()
-
-        # logger.info('\nGETTING USER SETTINGS:')
-        # pprint(self._settings)
-        # logger.info('')
-
-        audio.play_music(MUSIC_PATHS['menu'])
 
         self.draw()
     

@@ -30,19 +30,24 @@ class Review(_State):
         self._laser_draw = None
     
     def cleanup(self):
-        logger.info('cleaning review.py')
+        super().cleanup()
+        
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         return None
     
     def startup(self, persist):
-        logger.info('starting review.py')
+        super().startup(REVIEW_WIDGETS, MUSIC_PATHS['menu'])
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
+<<<<<<< HEAD
         
         self._widget_group = WidgetGroup(REVIEW_WIDGETS)
         self._widget_group.handle_resize(window.size)
+=======
+
+>>>>>>> 7b63741d6ca0642877ffc95aa0acbab1936ea4a5
         REVIEW_WIDGETS['help'].kill()
 
         self._moves = GameEntry.parse_moves(persist.pop('moves', ''))
@@ -58,7 +63,6 @@ class Review(_State):
         self.refresh_pieces()
         self.refresh_widgets()
 
-        # audio.play_music(MUSIC_PATHS['menu'])
         self.draw()
     
     def initialise_widgets(self):
@@ -118,10 +122,7 @@ class Review(_State):
             return initial_colour.get_flipped_colour()
     
     def get_event(self, event):
-        if event.type == pygame.VIDEORESIZE:
-            self.handle_resize(resize_end=True)
-            return
-        elif event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+        if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             REVIEW_WIDGETS['help'].kill()
 
         widget_event = self._widget_group.process_event(event)
@@ -190,7 +191,7 @@ class Review(_State):
             case ReviewEventType.HELP_CLICK:
                 self._widget_group.add(REVIEW_WIDGETS['help'])
     
-    def handle_resize(self, resize_end=False):
+    def handle_resize(self):
         super().handle_resize()
         self._piece_group.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)
         self._laser_draw.handle_resize(REVIEW_WIDGETS['chessboard'].position, REVIEW_WIDGETS['chessboard'].size)

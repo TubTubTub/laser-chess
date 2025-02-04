@@ -81,7 +81,7 @@ class GameView:
             case StatusText.DRAW:
                 GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
     
-    def handle_resize(self, resize_end=False):
+    def handle_resize(self):
         self._piece_group.handle_resize(self.board_position, self.board_size)
         self._laser_draw.handle_resize(self.board_position, self.board_size)
         self._laser_draw.handle_resize(self.board_position, self.board_size)
