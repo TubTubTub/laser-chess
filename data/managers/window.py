@@ -1,10 +1,8 @@
 import pygame
 import moderngl
-from random import randint
+from data.constants import ShaderType, SCREEN_SIZE, SHADER_MAP
 from data.utils.data_helpers import get_user_settings
 from data.utils.asset_helpers import draw_background
-from data.constants import ShaderType, SCREEN_SIZE, SHADER_MAP
-from data.managers.animation import animation
 from data.managers.shader import ShaderManager
 
 user_settings = get_user_settings()

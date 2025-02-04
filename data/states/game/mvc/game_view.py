@@ -1,16 +1,16 @@
 import pygame
-from data.utils.board_helpers import coords_to_screen_pos, screen_pos_to_coords
-from data.utils.bitboard_helpers import bitboard_to_coords
 from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ShaderType
+from data.states.game.components.overlay_draw import OverlayDraw
+from data.states.game.components.capture_draw import CaptureDraw
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
-from data.states.game.components.overlay_draw import OverlayDraw
-from data.states.game.components.particles_draw import ParticlesDraw
 from data.states.game.components.father import DragAndDrop
+from data.utils.bitboard_helpers import bitboard_to_coords
+from data.utils.board_helpers import screen_pos_to_coords
 from data.utils.data_helpers import get_user_settings
 from data.states.game.widget_dict import GAME_WIDGETS
-from data.components.widget_group import WidgetGroup
 from data.components.custom_event import CustomEvent
+from data.components.widget_group import WidgetGroup
 from data.components.cursor import Cursor
 from data.managers.window import window
 from data.managers.audio import audio
@@ -36,7 +36,7 @@ class GameView:
         self._laser_draw = LaserDraw(self.board_position, self.board_size)
         self._overlay_draw = OverlayDraw(self.board_position, self.board_size)
         self._drag_and_drop = DragAndDrop(self.board_position, self.board_size)
-        self._particles_draw = ParticlesDraw()
+        self._capture_draw = CaptureDraw(self.board_position, self.board_size)
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
@@ -53,7 +53,6 @@ class GameView:
     @property
     def square_size(self):
         return self.board_size[0] / 10
-
     
     def initialise_widgets(self):
         GAME_WIDGETS['move_list'].reset_move_list()
@@ -82,10 +81,11 @@ class GameView:
                 GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
     
     def handle_resize(self):
+        self._overlay_draw.handle_resize(self.board_position, self.board_size)
+        self._capture_draw.handle_resize(self.board_position, self.board_size)
         self._piece_group.handle_resize(self.board_position, self.board_size)
         self._laser_draw.handle_resize(self.board_position, self.board_size)
         self._laser_draw.handle_resize(self.board_position, self.board_size)
-        self._overlay_draw.handle_resize(self.board_position, self.board_size)
         self._widget_group.handle_resize(window.size)
 
         if self._laser_draw.firing:
@@ -127,23 +127,17 @@ class GameView:
                 GAME_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
             elif laser_result.piece_colour == Colour.RED:
                 GAME_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
+
+            self._capture_draw.add_capture(
+                laser_result.piece_hit,
+                laser_result.piece_colour,
+                laser_result.piece_rotation,
+                coords_to_remove,
+                laser_result.laser_path[0][0],
+                self._model.states['ACTIVE_COLOUR']
+            )
             
             audio.play_sfx(SFX['piece_destroy'])
-
-            if self._user_settings['particles']:
-                self._particles_draw.add_captured_piece(
-                    laser_result.piece_hit,
-                    laser_result.piece_colour,
-                    laser_result.piece_rotation,
-                    coords_to_screen_pos(coords_to_remove, self.board_position, self.square_size),
-                    self.square_size
-                )
-                self._particles_draw.add_sparks(
-                    3,
-                    (255, 0, 0) if self._model.states['ACTIVE_COLOUR'] == Colour.RED else (0, 0, 255),
-                    coords_to_screen_pos(laser_result.laser_path[0][0],
-                    self.board_position, self.square_size)
-                )
         else:
             audio.play_sfx(SFX['piece_move'])
 
@@ -180,14 +174,14 @@ class GameView:
     
     def draw(self):
         self._widget_group.update()
-        self._particles_draw.update()
+        self._capture_draw.update()
 
         self._widget_group.draw()
         self._overlay_draw.draw(window.screen)
         self._piece_group.draw(window.screen)
         self._laser_draw.draw(window.screen)
-        self._particles_draw.draw(window.screen)
         self._drag_and_drop.draw(window.screen)
+        self._capture_draw.draw(window.screen)
 
     def process_model_event(self, event):
         try:
@@ -227,6 +221,7 @@ class GameView:
     
     def add_help_screen(self):
         self._widget_group.add(GAME_WIDGETS['help'])
+        self._widget_group.handle_resize(window.size)
             
     def remove_help_screen(self):
         GAME_WIDGETS['help'].kill()

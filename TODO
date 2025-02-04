@@ -6,10 +6,5 @@ Switch sphinx direction
 Log-in
 
 Miscellaneous:
-<<<<<<< HEAD
-Make ScrollArea use parent keyword
 Fix SFX
 Refactor move and capture code
-=======
-Fix SFX
->>>>>>> 7b63741d6ca0642877ffc95aa0acbab1936ea4a5

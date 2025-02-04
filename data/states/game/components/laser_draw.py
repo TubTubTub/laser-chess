@@ -6,6 +6,7 @@ from data.constants import EMPTY_BB, ShaderType, Colour
 from data.managers.animation import animation
 from data.managers.audio import audio
 from data.managers.window import window
+from pprint import pprint
 
 type_to_image = {
     LaserType.END: ['laser_end_1', 'laser_end_2'],
@@ -45,16 +46,14 @@ class LaserDraw:
                 laser_types.append(LaserType.CORNER)
                 laser_rotation.append(current_direction.get_anticlockwise())
             
-            if i == 1 or i == len(laser_path) - 1:
+            if i in [1, len(laser_path) - 1]:
                 abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
                 laser_lights.append([
                     (abs_position[0] / window.size[0], abs_position[1] / window.size[1]),
                     0.5,
                     (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
                 ])
-
-        window.set_effect(ShaderType.RAYS, lights=laser_lights)
-        window.set_effect(ShaderType.SHAKE)
+                print('adding light at', abs_position, laser_colour.name)
         
         if laser_result.hit_square_bitboard != EMPTY_BB:
             laser_types[-1] = LaserType.END
@@ -64,9 +63,8 @@ class LaserDraw:
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
         self._laser_lists.append((laser_path, laser_colour))
 
-        animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
+        window.set_effect(ShaderType.RAYS, lights=laser_lights)
         animation.set_timer(1000, self.remove_laser)
-
         audio.play_sfx(SFX['laser'])
     
     def remove_laser(self):
@@ -74,7 +72,6 @@ class LaserDraw:
 
         if len(self._laser_lists) == 0:
             window.clear_effect(ShaderType.RAYS)
-            window.clear_effect(ShaderType.CHROMATIC_ABBREVIATION)
     
     def draw_laser(self, screen, laser_list, glow=True):
         laser_path, laser_colour = laser_list

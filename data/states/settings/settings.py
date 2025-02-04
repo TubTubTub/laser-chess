@@ -55,14 +55,21 @@ class Settings(_State):
         self._colour_picker.kill()
     
     def reload_display_mode(self):
+        relative_mouse_pos = (pygame.mouse.get_pos()[0] / window.size[0], pygame.mouse.get_pos()[1] / window.size[1])
+        
         if self._settings['displayMode'] == 'fullscreen':
             window.set_fullscreen(desktop=True)
+            window.handle_resize()
 
         elif self._settings['displayMode'] == 'windowed':
             window.set_windowed()
+            window.handle_resize()
             window.restore()
         
         self._widget_group.handle_resize(window.size)
+
+        new_mouse_pos = (relative_mouse_pos[0] * window.size[0], relative_mouse_pos[1] * window.size[1])
+        pygame.mouse.set_pos(new_mouse_pos)
     
     def reload_shaders(self):
         window.clear_all_effects()

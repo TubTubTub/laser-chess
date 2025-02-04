@@ -54,14 +54,14 @@ class MoveList(_Widget):
 
         for index, move in enumerate(self._move_list):
             if index % 2 == 0:
-                text_position = (self.size[0] / 5, row_gap * (1 + 2 * (index // 2)))
+                text_position = (self.size[0] / 7, row_gap * (1 + 2 * (index // 2)))
             else:
-                text_position = (self.size[0] * 3 / 5, row_gap * (1 + 2 * (index // 2)))
+                text_position = (self.size[0] * 4 / 7, row_gap * (1 + 2 * (index // 2)))
                 
             self._font.render_to(self.image, text_position, text=move, size=self.font_size, fgcolor=self._text_colour)
 
             move_number = (index // 2) + 1
-            move_number_position = (self.size[0] / 10, row_gap * (1 + 2 * (index // 2)))
+            move_number_position = (self.size[0] / 14, row_gap * (1 + 2 * (index // 2)))
             self._font.render_to(self.image, move_number_position, text=str(move_number), size=self.font_size, fgcolor=self._text_colour)
     
     def process_event(self, event, scrolled_pos=None):

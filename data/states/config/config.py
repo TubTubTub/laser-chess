@@ -165,6 +165,7 @@ class Config(_State):
             
             case ConfigEventType.HELP_CLICK:
                 self._widget_group.add(CONFIG_WIDGETS['help'])
+                self._widget_group.handle_resize(window.size)
     
     def set_preset_overlay(self, fen_string):
         fen_string_widget_map = {
@@ -195,9 +196,6 @@ class Config(_State):
     
     def draw(self):
         self._widget_group.draw()
-
-        if self._help:
-            pygame.draw.rect(window.screen, 'green', (10, 10, 1000, 1000))
 
         if self._selected_preset:
             pygame.draw.rect(window.screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))

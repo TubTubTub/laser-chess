@@ -138,6 +138,7 @@ class Browser(_State):
             
             case BrowserEventType.HELP_CLICK:
                 self._widget_group.add(BROWSER_WIDGETS['help'])
+                self._widget_group.handle_resize(window.size)
     
     def draw(self):
         self._widget_group.draw()

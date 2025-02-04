@@ -46,8 +46,8 @@ class ShaderManager(SMProtocol):
         self._programs = {}
         self._vaos = {}
         self._textures = {}
-        self.framebuffers = {}
         self._shader_passes = {}
+        self.framebuffers = {}
         
         self.load_shader(ShaderType.BASE)
         self.load_shader(ShaderType._CALIBRATE)

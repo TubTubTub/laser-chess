@@ -166,6 +166,7 @@ class Editor(_State):
             
             case EditorEventType.HELP_CLICK:
                 self._widget_group.add(EDITOR_WIDGETS['help'])
+                self._widget_group.handle_resize(window.size)
     
     def reset_board(self):
         self._bitboards = BitboardCollection(self._initial_fen_string)

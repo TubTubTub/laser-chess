@@ -7,8 +7,10 @@ SCROLLBAR_WIDTH_FACTOR = 0.05
 
 class ScrollArea(_Widget):
     def __init__(self, widget, vertical, scroll_factor=15, **kwargs):
-        super().__init__(**kwargs, scale_mode='both')
-        
+        super().__init__(**kwargs)
+        if vertical is False:
+            self._relative_size = kwargs.get('relative_size')
+
         self._relative_scroll_factor = scroll_factor / self.surface_size[1]
 
         self._scroll_percentage = 0
@@ -52,6 +54,13 @@ class ScrollArea(_Widget):
             return (self.size[0] * SCROLLBAR_WIDTH_FACTOR, min(1, self.size[1] / self._widget.rect.height) * self.size[1])
         else:
             return (min(1, self.size[0] / (self._widget.rect.width + 0.001)) * self.size[0], self.size[1] * SCROLLBAR_WIDTH_FACTOR)
+    
+    @property
+    def size(self):
+        if self._vertical is False:
+            return (self._relative_size[0] * self.surface_size[0], self._relative_size[1] * self.surface_size[1]) # scale with horizontal width to always fill entire length of screen
+        else:
+            return super().size
 
     def calculate_scroll_percentage(self, offset, scrollbar=False):
         if self._vertical:

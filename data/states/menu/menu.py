@@ -124,6 +124,7 @@ class Menu(_State):
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=self._bloom_mask, occlusion_intensity=0.3, brightness_intensity=0.6)
     
     def update(self, **kwargs):
+        random_offset = lambda: randint(-5, 5) / 40
         if self._fire_laser:
             window.clear_effect(ShaderType.RAYS)
             window.set_effect(ShaderType.RAYS, lights=[[
@@ -131,11 +132,12 @@ class Menu(_State):
                 2.2,
                 (190, 190, 255),
                 0.99,
-                (self.sphinx_rotation - 2 + randint(-5, 5) / 40, self.sphinx_rotation + 2 + randint(-5, 5) / 40)
+                (self.sphinx_rotation - 2 + random_offset(), self.sphinx_rotation + 2 + random_offset())
             ]])
 
             window.set_effect(ShaderType.SHAKE)
             window.set_apply_arguments(ShaderType.SHAKE, intensity=1)
+            pygame.mouse.set_pos(pygame.mouse.get_pos()[0] + random_offset(), pygame.mouse.get_pos()[1] + random_offset())
 
         super().update(**kwargs)
     

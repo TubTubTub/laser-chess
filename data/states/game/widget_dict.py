@@ -8,8 +8,6 @@ right_container = Rectangle(
     relative_size=(0.2, 0.5),
     anchor_y='center',
     anchor_x='right',
-    visible=True,
-    fill_colour=(0, 0, 0, 0)
 )
 
 rotate_container = Rectangle(
@@ -17,7 +15,6 @@ rotate_container = Rectangle(
     relative_size=(0.2, 0.1),
     anchor_x='center',
     anchor_y='bottom',
-    visible=False
 )
 
 move_list = MoveList(
@@ -41,9 +38,10 @@ resign_button = TextButton(
 
 draw_button = TextButton(
     parent=right_container,
-    relative_position=(0.5, 0),
+    relative_position=(0, 0),
     relative_size=(0.5, 0.2),
     fit_vertical=False,
+    anchor_x='right',
     anchor_y='bottom',
     text="   Draw",
     margin=5,

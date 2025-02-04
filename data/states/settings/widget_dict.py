@@ -8,7 +8,8 @@ from data.utils.font_helpers import text_width_to_font_size
 from data.managers.window import window
 
 user_settings = get_user_settings()
-font_size = text_width_to_font_size('Shaders (OPENGL GPU REQUIRED)', DEFAULT_FONT, 0.4 * window.screen.width)
+# font_size = text_width_to_font_size('Shaders (OPENGL GPU REQUIRED)', DEFAULT_FONT, 0.4 * window.screen.width)
+FONT_SIZE = 21
 
 carousel_widgets = {
     key: Text(
@@ -51,7 +52,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -61,7 +62,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -71,7 +72,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -81,7 +82,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -91,7 +92,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -101,7 +102,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -111,7 +112,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         Text(
@@ -121,7 +122,7 @@ SETTINGS_WIDGETS = {
             center=False,
             border_width=0,
             margin=0,
-            font_size=font_size,
+            font_size=21,
             fill_colour=(0, 0, 0, 0)
         ),
         TextButton(
