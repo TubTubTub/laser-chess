@@ -9,9 +9,8 @@ from data.utils.browser_helpers import get_winner_string
 from data.states.game.components.board import Board
 from data.components.game_entry import GameEntry
 from data.managers.logs import initialise_logger
-from data.assets import MUSIC_PATHS, SFX
 from data.managers.window import window
-from data.managers.audio import audio
+from data.assets import MUSIC_PATHS
 from data.control import _State
 
 logger = initialise_logger(__name__)
@@ -58,6 +57,8 @@ class Review(_State):
         self.refresh_widgets()
 
         self.draw()
+        
+        print(self._moves)
     
     @property
     def board_position(self):
@@ -100,6 +101,9 @@ class Review(_State):
         
         REVIEW_WIDGETS['scroll_area'].set_image()
     
+    def refresh_pieces(self):
+        self._piece_group.initialise_pieces(self._board.get_piece_list(), self.board_position, self.board_size)
+    
     def simulate_all_moves(self):
         for index, move_dict in enumerate(self._moves):
             laser_result = self._board.apply_move(move_dict['move'], fire_laser=True)
@@ -114,9 +118,6 @@ class Review(_State):
                 
             REVIEW_WIDGETS['move_list'].append_to_move_list(move_dict['unparsed_move'])
     
-    def refresh_pieces(self):
-        self._piece_group.initialise_pieces(self._board.get_piece_list(), self.board_position, self.board_size)
-    
     def calculate_colour(self, move_number):
         if self._game_info['start_fen_string'][-1].lower() == 'b':
             initial_colour = Colour.BLUE
@@ -128,7 +129,7 @@ class Review(_State):
         else:
             return initial_colour.get_flipped_colour()
     
-    def handle_laser(self, move_index, add_piece=True):
+    def handle_move(self, move_index, add_piece=True):
         laser_result = self._moves[move_index]['laser_result']
         self._laser_draw.add_laser(laser_result, laser_colour=self.calculate_colour(move_index))
 
@@ -154,6 +155,14 @@ class Review(_State):
                 shake=False
             )
     
+    def update_laser_mask(self):
+        temp_surface = pygame.Surface(window.size, pygame.SRCALPHA)
+        self._piece_group.draw(temp_surface)
+        mask = pygame.mask.from_surface(temp_surface, threshold=127)
+        mask_surface = mask.to_surface(unsetcolor=(0, 0, 0, 255), setcolor=(255, 0, 0, 255))
+
+        window.set_apply_arguments(ShaderType.RAYS, occlusion=mask_surface)
+
     def get_event(self, event):
         if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             REVIEW_WIDGETS['help'].kill()
@@ -174,17 +183,16 @@ class Review(_State):
             case ReviewEventType.PREVIOUS_CLICK:
                 if self._move_index < 0 or len(self._moves) == 0:
                     return
-
-                self._board.undo_move(self._moves[self._move_index]['move'], laser_result=self._moves[self._move_index]['laser_result'])
-
-                self.handle_laser(self._move_index, add_piece=False)
-                
-                REVIEW_WIDGETS['move_list'].pop_from_move_list()
                 
                 self._move_index = max(-1, self._move_index - 1)
+
+                self._board.undo_move(self._moves[self._move_index + 1]['move'], laser_result=self._moves[self._move_index + 1]['laser_result'])
+                self.handle_move(self._move_index + 1, add_piece=False)
+                REVIEW_WIDGETS['move_list'].pop_from_move_list()
                 
                 self.refresh_pieces()
                 self.refresh_widgets()
+                self.update_laser_mask()
 
             case ReviewEventType.NEXT_CLICK:
                 if self._move_index + 1 >= len(self._moves) or len(self._moves) == 0:
@@ -193,15 +201,12 @@ class Review(_State):
                 self._move_index = min(len(self._moves) - 1, self._move_index + 1)
                 
                 self._board.apply_move(self._moves[self._move_index]['move'])
-
-                self.handle_laser(self._move_index, add_piece=True)
-                
+                self.handle_move(self._move_index, add_piece=True)
                 REVIEW_WIDGETS['move_list'].append_to_move_list(self._moves[self._move_index]['unparsed_move'])
-
-                self._last_move = 'NEXT'
                 
                 self.refresh_pieces()
                 self.refresh_widgets()
+                self.update_laser_mask()
             
             case ReviewEventType.HELP_CLICK:
                 self._widget_group.add(REVIEW_WIDGETS['help'])
@@ -212,7 +217,10 @@ class Review(_State):
         self._piece_group.handle_resize(self.board_position, self.board_size)
         self._laser_draw.handle_resize(self.board_position, self.board_size)
         self._capture_draw.handle_resize(self.board_position, self.board_size)
-    
+
+        if self._laser_draw.firing:
+            self.update_laser_mask()
+
     def draw(self):
         self._capture_draw.update()
         self._widget_group.draw()

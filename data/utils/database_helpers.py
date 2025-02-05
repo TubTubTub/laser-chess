@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 
-database_path = (Path(__file__).parent / './database.db').resolve()
+database_path = (Path(__file__).parent / '../database/database.db').resolve()
 
 def insert_into_games(game_entry):
     connection = sqlite3.connect(database_path, detect_types=sqlite3.PARSE_DECLTYPES)

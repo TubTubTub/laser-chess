@@ -9,7 +9,7 @@ from data.states.game.mvc.win_view import WinView
 from data.components.game_entry import GameEntry
 from data.constants import ShaderType, BG_COLOUR
 from data.control import _State
-from data.database.database_helpers import insert_into_games
+from data.utils.database_helpers import insert_into_games
 
 from functools import partial
 

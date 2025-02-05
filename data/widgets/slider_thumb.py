@@ -12,7 +12,7 @@ class _SliderThumb(_Pressable):
             up_func=self.up_func,
             hover_func=self.hover_func,
             prolonged=True,
-            play_sfx=False
+            sfx=None
         )
         self._border_colour = border_colour
         self._radius = radius

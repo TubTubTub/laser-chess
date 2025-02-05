@@ -89,7 +89,7 @@ class GameView:
         self._widget_group.handle_resize(window.size)
 
         if self._laser_draw.firing:
-            self.update_laser_shader()
+            self.update_laser_mask()
     
     def handle_update_pieces(self, event=None, toggle_timers=True):
         piece_list = self._model.get_piece_list()
@@ -142,7 +142,7 @@ class GameView:
             audio.play_sfx(SFX['piece_move'])
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
-        self.update_laser_shader()
+        self.update_laser_mask()
     
     def handle_pause(self, event):
         is_active = not(self._model.states['PAUSED'])
@@ -164,7 +164,7 @@ class GameView:
         elif colour == Colour.RED:
             GAME_WIDGETS['red_timer'].set_active(is_active)
     
-    def update_laser_shader(self):
+    def update_laser_mask(self):
         temp_surface = pygame.Surface(window.size, pygame.SRCALPHA)
         self._piece_group.draw(temp_surface)
         mask = pygame.mask.from_surface(temp_surface, threshold=127)

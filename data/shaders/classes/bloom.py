@@ -14,13 +14,11 @@ class Bloom:
         shader_manager.load_shader(ShaderType._BLUR)
         shader_manager.load_shader(ShaderType._HIGHLIGHT_BRIGHTNESS)
         shader_manager.load_shader(ShaderType._HIGHLIGHT_COLOUR)
-        shader_manager.load_shader(ShaderType._OCCLUSION)
 
         shader_manager.create_framebuffer(ShaderType.BLOOM)
         shader_manager.create_framebuffer(ShaderType._BLUR)
         shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_BRIGHTNESS)
         shader_manager.create_framebuffer(ShaderType._HIGHLIGHT_COLOUR)
-        shader_manager.create_framebuffer(ShaderType._OCCLUSION)
     
     def apply(self, texture, occlusion_surface=None, occlusion_colours=[], occlusion_intensity=BLOOM_INTENSITY, brightness_intensity=BLOOM_INTENSITY, colour_intensity=BLOOM_INTENSITY):
         if occlusion_surface:

@@ -1,11 +1,10 @@
 import pygame
-from data.widgets.bases.widget import _Widget
-from data.widgets.bases.circular import _Circular
 from data.widgets.reactive_icon_button import ReactiveIconButton
-from data.components.circular_linked_list import CircularLinkedList
-from data.assets import GRAPHICS
-from data.constants import Miscellaneous
 from data.components.custom_event import CustomEvent
+from data.widgets.bases.circular import _Circular
+from data.widgets.bases.widget import _Widget
+from data.constants import Miscellaneous
+from data.assets import GRAPHICS, SFX
 
 class Carousel(_Circular, _Widget):
     def __init__(self, event, widgets_dict, **kwargs):
@@ -23,20 +22,22 @@ class Carousel(_Circular, _Widget):
         self._left_arrow = ReactiveIconButton(
             relative_position=(0, 0),
             relative_size=(0, self.arrow_size[1] / self.surface_size[1]),
+            scale_mode='height',
             base_icon=GRAPHICS['left_arrow_base'],
             hover_icon=GRAPHICS['left_arrow_hover'],
             press_icon=GRAPHICS['left_arrow_press'],
-            scale_mode='height',
             event=CustomEvent(Miscellaneous.PLACEHOLDER),
+            sfx=SFX['carousel_click']
         )
         self._right_arrow = ReactiveIconButton(
             relative_position=(0, 0),
             relative_size=(0, self.arrow_size[1] / self.surface_size[1]),
+            scale_mode='height',
             base_icon=GRAPHICS['right_arrow_base'],
             hover_icon=GRAPHICS['right_arrow_hover'],
             press_icon=GRAPHICS['right_arrow_press'],
-            scale_mode='height',
             event=CustomEvent(Miscellaneous.PLACEHOLDER),
+            sfx=SFX['carousel_click']
         )
 
         self._event = event

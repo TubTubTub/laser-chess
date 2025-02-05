@@ -12,6 +12,7 @@ class ReactiveButton(_Pressable, _Circular, _Widget):
             hover_func=lambda: self.set_to_key(WidgetState.HOVER),
             down_func=lambda: self.set_to_key(WidgetState.PRESS),
             up_func=lambda: self.set_to_key(WidgetState.BASE),
+            **kwargs
         )
         _Circular.__init__(self, items_dict=widgets_dict)
         _Widget.__init__(self, **kwargs)

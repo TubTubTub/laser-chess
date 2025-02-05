@@ -2,7 +2,7 @@ from data.components.custom_event import CustomEvent
 from data.constants import BrowserEventType, GAMES_PER_PAGE
 from data.assets import GRAPHICS
 from data.widgets import *
-from data.database.database_helpers import get_number_of_games
+from data.utils.database_helpers import get_number_of_games
 
 BROWSER_HEIGHT = 0.6
 

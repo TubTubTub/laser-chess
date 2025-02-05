@@ -7,7 +7,7 @@ from data.utils import bitboard_helpers as bb_helpers
 from collections import defaultdict
 
 class Board:
-    def __init__(self, fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
+    def __init__(self, fen_string="sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
         self.bitboards = BitboardCollection(fen_string)
         self.hash_list = [self.bitboards.get_hash()]
 

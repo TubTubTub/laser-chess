@@ -1,12 +1,11 @@
 import pygame
-from data.constants import LaserType
 from data.utils.board_helpers import coords_to_screen_pos
-from data.assets import GRAPHICS, SFX
 from data.constants import EMPTY_BB, ShaderType, Colour
 from data.managers.animation import animation
-from data.managers.audio import audio
 from data.managers.window import window
-from pprint import pprint
+from data.managers.audio import audio
+from data.assets import GRAPHICS, SFX
+from data.constants import LaserType
 
 type_to_image = {
     LaserType.END: ['laser_end_1', 'laser_end_2'],
@@ -53,7 +52,6 @@ class LaserDraw:
                     0.5,
                     (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
                 ])
-                print('adding light at', abs_position, laser_colour.name)
         
         if laser_result.hit_square_bitboard != EMPTY_BB:
             laser_types[-1] = LaserType.END
@@ -63,9 +61,12 @@ class LaserDraw:
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
         self._laser_lists.append((laser_path, laser_colour))
 
+        window.clear_effect(ShaderType.RAYS)
         window.set_effect(ShaderType.RAYS, lights=laser_lights)
         animation.set_timer(1000, self.remove_laser)
-        audio.play_sfx(SFX['laser'])
+        
+        audio.play_sfx(SFX['laser_1'])
+        audio.play_sfx(SFX['laser_2'])
     
     def remove_laser(self):
         self._laser_lists.pop(0)

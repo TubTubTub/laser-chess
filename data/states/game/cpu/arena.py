@@ -4,7 +4,7 @@ from data.constants import Colour, Miscellaneous
 from data.managers.logs import initialise_logger
 
 logger = initialise_logger(__name__)
-# sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
+# sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
 # scfaRa7/RaRaRaFa6/RaRaRa7/10/10/10/10/9Sa b
 # scfa8/10/10/10/10/10/10/8FaSa b
 

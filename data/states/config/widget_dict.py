@@ -148,7 +148,7 @@ CONFIG_WIDGETS = {
         relative_size=(0.55, 0.15),
         fit_vertical=False,
         placeholder='ENTER FEN STRING',
-        default='sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
+        default='sc3ncfcncpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b',
         border_width=5,
         anchor_y='bottom',
         anchor_x='right',
@@ -222,7 +222,7 @@ CONFIG_WIDGETS = {
         relative_width=0.25,
         relative_position=(0, 0),
         scale_mode='width',
-        fen_string="sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
+        fen_string="sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b",
         event=CustomEvent(ConfigEventType.PRESET_CLICK)
     ),
     'preset_2':

@@ -1,5 +1,9 @@
 from sys import platform
 import data.setup
+
+if platform == 'win32':
+    import data.windows_setup as win_setup # PUT BEFORE LOADINGSCREEN TO SCALE STARTUP WINDOW CORRECTLY
+
 from data.loading_screen import LoadingScreen
 
 states = [None, None]
@@ -35,7 +39,6 @@ def main():
     app, state_dict = states
 
     if platform == 'win32':
-        import data.windows_setup as win_setup
         win_setup.set_win_resize_func(app.update_window)
 
     app.setup_states(state_dict, 'menu')

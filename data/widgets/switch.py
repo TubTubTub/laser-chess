@@ -11,7 +11,7 @@ class Switch(_Pressable, _Widget):
         _Pressable.__init__(
             self,
             event=event,
-            hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
+            hover_func=self.hover_func,
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=self.up_func,
         )
@@ -29,6 +29,10 @@ class Switch(_Pressable, _Widget):
 
         self.set_image()
         self.set_geometry()
+    
+    def hover_func(self):
+        print('hovering')
+        self.set_state_colour(WidgetState.HOVER)
     
     def set_toggle_state(self, is_toggled):
         self._is_toggled = is_toggled

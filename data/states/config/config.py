@@ -1,24 +1,14 @@
 import pygame
-
-from data.control import _State
-
-from data.states.config.widget_dict import CONFIG_WIDGETS
-from data.states.config.default_config import default_config
-
-from data.components.widget_group import WidgetGroup
-from data.components.cursor import Cursor
-from data.managers.audio import audio
-from data.managers.animation import animation
-from data.managers.theme import theme
-
-from data.assets import MUSIC_PATHS, GRAPHICS
-
 from data.constants import ConfigEventType, Colour, ShaderType
-
-from data.utils.asset_helpers import draw_background
-
-from data.managers.window import window
+from data.states.config.default_config import default_config
+from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.managers.logs import initialise_logger
+from data.managers.animation import animation
+from data.assets import MUSIC_PATHS, SFX
+from data.managers.window import window
+from data.managers.audio import audio
+from data.managers.theme import theme
+from data.control import _State
 
 logger = initialise_logger(__name__)
 
@@ -109,6 +99,12 @@ class Config(_State):
         except:
             CONFIG_WIDGETS['board_thumbnail'].initialise_board('')
             self._widget_group.add(CONFIG_WIDGETS['invalid_fen_string'])
+
+            window.set_effect(ShaderType.SHAKE)
+            animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
+
+            audio.play_sfx(SFX['error_1'])
+            audio.play_sfx(SFX['error_2'])
             
             self._valid_fen = False
     
@@ -169,7 +165,7 @@ class Config(_State):
     
     def set_preset_overlay(self, fen_string):
         fen_string_widget_map = {
-            'sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b': 'preset_1',
+            'sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b': 'preset_1',
             'sc3ncfcncra2/10/3Pd2pa3/paPc2Pbra2pbPd/pbPd2Rapd2paPc/3Pc2pb3/10/2RaNaFaNa3Sa b': 'preset_2',
             'sc3pcncpb3/5fc4/pa3pcncra3/pb1rd1Pd1Pb3/3pd1pb1Rd1Pd/3RaNaPa3Pc/4Fa5/3PdNaPa3Sa b': 'preset_3'
         }

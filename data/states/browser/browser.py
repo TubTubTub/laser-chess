@@ -13,7 +13,7 @@ from data.assets import GRAPHICS
 
 from data.constants import BrowserEventType, ShaderType, GAMES_PER_PAGE
 
-from data.database.database_helpers import delete_game, get_ordered_games
+from data.utils.database_helpers import delete_game, get_ordered_games
 
 from data.utils.asset_helpers import draw_background
 

@@ -2,7 +2,7 @@ from data.constants import Colour, RotationIndex, Rotation, Piece, EMPTY_BB
 from data.utils.bitboard_helpers import occupied_squares, print_bitboard, bitboard_to_index
 
 def parse_fen_string(fen_string):
-    #sc3ncfancpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
+    #sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
     piece_bitboards = [{char: EMPTY_BB for char in Piece}, {char: EMPTY_BB for char in Piece}]
     rotation_bitboards = [EMPTY_BB, EMPTY_BB]
     combined_colour_bitboards = [EMPTY_BB, EMPTY_BB]
@@ -60,10 +60,12 @@ def parse_fen_string(fen_string):
     elif piece_count['f'] > 1 or piece_count['F'] > 1:
         raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
     
-    if (part_2 == 'b'):
+    if part_2 == 'b':
         colour = Colour.BLUE
-    else:
+    elif part_2 == 'r':
         colour = Colour.RED
+    else:
+        raise ValueError('Invalid FEN string - invalid active colour')
     
     for piece in Piece:
         combined_colour_bitboards[Colour.BLUE] |= piece_bitboards[Colour.BLUE][piece]

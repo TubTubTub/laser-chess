@@ -24,7 +24,7 @@ class TextInput(_Box, _Pressable, Text):
             hover_func=lambda: self.set_state_colour(WidgetState.HOVER),
             down_func=lambda: self.set_state_colour(WidgetState.PRESS),
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
-            play_sfx=False
+            sfx=None
         )
         Text.__init__(self, text="", center=False, box_colours=INPUT_COLOURS[WidgetState.BASE], **kwargs)
         

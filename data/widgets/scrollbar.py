@@ -13,7 +13,7 @@ class _Scrollbar(_Pressable, _Widget):
             down_func=self.down_func,
             up_func=self.up_func,
             prolonged=True,
-            play_sfx=False
+            sfx=None
         )
         _Widget.__init__(self, **kwargs)
 

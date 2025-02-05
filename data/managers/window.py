@@ -84,5 +84,4 @@ class WindowManager(pygame.Window):
         else:
             draw_background(self.screen, self._background_image)
 
-
 window = WindowManager(size=SCREEN_SIZE, resizable=True, opengl=is_opengl, fullscreen_desktop=is_fullscreen)

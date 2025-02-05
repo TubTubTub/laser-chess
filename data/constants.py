@@ -3,8 +3,8 @@ from enum import IntEnum, StrEnum, auto
 
 BG_COLOUR = (0, 0, 0)
 PAUSE_COLOUR = (50, 50, 50, 128)
-OVERLAY_COLOUR_LIGHT = (255, 0, 0, 128)
-OVERLAY_COLOUR_DARK = (255, 0, 0, 196)
+OVERLAY_COLOUR_LIGHT = (*pygame.Color('0xf14e52').rgb, 128)
+OVERLAY_COLOUR_DARK = (*pygame.Color('0x9b222b').rgb, 192)
 SCREEN_SIZE = (1200, 600)
 # SCREEN_SIZE = (600, 600)
 SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE | pygame.OPENGL

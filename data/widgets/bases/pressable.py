@@ -4,14 +4,13 @@ from data.managers.audio import audio
 from data.assets import SFX
 
 class _Pressable:
-    def __init__(self, event, down_func=None, up_func=None, hover_func=None, prolonged=False, play_sfx=True, **kwargs):
+    def __init__(self, event, down_func=None, up_func=None, hover_func=None, prolonged=False, sfx=SFX['button_click'], **kwargs):
         self._down_func = down_func
         self._up_func = up_func
         self._hover_func = hover_func
         self._pressed = False
         self._prolonged = prolonged
-        self._play_sfx = play_sfx
-        self._sfx = SFX['button_click']
+        self._sfx = sfx
 
         self._event = event
 
@@ -46,7 +45,7 @@ class _Pressable:
             case pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
                     if self._widget_state == WidgetState.PRESS:
-                        if self._play_sfx:
+                        if self._sfx:
                             audio.play_sfx(self._sfx)
 
                         self._up_func()
@@ -57,7 +56,7 @@ class _Pressable:
                         self._hover_func()
 
                 elif self._prolonged and self._widget_state == WidgetState.PRESS:
-                    if self._play_sfx:
+                    if self._sfx:
                         audio.play_sfx(self._sfx)
                     self._up_func()
                     self._widget_state = WidgetState.BASE
