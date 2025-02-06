@@ -57,6 +57,8 @@ class LaserDraw:
             laser_types[-1] = LaserType.END
             laser_path[-1] = (laser_path[-1][0], laser_path[-2][1].get_opposite())
             laser_rotation[-1] = laser_path[-2][1].get_opposite()
+            
+            audio.play_sfx(SFX['piece_destroy'])
 
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
         self._laser_lists.append((laser_path, laser_colour))

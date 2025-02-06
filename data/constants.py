@@ -92,6 +92,12 @@ RED_BUTTON_COLOURS = {
     WidgetState.PRESS: ['0xdaf2e9', '0x23495d', '0xf14e52', '0x95e0cc']
 }
 
+LOCKED_RED_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x000000', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x1c2638', '0x23495d', '0x39707a']
+}
+
 class StatusText(StrEnum):
     PLAYER_MOVE = auto()
     CPU_MOVE = auto()

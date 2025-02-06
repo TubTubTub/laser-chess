@@ -2,13 +2,15 @@ import pygame
 import threading
 import sys
 from pathlib import Path
-
+from data.utils.load_helpers import load_gfx, load_sfx
 from data.managers.window import window
-from data.utils.load_helpers import load_gfx
+from data.managers.audio import audio
 
 FPS = 30
 start_ticks = pygame.time.get_ticks()
 logo_gfx_path = (Path(__file__).parent / '../resources/graphics/loading.png').resolve()
+sfx_path_1 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_screen_1.wav').resolve()
+sfx_path_2 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_screen_2.wav').resolve()
 
 def easeOutBack(progress):
     c1 = 1.70158
@@ -24,6 +26,8 @@ class LoadingScreen:
 
         self._logo_surface = load_gfx(logo_gfx_path)
         self._logo_surface = pygame.transform.scale(self._logo_surface, (50, 50))
+        audio.play_sfx(load_sfx(sfx_path_1))
+        audio.play_sfx(load_sfx(sfx_path_2))
 
         self.run()
     

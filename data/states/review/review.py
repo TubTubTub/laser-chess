@@ -32,11 +32,12 @@ class Review(_State):
         super().cleanup()
         
         window.clear_apply_arguments(ShaderType.BLOOM)
+        window.clear_effect(ShaderType.RAYS)
 
         return None
     
     def startup(self, persist):
-        super().startup(REVIEW_WIDGETS, MUSIC['menu'])
+        super().startup(REVIEW_WIDGETS, MUSIC['review'])
 
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
@@ -57,8 +58,6 @@ class Review(_State):
         self.refresh_widgets()
 
         self.draw()
-        
-        print(self._moves)
     
     @property
     def board_position(self):
@@ -114,7 +113,6 @@ class Review(_State):
                     REVIEW_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
                 elif laser_result.piece_colour == Colour.RED:
                     REVIEW_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
-                print('adding piece')
                 
             REVIEW_WIDGETS['move_list'].append_to_move_list(move_dict['unparsed_move'])
     

@@ -31,7 +31,6 @@ class Switch(_Pressable, _Widget):
         self.set_geometry()
     
     def hover_func(self):
-        print('hovering')
         self.set_state_colour(WidgetState.HOVER)
     
     def set_toggle_state(self, is_toggled):

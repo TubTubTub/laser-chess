@@ -1,17 +1,16 @@
 import pygame
 import sys
 from random import randint
-
-from data.control import _State
+from data.utils.asset_helpers import get_rotational_angle
 from data.states.menu.widget_dict import MENU_WIDGETS
 from data.constants import MenuEventType, ShaderType
-from data.assets import GRAPHICS, MUSIC, SFX
 from data.utils.asset_helpers import scale_and_cache
-from data.managers.audio import audio
-from data.managers.window import window
-from data.managers.animation import animation
-from data.utils.asset_helpers import get_rotational_angle
 from data.managers.logs import initialise_logger
+from data.managers.animation import animation
+from data.assets import GRAPHICS, MUSIC, SFX
+from data.managers.window import window
+from data.managers.audio import audio
+from data.control import _State
 
 logger = initialise_logger(__file__)
 
@@ -32,7 +31,7 @@ class Menu(_State):
         return None
     
     def startup(self, persist=None):
-        super().startup(MENU_WIDGETS, MUSIC['menu'])
+        super().startup(MENU_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
 

@@ -45,7 +45,7 @@ def load_all_gfx(directory, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", 
         name, extension = file.stem, file.suffix
         path = Path(directory / file)
 
-        if extension.lower() in accept:
+        if extension.lower() in accept and 'old' not in name:
             if name == 'piece_spritesheet':
                 data = load_spritesheet(
                     path,
@@ -103,11 +103,18 @@ def load_all_sfx(directory, accept=(".mp3", ".wav", ".ogg")):
         name, extension = file.stem, file.suffix
         path = Path(directory / file)
 
-        if extension.lower() in accept:
-            sfx = pygame.mixer.Sound(path)
-            sound_effects[name]= sfx
+        if extension.lower() in accept and 'old' not in name:
+            sound_effects[name] = load_sfx(path)
     
     return sound_effects
+
+def load_sfx(path, accept=(".mp3", ".wav", ".ogg")):
+    file_path = Path(path)
+    name, extension = file_path.stem, file_path.suffix
+
+    if extension.lower() in accept:
+        sfx = pygame.mixer.Sound(path)
+        return sfx
 
 def load_all_music(directory, accept=(".mp3", ".wav", ".ogg")):
     music_paths = {}

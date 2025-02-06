@@ -9,7 +9,7 @@ from data.managers.animation import animation
 from data.components.cursor import Cursor
 from data.managers.audio import audio
 
-from data.assets import GRAPHICS
+from data.assets import GRAPHICS, MUSIC
 
 from data.constants import BrowserEventType, ShaderType, GAMES_PER_PAGE
 
@@ -19,6 +19,7 @@ from data.utils.asset_helpers import draw_background
 
 from data.managers.window import window
 from data.managers.logs import initialise_logger
+from random import randint
 
 logger = initialise_logger(__name__)
 
@@ -42,7 +43,7 @@ class Browser(_State):
     
     def startup(self, persist=None):
         self.refresh_games_list() # BEFORE RESIZE TO FILL WIDGET BEFORE RESIZING
-        super().startup(BROWSER_WIDGETS, music=None)
+        super().startup(BROWSER_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
 
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False

@@ -98,6 +98,7 @@ class GameView:
         if event:
             GAME_WIDGETS['move_list'].append_to_move_list(event.move_notation)
             GAME_WIDGETS['scroll_area'].set_image()
+            audio.play_sfx(SFX['piece_move'])
 
         if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
             self.set_status_text(StatusText.PLAYER_MOVE)
@@ -111,6 +112,10 @@ class GameView:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 
             self.set_status_text(StatusText.WIN)
+
+            audio.play_sfx(SFX['sphinx_destroy_1'])
+            audio.play_sfx(SFX['sphinx_destroy_2'])
+            audio.play_sfx(SFX['sphinx_destroy_3'])
 
         elif toggle_timers:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
@@ -136,10 +141,6 @@ class GameView:
                 laser_result.laser_path[0][0],
                 self._model.states['ACTIVE_COLOUR']
             )
-            
-            audio.play_sfx(SFX['piece_destroy'])
-        else:
-            audio.play_sfx(SFX['piece_move'])
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
         self.update_laser_mask()

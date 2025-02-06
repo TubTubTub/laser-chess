@@ -44,7 +44,7 @@ class Editor(_State):
         return encode_fen_string(self._bitboards)
     
     def startup(self, persist):
-        super().startup(EDITOR_WIDGETS, music=MUSIC['setup'])
+        super().startup(EDITOR_WIDGETS)
         EDITOR_WIDGETS['help'].kill()
 
         self._drag_and_drop = DragAndDrop(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)

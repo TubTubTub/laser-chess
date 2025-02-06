@@ -1,14 +1,14 @@
 import pygame
+from random import randint
 from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
 from data.constants import SettingsEventType, WidgetState, ShaderType, SHADER_MAP
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
-from data.components.widget_group import WidgetGroup
+from data.managers.logs import initialise_logger
 from data.managers.window import window
 from data.managers.audio import audio
 from data.widgets import ColourPicker
-from data.assets import MUSIC
 from data.control import _State
-from data.managers.logs import initialise_logger
+from data.assets import MUSIC
 
 logger = initialise_logger(__name__)
 
@@ -27,7 +27,7 @@ class Settings(_State):
         return None
     
     def startup(self, persist=None):
-        super().startup(SETTINGS_WIDGETS, MUSIC['menu'])
+        super().startup(SETTINGS_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
 
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._settings = get_user_settings()

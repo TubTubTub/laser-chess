@@ -49,10 +49,10 @@ class AudioManager:
         if len(unused_channels) == 0:
             channel = pygame.mixer.find_channel()
         else:
-            channel = unused_channels[0]
+            channel = unused_channels.pop(0)
 
         if channel is None:
-            logger.info('No available channel for SFX')
+            logger.warning('No available channel for SFX')
             return
         
         self._current_channels.append(channel)
@@ -64,6 +64,9 @@ class AudioManager:
             channel.play(sfx)
     
     def play_music(self, music_path):
+        if 'menu' in str(music_path) and 'menu' in str(self._current_song):
+            return
+
         if music_path == self._current_song:
             return
         

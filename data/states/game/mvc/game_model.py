@@ -96,16 +96,15 @@ class GameModel:
         move_notation = move.to_notation(colour, piece, laser_result.hit_square_bitboard)
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES, move_notation=move_notation))
-
-        move_item = {
+        
+        self.states['MOVES'].append({
             'time': {
                 Colour.BLUE: GAME_WIDGETS['blue_timer'].get_time(),
                 Colour.RED: GAME_WIDGETS['red_timer'].get_time()
             },
             'move': move_notation,
             'laserResult': laser_result
-        }
-        self.states['MOVES'].append(move_item)
+        })
     
     def make_cpu_move(self):
         self.states['AWAITING_CPU'] = True

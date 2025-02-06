@@ -9,6 +9,7 @@ from data.managers.window import window
 from data.managers.audio import audio
 from data.managers.theme import theme
 from data.control import _State
+from random import randint
 
 logger = initialise_logger(__name__)
 
@@ -28,7 +29,7 @@ class Config(_State):
         return self._config
     
     def startup(self, persist=None):
-        super().startup(CONFIG_WIDGETS, music=MUSIC['cpu_hard'])
+        super().startup(CONFIG_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
 
         CONFIG_WIDGETS['invalid_fen_string'].kill()
@@ -43,11 +44,13 @@ class Config(_State):
         self.toggle_pvc(self._config['CPU_ENABLED'])
         self.set_active_colour(self._config['COLOUR'])
 
-        CONFIG_WIDGETS['cpu_depth_carousel'].set_to_key(2)
+        CONFIG_WIDGETS['cpu_depth_carousel'].set_to_key(self._config['CPU_DEPTH'])
         if self._config['CPU_ENABLED']:
             self.create_depth_picker()
         else:
             self.remove_depth_picker()
+
+        print(self._config, 'stting',default_config)
 
         self.draw()
     
