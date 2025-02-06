@@ -3,10 +3,9 @@ import sys
 from random import randint
 
 from data.control import _State
-from data.components.widget_group import WidgetGroup
 from data.states.menu.widget_dict import MENU_WIDGETS
 from data.constants import MenuEventType, ShaderType
-from data.assets import GRAPHICS, MUSIC_PATHS
+from data.assets import GRAPHICS, MUSIC, SFX
 from data.utils.asset_helpers import scale_and_cache
 from data.managers.audio import audio
 from data.managers.window import window
@@ -33,7 +32,7 @@ class Menu(_State):
         return None
     
     def startup(self, persist=None):
-        super().startup(MENU_WIDGETS, MUSIC_PATHS['menu'])
+        super().startup(MENU_WIDGETS, MUSIC['menu'])
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_effect(ShaderType.CHROMATIC_ABBREVIATION)
 
@@ -62,12 +61,19 @@ class Menu(_State):
     def get_event(self, event):
         if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             MENU_WIDGETS['credits'].kill()
+
         if event.type == pygame.MOUSEBUTTONDOWN:
             self._fire_laser = True
+            audio.play_sfx(SFX['menu_laser_windup'])
+            audio.play_sfx(SFX['menu_laser_loop'], loop=True)
+            animation.set_timer(SFX['menu_laser_loop'].get_length() * 1000 / 2, lambda: audio.play_sfx(SFX['menu_laser_loop'], loop=True) if self._fire_laser else ...) # OVERLAP TWO LOOPS TO HIDE TRANSITION
+
         elif event.type == pygame.MOUSEBUTTONUP:
             self._fire_laser = False
+
             window.clear_effect(ShaderType.RAYS)
             animation.set_timer(300, lambda: window.clear_effect(ShaderType.SHAKE))
+            audio.stop_sfx(1000)
             
         widget_event = self._widget_group.process_event(event)
 

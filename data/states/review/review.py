@@ -10,7 +10,7 @@ from data.states.game.components.board import Board
 from data.components.game_entry import GameEntry
 from data.managers.logs import initialise_logger
 from data.managers.window import window
-from data.assets import MUSIC_PATHS
+from data.assets import MUSIC
 from data.control import _State
 
 logger = initialise_logger(__name__)
@@ -36,7 +36,7 @@ class Review(_State):
         return None
     
     def startup(self, persist):
-        super().startup(REVIEW_WIDGETS, MUSIC_PATHS['menu'])
+        super().startup(REVIEW_WIDGETS, MUSIC['menu'])
 
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)

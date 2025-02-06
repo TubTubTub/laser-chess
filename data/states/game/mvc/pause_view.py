@@ -3,6 +3,7 @@ from data.components.widget_group import WidgetGroup
 from data.constants import GameEventType, PAUSE_COLOUR
 from data.states.game.widget_dict import PAUSE_WIDGETS
 from data.managers.window import window
+from data.managers.audio import audio
 
 class PauseView:
     def __init__(self, model):
@@ -26,6 +27,11 @@ class PauseView:
 
     def handle_pause_click(self, event):
         self.states['PAUSED'] = not self.states['PAUSED']
+
+        if self.states['PAUSED']:
+            audio.pause_sfx()
+        else:
+            audio.unpause_sfx()
     
     def handle_resize(self):
         self._screen_overlay = pygame.Surface(window.size, pygame.SRCALPHA)

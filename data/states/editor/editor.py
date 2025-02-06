@@ -9,7 +9,7 @@ from data.states.game.components.overlay_draw import OverlayDraw
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.father import DragAndDrop
 from data.components.cursor import Cursor
-from data.assets import GRAPHICS, MUSIC_PATHS
+from data.assets import GRAPHICS, MUSIC
 from data.utils.bitboard_helpers import coords_to_bitboard
 from data.utils.asset_helpers import draw_background
 from data.utils.board_helpers import screen_pos_to_coords
@@ -44,7 +44,7 @@ class Editor(_State):
         return encode_fen_string(self._bitboards)
     
     def startup(self, persist):
-        super().startup(EDITOR_WIDGETS, music=MUSIC_PATHS['setup'])
+        super().startup(EDITOR_WIDGETS, music=MUSIC['setup'])
         EDITOR_WIDGETS['help'].kill()
 
         self._drag_and_drop = DragAndDrop(EDITOR_WIDGETS['chessboard'].position, EDITOR_WIDGETS['chessboard'].size)

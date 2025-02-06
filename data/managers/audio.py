@@ -30,7 +30,10 @@ class AudioManager:
         pygame.mixer.pause()
     
     def unpause_sfx(self):
-        pygame.mixer.unpause(self)
+        pygame.mixer.unpause()
+    
+    def stop_sfx(self, fadeout=0):
+        pygame.mixer.fadeout(fadeout)
     
     def remove_unused_channels(self):
         unused_channels = []
@@ -40,7 +43,7 @@ class AudioManager:
 
         return unused_channels
     
-    def play_sfx(self, sfx):
+    def play_sfx(self, sfx, loop=False):
         unused_channels = self.remove_unused_channels()
         
         if len(unused_channels) == 0:
@@ -54,7 +57,11 @@ class AudioManager:
         
         self._current_channels.append(channel)
         channel.set_volume(self._sfx_volume)
-        channel.play(sfx)
+
+        if loop:
+            channel.play(sfx, loops=-1)
+        else:
+            channel.play(sfx)
     
     def play_music(self, music_path):
         if music_path == self._current_song:

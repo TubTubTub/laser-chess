@@ -6,7 +6,7 @@ from data.components.widget_group import WidgetGroup
 from data.managers.window import window
 from data.managers.audio import audio
 from data.widgets import ColourPicker
-from data.assets import MUSIC_PATHS
+from data.assets import MUSIC
 from data.control import _State
 from data.managers.logs import initialise_logger
 
@@ -27,7 +27,7 @@ class Settings(_State):
         return None
     
     def startup(self, persist=None):
-        super().startup(SETTINGS_WIDGETS, MUSIC_PATHS['menu'])
+        super().startup(SETTINGS_WIDGETS, MUSIC['menu'])
 
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
         self._settings = get_user_settings()

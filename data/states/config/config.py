@@ -4,7 +4,7 @@ from data.states.config.default_config import default_config
 from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.managers.logs import initialise_logger
 from data.managers.animation import animation
-from data.assets import MUSIC_PATHS, SFX
+from data.assets import MUSIC, SFX
 from data.managers.window import window
 from data.managers.audio import audio
 from data.managers.theme import theme
@@ -28,7 +28,7 @@ class Config(_State):
         return self._config
     
     def startup(self, persist=None):
-        super().startup(CONFIG_WIDGETS, music=MUSIC_PATHS['cpu_hard'])
+        super().startup(CONFIG_WIDGETS, music=MUSIC['cpu_hard'])
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
 
         CONFIG_WIDGETS['invalid_fen_string'].kill()
