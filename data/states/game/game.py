@@ -36,11 +36,10 @@ class Game(_State):
         self.done = True
     
     def startup(self, persist):
-        print(['cpu_easy', 'cpu_medium', 'cpu_hard'][persist['CPU_DEPTH'] - 2])
         music = MUSIC[['cpu_easy', 'cpu_medium', 'cpu_hard'][persist['CPU_DEPTH'] - 2]] if persist['CPU_ENABLED'] else MUSIC['pvp']
         super().startup(music=music)
 
-        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_LASERS)
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType.BACKGROUND_LASERS)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         binded_startup = partial(self.startup, persist)
         

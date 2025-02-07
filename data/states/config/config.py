@@ -50,8 +50,6 @@ class Config(_State):
         else:
             self.remove_depth_picker()
 
-        print(self._config, 'stting',default_config)
-
         self.draw()
     
     def create_depth_picker(self):

@@ -8,7 +8,7 @@ from data.managers.audio import audio
 
 FPS = 30
 start_ticks = pygame.time.get_ticks()
-logo_gfx_path = (Path(__file__).parent / '../resources/graphics/loading.png').resolve()
+logo_gfx_path = (Path(__file__).parent / '../resources/graphics/gui/icons/logo/logo.png').resolve()
 sfx_path_1 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_screen_1.wav').resolve()
 sfx_path_2 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_screen_2.wav').resolve()
 
@@ -25,7 +25,7 @@ class LoadingScreen:
         self._thread.start()
 
         self._logo_surface = load_gfx(logo_gfx_path)
-        self._logo_surface = pygame.transform.scale(self._logo_surface, (50, 50))
+        self._logo_surface = pygame.transform.scale(self._logo_surface, (96, 96))
         audio.play_sfx(load_sfx(sfx_path_1))
         audio.play_sfx(load_sfx(sfx_path_2))
 

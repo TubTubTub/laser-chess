@@ -39,7 +39,7 @@ class Review(_State):
     def startup(self, persist):
         super().startup(REVIEW_WIDGETS, MUSIC['review'])
 
-        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType.BACKGROUND_WAVES)
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         REVIEW_WIDGETS['help'].kill()
 

@@ -6,8 +6,11 @@ uniform float wave_time_mul=0.2;
 
 uniform int total_phases=20;
 
-uniform vec4 bottom_color=vec4(0.38, 0.04, 0.71, 1.0);
-uniform vec4 top_color=vec4(0.15, 0.02, 0.49, 1.0);
+uniform vec4 bottom_color=vec4(0.608, 0.133, 0.167, 1.0);
+uniform vec4 top_color=vec4(0.110, 0.149, 0.220, 1.0);
+
+// uniform vec4 bottom_color=vec4(0.38, 0.04, 0.71, 1.0);
+// uniform vec4 top_color=vec4(0.15, 0.02, 0.49, 1.0);
 
 uniform float time;
 

@@ -1,23 +1,23 @@
 import pygame
+from data.components.widget_group import WidgetGroup
+from data.managers.logs import initialise_logger
+from data.managers.cursor import CursorManager
 from data.managers.animation import animation
 from data.managers.window import window
 from data.managers.audio import audio
-from data.managers.cursor import CursorManager
-from data.components.widget_group import WidgetGroup
-from data.managers.logs import initialise_logger
+from data.managers.theme import theme
+from data.assets import DEFAULT_FONT
 
 logger = initialise_logger(__file__)
 
 FPS = 60
+SHOW_FPS = False
 start_ticks = pygame.time.get_ticks()
 
 class Control:
     def __init__(self):
         self.done = False
         self._clock = pygame.time.Clock()
-        """temp for fps display counter"""
-        self.font = pygame.font.SysFont("Arial" , 18 , bold=True)
-        self._int = '0'
     
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
@@ -47,7 +47,9 @@ class Control:
 
         self.state.update()
 
-        self.draw_fps()
+        if SHOW_FPS:
+            self.draw_fps()
+
         window.update()
 
     def main_game_loop(self):
@@ -65,8 +67,8 @@ class Control:
     
     def draw_fps(self):
         fps = str(int(self._clock.get_fps()))
-        fps_t = self.font.render(fps , 1, pygame.Color("RED"), True)
-        window.screen.blit(fps_t,(0,0))
+        DEFAULT_FONT.strength = 0.1
+        DEFAULT_FONT.render_to(window.screen, (0, 0), fps, fgcolor=theme['textError'], size=15)
     
     def update_native_window_size(self):
         x, y = window.size

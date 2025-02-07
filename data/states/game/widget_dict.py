@@ -50,7 +50,7 @@ draw_button = TextButton(
 
 top_right_container = Rectangle(
     relative_position=(0, 0),
-    relative_size=(0.15, 0.075),
+    relative_size=(0.225, 0.075),
     fixed_position=(5, 5),
     anchor_x='right',
     scale_mode='height'
@@ -60,10 +60,20 @@ GAME_WIDGETS = {
     'help':
     Icon(
         relative_position=(0, 0),
-        relative_size=(0.9, 0.9),
+        relative_size=(1.02, 1.02),
+        icon=GRAPHICS['game_help'],
+        anchor_x='center',
+        anchor_y='center',
+        border_width=0,
+        fill_colour=(0, 0, 0, 0)
+    ),
+    'tutorial':
+    Icon(
+        relative_position=(0, 0),
+        relative_size=(0.75, 0.75),
         icon=GRAPHICS['temp_background'],
         anchor_x='center',
-        anchor_y='center'
+        anchor_y='center',
     ),
     'default': [
         right_container,
@@ -83,6 +93,16 @@ GAME_WIDGETS = {
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),
+            relative_size=(1, 1),
+            scale_mode='height',
+            base_icon=GRAPHICS['tutorial_base'],
+            hover_icon=GRAPHICS['tutorial_hover'],
+            press_icon=GRAPHICS['tutorial_press'],
+            event=CustomEvent(GameEventType.TUTORIAL_CLICK)
+        ),
+        ReactiveIconButton(
+            parent=top_right_container,
+            relative_position=(0.33, 0),
             relative_size=(1, 1),
             scale_mode='height',
             base_icon=GRAPHICS['help_base'],

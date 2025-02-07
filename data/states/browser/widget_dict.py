@@ -28,7 +28,7 @@ carousel_widgets = {
 
 sort_by_container = Rectangle(
     relative_size=(0.5, 0.1),
-    relative_position=(0.01, 0.75),
+    relative_position=(0.01, 0.77),
     anchor_x='right',
     visible=True
 )
@@ -52,10 +52,12 @@ BROWSER_WIDGETS = {
     'help':
     Icon(
         relative_position=(0, 0),
-        relative_size=(0.9, 0.9),
-        icon=GRAPHICS['temp_background'],
+        relative_size=(1.02, 1.02),
+        icon=GRAPHICS['browser_help'],
         anchor_x='center',
-        anchor_y='center'
+        anchor_y='center',
+        border_width=0,
+        fill_colour=(0, 0, 0, 0)
     ),
     'default': [
         buttons_container,
@@ -155,7 +157,7 @@ BROWSER_WIDGETS = {
     ),
     'page_carousel':
     Carousel(
-        relative_position=(0.01, 0.75),
+        relative_position=(0.01, 0.77),
         margin=5,
         widgets_dict=carousel_widgets,
         event=CustomEvent(BrowserEventType.PAGE_CLICK),

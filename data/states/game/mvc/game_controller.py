@@ -101,6 +101,9 @@ class GameController:
             case GameEventType.HELP_CLICK:
                 self._view.add_help_screen()
             
+            case GameEventType.TUTORIAL_CLICK:
+                self._view.add_tutorial_screen()
+            
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
         
@@ -110,12 +113,16 @@ class GameController:
         widget_event = self.handle_game_widget_event(event)
         
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
-            game_event = self._view.convert_mouse_pos(event)
+            if event.type != pygame.KEYDOWN:
+                game_event = self._view.convert_mouse_pos(event)
+            else:
+                game_event = None
 
             if game_event is None:
                 if widget_event is None:
                     if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
                         self._view.remove_help_screen()
+                        self._view.remove_tutorial_screen()
                     if event.type == pygame.MOUSEBUTTONUP:
                         self._view.set_overlay_coords(None, None)
                     
@@ -171,7 +178,7 @@ class GameController:
                     raise Exception('Unhandled event type (GameController.handle_event)', game_event.type)
     
     def handle_event(self, event):
-        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
+        if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION, pygame.KEYDOWN]:
             if self._model.states['PAUSED']:
                 self.handle_pause_event(event)
             elif self._model.states['WINNER'] is not None:

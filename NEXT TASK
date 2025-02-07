@@ -1,2 +1,4 @@
+Add tutorial help
+Fix board misaligned in config when switching to fullscreen and back to windowed
 Fix Minimax in game
 Fix Minimax

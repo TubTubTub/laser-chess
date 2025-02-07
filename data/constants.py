@@ -32,6 +32,10 @@ class ShaderType(StrEnum):
     CRT = auto()
     RAYS = auto()
     CHROMATIC_ABBREVIATION = auto()
+    BACKGROUND_WAVES = auto()
+    BACKGROUND_BALATRO = auto()
+    BACKGROUND_LASERS = auto()
+    BACKGROUND_GRADIENT = auto()
     
     _BLUR = auto()
     _HIGHLIGHT_BRIGHTNESS = auto()
@@ -42,10 +46,6 @@ class ShaderType(StrEnum):
     _OCCLUSION = auto()
     _BLEND = auto()
     _CROP = auto()
-    _BACKGROUND_WAVES = auto()
-    _BACKGROUND_BALATRO = auto()
-    _BACKGROUND_LASERS = auto()
-    _BACKGROUND_GRADIENT = auto()
 
 SHADER_MAP = {
     'default': [
@@ -143,6 +143,7 @@ class GameEventType(StrEnum):
     MENU_CLICK = auto()
     GAME_CLICK = auto()
     HELP_CLICK = auto()
+    TUTORIAL_CLICK = auto()
     PIECE_DROP = auto()
     UPDATE_PIECES = auto()
     ROTATE_PIECE = auto()

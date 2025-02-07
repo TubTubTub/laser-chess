@@ -29,7 +29,7 @@ class Settings(_State):
     def startup(self, persist=None):
         super().startup(SETTINGS_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
 
-        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType._BACKGROUND_BALATRO)
+        window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType.BACKGROUND_BALATRO)
         self._settings = get_user_settings()
         self.reload_settings()
 

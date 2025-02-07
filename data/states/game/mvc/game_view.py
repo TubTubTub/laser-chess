@@ -58,6 +58,7 @@ class GameView:
         GAME_WIDGETS['move_list'].reset_move_list()
         GAME_WIDGETS['move_list'].kill()
         GAME_WIDGETS['help'].kill()
+        GAME_WIDGETS['tutorial'].kill()
 
         GAME_WIDGETS['scroll_area'].set_image()
         
@@ -223,9 +224,16 @@ class GameView:
     def add_help_screen(self):
         self._widget_group.add(GAME_WIDGETS['help'])
         self._widget_group.handle_resize(window.size)
+    
+    def add_tutorial_screen(self):
+        self._widget_group.add(GAME_WIDGETS['tutorial'])
+        self._widget_group.handle_resize(window.size)
             
     def remove_help_screen(self):
         GAME_WIDGETS['help'].kill()
+            
+    def remove_tutorial_screen(self):
+        GAME_WIDGETS['tutorial'].kill()
 
     def process_widget_event(self, event):
         return self._widget_group.process_event(event)

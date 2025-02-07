@@ -1,11 +1,8 @@
-from data.widgets import *
-from data.components.custom_event import CustomEvent
-from data.constants import EditorEventType, RotationDirection
-from data.assets import GRAPHICS
-from data.constants import Piece, Colour, BLUE_BUTTON_COLOURS
+from data.constants import Piece, Colour, RotationDirection, EditorEventType, BLUE_BUTTON_COLOURS
 from data.utils.asset_helpers import get_highlighted_icon
-
-from data.managers.theme import theme
+from data.components.custom_event import CustomEvent
+from data.assets import GRAPHICS
+from data.widgets import *
 
 blue_pieces_container = Rectangle(
     relative_position=(0.25, 0),
@@ -49,10 +46,12 @@ EDITOR_WIDGETS = {
     'help':
     Icon(
         relative_position=(0, 0),
-        relative_size=(0.9, 0.9),
-        icon=GRAPHICS['temp_background'],
+        relative_size=(1.02, 1.02),
+        icon=GRAPHICS['editor_help'],
         anchor_x='center',
-        anchor_y='center'
+        anchor_y='center',
+        border_width=0,
+        fill_colour=(0, 0, 0, 0)
     ),
     'default': [
         red_pieces_container,

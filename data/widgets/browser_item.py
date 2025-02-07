@@ -1,11 +1,9 @@
 import pygame
-from data.widgets.bases.widget import _Widget
-from data.utils.font_helpers import height_to_font_size
+from data.utils.font_helpers import text_width_to_font_size
 from data.utils.browser_helpers import get_winner_string
-from data.utils.asset_helpers import scale_and_cache
 from data.widgets.board_thumbnail import BoardThumbnail
-from data.constants import Colour
-from data.constants import Miscellaneous
+from data.utils.asset_helpers import scale_and_cache
+from data.widgets.bases.widget import _Widget
 
 FONT_DIVISION = 7
 
@@ -13,8 +11,7 @@ class BrowserItem(_Widget):
     def __init__(self, relative_width, game, **kwargs):
         super().__init__(relative_size=(relative_width, relative_width * 2), scale_mode='height', **kwargs)
         
-        line_height = (self.size[1] / 3) / FONT_DIVISION
-        self._relative_font_size = height_to_font_size(self._font, line_height) / self.surface_size[1]
+        self._relative_font_size = text_width_to_font_size('YYYY-MM-DD HH:MM:SS', self._font, self.size[0]) / self.surface_size[1]
 
         self._game = game
         self._board_thumbnail = BoardThumbnail(
@@ -26,18 +23,6 @@ class BrowserItem(_Widget):
         
         self.set_image()
         self.set_geometry()
-    
-    def set_image(self):
-        self.image = pygame.Surface(self.size, pygame.SRCALPHA)
-        resized_board = scale_and_cache(self._board_thumbnail.image, (self.size[0], self.size[0] * 0.8))
-        self.image.blit(resized_board, (0, 0))
-
-        get_line_y = lambda line: (self.size[0] * 0.8) + ((self.size[0] * 0.8) / FONT_DIVISION) * line
-
-        text_to_render = self.get_text_to_render()
-
-        for index, text in enumerate(text_to_render):
-            self._font.render_to(self.image, (0, get_line_y(index)), text, fgcolor=self._text_colour, size=self.font_size)
     
     def get_text_to_render(self):
         depth_to_text = {
@@ -60,6 +45,18 @@ class BrowserItem(_Widget):
             f'WINNER: {get_winner_string(self._game['winner'])}',
             f'NO. MOVES: {format_moves(self._game['number_of_ply'])}'
         ]
+    
+    def set_image(self):
+        self.image = pygame.Surface(self.size, pygame.SRCALPHA)
+        resized_board = scale_and_cache(self._board_thumbnail.image, (self.size[0], self.size[0] * 0.8))
+        self.image.blit(resized_board, (0, 0))
+
+        get_line_y = lambda line: (self.size[0] * 0.8) + ((self.size[0] * 0.8) / FONT_DIVISION) * (line + 0.5)
+
+        text_to_render = self.get_text_to_render()
+
+        for index, text in enumerate(text_to_render):
+            self._font.render_to(self.image, (0, get_line_y(index)), text, fgcolor=self._text_colour, size=self.font_size)
     
     def process_event(self, event):
         pass

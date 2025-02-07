@@ -46,10 +46,12 @@ REVIEW_WIDGETS = {
     'help':
     Icon(
         relative_position=(0, 0),
-        relative_size=(0.9, 0.9),
-        icon=GRAPHICS['temp_background'],
+        relative_size=(1.02, 1.02),
+        icon=GRAPHICS['review_help'],
         anchor_x='center',
-        anchor_y='center'
+        anchor_y='center',
+        border_width=0,
+        fill_colour=(0, 0, 0, 0)
     ),
     'default': [
         arrow_container,
