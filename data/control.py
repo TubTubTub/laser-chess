@@ -115,10 +115,10 @@ class _State:
         if music:
             audio.play_music(music)
 
-        logger.info(f'starting {__class__.__name__.lower()}.py')
+        logger.info(f'starting {self.__class__.__name__.lower()}.py')
     
     def cleanup(self):
-        logger.info(f'cleaning {__class__.__name__.lower()}.py')
+        logger.info(f'cleaning {self.__class__.__name__.lower()}.py')
     
     def draw(self):
         raise NotImplementedError

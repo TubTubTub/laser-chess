@@ -108,6 +108,10 @@ class GameController:
                 raise Exception('Unhandled event type (GameController.handle_event)')
         
         return widget_event.type
+    
+    def check_cpu(self):
+        if self._model.states['CPU_ENABLED'] and self._model.states['AWAITING_CPU'] is False:
+            self._model.check_cpu()
 
     def handle_game_event(self, event):
         widget_event = self.handle_game_widget_event(event)

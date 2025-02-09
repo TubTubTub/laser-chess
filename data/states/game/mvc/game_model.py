@@ -1,14 +1,13 @@
-from data.states.game.components.move import Move
-from data.states.game.components.board import Board
 from data.states.game.components.fen_parser import encode_fen_string
+from data.constants import Colour, GameEventType, EMPTY_BB
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.states.game.cpu.cpu_thread import CPUThread
 from data.states.game.cpu.engines import ABMinimaxCPU
-
-from data.utils.bitboard_helpers import is_occupied
-from data.utils import input_helpers as ip_helpers
 from data.components.custom_event import CustomEvent
-from data.constants import Colour, GameEventType, EMPTY_BB
+from data.utils.bitboard_helpers import is_occupied
+from data.states.game.components.board import Board
+from data.utils import input_helpers as ip_helpers
+from data.states.game.components.move import Move
 from data.managers.logs import initialise_logger
 
 logger = initialise_logger(__name__)
@@ -36,9 +35,11 @@ class GameModel:
             'ZOBRIST_KEYS': []
         }
         
-        self._cpu = ABMinimaxCPU(3, self.cpu_callback)
+        self._cpu = ABMinimaxCPU(self.states['CPU_DEPTH'], self.cpu_callback, verbose=False)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
+        self._cpu_move = None
+        logger.info(f'Initialising CPU depth of {self.states['CPU_DEPTH']}')
 
     def register_listener(self, listener, parent_class):
         self._listeners[parent_class].append(listener)
@@ -111,10 +112,14 @@ class GameModel:
         self._cpu_thread.start_cpu(self.get_board())
     
     def cpu_callback(self, move):
-        logger.info('MAKING MOVE', move)
         if self.states['WINNER'] is None:
-            self.make_move(move)
+            self._cpu_move = move
             self.states['AWAITING_CPU'] = False
+    
+    def check_cpu(self):
+        if self._cpu_move is not None:
+            self.make_move(self._cpu_move)
+            self._cpu_move = None
     
     def kill_thread(self):
         self._cpu_thread.kill_thread()

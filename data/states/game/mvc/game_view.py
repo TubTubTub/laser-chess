@@ -40,6 +40,8 @@ class GameView:
         self._piece_group = PieceGroup()
         self.handle_update_pieces(toggle_timers=False)
 
+        self._hide_pieces = False
+
         self.set_status_text(StatusText.PLAYER_MOVE)
     
     @property
@@ -180,7 +182,10 @@ class GameView:
 
         self._widget_group.draw()
         self._overlay_draw.draw(window.screen)
-        self._piece_group.draw(window.screen)
+
+        if self._hide_pieces is False:
+            self._piece_group.draw(window.screen)
+            
         self._laser_draw.draw(window.screen)
         self._drag_and_drop.draw(window.screen)
         self._capture_draw.draw(window.screen)
@@ -228,12 +233,14 @@ class GameView:
     def add_tutorial_screen(self):
         self._widget_group.add(GAME_WIDGETS['tutorial'])
         self._widget_group.handle_resize(window.size)
+        self._hide_pieces = True
             
     def remove_help_screen(self):
         GAME_WIDGETS['help'].kill()
             
     def remove_tutorial_screen(self):
         GAME_WIDGETS['tutorial'].kill()
+        self._hide_pieces = False
 
     def process_widget_event(self, event):
         return self._widget_group.process_event(event)

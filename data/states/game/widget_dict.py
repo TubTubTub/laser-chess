@@ -70,8 +70,8 @@ GAME_WIDGETS = {
     'tutorial':
     Icon(
         relative_position=(0, 0),
-        relative_size=(0.75, 0.75),
-        icon=GRAPHICS['temp_background'],
+        relative_size=(0.9, 0.9),
+        icon=GRAPHICS['game_tutorial'],
         anchor_x='center',
         anchor_y='center',
     ),

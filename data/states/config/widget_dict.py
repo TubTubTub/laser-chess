@@ -83,8 +83,6 @@ CONFIG_WIDGETS = {
         border_width=0,
         fill_colour=(0, 0, 0, 0)
     ),
-    'board_thumbnail':
-        board_thumbnail,
     'default': [
         preview_container,
         config_container,
@@ -143,6 +141,8 @@ CONFIG_WIDGETS = {
             event=CustomEvent(ConfigEventType.SETUP_CLICK)
         )
     ],
+    'board_thumbnail':
+        board_thumbnail,
     'fen_string_input':
     TextInput(
         parent=preview_container,

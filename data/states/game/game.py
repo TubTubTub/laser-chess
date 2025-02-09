@@ -66,3 +66,7 @@ class Game(_State):
         self.view.draw()
         self.win_view.draw()
         self.pause_view.draw()
+    
+    def update(self):
+        self.controller.check_cpu()
+        super().update()
