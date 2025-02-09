@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{setspace}
+
+\setcounter{tocdepth}{3}
+
+\title{Learning LaTeX - a perilous journey}
+\date{9/2/2025}
+\author{Toby Mok}
+
+\begin{document}
+
+% \addtocontents{toc}{\setcounter{tocdepth}{1}}
+% \section{Another section}
+% \subsection{Subsection}
+% \subsubsection{Subsubsection}
+% \addtocontents{toc}{\setcounter{tocdepth}{3}}
+
+\maketitle
+\pagenumbering{gobble}
+
+\newpage
+\doublespacing
+\tableofcontents
+\singlespacing
+
+\newpage
+\pagenumbering{arabic}
+
+\title{The beginning}
+
+\section{First document}
+Hello World!\
+
+\section{Sections}
+\subsection{Subsection}
+Structuring a document is easy!
+
+\subsubsection{Subsubsection}
+More text.
+
+\paragraph{Paragraph}
+Some more text.
+
+\subparagraph{Subparagraph}
+blah blah blah
+
+\section{Packages}
+guh
+
+\begin{equation*}
+f(x) = x + 1 * x^2
+\end{equation*}
+
+\section{Math}
+Inline maths - $f(x) = log(x)$, wow!
+
+\begin{align*}
+1 + 2 &= 3\\
+1 &= 3 - 2
+\end{align*}
+
+$\left(\frac{1}{\sqrt{x}}\right)$
+
+\begin{equation*}
+\left[
+\begin{matrix}
+1 & 0\\
+0 & 1
+\end{matrix}
+\right]
+\end{equation*}
+
+\section{Figures}
+
+\begin{figure}[ht!]
+\centering
+
+\begin{subfigure}[b]{0.3\linewidth}
+\includegraphics[width=\linewidth]{images/solar.png}
+\caption{A solar.}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\linewidth}
+\includegraphics[width=\linewidth]{images/solar.png}
+\caption{Another solar.}
+\end{subfigure}
+\begin{subfigure}[b]{0.3\linewidth}
+\includegraphics[width=\linewidth]{images/solar.png}
+\caption{Yet another solar.}
+\end{subfigure}
+\begin{subfigure}[b]{0.5\linewidth}
+\includegraphics[width=\linewidth]{images/solar.png}
+\caption{Too much solar.}
+\end{subfigure}
+
+\caption{The same Solar. two times.}
+\label{fig:solar1}
+\end{figure}
+
+Figure \ref{fig:solar1} shows a Solar.
+
+\section{Table of contents}
+\begin{table}
+\caption{Dummy table}
+\end{table}
+
+\begin{appendix}
+\listoffigures
+\listoftables
+\end{appendix}
+
+
+\end{document}
