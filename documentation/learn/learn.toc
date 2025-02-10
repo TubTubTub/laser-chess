@@ -8,3 +8,7 @@
 \contentsline {section}{\numberline {4}Math}{1}{}%
 \contentsline {section}{\numberline {5}Figures}{1}{}%
 \contentsline {section}{\numberline {6}Table of contents}{2}{}%
+\contentsline {section}{\numberline {7}BibTeX}{2}{}%
+\contentsline {section}{\numberline {8}Footnotes}{3}{}%
+\contentsline {section}{\numberline {9}Tables}{3}{}%
+\contentsline {section}{\numberline {10}Pgfplotstable}{3}{}%
