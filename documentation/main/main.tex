@@ -1,8 +1,41 @@
-\includeonly{
-    abstract/abstract,
-    design/design,
-}
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{pgfplotstable}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{hyphenat}
+
+\usepackage{subfiles}
+
+\pgfplotsset{compat=1.18}
 
 \begin{document}
-\include{abstract/abstract}
+
+\begin{titlepage}
+\title{NEA}
+\author{Toby Mok}
+\date{}
+\end{titlepage}
+
+\maketitle
+
+\newpage
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\subfile{../analysis/analysis}
+
 \end{document}
