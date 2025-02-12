@@ -1,3 +1,5 @@
+Able to review game right after loss
+Able to play game right after review
 Add win and lost and draw graphics
 Make review use stack for moves
 Fix Minimax

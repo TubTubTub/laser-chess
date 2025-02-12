@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  11 FEB 2025 23:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 FEB 2025 10:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -989,7 +989,7 @@ Package hyperref Info: Link coloring OFF on input line 3.
 <../analysis/assets/laser_chess_com.png, id=79, 210.0648pt x 226.9278pt>
 File: ../analysis/assets/laser_chess_com.png Graphic file (type png)
 <use ../analysis/assets/laser_chess_com.png>
-Package pdftex.def Info: ../analysis/assets/laser_chess_com.png  used on input line 53.
+Package pdftex.def Info: ../analysis/assets/laser_chess_com.png  used on input line 51.
 (pdftex.def)             Requested size: 250.95476pt x 271.10005pt.
 
 
@@ -1006,67 +1006,69 @@ Package pdftex.def Info: ../analysis/assets/laser_chess_com.png  used on input l
 [5]
 
 [6]
-Overfull \hbox (24.00002pt too wide) in alignment at lines 189--211
+
+[7]
+Overfull \hbox (24.00002pt too wide) in alignment at lines 236--258
  [] [] 
  []
 
 
-Underfull \hbox (badness 4001) in paragraph at lines 228--228
+Underfull \hbox (badness 4001) in paragraph at lines 275--275
 []\OT1/cmr/m/n/10 Versatile, easy in-te-gra-tion with both
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 228--228
+Underfull \hbox (badness 1253) in paragraph at lines 275--275
 []\OT1/cmr/m/n/10 Also sup-ports object-oriented pro-gram-
  []
 
 
-Underfull \hbox (badness 5985) in paragraph at lines 233--233
+Underfull \hbox (badness 5985) in paragraph at lines 280--280
 []\OT1/cmr/m/n/10 Comprehensive knowl-edge of ex-ter-nal
  []
 
 
-Overfull \hbox (24.00002pt too wide) in alignment at lines 213--236
+Overfull \hbox (24.00002pt too wide) in alignment at lines 260--283
  [] [] 
  []
 
-[7]
-
 [8]
-
-pdfTeX warning: pdflatex (file ../analysis/assets/critical_path_diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../analysis/assets/critical_path_diagram.pdf, id=147, 312.20638pt x 370.5042pt>
-File: ../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
-<use ../analysis/assets/critical_path_diagram.pdf>
-Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 267.
-(pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
-
 
 [9]
 
-[10 <../analysis/assets/critical_path_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
+pdfTeX warning: pdflatex (file ../analysis/assets/critical_path_diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../analysis/assets/critical_path_diagram.pdf, id=151, 312.20638pt x 370.5042pt>
+File: ../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
+<use ../analysis/assets/critical_path_diagram.pdf>
+Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 314.
+(pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
+
+
+[10]
+
+[11 <../analysis/assets/critical_path_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `analysis.out' has not changed.
-(rerunfilecheck)             Checksum: F97294BBF4EB14FBF0CB9756CF8148C7;2483.
+(rerunfilecheck)             Checksum: B684D0A624D0FC4A3E83CC1B3DD169F7;2513.
 Package logreq Info: Writing requests to 'analysis.run.xml'.
 \openout1 = `analysis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45616 strings out of 473530
- 1071871 string characters out of 5714311
+ 45617 strings out of 473530
+ 1071908 string characters out of 5714311
  1727555 words of memory out of 5000000
  68197 multiletter control sequences out of 15000+600000
  561658 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,6n,136p,1964b,1246s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 134i,6n,136p,1964b,1247s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (10 pages, 313678 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (11 pages, 319037 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
+ 214 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
