@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 FEB 2025 20:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 FEB 2025 20:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -896,28 +896,28 @@ Package: import 2020/04/01  v 6.2
 ))
 \@quotelevel=\count500
 \@quotereset=\count501
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 29.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 28.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -998,17 +998,17 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.bbl)
-Package biblatex Info: Reference section=0 on input line 29.
-Package biblatex Info: Reference segment=0 on input line 29.
+Package biblatex Info: Reference section=0 on input line 28.
+Package biblatex Info: Reference segment=0 on input line 28.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 29.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 28.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 \c@lstlisting=\count508
-Package hyperref Info: Link coloring OFF on input line 29.
+Package hyperref Info: Link coloring OFF on input line 28.
 (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1029,7 +1029,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.5 \newpage
              [1]
-<../analysis/../analysis/assets/laser_chess_com.png, id=111, 210.0648pt x 226.9278pt>
+<../analysis/../analysis/assets/laser_chess_com.png, id=176, 210.0648pt x 226.9278pt>
 File: ../analysis/../analysis/assets/laser_chess_com.png Graphic file (type png)
 <use ../analysis/../analysis/assets/laser_chess_com.png>
 Package pdftex.def Info: ../analysis/../analysis/assets/laser_chess_com.png  used on input line 51.
@@ -1078,38 +1078,168 @@ Overfull \hbox (24.00002pt too wide) in alignment at lines 260--283
 [10]
 
 pdfTeX warning: pdflatex (file ../analysis/../analysis/assets/critical_path_diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../analysis/../analysis/assets/critical_path_diagram.pdf, id=179, 312.20638pt x 370.5042pt>
+<../analysis/../analysis/assets/critical_path_diagram.pdf, id=244, 312.20638pt x 370.5042pt>
 File: ../analysis/../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/../analysis/assets/critical_path_diagram.pdf>
 Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pdf  used on input line 314.
 (pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
-)
+) (../design/../design/design.tex
 
 [11]
 
-[12 <../analysis/../analysis/assets/critical_path_diagram.pdf>] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
+[12 <../analysis/../analysis/assets/critical_path_diagram.pdf>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/top_level_overview_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/top_level_overview_flowchart.pdf, id=267, 435.54718pt x 189.8292pt>
+File: ../design/../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/top_level_overview_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
+(pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
+<../design/../design/assets/menu_gui.png, id=268, 454.8192pt x 256.3176pt>
+File: ../design/../design/assets/menu_gui.png Graphic file (type png)
+<use ../design/../design/assets/menu_gui.png>
+Package pdftex.def Info: ../design/../design/assets/menu_gui.png  used on input line 25.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+<../design/../design/assets/settings_gui.png, id=269, 454.8192pt x 256.3176pt>
+File: ../design/../design/assets/settings_gui.png Graphic file (type png)
+<use ../design/../design/assets/settings_gui.png>
+Package pdftex.def Info: ../design/../design/assets/settings_gui.png  used on input line 35.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[13 <../design/../design/assets/top_level_overview_flowchart.pdf>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/settings_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/settings_flowchart.pdf, id=284, 551.1792pt x 212.69463pt>
+File: ../design/../design/assets/settings_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/settings_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/settings_flowchart.pdf  used on input line 55.
+(pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
+<../design/../design/assets/browser_gui.png, id=285, 454.8192pt x 256.3176pt>
+File: ../design/../design/assets/browser_gui.png Graphic file (type png)
+<use ../design/../design/assets/browser_gui.png>
+Package pdftex.def Info: ../design/../design/assets/browser_gui.png  used on input line 63.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[14 <../design/../design/assets/menu_gui.png> <../design/../design/assets/settings_gui.png>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/browser_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/browser_flowchart.pdf, id=294, 448.5558pt x 216.81pt>
+File: ../design/../design/assets/browser_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/browser_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/browser_flowchart.pdf  used on input line 75.
+(pdftex.def)             Requested size: 418.25368pt x 202.17375pt.
+<../design/../design/assets/config_gui.png, id=295, 453.3738pt x 254.3904pt>
+File: ../design/../design/assets/config_gui.png Graphic file (type png)
+<use ../design/../design/assets/config_gui.png>
+Package pdftex.def Info: ../design/../design/assets/config_gui.png  used on input line 83.
+(pdftex.def)             Requested size: 334.60422pt x 187.75685pt.
+
+
+[15 <../design/../design/assets/settings_flowchart.pdf> <../design/../design/assets/browser_gui.png>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/config_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/config_flowchart.pdf, id=312, 666.57025pt x 151.5261pt>
+File: ../design/../design/assets/config_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/config_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/config_flowchart.pdf  used on input line 94.
+(pdftex.def)             Requested size: 418.25368pt x 95.07813pt.
+<../design/../design/assets/game_gui.png, id=313, 454.8192pt x 256.3176pt>
+File: ../design/../design/assets/game_gui.png Graphic file (type png)
+<use ../design/../design/assets/game_gui.png>
+Package pdftex.def Info: ../design/../design/assets/game_gui.png  used on input line 102.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[16 <../design/../design/assets/browser_flowchart.pdf> <../design/../design/assets/config_gui.png>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/game_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/game_flowchart.pdf, id=330, 551.1792pt x 262.0992pt>
+File: ../design/../design/assets/game_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/game_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on input line 123.
+(pdftex.def)             Requested size: 418.25368pt x 198.89749pt.
+
+
+[17 <../design/../design/assets/config_flowchart.pdf> <../design/../design/assets/game_gui.png>]
+<../design/../design/assets/editor_gui.png, id=347, 963.6pt x 542.025pt>
+File: ../design/../design/assets/editor_gui.png Graphic file (type png)
+<use ../design/../design/assets/editor_gui.png>
+Package pdftex.def Info: ../design/../design/assets/editor_gui.png  used on input line 131.
+(pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
+
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/editor_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/editor_flowchart.pdf, id=348, 435.54718pt x 204.765pt>
+File: ../design/../design/assets/editor_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/editor_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used on input line 142.
+(pdftex.def)             Requested size: 418.25368pt x 196.64088pt.
+
+
+[18 <../design/../design/assets/game_flowchart.pdf> <../design/../design/assets/editor_gui.png>]
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/minimax.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/minimax.pdf, id=365, 688.49219pt x 307.1475pt>
+File: ../design/../design/assets/minimax.pdf Graphic file (type pdf)
+<use ../design/../design/assets/minimax.pdf>
+Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input line 153.
+(pdftex.def)             Requested size: 418.25368pt x 186.59108pt.
+
+
+[19 <../design/../design/assets/editor_flowchart.pdf> <../design/../design/assets/minimax.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 163.
+
+
+pdfTeX warning: pdflatex (file ../design/../design/assets/alpha_beta_pruning.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/../design/assets/alpha_beta_pruning.pdf, id=396, 713.7867pt x 307.1475pt>
+File: ../design/../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
+<use ../design/../design/assets/alpha_beta_pruning.pdf>
+Package pdftex.def Info: ../design/../design/assets/alpha_beta_pruning.pdf  used on input line 198.
+(pdftex.def)             Requested size: 418.25368pt x 179.97816pt.
+
+
+[20]
+
+[21 <../design/../design/assets/alpha_beta_pruning.pdf>]
+
+[22]
+
+[23]
+Overfull \hbox (9.66408pt too wide) in paragraph at lines 347--348
+ [][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+
+[24]
+
+[25])
+
+[26] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B684D0A624D0FC4A3E83CC1B3DD169F7;2513.
+(rerunfilecheck)             Checksum: EFCF0AE99B9DC5A4C318F6E082B79B58;4175.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 46240 strings out of 473530
- 1081779 string characters out of 5714311
- 1733027 words of memory out of 5000000
- 68789 multiletter control sequences out of 15000+600000
- 565069 words of font info for 58 fonts, out of 8000000 for 9000
+ 46508 strings out of 473530
+ 1089426 string characters out of 5714311
+ 1739824 words of memory out of 5000000
+ 68980 multiletter control sequences out of 15000+600000
+ 567289 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,6n,119p,1932b,1344s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (13 pages, 343008 bytes).
+ 114i,7n,119p,1932b,1344s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (27 pages, 2174155 bytes).
 PDF statistics:
- 251 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 167 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 535 PDF objects out of 1000 (max. 8388607)
+ 112 named destinations out of 1000 (max. 500000)
+ 341 words of extra memory for PDF output out of 10000 (max. 10000000)
 

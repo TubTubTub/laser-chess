@@ -217,6 +217,7 @@ class Score(IntEnum):
     
     MOVE = 7
     POSITION = 11
+    PHAROAH_SAFETY = 3
     CHECKMATE = 100000
     INFINITE = 6969696969
 

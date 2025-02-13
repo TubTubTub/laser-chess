@@ -63,4 +63,4 @@ class Evaluator:
     def evaluate_pharoah_safety(self, board, colour):
         pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
         pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
-        return (9 - pharoah_available_moves) * 3
+        return (8 - pharoah_available_moves) * Score.PHAROAH_SAFETY

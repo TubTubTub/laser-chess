@@ -12,7 +12,7 @@ I will also create an abstracted GUI prototype in order to showcase the general 
 
 The following is a top-level overview of the logic of the program:
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/top_level_overview_flowchart.pdf}
     \caption{Flowchart for Program Overview}
@@ -20,7 +20,7 @@ The following is a top-level overview of the logic of the program:
 \end{figure}
 
 \subsubsection{Main Menu}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/menu_gui.png}
     \caption{Main Menu screen prototype}
@@ -30,7 +30,7 @@ The following is a top-level overview of the logic of the program:
 The main menu will be the first screen to be displayed, providing access to different stages of the game. The GUI should be simple yet effective, containing clearly-labelled buttons for the user to navigate to different parts of the game.
 
 \subsubsection{Settings}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/settings_gui.png}
     \caption{Settings screen prototype}
@@ -50,7 +50,7 @@ The setting screen should provide a user-friendly interface for changing the pro
 
 Additionally, each screen is provided with a home button icon on the top right (except the main menu), as a shortcut to return to the main menu.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/settings_flowchart.pdf}
     \caption{Flowchart for Settings}
@@ -58,7 +58,7 @@ Additionally, each screen is provided with a home button icon on the top right (
 \end{figure}
 
 \subsubsection{Past Games Browser}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/browser_gui.png}
     \caption{Browser screen prototype}
@@ -70,7 +70,7 @@ The Past Games Browser menu displays a list of previously played games to be rep
 For the GUI, previous games will be displayed on a strip, scrolled through by a horizontal slider. Information about the game will be displayed for each instance, along with the option to copy the FEN string to be stored locally or to be entered into the Review screen. When choosing a past game, a green border will appear to show the current selection, and double clicking enters the user into the full replay mode.
 While replaying the game, the GUI will appear identical to an actual game. However, the user will be limited to scrolling throughout the moves via the left and right arrow keys.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/browser_flowchart.pdf}
     \caption{Flowchart for Browser}
@@ -78,7 +78,7 @@ While replaying the game, the GUI will appear identical to an actual game. Howev
 \end{figure}
 
 \subsubsection{Config}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/config_gui.png}
     \caption{Config screen prototype}
@@ -89,7 +89,7 @@ The config screen comes prior to the actual gameplay screen. Here, the player wi
 
 The config menu is loaded with the default starting position. However, players may enter their own FEN string as an initial position, with the central board updating responsively to give a visual representation of the layout. Players are presented with the additional options to play against a friend, or against a CPU, which displays a drop-down list when pressed to select the CPU difficulty.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/config_flowchart.pdf}
     \caption{Flowchart for Config}
@@ -97,7 +97,7 @@ The config menu is loaded with the default starting position. However, players m
 \end{figure}
 
 \subsubsection{Game}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/game_gui.png}
     \caption{Game screen prototype}
@@ -118,7 +118,7 @@ In the game screen, the board is positioned centrally on the screen, surrounding
 
 Additionally, the current selected piece will be highlighted, and the available squares to move to will also contain a circular visual cue. Pieces will either be moved by clicking the target square, or via a drag-and-drop mechanism, accompanied by responsive audio cues. These implementations aim to improve user-friendliness and intuitiveness of the program.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/game_flowchart.pdf}
     \caption{Flowchart for Game}
@@ -126,7 +126,7 @@ Additionally, the current selected piece will be highlighted, and the available 
 \end{figure}
 
 \subsubsection{Board Editor}
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/editor_gui.png}
     \caption{Editor screen prototype}
@@ -137,7 +137,7 @@ The editor screen is used to configure the starting position of the board. Contr
 
 For the GUI, the buttons should clearly represent their functionality, through the use of icons and appropiate colouring (e.g. red for delete).
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/editor_flowchart.pdf}
     \caption{Flowchart for board editor}
@@ -146,23 +146,23 @@ For the GUI, the buttons should clearly represent their functionality, through t
 
 \subsection{Algorithms and Techniques}
 \subsubsection{Minimax}
-Minimax is a backtracking algorithm commonly used in zero-sum games used to determine the score according to an evaluation function, after a certain number of perfect moves. Minimax aims to minimize the maximum advantage possible for the opponent, thereby minimizing a player’s possible loss in a worst-case scenario. It is implemented using recursive depth-first search, alternating between minimizing and maximizing the player’s advantage in each recursive call.
+Minimax is a backtracking algorithm commonly used in zero-sum games used to determine the score according to an evaluation function, after a certain number of perfect moves. Minimax aims to minimize the maximum advantage possible for the opponent, thereby minimizing a player’s possible loss in a worst-case scenario. It is implemented using recursive depth-first search, alternating between minimizing and maximising the player’s advantage in each recursive call.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/minimax.pdf}
     \caption{Example minimax tree}
     \label{fig:minimax}
 \end{figure}
 
-For the example minimax tree show in Figure \ref{fig:minimax}, starting from the bottom leaf node evaluations, the maximizing player would choose the highest values (7, 5, 3, 1). From those values, the minimizing player would choose the lowest values (5, 1). The final value chosen by the maximum player would therefore be the highest of the two, 5.
+For the example minimax tree show in Figure \ref{fig:minimax}, starting from the bottom leaf node evaluations, the maximising player would choose the highest values (7, 5, 3, 1). From those values, the minimizing player would choose the lowest values (5, 1). The final value chosen by the maximum player would therefore be the highest of the two, 5.
+\\
+Implementation in the form of pseudocode is shown below:
 
-\noindent Implementation in the form of pseudocode is shown below:
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Minimax pseudocode}
 \begin{algorithmic}
-    \Function{minimax}{node, depth, maximizingPlayer}
+    \Function{minimax}{node, depth, maximisingPlayer}
         \If{$depth = 0$ \textbf{OR} node equals game over}
             \State \Return{\Call{evaluate}{}}
         \EndIf
@@ -189,11 +189,11 @@ For the example minimax tree show in Figure \ref{fig:minimax}, starting from the
 \subsubsection{Minimax improvements}
 \subsubsection*{Alpha-beta pruning}
 Alpha-beta pruning is a search algorithm that aims to decrease the number of nodes evaluated by the minimax algorithm. Alpha-beta pruning stops evaluating a move in the game tree when one refutation is found in its child nodes, proving the node to be worse than previously-examined alternatives. It does this without any potential of pruning away a better move.
-The algorithm maintains two values: alpha and beta. Alpha ($\alpha$), the upper bound, is the highest value that the maximizing player is guaranteed of; Beta ($\beta$), the lower bound, is the lowest value that the minimizing player is guaranteed of. If the condition $\alpha\geq\beta$ for a node being evaluated, the evaluation process halts and its remaining children nodes are ‘pruned’.
+The algorithm maintains two values: alpha and beta. Alpha ($\alpha$), the upper bound, is the highest value that the maximising player is guaranteed of; Beta ($\beta$), the lower bound, is the lowest value that the minimizing player is guaranteed of. If the condition $\alpha\geq\beta$ for a node being evaluated, the evaluation process halts and its remaining children nodes are ‘pruned’.
+\\
+This is shown in the following maximising example:  
 
-\noindent This is shown in the following maximizing example:  
-
-\begin{figure}[ht!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/alpha_beta_pruning.pdf}
     \caption{Example minimax tree with alpha-beta pruning}
@@ -203,13 +203,13 @@ The algorithm maintains two values: alpha and beta. Alpha ($\alpha$), the upper 
 Since minimax is a depth-first search algorithm, nodes $C$ and $G$ and their $\alpha$ and $\beta$ have already been searched. Next, at node $F$, the current $\alpha$ and $\beta$ are $-\infty$ and 1 respectively, since the $\beta$ is passed down from node $C$. Searching the first leaf node, the $\alpha$ subsequently becomes $\alpha=max(-\infty,2)$. This means that the maximising player at this depth is already guaranteed an evaluation of 2 or greater. Since we know that the minimising player at the depth above is guaranteed a value of 1, there is no point in continuing to search node $F$, a node that is returns a value of 2 or greater. Hence at node $F$, where $\alpha\geq\beta$, the branches are pruned.
 
 Alpha-beta pruning therefore prunes insignificant nodes by maintain an upper bound $\alpha$ and lower bound $\beta$. This is an essential optimization as a simple minimax tree increases exponentially in size with each depth ($O(b^d)$, with branching factor $b$ and $d$ ply depth), and alpha-beta reduces this and the associated computational time considerably.
+\\
+The pseudocode implementation is shown below:
 
-\noindent The pseudocode implementation is shown below:
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Minimax with alpha-beta pruning pseudocode}
 \begin{algorithmic}
-    \Function{minimax}{node, depth, $\alpha$, $\beta$, maximizingPlayer}
+    \Function{minimax}{node, depth, $\alpha$, $\beta$, maximisingPlayer}
         \If{$depth = 0$ \textbf{OR} node equals game over}
             \State \Return{\Call{evaluate}{}}
         \EndIf
@@ -249,13 +249,13 @@ Flags and depth are also stored alongside the evaluation. Depth is required as i
 \paragraph{Exact} flag is used when a node is fully searched without pruning, and the stored and fetched evaluation is accurate.
 \paragraph{Lower} flag is stored when a node receives an evaluation greater than the $\beta$, and is subsequently pruned, meaning that the true evaluation could be higher than the value stored. We are thus storing the $\alpha$ and not an exact value. Thus, when we fetch the cached value, we have to recheck if this value is greater than $\beta$. If so, we return the value and this branch is pruned (fail high); If not, nothing is returned, and the exact evaluation is calculated.
 \paragraph{Upper} flag is stored when a node receives an evaluation smaller than the $\alpha$, and is subsequently pruned, meaning that the true evaluation could be lower than the value stored. Similarly, when we fetch the cached value, we have to recheck if this value is lower than $\alpha$. Again, the current branch is pruned if so (fail low), and an exact evaluation is calculated if not.
+\\
+The pseudocode implementation for transposition tables is shown below:
 
-\noindent The pseudocode implementation for transposition tables is shown below:
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Minimax with transposition table pseudocode}
 \begin{algorithmic}
-    \Function{minimax}{node, depth, $\alpha$, $\beta$, maximizingPlayer}
+    \Function{minimax}{node, depth, $\alpha$, $\beta$, maximisingPlayer}
         \State $hash\_key \gets \Call{hash}{node}$
         \State $entry \gets \Call{getentry}{hash\_key}$
 
@@ -300,17 +300,17 @@ Flags and depth are also stored alongside the evaluation. Depth is required as i
 \end{algorithm}
 
 The current board position will be used as the index for a transposition table entry. To convert our board state and bitboards into a valid index, Zobrist hashing may be used. For every square on the chessboard, a random integer is assigned to every piece type (12 in our case, 6 piece type, times 2 for both colours). To initialise a hash, the random integer associated with the piece on a specific square undergoes a XOR operation with the existing hash. The hash is incrementally update with XOR operations every move, instead of being recalculated from scratch improving computational efficiency. Using XOR operations also allows moves to be reversed, proving useful for the functionality to scroll throughh previous moves. A Zobrist hash is also a better candidate than FEN strings in checking for threefold-repetition, as they are less intensive to calculate for every move.
+\\
+The pseudocode implementation for Zobrist hashing is shown below:
 
-\noindent The pseudocode implementation for Zobrist hashing is shown below:
-
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Zobrist hashing pseudocode}
 \begin{algorithmic}
     \item \textit{RANDOMINTS represents a pre-initialised array of random integers for each piece type for each square}
     
     \bigskip
 
-    \Function{hashboard}{board}
+    \Function{hash\_board}{board}
         \State $hash \gets 0$
 
         \For{each square on board}
@@ -337,8 +337,255 @@ The current board position will be used as the index for a transposition table e
 \end{algorithmic}
 \end{algorithm}
 
+\subsubsection{Board Representation}
+\subsubsection*{FEN string}
+Forsyth-Edwards Notation (FEN) notation provides all information on a particular position in a chess game. I intend to implement methods parsing and generating FEN strings in my program, in order to load desired starting positions and save games for later play. Deviating from the classic 6-part format, a custom FEN string format will be required for our laser chess game, accommodating its different rules from normal chess.
+\\
+Our custom format implementation is show by the example below:
 
+\begin{center}
+sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa r
+\end{center}
 
+\noindent Our FEN string format contains two parts, denoted by the space between them:
+
+\begin{itemize}
+\item Part 1: Describes the location of each piece. The construction of this part is defined by the following rules:
+\begin{itemize}
+\item The board is read from top-left to bottom-right, row by row
+\item A number represents the number of empty squares before the next piece
+\item A capital letter represents a blue piece, and a lowercase letter represents a red piece
+\item The letters $F$, $R$, $P$, $N$, $S$ stand for the pieces Pharaoh, Scarab, Pyramid, Anubis and Sphinx respectively
+\item Each piece letter is followed by the lowercase letters $a$, $b$, $c$ or $d$, representing a 0°, 90°, 180° and 270° degree rotation respectively
+\end{itemize}
+\item Part 2: States the active colour, $b$ means blue to move, $r$ means red to move
+\end{itemize}
+
+Having inputted the desired FEN string board configuration in the config menu, the bitboards for each piece will be initialised with the following functions:
+
+\begin{algorithm}[H]
+\caption{FEN string pseudocode}
+\label{alg:fen-string}
+\begin{algorithmic}
+    \Function{parse\_fen\_string}{fen\_string, board}
+        \State $part\_1, part\_2 \gets \Call{split}{fen\_string}$
+
+        \State$rank \gets 8$
+        \State$file \gets 0$
+
+        \bigskip
+
+        \For{character in part\_1}
+            \State$square \gets rank \times 8 + file$
+
+            \If{character is alphabetic}
+                \If{character is lower}
+                    \State $board.bitboards[red][character] \quad | \quad 1 << character$
+                \Else
+                    \State $board.bitboards[blue][character] \quad | \quad 1 << character$
+                \EndIf
+            \ElsIf{character is numeric}
+                \State $file \gets file + character$
+            \ElsIf{$character is /$}
+                \State $rank \gets rank - 1$
+                \State $file \gets file + 1$
+            \Else
+                \State $file \gets file + 1$
+            \EndIf
+        
+        \bigskip
+
+        \If{part\_2 is b}
+            \State $board.active\_colour \gets b$
+        \Else
+            \State $board.active\_colour \gets r$
+        \EndIf
+        \EndFor
+    \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+The function first processes every piece and corresponding square in the FEN string, modifying each piece bitboard using a bitwise OR operator, with a 1 shifted over to the correctly occupied square using a Left-Shift operator. For the second part, the active colour property of the board class is initialised to the correct player.
+
+\subsubsection*{Bitboards}
+Bitboards are an array of bits representing a position or state of a board game. Multiple bitboards are used with each representing a different property of the game (e.g. scarab position and scarab rotation), and can be masked together or transformed to answer queries about positions. Bitboards offer an efficient board representation, its performance primarily arising from the speed of parallel bitwise operations used to transform bitboards.
+To map each board square to a bit in each number, we will assign each square from left to right, with the least significant bit (LSB) assigned to the bottom-left square (A1), and the most significant bit (MSB) to the top-right square (J8).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{../design/assets/bitboard_indexes.pdf}
+    \caption{Square to bit position mapping}
+    \label{fig:bitboard-indexes}
+\end{figure}
+
+Firstly, we need to initialise each bitboard and place 1s in the correct squares occupied by pieces. This is achieved whilst parsing the FEN-string, as shown in Algorithm \ref{alg:fen-string}.
+Secondly, we should implement an approach to calculate possible moves using our computed bitboards. We can begin by producing a bitboard containing the locations of all pieces, achieved through combining every piece bitboard with bitwise OR operations:
+
+\begin{center}
+all\_pieces\_bitboard = white\_pharoah\_bitboard $\vert$  black\_pharoah\_bitboard $\vert$ white\_scarab\_bitboard ...
+\end{center}
+
+Now, we can utilize this aggregated bitboard to calculate possible positional moves for each piece.
+For each piece, we can shift the entire bitboard to an adjacent target square (since every piece can only move one adjacent square per turn), and perform a bitwise AND operator with the bitboard containing all pieces, to determine if the target square is already occupied by an existing piece. For example, if we want to compute if the square to the left of our selected piece is available to move to, we will first shift every bit right (as the lowest square index is the LSB on the right, see diagram above), as demonstrated in the following 5x5 example:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\columnwidth]{../design/assets/bitboard_shifted.pdf}
+    \caption{shifted\_bitboard = piece\_bitboard $>>$ 1}
+    \label{fig:bitboard-shifted}
+\end{figure}
+
+Where green represents the target square shifted into, and orange where the piece used to be. We can then perform a bitwise AND operation with the complement of the all pieces bitboard, where a square with a result of 1 represents an available target square to move to.
+
+\begin{center}
+available\_squares\_right = (piece\_bitboard $>>$ 1) \& $\sim$ all\_pieces\_bitboard
+\end{center}
+
+However, if the piece is on the leftmost A file, and is shifted to the right, it will be teleported onto the J file on the rank below, which is not a valid move. To prevent these erroneous moves for pieces on the edge of the board, we can utilise an A file mask to mask away any valid moves, as demonstrated below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{../design/assets/bitboard_masked.pdf}
+    \caption{A-file mask example}
+    \label{fig:bitboard-masked}
+\end{figure}
+
+This approach uses the logic that a piece on the A file can never move to a square on the left. Therefore, when calculating if a piece can move to a square on the left, we apply a bitwise AND operator with a mask where every square on the A file is 0; If a piece was on the A file, it will become 0, leaving no possible target squares to move to. The same approach can be mirrored for the far-right J file.
+
+In theory, we do not need to implement the same solution for clipping in regards to ranks, as they are removed automatically by overflow or underflow when shifting bits too far.
+Our final function to calculate valid moves combines all the logic above: Shifting the selected piece in all 9 adjacent directions by their corresponding bits, masking away pieces trying to move into the edge of the board, combining them with a bitwise OR operator, and finally masking it with the all pieces bitboard to detect which squares are not currently occupied:
+
+\begin{algorithm}[H]
+\caption{Finding valid moves pseudocode}
+\label{alg:valid-moves}
+\begin{algorithmic}
+    \Function{find\_valid\_moves}{selected\_square}
+    \State $masked\_a\_square \gets selected\_square$ \&  $A\_FILE\_MASK$
+    \State $masked\_j\_square \gets selected\_square$ \& $J\_FILE\_MASK$
+
+    \bigskip
+
+    \State $top\_left \gets masked\_a\_square << 9$
+	
+	\State $top\_left \gets masked\_a\_square << 9$
+	\State $top\_middle \gets selected\_square << 10$
+	\State $top\_right \gets masked\_ << 11$
+	\State $middle\_right \gets masked\_ << 1$
+
+	\State $bottom\_right \gets masked\_ >> 9$
+	\State $bottom\_middle \gets selected\_square >> 10$
+	\State $bottom\_left \gets masked\_a\_square >> 11$
+	\State $middle\_left \gets masked\_a\_square >> 1$
+
+    \bigskip
+
+    \State $possible\_moves = top\_left$ $\vert$ $top\_middle$ $\vert$ $top\_right$ $\vert$ $middle\_right$ $\vert$ $bottom\_right$ $\vert$ $bottom\_middle$ $\vert$ $bottom\_left$ $\vert$ $middle\_left$
+
+    \State $valid\_moves = possible\_moves$ \& $\sim ALL\_PIECES\_BITBOARD$
+
+    \bigskip
+
+    \State \Return $valid\_moves$
+    \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Evaluation Function}
+The evaluation function is a heuristic algorithm to determine the relative value of a position. It outputs a real number corresponding to the advantage given to a player if reaching the analysed position, usually at a leaf node in the minimax tree. The evaluation function therefore provides the values on which minimax works on to compute an optimal move.
+
+In the majority of evaluation functions, the most significant factor determining the evaluation is the material balance, or summation of values of the pieces. The hand-crafted evaluation function is then optimised by tuning various other positional weighted terms, such as board control and king safety. 
+
+\subsubsection*{Material Value}
+Since laser chess is not widely documented, I have assigned relative strength values to each piece according to my experience playing the game:
+
+\begin{itemize}
+\item Pharoah - $\infty$
+\item Scarab - 200
+\item Anubis - 110
+\item Pyramid - 100
+\end{itemize}
+
+To find the number of pieces, we can iterate through the piece bitboard with the following popcount function:
+
+\begin{algorithm}[H]
+\caption{Popcount pseudocode}
+\label{alg:popcount}
+\begin{algorithmic}
+    \Function{popcount}{bitboard}
+    \State $count \gets 0$
+
+    \While{bitboard}
+        \State $count \gets count + 1$
+        \State $bitboard \gets bitboard \& (bitboard - 1)$
+    \EndWhile
+
+    \State \Return $count$
+    \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+Algorithm \ref{alg:popcount} continually resets the left-most 1 bit, incrementing a counter for each loop. Once the number of pieces has been established, we multiply this number by the piece value. Repeating this for every piece type, we can thus obtain a value for the total piece value on the board.
+
+\subsubsection*{Piece-Square Tables}
+A piece in normal chess can differ in strength based on what square it is occupying. For example, a knight near the center of the board, controlling many squares, is stronger than a knight on the rim. Similarly, we can implement positional value for Laser Chess through Piece-Square Tables. PSQTs are one-dimensional arrays, with each item representing a value for a piece type on that specific square, encoding both material value and positional simultaneously. Each array will consist of 80 base values representing the piece’s material value, with a bonus or penalty added on top for the location of the piece on each square. For example, the following PSQT is for the pharoah piece type on an example 5x5 board:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{../design/assets/psqt.pdf}
+    \caption{PSQT showing the bonus position value gained for the square occupied by a pharoah}
+    \label{fig:psqt}
+\end{figure}
+
+For asymmetrical PSQTs, we would ideally like to label the board identically from both player’s point of views, since currently we only have one set of PSQTs modelled from the blue perspective. We would like to flip the PSQTs to be reused from the red perspective, so that a generic algorithm can be used to sum up and calculate the total piece values for both players.
+
+To utilise a PSQT for red pieces, a special ‘FLIP’ table can be implemented:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{../design/assets/bitboard_indexes.pdf}
+    \caption{FLIP table used to map a red piece index to the blue player's perspective}
+    \label{fig:flip-table}
+\end{figure}
+
+The FLIP table is just an array of indexes, mapping every red player’s square onto the corresponding blue square. The following expression utilises the FLIP table to retrieve a red player’s value from the blue player’s PSQT:
+
+\begin{center}
+red\_psqt\_value = PHAROAH\_PSQT[FLIP[square]]
+\end{center}
+
+The following function retrieves an array of bitb oards representing piece positions from the board class, then sums up all the values of these pieces for both players, referencing the corresponding PSQT:
+
+\begin{algorithm}[H]
+\caption{Calculating positional value pseudocode}
+\begin{algorithmic}
+    \Function{calculate\_positional\_value}{bitboards, colour}
+    \State $positional\_score \gets 0$
+
+    \ForAll{pieces}
+        \For {square in bitboards[piece]}
+            \If{$square = 1$}
+                \If{$colour$ \textbf{is} $blue$}
+                    \State $positional\_score \gets positional\_score + PSQT[piece][square]$
+                \Else
+                    \State $positional\_score \gets positional\_score + PSQT[piece][FLIP[square]]$
+                \EndIf
+            \EndIf
+        \EndFor
+    \EndFor
+
+    \State \Return $positional\_score$
+    \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection*{Using valid squares}
+Using Algorithm \ref{alg:valid-moves} for finding valid moves, we can implement two more improvements for our evaluation function: Mobility and King Safety.
+
+\paragraph{Mobility} is the number of legal moves a player has for a given position. This is advantageous in most cases, with a positive correlation between mobility and the strength of a position. To implement this, we simply loop over all pieces of the active colour, and sum up the number of valid moves obtained from the previous algorithm.
+
+\paragraph{King safety} (Pharoah safety) describes the level of protection of pharoah, being the piece that determines a win or loss. In normal chess, this would be achieved usually by castling, or protection via position or with other pieces. Similarly, since the only way to lose in Laser Chess is via a laser, having pieces surrounding the pharoah, either to reflect the laser or to be sacrificed, is a sensible tactic and improves king safety. Thus, a value for king safety can be achieved by finding the number of valid moves a pharoah can make, and subtracting them from the maximum possible of moves (8) to find the number of surrounding pieces.
+
+\subsubsection{Shadow Casting}
 
 \subsection{Classes}
 \end{document}
