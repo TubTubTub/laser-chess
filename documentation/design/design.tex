@@ -248,9 +248,11 @@ Flags and depth are also stored alongside the evaluation. Depth is required as i
 
 \paragraph{Exact} flag is used when a node is fully searched without pruning, and the stored and fetched evaluation is accurate.
 \paragraph{Lower} flag is stored when a node receives an evaluation greater than the $\beta$, and is subsequently pruned, meaning that the true evaluation could be higher than the value stored. We are thus storing the $\alpha$ and not an exact value. Thus, when we fetch the cached value, we have to recheck if this value is greater than $\beta$. If so, we return the value and this branch is pruned (fail high); If not, nothing is returned, and the exact evaluation is calculated.
-\paragraph{Upper} flag is stored when a node receives an evaluation smaller than the $\alpha$, and is subsequently pruned, meaning that the true evaluation could be lower than the value stored. Similarly, when we fetch the cached value, we have to recheck if this value is lower than $\alpha$. Again, the current branch is pruned if so (fail low), and an exact evaluation is calculated if not.
-\\
-The pseudocode implementation for transposition tables is shown below:
+\paragraph{Upper} flag is stored when a node receives an evaluation smaller than the $\alpha$, and is subsequently pruned, meaning that the true evaluation could be lower than the value stored. Similarly, when we fetch the cached value, we have to recheck if this value is lower than $\alpha$. Again, the current branch is pruned if so (fail low), and an exact evaluation is calculated if not. 
+
+\bigskip
+
+\noindent The pseudocode implementation for transposition tables is shown below:
 
 \begin{algorithm}[H]
 \caption{Minimax with transposition table pseudocode}
@@ -585,7 +587,58 @@ Using Algorithm \ref{alg:valid-moves} for finding valid moves, we can implement 
 
 \paragraph{King safety} (Pharoah safety) describes the level of protection of pharoah, being the piece that determines a win or loss. In normal chess, this would be achieved usually by castling, or protection via position or with other pieces. Similarly, since the only way to lose in Laser Chess is via a laser, having pieces surrounding the pharoah, either to reflect the laser or to be sacrificed, is a sensible tactic and improves king safety. Thus, a value for king safety can be achieved by finding the number of valid moves a pharoah can make, and subtracting them from the maximum possible of moves (8) to find the number of surrounding pieces.
 
-\subsubsection{Shadow Casting}
+\subsubsection{Shadow Mapping}
+Following the client's requirement for engaging visuals, I have decided to implement shadow mapping for my program, especially as lasers are the main focus of the game. Shadow mapping is a technique used to create graphical hard shadows, with the use of a depth buffer map. I have chosen to implement shadow mapping, instead of alternative lighting tecniques such as ray casting and ray marching, as its effiency is more suitable for real-time usage, and results are visually decent enough for my purposes.
+\\
+For typical 3D shadow mapping, the standard approach is as follows:
+
+\begin{enumerate}
+\item Render the scene from the light's point of view
+\item Extract a depth buffer texture from the render
+\item Compare the distance of a pixel from the light to the value stored in the depth texture
+\item If greater, there must be an obstacle in the way reducing the depth map value, therefore that pixel must be in shadow
+\end{enumerate}
+
+\noindent To implement shadow casting for my 2D game, I have modified some steps and arrived on the final following workflow:
+
+\begin{enumerate}
+\item Render the scene with only occluding objects shown
+\item Crop texture to align the center to the light position
+\item To create a 1D depth map, transform Cartesian to polar coordinates, and increase the distance from the origin until a collision with an occluding object
+\item Using polar coordinates for the real texture, compare the z-depth to the corresponding value from the depth map
+\item Additively blend the light colour if z-depth is less than the depth map value
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{../design/assets/shadow_mapping.pdf}
+    \caption{Workflow for 2D shadow mapping}
+    \label{fig:shadow-mapping}
+\end{figure}
+
+However, there are several disadvantages to shadow mapping. The relevant ones for us are Aliasing and Shadow Acne:
+
+\paragraph{Aliasing} occurs when the texture size for the depth map is smaller than the light map, causing shadows to be scaled up and rendered with jagged edges.
+
+\paragraph{Shadow Acne} occurs when the depth from the depth map is so close to the light map value, that precision errors cause unnecessary shadows to be rendered.
+
+\bigskip
+
+\noindent These problems can be mitigated by increasing the size of the shadow map size. However, due to memory and hardware constraints, I will have to find a compromised resolution to balance both artifacting and acuity.
+
+\subsubsection*{Soft Shadows}
+To approach above is used only for calculating hard shadows. However, in real-life scenarios, lights are not modelled as a single particle, but instead emitted from a wide light source. This creates an umbra and penumbra, resulting in soft shadows.
+
+To emulate this in our game, we could calculate penumbra values with various methods, however, due to hardware constraints and simplicity again, I have chosen to use the following simpler method:
+
+\begin{enumerate}
+\item Sample the depth map multiple times, from various differing angles
+\item Sum the results using a noraml distribution
+\item Blur the final result proportional to the length from from the center
+\end{enumerate}
+
+This method progressively blurs the shadow as the distance from the main shadow (umbra) increases, which results in a convincing estimation while being less computationally intensive.
+
 
 \subsection{Classes}
 \end{document}

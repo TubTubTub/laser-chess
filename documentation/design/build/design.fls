@@ -530,6 +530,7 @@ INPUT ..\design\assets\bitboard_indexes.pdf
 INPUT ..\design\assets\bitboard_indexes.pdf
 INPUT ..\design\assets\bitboard_indexes.pdf
 INPUT ..\design\assets\bitboard_indexes.pdf
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out
@@ -553,3 +554,5 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt10.pfb
