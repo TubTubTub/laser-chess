@@ -123,14 +123,11 @@ class _State:
     def draw(self):
         raise NotImplementedError
     
-    def update(self, **kwargs):
+    def get_event(self, event):
         raise NotImplementedError
 
     def handle_resize(self):
         self._widget_group.handle_resize(window.size)
-    
-    def get_event(self, event):
-        raise NotImplementedError
     
     def update(self, **kwargs):
         self.draw()

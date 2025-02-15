@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 FEB 2025 10:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  15 FEB 2025 10:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -865,11 +865,40 @@ Package: enumitem 2025/02/06 v3.11 Customized lists
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
 \langwohyphens=\language80
 LaTeX Info: Redefining \_ on input line 43.
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count491
+\float@exts=\toks48
+\float@box=\box86
+\@float@everytoks=\toks49
+\@floatcapt=\box87
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+\@float@every@algorithm=\toks50
+\c@algorithm=\count492
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Package: algpseudocode 
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count493
+\c@ALG@rem=\count494
+\c@ALG@nested=\count495
+\ALG@tlm=\skip88
+\ALG@thistlm=\skip89
+\c@ALG@Lnr=\count496
+\c@ALG@blocknr=\count497
+\c@ALG@storecount=\count498
+\c@ALG@tmpcounter=\count499
+\ALG@tmplength=\skip90
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 )))
-\@quotelevel=\count491
-\@quotereset=\count492
+\@quotelevel=\count500
+\@quotereset=\count501
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
 \openout1 = `analysis.aux'.
@@ -929,17 +958,17 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count493
+\scratchcounter=\count502
 \scratchdimen=\dimen320
-\scratchbox=\box86
-\nofMPsegments=\count494
-\nofMParguments=\count495
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count496
+\scratchbox=\box88
+\nofMPsegments=\count503
+\nofMParguments=\count504
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count505
 \MPscratchDim=\dimen321
-\MPnumerator=\count497
-\makeMPintoPDFobject=\count498
-\everyMPtoPDFconversion=\toks49
+\MPnumerator=\count506
+\makeMPintoPDFobject=\count507
+\everyMPtoPDFconversion=\toks52
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -947,6 +976,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
@@ -980,7 +1010,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count499
+\c@lstlisting=\count508
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out)
 \@outlinefile=\write5
@@ -1058,10 +1088,10 @@ Package logreq Info: Writing requests to 'analysis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45617 strings out of 473530
- 1071908 string characters out of 5714311
- 1727555 words of memory out of 5000000
- 68197 multiletter control sequences out of 15000+600000
+ 46216 strings out of 473530
+ 1081585 string characters out of 5714311
+ 1737283 words of memory out of 5000000
+ 68781 multiletter control sequences out of 15000+600000
  561658 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  134i,6n,136p,1964b,1247s stack positions out of 10000i,1000n,20000p,200000b,200000s

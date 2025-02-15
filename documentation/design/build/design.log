@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  14 FEB 2025 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  15 FEB 2025 16:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1019,12 +1019,12 @@ Package hyperref Info: Link coloring OFF on input line 3.
 
 
 pdfTeX warning: pdflatex (file ../design/assets/top_level_overview_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/top_level_overview_flowchart.pdf, id=66, 435.54718pt x 189.8292pt>
+<../design/assets/top_level_overview_flowchart.pdf, id=70, 435.54718pt x 189.8292pt>
 File: ../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/top_level_overview_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
-<../design/assets/menu_gui.png, id=67, 454.8192pt x 256.3176pt>
+<../design/assets/menu_gui.png, id=71, 454.8192pt x 256.3176pt>
 File: ../design/assets/menu_gui.png Graphic file (type png)
 <use ../design/assets/menu_gui.png>
 Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
@@ -1034,7 +1034,7 @@ Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
 [1
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../design/assets/top_level_overview_flowchart.pdf>]
-<../design/assets/settings_gui.png, id=86, 454.8192pt x 256.3176pt>
+<../design/assets/settings_gui.png, id=90, 454.8192pt x 256.3176pt>
 File: ../design/assets/settings_gui.png Graphic file (type png)
 <use ../design/assets/settings_gui.png>
 Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 35.
@@ -1044,12 +1044,12 @@ Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 3
 [2 <../design/assets/menu_gui.png> <../design/assets/settings_gui.png>]
 
 pdfTeX warning: pdflatex (file ../design/assets/settings_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/settings_flowchart.pdf, id=96, 551.1792pt x 212.69463pt>
+<../design/assets/settings_flowchart.pdf, id=100, 551.1792pt x 212.69463pt>
 File: ../design/assets/settings_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/settings_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/settings_flowchart.pdf  used on input line 55.
 (pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
-<../design/assets/browser_gui.png, id=97, 454.8192pt x 256.3176pt>
+<../design/assets/browser_gui.png, id=101, 454.8192pt x 256.3176pt>
 File: ../design/assets/browser_gui.png Graphic file (type png)
 <use ../design/assets/browser_gui.png>
 Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63.
@@ -1059,7 +1059,7 @@ Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63
 [3 <../design/assets/settings_flowchart.pdf>]
 
 pdfTeX warning: pdflatex (file ../design/assets/browser_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/browser_flowchart.pdf, id=113, 448.5558pt x 216.81pt>
+<../design/assets/browser_flowchart.pdf, id=117, 448.5558pt x 216.81pt>
 File: ../design/assets/browser_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/browser_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input line 75.
@@ -1067,7 +1067,7 @@ Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input l
 
 
 [4 <../design/assets/browser_gui.png>]
-<../design/assets/config_gui.png, id=120, 453.3738pt x 254.3904pt>
+<../design/assets/config_gui.png, id=124, 453.3738pt x 254.3904pt>
 File: ../design/assets/config_gui.png Graphic file (type png)
 <use ../design/assets/config_gui.png>
 Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
@@ -1075,7 +1075,7 @@ Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
 
 
 pdfTeX warning: pdflatex (file ../design/assets/config_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/config_flowchart.pdf, id=121, 666.57025pt x 151.5261pt>
+<../design/assets/config_flowchart.pdf, id=125, 666.57025pt x 151.5261pt>
 File: ../design/assets/config_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/config_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input line 94.
@@ -1083,7 +1083,7 @@ Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input li
 
 
 [5 <../design/assets/browser_flowchart.pdf> <../design/assets/config_gui.png>]
-<../design/assets/game_gui.png, id=138, 454.8192pt x 256.3176pt>
+<../design/assets/game_gui.png, id=142, 454.8192pt x 256.3176pt>
 File: ../design/assets/game_gui.png Graphic file (type png)
 <use ../design/assets/game_gui.png>
 Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
@@ -1091,7 +1091,7 @@ Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
 
 
 pdfTeX warning: pdflatex (file ../design/assets/game_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/game_flowchart.pdf, id=139, 551.1792pt x 262.0992pt>
+<../design/assets/game_flowchart.pdf, id=143, 551.1792pt x 262.0992pt>
 File: ../design/assets/game_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/game_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line 123.
@@ -1099,7 +1099,7 @@ Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line
 
 
 [6 <../design/assets/config_flowchart.pdf> <../design/assets/game_gui.png>]
-<../design/assets/editor_gui.png, id=156, 963.6pt x 542.025pt>
+<../design/assets/editor_gui.png, id=160, 963.6pt x 542.025pt>
 File: ../design/assets/editor_gui.png Graphic file (type png)
 <use ../design/assets/editor_gui.png>
 Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131.
@@ -1107,7 +1107,7 @@ Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131
 
 
 pdfTeX warning: pdflatex (file ../design/assets/editor_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/editor_flowchart.pdf, id=157, 435.54718pt x 204.765pt>
+<../design/assets/editor_flowchart.pdf, id=161, 435.54718pt x 204.765pt>
 File: ../design/assets/editor_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/editor_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input line 142.
@@ -1117,7 +1117,7 @@ Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input li
 [7 <../design/assets/game_flowchart.pdf> <../design/assets/editor_gui.png>]
 
 pdfTeX warning: pdflatex (file ../design/assets/minimax.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/minimax.pdf, id=174, 688.49219pt x 307.1475pt>
+<../design/assets/minimax.pdf, id=178, 688.49219pt x 307.1475pt>
 File: ../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/assets/minimax.pdf>
 Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 153.
@@ -1129,7 +1129,7 @@ Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on inp
 
 
 pdfTeX warning: pdflatex (file ../design/assets/alpha_beta_pruning.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/alpha_beta_pruning.pdf, id=205, 713.7867pt x 307.1475pt>
+<../design/assets/alpha_beta_pruning.pdf, id=209, 713.7867pt x 307.1475pt>
 File: ../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/assets/alpha_beta_pruning.pdf>
 Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 198.
@@ -1154,7 +1154,7 @@ Overfull \hbox (2.41408pt too wide) in paragraph at lines 349--350
 [14]
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_indexes.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_indexes.pdf, id=264, 324.82352pt x 263.91599pt>
+<../design/assets/bitboard_indexes.pdf, id=268, 324.82352pt x 263.91599pt>
 File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_indexes.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 418.
@@ -1162,7 +1162,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_shifted.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_shifted.pdf, id=266, 145.50359pt x 145.50359pt>
+<../design/assets/bitboard_shifted.pdf, id=270, 145.50359pt x 145.50359pt>
 File: ../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_shifted.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 435.
@@ -1172,7 +1172,7 @@ Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input li
 [15 <../design/assets/bitboard_indexes.pdf>]
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_masked.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_masked.pdf, id=286, 551.1792pt x 167.6664pt>
+<../design/assets/bitboard_masked.pdf, id=290, 551.1792pt x 167.6664pt>
 File: ../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_masked.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 450.
@@ -1184,7 +1184,7 @@ Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input lin
 [17]
 
 pdfTeX warning: pdflatex (file ../design/assets/psqt.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/psqt.pdf, id=320, 352.43669pt x 167.6664pt>
+<../design/assets/psqt.pdf, id=324, 352.43669pt x 167.6664pt>
 File: ../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/assets/psqt.pdf>
 Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 536.
@@ -1199,53 +1199,77 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 
 [19]
 
-LaTeX Warning: File `../design/assets/shadow_mapping.pdf' not found on input line 614.
-
-
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:614: Package pdftex.def Error: File `../design/assets/shadow_mapping.pdf' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.614 ...dth]{../design/assets/shadow_mapping.pdf}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+pdfTeX warning: pdflatex (file ../design/assets/shadow_mapping.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/assets/shadow_mapping.pdf, id=350, 340.3917pt x 321.11969pt>
+File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
+<use ../design/assets/shadow_mapping.pdf>
+Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 614.
+(pdftex.def)             Requested size: 418.25368pt x 394.58777pt.
 
 
 [20]
 
-[21]
+[21 <../design/assets/shadow_mapping.pdf>]
 
-[22] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+pdfTeX warning: pdflatex (file ../design/assets/soft_shadows.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/assets/soft_shadows.pdf, id=390, 264.99pt x 164.5347pt>
+File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
+<use ../design/assets/soft_shadows.pdf>
+Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 642.
+(pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
+
+LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on input line 650.
+
+
+
+pdfTeX warning: pdflatex (file ../design/assets/multi_threading.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<../design/assets/multi_threading.pdf, id=391, 352.43669pt x 158.51219pt>
+File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
+<use ../design/assets/multi_threading.pdf>
+Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 654.
+(pdftex.def)             Requested size: 418.25368pt x 188.12874pt.
+
+
+[22 <../design/assets/soft_shadows.pdf>]
+
+LaTeX Warning: Reference `tab:state-methods' on page 23 undefined on input line 663.
+
+
+LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on input line 686.
+
+
+
+[23 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+[24] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `design.out' has not changed.
-(rerunfilecheck)             Checksum: AD5A50C80E1A5C290327E134C1A632DB;1960.
+(rerunfilecheck)             Checksum: 6BD730C2F918558916B034DFB8701260;2098.
 Package logreq Info: Writing requests to 'design.run.xml'.
 \openout1 = `design.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 46227 strings out of 473530
- 1087646 string characters out of 5714311
- 1739295 words of memory out of 5000000
- 68752 multiletter control sequences out of 15000+600000
- 563878 words of font info for 53 fonts, out of 8000000 for 9000
+ 46650 strings out of 473530
+ 1091389 string characters out of 5714311
+ 1875531 words of memory out of 5000000
+ 69163 multiletter control sequences out of 15000+600000
+ 563710 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,7n,136p,1960b,1214s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (22 pages, 3765947 bytes).
+ 134i,11n,136p,1960b,1214s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (24 pages, 4118502 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 93 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
+ 246 words of extra memory for PDF output out of 10000 (max. 10000000)
 

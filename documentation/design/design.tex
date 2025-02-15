@@ -585,7 +585,7 @@ Using Algorithm \ref{alg:valid-moves} for finding valid moves, we can implement 
 
 \paragraph{Mobility} is the number of legal moves a player has for a given position. This is advantageous in most cases, with a positive correlation between mobility and the strength of a position. To implement this, we simply loop over all pieces of the active colour, and sum up the number of valid moves obtained from the previous algorithm.
 
-\paragraph{King safety} (Pharoah safety) describes the level of protection of pharoah, being the piece that determines a win or loss. In normal chess, this would be achieved usually by castling, or protection via position or with other pieces. Similarly, since the only way to lose in Laser Chess is via a laser, having pieces surrounding the pharoah, either to reflect the laser or to be sacrificed, is a sensible tactic and improves king safety. Thus, a value for king safety can be achieved by finding the number of valid moves a pharoah can make, and subtracting them from the maximum possible of moves (8) to find the number of surrounding pieces.
+\paragraph{King safety} (Pharoah safety) describes the level of protection of the pharoah, being the piece that determines a win or loss. In normal chess, this would be achieved usually by castling, or protection via position or with other pieces. Similarly, since the only way to lose in Laser Chess is via a laser, having pieces surrounding the pharoah, either to reflect the laser or to be sacrificed, is a sensible tactic and improves king safety. Thus, a value for king safety can be achieved by finding the number of valid moves a pharoah can make, and subtracting them from the maximum possible of moves (8) to find the number of surrounding pieces.
 
 \subsubsection{Shadow Mapping}
 Following the client's requirement for engaging visuals, I have decided to implement shadow mapping for my program, especially as lasers are the main focus of the game. Shadow mapping is a technique used to create graphical hard shadows, with the use of a depth buffer map. I have chosen to implement shadow mapping, instead of alternative lighting tecniques such as ray casting and ray marching, as its effiency is more suitable for real-time usage, and results are visually decent enough for my purposes.
@@ -611,7 +611,7 @@ For typical 3D shadow mapping, the standard approach is as follows:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\columnwidth]{../design/assets/shadow_mapping.pdf}
+    \includegraphics[width=\columnwidth]{../design/assets/shadow_mapping.pdf}
     \caption{Workflow for 2D shadow mapping}
     \label{fig:shadow-mapping}
 \end{figure}
@@ -637,8 +637,108 @@ To emulate this in our game, we could calculate penumbra values with various met
 \item Blur the final result proportional to the length from from the center
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{../design/assets/soft_shadows.pdf}
+    \caption{Workflow for 2D soft shadows}
+    \label{fig:soft-shadows}
+\end{figure}
+
 This method progressively blurs the shadow as the distance from the main shadow (umbra) increases, which results in a convincing estimation while being less computationally intensive.
 
+\subsubsection{Multithreading}
+In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI, I will have to employ multi-threading. Since python runs on a single thread natively, code is exected serially, meaning that a time consuming function such as minimax will prevent the running of another GUI-drawing function until it is finished, hence freezing the program. To overcome this, multi-threading can execute both functions in parallel on different threads, meaning the GUI-drawing thread can run while minimax is being computed, and stay responsive. To pass data between threads, since memory is shared between threads, arrays and queues can be used to store results from threads. The following flowchart shows my chosen approach to keep the GUI responsive while minimax is being computed:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{../design/assets/multi_threading.pdf}
+    \caption{Multi-threading for minimax}
+    \label{fig:multi-threading}
+\end{figure}
 
 \subsection{Classes}
+I will be using an Object-Oriented Programming (OOP) paradigm for my program. OOP reduces repetition of code, as inheritance can be used to abstract repetive code into a base class, as show in my widgets implementation. Testing and debugging classes will make my workflow more efficient. This section documents the base classes I am going to implement in my program.
+
+\subsubsection*{State}
+Since there will be multiple screens in my program as demonstrated in Figure \ref{fig:program-overview-flowchart}, the State base class will be used to handle the logic for each screen. For each screen, void functions will be inherited and overwritten, each containing their own logic for that specific screen. For example, all screens will call the startup function in Table \ref{tab:state-methods} to initalise variables needed for that screen. This polymorphism approach allows me to use another Control class to enable easy switching between screens, without worrying about the internal logic of that screen.
+
+\begin{longtable}[c]{l|l}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    startup & Initialise variables and functions when state set as displayed screen\\
+    cleanup & Cleanup any variables and functions when state removed from screen\\
+    draw & Draw to display\\
+    update & Update any variables for every game tick\\
+    handle\_resize & Scale GUI when window resized\\
+    get\_event & Receive pygame events as argument and process them\\
+
+    \bottomrule
+    
+\caption{Methods for State class}
+\label{tab:state-method}
+\end{longtable}
+
+\subsubsection*{Widget}
+I will be implementing my own widget system for creating the game GUI. This allows me to fully customise all graphical elements on the screen, and also create a resizing system that adheres to Objective \ref{itm:responsive-objective}. The default pygame rescaling options also simply resize elements without accounting for aspect ratios or resolution, and I could not find a library that suits my needs. Having a bespoke GUI implementation also justifies my use of Pygame over other Python frameworks.
+
+I will be utilising the Pygame sprite system for my GUI. All GUI widgets will be subclasses inheriting from the base Widget class, which itself is a subclass of the Pygame sprite class.
+Since Pygame sprites are drawn via a spritegroup class, I will also have to create a custom subclass inheriting that as well. As with the State class, polymorphism will allow the spritegroup class to render all widgets regardless of their functionality. Each widget will override their base methods, especially the draw (set\_image) method, for their own needs. Additionally, I will use getter and setter methods, used with the \lstinline[language=Python]{@property} decorator in python, to compute attributes mainly used for resizing widgets. This allows me to expose common variables, and to reduce code repetition.
+
+\begin{longtable}[c]{l|l}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    set\_image & Render widget to internal image attribute for pygame sprite class\\
+    set\_geometry & Set position and size of image\\
+    set\_screen\_size & Set screen size for resizing purposes\\
+    get\_event & Receives pygame events and processes them\\
+    screen\_size* & Returns screen size in pixels\\
+    position* & Returns topleft of widget rect\\
+    size* & Returns size of widget in pixels\\
+    margin* & Returns distance between border and actual widget image\\
+    border\_width* & Returns border width\\
+    border\_radius* & Returns border radius for rounded corners\\
+    font\_size* & Returns font size for text-based widgets\\
+
+    \midrule
+
+    \multicolumn{2}{l}{* represents getter method / property}\\
+
+    \bottomrule
+    
+\caption{Methods for Widget class}
+\label{tab:widget-methods}
+\end{longtable}
+
+I will also employ multiple inheritance to combine different base class functionalities together. For example, I will create a pressable base class, designed to be subclassed along with the widget class. This will provide attributes and methods for widgets that support clicking and dragging. Following Python Method Resolution Order (MRO), additional base classes should be referenced first, having priority over the base Widget class.
+
+\begin{longtable}[c]{l|l}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    get\_event & Receives Pygame events and sets current state accordingly\\
+    set\_state & Sets current Pressable state, called by \lstinline[language=Python]{get_event}\\
+    set\_colours & Set fill colour according to widget Pressable state\\
+    current\_state* & Returns current Pressable state (e.g. hovered, pressed etc.)\\
+
+    \midrule
+
+    \multicolumn{2}{l}{* represents getter method / property}\\
+
+    \bottomrule
+    
+\caption{Methods for example Pressable class}
+\label{tab:pressable-methods}
+\end{longtable}
+
 \end{document}
