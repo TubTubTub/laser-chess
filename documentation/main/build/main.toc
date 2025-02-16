@@ -39,3 +39,4 @@
 \contentsline {paragraph}{Shadow Acne}{33}{section*.48}%
 \contentsline {subsubsection}{\numberline {2.2.6}Multithreading}{34}{subsubsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.3}Classes}{35}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Class Diagram}{38}{subsubsection.2.3.1}%

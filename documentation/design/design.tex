@@ -679,7 +679,7 @@ Since there will be multiple screens in my program as demonstrated in Figure \re
     \bottomrule
     
 \caption{Methods for State class}
-\label{tab:state-method}
+\label{tab:state-methods}
 \end{longtable}
 
 \subsubsection*{Widget}
@@ -717,7 +717,7 @@ Since Pygame sprites are drawn via a spritegroup class, I will also have to crea
 \label{tab:widget-methods}
 \end{longtable}
 
-I will also employ multiple inheritance to combine different base class functionalities together. For example, I will create a pressable base class, designed to be subclassed along with the widget class. This will provide attributes and methods for widgets that support clicking and dragging. Following Python Method Resolution Order (MRO), additional base classes should be referenced first, having priority over the base Widget class.
+I will also employ multiple inheritance to combine different base class functionalities together. For example, I will create a pressable base class, designed to be subclassed along with the widget class. This will provide attributes and methods for widgets that support clicking and dragging. Following Python's Method Resolution Order (MRO), additional base classes should be referenced first, having priority over the base Widget class.
 
 \begin{longtable}[c]{l|l}
     \toprule
@@ -740,5 +740,75 @@ I will also employ multiple inheritance to combine different base class function
 \caption{Methods for example Pressable class}
 \label{tab:pressable-methods}
 \end{longtable}
+
+\subsubsection*{Game}
+For my game screen, I will be utilising the Model-View-Controller architectural pattern (MVC). MVC defines three interconnected parts, the model processing information, the view showing the information, and the controlling receiving user inputs and connecting the two. This will allow me to decompose the development process into individual parts for the game logic, graphics and user input, speeding up the development process and making testing easier. It also allows me to implement multiple views, for the pause and win screens as well. For MVC, I will have to implement a game model class, a game controller class, and three classes for each view (game, pause, win). Using aggregation, these will be initially connected and handled by the game state class. For the following methods, I have only showed those pertinent to the MVC pattern: 
+
+\begin{longtable}[c]{l|p{0.75\columnwidth}}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    get\_event & Receives Pygame events and passes them onto the correct part's event handler\\
+    handle\_game\_event & Receives events and notifies the game model and game view\\
+    handle\_pause\_event & Receives events and notifies the pause view\\
+    handle\_win\_event & Receives events and notifies the win view\\
+    ... & ...\\
+
+    \bottomrule
+    
+\caption{Methods for Controller class}
+\label{tab:controller-methods}
+\end{longtable}
+
+\begin{longtable}[c]{l|p{0.75\columnwidth}}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    process\_model\_event & Receives events from the model and calls the relevant method to display that information\\
+    convert\_mouse\_pos & Sends controller class information of widget under mouse\\
+    draw & Draw information to display \\
+    handle\_resize & Scale GUI when window resized\\
+    ... & ...\\
+
+    \bottomrule
+    
+\caption{Methods for View class}
+\label{tab:view-methods}
+\end{longtable}
+
+\begin{longtable}[c]{l|p{0.75\columnwidth}}
+    \toprule
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
+    \endfirsthead
+    \endhead
+
+    register\_listener & Subscribes method on view instance to an event type, so that the method receives and processes that event everytime \lstinline[language=Python]{alert_listener} is called\\
+    alert\_listener & Sends event to all subscribed instances\\
+    toggle\_win & Sends event for win view\\
+    toggle\_pause & Sends event for pause view\\
+    ... & ...\\
+
+    \bottomrule
+    
+\caption{Methods for Model class}
+\label{tab:model-methods}
+\end{longtable}
+
+\subsubsection*{Shaders}
+To use ModernGL with Pygame, I have created classes for each fragment shader, controlled by a main shader manager class. The fragment shader classes will rely on composition: The shader manager creates the fragment shader class; Every fragment shader class takes their shader manager parent instance as an argument, and runs methods on it to produce the final output.
+
+\subsubsection{Class Diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{../design/assets/class_relation_diagram.pdf}
+    \label{fig:class-relation-diagram}
+\end{figure}
 
 \end{document}

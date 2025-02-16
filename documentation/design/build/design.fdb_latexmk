@@ -1,19 +1,20 @@
 # Fdb version 4
-["bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"] 1739636516.86005 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design" 1739636582.55269 0
+["bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"] 1739713951.33255 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design" 1739714151.30329 0
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/bibtex/bst/biblatex/biblatex.bst" 1711466047 65510 b1f696b0241395385f422f67543c37fd ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib" 1739636581 342 20d1170ef6c1d70c658d70e011e08dba "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1739636581 10728 96d77f3e0c935c151ab4799c8af8d723 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib" 1739714150 342 20d1170ef6c1d70c658d70e011e08dba "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1739714150 11868 bb0d395a5cf442bfd36d73d356c64534 "pdflatex"
   (generated)
   "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.blg"
   (rewritten before read)
-["pdflatex"] 1739636578.53523 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.pdf" "design" 1739636582.5538 0
+["pdflatex"] 1739714147.18538 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.pdf" "design" 1739714151.3043 0
   "../design/assets/alpha_beta_pruning.pdf" 1739395706 46157 f12afc161c0a73c0b3be4bb992a68017 ""
   "../design/assets/bitboard_indexes.pdf" 1739478099 655523 62be824f89b78b863206b5b0c3bfc153 ""
   "../design/assets/bitboard_masked.pdf" 1739476228 50268 f58f68f01c1a4c247b1472d5859269f0 ""
   "../design/assets/bitboard_shifted.pdf" 1739475889 16832 50a63a7f7428f971dd0d08920b59b88c ""
   "../design/assets/browser_flowchart.pdf" 1739370140 37544 f82686f3b2c5aa47b3fc12515d87aa01 ""
   "../design/assets/browser_gui.png" 1739371785 196196 2676eac9ab2582de7b506818ac21a6d3 ""
+  "../design/assets/class_relation_diagram.pdf" 1739713724 76372 c117da9e6fe6080590c2e7c5a9917362 ""
   "../design/assets/config_flowchart.pdf" 1739370336 36712 4a7661ee324659e2df830e26ee45f072 ""
   "../design/assets/config_gui.png" 1739371914 150192 d2cbea2295e8fecaed1a0ae000685732 ""
   "../design/assets/editor_flowchart.pdf" 1739388258 35823 674b40be54b0a6a9401afca9bfa06553 ""
@@ -255,11 +256,11 @@
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1739636581 10728 96d77f3e0c935c151ab4799c8af8d723 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" 1739636517 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.out" 1739636581 2098 6bd730c2f918558916b034dfb8701260 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.run.xml" 1739636581 2553 8fa2ba3161d914b681924eb7b1875667 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" 1739636577 43747 6f1b8cf913f5af1bf7a4290e1db035c8 ""
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1739714150 11868 bb0d395a5cf442bfd36d73d356c64534 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" 1739713951 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.out" 1739714150 2234 52749d4988e3bf4505635256405d023f "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.run.xml" 1739714150 2553 8fa2ba3161d914b681924eb7b1875667 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" 1739714146 47071 b014a962331bb061ffff8d335712fe97 ""
   (generated)
   "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux"
