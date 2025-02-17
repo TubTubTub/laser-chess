@@ -140,7 +140,7 @@ The following objectives should be met to satisfy my clients’ requirements:
     \item Three-fold repetition should be automatically detected
     \item Travel path of laser should be correctly implemented
     \end{itemize}
-\item Save or load game options should be implemented
+\item Save or load game options should be implemented \label{itm:save-games}
     \begin{itemize}
     \item Games will be encoded into FEN string format
     \item Games can be saved locally into the program files
@@ -305,6 +305,11 @@ I have chosen minimax as my searching algorithm. This is due to its relatively s
 I have chosen Pygame as my main GUI framework. This is due to its increased flexibility, in creating custom art and widgets compared to PyQT’s defined toolset, which is tailored towards building commercial office applications. Although Pygame contains more overhead and boilerplate code to create standard functionality, I believe that the increased control is worth it for a custom game such as laser chess, which requires dynamic rendering of elements such as the laser beam.
 
 I will also integrate Pygame together with ModernGL, using the convenient APIs in for handling user input and sprite drawing, together with the speed of OpenGL to draw shaders and any other effect overlays.
+
+\subsection{Limitations}
+I have agreed with my client that due to the multiple versions of Laser Chess that exist online, together with a lack of regulation, an implementation that adheres to the general rules of Laser Chess, and not strictly to a specific version, is acceptable.
+
+Moreover, due to the time constraints on both my schedules for exams and for the date of the tournament, the game only has to be presented in a functional state, and not polished for release, with extra work such as porting to a wide range of OS systems.
 
 \subsection{Critical Path Design}
 In order to meet my client’s requirement of releasing the game before the next field day, I have given myself a time limit of 12 weeks to develop my game, and have created the following critical path diagram to help me adhere to completing every milestone within the time limit.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  16 FEB 2025 13:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 FEB 2025 15:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -894,13 +894,136 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip90
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/forest\forest.sty
+Package: forest 2017/07/14 v2.1.5 Drawing (linguistic) trees
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.callouts.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.callouts.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodepartlowerbox=\box88
+\pgfnodeparttwobox=\box89
+\pgfnodepartthreebox=\box90
+\pgfnodepartfourbox=\box91
+\pgfnodeparttwentybox=\box92
+\pgfnodepartnineteenbox=\box93
+\pgfnodeparteighteenbox=\box94
+\pgfnodepartseventeenbox=\box95
+\pgfnodepartsixteenbox=\box96
+\pgfnodepartfifteenbox=\box97
+\pgfnodepartfourteenbox=\box98
+\pgfnodepartthirteenbox=\box99
+\pgfnodeparttwelvebox=\box100
+\pgfnodepartelevenbox=\box101
+\pgfnodeparttenbox=\box102
+\pgfnodepartninebox=\box103
+\pgfnodeparteightbox=\box104
+\pgfnodepartsevenbox=\box105
+\pgfnodepartsixbox=\box106
+\pgfnodepartfivebox=\box107
+))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryintersections.code.tex
+\pgf@intersect@solutions=\count500
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/pgfopts\pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks51
+\pgfopts@list@add@b@toks=\toks52
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/elocalloc\elocalloc.sty
+Package: elocalloc 2016/12/15 v0.03 local allocation for LaTeX 2015+ (DPC)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/inlinedef\inlinedef.sty
+Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
+\ID@toks=\toks53
+\ID@count=\count501
+)
+\ID@usercommands=\toks54
+\safeloop@depth=\count502
+\safeRKloop@depth=\count503
+\forest@temp@dimen=\dimen320
+\forest@temp@count=\count504
+\forest@n=\count505
+\forest@temp@global@count=\count506
+\forest@temp@toks=\toks55
+\forest@temparray@M=\count507
+\forest@temparray@N=\count508
+\forest@global@temparray@M=\count509
+\forest@global@temparray@N=\count510
+\forest@isnum@count=\count511
+\forest@isdim@nonintpart=\count512
+\forest@isdim@dimen=\dimen321
+\forest@sort@m=\count513
+\forest@sort@k=\count514
+\forest@sort@p=\count515
+\bracket@content=\toks56
+\bracket@afterthought=\toks57
+\forest@node@maxid=\count516
+\forest@process@left@M=\count517
+\forest@process@left@N=\count518
+\forest@process@right@M=\count519
+\forest@process@right@N=\count520
+\forest@process@saved@M=\count521
+\forest@process@saved@N=\count522
+\forest@process@result@M=\count523
+\forest@process@result@N=\count524
+\forest@process@n=\count525
+\forest@nodewalk@branch@toks=\toks58
+\forest@nodewalk@shortsteps@resolution=\toks59
+\forest@do@dynamics=\toks60
+\forest@box=\box108
+\forest@xg=\dimen322
+\forest@yg=\dimen323
+\forest@xs=\dimen324
+\forest@ys=\dimen325
+\forest@pi@toks=\toks61
+\forest@segment@toks=\toks62
+\forest@PIi@toks=\toks63
+\forest@PIii@toks=\toks64
+\forest@copy@in=\read4
+\forest@copy@out=\write5
+\forest@externalize@max@outer@n=\count526
+\forest@externalize@inner@n=\count527
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 )))
-\@quotelevel=\count500
-\@quotereset=\count501
+\@quotelevel=\count528
+\@quotereset=\count529
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+Runaway argument?
+{\contentsline {algorithm}{\numberline {8}{\ignorespaces Calcul 
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:3: File ended while scanning use of \@writefile.
+<inserted text> 
+                \par 
+l.3 \begin{document}
+                    
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
 \openout1 = `design.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -921,7 +1044,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -958,17 +1080,17 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count502
-\scratchdimen=\dimen320
-\scratchbox=\box88
-\nofMPsegments=\count503
-\nofMParguments=\count504
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count505
-\MPscratchDim=\dimen321
-\MPnumerator=\count506
-\makeMPintoPDFobject=\count507
-\everyMPtoPDFconversion=\toks52
+\scratchcounter=\count530
+\scratchdimen=\dimen326
+\scratchbox=\box109
+\nofMPsegments=\count531
+\nofMParguments=\count532
+\everyMPshowfont=\toks65
+\MPscratchCnt=\count533
+\MPscratchDim=\dimen327
+\MPnumerator=\count534
+\makeMPintoPDFobject=\count535
+\everyMPtoPDFconversion=\toks66
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1010,21 +1132,21 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count508
+\c@lstlisting=\count536
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
-\@outlinefile=\write5
-\openout5 = `design.out'.
+\@outlinefile=\write6
+\openout6 = `design.out'.
 
 
 
 pdfTeX warning: pdflatex (file ../design/assets/top_level_overview_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/top_level_overview_flowchart.pdf, id=74, 435.54718pt x 189.8292pt>
+<../design/assets/top_level_overview_flowchart.pdf, id=6, 435.54718pt x 189.8292pt>
 File: ../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/top_level_overview_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
-<../design/assets/menu_gui.png, id=75, 454.8192pt x 256.3176pt>
+<../design/assets/menu_gui.png, id=7, 454.8192pt x 256.3176pt>
 File: ../design/assets/menu_gui.png Graphic file (type png)
 <use ../design/assets/menu_gui.png>
 Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
@@ -1034,7 +1156,7 @@ Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
 [1
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../design/assets/top_level_overview_flowchart.pdf>]
-<../design/assets/settings_gui.png, id=94, 454.8192pt x 256.3176pt>
+<../design/assets/settings_gui.png, id=28, 454.8192pt x 256.3176pt>
 File: ../design/assets/settings_gui.png Graphic file (type png)
 <use ../design/assets/settings_gui.png>
 Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 35.
@@ -1044,12 +1166,12 @@ Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 3
 [2 <../design/assets/menu_gui.png> <../design/assets/settings_gui.png>]
 
 pdfTeX warning: pdflatex (file ../design/assets/settings_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/settings_flowchart.pdf, id=104, 551.1792pt x 212.69463pt>
+<../design/assets/settings_flowchart.pdf, id=40, 551.1792pt x 212.69463pt>
 File: ../design/assets/settings_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/settings_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/settings_flowchart.pdf  used on input line 55.
 (pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
-<../design/assets/browser_gui.png, id=105, 454.8192pt x 256.3176pt>
+<../design/assets/browser_gui.png, id=41, 454.8192pt x 256.3176pt>
 File: ../design/assets/browser_gui.png Graphic file (type png)
 <use ../design/assets/browser_gui.png>
 Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63.
@@ -1059,7 +1181,7 @@ Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63
 [3 <../design/assets/settings_flowchart.pdf>]
 
 pdfTeX warning: pdflatex (file ../design/assets/browser_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/browser_flowchart.pdf, id=121, 448.5558pt x 216.81pt>
+<../design/assets/browser_flowchart.pdf, id=57, 448.5558pt x 216.81pt>
 File: ../design/assets/browser_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/browser_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input line 75.
@@ -1067,7 +1189,7 @@ Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input l
 
 
 [4 <../design/assets/browser_gui.png>]
-<../design/assets/config_gui.png, id=128, 453.3738pt x 254.3904pt>
+<../design/assets/config_gui.png, id=65, 453.3738pt x 254.3904pt>
 File: ../design/assets/config_gui.png Graphic file (type png)
 <use ../design/assets/config_gui.png>
 Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
@@ -1075,7 +1197,7 @@ Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
 
 
 pdfTeX warning: pdflatex (file ../design/assets/config_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/config_flowchart.pdf, id=129, 666.57025pt x 151.5261pt>
+<../design/assets/config_flowchart.pdf, id=66, 666.57025pt x 151.5261pt>
 File: ../design/assets/config_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/config_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input line 94.
@@ -1083,7 +1205,7 @@ Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input li
 
 
 [5 <../design/assets/browser_flowchart.pdf> <../design/assets/config_gui.png>]
-<../design/assets/game_gui.png, id=146, 454.8192pt x 256.3176pt>
+<../design/assets/game_gui.png, id=84, 454.8192pt x 256.3176pt>
 File: ../design/assets/game_gui.png Graphic file (type png)
 <use ../design/assets/game_gui.png>
 Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
@@ -1091,7 +1213,7 @@ Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
 
 
 pdfTeX warning: pdflatex (file ../design/assets/game_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/game_flowchart.pdf, id=147, 551.1792pt x 262.0992pt>
+<../design/assets/game_flowchart.pdf, id=85, 551.1792pt x 262.0992pt>
 File: ../design/assets/game_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/game_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line 123.
@@ -1099,7 +1221,7 @@ Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line
 
 
 [6 <../design/assets/config_flowchart.pdf> <../design/assets/game_gui.png>]
-<../design/assets/editor_gui.png, id=164, 963.6pt x 542.025pt>
+<../design/assets/editor_gui.png, id=103, 963.6pt x 542.025pt>
 File: ../design/assets/editor_gui.png Graphic file (type png)
 <use ../design/assets/editor_gui.png>
 Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131.
@@ -1107,7 +1229,7 @@ Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131
 
 
 pdfTeX warning: pdflatex (file ../design/assets/editor_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/editor_flowchart.pdf, id=165, 435.54718pt x 204.765pt>
+<../design/assets/editor_flowchart.pdf, id=104, 435.54718pt x 204.765pt>
 File: ../design/assets/editor_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/editor_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input line 142.
@@ -1117,7 +1239,7 @@ Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input li
 [7 <../design/assets/game_flowchart.pdf> <../design/assets/editor_gui.png>]
 
 pdfTeX warning: pdflatex (file ../design/assets/minimax.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/minimax.pdf, id=182, 688.49219pt x 307.1475pt>
+<../design/assets/minimax.pdf, id=122, 688.49219pt x 307.1475pt>
 File: ../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/assets/minimax.pdf>
 Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 153.
@@ -1129,7 +1251,7 @@ Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on inp
 
 
 pdfTeX warning: pdflatex (file ../design/assets/alpha_beta_pruning.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/alpha_beta_pruning.pdf, id=213, 713.7867pt x 307.1475pt>
+<../design/assets/alpha_beta_pruning.pdf, id=155, 713.7867pt x 307.1475pt>
 File: ../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/assets/alpha_beta_pruning.pdf>
 Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 198.
@@ -1154,7 +1276,7 @@ Overfull \hbox (2.41408pt too wide) in paragraph at lines 349--350
 [14]
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_indexes.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_indexes.pdf, id=272, 324.82352pt x 263.91599pt>
+<../design/assets/bitboard_indexes.pdf, id=216, 324.82352pt x 263.91599pt>
 File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_indexes.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 418.
@@ -1162,7 +1284,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_shifted.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_shifted.pdf, id=274, 145.50359pt x 145.50359pt>
+<../design/assets/bitboard_shifted.pdf, id=218, 145.50359pt x 145.50359pt>
 File: ../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_shifted.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 435.
@@ -1172,7 +1294,7 @@ Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input li
 [15 <../design/assets/bitboard_indexes.pdf>]
 
 pdfTeX warning: pdflatex (file ../design/assets/bitboard_masked.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_masked.pdf, id=294, 551.1792pt x 167.6664pt>
+<../design/assets/bitboard_masked.pdf, id=238, 551.1792pt x 167.6664pt>
 File: ../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_masked.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 450.
@@ -1184,7 +1306,7 @@ Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input lin
 [17]
 
 pdfTeX warning: pdflatex (file ../design/assets/psqt.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/psqt.pdf, id=328, 352.43669pt x 167.6664pt>
+<../design/assets/psqt.pdf, id=273, 352.43669pt x 167.6664pt>
 File: ../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/assets/psqt.pdf>
 Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 536.
@@ -1200,7 +1322,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 [19]
 
 pdfTeX warning: pdflatex (file ../design/assets/shadow_mapping.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/shadow_mapping.pdf, id=354, 340.3917pt x 321.11969pt>
+<../design/assets/shadow_mapping.pdf, id=299, 340.3917pt x 321.11969pt>
 File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/assets/shadow_mapping.pdf>
 Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 614.
@@ -1212,7 +1334,7 @@ Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line
 [21 <../design/assets/shadow_mapping.pdf>]
 
 pdfTeX warning: pdflatex (file ../design/assets/soft_shadows.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/soft_shadows.pdf, id=394, 264.99pt x 164.5347pt>
+<../design/assets/soft_shadows.pdf, id=340, 264.99pt x 164.5347pt>
 File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/assets/soft_shadows.pdf>
 Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 642.
@@ -1223,7 +1345,7 @@ LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on inpu
 
 
 pdfTeX warning: pdflatex (file ../design/assets/multi_threading.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/multi_threading.pdf, id=395, 352.43669pt x 158.51219pt>
+<../design/assets/multi_threading.pdf, id=341, 352.43669pt x 158.51219pt>
 File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/assets/multi_threading.pdf>
 Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 654.
@@ -1232,83 +1354,65 @@ Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input lin
 
 [22 <../design/assets/soft_shadows.pdf>]
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on input line 686.
+LaTeX Warning: Reference `itm:save-games' on page 23 undefined on input line 661.
 
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:668: Misplaced \noalign.
+\toprule ->\noalign 
+                    {\ifnum 0=`}\fi \@aboverulesep =\abovetopsep \global \@b...
+l.668     \toprule
+                  
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
 
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing } inserted.
+<inserted text> 
+                }
+l.669     \textbf
+                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-[23 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing } inserted.
+<inserted text> 
+                }
+l.669     \textbf
+                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
-[24]
-Overfull \hbox (3.48119pt too wide) in alignment at lines 747--751
- [] [] 
- []
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing \cr inserted.
+<inserted text> 
+                \cr 
+l.669     \textbf
+                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
+I'm guessing that you meant to end an alignment here.
 
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Undefined control sequence.
+\@BTrule ...\doublerulesep \fi \fi \fi \@BTswitch 
+                                                  
+l.669     \textbf
+                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-Overfull \hbox (3.48119pt too wide) in alignment at lines 751--752
- [] [] 
- []
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Misplaced alignment tab character &.
+l.669     \textbf{Field} &
+                           \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
 
-
-Overfull \hbox (3.48119pt too wide) in alignment at lines 752--764
- [] [] 
- []
-
-
-Overfull \hbox (8.00896pt too wide) in alignment at lines 766--770
- [] [] 
- []
-
-
-Overfull \hbox (8.00896pt too wide) in alignment at lines 770--771
- [] [] 
- []
-
-
-Overfull \hbox (8.00896pt too wide) in alignment at lines 771--783
- [] [] 
- []
-
-
-
-pdfTeX warning: pdflatex (file ../design/assets/class_relation_diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/class_relation_diagram.pdf, id=444, 435.54718pt x 478.66827pt>
-File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
-<use ../design/assets/class_relation_diagram.pdf>
-Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 810.
-(pdftex.def)             Requested size: 418.25368pt x 459.677pt.
-
-
-[25]
-
-[26 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
- ***********
-
-
-LaTeX Warning: There were undefined references.
-
-Package rerunfilecheck Info: File `design.out' has not changed.
-(rerunfilecheck)             Checksum: 52749D4988E3BF4505635256405D023F;2234.
-Package logreq Info: Writing requests to 'design.run.xml'.
-\openout1 = `design.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 46674 strings out of 473530
- 1091980 string characters out of 5714311
- 1875863 words of memory out of 5000000
- 69178 multiletter control sequences out of 15000+600000
- 563710 words of font info for 52 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 134i,11n,136p,1960b,1214s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (26 pages, 4338890 bytes).
-PDF statistics:
- 548 PDF objects out of 1000 (max. 8388607)
- 112 named destinations out of 1000 (max. 500000)
- 259 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Misplaced alignment tab character &.
+l.669     \tex

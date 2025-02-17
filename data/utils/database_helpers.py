@@ -55,6 +55,9 @@ def delete_game(id):
     connection.close()
 
 def get_ordered_games(column, ascend=True, start_row=1, end_row=10):
+    if not isinstance(ascend, bool) or not isinstance(column, str):
+        raise ValueError('(database_helpers.get_ordered_games) Invalid input arguments!')
+
     connection = sqlite3.connect(database_path, detect_types=sqlite3.PARSE_DECLTYPES)
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
@@ -63,12 +66,25 @@ def get_ordered_games(column, ascend=True, start_row=1, end_row=10):
         ascend_arg = 'ASC'
     else:
         ascend_arg = 'DESC'
+    
+    if column == 'winner':
+        cursor.execute(f'''
+            SELECT * FROM
+                (SELECT ROW_NUMBER() OVER (
+                    PARTITION BY winner
+                    ORDER BY time {ascend_arg}, number_of_ply {ascend_arg}
+                ) AS row_num, * FROM games)
+            WHERE row_num >= ? AND row_num <= ?
+        ''', (start_row, end_row))
+    else:
+        cursor.execute(f'''
+            SELECT * FROM
+                (SELECT ROW_NUMBER() OVER (
+                    ORDER BY {column} {ascend_arg}
+                ) AS row_num, * FROM games)
+            WHERE row_num >= ? AND row_num <= ?
+        ''', (start_row, end_row))
 
-    cursor.execute(f'''
-        SELECT * FROM
-            (SELECT ROW_NUMBER() OVER (ORDER BY {column} {ascend_arg}) AS row_num, * FROM games)
-        WHERE row_num >= {start_row} AND row_num <= {end_row}
-    ''')
     games = cursor.fetchall()
 
     connection.close()
