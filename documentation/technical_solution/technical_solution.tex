@@ -1,0 +1,65 @@
+\documentclass[../main/main.tex]{subfiles}
+
+\begin{document}
+
+\newpage
+
+\section{Technical Solution}
+\subsection{File Tree Diagram}
+To help navigate through the source code, I have included the following directory tree diagram, and put appropiate comments to explain the general purpose of code contained within specifc directories and Python files.
+
+\begin{figure}[H]
+\begin{forest}
+for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+    \noexpand\path [draw, \forestoption{edge}]
+    (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+    if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+}
+[.
+[resources]
+[data
+    [database\slash
+        [migrations\slash]
+        [database.db]
+    ]
+    [shaders\slash
+        [classes\slash]
+        [fragments\slash]
+        [vertex\slash]
+    ]
+    [widgets\slash
+        [bases\slash]
+        [\textit{...}]
+    ]
+    [app\_data\slash]
+    [states\slash]
+    [components\slash]
+    [managers\slash]
+    [utils\slash]
+    [main.py]
+    [setup.py]
+    [assets.py]
+    [control.py]
+    [constants.py]
+    [windows\_setup.py]
+    [loadin\_screen.py]
+]
+]
+\end{forest}
+\end{figure}
+
+\end{document}
