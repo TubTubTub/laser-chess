@@ -661,25 +661,25 @@ In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI
 To achieve Objective \ref{itm:save-games} and stores previous games, I have opted to use a relational database. Choosing between different relational database, I have decided to use SQLite, since it does not require additional server softwards, has good performance with low memory requirements, and adequate for my use cases, with others such as Postgres being overkill.
 
 \subsubsection*{DDL}
-Only a single entity will be required for my program, a table to store games. The table schema will be defined as follows:  
+Only a single entity will be required for my program, a table to store games. The table schema will be defined as follows:
 
 \begin{longtable}[c]{l|l|l|l}
-    \multicolumn{4}{l}{\textbf{Table: games}}
+    \multicolumn{4}{l}{\textbf{Table: games}}\\
     \toprule
     \textbf{Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Validation}\\
     \midrule
     \endfirsthead
     \endhead
 
-    game_id & Primary & NOT NULL    
+    game\_id & Primary & INT & NOT NULL\\
     winner &  & INT & \\
-    time &  & FLOAT & \\    
-    cpu_depth &  & INT & \\
+    cpu\_depth &  & INT & \\
+    number\_of\_moves &  & INT & NOT NULL\\
+    cpu\_enabled &  & BOOL & NOT NULL\\
     moves &  & TEXT & NOT NULL\\
-    number_of_moves &  & INT & NOT NULL\\
-    cpu_enabled &  & Boolean & NOT NULL\\
-    created_dt &  & TIMESTAMP & NOT NULL\\
-    initial_board_configuration &  & TEXT & NOT NULL\\
+    initial\_board\_configuration &  & TEXT & NOT NULL\\
+    time &  & FLOAT & \\
+    created\_dt &  & TIMESTAMP & NOT NULL\\
 
     \bottomrule
     
@@ -687,39 +687,28 @@ Only a single entity will be required for my program, a table to store games. Th
 \label{tab:games-schema}
 \end{longtable}
 
-\begin{itemize}
-\item CPU enabled
-\item CPU depth
-\item Winner
-\item Time constraints
-\item Number of moves
-\item Initial board configuration
-\item Moves
-\item Created date
-\end{itemize}
-
 All fields are either generated or retrieved from the board class, with the exception of the moves attribute, which will need to be encoded into a suitable data type such as a string. All attributes are also independent of each other\footnote{There is a case to be made for \textit{moves} and \textit{number\_of\_moves}, however I have included \textit{number\_of\_moves} to save the computational effort of parsing the moves for every game just to display it on the browser preview section.}, and so the the table therefore adheres to the third normal form.
 
 To create the entity, a \lstinline[language=SQL]{CREATE} statement like the following can be used:
 
 \begin{lstlisting}[language=SQL, frame=single]
-CREATE TABLE games(
-    id INTEGER PRIMARY KEY,
-    winner INTEGER,
-    cpu_depth INTEGER,
-    time real NOT NULL,
-    moves TEXT NOT NULL,
-    cpu_enabled INTEGER NOT NULL,
-    created_dt TIMESTAMP NOT NULL,
-    number_of_moves INTEGER NOT NULL,
-    initial_fen_string TEXT NOT NULL,
-)
+    CREATE TABLE games(
+        id INTEGER PRIMARY KEY,
+        winner INTEGER,
+        cpu_depth INTEGER,
+        time real NOT NULL,
+        moves TEXT NOT NULL,
+        cpu_enabled INTEGER NOT NULL,
+        created_dt TIMESTAMP NOT NULL,
+        number_of_moves INTEGER NOT NULL,
+        initial_fen_string TEXT NOT NULL,
+    )
 \end{lstlisting}
 
 \noindent Removing an entity can also be done in a similar fashion:
 
 \begin{lstlisting}[language=SQL, frame=single]
-DROP TABLE games
+    DROP TABLE games
 \end{lstlisting}
 
 Migrations are a version control system to track incremental changes to the schema of a database. Since there is no popular SQL Python-binding libraries that support migrations, I will just be using a manual solution of creating python files that represent a change in my schema, defining functions that make use of SQL \lstinline[language=SQL]{ALTER} statements. This allows me to keep track of any changes, and rollback to a previous schema.
@@ -728,7 +717,6 @@ Migrations are a version control system to track incremental changes to the sche
 To insert a new game entry into the table, an \lstinline[language=SQL]{INSERT} statement can be used with the provided array, where the appropiate arguments are binded to the correct attribute via \lstinline[language=Python]{?} placeholders when run.
 
 \begin{lstlisting}[language=SQL, frame=single]
-CREATE TABLE games(
     INSERT INTO games (
         cpu_enabled,
         cpu_depth,
@@ -740,7 +728,6 @@ CREATE TABLE games(
         created_dt
     )
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-)
 \end{lstlisting}
 
 Moreover, we will need to fetch the number of total game entries in the table to be displayed to the user. To do this, the aggregate function \lstinline[language=SQL]{COUNT} can be used, which is supported by all SQL databases.
@@ -769,7 +756,75 @@ The start row and end row will be passed as parameters to the placeholders in th
 Security measures such as database file permissions and encryption are common for a SQL database. However, since SQLite is a serverless database, and my program runs without any need for an internet connection, the risk of vulnerabilities is greatly reduced. Additionally, the game data stored on my database is frankly inconsequential, so going to great lengths to protect it wouldn't be to best use of my time. Nevertheless, my SQL Python-binding does support the user of placeholders for parameteres, thereby addressing the risk of SQL injection attacks.
 
 \subsubsection{Linked Lists}
-Another data structure
+Another data structure I intend to implement is linked lists. This will be integrated into widgets such as the carousel or multiple icon button widget, since these will contain a variable number of items, and where $O(1)$ random access is not a priority. Since moving back and forth between nodes is a must for a carousel widget, the linked list will be doubly-linked, with each node containing to its previous and next node. The list will also need to loop, with the next pointer of the last node pointing back to the first node, making it a circular linked list.
+
+The following pseudocode outlines the basic functionality of the linked list:
+
+\begin{algorithm}[H]
+\caption{Circular doubly linked list pseudocode}
+\begin{algorithmic}
+    \Function{insert\_at\_front}{node}
+        \If{head is none}
+            \State $head \gets node$
+            \State $node.next \gets node.previous \gets head$
+        \Else
+            \State $node.next \gets head$
+            \State $node.previous \gets head.previous$
+            \State $head.previous.next \gets node$
+            \State $head.previous \gets node$
+
+            \bigskip
+
+            \State $head \gets node$
+        \EndIf
+    \EndFunction
+
+    \bigskip
+
+    \State \Require $\Call{len}{list} > 0$
+    \Function{data\_in\_list}{data}
+
+        \State $current\_node \gets head.next$
+        \While{$current\_node \neq head$}
+            \If{$current\_node.data = data$}
+                \State \Return \textbf{True}
+            \EndIf
+            \State $current\_node \gets current\_node.next$
+        \EndWhile
+
+        \State \Return \textbf{False}
+    \EndFunction
+
+    \bigskip
+
+    \State \Require Data in list
+    \Function{remove}{data}
+        \State $current\_node \gets head$
+        \While{$current\_node.data \neq data$}
+            \State $current\_node \gets current\_node.next$
+        \EndWhile
+
+        \bigskip
+
+        \State $current\_node.previous.next \gets current\_node.next$
+        \State $current\_node.next.previous \gets current\_node.previous$
+
+        \bigskip
+
+        \State \textbf{delete} $current\_node$
+    \EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Stack}
+Being a data structure with LIFO ordering, a stack is used for handling moves in the review screen. Starting with full stack of moves, every move undone pops an element off the stack to be processed. This move is then pushed onto a second stack. Therefore, cycling between moves requires pushing and popping between the two stacks, as shown in Figure \ref. The same functionality can be achieved using a queue, but I have chosen to use two stacks as it is simpler to implement, as being able to quickly check the number of items in each will come in handy.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{../design/assets/stack.pdf}
+    \caption{\textit{Move red anubis} is undone and pushed onto the second stack}
+    \label{fig:stack-diagram}
+\end{figure}
 
 \subsection{Classes}
 I will be using an Object-Oriented Programming (OOP) paradigm for my program. OOP reduces repetition of code, as inheritance can be used to abstract repetive code into a base class, as show in my widgets implementation. Testing and debugging classes will make my workflow more efficient. This section documents the base classes I am going to implement in my program.
@@ -839,6 +894,8 @@ I will also employ multiple inheritance to combine different base class function
     \textbf{Method Name} & \textbf{Description}\\
     \midrule
     \endfirsthead
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
     \endhead
 
     get\_event & Receives Pygame events and sets current state accordingly\\
@@ -902,6 +959,8 @@ For my game screen, I will be utilising the Model-View-Controller architectural 
     \textbf{Method Name} & \textbf{Description}\\
     \midrule
     \endfirsthead
+    \textbf{Method Name} & \textbf{Description}\\
+    \midrule
     \endhead
 
     register\_listener & Subscribes method on view instance to an event type, so that the method receives and processes that event everytime \lstinline[language=Python]{alert_listener} is called\\

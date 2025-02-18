@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 FEB 2025 12:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  18 FEB 2025 00:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1176,8 +1176,6 @@ Overfull \hbox (24.00002pt too wide) in alignment at lines 260--283
 [8]
 
 [9]
-
-pdfTeX warning: pdflatex (file ../analysis/assets/critical_path_diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <../analysis/assets/critical_path_diagram.pdf, id=155, 312.20638pt x 370.5042pt>
 File: ../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/assets/critical_path_diagram.pdf>
@@ -1199,15 +1197,15 @@ Package logreq Info: Writing requests to 'analysis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 55571 strings out of 473530
- 1361665 string characters out of 5714311
- 2039212 words of memory out of 5000000
- 78062 multiletter control sequences out of 15000+600000
+ 55572 strings out of 473530
+ 1361675 string characters out of 5714311
+ 2039227 words of memory out of 5000000
+ 78063 multiletter control sequences out of 15000+600000
  561658 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  134i,6n,136p,1964b,1251s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (11 pages, 320456 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (11 pages, 320450 bytes).
 PDF statistics:
  218 PDF objects out of 1000 (max. 8388607)
  58 named destinations out of 1000 (max. 500000)

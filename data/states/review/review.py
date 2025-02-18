@@ -1,4 +1,5 @@
 import pygame
+from collections import deque
 from data.states.game.components.capture_draw import CaptureDraw
 from data.states.game.components.piece_group import PieceGroup
 from data.constants import ReviewEventType, Colour, ShaderType
@@ -19,9 +20,9 @@ class Review(_State):
     def __init__(self):
         super().__init__()
 
-        self._moves = []
+        self._moves = deque()
+        self._popped_moves = deque()
         self._game_info = {}
-        self._move_index = 0
 
         self._board = None
         self._piece_group = None
@@ -43,9 +44,9 @@ class Review(_State):
         window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         REVIEW_WIDGETS['help'].kill()
 
-        self._moves = GameEntry.parse_moves(persist.pop('moves', ''))
+        self._moves = deque(GameEntry.parse_moves(persist.pop('moves', '')))
+        self._popped_moves = deque()
         self._game_info = persist
-        self._move_index = len(self._moves) - 1 # REPRESENTS BOARD BEFORE MOVE AT INDEX PLAYED
 
         self._board = Board(self._game_info['start_fen_string'])
         self._piece_group = PieceGroup()
@@ -87,16 +88,16 @@ class Review(_State):
             REVIEW_WIDGETS['red_timer'].kill()
     
     def refresh_widgets(self):
-        REVIEW_WIDGETS['move_number_text'].set_text(f'MOVE NO: {(self._move_index + 1) / 2:.1f} / {len(self._moves) / 2:.1f}')
-        REVIEW_WIDGETS['move_colour_text'].set_text(f'{self.calculate_colour(self._move_index + 1).name} TO MOVE')
+        REVIEW_WIDGETS['move_number_text'].set_text(f'MOVE NO: {(len(self._moves)) / 2:.1f} / {(len(self._moves) + len(self._popped_moves)) / 2:.1f}')
+        REVIEW_WIDGETS['move_colour_text'].set_text(f'{self.calculate_colour().name} TO MOVE')
         
         if self._game_info['time_enabled']:
-            if self._move_index == -1:
+            if len(self._moves) == 0:
                 REVIEW_WIDGETS['blue_timer'].set_time(float(self._game_info['time']) * 60 * 1000)
                 REVIEW_WIDGETS['red_timer'].set_time(float(self._game_info['time']) * 60 * 1000)
             else:
-                REVIEW_WIDGETS['blue_timer'].set_time(float(self._moves[self._move_index]['blue_time']) * 60 * 1000)
-                REVIEW_WIDGETS['red_timer'].set_time(float(self._moves[self._move_index]['red_time']) * 60 * 1000)
+                REVIEW_WIDGETS['blue_timer'].set_time(float(self._moves[-1]['blue_time']) * 60 * 1000)
+                REVIEW_WIDGETS['red_timer'].set_time(float(self._moves[-1]['red_time']) * 60 * 1000)
         
         REVIEW_WIDGETS['scroll_area'].set_image()
     
@@ -116,20 +117,21 @@ class Review(_State):
                 
             REVIEW_WIDGETS['move_list'].append_to_move_list(move_dict['unparsed_move'])
     
-    def calculate_colour(self, move_number):
+    def calculate_colour(self):
         if self._game_info['start_fen_string'][-1].lower() == 'b':
             initial_colour = Colour.BLUE
         elif self._game_info['start_fen_string'][-1].lower() == 'r':
             initial_colour = Colour.RED
-        
-        if move_number % 2 == 0:
+
+        if len(self._moves) % 2 == 0:
             return initial_colour
         else:
             return initial_colour.get_flipped_colour()
     
-    def handle_move(self, move_index, add_piece=True):
-        laser_result = self._moves[move_index]['laser_result']
-        self._laser_draw.add_laser(laser_result, laser_colour=self.calculate_colour(move_index))
+    def handle_move(self, move, add_piece=True):
+        laser_result = move['laser_result']
+        active_colour = self.calculate_colour()
+        self._laser_draw.add_laser(laser_result, laser_colour=active_colour)
 
         if laser_result.hit_square_bitboard:
             if laser_result.piece_colour == Colour.BLUE:
@@ -149,7 +151,7 @@ class Review(_State):
                 laser_result.piece_rotation,
                 bitboard_to_coords(laser_result.hit_square_bitboard),
                 laser_result.laser_path[0][0],
-                self.calculate_colour(move_index),
+                active_colour,
                 shake=False
             )
     
@@ -179,13 +181,14 @@ class Review(_State):
                 self.done = True
             
             case ReviewEventType.PREVIOUS_CLICK:
-                if self._move_index < 0 or len(self._moves) == 0:
+                if len(self._moves) == 0:
                     return
-                
-                self._move_index = max(-1, self._move_index - 1)
 
-                self._board.undo_move(self._moves[self._move_index + 1]['move'], laser_result=self._moves[self._move_index + 1]['laser_result'])
-                self.handle_move(self._move_index + 1, add_piece=False)
+                move = self._moves.pop()
+                self._popped_moves.append(move)
+
+                self._board.undo_move(move['move'], laser_result=move['laser_result'])
+                self.handle_move(move, add_piece=False)
                 REVIEW_WIDGETS['move_list'].pop_from_move_list()
                 
                 self.refresh_pieces()
@@ -193,14 +196,17 @@ class Review(_State):
                 self.update_laser_mask()
 
             case ReviewEventType.NEXT_CLICK:
-                if self._move_index + 1 >= len(self._moves) or len(self._moves) == 0:
+                if len(self._popped_moves) == 0:
                     return
                 
-                self._move_index = min(len(self._moves) - 1, self._move_index + 1)
-                
-                self._board.apply_move(self._moves[self._move_index]['move'])
-                self.handle_move(self._move_index, add_piece=True)
-                REVIEW_WIDGETS['move_list'].append_to_move_list(self._moves[self._move_index]['unparsed_move'])
+                move = self._popped_moves[-1]
+
+                self._board.apply_move(move['move'])
+                self.handle_move(move, add_piece=True)
+                REVIEW_WIDGETS['move_list'].append_to_move_list(move['unparsed_move'])
+
+                self._popped_moves.pop()
+                self._moves.append(move)
                 
                 self.refresh_pieces()
                 self.refresh_widgets()

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 FEB 2025 00:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  18 FEB 2025 00:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -894,122 +894,11 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip90
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/forest\forest.sty
-Package: forest 2017/07/14 v2.1.5 Drawing (linguistic) trees
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.code.tex
-File: tikzlibraryshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
-File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
-File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.misc.code.tex
-File: tikzlibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.misc.code.tex
-File: pgflibraryshapes.misc.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.symbols.code.tex
-File: tikzlibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.symbols.code.tex
-File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.arrows.code.tex
-File: tikzlibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.arrows.code.tex
-File: pgflibraryshapes.arrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.callouts.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.callouts.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.multipart.code.tex
-File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.multipart.code.tex
-File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodepartlowerbox=\box88
-\pgfnodeparttwobox=\box89
-\pgfnodepartthreebox=\box90
-\pgfnodepartfourbox=\box91
-\pgfnodeparttwentybox=\box92
-\pgfnodepartnineteenbox=\box93
-\pgfnodeparteighteenbox=\box94
-\pgfnodepartseventeenbox=\box95
-\pgfnodepartsixteenbox=\box96
-\pgfnodepartfifteenbox=\box97
-\pgfnodepartfourteenbox=\box98
-\pgfnodepartthirteenbox=\box99
-\pgfnodeparttwelvebox=\box100
-\pgfnodepartelevenbox=\box101
-\pgfnodeparttenbox=\box102
-\pgfnodepartninebox=\box103
-\pgfnodeparteightbox=\box104
-\pgfnodepartsevenbox=\box105
-\pgfnodepartsixbox=\box106
-\pgfnodepartfivebox=\box107
-))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryfit.code.tex
-File: tikzlibraryfit.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
-File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryintersections.code.tex
-\pgf@intersect@solutions=\count500
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/pgfopts\pgfopts.sty
-Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
-\pgfopts@list@add@a@toks=\toks51
-\pgfopts@list@add@b@toks=\toks52
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/elocalloc\elocalloc.sty
-Package: elocalloc 2016/12/15 v0.03 local allocation for LaTeX 2015+ (DPC)
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
-Package: environ 2014/05/04 v0.3 A new way to define environments
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/inlinedef\inlinedef.sty
-Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
-\ID@toks=\toks53
-\ID@count=\count501
-)
-\ID@usercommands=\toks54
-\safeloop@depth=\count502
-\safeRKloop@depth=\count503
-\forest@temp@dimen=\dimen320
-\forest@temp@count=\count504
-\forest@n=\count505
-\forest@temp@global@count=\count506
-\forest@temp@toks=\toks55
-\forest@temparray@M=\count507
-\forest@temparray@N=\count508
-\forest@global@temparray@M=\count509
-\forest@global@temparray@N=\count510
-\forest@isnum@count=\count511
-\forest@isdim@nonintpart=\count512
-\forest@isdim@dimen=\dimen321
-\forest@sort@m=\count513
-\forest@sort@k=\count514
-\forest@sort@p=\count515
-\bracket@content=\toks56
-\bracket@afterthought=\toks57
-\forest@node@maxid=\count516
-\forest@process@left@M=\count517
-\forest@process@left@N=\count518
-\forest@process@right@M=\count519
-\forest@process@right@N=\count520
-\forest@process@saved@M=\count521
-\forest@process@saved@N=\count522
-\forest@process@result@M=\count523
-\forest@process@result@N=\count524
-\forest@process@n=\count525
-\forest@nodewalk@branch@toks=\toks58
-\forest@nodewalk@shortsteps@resolution=\toks59
-\forest@do@dynamics=\toks60
-\forest@box=\box108
-\forest@xg=\dimen322
-\forest@yg=\dimen323
-\forest@xs=\dimen324
-\forest@ys=\dimen325
-\forest@pi@toks=\toks61
-\forest@segment@toks=\toks62
-\forest@PIi@toks=\toks63
-\forest@PIii@toks=\toks64
-\forest@copy@in=\read4
-\forest@copy@out=\write5
-\forest@externalize@max@outer@n=\count526
-\forest@externalize@inner@n=\count527
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 )))
-\@quotelevel=\count528
-\@quotereset=\count529
+\@quotelevel=\count500
+\@quotereset=\count501
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
 \openout1 = `technical_solution.aux'.
@@ -1069,17 +958,17 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count530
-\scratchdimen=\dimen326
-\scratchbox=\box109
-\nofMPsegments=\count531
-\nofMParguments=\count532
-\everyMPshowfont=\toks65
-\MPscratchCnt=\count533
-\MPscratchDim=\dimen327
-\MPnumerator=\count534
-\makeMPintoPDFobject=\count535
-\everyMPtoPDFconversion=\toks66
+\scratchcounter=\count502
+\scratchdimen=\dimen320
+\scratchbox=\box88
+\nofMPsegments=\count503
+\nofMParguments=\count504
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count505
+\MPscratchDim=\dimen321
+\MPnumerator=\count506
+\makeMPintoPDFobject=\count507
+\everyMPtoPDFconversion=\toks52
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1121,19 +1010,22 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count536
+\c@lstlisting=\count508
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out)
-\@outlinefile=\write6
-\openout6 = `technical_solution.out'.
+\@outlinefile=\write5
+\openout5 = `technical_solution.out'.
 
+<../technical_solution/assets/file_tree_diagram.pdf, id=14, 412.4208pt x 448.5558pt>
+File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
+<use ../technical_solution/assets/file_tree_diagram.pdf>
+Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 13.
+(pdftex.def)             Requested size: 418.25368pt x 454.91313pt.
 
 
 [1
 
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-[2] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../technical_solution/assets/file_tree_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1145,17 +1037,17 @@ Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 57922 strings out of 473530
- 1407706 string characters out of 5714311
- 2043913 words of memory out of 5000000
- 80468 multiletter control sequences out of 15000+600000
- 560383 words of font info for 42 fonts, out of 8000000 for 9000
+ 45857 strings out of 473530
+ 1078437 string characters out of 5714311
+ 1724085 words of memory out of 5000000
+ 68479 multiletter control sequences out of 15000+600000
+ 560047 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 135i,10n,136p,1984b,3222s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (2 pages, 51582 bytes).
+ 134i,6n,136p,1984b,1022s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (1 page, 308335 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 PDF objects out of 1000 (max. 8388607)
+ 5 named destinations out of 1000 (max. 500000)
+ 34 words of extra memory for PDF output out of 10000 (max. 10000000)
 

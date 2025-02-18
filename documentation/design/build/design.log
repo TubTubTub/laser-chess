@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 FEB 2025 15:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 FEB 2025 22:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1012,18 +1012,6 @@ Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 \@quotereset=\count529
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
-Runaway argument?
-{\contentsline {algorithm}{\numberline {8}{\ignorespaces Calcul 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:3: File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.3 \begin{document}
-                    
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
 \openout1 = `design.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -1044,6 +1032,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
 LaTeX Font Info:    ... okay on input line 3.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1138,15 +1127,12 @@ Package hyperref Info: Link coloring OFF on input line 3.
 \@outlinefile=\write6
 \openout6 = `design.out'.
 
-
-
-pdfTeX warning: pdflatex (file ../design/assets/top_level_overview_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/top_level_overview_flowchart.pdf, id=6, 435.54718pt x 189.8292pt>
+<../design/assets/top_level_overview_flowchart.pdf, id=90, 435.54718pt x 189.8292pt>
 File: ../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/top_level_overview_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
-<../design/assets/menu_gui.png, id=7, 454.8192pt x 256.3176pt>
+<../design/assets/menu_gui.png, id=91, 454.8192pt x 256.3176pt>
 File: ../design/assets/menu_gui.png Graphic file (type png)
 <use ../design/assets/menu_gui.png>
 Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
@@ -1156,7 +1142,7 @@ Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
 [1
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../design/assets/top_level_overview_flowchart.pdf>]
-<../design/assets/settings_gui.png, id=28, 454.8192pt x 256.3176pt>
+<../design/assets/settings_gui.png, id=110, 454.8192pt x 256.3176pt>
 File: ../design/assets/settings_gui.png Graphic file (type png)
 <use ../design/assets/settings_gui.png>
 Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 35.
@@ -1164,14 +1150,12 @@ Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 3
 
 
 [2 <../design/assets/menu_gui.png> <../design/assets/settings_gui.png>]
-
-pdfTeX warning: pdflatex (file ../design/assets/settings_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/settings_flowchart.pdf, id=40, 551.1792pt x 212.69463pt>
+<../design/assets/settings_flowchart.pdf, id=120, 551.1792pt x 212.69463pt>
 File: ../design/assets/settings_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/settings_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/settings_flowchart.pdf  used on input line 55.
 (pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
-<../design/assets/browser_gui.png, id=41, 454.8192pt x 256.3176pt>
+<../design/assets/browser_gui.png, id=121, 454.8192pt x 256.3176pt>
 File: ../design/assets/browser_gui.png Graphic file (type png)
 <use ../design/assets/browser_gui.png>
 Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63.
@@ -1179,9 +1163,7 @@ Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63
 
 
 [3 <../design/assets/settings_flowchart.pdf>]
-
-pdfTeX warning: pdflatex (file ../design/assets/browser_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/browser_flowchart.pdf, id=57, 448.5558pt x 216.81pt>
+<../design/assets/browser_flowchart.pdf, id=137, 448.5558pt x 216.81pt>
 File: ../design/assets/browser_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/browser_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input line 75.
@@ -1189,15 +1171,12 @@ Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input l
 
 
 [4 <../design/assets/browser_gui.png>]
-<../design/assets/config_gui.png, id=65, 453.3738pt x 254.3904pt>
+<../design/assets/config_gui.png, id=144, 453.3738pt x 254.3904pt>
 File: ../design/assets/config_gui.png Graphic file (type png)
 <use ../design/assets/config_gui.png>
 Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
 (pdftex.def)             Requested size: 334.60422pt x 187.75685pt.
-
-
-pdfTeX warning: pdflatex (file ../design/assets/config_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/config_flowchart.pdf, id=66, 666.57025pt x 151.5261pt>
+<../design/assets/config_flowchart.pdf, id=145, 666.57025pt x 151.5261pt>
 File: ../design/assets/config_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/config_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input line 94.
@@ -1205,15 +1184,12 @@ Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input li
 
 
 [5 <../design/assets/browser_flowchart.pdf> <../design/assets/config_gui.png>]
-<../design/assets/game_gui.png, id=84, 454.8192pt x 256.3176pt>
+<../design/assets/game_gui.png, id=162, 454.8192pt x 256.3176pt>
 File: ../design/assets/game_gui.png Graphic file (type png)
 <use ../design/assets/game_gui.png>
 Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
 (pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
-
-
-pdfTeX warning: pdflatex (file ../design/assets/game_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/game_flowchart.pdf, id=85, 551.1792pt x 262.0992pt>
+<../design/assets/game_flowchart.pdf, id=163, 551.1792pt x 262.0992pt>
 File: ../design/assets/game_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/game_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line 123.
@@ -1221,15 +1197,12 @@ Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line
 
 
 [6 <../design/assets/config_flowchart.pdf> <../design/assets/game_gui.png>]
-<../design/assets/editor_gui.png, id=103, 963.6pt x 542.025pt>
+<../design/assets/editor_gui.png, id=180, 963.6pt x 542.025pt>
 File: ../design/assets/editor_gui.png Graphic file (type png)
 <use ../design/assets/editor_gui.png>
 Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131.
 (pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
-
-
-pdfTeX warning: pdflatex (file ../design/assets/editor_flowchart.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/editor_flowchart.pdf, id=104, 435.54718pt x 204.765pt>
+<../design/assets/editor_flowchart.pdf, id=181, 435.54718pt x 204.765pt>
 File: ../design/assets/editor_flowchart.pdf Graphic file (type pdf)
 <use ../design/assets/editor_flowchart.pdf>
 Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input line 142.
@@ -1237,9 +1210,7 @@ Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input li
 
 
 [7 <../design/assets/game_flowchart.pdf> <../design/assets/editor_gui.png>]
-
-pdfTeX warning: pdflatex (file ../design/assets/minimax.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/minimax.pdf, id=122, 688.49219pt x 307.1475pt>
+<../design/assets/minimax.pdf, id=198, 688.49219pt x 307.1475pt>
 File: ../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/assets/minimax.pdf>
 Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 153.
@@ -1248,10 +1219,7 @@ Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 153.
 
 [8 <../design/assets/editor_flowchart.pdf> <../design/assets/minimax.pdf>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 163.
-
-
-pdfTeX warning: pdflatex (file ../design/assets/alpha_beta_pruning.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/alpha_beta_pruning.pdf, id=155, 713.7867pt x 307.1475pt>
+<../design/assets/alpha_beta_pruning.pdf, id=229, 713.7867pt x 307.1475pt>
 File: ../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/assets/alpha_beta_pruning.pdf>
 Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 198.
@@ -1274,17 +1242,12 @@ Overfull \hbox (2.41408pt too wide) in paragraph at lines 349--350
 [13]
 
 [14]
-
-pdfTeX warning: pdflatex (file ../design/assets/bitboard_indexes.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_indexes.pdf, id=216, 324.82352pt x 263.91599pt>
+<../design/assets/bitboard_indexes.pdf, id=288, 324.82352pt x 263.91599pt>
 File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_indexes.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 418.
 (pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
-
-
-pdfTeX warning: pdflatex (file ../design/assets/bitboard_shifted.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_shifted.pdf, id=218, 145.50359pt x 145.50359pt>
+<../design/assets/bitboard_shifted.pdf, id=290, 145.50359pt x 145.50359pt>
 File: ../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_shifted.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 435.
@@ -1292,9 +1255,7 @@ Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input li
 
 
 [15 <../design/assets/bitboard_indexes.pdf>]
-
-pdfTeX warning: pdflatex (file ../design/assets/bitboard_masked.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/bitboard_masked.pdf, id=238, 551.1792pt x 167.6664pt>
+<../design/assets/bitboard_masked.pdf, id=310, 551.1792pt x 167.6664pt>
 File: ../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_masked.pdf>
 Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 450.
@@ -1304,9 +1265,7 @@ Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input lin
 [16 <../design/assets/bitboard_shifted.pdf> <../design/assets/bitboard_masked.pdf>]
 
 [17]
-
-pdfTeX warning: pdflatex (file ../design/assets/psqt.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/psqt.pdf, id=273, 352.43669pt x 167.6664pt>
+<../design/assets/psqt.pdf, id=344, 352.43669pt x 167.6664pt>
 File: ../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/assets/psqt.pdf>
 Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 536.
@@ -1320,9 +1279,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 [18 <../design/assets/psqt.pdf>]
 
 [19]
-
-pdfTeX warning: pdflatex (file ../design/assets/shadow_mapping.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/shadow_mapping.pdf, id=299, 340.3917pt x 321.11969pt>
+<../design/assets/shadow_mapping.pdf, id=370, 340.3917pt x 321.11969pt>
 File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/assets/shadow_mapping.pdf>
 Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 614.
@@ -1332,20 +1289,16 @@ Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line
 [20]
 
 [21 <../design/assets/shadow_mapping.pdf>]
-
-pdfTeX warning: pdflatex (file ../design/assets/soft_shadows.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/soft_shadows.pdf, id=340, 264.99pt x 164.5347pt>
+<../design/assets/soft_shadows.pdf, id=410, 264.99pt x 164.5347pt>
 File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/assets/soft_shadows.pdf>
 Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 642.
 (pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
 
+
 LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on input line 650.
 
-
-
-pdfTeX warning: pdflatex (file ../design/assets/multi_threading.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../design/assets/multi_threading.pdf, id=341, 352.43669pt x 158.51219pt>
+<../design/assets/multi_threading.pdf, id=411, 352.43669pt x 158.51219pt>
 File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/assets/multi_threading.pdf>
 Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 654.
@@ -1356,63 +1309,105 @@ Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input lin
 
 LaTeX Warning: Reference `itm:save-games' on page 23 undefined on input line 661.
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:668: Misplaced \noalign.
-\toprule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\abovetopsep \global \@b...
-l.668     \toprule
-                  
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing } inserted.
-<inserted text> 
-                }
-l.669     \textbf
-                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing } inserted.
-<inserted text> 
-                }
-l.669     \textbf
-                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
+[23 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.669     \textbf
-                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
-I'm guessing that you meant to end an alignment here.
+[24]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 752.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 752.
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Undefined control sequence.
-\@BTrule ...\doublerulesep \fi \fi \fi \@BTswitch 
-                                                  
-l.669     \textbf
-                 {Field} & \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Misplaced alignment tab character &.
-l.669     \textbf{Field} &
-                           \textbf{Key} & \textbf{Data Type} & \textbf{Valid...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+[25]
 
-c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex:669: Misplaced alignment tab character &.
-l.669     \tex
+LaTeX Warning: Reference `.' on page 26 undefined on input line 820.
+
+<../design/assets/stack.pdf, id=503, 204.765pt x 174.6525pt>
+File: ../design/assets/stack.pdf Graphic file (type pdf)
+<use ../design/assets/stack.pdf>
+Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 824.
+(pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
+
+
+[26] [27 <../design/assets/stack.pdf>]
+
+LaTeX Warning: Reference `itm:responsive-objective' on page 28 undefined on input line 856.
+
+[28]
+Overfull \hbox (3.48119pt too wide) in alignment at lines 919--923
+ [] [] 
+ []
+
+
+Overfull \hbox (3.48119pt too wide) in alignment at lines 923--924
+ [] [] 
+ []
+
+
+Overfull \hbox (3.48119pt too wide) in alignment at lines 924--936
+ [] [] 
+ []
+
+
+Overfull \hbox (8.00896pt too wide) in alignment at lines 938--942
+ [] [] 
+ []
+
+
+Overfull \hbox (8.00896pt too wide) in alignment at lines 942--943
+ [] [] 
+ []
+
+
+Overfull \hbox (8.00896pt too wide) in alignment at lines 943--955
+ [] [] 
+ []
+
+[29]
+<../design/assets/class_relation_diagram.pdf, id=542, 435.54718pt x 478.66827pt>
+File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
+<use ../design/assets/class_relation_diagram.pdf>
+Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 984.
+(pdftex.def)             Requested size: 418.25368pt x 459.677pt.
+
+
+[30]
+
+[31 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `design.out' has not changed.
+(rerunfilecheck)             Checksum: 4AC4CFC963FDAB120F56FD4751385ED4;2702.
+Package logreq Info: Writing requests to 'design.run.xml'.
+\openout1 = `design.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 56370 strings out of 473530
+ 1376505 string characters out of 5714311
+ 2203000 words of memory out of 5000000
+ 78736 multiletter control sequences out of 15000+600000
+ 566335 words of font info for 61 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 134i,11n,136p,1960b,1341s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (31 pages, 4460055 bytes).
+PDF statistics:
+ 670 PDF objects out of 1000 (max. 8388607)
+ 164 named destinations out of 1000 (max. 500000)
+ 296 words of extra memory for PDF output out of 10000 (max. 10000000)
+

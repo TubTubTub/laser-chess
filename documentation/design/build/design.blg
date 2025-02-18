@@ -20,49 +20,47 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: design-blx.bib
-Warning--I didn't find a database entry for "biblatex-control"
 Biblatex version: 3.20
 Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 0 entries,
+You've used 1 entry,
             6402 wiz_defined-function locations,
-            1201 strings with 8920 characters,
-and the built_in function-call counts, 111 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 5
-:= -- 56
+            1202 strings with 8973 characters,
+and the built_in function-call counts, 1534 in all, are:
+= -- 73
+> -- 70
+< -- 1
++ -- 49
+- -- 28
+* -- 32
+:= -- 370
 add.period$ -- 0
-call.type$ -- 0
+call.type$ -- 1
 change.case$ -- 0
-chr.to.int$ -- 0
+chr.to.int$ -- 42
 cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
+duplicate$ -- 11
+empty$ -- 104
 format.name$ -- 0
-if$ -- 1
+if$ -- 325
 int.to.chr$ -- 0
 int.to.str$ -- 0
 missing$ -- 0
 newline$ -- 20
 num.names$ -- 0
-pop$ -- 0
+pop$ -- 47
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 78
 stack$ -- 0
-substring$ -- 4
+substring$ -- 154
 swap$ -- 1
-text.length$ -- 0
+text.length$ -- 20
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 0
+type$ -- 22
 warning$ -- 0
-while$ -- 0
+while$ -- 64
 width$ -- 0
 write$ -- 20
-(There was 1 warning)

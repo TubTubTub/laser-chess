@@ -41,8 +41,9 @@
 \contentsline {subsubsection}{\numberline {2.2.6}Multithreading}{34}{subsubsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.3}Data Structures}{35}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Database}{35}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Security}{35}{subsubsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.4}Classes}{37}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Class Diagram}{40}{subsubsection.2.4.1}%
-\contentsline {section}{\numberline {3}Technical Solution}{41}{section.3}%
-\contentsline {subsection}{\numberline {3.1}File Tree Diagram}{41}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Linked Lists}{37}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Stack}{38}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Classes}{39}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Class Diagram}{43}{subsubsection.2.4.1}%
+\contentsline {section}{\numberline {3}Technical Solution}{44}{section.3}%
+\contentsline {subsection}{\numberline {3.1}File Tree Diagram}{44}{subsection.3.1}%

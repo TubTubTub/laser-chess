@@ -34,11 +34,11 @@ class CircularLinkedList: # Doubly-linked circular linked list
             new_node.next = self._head
             new_node.previous = self._head
         else:
-            current_node = self._head.previous
-            current_node.next = new_node
             new_node.next = self._head
-            new_node.previous = current_node
+            new_node.previous = self._head.previous
+            self._head.previous.next = new_node
             self._head.previous = new_node
+
             self._head = new_node
     
     def insert_at_end(self, data):
@@ -49,10 +49,9 @@ class CircularLinkedList: # Doubly-linked circular linked list
             new_node.next = self._head
             new_node.previous = self._head
         else:
-            current_node = self._head.previous
-            current_node.next = new_node
             new_node.next = self._head
-            new_node.previous = current_node
+            new_node.previous = self._head.previous
+            self._head.previous.next = new_node
             self._head.previous = new_node
     
     def insert_at_index(self, data, index):
@@ -81,34 +80,20 @@ class CircularLinkedList: # Doubly-linked circular linked list
         if self._head is None:
             return
         
-        if self._head.data == data:
-            if self._head.next == self._head:
-                self._head = None
-            else:
-                current_node = self._head.previous
-                current_node.next = self._head.next
-                self._head.next.previous = current_node
-                self._head = self._head.next
-            return
-        
         current_node = self._head
-        previous_node = None
 
-        while current_node.next != self._head:
-            if current_node.data == data:
-                previous_node.next = current_node.next
-                current_node.next.previous = previous_node
-                return
-
-            previous_node = current_node
+        while current_node.data != data:
             current_node = current_node.next
 
-        if current_node.data == data:
-            previous_node.next = current_node.next
-            current_node.next.previous = previous_node
+            if current_node == self._head:
+                raise ValueError('Data not found in circular linked list! (CircularLinkedList.delete)')
+        
+        if self._head.next == self._head:
+            self._head = None
         else:
-            raise ValueError('Data not found in circular linked list! (CircularLinkedList.delete)')
-    
+            current_node.previous.next = current_node.next
+            current_node.next.previous = current_node.previous
+
     def data_in_list(self, data):
         if self._head is None:
             return False
