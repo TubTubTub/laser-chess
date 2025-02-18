@@ -616,7 +616,19 @@ For typical 3D shadow mapping, the standard approach is as follows:
     \label{fig:shadow-mapping}
 \end{figure}
 
-However, there are several disadvantages to shadow mapping. The relevant ones for us are Aliasing and Shadow Acne:
+Our method requires a coordinate transformation from Cartesian to polar, and vice versa. Polar to Cartesian transformation can be achieved with trigonemtry, forming a right-angled triangle in the center and using the following two equations:
+\begin{align*}
+x &= r\cos(\theta)\\
+y &= r\sin(\theta)
+\end{align*}
+
+Cartesian to polar can also similarly be achieved with the right-angled triangle, finding the radius with the Pythagorean theorem, and the angle with arctan. However, since the range of the arctan function is only a half-circle ($\frac{\pi}{2} < \theta < \frac{\pi}{2}$), we will have to use the atan2 function, which accounts for the negative quadrants, or the following:
+
+\begin{equation*}
+\theta = 2\arctan\left(\frac{r - x}{y}\right)
+\end{equation*}
+
+There are several disadvantages to shadow mapping. The relevant ones for us are Aliasing and Shadow Acne:
 
 \paragraph{Aliasing} occurs when the texture size for the depth map is smaller than the light map, causing shadows to be scaled up and rendered with jagged edges.
 

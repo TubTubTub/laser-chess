@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  18 FEB 2025 00:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  18 FEB 2025 19:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1016,7 +1016,7 @@ Package hyperref Info: Link coloring OFF on input line 3.
 \@outlinefile=\write5
 \openout5 = `technical_solution.out'.
 
-<../technical_solution/assets/file_tree_diagram.pdf, id=14, 412.4208pt x 448.5558pt>
+<../technical_solution/assets/file_tree_diagram.pdf, id=30, 412.4208pt x 448.5558pt>
 File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 13.
@@ -1025,29 +1025,39 @@ Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  use
 
 [1
 
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../technical_solution/assets/file_tree_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../technical_solution/assets/file_tree_diagram.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 37.
+ (../../data/main.py
+
+[2]) (../../data/loading_screen.py
+
+[3])
+
+[4] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `technical_solution.out' has not changed.
-(rerunfilecheck)             Checksum: 55127F2A45FBE8E2E76E2A9E627188BE;284.
+(rerunfilecheck)             Checksum: C34BC9718D95A1BFCA88438013714553;776.
 Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 \openout1 = `technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45857 strings out of 473530
- 1078437 string characters out of 5714311
- 1724085 words of memory out of 5000000
- 68479 multiletter control sequences out of 15000+600000
- 560047 words of font info for 40 fonts, out of 8000000 for 9000
+ 46525 strings out of 473530
+ 1086020 string characters out of 5714311
+ 2129837 words of memory out of 5000000
+ 69007 multiletter control sequences out of 15000+600000
+ 561325 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,6n,136p,1984b,1022s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (1 page, 308335 bytes).
+ 134i,6n,136p,1984b,2784s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (4 pages, 379752 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 5 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 235 PDF objects out of 1000 (max. 8388607)
+ 129 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
