@@ -13,13 +13,30 @@ sfx_path_1 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_s
 sfx_path_2 = (Path(__file__).parent / '../resources/sfx/loading_screen/loading_screen_2.wav').resolve()
 
 def easeOutBack(progress):
-    c1 = 1.70158
-    c3 = c1 + 1
+    """
+    Represents a cubic function for easing the logo position
+    Starts quickly and has small overshoot, then ends slowly
 
-    return 1 + c3 * pow(progress - 1, 3) + c1 * pow(progress - 1, 2)
+    Args:
+        progress (float): x-value for cubic function ranging from 0-1
+
+    Returns:
+        float: 2.70x^3 + 1.70x^2 + 0x + 1, where x is time elapsed
+    """
+    c2 = 1.70158
+    c3 = 2.70158
+
+    return c3 * ((progress - 1) ** 3) + c2 * ((progress - 1) ** 2) + 1
 
 class LoadingScreen:
     def __init__(self, target_func):
+        """
+        Creates new thread, and sets the load_state() function as its target
+        Then starts draw loop for the loading screen
+
+        Args:
+            target_func (Callable): function to be run on thread
+        """
         self._clock = pygame.time.Clock()
         self._thread = threading.Thread(target=target_func)
         self._thread.start()
@@ -50,12 +67,18 @@ class LoadingScreen:
         return (pygame.time.get_ticks() - start_ticks) < 1500
     
     def event_loop(self):
+        """
+        Handles events for the loading screen, no user input is taken except to quit the game
+        """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
     
     def draw(self):
+        """
+        Draws logo to screen
+        """
         window.screen.fill((0, 0, 0))
 
         self._logo_surface.set_alpha(self.logo_opacity)
@@ -64,6 +87,9 @@ class LoadingScreen:
         window.update()
 
     def run(self):
+        """
+        Runs while the thread is still setting up our screens, or the minimum loading screen duration is not reached yet
+        """
         while self._thread.is_alive() or self.duration_not_over:
             self.event_loop()
             self.draw()

@@ -7,6 +7,16 @@ user_file_path = (module_path / '../app_data/user_settings.json').resolve()
 themes_file_path = (module_path / '../app_data/themes.json').resolve()
 
 def load_json(path):
+    """
+    Args:
+        path (str): Path to JSON file
+
+    Raises:
+        Exception: Invalid file
+
+    Returns:
+        dict: Parsed JSON file
+    """
     try:
         with open(path, 'r') as f:
             file = json.load(f)
@@ -25,6 +35,15 @@ def get_themes():
     return load_json(themes_file_path)
 
 def update_user_settings(data):
+    """
+    Rewrites JSON file for user settings with new data
+
+    Args:
+        data (dict): Dictionary storing updated user settings
+
+    Raises:
+        Exception: Invalid file
+    """
     try:
         with open(user_file_path, 'w') as f:
             json.dump(data, f, indent=4)

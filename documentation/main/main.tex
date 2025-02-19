@@ -19,6 +19,7 @@
 \usepackage{float}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage[T1]{fontenc}
 
 \usepackage{subfiles}
 
@@ -34,6 +35,7 @@
 
 \lstdefinestyle{pythonstyle}{
     % backgroundcolor=\color{backcolour},
+    language=Python,
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
@@ -48,7 +50,9 @@
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
-    tabsize=2
+    tabsize=2,
+    upquote=true,
+    morecomment=[s]{"""}{"""}
 }
 
 \lstset{style=pythonstyle}

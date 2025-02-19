@@ -34,12 +34,39 @@ To help navigate through the source code, I have included the following director
 
 \subsubsection{Main}
 The file \lstinline{main.py} is run by the root file \lstinline{run.py}. Here resources-intensive classes such as the state and asset files are initialised, while the program displays a loading screen to hide the loading process. The main game loop is then executed.
-\lstinputlisting[language=Python]{../../data/main.py}
+
+\noindent\verb|main.py|
+\lstinputlisting{../../data/main.py}
 
 \subsubsection{Loading Screen}
 \label{sec:loading_screen}
 Multithreading is used to separate the loading screen GUI from the resources intensive actions in \lstinline{main.py}, to keep the GUI responsive. The easing function \lstinline{easeOutBack} is also used to animate the logo.
-\lstinputlisting[language=Python]{../../data/loading_screen.py}
 
+\noindent\verb|loading_screen.py|
+\lstinputlisting{../../data/loading_screen.py}
+
+\subsubsection{Helper functions}
+These files provide useful functions for different classes.
+
+\noindent\verb|asset_helpers.py (Functions used for assets and pygame Surfaces)|
+\lstinputlisting{../../data/utils/asset_helpers.py}
+
+\bigskip
+\noindent\verb|data_helpers.py (Functions used for file handling and JSON parsing)|
+\lstinputlisting{../../data/utils/data_helpers.py}
+
+
+\bigskip
+\noindent\verb|widget_helpers.py (Files used for creating widgets)|
+\lstinputlisting{../../data/utils/widget_helpers.py}
+
+\subsubsection{Theme}
+
+\subsection{GUI}
+\subsubsection{Laser}
+\subsubsection{Particles}
+
+\subsection{Game}
+\subsubsection{Database}
 
 \end{document}
