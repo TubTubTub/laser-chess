@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  19 FEB 2025 12:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  20 FEB 2025 12:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -896,13 +896,82 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
+Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
+\c@tracingmulticols=\count500
+\mult@box=\box88
+\multicol@leftmargin=\dimen320
+\c@unbalance=\count501
+\c@collectmore=\count502
+\doublecol@number=\count503
+\multicoltolerance=\count504
+\multicolpretolerance=\count505
+\full@width=\dimen321
+\page@free=\dimen322
+\premulticols=\dimen323
+\postmulticols=\dimen324
+\multicolsep=\skip91
+\multicolbaselineskip=\skip92
+\partial@page=\box89
+\last@line=\box90
+\mc@boxedresult=\box91
+\maxbalancingoverflow=\dimen325
+\mult@rightbox=\box92
+\mult@grightbox=\box93
+\mult@firstbox=\box94
+\mult@gfirstbox=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\@tempa=\box128
+\@tempa=\box129
+\@tempa=\box130
+\@tempa=\box131
+\c@minrows=\count506
+\c@columnbadness=\count507
+\c@finalcolumnbadness=\count508
+\last@try=\dimen326
+\multicolovershoot=\dimen327
+\multicolundershoot=\dimen328
+\mult@nat@firstbox=\box132
+\colbreak@box=\box133
+\mc@col@check@num=\count509
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )))
-\@quotelevel=\count500
-\@quotereset=\count501
+\@quotelevel=\count510
+\@quotereset=\count511
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
 \openout1 = `technical_solution.aux'.
@@ -962,16 +1031,16 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count502
-\scratchdimen=\dimen320
-\scratchbox=\box88
-\nofMPsegments=\count503
-\nofMParguments=\count504
+\scratchcounter=\count512
+\scratchdimen=\dimen329
+\scratchbox=\box134
+\nofMPsegments=\count513
+\nofMParguments=\count514
 \everyMPshowfont=\toks51
-\MPscratchCnt=\count505
-\MPscratchDim=\dimen321
-\MPnumerator=\count506
-\makeMPintoPDFobject=\count507
+\MPscratchCnt=\count515
+\MPscratchDim=\dimen330
+\MPnumerator=\count516
+\makeMPintoPDFobject=\count517
 \everyMPtoPDFconversion=\toks52
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1014,13 +1083,13 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count508
+\c@lstlisting=\count518
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out)
 \@outlinefile=\write5
 \openout5 = `technical_solution.out'.
 
-<../technical_solution/assets/file_tree_diagram.pdf, id=58, 412.4208pt x 448.5558pt>
+<../technical_solution/assets/file_tree_diagram.pdf, id=70, 412.4208pt x 448.5558pt>
 File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 13.
@@ -1053,31 +1122,63 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [11]
 
-[12])
+[12]) (../../data/managers/theme.py
 
-[13] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+[13]) (../../data/states/game/components/laser_draw.py
+
+[14]
+
+[15]
+
+[16]) (../../data/states/game/components/particles_draw.py
+
+[17]
+
+[18]
+
+[19]) (../../data/widgets/bases/widget.py
+
+[20]
+
+[21]
+
+[22]
+
+[23]) (../../data/widgets/bases/circular.py
+
+[24]) (../../data/components/circular_linked_list.py
+
+[25]
+
+[26]
+
+[27])
+
+[28]
+
+[29] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `technical_solution.out' has not changed.
-(rerunfilecheck)             Checksum: C9B08A94A8A1B03BB7A0040EB3533A56;1482.
+(rerunfilecheck)             Checksum: D67AF4BBE1326760FAB70C35584366F9;1809.
 Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 \openout1 = `technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47408 strings out of 473530
- 1098577 string characters out of 5714311
- 2266297 words of memory out of 5000000
- 69366 multiletter control sequences out of 15000+600000
+ 48668 strings out of 473530
+ 1119539 string characters out of 5714311
+ 2385285 words of memory out of 5000000
+ 69730 multiletter control sequences out of 15000+600000
  566247 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  134i,6n,136p,1984b,2616s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (13 pages, 486172 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (29 pages, 663787 bytes).
 PDF statistics:
- 1155 PDF objects out of 1200 (max. 8388607)
- 634 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2280 PDF objects out of 2487 (max. 8388607)
+ 1501 named destinations out of 1728 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

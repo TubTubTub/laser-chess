@@ -3,16 +3,16 @@ from math import sqrt
 
 def create_slider(size, fill_colour, border_width, border_colour):
     """
-    Creates surface for sliders
+    Creates surface for sliders.
 
     Args:
-        size (list[int, int]): Image size
-        fill_colour (pygame.Color): Fill (inner) colour
-        border_width (float): Border width
-        border_colour (pygame.Color): Border colour
+        size (list[int, int]): Image size.
+        fill_colour (pygame.Color): Fill (inner) colour.
+        border_width (float): Border width.
+        border_colour (pygame.Color): Border colour.
 
     Returns:
-        pygame.Surface: Slider image surface
+        pygame.Surface: Slider image surface.
     """
     gradient_surface = pygame.Surface(size, pygame.SRCALPHA)
     border_rect = pygame.FRect((0, 0, gradient_surface.width, gradient_surface.height))
@@ -25,15 +25,15 @@ def create_slider(size, fill_colour, border_width, border_colour):
 
 def create_slider_gradient(size, border_width, border_colour):
     """
-    Draws surface for colour slider, with a full colour gradient as fill colour
+    Draws surface for colour slider, with a full colour gradient as fill colour.
 
     Args:
-        size (list[int, int]): Image size
-        border_width (float): Border width
-        border_colour (pygame.Color): Border colour
+        size (list[int, int]): Image size.
+        border_width (float): Border width.
+        border_colour (pygame.Color): Border colour.
 
     Returns:
-        pygame.Surface: Slider image surface
+        pygame.Surface: Slider image surface.
     """
     gradient_surface = pygame.Surface(size, pygame.SRCALPHA)
 
@@ -66,29 +66,29 @@ def create_slider_gradient(size, border_width, border_colour):
     
 def calculate_gradient_slice_height(distance, radius):
     """
-    Calculate height of vertical slice of semicircular slider cap
+    Calculate height of vertical slice of semicircular slider cap.
 
     Args:
-        distance (float): x-distance from center of circle
-        radius (float): Radius of semicircle
+        distance (float): x-distance from center of circle.
+        radius (float): Radius of semicircle.
 
     Returns:
-        float: Height of vertical slice
+        float: Height of vertical slice.
     """
     return sqrt(radius ** 2 - distance ** 2) * 2 + 2
 
 def create_slider_thumb(radius, colour, border_colour, border_width):
     """
-    Creates surface with bordered circle
+    Creates surface with bordered circle.
 
     Args:
-        radius (float): Radius of circle
-        colour (pygame.Color): Fill colour
-        border_colour (pygame.Color): Border colour
-        border_width (float): Border width
+        radius (float): Radius of circle.
+        colour (pygame.Color): Fill colour.
+        border_colour (pygame.Color): Border colour.
+        border_width (float): Border width.
 
     Returns:
-        pygame.Surface: Circle surface
+        pygame.Surface: Circle surface.
     """
     thumb_surface = pygame.Surface((radius * 2, radius * 2), pygame.SRCALPHA)
     pygame.draw.circle(thumb_surface, border_colour, (radius, radius), radius, width=int(border_width))
@@ -98,15 +98,15 @@ def create_slider_thumb(radius, colour, border_colour, border_width):
 
 def create_square_gradient(side_length, colour):
     """
-    Creates a square gradient for the colour picker widget, gradient transitioning between saturation and value
-    Uses smoothscale to blend between colour values for individual pixels
+    Creates a square gradient for the colour picker widget, gradient transitioning between saturation and value.
+    Uses smoothscale to blend between colour values for individual pixels.
 
     Args:
-        side_length (float): Length of a square side
-        colour (pygame.Color): Colour with desired hue value
+        side_length (float): Length of a square side.
+        colour (pygame.Color): Colour with desired hue value.
 
     Returns:
-        pygame.Surface: Square gradient surface
+        pygame.Surface: Square gradient surface.
     """
     square_surface = pygame.Surface((side_length, side_length))
 
@@ -132,14 +132,14 @@ def create_square_gradient(side_length, colour):
 
 def create_switch(size, colour):
     """
-    Creates surface for switch toggle widget
+    Creates surface for switch toggle widget.
 
     Args:
-        size (list[int, int]): Image size
-        colour (pygame.Color): Fill colour
+        size (list[int, int]): Image size.
+        colour (pygame.Color): Fill colour.
 
     Returns:
-        pygame.Surface: Switch surface
+        pygame.Surface: Switch surface.
     """
     switch_surface = pygame.Surface((size[0], size[1]), pygame.SRCALPHA)
     pygame.draw.rect(switch_surface, colour, (0, 0, size[0], size[1]), border_radius=int(size[1] / 2))
@@ -148,15 +148,15 @@ def create_switch(size, colour):
 
 def create_text_box(size, border_width, colours):
     """
-    Creates bordered textbox with shadow, flat, and highlighted vertical regions
+    Creates bordered textbox with shadow, flat, and highlighted vertical regions.
 
     Args:
-        size (list[int, int]): Image size
-        border_width (float): Border width
-        colours (list[pygame.Color, ...]): List of 4 colours, representing border colour, shadow colour, flat colour and highlighted colour
+        size (list[int, int]): Image size.
+        border_width (float): Border width.
+        colours (list[pygame.Color, ...]): List of 4 colours, representing border colour, shadow colour, flat colour and highlighted colour.
 
     Returns:
-        pygame.Surface: Textbox surface
+        pygame.Surface: Textbox surface.
     """
     surface = pygame.Surface(size, pygame.SRCALPHA)
 

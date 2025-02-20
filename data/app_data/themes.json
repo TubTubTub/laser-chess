@@ -1,41 +1,19 @@
 {
     "colours": {
-        "light": {
-            
-            "text": {
-                "primary": "0xdaf2e9",
-                "secondary": "0xf14e52",
-                "error": "0xf14e52"
-            },
-            "fill": {
-                "primary": "0x1c2638",
-                "secondary": "0xf14e52",
-                "tertiary": "0xdaf2e9",
-                "error": "0x9b222b"
-            },
-            "border": {
-                "primary": "0x9b222b",
-                "secondary": ""
-            }
-
+        "text": {
+            "primary": "0xdaf2e9",
+            "secondary": "0xf14e52",
+            "error": "0xf14e52"
         },
-        "dark": {
-            
-            "text": {
-                "primary": "0xFF0000",
-                "secondary": "",
-                "error": ""
-            },
-            "fill": {
-                "primary": "",
-                "secondary": "",
-                "error": ""
-            },
-            "border": {
-                "primary": "",
-                "secondary": ""
-            }
-
+        "fill": {
+            "primary": "0x1c2638",
+            "secondary": "0xf14e52",
+            "tertiary": "0xdaf2e9",
+            "error": "0x9b222b"
+        },
+        "border": {
+            "primary": "0x9b222b",
+            "secondary": ""
         }
     },
     "dimensions": {

@@ -4,8 +4,14 @@ class Node:
         self.next = None
         self.previous = None
 
-class CircularLinkedList: # Doubly-linked circular linked list
+class CircularLinkedList:
     def __init__(self, list_to_convert=None):
+        """
+        Initializes a CircularLinkedList object.
+
+        Args:
+            list_to_convert (list, optional): Creates a linked list from existing items. Defaults to None.
+        """
         self._head = None
 
         if list_to_convert:
@@ -13,6 +19,12 @@ class CircularLinkedList: # Doubly-linked circular linked list
                 self.insert_at_end(item)
     
     def __str__(self):
+        """
+        Returns a string representation of the circular linked list.
+
+        Returns:
+            str: Linked list formatted as string.
+        """
         if self._head is None:
             return '| empty |'
         
@@ -27,6 +39,12 @@ class CircularLinkedList: # Doubly-linked circular linked list
                 return characters
     
     def insert_at_beginning(self, data):
+        """
+        Inserts a node at the beginning of the circular linked list.
+
+        Args:
+            data: The data to insert.
+        """
         new_node = Node(data)
 
         if self._head is None:
@@ -42,6 +60,12 @@ class CircularLinkedList: # Doubly-linked circular linked list
             self._head = new_node
     
     def insert_at_end(self, data):
+        """
+        Inserts a node at the end of the circular linked list.
+
+        Args:
+            data: The data to insert.
+        """
         new_node = Node(data)
 
         if self._head is None:
@@ -55,10 +79,21 @@ class CircularLinkedList: # Doubly-linked circular linked list
             self._head.previous = new_node
     
     def insert_at_index(self, data, index):
+        """
+        Inserts a node at a specific index in the circular linked list.
+        The head node is taken as index 0.
+
+        Args:
+            data: The data to insert.
+            index (int): The index to insert the data at.
+
+        Raises:
+            ValueError: Index is out of range.
+        """
         if index < 0:
             raise ValueError('Invalid index! (CircularLinkedList.insert_at_index)')
         
-        if index == 0:
+        if index == 0 or self._head is None:
             self.insert_at_beginning(data)
         else:
             new_node = Node(data)
@@ -77,6 +112,15 @@ class CircularLinkedList: # Doubly-linked circular linked list
                 raise ValueError('Index out of range! (CircularLinkedList.insert_at_index)')
     
     def delete(self, data):
+        """
+        Deletes a node with the specified data from the circular linked list.
+
+        Args:
+            data: The data to delete.
+
+        Raises:
+            ValueError: No nodes in the list contain the specified data.
+        """
         if self._head is None:
             return
         
@@ -95,6 +139,15 @@ class CircularLinkedList: # Doubly-linked circular linked list
             current_node.next.previous = current_node.previous
 
     def data_in_list(self, data):
+        """
+        Checks if the specified data is in the circular linked list.
+
+        Args:
+            data: The data to check.
+
+        Returns:
+            bool: True if the data is in the list, False otherwise.
+        """
         if self._head is None:
             return False
         
@@ -108,10 +161,22 @@ class CircularLinkedList: # Doubly-linked circular linked list
                 return False
     
     def shift_head(self):
+        """
+        Shifts the head of the circular linked list to the next node.
+        """
         self._head = self._head.next
 
     def unshift_head(self):
+        """
+        Shifts the head of the circular linked list to the previous node.
+        """
         self._head = self._head.previous
     
     def get_head(self):
+        """
+        Gets the head node of the circular linked list.
+
+        Returns:
+            Node: The head node.
+        """
         return self._head

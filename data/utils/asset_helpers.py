@@ -7,40 +7,40 @@ import math
 @cache
 def scale_and_cache(image, target_size):
     """
-    Caches image when resized repeatedly
+    Caches image when resized repeatedly.
 
     Args:
-        image (pygame.Surface): Image surface to be resized
-        target_size (tuple[float, float]): New image size
+        image (pygame.Surface): Image surface to be resized.
+        target_size (tuple[float, float]): New image size.
 
     Returns:
-        pygame.Surface: Resized image surface
+        pygame.Surface: Resized image surface.
     """
     return pygame.transform.scale(image, target_size)
 
 @cache
 def smoothscale_and_cache(image, target_size):
     """
-    Same as scale_and_cache, but with the Pygame smoothscale function
+    Same as scale_and_cache, but with the Pygame smoothscale function.
 
     Args:
-        image (pygame.Surface): Image surface to be resized
-        target_size (tuple[float, float]): New image size
+        image (pygame.Surface): Image surface to be resized.
+        target_size (tuple[float, float]): New image size.
 
     Returns:
-        pygame.Surface: Resized image surface
+        pygame.Surface: Resized image surface.
     """
     return pygame.transform.smoothscale(image, target_size)
 
 def gif_to_frames(path):
     """
-    Uses the PIL library to break down GIFs into individual frames
+    Uses the PIL library to break down GIFs into individual frames.
 
     Args:
-        path (str): Directory path to GIF file
+        path (str): Directory path to GIF file.
 
     Yields:
-        PIL.Image: Single frame
+        PIL.Image: Single frame.
     """
     try:
         image = Image.open(path)
@@ -58,14 +58,14 @@ def gif_to_frames(path):
 
 def get_perimeter_sample(image_size, number):
     """
-    Used for particle drawing class, generates roughly equally distributed points around a rectangular image surface's perimeter
+    Used for particle drawing class, generates roughly equally distributed points around a rectangular image surface's perimeter.
 
     Args:
-        image_size (tuple[float, float]): Image surface size
-        number (int): Number of points to be generated
+        image_size (tuple[float, float]): Image surface size.
+        number (int): Number of points to be generated.
 
     Returns:
-        list[tuple[int, int], ...]: List of random points on perimeter of image surface
+        list[tuple[int, int], ...]: List of random points on perimeter of image surface.
     """
     perimeter = 2 * (image_size[0] + image_size[1])
     # Flatten perimeter to a single number representing the distance from the top-middle of the surface going clockwise, and create a list of equally spaced points
@@ -93,15 +93,15 @@ def get_perimeter_sample(image_size, number):
 
 def get_angle_between_vectors(u, v, deg=True):
     """
-    Uses the dot product formula to find the angle between two vectors
+    Uses the dot product formula to find the angle between two vectors.
 
     Args:
-        u (list[int, int]): Vector 1
-        v (list[int, int]): Vector 2
+        u (list[int, int]): Vector 1.
+        v (list[int, int]): Vector 2.
         deg (bool, optional): Return results in degrees. Defaults to True.
 
     Returns:
-        float: Angle between vectors
+        float: Angle between vectors.
     """
     dot_product = sum(i * j for (i, j) in zip(u, v))
     u_magnitude = math.sqrt(u[0] ** 2 + u[1] ** 2)
@@ -117,15 +117,15 @@ def get_angle_between_vectors(u, v, deg=True):
 
 def get_rotational_angle(u, v, deg=True):
     """
-    Get bearing angle relative to positive x-axis centered on second vector
+    Get bearing angle relative to positive x-axis centered on second vector.
 
     Args:
-        u (list[int, int]): Vector 1
-        v (list[int, int]): Vector 2, set as center of axes
+        u (list[int, int]): Vector 1.
+        v (list[int, int]): Vector 2, set as center of axes.
         deg (bool, optional): Return results in degrees. Defaults to True.
 
     Returns:
-        float: Bearing angle between vectors
+        float: Bearing angle between vectors.
     """
     radians = math.atan2(u[1] - v[1], u[0] -v[0])
 
@@ -136,27 +136,27 @@ def get_rotational_angle(u, v, deg=True):
 
 def get_vector(src_vertex, dest_vertex):
     """
-    Get vector describing translation between two points
+    Get vector describing translation between two points.
 
     Args:
-        src_vertex (list[int, int]): Source vertex
-        dest_vertex (list[int, int]): Destination vertex
+        src_vertex (list[int, int]): Source vertex.
+        dest_vertex (list[int, int]): Destination vertex.
 
     Returns:
-        tuple[int, int]: Vector between the two points
+        tuple[int, int]: Vector between the two points.
     """
     return (dest_vertex[0] - src_vertex[0], dest_vertex[1] - src_vertex[1])
 
 def get_next_corner(vertex, image_size):
     """
-    Used in particle drawing system, finds coordinates of the next corner going clockwise, given a point on the perimeter
+    Used in particle drawing system, finds coordinates of the next corner going clockwise, given a point on the perimeter.
 
     Args:
-        vertex (list[int, int]): Point on perimeter
-        image_size (list[int, int]): Image size
+        vertex (list[int, int]): Point on perimeter.
+        image_size (list[int, int]): Image size.
 
     Returns:
-        list[int, int]: Coordinates of corner on perimeter
+        list[int, int]: Coordinates of corner on perimeter.
     """
     corners = [(0, 0), (image_size[0], 0), (image_size[0], image_size[1]), (0, image_size[1])]
     
@@ -175,25 +175,25 @@ def get_next_corner(vertex, image_size):
 def pil_image_to_surface(pil_image):
     """
     Args:
-        pil_image (PIL.Image): Image to be converted
+        pil_image (PIL.Image): Image to be converted.
 
     Returns:
-        pygame.Surface: Converted image surface
+        pygame.Surface: Converted image surface.
     """
     return pygame.image.frombytes(pil_image.tobytes(), pil_image.size, pil_image.mode).convert()
 
 def calculate_frame_index(elapsed_milliseconds, start_index, end_index, fps):
     """
-    Determine frame of animated GIF to be displayed
+    Determine frame of animated GIF to be displayed.
 
     Args:
-        elapsed_milliseconds (int): Milliseconds since GIF started playing
-        start_index (int): Start frame of GIF
-        end_index (int): End frame of GIF
-        fps (int): Number of frames to be played per second
+        elapsed_milliseconds (int): Milliseconds since GIF started playing.
+        start_index (int): Start frame of GIF.
+        end_index (int): End frame of GIF.
+        fps (int): Number of frames to be played per second.
 
     Returns:
-        int: Displayed frame index of GIF
+        int: Displayed frame index of GIF.
     """
     ms_per_frame = int(1000 / fps)
     return start_index + ((elapsed_milliseconds // ms_per_frame) % (end_index - start_index))
@@ -218,13 +218,13 @@ def draw_background(screen, background, current_time=0):
 
 def get_highlighted_icon(icon):
     """
-    Used for pressable icons, draws overlay on icon to show as pressed
+    Used for pressable icons, draws overlay on icon to show as pressed.
 
     Args:
-        icon (pygame.Surface): Icon surface
+        icon (pygame.Surface): Icon surface.
 
     Returns:
-        pygame.Surface: Icon with overlay drawn on top
+        pygame.Surface: Icon with overlay drawn on top.
     """
     icon_copy = icon.copy()
     overlay = pygame.Surface((icon.get_width(), icon.get_height()), pygame.SRCALPHA)

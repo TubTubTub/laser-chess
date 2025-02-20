@@ -20,12 +20,12 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage[T1]{fontenc}
+\usepackage{multicol}
 
 \usepackage{subfiles}
 
 \MakeRobust{\Call}
 \pgfplotsset{compat=1.18}
-\lstset{escapeinside={(*@}{@*)}}
 \pdfminorversion=7
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -55,7 +55,10 @@
     morecomment=[s]{"""}{"""}
 }
 
-\lstset{style=pythonstyle}
+\lstset{
+    style=pythonstyle,
+    escapeinside={(*@}{@*)}
+}
 
 \begin{document}
 

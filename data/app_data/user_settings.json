@@ -6,7 +6,6 @@
     "displayMode": "windowed",
     "musicVolume": 0.279,
     "sfxVolume": 0.336,
-    "colourMode": "light",
     "particles": true,
     "opengl": true,
     "shader": "default"

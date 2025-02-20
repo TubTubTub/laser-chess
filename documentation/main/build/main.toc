@@ -52,9 +52,12 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Main}{45}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Loading Screen}{46}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Helper functions}{48}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Theme}{52}{subsubsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.4}GUI}{52}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Laser}{52}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Particles}{52}{subsubsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.5}Game}{52}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Database}{52}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.3.4}Theme}{56}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}GUI}{57}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Laser}{57}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Particles}{60}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Widget Bases}{63}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Widgets}{72}{subsubsection.3.4.4}%
+\contentsline {subsection}{\numberline {3.5}Game}{72}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Database}{72}{subsubsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.6}Shaders}{72}{subsection.3.6}%

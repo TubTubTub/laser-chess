@@ -19,19 +19,19 @@ To help navigate through the source code, I have included the following director
 \begin{itemize}
 \item Alpha-beta pruning and transposition table improvements for Minimax
 \item Shadow mapping and coordinate transformations
-\item Recursive Depth-First Search tree traversal
+\item Recursive Depth-First Search tree traversal (\nameref{sec:theme})
 \item Circular doubly-linked list and stack
 \item Multipass shaders and gaussian blur
 \item Aggregate and Window SQL functions
-\item OOP techniques
-\item Multithreading (\nameref{sec:loading_screen})
+\item OOP techniques (\nameref{sec:widget-bases} and \nameref{sec:widgets})
+\item Multithreading (\nameref{sec:loading-screen})
 \item Bitboards
+\item (File handling and JSON parsing) (\nameref{sec:data-helpers})
 \item (Dictionary recursion)
-\item (Dot product)
+\item (Dot product) (\nameref{sec:asset-helpers})
 \end{itemize}
 
 \subsection{Overview}
-
 \subsubsection{Main}
 The file \lstinline{main.py} is run by the root file \lstinline{run.py}. Here resources-intensive classes such as the state and asset files are initialised, while the program displays a loading screen to hide the loading process. The main game loop is then executed.
 
@@ -39,7 +39,7 @@ The file \lstinline{main.py} is run by the root file \lstinline{run.py}. Here re
 \lstinputlisting{../../data/main.py}
 
 \subsubsection{Loading Screen}
-\label{sec:loading_screen}
+\label{sec:loading-screen}
 Multithreading is used to separate the loading screen GUI from the resources intensive actions in \lstinline{main.py}, to keep the GUI responsive. The easing function \lstinline{easeOutBack} is also used to animate the logo.
 
 \noindent\verb|loading_screen.py|
@@ -48,25 +48,103 @@ Multithreading is used to separate the loading screen GUI from the resources int
 \subsubsection{Helper functions}
 These files provide useful functions for different classes.
 
+\label{sec:asset-helpers}
 \noindent\verb|asset_helpers.py (Functions used for assets and pygame Surfaces)|
 \lstinputlisting{../../data/utils/asset_helpers.py}
 
 \bigskip
+\label{sec:data-helpers}
 \noindent\verb|data_helpers.py (Functions used for file handling and JSON parsing)|
 \lstinputlisting{../../data/utils/data_helpers.py}
-
 
 \bigskip
 \noindent\verb|widget_helpers.py (Files used for creating widgets)|
 \lstinputlisting{../../data/utils/widget_helpers.py}
 
 \subsubsection{Theme}
+\label{sec:theme}
+The theme manager file is responsible for providing an instance where the colour palette and dimensions for the GUI can be accessed.
+
+\noindent\verb|theme.py|
+\lstinputlisting{../../data/managers/theme.py}
 
 \subsection{GUI}
 \subsubsection{Laser}
+The \lstinline{LaserDraw} class draws the laser in both the game and review screens.
+
+\noindent\verb|laser_draw.py|
+\lstinputlisting{../../data/states/game/components/laser_draw.py}
+
 \subsubsection{Particles}
+The \lstinline{ParticlesDraw} class draws particles in both the game and review screens. The particles are either fragmented pieces when destroyed, or laser particles emitted from the Sphinx. Particles are given custom velocity, rotation, opacity and size parameters.
+
+\noindent\verb|particles_draw.py|
+\lstinputlisting{../../data/states/game/components/particles_draw.py}
+
+\subsubsection{Widget Bases}
+\label{sec:widget-bases}
+Widget bases are the base classes for for my widgets system. They contain both attributes and getter methods that provide basic functionality such as size and position, and abstract methods to be overriden. These bases are also designed to be used with multiple inheritance, where multiple bases can be combined to add functionality to the final widget. Encapsulation also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
+
+\bigskip
+\noindent All widgets are a subclass of the \lstinline{Widget} class.
+
+\noindent\verb|widget.py|
+\lstinputlisting{../../data/widgets/bases/widget.py}
+
+\bigskip
+\noindent The \lstinline{Circular} class provides functionality to support widgets which rotate between text/icons.
+\noindent\verb|circular.py|
+\lstinputlisting{../../data/widgets/bases/circular.py}
+
+\bigskip
+\noindent The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
+
+\noindent\verb|circular_linked_list.py|
+\lstinputlisting{../../data/components/circular_linked_list.py}
+
+\subsubsection{Widgets}
+\label{sec:widgets}
+Each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
+
+Below is a list of all the widgets I have implemented:
+
+\begin{multicols}{3}
+\begin{itemize}
+\item BoardThumbnailButton
+\item MultipleIconButton
+\item ReactiveIconButton
+\item BoardThumbnail
+\item ReactiveButton
+\item VolumeSlider
+\item ColourPicker
+\item ColourButton
+\item BrowserStrip
+\item PieceDisplay
+\item BrowserItem
+\item TextButton
+\item IconButton
+\item ScrollArea
+\item Chessboard
+\item TextInput
+\item Rectangle
+\item MoveList
+\item Dropdown
+\item Carousel
+\item Switch
+\item Timer
+\item Text
+\item Icon
+\item (\_ColourDisplay)
+\item (\_ColourSquare)
+\item (\_ColourSlider)
+\item (\_SliderThumb)
+\item (\_Scrollbar)
+\end{itemize}
+\end{multicols}
 
 \subsection{Game}
 \subsubsection{Database}
+
+\subsection{Shaders}
 
 \end{document}

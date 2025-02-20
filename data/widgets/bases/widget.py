@@ -1,44 +1,66 @@
 import pygame
 from data.constants import SCREEN_SIZE
-from data.assets import DEFAULT_FONT
 from data.managers.theme import theme
+from data.assets import DEFAULT_FONT
 
 DEFAULT_SURFACE_SIZE = SCREEN_SIZE
 REQUIRED_KWARGS = ['relative_position', 'relative_size']
-# COUNT = 0
 
 class _Widget(pygame.sprite.Sprite):
     def __init__(self, **kwargs):
-        # global COUNT
-        # print(COUNT, 'INITIALSING BASE _WIDGET', self.__class__.__qualname__, kwargs.get('relative_position'))
-        # COUNT = COUNT + 1
+        """
+        Every widget has the following attributes:
+
+        surface (pygame.Surface): The surface the widget is drawn on.
+        raw_surface_size (tuple[int, int]): The initial size of the window screen, remains constant.
+        parent (_Widget, optional): The parent widget position and size is relative to.
+
+        Relative to current surface:
+        relative_position (tuple[float, float]): The position of the widget relative to its surface.
+        relative_size (tuple[float, float]): The scale of the widget relative to its surface.
+
+        Remains constant, relative to initial screen size:
+        relative_font_size (float, optional): The relative font size of the widget.
+        relative_margin (float): The relative margin of the widget.
+        relative_border_width (float): The relative border width of the widget.
+        relative_border_radius (float): The relative border radius of the widget.
+
+        anchor_x (str): The horizontal anchor direction ('left', 'right', 'center').
+        anchor_y (str): The vertical anchor direction ('top', 'bottom', 'center').
+        fixed_position (tuple[int, int], optional): The fixed position of the widget in pixels.
+        border_colour (pygame.Color): The border color of the widget.
+        text_colour (pygame.Color): The text color of the widget.
+        fill_colour (pygame.Color): The fill color of the widget.
+        font (pygame.freetype.Font): The font used for the widget.
+        """
         super().__init__()
 
         for required_kwarg in REQUIRED_KWARGS:
             if required_kwarg not in kwargs:
                 raise KeyError(f'(_Widget.__init__) Required keyword "{required_kwarg}" not in base kwargs')
             
-        self._relative_font_size = None # SET IN EACH WIDGET
-        
-        self._surface = None # SET IN WIDGET GROUP, AS NEED TO BE FETCHED EVERY CALL
+        self._surface = None # Set in WidgetGroup, as needs to be reassigned every frame
         self._raw_surface_size = DEFAULT_SURFACE_SIZE
 
         self._parent = kwargs.get('parent')
+
+        self._relative_font_size = None # Set in subclass
 
         self._relative_position = kwargs.get('relative_position')
         self._relative_margin = theme['margin'] / self._raw_surface_size[1]
         self._relative_border_width = theme['borderWidth'] / self._raw_surface_size[1]
         self._relative_border_radius = theme['borderRadius'] / self._raw_surface_size[1]
-        
-        self._anchor_x = kwargs.get('anchor_x') or 'left'
-        self._anchor_y = kwargs.get('anchor_y') or 'top'
-        self._fixed_position = kwargs.get('fixed_position')
 
         self._border_colour = pygame.Color(theme['borderPrimary'])
         self._text_colour = pygame.Color(theme['textPrimary'])
         self._fill_colour = pygame.Color(theme['fillPrimary'])
-
-        scale_mode = kwargs.get('scale_mode') or 'both' # Relative scale based on surface width and height
+        self._font = DEFAULT_FONT
+        
+        self._anchor_x = kwargs.get('anchor_x') or 'left'
+        self._anchor_y = kwargs.get('anchor_y') or 'top'
+        self._fixed_position = kwargs.get('fixed_position')
+        scale_mode = kwargs.get('scale_mode') or 'both'
+        
         if kwargs.get('relative_size'):
             match scale_mode:
                 case 'height':
@@ -51,9 +73,6 @@ class _Widget(pygame.sprite.Sprite):
                     raise ValueError('(_Widget.__init__) Unknown scale mode:', scale_mode)
         else:
             self._relative_size = (1, 1)
-        
-        # if self._relative_size[0] > 2 or self._relative_size[1] > 2:
-        #     raise ValueError('(_Widget.__init__) Relative size must be less than 2', self._relative_size, self._parent.size)
         
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._raw_surface_size[1]
@@ -78,11 +97,16 @@ class _Widget(pygame.sprite.Sprite):
         
         if 'font' in kwargs:
             self._font = kwargs.get('font')
-        else:
-            self._font = DEFAULT_FONT
     
     @property
     def surface_size(self):
+        """
+        Gets the size of the surface widget is drawn on.
+        Can be either the window size, or another widget size if assigned to a parent.
+
+        Returns:
+            tuple[int, int]: The size of the surface.
+        """
         if self._parent:
             return self._parent.size
         else:
@@ -90,6 +114,14 @@ class _Widget(pygame.sprite.Sprite):
     
     @property
     def position(self):
+        """
+        Gets the position of the widget.
+        Accounts for fixed position attribute, where widget is positioned in pixels regardless of screen size.
+        Acounts for anchor direction, where position attribute is calculated relative to one side of the screen.
+
+        Returns:
+            tuple[int, int]: The position of the widget.
+        """
         x, y = None, None
         if self._fixed_position:
             x, y = self._fixed_position
@@ -112,6 +144,7 @@ class _Widget(pygame.sprite.Sprite):
         elif self._anchor_y == 'center':
             y = (self.surface_size[1] / 2 - self.size[1] / 2) + y
 
+        # Position widget relative to parent, if exists.
         if self._parent:
             return (x + self._parent.position[0], y + self._parent.position[1])
         else:
@@ -138,9 +171,15 @@ class _Widget(pygame.sprite.Sprite):
         return self._relative_font_size * self.surface_size[1]
     
     def set_image(self):
+        """
+        Abstract method to draw widget.
+        """
         raise NotImplementedError
     
     def set_geometry(self):
+        """
+        Sets the position and size of the widget.
+        """
         self.rect = self.image.get_rect()
 
         if self._anchor_x == 'left':
@@ -166,13 +205,19 @@ class _Widget(pygame.sprite.Sprite):
                 self.rect.topleft = self.position
     
     def set_surface_size(self, new_surface_size):
+        """
+        Sets the new size of the surface widget is drawn on.
+
+        Args:
+            new_surface_size (tuple[int, int]): The new size of the surface.
+        """
         self._raw_surface_size = new_surface_size
     
     def process_event(self, event):
+        """
+        Abstract method to handle events.
+
+        Args:
+            event (pygame.event.Event): The event to process.
+        """
         raise NotImplementedError
-
-    def get_size(self):
-        return self.size
-
-    def blit(self, image, rect):
-        self.image.blit(image, rect)
