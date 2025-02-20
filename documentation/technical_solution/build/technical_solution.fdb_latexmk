@@ -1,14 +1,15 @@
 # Fdb version 4
-["bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution"] 1740053102.44669 "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.bbl" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution" 1740055007.07686 0
+["bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution"] 1740095422.38666 "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.bbl" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution" 1740095469.54315 0
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/bibtex/bst/biblatex/biblatex.bst" 1711466047 65510 b1f696b0241395385f422f67543c37fd ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution-blx.bib" 1740055006 342 20d1170ef6c1d70c658d70e011e08dba "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" 1740055005 4544 a6c1db81bb4a0e0db9ea2e5e8fec4fe2 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution-blx.bib" 1740095468 342 20d1170ef6c1d70c658d70e011e08dba "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" 1740095468 5134 8f2ffae001de19b454c0733ceb6e783f "pdflatex"
   (generated)
   "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.bbl"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.blg"
   (rewritten before read)
-["pdflatex"] 1740055002.33905 "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/technical_solution.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.pdf" "technical_solution" 1740055007.07782 0
+["pdflatex"] 1740095464.72505 "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/technical_solution.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.pdf" "technical_solution" 1740095469.54401 0
   "../../data/components/circular_linked_list.py" 1740051302 5472 f2b261f78a3bd132f5a093ec2ebfac48 ""
+  "../../data/components/custom_event.py" 1740095117 2824 2fc76284b2decc4f730e133c399d5683 ""
   "../../data/loading_screen.py" 1740009267 3321 1f07f5c1039d5be4a1b98078f08b9529 ""
   "../../data/main.py" 1739923148 1525 206a4e813e9134f435b9d14174ca8cc8 ""
   "../../data/managers/theme.py" 1740009267 1782 f682405a30a003508bc36a53f561a0b1 ""
@@ -19,6 +20,9 @@
   "../../data/utils/widget_helpers.py" 1740009267 6355 7970bf8af8c69f83e2f8b5f15f721e61 ""
   "../../data/widgets/bases/circular.py" 1740052254 1938 851f8e120ac112ec7181b465ddd1ed3d ""
   "../../data/widgets/bases/widget.py" 1740054491 9203 dab2f795e43f2682d90e21865956d0f3 ""
+  "../../data/widgets/colour_slider.py" 1740094541 5301 2bbb372f24982262c66d13db61d35793 ""
+  "../../data/widgets/reactive_button.py" 1740093601 2902 bd63e125a6d7d41f6d264d4c973509e2 ""
+  "../../data/widgets/reactive_icon_button.py" 1740091343 1588 ad346d8218281476eb986304d1debf78 ""
   "../main/main.tex" 1740054232 1918 218b4b69aeb11a3c2dd26895ad1f23da ""
   "../technical_solution/assets/file_tree_diagram.pdf" 1739837797 47235 29c717fbbda178184d04a96e5fc5bb26 ""
   "C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1739750446 81184 eb87252437a4785d54a8e9413c57392a ""
@@ -250,11 +254,11 @@
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" 1740055005 4544 a6c1db81bb4a0e0db9ea2e5e8fec4fe2 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.bbl" 1740053102 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.out" 1740055005 1809 d67af4bbe1326760fab70c35584366f9 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.run.xml" 1740055006 2661 f856523b71bb009c0c328951f8f21050 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/technical_solution.tex" 1740055001 6056 87f73f2767205ebe0e276275ad0ac803 ""
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux" 1740095468 5134 8f2ffae001de19b454c0733ceb6e783f "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.bbl" 1740095422 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.out" 1740095468 1809 d67af4bbe1326760fab70c35584366f9 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.run.xml" 1740095468 2661 f856523b71bb009c0c328951f8f21050 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/technical_solution.tex" 1740095464 7363 5b4b04da7017c8cd47fa76681ff871f8 ""
   (generated)
   "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution-blx.bib"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/technical_solution/build/technical_solution.aux"

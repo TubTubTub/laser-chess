@@ -106,6 +106,11 @@ Widget bases are the base classes for for my widgets system. They contain both a
 \label{sec:widgets}
 Each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
 
+The \lstinline{CustomEvent} class is used to pass data between states and widgets. An event argument is passed into interactive widgets; When a widget wants to pass data back to the state, it returns the event, and adds any attributes that is required. The state then receives and handles these returned events accordingly.
+
+\noindent\verb|custom_event.py|
+\lstinputlisting{../../data/components/custom_event.py}
+
 Below is a list of all the widgets I have implemented:
 
 \begin{multicols}{3}
@@ -141,6 +146,24 @@ Below is a list of all the widgets I have implemented:
 \item (\_Scrollbar)
 \end{itemize}
 \end{multicols}
+
+\bigskip
+\noindent The \lstinline{ReactiveIconButton} widget is a pressable button that changes the icon displayed when it is hovered or pressed.
+
+\noindent\verb|reactive_icon_button.py|
+\lstinputlisting{../../data/widgets/reactive_icon_button.py}
+
+\bigskip
+\noindent The \lstinline{ReactiveButton} widget is the parent class for \lstinline{ReactiveIconButton}. It provides the methods for clicking, rotating between widget states, positioning etc.
+
+\noindent\verb|reactive_button.py|
+\lstinputlisting{../../data/widgets/reactive_button.py}
+
+\bigskip
+\noindent The \lstinline{ColourSlider} widget is instanced in the \lstinline{ColourPicker} class. It provides a slider for changing between hues for the colour picker, using the functionality of the \lstinline{SliderThumb} class.
+
+\noindent\verb|colour_slider.py|
+\lstinputlisting{../../data/widgets/colour_slider.py}
 
 \subsection{Game}
 \subsubsection{Database}

@@ -1,4 +1,4 @@
-from data.constants import GameEventType, MenuEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
+from data.constants import GameEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
 
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
@@ -33,6 +33,20 @@ class CustomEvent():
 
     @classmethod
     def create_event(event_cls, event_type, **kwargs):
+        """
+        @classmethod Factory method used to instance CustomEvent object, to check for required keyword arguments
+
+        Args:
+            event_cls (CustomEvent): Reference to own class.
+            event_type: The state EventType.
+
+        Raises:
+            ValueError: If required keyword argument for passed event type not present.
+            ValueError: If keyword argument passed is not required for passed event type.
+
+        Returns:
+            CustomEvent: Initialised CustomEvent instance.
+        """
         if event_type in required_args:
 
             for required_arg in required_args[event_type]:
