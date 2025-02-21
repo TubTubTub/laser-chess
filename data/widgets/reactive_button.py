@@ -70,7 +70,7 @@ class ReactiveButton(_Pressable, _Circular, _Widget):
         Processes Pygame events.
 
         Args:
-            event (pygame.event.Event): Event to process.
+            event (pygame.Event): Event to process.
 
         Returns:
             CustomEvent: CustomEvent of current item, with current key included

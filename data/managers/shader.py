@@ -1,9 +1,9 @@
 from pathlib import Path
 from array import array
 import moderngl
-from data.constants import ShaderType
 from data.shaders.classes import shader_pass_lookup
 from data.shaders.protocol import SMProtocol
+from data.constants import ShaderType
 
 shader_path = (Path(__file__).parent / '../shaders/').resolve()
 

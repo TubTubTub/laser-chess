@@ -5,6 +5,10 @@
 \newpage
 
 \section{Technical Solution}
+\pagestyle{empty}
+\localtableofcontents
+\pagestyle{plain}
+
 \subsection{File Tree Diagram}
 To help navigate through the source code, I have included the following directory tree diagram, and put appropiate comments to explain the general purpose of code contained within specifc directories and Python files.
 
@@ -165,9 +169,107 @@ Below is a list of all the widgets I have implemented:
 \noindent\verb|colour_slider.py|
 \lstinputlisting{../../data/widgets/colour_slider.py}
 
+\bigskip
+\noindent The \lstinline{TextInput} widget is used for inputting fen strings and time controls.
+
+\noindent\verb|text_input.py|
+\lstinputlisting{../../data/widgets/text_input.py}
+
 \subsection{Game}
-\subsubsection{Database}
+\subsubsection{Model}
+\noindent\verb|game_model.py|
+\lstinputlisting{../../data/states/game/mvc/game_model.py}
+
+\subsubsection{View}
+\noindent\verb|game_view.py|
+\lstinputlisting{../../data/states/game/mvc/game_view.py}
+
+\subsubsection{Controller}
+\noindent\verb|game_controller.py|
+\lstinputlisting{../../data/states/game/mvc/game_controller.py}
+
+\subsubsection{Board}
+The \lstinline{Board} class implements the Laser Chess board, and is responsible for handling moves, captures, and win conditions.
+
+\noindent\verb|board.py|
+\lstinputlisting{../../data/states/game/components/board.py}
+
+\subsubsection{Bitboards}
+The \lstinline{BitboardCollection} class uses helper functions found in \lstinline{bitboard_helpers.py} such as \lstinline{pop_count}, to initialise and manage bitboard transformations.
+
+\noindent\verb|bitboard_collection.py|
+\lstinputlisting{../../data/states/game/components/bitboard_collection.py}
+
+\subsection{CPU}
+\subsubsection{Minimax}
+\noindent\verb|minimax.py|
+\lstinputlisting{../../data/states/game/cpu/engines/minimax.py}
+
+\subsubsection{Alpha-beta Pruning}
+\noindent\verb|alpha_beta.py|
+\lstinputlisting{../../data/states/game/cpu/engines/alpha_beta.py}
+
+\subsubsection{Transposition Table CPU}
+\noindent\verb|alpha_beta.py|
+\lstinputlisting{../../data/states/game/cpu/engines/transposition_table.py}
+
+\subsubsection{Evaluator}
+\noindent\verb|evaluator.py|
+\lstinputlisting{../../data/states/game/cpu/evaluator.py}
+
+\subsubsection{Multithreading}
+\noindent\verb|cpu_thread.py|
+\lstinputlisting{../../data/states/game/cpu/cpu_thread.py}
+
+\subsubsection{Zobrist Hashing}
+\noindent\verb|zobrist_hasher.py|
+\lstinputlisting{../../data/states/game/cpu/zobrist_hasher.py}
+
+\subsubsection{Transposition Table}
+\noindent\verb|transposition_table.py|
+\lstinputlisting{../../data/states/game/cpu/transposition_table.py}
+
+\subsection{Database}
+\subsubsection{DDL}
+\noindent\verb|create_games_table_19112024.py|
+\lstinputlisting{../../data/database/migrations/create_games_table_19112024.py}
+
+\bigskip
+\noindent\verb|change_fen_string_column_name_23122024.py|
+\lstinputlisting{../../data/database/migrations/change_fen_string_column_name_23122024.py}
+
+\subsubsection{DML}
+\noindent\verb|database_helpers.py|
+\lstinputlisting{../../data/utils/database_helpers.py}
 
 \subsection{Shaders}
+\subsubsection{Shader Manager}
+Uses interface protocol!
+\noindent\verb|shader.py|
+\lstinputlisting{../../data/managers/shader.py}
+
+\subsubsection{Rays}
+\noindent\verb|occlusion.frag|
+\lstinputlisting{../../data/shaders/fragments/occlusion.frag}
+
+\bigskip
+\noindent\verb|shadowmap.frag|
+\lstinputlisting{../../data/shaders/fragments/shadowmap.frag}
+
+\bigskip
+\noindent\verb|lightmap.frag|
+\lstinputlisting{../../data/shaders/fragments/lightmap.frag}
+
+\subsubsection{Bloom}
+\noindent\verb|highlight_colour.frag|
+\lstinputlisting{../../data/shaders/fragments/highlight_colour.frag}
+
+\noindent\verb|blur.frag|
+\lstinputlisting{../../data/shaders/fragments/blur.frag}
+
+\bigskip
+\noindent\verb|blur.frag|
+\lstinputlisting{../../data/shaders/fragments/blur.frag}
+
 
 \end{document}

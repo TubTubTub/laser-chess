@@ -1,4 +1,3 @@
-import pygame
 from data.constants import ShaderType
 from data.shaders.protocol import SMProtocol
 from data.shaders.classes.shadowmap import _Shadowmap

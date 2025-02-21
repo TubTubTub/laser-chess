@@ -218,6 +218,6 @@ class _Widget(pygame.sprite.Sprite):
         Abstract method to handle events.
 
         Args:
-            event (pygame.event.Event): The event to process.
+            event (pygame.Event): The event to process.
         """
         raise NotImplementedError

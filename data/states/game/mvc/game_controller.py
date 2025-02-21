@@ -19,6 +19,12 @@ class GameController:
         self._view.initialise_timers()
     
     def cleanup(self, next):
+        """
+        Handles game quit, either leaving to main menu or restarting a new game.
+
+        Args:
+            next (str): New state to switch to.
+        """
         self._model.kill_thread()
 
         if next == 'menu':
@@ -27,6 +33,12 @@ class GameController:
             self._to_new_game()
 
     def make_move(self, move):
+        """
+        Handles player move.
+
+        Args:
+            move (Move): Move to make.
+        """
         self._model.make_move(move)
         self._view.set_overlay_coords([], None)
 
@@ -34,6 +46,15 @@ class GameController:
             self._model.make_cpu_move()
 
     def handle_pause_event(self, event):
+        """
+        Processes events when game is paused.
+
+        Args:
+            event (GameEventType): Event to process.
+
+        Raises:
+            Exception: If event type is unrecognised.
+        """
         game_event = self._pause_view.convert_mouse_pos(event)
 
         if game_event is None:
@@ -50,6 +71,15 @@ class GameController:
                 raise Exception('Unhandled event type (GameController.handle_event)')
     
     def handle_winner_event(self, event):
+        """
+        Processes events when game is over.
+
+        Args:
+            event (GameEventType): Event to process.
+
+        Raises:
+            Exception: If event type is unrecognised.
+        """
         game_event = self._win_view.convert_mouse_pos(event)
 
         if game_event is None:
@@ -68,6 +98,18 @@ class GameController:
                 raise Exception('Unhandled event type (GameController.handle_event)')
 
     def handle_game_widget_event(self, event):
+        """
+        Processes events for game GUI widgets.
+
+        Args:
+            event (GameEventType): Event to process.
+
+        Raises:
+            Exception: If event type is unrecognised.
+
+        Returns:
+            CustomEvent | None: A widget event.
+        """
         widget_event = self._view.process_widget_event(event)
 
         if widget_event is None:
@@ -93,7 +135,8 @@ class GameController:
                 self._view.set_status_text(StatusText.DRAW)
                 
             case GameEventType.TIMER_END:
-                self._model.set_winner(widget_event.active_colour.get_flipped_colour())
+                if self._model.states['TIME_ENABLED']:
+                    self._model.set_winner(widget_event.active_colour.get_flipped_colour())
             
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
@@ -110,10 +153,23 @@ class GameController:
         return widget_event.type
     
     def check_cpu(self):
+        """
+        Checks if CPU calculations are finished every frame.
+        """
         if self._model.states['CPU_ENABLED'] and self._model.states['AWAITING_CPU'] is False:
             self._model.check_cpu()
 
     def handle_game_event(self, event):
+        """
+        Processes Pygame events for main game.
+
+        Args:
+            event (pygame.Event): If event type is unrecognised.
+
+        Raises:
+            Exception: If event type is unrecognised.
+        """
+        # Pass event for widgets to process
         widget_event = self.handle_game_widget_event(event)
         
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
@@ -125,9 +181,11 @@ class GameController:
             if game_event is None:
                 if widget_event is None:
                     if event.type in [pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
+                        # If user releases mouse click not on a widget
                         self._view.remove_help_screen()
                         self._view.remove_tutorial_screen()
                     if event.type == pygame.MOUSEBUTTONUP:
+                        # If user releases mouse click on neither a widget or board
                         self._view.set_overlay_coords(None, None)
                     
                 return
@@ -143,6 +201,7 @@ class GameController:
 
                     if selected_coords:
                         if clicked_coords == selected_coords:
+                            # If clicking on an already selected square, start dragging piece on that square
                             self._view.set_dragged_piece(*self._model.get_piece_info(clicked_bitboard))
                             return
                         
@@ -150,11 +209,14 @@ class GameController:
                         available_bitboard = self._model.get_available_moves(selected_bitboard)
 
                         if bb_helpers.is_occupied(clicked_bitboard, available_bitboard):
+                            # If the newly clicked square is not the same as the old one, and is an empty surrounding square, make a move
                             move = Move.instance_from_coords(MoveType.MOVE, selected_coords, clicked_coords)
                             self.make_move(move)
                         else:
+                            # If the newly clicked square is not the same as the old one, but is an invalid square, unselect the currently selected square
                             self._view.set_overlay_coords(None, None)
-                            
+                    
+                    # Select hovered square if it is same as active colour
                     elif self._model.is_selectable(clicked_bitboard):
                         available_bitboard = self._model.get_available_moves(clicked_bitboard)
                         self._view.set_overlay_coords(bb_helpers.bitboard_to_coords_list(available_bitboard), clicked_coords)
@@ -163,6 +225,7 @@ class GameController:
                 case GameEventType.PIECE_DROP:
                     hovered_coords = game_event.coords
 
+                    # if piece is dropped onto the board
                     if hovered_coords:
                         hovered_bitboard = bb_helpers.coords_to_bitboard(hovered_coords)
                         selected_coords = self._view.get_selected_coords()
@@ -170,6 +233,7 @@ class GameController:
                         available_bitboard = self._model.get_available_moves(selected_bitboard)
 
                         if bb_helpers.is_occupied(hovered_bitboard, available_bitboard):
+                            # Make a move if mouse is hovered over an empty surrounding square
                             move = Move.instance_from_coords(MoveType.MOVE, selected_coords, hovered_coords)
                             self.make_move(move)
 
@@ -182,6 +246,12 @@ class GameController:
                     raise Exception('Unhandled event type (GameController.handle_event)', game_event.type)
     
     def handle_event(self, event):
+        """
+        Passe a Pygame event to the correct handling function according to the game state.
+
+        Args:
+            event (pygame.Event): Event to process.
+        """
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION, pygame.KEYDOWN]:
             if self._model.states['PAUSED']:
                 self.handle_pause_event(event)

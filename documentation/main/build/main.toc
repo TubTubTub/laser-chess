@@ -1,3 +1,4 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
 \contentsline {section}{\numberline {1}Analysis}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Background}{2}{subsection.1.1}%
 \contentsline {subsubsection}{\numberline {1.1.1}Game Description}{2}{subsubsection.1.1.1}%
@@ -28,16 +29,16 @@
 \contentsline {subsection}{\numberline {2.2}Algorithms and Techniques}{20}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Minimax}{20}{subsubsection.2.2.1}%
 \contentsline {subsubsection}{\numberline {2.2.2}Minimax improvements}{21}{subsubsection.2.2.2}%
-\contentsline {paragraph}{Exact}{23}{section*.31}%
-\contentsline {paragraph}{Lower}{23}{section*.32}%
-\contentsline {paragraph}{Upper}{24}{section*.33}%
+\contentsline {paragraph}{Exact}{23}{section*.30}%
+\contentsline {paragraph}{Lower}{23}{section*.31}%
+\contentsline {paragraph}{Upper}{24}{section*.32}%
 \contentsline {subsubsection}{\numberline {2.2.3}Board Representation}{25}{subsubsection.2.2.3}%
 \contentsline {subsubsection}{\numberline {2.2.4}Evaluation Function}{29}{subsubsection.2.2.4}%
-\contentsline {paragraph}{Mobility}{32}{section*.44}%
-\contentsline {paragraph}{King safety}{32}{section*.45}%
+\contentsline {paragraph}{Mobility}{32}{section*.43}%
+\contentsline {paragraph}{King safety}{32}{section*.44}%
 \contentsline {subsubsection}{\numberline {2.2.5}Shadow Mapping}{32}{subsubsection.2.2.5}%
-\contentsline {paragraph}{Aliasing}{34}{section*.47}%
-\contentsline {paragraph}{Shadow Acne}{34}{section*.48}%
+\contentsline {paragraph}{Aliasing}{34}{section*.46}%
+\contentsline {paragraph}{Shadow Acne}{34}{section*.47}%
 \contentsline {subsubsection}{\numberline {2.2.6}Multithreading}{35}{subsubsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.3}Data Structures}{35}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Database}{35}{subsubsection.2.3.1}%
@@ -46,18 +47,25 @@
 \contentsline {subsection}{\numberline {2.4}Classes}{39}{subsection.2.4}%
 \contentsline {subsubsection}{\numberline {2.4.1}Class Diagram}{43}{subsubsection.2.4.1}%
 \contentsline {section}{\numberline {3}Technical Solution}{44}{section.3}%
+\etoc@startlocaltoc {2}
 \contentsline {subsection}{\numberline {3.1}File Tree Diagram}{44}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Summary of Complexity}{45}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Overview}{45}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Main}{45}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Loading Screen}{46}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Helper functions}{48}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Theme}{56}{subsubsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.4}GUI}{57}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Laser}{57}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Particles}{60}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Widget Bases}{63}{subsubsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.3}Overview}{46}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Main}{46}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Loading Screen}{47}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Helper functions}{49}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Theme}{57}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.4}GUI}{58}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Laser}{58}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Particles}{61}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Widget Bases}{64}{subsubsection.3.4.3}%
 \contentsline {subsubsection}{\numberline {3.4.4}Widgets}{72}{subsubsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.5}Game}{72}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Database}{72}{subsubsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.6}Shaders}{72}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.5}Game}{84}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Model}{84}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}View}{87}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Controller}{91}{subsubsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.4}Board}{95}{subsubsection.3.5.4}%
+\contentsline {subsubsection}{\numberline {3.5.5}Bitboards}{99}{subsubsection.3.5.5}%
+\contentsline {subsection}{\numberline {3.6}CPU}{102}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Database}{102}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Shaders}{102}{subsection.3.8}%

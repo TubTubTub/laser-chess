@@ -1,22 +1,21 @@
-import pygame
 import pyperclip
-from data.widgets.text import Text
-from data.widgets.bases.pressable import _Pressable
-from data.widgets.bases.box import _Box
-from data.components.custom_event import CustomEvent
-from data.managers.animation import animation
+import pygame
 from data.constants import WidgetState, CursorMode, INPUT_COLOURS
-from data.assets import FONTS
-from data.utils.font_helpers import height_to_font_size
+from data.components.custom_event import CustomEvent
+from data.widgets.bases.pressable import _Pressable
+from data.managers.logs import initialise_logger
+from data.managers.animation import animation
+from data.widgets.bases.box import _Box
 from data.managers.cursor import cursor
 from data.managers.theme import theme
-from data.managers.logs import initialise_logger
+from data.widgets.text import Text
 
 logger = initialise_logger(__name__)
 
 class TextInput(_Box, _Pressable, Text):
     def __init__(self, event, blinking_interval=530, validator=(lambda x: True), default='', placeholder='PLACEHOLDER TEXT', placeholder_colour=(200, 200, 200), cursor_colour=theme['textSecondary'], **kwargs):
         self._cursor_index = None
+        # Multiple inheritance used here, adding the functionality of pressing, and custom box colours, to the text widget
         _Box.__init__(self, box_colours=INPUT_COLOURS)
         _Pressable.__init__(
             self,
@@ -59,10 +58,12 @@ class TextInput(_Box, _Pressable, Text):
         self.set_geometry()
     
     @property
+    # Encapsulated getter method
     def is_placeholder(self):
         return self._is_placeholder
     
     @is_placeholder.setter
+    # Encapsulated setter method, used to replace text colour if placeholder text is shown
     def is_placeholder(self, is_true):
         self._is_placeholder = is_true
 
@@ -86,27 +87,43 @@ class TextInput(_Box, _Pressable, Text):
             glyph_width = metrics[4]
             current_width += glyph_width
         return (current_width - self.cursor_size[0], (self.size[1] - self.cursor_size[1]) / 2)
+
+    @property
+    def text(self):
+        if self.is_placeholder:
+            return ''
+
+        return self._text
     
     def relative_x_to_cursor_index(self, relative_x):
+        """
+        Calculates cursor index using mouse position relative to the widget position.
+
+        Args:
+            relative_x (int): Horizontal distance of the mouse from the left side of the widget.
+
+        Returns:
+            int: Cursor index.
+        """
         current_width = 0
 
         for index, metrics in enumerate(self._font.get_metrics(self._text, size=self.font_size)):
             glyph_width = metrics[4]
-
-            if relative_x <= current_width:
+            
+            if current_width >= relative_x:
                 return index
             
             current_width += glyph_width
         
         return len(self._text)
     
-    def get_text(self):
-        if self.is_placeholder:
-            return ''
-
-        return self._text
-    
     def set_cursor_index(self, mouse_pos):
+        """
+        Sets cursor index based on mouse position.
+
+        Args:
+            mouse_pos (list[int, int]): Mouse position relative to window screen.
+        """
         if mouse_pos is None:
             self._cursor_index = mouse_pos
             return
@@ -116,6 +133,12 @@ class TextInput(_Box, _Pressable, Text):
         self._cursor_index = self.relative_x_to_cursor_index(relative_x)
     
     def focus_input(self, mouse_pos):
+        """
+        Draws cursor and sets cursor index when user clicks on widget.
+
+        Args:
+            mouse_pos (list[int, int]): Mouse position relative to window screen.
+        """
         if self.is_placeholder:
             self._text = ''
             self.is_placeholder = False
@@ -125,6 +148,9 @@ class TextInput(_Box, _Pressable, Text):
         cursor.set_mode(CursorMode.IBEAM)
     
     def unfocus_input(self):
+        """
+        Removes cursor when user unselects widget.
+        """
         if self._text == '':
             self._text = self._placeholder_text
             self.is_placeholder = True
@@ -135,10 +161,28 @@ class TextInput(_Box, _Pressable, Text):
         cursor.set_mode(CursorMode.ARROW)
     
     def set_text(self, new_text):
+        """
+        Called by a state object to change the widget text externally.
+
+        Args:
+            new_text (str): New text to display.
+
+        Returns:
+            CustomEvent: Object containing the new text to alert state of a text update.
+        """
         super().set_text(new_text)
-        return CustomEvent(**vars(self._event), text=self.get_text())
+        return CustomEvent(**vars(self._event), text=self.text)
     
     def process_event(self, event):
+        """
+        Processes Pygame events.
+
+        Args:
+            event (pygame.Event): Event to process.
+
+        Returns:
+            CustomEvent: Object containing the new text to alert state of a text update.
+        """
         previous_state = self.get_widget_state()
         super().process_event(event)
         current_state = self.get_widget_state()
@@ -148,6 +192,7 @@ class TextInput(_Box, _Pressable, Text):
                 if self._cursor_index is None:
                     return
                 
+                # If mouse is hovering over widget, turn mouse cursor into an I-beam
                 if self.rect.collidepoint(event.pos):
                     if cursor.get_mode() != CursorMode.IBEAM:
                         cursor.set_mode(CursorMode.IBEAM)
@@ -158,16 +203,19 @@ class TextInput(_Box, _Pressable, Text):
                 return
             
             case pygame.MOUSEBUTTONUP:
+                # When user selects widget
                 if previous_state == WidgetState.PRESS:
                     self.focus_input(event.pos)
+                # When user unselects widget
                 if current_state == WidgetState.BASE and self._cursor_index is not None:
                     self.unfocus_input()
-                    return CustomEvent(**vars(self._event), text=self.get_text())
+                    return CustomEvent(**vars(self._event), text=self.text)
             
             case pygame.KEYDOWN:
                 if self._cursor_index is None:
                     return
 
+                # Handling Ctrl-C and Ctrl-V shortcuts
                 if event.mod & (pygame.KMOD_CTRL):
                     if event.key == pygame.K_c:
                         logger.info('COPIED')
@@ -198,11 +246,11 @@ class TextInput(_Box, _Pressable, Text):
                     
                     case pygame.K_ESCAPE:
                         self.unfocus_input()
-                        return CustomEvent(**vars(self._event), text=self.get_text())
+                        return CustomEvent(**vars(self._event), text=self.text)
 
                     case pygame.K_RETURN:
                         self.unfocus_input()
-                        return CustomEvent(**vars(self._event), text=self.get_text())
+                        return CustomEvent(**vars(self._event), text=self.text)
                     
                     case _:
                         if not event.unicode:
@@ -210,6 +258,8 @@ class TextInput(_Box, _Pressable, Text):
                         
                         potential_text = self._text[:self._cursor_index] + event.unicode + self._text[self._cursor_index:]
                         
+                        # Validator lambda function used to check if inputted text is valid before displaying
+                        # e.g. Time control input has a validator function checking if text represents a float
                         if self._validator(potential_text) is False:
                             return
                         
@@ -224,9 +274,18 @@ class TextInput(_Box, _Pressable, Text):
                 self.set_geometry()
     
     def subtract_blinking_cooldown(self, cooldown):
+        """
+        Subtracts blinking cooldown after certain timeframe. When blinking_cooldown is 1, cursor is able to be drawn.
+
+        Args:
+            cooldown (float): Duration before cursor can no longer be drawn.
+        """
         self._blinking_cooldown = self._blinking_cooldown - cooldown
     
     def set_image(self):
+        """
+        Draws text input widget to image.
+        """
         super().set_image()
 
         if self._cursor_index is not None:
@@ -235,7 +294,11 @@ class TextInput(_Box, _Pressable, Text):
             self.image.blit(scaled_cursor, self.cursor_position)
     
     def update(self):
+        """
+        Overrides based update method, to handle cursor blinking.
+        """
         super().update()
+        # Calculate if cursor should be shown or not
         cursor_frame = animation.calculate_frame_index(0, 2, self._blinking_fps)
         if cursor_frame == 1 and self._blinking_cooldown == 0:
             self._cursor_colour = (0, 0, 0, 0)

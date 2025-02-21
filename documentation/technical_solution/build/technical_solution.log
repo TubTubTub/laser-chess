@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  20 FEB 2025 23:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  21 FEB 2025 13:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -965,13 +965,19 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \mult@nat@firstbox=\box132
 \colbreak@box=\box133
 \mc@col@check@num=\count509
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/etoc\etoc.sty
+Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks51
+\c@etoc@tocid=\count510
+\etoc@framed@titlebox=\box134
+\etoc@framed@contentsbox=\box135
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )))
-\@quotelevel=\count510
-\@quotereset=\count511
+\@quotelevel=\count511
+\@quotereset=\count512
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
 \openout1 = `technical_solution.aux'.
@@ -1031,17 +1037,17 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count512
+\scratchcounter=\count513
 \scratchdimen=\dimen329
-\scratchbox=\box134
-\nofMPsegments=\count513
-\nofMParguments=\count514
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count515
+\scratchbox=\box136
+\nofMPsegments=\count514
+\nofMParguments=\count515
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count516
 \MPscratchDim=\dimen330
-\MPnumerator=\count516
-\makeMPintoPDFobject=\count517
-\everyMPtoPDFconversion=\toks52
+\MPnumerator=\count517
+\makeMPintoPDFobject=\count518
+\everyMPtoPDFconversion=\toks53
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1083,114 +1089,216 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count518
+\c@lstlisting=\count519
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out)
 \@outlinefile=\write5
 \openout5 = `technical_solution.out'.
 
-<../technical_solution/assets/file_tree_diagram.pdf, id=70, 412.4208pt x 448.5558pt>
+\Etoc@tf=\read4
+\tf@toc=\write6
+\openout6 = `technical_solution.toc'.
+
+<../technical_solution/assets/file_tree_diagram.pdf, id=175, 412.4208pt x 448.5558pt>
 File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/assets/file_tree_diagram.pdf>
-Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 13.
+Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 454.91313pt.
 
 
 [1
 
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../technical_solution/assets/file_tree_diagram.pdf>]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 39.
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+
+[2 <../technical_solution/assets/file_tree_diagram.pdf>]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 43.
  (../../data/main.py
 
-[2]) (../../data/loading_screen.py
+[3]) (../../data/loading_screen.py
 
-[3]
+[4]
 
-[4]) (../../data/utils/asset_helpers.py
-
-[5]
+[5]) (../../data/utils/asset_helpers.py
 
 [6]
 
 [7]
 
-[8]) (../../data/utils/data_helpers.py
+[8]
 
-[9]) (../../data/utils/widget_helpers.py
+[9]) (../../data/utils/data_helpers.py
 
-[10]
+[10]) (../../data/utils/widget_helpers.py
 
 [11]
 
-[12]) (../../data/managers/theme.py
+[12]
 
-[13]) (../../data/states/game/components/laser_draw.py
+[13]) (../../data/managers/theme.py
 
-[14]
+[14]) (../../data/states/game/components/laser_draw.py
 
 [15]
 
-[16]) (../../data/states/game/components/particles_draw.py
+[16])
 
-[17]
+[17] (../../data/states/game/components/particles_draw.py
 
 [18]
 
-[19]) (../../data/widgets/bases/widget.py
+[19]
 
-[20]
+[20]) (../../data/widgets/bases/widget.py
 
 [21]
 
 [22]
 
-[23]) (../../data/widgets/bases/circular.py
+[23]
 
-[24]) (../../data/components/circular_linked_list.py
+[24]) (../../data/widgets/bases/circular.py
 
-[25]
+[25]) (../../data/components/circular_linked_list.py
 
 [26]
 
-[27])
+[27]
 
-[28] (../../data/components/custom_event.py
+[28])
 
-[29]) (../../data/widgets/reactive_icon_button.py
+[29] (../../data/components/custom_event.py
 
-[30]) (../../data/widgets/reactive_button.py
+[30]) (../../data/widgets/reactive_icon_button.py
 
-[31]
+[31]) (../../data/widgets/reactive_button.py
 
 [32]) (../../data/widgets/colour_slider.py
 
 [33]
 
-[34])
+[34]
 
-[35] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+[35]) (../../data/widgets/text_input.py
+
+[36]
+
+[37]
+
+[38]
+
+[39]
+
+[40]) (../../data/states/game/mvc/game_model.py
+
+[41]
+
+[42]
+
+[43]
+
+[44])
+
+[45] (../../data/states/game/mvc/game_view.py
+
+[46]
+
+[47]
+
+[48]
+
+[49]
+
+[50])
+
+[51] (../../data/states/game/mvc/game_controller.py
+
+[52]
+
+[53]
+
+[54]
+
+[55])
+
+[56] (../../data/states/game/components/board.py
+
+[57]
+
+[58]
+
+[59]) (../../data/states/game/components/bitboard_collection.py
+
+[60]
+
+[61]
+
+[62]
+
+[63]) (../../data/states/game/cpu/engines/minimax.py
+
+[64]) (../../data/states/game/cpu/engines/alpha_beta.py
+
+[65]
+
+[66]) (../../data/states/game/cpu/engines/transposition_table.py
+
+[67]) (../../data/states/game/cpu/evaluator.py
+
+[68]) (../../data/states/game/cpu/cpu_thread.py
+
+[69]) (../../data/states/game/cpu/zobrist_hasher.py)
+
+[70] (../../data/states/game/cpu/transposition_table.py)
+
+[71] (../../data/database/migrations/create_games_table_19112024.py) (../../data/database/migrations/change_fen_string_column_name_23122024.py
+
+[72]) (../../data/utils/database_helpers.py
+
+[73]
+
+[74]) (../../data/managers/shader.py
+
+[75]
+
+[76]
+
+[77]) (../../data/shaders/fragments/occlusion.frag) (../../data/shaders/fragments/shadowmap.frag
+
+[78]
+
+[79]
+
+[80]) (../../data/shaders/fragments/lightmap.frag
+
+[81]) (../../data/shaders/fragments/highlight_colour.frag
+
+[82]) (../../data/shaders/fragments/blur.frag) (../../data/shaders/fragments/blur.frag
+
+[83])
+
+[84] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `technical_solution.out' has not changed.
-(rerunfilecheck)             Checksum: D67AF4BBE1326760FAB70C35584366F9;1809.
+(rerunfilecheck)             Checksum: E17D20D19C783EAC3A0C7DFE2B0B21EA;3881.
 Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 \openout1 = `technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49134 strings out of 473530
- 1127792 string characters out of 5714311
- 2385285 words of memory out of 5000000
- 69845 multiletter control sequences out of 15000+600000
- 566247 words of font info for 48 fonts, out of 8000000 for 9000
+ 53337 strings out of 473530
+ 1200721 string characters out of 5714311
+ 2526679 words of memory out of 5000000
+ 71241 multiletter control sequences out of 15000+600000
+ 566701 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,6n,136p,1984b,2616s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (35 pages, 732098 bytes).
+ 134i,6n,136p,1984b,2620s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (84 pages, 1277821 bytes).
 PDF statistics:
- 2707 PDF objects out of 2984 (max. 8388607)
- 1838 named destinations out of 2073 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6253 PDF objects out of 7423 (max. 8388607)
+ 4561 named destinations out of 5155 (max. 500000)
+ 290 words of extra memory for PDF output out of 10000 (max. 10000000)
 
