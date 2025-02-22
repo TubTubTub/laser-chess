@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  11 FEB 2025 19:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  22 FEB 2025 01:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1018,9 +1018,6 @@ L3 programming layer <2025-01-18>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `learn.out' has not changed.
 (rerunfilecheck)             Checksum: F4B27C55EDB390CC9F90698C3E5287E2;1420.
 
@@ -1035,7 +1032,7 @@ Package logreq Info: Writing requests to 'learn.run.xml'.
 Here is how much of TeX's memory you used:
  45394 strings out of 473530
  1068387 string characters out of 5714311
- 1834967 words of memory out of 5000000
+ 1834966 words of memory out of 5000000
  67999 multiletter control sequences out of 15000+600000
  565331 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191

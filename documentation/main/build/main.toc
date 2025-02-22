@@ -1,71 +1,83 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
-\contentsline {section}{\numberline {1}Analysis}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Background}{2}{subsection.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.1}Game Description}{2}{subsubsection.1.1.1}%
-\contentsline {subsubsection}{\numberline {1.1.2}Current Solutions}{3}{subsubsection.1.1.2}%
-\contentsline {subsubsection}{\numberline {1.1.3}Client Interview}{4}{subsubsection.1.1.3}%
-\contentsline {subsection}{\numberline {1.2}Objectives}{5}{subsection.1.2}%
-\contentsline {subsubsection}{\numberline {1.2.1}Client Objectives}{5}{subsubsection.1.2.1}%
-\contentsline {subsubsection}{\numberline {1.2.2}Other User Considerations}{6}{subsubsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.3}Research}{6}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Board Representation}{7}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}CPU techniques}{8}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}GUI framework}{8}{subsubsection.1.3.3}%
-\contentsline {subsection}{\numberline {1.4}Proposed Solution}{9}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Language}{9}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Development Environment}{10}{subsubsection.1.4.2}%
-\contentsline {subsubsection}{\numberline {1.4.3}Source Control}{10}{subsubsection.1.4.3}%
-\contentsline {subsubsection}{\numberline {1.4.4}Techniques}{11}{subsubsection.1.4.4}%
-\contentsline {subsection}{\numberline {1.5}Limitations}{11}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Critical Path Design}{11}{subsection.1.6}%
-\contentsline {section}{\numberline {2}Design}{13}{section.2}%
-\contentsline {subsection}{\numberline {2.1}System Architecture}{13}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Main Menu}{14}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Settings}{14}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Past Games Browser}{16}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Config}{17}{subsubsection.2.1.4}%
-\contentsline {subsubsection}{\numberline {2.1.5}Game}{18}{subsubsection.2.1.5}%
-\contentsline {subsubsection}{\numberline {2.1.6}Board Editor}{19}{subsubsection.2.1.6}%
-\contentsline {subsection}{\numberline {2.2}Algorithms and Techniques}{20}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Minimax}{20}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Minimax improvements}{21}{subsubsection.2.2.2}%
-\contentsline {paragraph}{Exact}{23}{section*.30}%
-\contentsline {paragraph}{Lower}{23}{section*.31}%
-\contentsline {paragraph}{Upper}{24}{section*.32}%
-\contentsline {subsubsection}{\numberline {2.2.3}Board Representation}{25}{subsubsection.2.2.3}%
-\contentsline {subsubsection}{\numberline {2.2.4}Evaluation Function}{29}{subsubsection.2.2.4}%
-\contentsline {paragraph}{Mobility}{32}{section*.43}%
-\contentsline {paragraph}{King safety}{32}{section*.44}%
-\contentsline {subsubsection}{\numberline {2.2.5}Shadow Mapping}{32}{subsubsection.2.2.5}%
-\contentsline {paragraph}{Aliasing}{34}{section*.46}%
-\contentsline {paragraph}{Shadow Acne}{34}{section*.47}%
-\contentsline {subsubsection}{\numberline {2.2.6}Multithreading}{35}{subsubsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.3}Data Structures}{35}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Database}{35}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Linked Lists}{37}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Stack}{38}{subsubsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.4}Classes}{39}{subsection.2.4}%
-\contentsline {subsubsection}{\numberline {2.4.1}Class Diagram}{43}{subsubsection.2.4.1}%
-\contentsline {section}{\numberline {3}Technical Solution}{44}{section.3}%
+\contentsline {chapter}{\numberline {1}Analysis}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Background}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Game Description}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Current Solutions}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Client Interview}{4}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Objectives}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Client Objectives}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Other User Considerations}{7}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Research}{7}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Board Representation}{7}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}CPU techniques}{8}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}GUI framework}{9}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}Proposed Solution}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Language}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Development Environment}{10}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Source Control}{11}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Techniques}{11}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Limitations}{12}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Critical Path Design}{12}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Design}{14}{chapter.2}%
+\contentsline {section}{\numberline {2.1}System Architecture}{14}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Main Menu}{15}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Settings}{15}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Past Games Browser}{17}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Config}{18}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}Game}{19}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.1.6}Board Editor}{20}{subsection.2.1.6}%
+\contentsline {section}{\numberline {2.2}Algorithms and Techniques}{21}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Minimax}{21}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Minimax improvements}{22}{subsection.2.2.2}%
+\contentsline {paragraph}{Exact}{24}{section*.30}%
+\contentsline {paragraph}{Lower}{24}{section*.31}%
+\contentsline {paragraph}{Upper}{25}{section*.32}%
+\contentsline {subsection}{\numberline {2.2.3}Board Representation}{26}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Evaluation Function}{30}{subsection.2.2.4}%
+\contentsline {paragraph}{Mobility}{33}{section*.43}%
+\contentsline {paragraph}{King safety}{33}{section*.44}%
+\contentsline {subsection}{\numberline {2.2.5}Shadow Mapping}{33}{subsection.2.2.5}%
+\contentsline {paragraph}{Aliasing}{35}{section*.46}%
+\contentsline {paragraph}{Shadow Acne}{35}{section*.47}%
+\contentsline {subsection}{\numberline {2.2.6}Multithreading}{36}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}Data Structures}{36}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Database}{36}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Linked Lists}{38}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Stack}{39}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Classes}{40}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Class Diagram}{44}{subsection.2.4.1}%
+\contentsline {chapter}{\numberline {3}Technical Solution}{45}{chapter.3}%
 \etoc@startlocaltoc {2}
-\contentsline {subsection}{\numberline {3.1}File Tree Diagram}{44}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Summary of Complexity}{45}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Overview}{46}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Main}{46}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Loading Screen}{47}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Helper functions}{49}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Theme}{57}{subsubsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.4}GUI}{58}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Laser}{58}{subsubsection.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.2}Particles}{61}{subsubsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.3}Widget Bases}{64}{subsubsection.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.4}Widgets}{72}{subsubsection.3.4.4}%
-\contentsline {subsection}{\numberline {3.5}Game}{84}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Model}{84}{subsubsection.3.5.1}%
-\contentsline {subsubsection}{\numberline {3.5.2}View}{87}{subsubsection.3.5.2}%
-\contentsline {subsubsection}{\numberline {3.5.3}Controller}{91}{subsubsection.3.5.3}%
-\contentsline {subsubsection}{\numberline {3.5.4}Board}{95}{subsubsection.3.5.4}%
-\contentsline {subsubsection}{\numberline {3.5.5}Bitboards}{99}{subsubsection.3.5.5}%
-\contentsline {subsection}{\numberline {3.6}CPU}{102}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Database}{102}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Shaders}{102}{subsection.3.8}%
+\contentsline {section}{\numberline {3.1}File Tree Diagram}{46}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Summary of Complexity}{47}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Overview}{47}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Main}{47}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Loading Screen}{48}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Helper functions}{50}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Theme}{58}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}GUI}{59}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Laser}{59}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Particles}{62}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Widget Bases}{65}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Widgets}{74}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}Game}{86}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Model}{86}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}View}{90}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Controller}{96}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}Board}{101}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Bitboards}{104}{subsection.3.5.5}%
+\contentsline {section}{\numberline {3.6}CPU}{108}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Minimax}{108}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{109}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Transposition Table CPU}{111}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Evaluator}{112}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}Multithreading}{113}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Zobrist Hashing}{114}{subsection.3.6.6}%
+\contentsline {subsection}{\numberline {3.6.7}Transposition Table}{115}{subsection.3.6.7}%
+\contentsline {section}{\numberline {3.7}Database}{116}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}DDL}{116}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}DML}{117}{subsection.3.7.2}%
+\contentsline {section}{\numberline {3.8}Shaders}{119}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Shader Manager}{119}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Rays}{122}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Bloom}{126}{subsection.3.8.3}%

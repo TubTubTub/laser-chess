@@ -4,11 +4,11 @@
 
 \newpage
 
-\section{Analysis}
-\subsection{Background}
+\chapter{Analysis}
+\section{Background}
 Mr Myslov is a teacher at Tonbridge School, and currently runs the school chess club. Seldomly, a field day event will be held, in which the club convenes together, playing a chess, or another variant, tournament. This year, Mr Myslov has decided to instead, hold a tournament around another board game, namely laser chess, providing a deviation yet retaining the same familiarity of chess. However, multiple physical sets of laser chess have to be purchased for the entire club to play simultaneously, which is difficult due to it no longer being manufactured. Thus, I have proposed a solution by creating a digital version of the game.
 
-\subsubsection{Game Description}
+\subsection{Game Description}
 Laser Chess is an abstract strategy game played between two opponents. The game differs from regular chess, involving a 10x8 playing board arranged in a predefined condition. The aim of the game is to position your pieces such that your laser beam strikes the opponents Pharoah (the equivalent of a king). Pieces include:
 
 \begin{enumerate}
@@ -43,7 +43,7 @@ Laser Chess is an abstract strategy game played between two opponents. The game 
 
 On each turn, a player may move a piece one square in any direction (similar to the king in regular chess), or rotate a piece clockwise or anticlockwise by 90 degrees. After their move, the laser will automatically be fired. It should be noted that a player’s own pieces can also be hit by their own laser. As in chess, a three-fold repetition results in a draw. Players may also choose to forfeit or offer a draw.
 
-\subsubsection{Current Solutions}
+\subsection{Current Solutions}
 Current free implementations of laser chess that are playable online are limited, seemingly only available on \url{https://laser-chess.com/}.
 
 \begin{figure}[H]
@@ -76,7 +76,7 @@ The game is hosted online and is responsive and visually appealing, with pieces 
 \end{itemize}
 Our design will aim to append the missing feature from this website while learning from their commendable UI design.
 
-\subsubsection{Client Interview}
+\subsection{Client Interview}
 
 \textbf{Q:} Why have you chosen Laser Chess as your request?
 
@@ -124,8 +124,8 @@ Our design will aim to append the missing feature from this website while learni
 
 \noindent Saving games and customising them is a big logistical priority for a tournament, as this will provide the means to record games and for opponents to all agree on the starting conditions, depending on the circumstances of the tournament.
 
-\subsection{Objectives}
-\subsubsection{Client Objectives}
+\section{Objectives}
+\subsection{Client Objectives}
 The following objectives should be met to satisfy my clients’ requirements:
 
 \begin{enumerate}
@@ -185,13 +185,13 @@ The following objectives should be met to satisfy my clients’ requirements:
     \end{itemize}
 \end{enumerate}
 
-\subsubsection{Other User Considerations}
+\subsection{Other User Considerations}
 Although my current primary client is Mr Myslov, I aim to make my program shareable and accessible, so other parties who would like to try laser chess can access a comprehensive implementation of the game, which currently is not readily available online. Additionally, the code should be concise and well commented, complemented by proper documentation, so other parties can edit and implement additional features such as multiplayer to their own liking.
 
-\subsection{Research}
+\section{Research}
 Before proceeding with the actual implementation of the game, I will have to conduct research to plan out the fundamental architecture of the game. Reading on available information online, prior research will prevent me from committing unnecessary time to potentially inadequate ideas or code. I will consider the following areas: board representation, CPU techniques and GUI framework.
 
-\subsubsection{Board Representation}
+\subsection{Board Representation}
 Board representation is the use of a data structure to represent the state of all pieces on the chessboard, and the state of the game itself, at any moment. It is the foundation on which other aspects such as move generation and the evaluation function are built upon, with different methods of implementation having their own advantages and disadvantages on simplicity, execution efficiency and memory footprint. Every board representation can be classified into two categories: piece-centric or square-centric. Piece-centric representations involve keeping track of all pieces on the board and their associated position. Conversely, square-centric representations track every available square, and if it is empty or occupied by a piece. The following are descriptions of various board representations with their respective pros and cons.
 
 \subsubsection*{Square list}
@@ -203,7 +203,7 @@ Square list, a square-centric representation, involves the encoding of each squa
 \subsubsection*{Bitboards}
 Bitboards, a piece-centric representation, are finite sets of 64 elements, one bit per square. To represent the game, one bitboard is needed for each piece-type and colour, stored as an array of bitboards as part of a position object. For example, a player could have a bitboard for white pawns, where a positive bit indicates the presence of the pawn. Bitboards are fast to incrementally update, such as flipping bits at the source and destination positions for a moved piece. Moreover, bitmaps representing static information, such as spaces attacked by each piece type, can be pre-calculated, and retrieved with a single memory fetch at a later time. Additionally, bitboards can operate on all squares in parallel using bitwise operations, notably, a 64-bit CPU can perform all operations on a 64-bit bitboard in one cycle. Bitboards are therefore far more execution efficient than other board representations. However, bitboards are memory-intensive and may be sparse, sometimes only containing a single bit in 64. They require more source code, and are problematic for devices with a limited number of process registers or processor instruction cache.
 
-\subsubsection{CPU techniques}
+\subsection{CPU techniques}
 \subsubsection*{Minimax}
 Minimax is a backtracking algorithm that evaluates the best move given a certain depth, assuming optimal play by both players. A game tree of possible moves is formulated, until the leaf node reaches a specified depth. Using a heuristic evaluation function, minimax recursively assigns each node an evaluation based on the following rules:
 
@@ -219,7 +219,7 @@ Several additional techniques can be implemented to improve upon minimax. For ex
 \subsubsection*{Monte-Carlo Tree Search}
 Monte-Carlo Tree Search (MCTS) involves playouts, where games are played to its end by selecting random moves. The result of each playout is then backpropagated up the game tree, updating the weight of nodes visited during the playout, meaning the algorithm successively improves at accurately estimating the values of the most promising moves. MCTS periodically evaluates alternatives to the currently perceived optimal move, and could thereby discover a better, otherwise overlooked, path. Another benefit is that it does not require an explicit evaluation function, as it relies on statistical sampling as opposed to developed theory on the game state. Additionally, MCTS is scalable and may be parallelized, making it suitable for distributed computing or multi-core architectures. However, the rate of tree growth is exponential, requiring huge amounts of memory. In addition, MCTS requires many iterations to be able to reliably decide the most efficient path.
 
-\subsubsection{GUI framework}
+\subsection{GUI framework}
 \subsubsection*{Pygame}
 Pygame is an open-source Python module geared for game development. It offers abundant yet simple APIs for drawing sprites and game objects on a screen-canvas, managing user input, audio et cetera. It also has good documentation, an extensive community, and receives regular updates through its community edition. Although it has greater customizability in drawing custom bitmap graphics and control over the mainloop, it lacks built-in support for UI elements such as buttons and sliders, requiring custom implementation. Moreover, it is less efficient, using 2D pixel arrays and the RAM instead of utilising the GPU for batch rendering, being single-threaded, and running on an interpreted language.
 
@@ -229,8 +229,8 @@ PyQt is the Python binding for Qt, a cross-platform C++ GUI framework. PyQt cont
 \subsubsection*{OpenGL}
 Python contains multiple bindings for OpenGL, such as PyOpenGL and ModernGL. Being a widely used standard, OpenGL has the best documentation and support. It also boasts the highest efficiency, designed to be implemented using hardware acceleration through the GPU. However, its main disadvantage is the required complexity compared to the previous frameworks, being primarily a graphical API and not for developing full programs.
 
-\subsection{Proposed Solution}
-\subsubsection{Language}
+\section{Proposed Solution}
+\subsection{Language}
 The two main options regarding programming language choice, and their pros and cons, are as listed:
 
 \begin{longtable}{ll}
@@ -286,13 +286,13 @@ I have chosen Python as the programming language for this project. This is mainl
 
 Although Python generally has worse performance than JavaScript, speed and memory efficiency are not primary objectives in my project, and should not affect the final program. Therefore, I have prioritised Python’s simpler syntax over JavaScript’s speed. Being familiar with Python will also allow me to divert more time for development instead of researching new concepts or fixing unfamiliar bugs.
 
-\subsubsection{Development Environment}
+\subsection{Development Environment}
 A good development environment improves developer experiences, with features such as auto-indentation and auto-bracket completion for quicker coding. The main development environments under consideration are: Visual Studio Code (VS Code), PyCharm and Sublime Text. I have decided to use VS Code due to its greater library of extensions over Sublime, and its more user-friendly implementation of features such as version control and GitHub integration. Moreover, VS Code contains many handy features that will speed up the development process, such as its built-in debugging features. Although PyCharm is an extensive IDE, its default features can be supplemented by VS Code extensions. Additionally, VS Code is more lightweight and customizable, and contains vast documentation online.
 
-\subsubsection{Source Control}
+\subsection{Source Control}
 A Source Control Tool automates the process of tracking and managing changes in source code. A good source control tool will be essential for my project. It provides the benefits of: protecting the code from human errors (i.e. accidental deletion), enabling easy code experimentation on a clone created through branching from the main project, and by tracking changes through the code history, enabling easier debugging and rollbacks. For my project, I have chosen Git as my version control tool, as it is open-source and provides a more user-friendly interface and documentation over alternatives such as Azure DevOps, and contains sufficient functionality for a small project like mines.
 
-\subsubsection{Techniques}
+\subsection{Techniques}
 I have decided on employing the following techniques, based on the pros and cons outlined in the research section above.
 
 \subsubsection*{Board representation}
@@ -306,12 +306,12 @@ I have chosen Pygame as my main GUI framework. This is due to its increased flex
 
 I will also integrate Pygame together with ModernGL, using the convenient APIs in for handling user input and sprite drawing, together with the speed of OpenGL to draw shaders and any other effect overlays.
 
-\subsection{Limitations}
+\section{Limitations}
 I have agreed with my client that due to the multiple versions of Laser Chess that exist online, together with a lack of regulation, an implementation that adheres to the general rules of Laser Chess, and not strictly to a specific version, is acceptable.
 
 Moreover, due to the time constraints on both my schedules for exams and for the date of the tournament, the game only has to be presented in a functional state, and not polished for release, with extra work such as porting to a wide range of OS systems.
 
-\subsection{Critical Path Design}
+\section{Critical Path Design}
 In order to meet my client’s requirement of releasing the game before the next field day, I have given myself a time limit of 12 weeks to develop my game, and have created the following critical path diagram to help me adhere to completing every milestone within the time limit.
 
 \begin{figure}[H]

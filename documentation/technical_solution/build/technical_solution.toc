@@ -1,36 +1,36 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
-\contentsline {section}{\numberline {1}Technical Solution}{1}{section.1}%
+\contentsline {chapter}{\numberline {1}Technical Solution}{1}{chapter.1}%
 \etoc@startlocaltoc {1}
-\contentsline {subsection}{\numberline {1.1}File Tree Diagram}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Summary of Complexity}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Overview}{3}{subsection.1.3}%
-\contentsline {subsubsection}{\numberline {1.3.1}Main}{3}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Loading Screen}{4}{subsubsection.1.3.2}%
-\contentsline {subsubsection}{\numberline {1.3.3}Helper functions}{6}{subsubsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {1.3.4}Theme}{14}{subsubsection.1.3.4}%
-\contentsline {subsection}{\numberline {1.4}GUI}{15}{subsection.1.4}%
-\contentsline {subsubsection}{\numberline {1.4.1}Laser}{15}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Particles}{18}{subsubsection.1.4.2}%
-\contentsline {subsubsection}{\numberline {1.4.3}Widget Bases}{21}{subsubsection.1.4.3}%
-\contentsline {subsubsection}{\numberline {1.4.4}Widgets}{29}{subsubsection.1.4.4}%
-\contentsline {subsection}{\numberline {1.5}Game}{41}{subsection.1.5}%
-\contentsline {subsubsection}{\numberline {1.5.1}Model}{41}{subsubsection.1.5.1}%
-\contentsline {subsubsection}{\numberline {1.5.2}View}{45}{subsubsection.1.5.2}%
-\contentsline {subsubsection}{\numberline {1.5.3}Controller}{52}{subsubsection.1.5.3}%
-\contentsline {subsubsection}{\numberline {1.5.4}Board}{57}{subsubsection.1.5.4}%
-\contentsline {subsubsection}{\numberline {1.5.5}Bitboards}{60}{subsubsection.1.5.5}%
-\contentsline {subsection}{\numberline {1.6}CPU}{64}{subsection.1.6}%
-\contentsline {subsubsection}{\numberline {1.6.1}Minimax}{64}{subsubsection.1.6.1}%
-\contentsline {subsubsection}{\numberline {1.6.2}Alpha-beta Pruning}{65}{subsubsection.1.6.2}%
-\contentsline {subsubsection}{\numberline {1.6.3}Transposition Table CPU}{67}{subsubsection.1.6.3}%
-\contentsline {subsubsection}{\numberline {1.6.4}Evaluator}{68}{subsubsection.1.6.4}%
-\contentsline {subsubsection}{\numberline {1.6.5}Multithreading}{69}{subsubsection.1.6.5}%
-\contentsline {subsubsection}{\numberline {1.6.6}Zobrist Hashing}{70}{subsubsection.1.6.6}%
-\contentsline {subsubsection}{\numberline {1.6.7}Transposition Table}{71}{subsubsection.1.6.7}%
-\contentsline {subsection}{\numberline {1.7}Database}{72}{subsection.1.7}%
-\contentsline {subsubsection}{\numberline {1.7.1}DDL}{72}{subsubsection.1.7.1}%
-\contentsline {subsubsection}{\numberline {1.7.2}DML}{73}{subsubsection.1.7.2}%
-\contentsline {subsection}{\numberline {1.8}Shaders}{75}{subsection.1.8}%
-\contentsline {subsubsection}{\numberline {1.8.1}Shader Manager}{75}{subsubsection.1.8.1}%
-\contentsline {subsubsection}{\numberline {1.8.2}Rays}{78}{subsubsection.1.8.2}%
-\contentsline {subsubsection}{\numberline {1.8.3}Bloom}{82}{subsubsection.1.8.3}%
+\contentsline {section}{\numberline {1.1}File Tree Diagram}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Summary of Complexity}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Overview}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Main}{3}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Loading Screen}{4}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Helper functions}{6}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Theme}{14}{subsection.1.3.4}%
+\contentsline {section}{\numberline {1.4}GUI}{15}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Laser}{15}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Particles}{18}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Widget Bases}{21}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Widgets}{30}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Game}{42}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Model}{42}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}View}{46}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Controller}{52}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Board}{57}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Bitboards}{60}{subsection.1.5.5}%
+\contentsline {section}{\numberline {1.6}CPU}{64}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Minimax}{64}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Alpha-beta Pruning}{65}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Transposition Table CPU}{67}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Evaluator}{68}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Multithreading}{69}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Zobrist Hashing}{70}{subsection.1.6.6}%
+\contentsline {subsection}{\numberline {1.6.7}Transposition Table}{71}{subsection.1.6.7}%
+\contentsline {section}{\numberline {1.7}Database}{72}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}DDL}{72}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}DML}{73}{subsection.1.7.2}%
+\contentsline {section}{\numberline {1.8}Shaders}{75}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Shader Manager}{75}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}Rays}{78}{subsection.1.8.2}%
+\contentsline {subsection}{\numberline {1.8.3}Bloom}{82}{subsection.1.8.3}%

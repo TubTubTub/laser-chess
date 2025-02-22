@@ -4,8 +4,8 @@
 
 \newpage
 
-\section{Design}
-\subsection{System Architecture}
+\chapter{Design}
+\section{System Architecture}
 In this section, I will lay out the overall logic, and an overview of the steps involved in running my program. By decomposing the program into individual abstracted stages, I can focus on the workings and functionality of each section individually, which makes documenting and coding each section easier.I have also included a flowchart to illustrate the logic of each screen of the program.
 
 I will also create an abstracted GUI prototype in order to showcase the general functionality of the user experience, while acting as a reference for further stages of graphical development. It will consist of individually drawn screens for each stage of the program, as shown in the top-level overview. The elements and layout of each screen are also documented below.
@@ -19,7 +19,7 @@ The following is a top-level overview of the logic of the program:
     \label{fig:program-overview-flowchart}
 \end{figure}
 
-\subsubsection{Main Menu}
+\subsection{Main Menu}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/menu_gui.png}
@@ -29,7 +29,7 @@ The following is a top-level overview of the logic of the program:
 
 The main menu will be the first screen to be displayed, providing access to different stages of the game. The GUI should be simple yet effective, containing clearly-labelled buttons for the user to navigate to different parts of the game.
 
-\subsubsection{Settings}
+\subsection{Settings}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/settings_gui.png}
@@ -57,7 +57,7 @@ Additionally, each screen is provided with a home button icon on the top right (
     \label{fig:settings-flowchart}
 \end{figure}
 
-\subsubsection{Past Games Browser}
+\subsection{Past Games Browser}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/browser_gui.png}
@@ -77,7 +77,7 @@ While replaying the game, the GUI will appear identical to an actual game. Howev
     \label{fig:browser-flowchart}
 \end{figure}
 
-\subsubsection{Config}
+\subsection{Config}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/config_gui.png}
@@ -96,7 +96,7 @@ The config menu is loaded with the default starting position. However, players m
     \label{fig:config-flowchart}
 \end{figure}
 
-\subsubsection{Game}
+\subsection{Game}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/game_gui.png}
@@ -125,7 +125,7 @@ Additionally, the current selected piece will be highlighted, and the available 
     \label{fig:game-flowchart}
 \end{figure}
 
-\subsubsection{Board Editor}
+\subsection{Board Editor}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\columnwidth]{../design/assets/editor_gui.png}
@@ -144,8 +144,8 @@ For the GUI, the buttons should clearly represent their functionality, through t
     \label{fig:editor-flowchart}
 \end{figure}
 
-\subsection{Algorithms and Techniques}
-\subsubsection{Minimax}
+\section{Algorithms and Techniques}
+\subsection{Minimax}
 Minimax is a backtracking algorithm commonly used in zero-sum games used to determine the score according to an evaluation function, after a certain number of perfect moves. Minimax aims to minimize the maximum advantage possible for the opponent, thereby minimizing a player’s possible loss in a worst-case scenario. It is implemented using a recursive depth-first search, alternating between minimizing and maximising the player’s advantage in each recursive call.
 
 \begin{figure}[H]
@@ -186,7 +186,7 @@ Implementation in the form of pseudocode is shown below:
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Minimax improvements}
+\subsection{Minimax improvements}
 \subsubsection*{Alpha-beta pruning}
 Alpha-beta pruning is a search algorithm that aims to decrease the number of nodes evaluated by the minimax algorithm. Alpha-beta pruning stops evaluating a move in the game tree when one refutation is found in its child nodes, proving the node to be worse than previously-examined alternatives. It does this without any potential of pruning away a better move.
 The algorithm maintains two values: alpha and beta. Alpha ($\alpha$), the upper bound, is the highest value that the maximising player is guaranteed of; Beta ($\beta$), the lower bound, is the lowest value that the minimizing player is guaranteed of. If the condition $\alpha\geq\beta$ for a node being evaluated, the evaluation process halts and its remaining children nodes are ‘pruned’.
@@ -339,7 +339,7 @@ The pseudocode implementation for Zobrist hashing is shown below:
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Board Representation}
+\subsection{Board Representation}
 \subsubsection*{FEN string}
 Forsyth-Edwards Notation (FEN) notation provides all information on a particular position in a chess game. I intend to implement methods parsing and generating FEN strings in my program, in order to load desired starting positions and save games for later play. Deviating from the classic 6-part format, a custom FEN string format will be required for our laser chess game, accommodating its different rules from normal chess.
 \\
@@ -492,7 +492,7 @@ Our final function to calculate valid moves combines all the logic above: Shifti
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Evaluation Function}
+\subsection{Evaluation Function}
 The evaluation function is a heuristic algorithm to determine the relative value of a position. It outputs a real number corresponding to the advantage given to a player if reaching the analysed position, usually at a leaf node in the minimax tree. The evaluation function therefore provides the values on which minimax works on to compute an optimal move.
 
 In the majority of evaluation functions, the most significant factor determining the evaluation is the material balance, or summation of values of the pieces. The hand-crafted evaluation function is then optimised by tuning various other positional weighted terms, such as board control and king safety. 
@@ -587,7 +587,7 @@ Using Algorithm \ref{alg:valid-moves} for finding valid moves, we can implement 
 
 \paragraph{King safety} (Pharoah safety) describes the level of protection of the pharoah, being the piece that determines a win or loss. In normal chess, this would be achieved usually by castling, or protection via position or with other pieces. Similarly, since the only way to lose in Laser Chess is via a laser, having pieces surrounding the pharoah, either to reflect the laser or to be sacrificed, is a sensible tactic and improves king safety. Thus, a value for king safety can be achieved by finding the number of valid moves a pharoah can make, and subtracting them from the maximum possible of moves (8) to find the number of surrounding pieces.
 
-\subsubsection{Shadow Mapping}
+\subsection{Shadow Mapping}
 Following the client's requirement for engaging visuals, I have decided to implement shadow mapping for my program, especially as lasers are the main focus of the game. Shadow mapping is a technique used to create graphical hard shadows, with the use of a depth buffer map. I have chosen to implement shadow mapping, instead of alternative lighting tecniques such as ray casting and ray marching, as its effiency is more suitable for real-time usage, and results are visually decent enough for my purposes.
 \\
 For typical 3D shadow mapping, the standard approach is as follows:
@@ -658,7 +658,7 @@ To emulate this in our game, we could calculate penumbra values with various met
 
 This method progressively blurs the shadow as the distance from the main shadow (umbra) increases, which results in a convincing estimation while being less computationally intensive.
 
-\subsubsection{Multithreading}
+\subsection{Multithreading}
 In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI, I will have to employ multi-threading. Since python runs on a single thread natively, code is exected serially, meaning that a time consuming function such as minimax will prevent the running of another GUI-drawing function until it is finished, hence freezing the program. To overcome this, multi-threading can execute both functions in parallel on different threads, meaning the GUI-drawing thread can run while minimax is being computed, and stay responsive. To pass data between threads, since memory is shared between threads, arrays and queues can be used to store results from threads. The following flowchart shows my chosen approach to keep the GUI responsive while minimax is being computed:
 
 \begin{figure}[H]
@@ -668,8 +668,8 @@ In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI
     \label{fig:multi-threading}
 \end{figure}
 
-\subsection{Data Structures}
-\subsubsection{Database}
+\section{Data Structures}
+\subsection{Database}
 To achieve Objective \ref{itm:save-games} and stores previous games, I have opted to use a relational database. Choosing between different relational database, I have decided to use SQLite, since it does not require additional server softwards, has good performance with low memory requirements, and adequate for my use cases, with others such as Postgres being overkill.
 
 \subsubsection*{DDL}
@@ -767,7 +767,7 @@ The start row and end row will be passed as parameters to the placeholders in th
 \subsubsection*{Security}
 Security measures such as database file permissions and encryption are common for a SQL database. However, since SQLite is a serverless database, and my program runs without any need for an internet connection, the risk of vulnerabilities is greatly reduced. Additionally, the game data stored on my database is frankly inconsequential, so going to great lengths to protect it wouldn't be to best use of my time. Nevertheless, my SQL Python-binding does support the user of placeholders for parameteres, thereby addressing the risk of SQL injection attacks.
 
-\subsubsection{Linked Lists}
+\subsection{Linked Lists}
 Another data structure I intend to implement is linked lists. This will be integrated into widgets such as the carousel or multiple icon button widget, since these will contain a variable number of items, and where $O(1)$ random access is not a priority. Since moving back and forth between nodes is a must for a carousel widget, the linked list will be doubly-linked, with each node containing to its previous and next node. The list will also need to loop, with the next pointer of the last node pointing back to the first node, making it a circular linked list.
 
 The following pseudocode outlines the basic functionality of the linked list:
@@ -828,7 +828,7 @@ The following pseudocode outlines the basic functionality of the linked list:
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Stack}
+\subsection{Stack}
 Being a data structure with LIFO ordering, a stack is used for handling moves in the review screen. Starting with full stack of moves, every move undone pops an element off the stack to be processed. This move is then pushed onto a second stack. Therefore, cycling between moves requires pushing and popping between the two stacks, as shown in Figure \ref. The same functionality can be achieved using a queue, but I have chosen to use two stacks as it is simpler to implement, as being able to quickly check the number of items in each will come in handy.
 
 \begin{figure}[H]
@@ -838,7 +838,7 @@ Being a data structure with LIFO ordering, a stack is used for handling moves in
     \label{fig:stack-diagram}
 \end{figure}
 
-\subsection{Classes}
+\section{Classes}
 I will be using an Object-Oriented Programming (OOP) paradigm for my program. OOP reduces repetition of code, as inheritance can be used to abstract repetive code into a base class, as show in my widgets implementation. Testing and debugging classes will make my workflow more efficient. This section documents the base classes I am going to implement in my program.
 
 \subsubsection*{State}
@@ -990,7 +990,7 @@ For my game screen, I will be utilising the Model-View-Controller architectural 
 \subsubsection*{Shaders}
 To use ModernGL with Pygame, I have created classes for each fragment shader, controlled by a main shader manager class. The fragment shader classes will rely on composition: The shader manager creates the fragment shader class; Every fragment shader class takes their shader manager parent instance as an argument, and runs methods on it to produce the final output.
 
-\subsubsection{Class Diagram}
+\subsection{Class Diagram}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{../design/assets/class_relation_diagram.pdf}
