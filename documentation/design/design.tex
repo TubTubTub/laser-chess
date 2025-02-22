@@ -538,24 +538,24 @@ A piece in normal chess can differ in strength based on what square it is occupy
     \label{fig:psqt}
 \end{figure}
 
-For asymmetrical PSQTs, we would ideally like to label the board identically from both player’s point of views, since currently we only have one set of PSQTs modelled from the blue perspective. We would like to flip the PSQTs to be reused from the red perspective, so that a generic algorithm can be used to sum up and calculate the total piece values for both players.
+For asymmetrical PSQTs, we would ideally like to label the board identically from both player’s point of views. Although the PSQTs are displayed from the blue player's perspective (blue pharoah at the bottom of the board), it uses indexes from the red player's perspective, as arrays and lists are defined with index 0 being at the topleft of the board. We would like to flip the PSQTs to be reused with blue indexes, so that a generic algorithm can be used to sum up and calculate the total positional values for both players.
 
-To utilise a PSQT for red pieces, a special ‘FLIP’ table can be implemented:
+To utilise a PSQT for blue pieces, a special ‘FLIP’ table can be implemented:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\columnwidth]{../design/assets/bitboard_indexes.pdf}
-    \caption{FLIP table used to map a red piece index to the blue player's perspective}
+    \caption{FLIP table used to map a blue piece index to the red player's perspective}
     \label{fig:flip-table}
 \end{figure}
 
-The FLIP table is just an array of indexes, mapping every red player’s square onto the corresponding blue square. The following expression utilises the FLIP table to retrieve a red player’s value from the blue player’s PSQT:
+The FLIP table is just an array of indexes, mapping every blue player’s index onto the corresponding red index. The following expression utilises the FLIP table to retrieve a blue player’s value from the red player’s PSQT:
 
 \begin{center}
-red\_psqt\_value = PHAROAH\_PSQT[FLIP[square]]
+blue\_psqt\_value = PHAROAH\_PSQT[FLIP[square]]
 \end{center}
 
-The following function retrieves an array of bitb oards representing piece positions from the board class, then sums up all the values of these pieces for both players, referencing the corresponding PSQT:
+The following function retrieves an array of bitboards representing piece positions from the board class, then sums up all the values of these pieces for both players, referencing the corresponding PSQT:
 
 \begin{algorithm}[H]
 \caption{Calculating positional value pseudocode}

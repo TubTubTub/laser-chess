@@ -199,7 +199,7 @@ class GameView:
         Stops or resumes timer.
 
         Args:
-            colour (Colour.BLUE | Colour.RED): Timer to toggle.
+            colour (Colour): Timer to toggle.
             is_active (bool): Whether to pause or resume timer.
         """
         if colour == Colour.BLUE:

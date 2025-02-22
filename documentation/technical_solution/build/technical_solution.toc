@@ -12,25 +12,27 @@
 \contentsline {subsection}{\numberline {1.4.1}Laser}{15}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Particles}{18}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Widget Bases}{21}{subsection.1.4.3}%
+\contentsline {subsubsection}{Circular Linked List}{26}{section*.2}%
 \contentsline {subsection}{\numberline {1.4.4}Widgets}{30}{subsection.1.4.4}%
 \contentsline {section}{\numberline {1.5}Game}{42}{section.1.5}%
 \contentsline {subsection}{\numberline {1.5.1}Model}{42}{subsection.1.5.1}%
 \contentsline {subsection}{\numberline {1.5.2}View}{46}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Controller}{52}{subsection.1.5.3}%
 \contentsline {subsection}{\numberline {1.5.4}Board}{57}{subsection.1.5.4}%
-\contentsline {subsection}{\numberline {1.5.5}Bitboards}{60}{subsection.1.5.5}%
-\contentsline {section}{\numberline {1.6}CPU}{64}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Minimax}{64}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Alpha-beta Pruning}{65}{subsection.1.6.2}%
-\contentsline {subsection}{\numberline {1.6.3}Transposition Table CPU}{67}{subsection.1.6.3}%
-\contentsline {subsection}{\numberline {1.6.4}Evaluator}{68}{subsection.1.6.4}%
-\contentsline {subsection}{\numberline {1.6.5}Multithreading}{69}{subsection.1.6.5}%
-\contentsline {subsection}{\numberline {1.6.6}Zobrist Hashing}{70}{subsection.1.6.6}%
-\contentsline {subsection}{\numberline {1.6.7}Transposition Table}{71}{subsection.1.6.7}%
-\contentsline {section}{\numberline {1.7}Database}{72}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}DDL}{72}{subsection.1.7.1}%
-\contentsline {subsection}{\numberline {1.7.2}DML}{73}{subsection.1.7.2}%
-\contentsline {section}{\numberline {1.8}Shaders}{75}{section.1.8}%
-\contentsline {subsection}{\numberline {1.8.1}Shader Manager}{75}{subsection.1.8.1}%
-\contentsline {subsection}{\numberline {1.8.2}Rays}{78}{subsection.1.8.2}%
-\contentsline {subsection}{\numberline {1.8.3}Bloom}{82}{subsection.1.8.3}%
+\contentsline {subsection}{\numberline {1.5.5}Bitboards}{62}{subsection.1.5.5}%
+\contentsline {section}{\numberline {1.6}CPU}{68}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Minimax}{68}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Alpha-beta Pruning}{69}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Transposition Table}{71}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Evaluator}{72}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Multithreading}{74}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Zobrist Hashing}{75}{subsection.1.6.6}%
+\contentsline {subsection}{\numberline {1.6.7}Cache}{77}{subsection.1.6.7}%
+\contentsline {section}{\numberline {1.7}Database}{79}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}DDL}{79}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}DML}{80}{subsection.1.7.2}%
+\contentsline {section}{\numberline {1.8}Shaders}{82}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}Shader Manager}{82}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}Rays}{85}{subsection.1.8.2}%
+\contentsline {subsection}{\numberline {1.8.3}Bloom}{89}{subsection.1.8.3}%
+\contentsline {subsection}{\numberline {1.8.4}Stacj}{91}{subsection.1.8.4}%

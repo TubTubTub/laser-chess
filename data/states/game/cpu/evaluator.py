@@ -1,23 +1,40 @@
-from data.constants import Colour, Piece, Score
-from data.utils.bitboard_helpers import index_to_bitboard, pop_count, occupied_squares, bitboard_to_index
+from data.utils.bitboard_helpers import pop_count, occupied_squares, bitboard_to_index
 from data.states.game.components.psqt import PSQT, FLIP
-import random
 from data.managers.logs import initialise_logger
+from data.constants import Colour, Piece, Score
 
 logger = initialise_logger(__name__)
 
 class Evaluator:
     def __init__(self, verbose=True):
         self._verbose = verbose
-        pass
     
     def evaluate(self, board, absolute=False):
-        #Add tapered evaluation
-        blue_score = self.evaluate_pieces(board, Colour.BLUE) + self.evaluate_position(board, Colour.BLUE) + self.evaluate_mobility(board, Colour.BLUE) + self.evaluate_pharoah_safety(board, Colour.BLUE)
+        """
+        Evaluates and returns a numerical score for the board state.
 
-        red_score = self.evaluate_pieces(board, Colour.RED) + self.evaluate_position(board, Colour.RED) + self.evaluate_mobility(board, Colour.RED) + self.evaluate_pharoah_safety(board, Colour.RED)
+        Args:
+            board (Board): The current board state.
+            absolute (bool): Whether to always return the absolute score from the active colour's perspective (for NegaMax).
 
-        if (self._verbose):
+        Returns:
+            int: Score representing advantage/disadvantage for the player.
+        """
+        blue_score = (
+            self.evaluate_pieces(board, Colour.BLUE) +
+            self.evaluate_position(board, Colour.BLUE) +
+            self.evaluate_mobility(board, Colour.BLUE) +
+            self.evaluate_pharoah_safety(board, Colour.BLUE)
+        )
+
+        red_score = (
+            self.evaluate_pieces(board, Colour.RED) +
+            self.evaluate_position(board, Colour.RED) +
+            self.evaluate_mobility(board, Colour.RED) +
+            self.evaluate_pharoah_safety(board, Colour.RED)
+        )
+
+        if self._verbose:
             logger.info('\nPosition:', self.evaluate_position(board, Colour.BLUE), self.evaluate_position(board, Colour.RED))
             logger.info('Mobility:', self.evaluate_mobility(board, Colour.BLUE), self.evaluate_mobility(board, Colour.RED))
             logger.info('Safety:', self.evaluate_pharoah_safety(board, Colour.BLUE), self.evaluate_pharoah_safety(board, Colour.RED))
@@ -25,11 +42,20 @@ class Evaluator:
 
         if absolute and board.get_active_colour() == Colour.RED:
             return red_score - blue_score
-        
-        return blue_score - red_score
+        else:
+            return blue_score - red_score
     
     def evaluate_pieces(self, board, colour):
-        # return random.randint(-100, 100)
+        """
+        Evaluates the material score for a given colour.
+
+        Args:
+            board (Board): The current board state.
+            colour (Colour): The colour to evaluate.
+
+        Returns:
+            int: Sum of all piece scores.
+        """
         return (
             Score.SPHINX * board.bitboards.get_piece_count(Piece.SPHINX, colour) +
             Score.PYRAMID * board.bitboards.get_piece_count(Piece.PYRAMID, colour) +
@@ -38,29 +64,59 @@ class Evaluator:
         )
 
     def evaluate_position(self, board, colour):
+        """
+        Evaluates the positional score for a given colour.
+
+        Args:
+            board (Board): The current board state.
+            colour (Colour): The colour to evaluate.
+
+        Returns:
+            int: Score representing positional advantage/disadvantage.
+        """
         score = 0
 
         for piece in Piece:
             if piece == Piece.SPHINX:
                 continue
 
-            for colour in Colour:
-                piece_bitboard = board.bitboards.get_piece_bitboard(piece, colour)
-                
-                for bitboard in occupied_squares(piece_bitboard):
-                    index = bitboard_to_index(bitboard)
-                    index = FLIP[index] if colour == Colour.BLUE else index
+            piece_bitboard = board.bitboards.get_piece_bitboard(piece, colour)
+            
+            for bitboard in occupied_squares(piece_bitboard):
+                index = bitboard_to_index(bitboard)
+                # Flip PSQT if using from blue player's perspective
+                index = FLIP[index] if colour == Colour.BLUE else index
 
-                    score += PSQT[piece][index] * Score.POSITION
+                score += PSQT[piece][index] * Score.POSITION
         
         return score
     
     def evaluate_mobility(self, board, colour):
+        """
+        Evaluates the mobility score for a given colour.
+
+        Args:
+            board (Board): The current board state.
+            colour (Colour): The colour to evaluate.
+
+        Returns:
+            int: Score on numerical representation of mobility.
+        """
         number_of_moves = pop_count(board.get_all_valid_squares(colour))
 
         return number_of_moves * Score.MOVE
 
     def evaluate_pharoah_safety(self, board, colour):
+        """
+        Evaluates the safety of the Pharoah for a given colour.
+
+        Args:
+            board (Board): The current board state.
+            colour (Colour): The colour to evaluate.
+
+        Returns:
+            int: Score representing mobility of the Pharoah.
+        """
         pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
         pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
         return (8 - pharoah_available_moves) * Score.PHAROAH_SAFETY

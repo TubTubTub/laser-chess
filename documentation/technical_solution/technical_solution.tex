@@ -19,17 +19,18 @@ To help navigate through the source code, I have included the following director
 
 \section{Summary of Complexity}
 \begin{itemize}
-\item Alpha-beta pruning and transposition table improvements for Minimax
+\item Alpha-beta pruning and transposition table improvements for Minimax (\ref{sec:alpha-beta} and \ref{sec:transposition-table})
 \item Shadow mapping and coordinate transformations
-\item Recursive Depth-First Search tree traversal (\ref{sec:theme})
-\item Circular doubly-linked list and stack
+\item Recursive Depth-First Search tree traversal (\ref{sec:theme} and \ref{sec:minimax})
+\item Circular doubly-linked list and stack (\ref{sec:linked-list})
 \item Multipass shaders and gaussian blur
 \item Aggregate and Window SQL functions
 \item OOP techniques (\ref{sec:widget-bases} and \ref{sec:widgets})
-\item Multithreading (\ref{sec:loading-screen})
-\item Bitboards
+\item Multithreading (\ref{sec:loading-screen} and \ref{sec:cpu-thread})
+\item Bitboards (\ref{sec:bitboards})
+\item Zobrist hashing (\ref{sec:zobrist-hashing})
 \item (File handling and JSON parsing) (\ref{sec:data-helpers})
-\item (Dictionary recursion)
+\item (Dictionary recursion) (\ref{sec:theme})
 \item (Dot product) (\ref{sec:asset-helpers})
 \end{itemize}
 
@@ -98,8 +99,9 @@ Widget bases are the base classes for for my widgets system. They contain both a
 \noindent\verb|circular.py|
 \lstinputlisting{../../data/widgets/bases/circular.py}
 
-\bigskip
-\noindent The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
+\subsubsection{Circular Linked List}
+\label{sec:linked-list}
+The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
 
 \noindent\verb|circular_linked_list.py|
 \lstinputlisting{../../data/components/circular_linked_list.py}
@@ -193,37 +195,53 @@ The \lstinline{Board} class implements the Laser Chess board, and is responsible
 \lstinputlisting{../../data/states/game/components/board.py}
 
 \subsection{Bitboards}
+\label{sec:bitboards}
 The \lstinline{BitboardCollection} class uses helper functions found in \lstinline{bitboard_helpers.py} such as \lstinline{pop_count}, to initialise and manage bitboard transformations.
 
 \noindent\verb|bitboard_collection.py|
 \lstinputlisting{../../data/states/game/components/bitboard_collection.py}
 
 \section{CPU}
+This section includes my implementation for the CPU engine run on minimax, including its various improvements and accessory classes.
+
+Every CPU engine class is a subclass of a \lstinline{BaseCPU} abstract class, and therefore contains the same attribute and method names. This means polymorphism can be used again to easily to test and vary the difficulty by switching out which CPU engine is used.
+
+The method \lstinline{find_move} is called by the CPU thread. \lstinline{search} is then called recursively to traverse the minimax tree, and find an optimal move. The move is then return to \lstinline{find_move} and passed and run with the callback function.
+
 \subsection{Minimax}
+\label{sec:minimax}
 \noindent\verb|minimax.py|
 \lstinputlisting{../../data/states/game/cpu/engines/minimax.py}
 
 \subsection{Alpha-beta Pruning}
+\label{sec:alpha-beta}
 \noindent\verb|alpha_beta.py|
-\lstinputlisting{../../data/states/game/cpu/engines/alpha_beta.py}
+\lstinputlisting[lastline=94]{../../data/states/game/cpu/engines/alpha_beta.py}
 
-\subsection{Transposition Table CPU}
-\noindent\verb|alpha_beta.py|
-\lstinputlisting{../../data/states/game/cpu/engines/transposition_table.py}
+\subsection{Transposition Table}
+\label{sec:transposition-table}
+For adding transposition table functionality to my other engine classes, I have decided to use a mixin design architecture. This allows me to reuse code by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
+
+\noindent\verb|transposition_table.py|
+\lstinputlisting[lastline=59]{../../data/states/game/cpu/engines/transposition_table.py}
 
 \subsection{Evaluator}
 \noindent\verb|evaluator.py|
 \lstinputlisting{../../data/states/game/cpu/evaluator.py}
 
 \subsection{Multithreading}
+A \lstinline{CPUThread} is initialised with a CPU engine at the start of the game state, and run whenever it is the CPU's turn to move.
+
 \noindent\verb|cpu_thread.py|
+\label{sec:cpu-thread}
 \lstinputlisting{../../data/states/game/cpu/cpu_thread.py}
 
 \subsection{Zobrist Hashing}
+\label{sec:zobrist-hashing}
 \noindent\verb|zobrist_hasher.py|
 \lstinputlisting{../../data/states/game/cpu/zobrist_hasher.py}
 
-\subsection{Transposition Table}
+\subsection{Cache}
 \noindent\verb|transposition_table.py|
 \lstinputlisting{../../data/states/game/cpu/transposition_table.py}
 
@@ -268,6 +286,8 @@ Uses interface protocol!
 \bigskip
 \noindent\verb|blur.frag|
 \lstinputlisting{../../data/shaders/fragments/blur.frag}
+
+\subsection{Stacj}
 
 
 \end{document}

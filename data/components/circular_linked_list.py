@@ -7,7 +7,7 @@ class Node:
 class CircularLinkedList:
     def __init__(self, list_to_convert=None):
         """
-        Initializes a CircularLinkedList object.
+        Initialises a CircularLinkedList object.
 
         Args:
             list_to_convert (list, optional): Creates a linked list from existing items. Defaults to None.

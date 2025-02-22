@@ -1,4 +1,4 @@
-PWD c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution
+PWD c:\Users\Python\Documents\Repositories\NEA\documentation\main
 INPUT C:\Users\Python\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\technical_solution.tex
 OUTPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.log
@@ -461,6 +461,7 @@ INPUT ..\..\data\widgets\bases\widget.py
 INPUT ..\..\data\widgets\bases\circular.py
 INPUT ..\..\data\widgets\bases\circular.py
 INPUT ..\..\data\widgets\bases\circular.py
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1000.tfm
 INPUT ..\..\data\components\circular_linked_list.py
 INPUT ..\..\data\components\circular_linked_list.py
 INPUT ..\..\data\components\circular_linked_list.py
@@ -550,6 +551,8 @@ INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solutio
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.run.xml
 OUTPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.run.xml
+INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk
+INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt0800.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tctt0800.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0500.pk

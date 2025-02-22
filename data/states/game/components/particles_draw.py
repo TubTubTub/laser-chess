@@ -78,7 +78,7 @@ class ParticlesDraw:
 
         Args:
             piece (Piece): The piece type.
-            colour (Colour.BLUE | Colour.RED): The active colour of the piece.
+            colour (Colour): The active colour of the piece.
             rotation (int): The rotation of the piece.
             position (tuple[int, int]): The position where particles originate from.
             size (tuple[int, int]): The size of the piece.
@@ -98,7 +98,7 @@ class ParticlesDraw:
 
         Args:
             radius (int): The radius of the sparks.
-            colour (Colour.BLUE | Colour.RED): The active colour of the sparks.
+            colour (Colour): The active colour of the sparks.
             position (tuple[int, int]): The position where particles originate from.
         """
         for i in range(randint(10, 15)):
