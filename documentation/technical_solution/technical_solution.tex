@@ -246,9 +246,14 @@ A \lstinline{CPUThread} is initialised with a CPU engine at the start of the gam
 \lstinputlisting{../../data/states/game/cpu/transposition_table.py}
 
 \section{Database}
+This section outlines my database implementation using Python sqlite3.
+
 \subsection{DDL}
+As mentioned in Section \ref{sec:design-ddl}, the \lstinline{migrations} directory contains a collection of Python scripts that edit the game table schema. The files are named with their changes and datetime labelled for organisational purposes.
+
 \noindent\verb|create_games_table_19112024.py|
 \lstinputlisting{../../data/database/migrations/create_games_table_19112024.py}
+Using the \lstinline{ALTER} command allows me to rename table columns.
 
 \bigskip
 \noindent\verb|change_fen_string_column_name_23122024.py|
@@ -260,7 +265,8 @@ A \lstinline{CPUThread} is initialised with a CPU engine at the start of the gam
 
 \section{Shaders}
 \subsection{Shader Manager}
-Uses interface protocol!
+The \lstinline{ShaderManager} class is responsible for handling all shader passes, handling the Pygame display, and combining both and drawing the result to the window screen. The class also inherits from the \lstinline{SMProtocol} class, an interface class containing all required \lstinline{ShaderManager} methods and attributes to aid with syntax highlighting in the fragment shader classes.
+
 \noindent\verb|shader.py|
 \lstinputlisting{../../data/managers/shader.py}
 
@@ -287,7 +293,7 @@ Uses interface protocol!
 \noindent\verb|blur.frag|
 \lstinputlisting{../../data/shaders/fragments/blur.frag}
 
-\subsection{Stacj}
+\subsection{Stack}
 
 
 \end{document}

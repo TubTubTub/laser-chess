@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"] 1740224912.57355 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design" 1740224917.2598 0
+["bibtex build/design"] 1740267248.5897 "build/design.aux" "build/design.bbl" "build/design" 1740267253.52761 0
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/bibtex/bst/biblatex/biblatex.bst" 1711466047 65510 b1f696b0241395385f422f67543c37fd ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib" 1740224916 342 20d1170ef6c1d70c658d70e011e08dba "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1740224916 13515 234c19198e5d26811e94b78c2b030f09 "pdflatex"
+  "build/design.aux" 1740267252 13574 8f598636166a35bd3145bd2121e8afc5 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib" 1740267252 342 20d1170ef6c1d70c658d70e011e08dba ""
   (generated)
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.blg"
+  "build/design.bbl"
+  "build/design.blg"
   (rewritten before read)
-["pdflatex"] 1740224912.92579 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.pdf" "design" 1740224917.26087 0
+["pdflatex"] 1740267249.14161 "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" "build/design.pdf" "design" 1740267253.52873 0
   "../design/assets/alpha_beta_pruning.pdf" 1739395706 46157 f12afc161c0a73c0b3be4bb992a68017 ""
   "../design/assets/bitboard_indexes.pdf" 1739478099 655523 62be824f89b78b863206b5b0c3bfc153 ""
   "../design/assets/bitboard_masked.pdf" 1739476228 50268 f58f68f01c1a4c247b1472d5859269f0 ""
@@ -297,18 +297,19 @@
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux" 1740224916 13515 234c19198e5d26811e94b78c2b030f09 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.bbl" 1740224912 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.out" 1740224916 2594 8e8b94fda64a7a827337a1d3abaf973c "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.run.xml" 1740224916 2553 8fa2ba3161d914b681924eb7b1875667 "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.toc" 0 -1 0 ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" 1740224906 57516 06423458a6f5bfc34dd4a80c5ebb8b83 ""
+  "build/design.aux" 1740267252 13574 8f598636166a35bd3145bd2121e8afc5 "pdflatex"
+  "build/design.bbl" 1740267249 539 9b1193ea42022b65f5e4436756b83bc1 "bibtex build/design"
+  "build/design.out" 1740267252 2594 8e8b94fda64a7a827337a1d3abaf973c "pdflatex"
+  "build/design.run.xml" 1740267252 2553 8fa2ba3161d914b681924eb7b1875667 "pdflatex"
+  "build/design.toc" 0 -1 0 ""
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/design.tex" 1740267239 57541 f968b82327641bd145ad94dc14d5136f ""
+  "design.tex" 1740267239 57541 f968b82327641bd145ad94dc14d5136f ""
   "design.toc" 0 -1 0 ""
   (generated)
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design-blx.bib"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.aux"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.log"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.out"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.pdf"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/design/build/design.run.xml"
+  "build/design-blx.bib"
+  "build/design.aux"
+  "build/design.log"
+  "build/design.out"
+  "build/design.pdf"
+  "build/design.run.xml"
   (rewritten before read)

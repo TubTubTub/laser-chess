@@ -673,6 +673,7 @@ In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI
 To achieve Objective \ref{itm:save-games} and stores previous games, I have opted to use a relational database. Choosing between different relational database, I have decided to use SQLite, since it does not require additional server softwards, has good performance with low memory requirements, and adequate for my use cases, with others such as Postgres being overkill.
 
 \subsubsection*{DDL}
+\label{sec:design-ddl}
 Only a single entity will be required for my program, a table to store games. The table schema will be defined as follows:
 
 \begin{longtable}[c]{l|l|l|l}
@@ -721,7 +722,7 @@ To create the entity, a \lstinline[language=SQL]{CREATE} statement like the foll
 
 \begin{lstlisting}[language=SQL, frame=single]
     DROP TABLE games
-\end{lstlisting}
+\end{lstlisting} 
 
 Migrations are a version control system to track incremental changes to the schema of a database. Since there is no popular SQL Python-binding libraries that support migrations, I will just be using a manual solution of creating python files that represent a change in my schema, defining functions that make use of SQL \lstinline[language=SQL]{ALTER} statements. This allows me to keep track of any changes, and rollback to a previous schema.
 

@@ -4,6 +4,9 @@ from pathlib import Path
 database_path = (Path(__file__).parent / '../database.db').resolve()
 
 def upgrade():
+    """
+    Upgrade function to create games table.
+    """
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()
 
@@ -24,6 +27,9 @@ def upgrade():
     connection.close()
 
 def downgrade():
+    """
+    Downgrade function to revert table creation.
+    """
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()
 
