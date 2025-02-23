@@ -20,18 +20,18 @@ To help navigate through the source code, I have included the following director
 \section{Summary of Complexity}
 \begin{itemize}
 \item Alpha-beta pruning and transposition table improvements for Minimax (\ref{sec:alpha-beta} and \ref{sec:transposition-table})
-\item Shadow mapping and coordinate transformations
+\item Shadow mapping and coordinate transformations (\ref{sec:shader-rays})
 \item Recursive Depth-First Search tree traversal (\ref{sec:theme} and \ref{sec:minimax})
-\item Circular doubly-linked list and stack (\ref{sec:linked-list})
-\item Multipass shaders and gaussian blur
-\item Aggregate and Window SQL functions
+\item Circular doubly-linked list and stack (\ref{sec:linked-list} and \ref{sec:stack})
+\item Multipass shaders and gaussian blur (\ref{sec:shader-bloom})
+\item Aggregate and Window SQL functions (\ref{sec:dml})
 \item OOP techniques (\ref{sec:widget-bases} and \ref{sec:widgets})
 \item Multithreading (\ref{sec:loading-screen} and \ref{sec:cpu-thread})
 \item Bitboards (\ref{sec:bitboards})
 \item Zobrist hashing (\ref{sec:zobrist-hashing})
 \item (File handling and JSON parsing) (\ref{sec:data-helpers})
 \item (Dictionary recursion) (\ref{sec:theme})
-\item (Dot product) (\ref{sec:asset-helpers})
+\item (Dot product) (\ref{sec:asset-helpers} and \ref{sec:shader-bloom})
 \end{itemize}
 
 \section{Overview}
@@ -88,18 +88,18 @@ The \lstinline{ParticlesDraw} class draws particles in both the game and review 
 \label{sec:widget-bases}
 Widget bases are the base classes for for my widgets system. They contain both attributes and getter methods that provide basic functionality such as size and position, and abstract methods to be overriden. These bases are also designed to be used with multiple inheritance, where multiple bases can be combined to add functionality to the final widget. Encapsulation also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
 
-\bigskip
+\subsubsection*{Widget}
 \noindent All widgets are a subclass of the \lstinline{Widget} class.
 
 \noindent\verb|widget.py|
 \lstinputlisting{../../data/widgets/bases/widget.py}
 
-\bigskip
+\subsubsection*{Circular}
 \noindent The \lstinline{Circular} class provides functionality to support widgets which rotate between text/icons.
 \noindent\verb|circular.py|
 \lstinputlisting{../../data/widgets/bases/circular.py}
 
-\subsubsection{Circular Linked List}
+\subsubsection*{Circular Linked List}
 \label{sec:linked-list}
 The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
 
@@ -109,12 +109,6 @@ The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list
 \subsection{Widgets}
 \label{sec:widgets}
 Each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
-
-The \lstinline{CustomEvent} class is used to pass data between states and widgets. An event argument is passed into interactive widgets; When a widget wants to pass data back to the state, it returns the event, and adds any attributes that is required. The state then receives and handles these returned events accordingly.
-
-\noindent\verb|custom_event.py|
-\lstinputlisting{../../data/components/custom_event.py}
-
 Below is a list of all the widgets I have implemented:
 
 \begin{multicols}{3}
@@ -151,25 +145,31 @@ Below is a list of all the widgets I have implemented:
 \end{itemize}
 \end{multicols}
 
-\bigskip
+\subsubsection*{CustomEvent}
+The \lstinline{CustomEvent} class is used to pass data between states and widgets. An event argument is passed into interactive widgets; When a widget wants to pass data back to the state, it returns the event, and adds any attributes that is required. The state then receives and handles these returned events accordingly.
+
+\noindent\verb|custom_event.py|
+\lstinputlisting{../../data/components/custom_event.py}
+
+\subsubsection*{ReactiveIconButton}
 \noindent The \lstinline{ReactiveIconButton} widget is a pressable button that changes the icon displayed when it is hovered or pressed.
 
 \noindent\verb|reactive_icon_button.py|
 \lstinputlisting{../../data/widgets/reactive_icon_button.py}
 
-\bigskip
+\subsubsection*{ReactiveButton}
 \noindent The \lstinline{ReactiveButton} widget is the parent class for \lstinline{ReactiveIconButton}. It provides the methods for clicking, rotating between widget states, positioning etc.
 
 \noindent\verb|reactive_button.py|
 \lstinputlisting{../../data/widgets/reactive_button.py}
 
-\bigskip
+\subsubsection*{ColourSlider}
 \noindent The \lstinline{ColourSlider} widget is instanced in the \lstinline{ColourPicker} class. It provides a slider for changing between hues for the colour picker, using the functionality of the \lstinline{SliderThumb} class.
 
 \noindent\verb|colour_slider.py|
 \lstinputlisting{../../data/widgets/colour_slider.py}
 
-\bigskip
+\subsubsection*{TextInput}
 \noindent The \lstinline{TextInput} widget is used for inputting fen strings and time controls.
 
 \noindent\verb|text_input.py|
@@ -245,6 +245,15 @@ A \lstinline{CPUThread} is initialised with a CPU engine at the start of the gam
 \noindent\verb|transposition_table.py|
 \lstinputlisting{../../data/states/game/cpu/transposition_table.py}
 
+\section{States}
+Every state class calls their \lstinline{startup} method when switched to, and \lstinline{cleanup} when exited. Within the \lstinline{startup} function, the state widgets dictionary is passed into a \lstinline{WidgetGroup} object. The \lstinline{process_event} method is called on the \lstinline{WidgetGroup} every frame to process user input, and handle the returned events accordingly. The \lstinline{WidgetGroup} object can therefore be thought of as a controller, and the state as the model, and the widgets as the view.
+
+\subsection{Review}
+The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games.
+
+\noindent\verb|review.py|
+\lstinputlisting{../../data/states/review/review.py}
+
 \section{Database}
 This section outlines my database implementation using Python sqlite3.
 
@@ -260,6 +269,7 @@ Using the \lstinline{ALTER} command allows me to rename table columns.
 \lstinputlisting{../../data/database/migrations/change_fen_string_column_name_23122024.py}
 
 \subsection{DML}
+\label{sec:dml}
 \noindent\verb|database_helpers.py|
 \lstinputlisting{../../data/utils/database_helpers.py}
 
@@ -267,33 +277,69 @@ Using the \lstinline{ALTER} command allows me to rename table columns.
 \subsection{Shader Manager}
 The \lstinline{ShaderManager} class is responsible for handling all shader passes, handling the Pygame display, and combining both and drawing the result to the window screen. The class also inherits from the \lstinline{SMProtocol} class, an interface class containing all required \lstinline{ShaderManager} methods and attributes to aid with syntax highlighting in the fragment shader classes.
 
+Fragment shaders such as \lstinline{Bloom} are applied by default, and others such as \lstinline{Ray} are applied during runtime through calling methods on \lstinline{ShaderManager}, and adding the appropiate fragment shader class to the internal shader pass list.
+
 \noindent\verb|shader.py|
 \lstinputlisting{../../data/managers/shader.py}
 
-\subsection{Rays}
-\noindent\verb|occlusion.frag|
-\lstinputlisting{../../data/shaders/fragments/occlusion.frag}
-
-\bigskip
-\noindent\verb|shadowmap.frag|
-\lstinputlisting{../../data/shaders/fragments/shadowmap.frag}
-
-\bigskip
-\noindent\verb|lightmap.frag|
-\lstinputlisting{../../data/shaders/fragments/lightmap.frag}
-
 \subsection{Bloom}
-\noindent\verb|highlight_colour.frag|
-\lstinputlisting{../../data/shaders/fragments/highlight_colour.frag}
+\label{sec:shader-bloom}
+The \lstinline{Bloom} shader effect is a common shader effect giving the illusion of a bright light. It consists of blurred fringes of light extending from the borders of bright areas. This effect can be achieved through obtaining all bright areas of the image, applying a Gaussian blur, and blending the blur additively onto the original image.
 
-\noindent\verb|blur.frag|
-\lstinputlisting{../../data/shaders/fragments/blur.frag}
+My \lstinline{ShaderManager} class works with this multi-pass shader approach by reading the texture from the last shader's framebuffer for each pass.
+
+\subsubsection*{Extracting bright colours}
+The \lstinline{highlight_brightness} fragment shader extracts all colours that are bright enough to exert the bloom effect.
+
+\noindent\verb|highlight_brightness.frag|
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/highlight_brightness.frag}
+
+\subsubsection*{Blur}
+The \lstinline{Blur} class implements a two-pass Gaussian blur. This is preferably over a one-pass blur, as the complexity is $O(2n)$, sampling $n$ pixels twice, as opposed to $O(n^2)$. I have implemented this using the ping-pong technique, with the first pass for blurring the image horizontally, and the second pass for blurring vertically, and the resultant textures being passed repeatedly between two framebuffers.
+
+\noindent\verb|blur.py|
+\lstinputlisting{../../data/shaders/classes/blur.py}
 
 \bigskip
 \noindent\verb|blur.frag|
-\lstinputlisting{../../data/shaders/fragments/blur.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/blur.frag}
+
+\subsubsection*{Combining}
+The \lstinline{Bloom} class combines the two operations, taking the highlighted areas, blurs them, and adds the RGB values for the final result onto the original texture to simulate bloom.
+
+\noindent\verb|bloom.py|
+\lstinputlisting{../../data/shaders/classes/bloom.py}
+
+\subsection{Rays}
+\label{sec:shader-rays}
+The \lstinline{Ray} shader is applied whenever the sphinx shoots a laser. It simulates a 2D light source, providing pixel perfect shadows, through the shadow mapping technique outlined in Section \ref{sec:design-shadow}. The laser demo seen on the main menu screen is also achieved using the Ray shader, by clamping the angle at which it emits light to a narrower range.
+
+\subsubsection*{Occlusion}
+The occlusion fragment shader processes all pixels with a given colour value as being occluding.
+
+\noindent\verb|occlusion.frag|
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/occlusion.frag}
+
+\subsubsection*{Shadowmap}
+The shadowmap fragment shader takes the occluding texture and creates a 1D shadow map.
+
+\noindent\verb|shadowmap.frag|
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/shadowmap.frag}
+
+\subsubsection*{Lightmap}
+The lightmap shader checks if a pixel is in shadow, blurs the result, and applies the radial light source.
+
+\noindent\verb|lightmap.frag|
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/lightmap.frag}
+
+\subsubsection*{Class}
+The \lstinline{Rays} class takes in a texture and array of light information, applies the aforementioned shaders, and blends the final result with the original texture.
+
+\noindent\verb|rays.py|
+\lstinputlisting{../../data/shaders/classes/rays.py}
 
 \subsection{Stack}
+\label{sec:stack}
 
 
 \end{document}

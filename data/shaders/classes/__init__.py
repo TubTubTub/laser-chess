@@ -16,19 +16,19 @@ from data.shaders.classes.crt import CRT
 from data.constants import ShaderType
 
 shader_pass_lookup = {
+    ShaderType.CHROMATIC_ABBREVIATION: ChromaticAbbreviation,
     ShaderType.GRAYSCALE: Grayscale,
     ShaderType.SHAKE: Shake,
     ShaderType.BLOOM: Bloom,
     ShaderType.BASE: Base,
     ShaderType.RAYS: Rays,
     ShaderType.CRT: CRT,
-    ShaderType.CHROMATIC_ABBREVIATION: ChromaticAbbreviation,
 
     ShaderType._HIGHLIGHT_BRIGHTNESS: _HighlightBrightness,
     ShaderType._HIGHLIGHT_COLOUR: _HighlightColour,
     ShaderType._CALIBRATE: lambda *args: None,
-    ShaderType._SHADOWMAP: _Shadowmap,
     ShaderType._OCCLUSION: _Occlusion,
+    ShaderType._SHADOWMAP: _Shadowmap,
     ShaderType._LIGHTMAP: _Lightmap,
     ShaderType._BLEND: _Blend,
     ShaderType._BLUR: _Blur,

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  22 FEB 2025 23:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  23 FEB 2025 12:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -974,13 +974,15 @@ Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
 \etoc@framed@contentsbox=\box135
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )))
 \@quotelevel=\count512
 \@quotereset=\count513
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
- (c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+ (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
 \openout1 = `design.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -1080,7 +1082,7 @@ Package biblatex Info: Data encoding 'utf8' specified.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'design.bbl' found.
- (c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.bbl)
+ (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.bbl)
 Package biblatex Info: Reference section=0 on input line 3.
 Package biblatex Info: Reference segment=0 on input line 3.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
@@ -1092,7 +1094,7 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 
 \c@lstlisting=\count520
 Package hyperref Info: Link coloring OFF on input line 3.
-(c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
+(c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
 \@outlinefile=\write5
 \openout5 = `design.out'.
 
@@ -1256,7 +1258,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 <../design/assets/shadow_mapping.pdf, id=374, 340.3917pt x 321.11969pt>
 File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/assets/shadow_mapping.pdf>
-Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 614.
+Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 615.
 (pdftex.def)             Requested size: 418.25368pt x 394.58777pt.
 
 
@@ -1266,11 +1268,11 @@ Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line
 <../design/assets/soft_shadows.pdf, id=414, 264.99pt x 164.5347pt>
 File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/assets/soft_shadows.pdf>
-Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 654.
+Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 655.
 (pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
 
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on input line 662.
+LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on input line 663.
 
 
 
@@ -1278,11 +1280,11 @@ LaTeX Warning: Reference `itm:responsive-objective' on page 22 undefined on inpu
 <../design/assets/multi_threading.pdf, id=439, 352.43669pt x 158.51219pt>
 File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/assets/multi_threading.pdf>
-Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 666.
+Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 667.
 (pdftex.def)             Requested size: 418.25368pt x 188.12874pt.
 
 
-LaTeX Warning: Reference `itm:save-games' on page 23 undefined on input line 673.
+LaTeX Warning: Reference `itm:save-games' on page 23 undefined on input line 674.
 
 [23 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -1291,61 +1293,58 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 [24]
 
 [25]
-
-LaTeX Warning: Reference `.' on page 26 undefined on input line 833.
-
-<../design/assets/stack.pdf, id=512, 204.765pt x 174.6525pt>
+<../design/assets/stack.pdf, id=513, 204.765pt x 174.6525pt>
 File: ../design/assets/stack.pdf Graphic file (type pdf)
 <use ../design/assets/stack.pdf>
-Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 837.
+Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 838.
 (pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
 
 
 [26] [27 <../design/assets/stack.pdf>]
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 28 undefined on input line 869.
+LaTeX Warning: Reference `itm:responsive-objective' on page 28 undefined on input line 870.
 
 [28]
-Overfull \hbox (11.81412pt too wide) in alignment at lines 932--936
+Overfull \hbox (11.81412pt too wide) in alignment at lines 933--937
  [] [] 
  []
 
 
-Overfull \hbox (11.81412pt too wide) in alignment at lines 936--937
+Overfull \hbox (11.81412pt too wide) in alignment at lines 937--938
  [] [] 
  []
 
 
-Overfull \hbox (11.81412pt too wide) in alignment at lines 937--949
+Overfull \hbox (11.81412pt too wide) in alignment at lines 938--950
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 951--955
+Overfull \hbox (16.34079pt too wide) in alignment at lines 952--956
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 955--956
+Overfull \hbox (16.34079pt too wide) in alignment at lines 956--957
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 956--968
+Overfull \hbox (16.34079pt too wide) in alignment at lines 957--969
  [] [] 
  []
 
 [29]
-<../design/assets/class_relation_diagram.pdf, id=551, 435.54718pt x 478.66827pt>
+<../design/assets/class_relation_diagram.pdf, id=552, 435.54718pt x 478.66827pt>
 File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
 <use ../design/assets/class_relation_diagram.pdf>
-Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 997.
+Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 998.
 (pdftex.def)             Requested size: 418.25368pt x 459.677pt.
 
 
 [30]
 
-[31 <../design/assets/class_relation_diagram.pdf>] (c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+[31 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1361,17 +1360,17 @@ Package logreq Info: Writing requests to 'design.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47984 strings out of 473530
- 1111061 string characters out of 5714311
- 2055378 words of memory out of 5000000
- 70400 multiletter control sequences out of 15000+600000
+ 48008 strings out of 473530
+ 1111751 string characters out of 5714311
+ 2059895 words of memory out of 5000000
+ 70416 multiletter control sequences out of 15000+600000
  579181 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  134i,11n,136p,1960b,2631s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (31 pages, 4487126 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (31 pages, 4487308 bytes).
 PDF statistics:
- 1089 PDF objects out of 1200 (max. 8388607)
+ 1090 PDF objects out of 1200 (max. 8388607)
  164 named destinations out of 1000 (max. 500000)
  296 words of extra memory for PDF output out of 10000 (max. 10000000)
 

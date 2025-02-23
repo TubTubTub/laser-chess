@@ -104,12 +104,13 @@
 \newlabel{alg:popcount}{{7}{31}{Popcount pseudocode}{algorithm.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.18}{\ignorespaces PSQT showing the bonus position value gained for the square occupied by a pharoah}}{31}{figure.caption.40}\protected@file@percent }
 \newlabel{fig:psqt}{{2.18}{31}{PSQT showing the bonus position value gained for the square occupied by a pharoah}{figure.caption.40}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces FLIP table used to map a red piece index to the blue player's perspective}}{32}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:flip-table}{{2.19}{32}{FLIP table used to map a red piece index to the blue player's perspective}{figure.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.19}{\ignorespaces FLIP table used to map a blue piece index to the red player's perspective}}{32}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:flip-table}{{2.19}{32}{FLIP table used to map a blue piece index to the red player's perspective}{figure.caption.41}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {8}{\ignorespaces Calculating positional value pseudocode}}{32}{algorithm.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Mobility}{33}{section*.43}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{King safety}{33}{section*.44}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.5}Shadow Mapping}{33}{subsection.2.2.5}\protected@file@percent }
+\newlabel{sec:design-shadow}{{2.2.5}{33}{Shadow Mapping}{subsection.2.2.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.20}{\ignorespaces Workflow for 2D shadow mapping}}{34}{figure.caption.45}\protected@file@percent }
 \newlabel{fig:shadow-mapping}{{2.20}{34}{Workflow for 2D shadow mapping}{figure.caption.45}{}}
 \@writefile{toc}{\contentsline {paragraph}{Aliasing}{35}{section*.46}\protected@file@percent }
@@ -126,6 +127,7 @@
 \newlabel{fig:multi-threading}{{2.22}{36}{Multi-threading for minimax}{figure.caption.50}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Data Structures}{36}{section.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Database}{36}{subsection.2.3.1}\protected@file@percent }
+\newlabel{sec:design-ddl}{{2.3.1}{36}{DDL}{section*.51}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Data table scheme for \textit  {games} table}}{37}{table.2.1}\protected@file@percent }
 \newlabel{tab:games-schema}{{2.1}{37}{Data table scheme for \textit {games} table}{table.2.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Linked Lists}{38}{subsection.2.3.2}\protected@file@percent }
@@ -165,7 +167,7 @@
 \@writefile{lot}{\contentsline {table}{\numberline {2.7}{\ignorespaces Methods for Model class}}{43}{table.2.7}\protected@file@percent }
 \newlabel{tab:model-methods}{{2.7}{43}{Methods for Model class}{table.2.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Class Diagram}{44}{subsection.2.4.1}\protected@file@percent }
-\newlabel{fig:class-relation-diagram}{{\caption@xref {fig:class-relation-diagram}{ on input line 997}}{44}{Class Diagram}{figure.caption.60}{}}
+\newlabel{fig:class-relation-diagram}{{\caption@xref {fig:class-relation-diagram}{ on input line 999}}{44}{Class Diagram}{figure.caption.60}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Technical Solution}{45}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -198,11 +200,12 @@
 \newlabel{sec:widget-bases}{{3.4.3}{65}{Widget Bases}{subsection.3.4.3}{}}
 \@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/bases/widget.py}{65}{lstlisting.3.-14}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/bases/circular.py}{69}{lstlisting.3.-15}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/components/circular\textunderscore linked\textunderscore list.py}{70}{lstlisting.3.-16}\protected@file@percent }
+\newlabel{sec:linked-list}{{3.4.3}{71}{Circular Linked List}{section*.64}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/components/circular\textunderscore linked\textunderscore list.py}{71}{lstlisting.3.-16}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.4}Widgets}{74}{subsection.3.4.4}\protected@file@percent }
 \newlabel{sec:widgets}{{3.4.4}{74}{Widgets}{subsection.3.4.4}{}}
 \@writefile{lol}{\contentsline {lstlisting}{../../data/components/custom\textunderscore event.py}{74}{lstlisting.3.-17}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/reactive\textunderscore icon\textunderscore button.py}{75}{lstlisting.3.-18}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/reactive\textunderscore icon\textunderscore button.py}{76}{lstlisting.3.-18}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/reactive\textunderscore button.py}{76}{lstlisting.3.-19}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/colour\textunderscore slider.py}{78}{lstlisting.3.-20}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{../../data/widgets/text\textunderscore input.py}{80}{lstlisting.3.-21}\protected@file@percent }
@@ -215,39 +218,55 @@
 \@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/mvc/game\textunderscore controller.py}{96}{lstlisting.3.-24}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}Board}{101}{subsection.3.5.4}\protected@file@percent }
 \@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/components/board.py}{101}{lstlisting.3.-25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.5}Bitboards}{104}{subsection.3.5.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/components/bitboard\textunderscore collection.py}{104}{lstlisting.3.-26}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}CPU}{108}{section.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Minimax}{108}{subsection.3.6.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/minimax.py}{108}{lstlisting.3.-27}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{109}{subsection.3.6.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/alpha\textunderscore beta.py}{109}{lstlisting.3.-28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Transposition Table CPU}{111}{subsection.3.6.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/transposition\textunderscore table.py}{111}{lstlisting.3.-29}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}Evaluator}{112}{subsection.3.6.4}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/evaluator.py}{112}{lstlisting.3.-30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.5}Multithreading}{113}{subsection.3.6.5}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/cpu\textunderscore thread.py}{113}{lstlisting.3.-31}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.6}Zobrist Hashing}{114}{subsection.3.6.6}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/zobrist\textunderscore hasher.py}{114}{lstlisting.3.-32}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.7}Transposition Table}{115}{subsection.3.6.7}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/transposition\textunderscore table.py}{115}{lstlisting.3.-33}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Database}{116}{section.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}DDL}{116}{subsection.3.7.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/database/migrations/create\textunderscore games\textunderscore table\textunderscore 19112024.py}{116}{lstlisting.3.-34}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/database/migrations/change\textunderscore fen\textunderscore string\textunderscore column\textunderscore name\textunderscore 23122024.py}{117}{lstlisting.3.-35}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}DML}{117}{subsection.3.7.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/utils/database\textunderscore helpers.py}{117}{lstlisting.3.-36}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}Shaders}{119}{section.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}Shader Manager}{119}{subsection.3.8.1}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/managers/shader.py}{119}{lstlisting.3.-37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}Rays}{122}{subsection.3.8.2}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/occlusion.frag}{122}{lstlisting.3.-38}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/shadowmap.frag}{122}{lstlisting.3.-39}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/lightmap.frag}{125}{lstlisting.3.-40}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.3}Bloom}{126}{subsection.3.8.3}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/highlight\textunderscore colour.frag}{126}{lstlisting.3.-41}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/blur.frag}{127}{lstlisting.3.-42}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/blur.frag}{128}{lstlisting.3.-43}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.5}Bitboards}{106}{subsection.3.5.5}\protected@file@percent }
+\newlabel{sec:bitboards}{{3.5.5}{106}{Bitboards}{subsection.3.5.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/components/bitboard\textunderscore collection.py}{106}{lstlisting.3.-26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}CPU}{112}{section.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}Minimax}{112}{subsection.3.6.1}\protected@file@percent }
+\newlabel{sec:minimax}{{3.6.1}{112}{Minimax}{subsection.3.6.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/minimax.py}{112}{lstlisting.3.-27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{114}{subsection.3.6.2}\protected@file@percent }
+\newlabel{sec:alpha-beta}{{3.6.2}{114}{Alpha-beta Pruning}{subsection.3.6.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/alpha\textunderscore beta.py}{114}{lstlisting.3.-28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}Transposition Table}{115}{subsection.3.6.3}\protected@file@percent }
+\newlabel{sec:transposition-table}{{3.6.3}{115}{Transposition Table}{subsection.3.6.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/engines/transposition\textunderscore table.py}{115}{lstlisting.3.-29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}Evaluator}{116}{subsection.3.6.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/evaluator.py}{116}{lstlisting.3.-30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.5}Multithreading}{119}{subsection.3.6.5}\protected@file@percent }
+\newlabel{sec:cpu-thread}{{3.6.5}{119}{Multithreading}{subsection.3.6.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/cpu\textunderscore thread.py}{119}{lstlisting.3.-31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.6}Zobrist Hashing}{120}{subsection.3.6.6}\protected@file@percent }
+\newlabel{sec:zobrist-hashing}{{3.6.6}{120}{Zobrist Hashing}{subsection.3.6.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/zobrist\textunderscore hasher.py}{120}{lstlisting.3.-32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.7}Cache}{121}{subsection.3.6.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/game/cpu/transposition\textunderscore table.py}{121}{lstlisting.3.-33}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}States}{123}{section.3.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Review}{123}{subsection.3.7.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/states/review/review.py}{123}{lstlisting.3.-34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}Database}{128}{section.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.1}DDL}{128}{subsection.3.8.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/database/migrations/create\textunderscore games\textunderscore table\textunderscore 19112024.py}{128}{lstlisting.3.-35}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/database/migrations/change\textunderscore fen\textunderscore string\textunderscore column\textunderscore name\textunderscore 23122024.py}{129}{lstlisting.3.-36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8.2}DML}{130}{subsection.3.8.2}\protected@file@percent }
+\newlabel{sec:dml}{{3.8.2}{130}{DML}{subsection.3.8.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/utils/database\textunderscore helpers.py}{130}{lstlisting.3.-37}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Shaders}{132}{section.3.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.1}Shader Manager}{132}{subsection.3.9.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/managers/shader.py}{133}{lstlisting.3.-38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.2}Bloom}{137}{subsection.3.9.2}\protected@file@percent }
+\newlabel{sec:shader-bloom}{{3.9.2}{137}{Bloom}{subsection.3.9.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/highlight\textunderscore brightness.frag}{138}{lstlisting.3.-39}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/classes/blur.py}{138}{lstlisting.3.-40}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/blur.frag}{139}{lstlisting.3.-41}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/classes/bloom.py}{140}{lstlisting.3.-42}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.3}Rays}{141}{subsection.3.9.3}\protected@file@percent }
+\newlabel{sec:shader-rays}{{3.9.3}{141}{Rays}{subsection.3.9.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/occlusion.frag}{141}{lstlisting.3.-43}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/shadowmap.frag}{141}{lstlisting.3.-44}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/fragments/lightmap.frag}{142}{lstlisting.3.-45}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{../../data/shaders/classes/rays.py}{143}{lstlisting.3.-46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9.4}Stack}{145}{subsection.3.9.4}\protected@file@percent }
+\newlabel{sec:stack}{{3.9.4}{145}{Stack}{subsection.3.9.4}{}}
 \abx@aux@read@bbl@mdfivesum{A94AB01A6908FE46049683B135B529B2}
-\gdef \@abspage@last{130}
+\gdef \@abspage@last{147}

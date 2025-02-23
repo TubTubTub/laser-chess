@@ -94,7 +94,7 @@ class GameView:
     
     def handle_resize(self):
         """
-        Handle resizing GUI.
+        Handles resizing of the window.
         """
         self._overlay_draw.handle_resize(self.board_position, self.board_size)
         self._capture_draw.handle_resize(self.board_position, self.board_size)
