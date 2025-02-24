@@ -5,7 +5,7 @@
 in vec2 uvs;
 out vec4 f_colour;
 
-uniform float softShadow=0.1;
+uniform float softShadow;
 uniform float resolution;
 uniform float falloff;
 uniform vec3 lightColour;

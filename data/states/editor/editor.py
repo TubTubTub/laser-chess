@@ -1,23 +1,17 @@
 import pygame
 import pyperclip
-from data.control import _State
-from data.components.widget_group import WidgetGroup
-from data.states.editor.widget_dict import EDITOR_WIDGETS
 from data.constants import EditorEventType, Colour, RotationDirection, Piece, Rotation
 from data.states.game.components.bitboard_collection import BitboardCollection
+from data.states.game.components.fen_parser import encode_fen_string
 from data.states.game.components.overlay_draw import OverlayDraw
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.father import DragAndDrop
-from data.components.cursor import Cursor
-from data.assets import GRAPHICS, MUSIC
 from data.utils.bitboard_helpers import coords_to_bitboard
-from data.utils.asset_helpers import draw_background
+from data.states.editor.widget_dict import EDITOR_WIDGETS
 from data.utils.board_helpers import screen_pos_to_coords
-from data.states.game.components.fen_parser import encode_fen_string
-from data.managers.audio import audio
-from data.managers.animation import animation
-from data.managers.window import window
 from data.managers.logs import initialise_logger
+from data.managers.window import window
+from data.control import _State
 
 logger = initialise_logger(__name__)
 
@@ -134,7 +128,7 @@ class Editor(_State):
                 self.reset_board()
             
             case EditorEventType.COPY_CLICK:
-                logger.info('COPYING TO CLIPBOARD:', encode_fen_string(self._bitboards))
+                logger.info(f'COPYING TO CLIPBOARD: {encode_fen_string(self._bitboards)}')
                 pyperclip.copy(encode_fen_string(self._bitboards))
             
             case EditorEventType.BLUE_START_CLICK:

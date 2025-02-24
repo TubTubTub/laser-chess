@@ -207,7 +207,7 @@ class Board:
 
         return valid_possible_moves
     
-    def get_all_valid_squares(self, colour):
+    def get_mobility(self, colour):
         """
         Gets all valid squares for a given colour.
 
@@ -217,23 +217,29 @@ class Board:
         Returns:
             int: The bitboard representation of all valid squares.
         """
-        piece_bitboard = self.bitboards.combined_colour_bitboards[colour]
-        possible_moves = 0b0
+        active_pieces = self.get_all_active_pieces(colour)
+        possible_moves = 0
 
-        for square in bb_helpers.occupied_squares(piece_bitboard):
-            possible_moves |= self.get_valid_squares(square)
+        for square in bb_helpers.occupied_squares(active_pieces):
+            possible_moves += bb_helpers.pop_count(self.get_valid_squares(square))
 
         return possible_moves
 
-    def get_all_active_pieces(self):
+    def get_all_active_pieces(self, colour):
         """
         Gets all active pieces for the current player.
+
+        Args:
+            colour (Colour): Active colour of pieces to retrieve. Defaults to None.
 
         Returns:
             int: The bitboard representation of all active pieces.
         """
-        active_pieces = self.bitboards.combined_colour_bitboards[self.bitboards.active_colour]
-        sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, self.bitboards.active_colour)
+        if colour is None:
+            colour = self.bitboards.active_colour
+
+        active_pieces = self.bitboards.combined_colour_bitboards[colour]
+        sphinx_bitboard = self.bitboards.get_piece_bitboard(Piece.SPHINX, colour)
         return active_pieces ^ sphinx_bitboard
 
     def fire_laser(self, remove_hash):

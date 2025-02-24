@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  23 FEB 2025 15:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  24 FEB 2025 19:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -972,7 +972,16 @@ Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
 \c@etoc@tocid=\count511
 \etoc@framed@titlebox=\box134
 \etoc@framed@contentsbox=\box135
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
@@ -1101,34 +1110,71 @@ Package hyperref Info: Link coloring OFF on input line 3.
 
 No file testing.toc.
 Chapter 1.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 15.
+(../../data/states/game/cpu/base.py)
+
+LaTeX Warning: Reference `sec:migrations' on page 1 undefined on input line 18.
+
 
 
 [1
 
 
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+[2]
+<../testing/assets/rays_example_1.png, id=113, 444.15938pt x 444.15938pt>
+File: ../testing/assets/rays_example_1.png Graphic file (type png)
+<use ../testing/assets/rays_example_1.png>
+Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 88.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+<../testing/assets/rays_example_2.png, id=115, 444.15938pt x 444.15938pt>
+File: ../testing/assets/rays_example_2.png Graphic file (type png)
+<use ../testing/assets/rays_example_2.png>
+Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 91.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+<../testing/assets/rays_example_3.png, id=116, 444.15938pt x 444.15938pt>
+File: ../testing/assets/rays_example_3.png Graphic file (type png)
+<use ../testing/assets/rays_example_3.png>
+Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 94.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+
+
+[3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `testing.out' has not changed.
-(rerunfilecheck)             Checksum: 2F6818EDEF7D5ABA1425361C353BB4FD;1372.
+(rerunfilecheck)             Checksum: 82D5AB265264991BC517A6DDAE70D3A9;1440.
 Package logreq Info: Writing requests to 'testing.run.xml'.
 \openout1 = `testing.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 46877 strings out of 473530
- 1093668 string characters out of 5714311
- 1873559 words of memory out of 5000000
- 69462 multiletter control sequences out of 15000+600000
- 565007 words of font info for 44 fonts, out of 8000000 for 9000
+ 47936 strings out of 473530
+ 1105946 string characters out of 5714311
+ 2208184 words of memory out of 5000000
+ 70447 multiletter control sequences out of 15000+600000
+ 574569 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,5n,136p,1962b,1020s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (1 page, 39866 bytes).
+ 134i,11n,136p,1962b,1238s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (3 pages, 358023 bytes).
 PDF statistics:
- 175 PDF objects out of 1000 (max. 8388607)
- 15 named destinations out of 1000 (max. 500000)
- 117 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 439 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 132 words of extra memory for PDF output out of 10000 (max. 10000000)
 

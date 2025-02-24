@@ -124,9 +124,9 @@ class Menu(_State):
         self.draw_sphinx()
 
         if self._fire_laser:
-            window.set_apply_arguments(ShaderType.RAYS, occlusion=self._laser_mask)
+            window.set_apply_arguments(ShaderType.RAYS, occlusion=self._laser_mask, softShadow=0.1)
 
-        window.set_apply_arguments(ShaderType.BLOOM, occlusion_surface=self._bloom_mask, occlusion_intensity=0.3, brightness_intensity=0.6)
+        window.set_apply_arguments(ShaderType.BLOOM, highlight_surface=self._bloom_mask, surface_intensity=0.3, brightness_intensity=0.6)
     
     def update(self, **kwargs):
         random_offset = lambda: randint(-5, 5) / 40

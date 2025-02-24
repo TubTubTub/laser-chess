@@ -1,8 +1,8 @@
-from data.widgets import *
 from data.components.custom_event import CustomEvent
 from data.constants import MenuEventType
-from data.assets import GRAPHICS
 from data.managers.theme import theme
+from data.assets import GRAPHICS
+from data.widgets import *
 
 top_right_container = Rectangle(
     relative_position=(0, 0),
@@ -80,5 +80,83 @@ MENU_WIDGETS = {
             icon=GRAPHICS['title_screen_art'],
             stretch=False
         ),
+    ]
+}
+
+# Widgets used for testing light rays effect
+TEST_WIDGETS = {
+    'default': [
+        Rectangle(
+            relative_position=(0.4, 0.2),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.5, 0.7),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.6, 0.6),
+            relative_size=(0.2, 0.2),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.4, 0.6),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.6, 0.4),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.3, 0.4),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.475, 0.15),
+            relative_size=(0.2, 0.2),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        ),
+        Rectangle(
+            relative_position=(0.6, 0.2),
+            relative_size=(0.1, 0.1),
+            scale_mode='height',
+            visible=True,
+            border_width=0,
+            fill_colour=(255, 0, 0),
+            border_radius=1000
+        )
     ]
 }

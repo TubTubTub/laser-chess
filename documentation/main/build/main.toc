@@ -70,7 +70,7 @@
 \contentsline {subsection}{\numberline {3.6.1}Minimax}{112}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{114}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Transposition Table}{115}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Evaluator}{116}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.4}Evaluator}{117}{subsection.3.6.4}%
 \contentsline {subsection}{\numberline {3.6.5}Multithreading}{119}{subsection.3.6.5}%
 \contentsline {subsection}{\numberline {3.6.6}Zobrist Hashing}{120}{subsection.3.6.6}%
 \contentsline {subsection}{\numberline {3.6.7}Cache}{121}{subsection.3.6.7}%
@@ -79,8 +79,21 @@
 \contentsline {section}{\numberline {3.8}Database}{128}{section.3.8}%
 \contentsline {subsection}{\numberline {3.8.1}DDL}{128}{subsection.3.8.1}%
 \contentsline {subsection}{\numberline {3.8.2}DML}{130}{subsection.3.8.2}%
-\contentsline {section}{\numberline {3.9}Shaders}{132}{section.3.9}%
-\contentsline {subsection}{\numberline {3.9.1}Shader Manager}{132}{subsection.3.9.1}%
-\contentsline {subsection}{\numberline {3.9.2}Bloom}{137}{subsection.3.9.2}%
+\contentsline {section}{\numberline {3.9}Shaders}{133}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Shader Manager}{133}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Bloom}{138}{subsection.3.9.2}%
 \contentsline {subsection}{\numberline {3.9.3}Rays}{141}{subsection.3.9.3}%
 \contentsline {subsection}{\numberline {3.9.4}Stack}{145}{subsection.3.9.4}%
+\contentsline {chapter}{\numberline {4}Testing}{146}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Iterative Testing}{146}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Minimax}{146}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Migrations}{147}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Unit Tests}{147}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Board Evaluator}{147}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}CPU}{147}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Shadow Mapping}{148}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Final Tests}{148}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Objective 1}{148}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Objective 2}{148}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Objective 3}{148}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Videos}{148}{section.4.4}%

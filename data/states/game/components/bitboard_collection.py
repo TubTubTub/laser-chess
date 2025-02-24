@@ -20,7 +20,7 @@ class BitboardCollection:
                 self.piece_bitboards, self.combined_colour_bitboards, self.combined_all_bitboard, self.rotation_bitboards, self.active_colour = parse_fen_string(fen_string)
                 self.initialise_hash()
         except ValueError as error:
-            logger.info('Please input a valid FEN string:', error)
+            logger.error('Please input a valid FEN string:', error)
             raise error
     
     def __str__(self):

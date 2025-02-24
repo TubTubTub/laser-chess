@@ -1,8 +1,8 @@
+import time
+from pprint import PrettyPrinter
 from data.constants import Colour, Score, Miscellaneous
 from data.states.game.cpu.evaluator import Evaluator
 from data.managers.logs import initialise_logger
-from pprint import PrettyPrinter
-import time
 
 logger = initialise_logger(__name__)
 printer = PrettyPrinter(indent=2, sort_dicts=False)
@@ -25,17 +25,26 @@ class BaseCPU:
         }
     
     def print_stats(self, score, move):
+        """
+        Prints statistics after traversing tree.
+
+        Args:
+            score (int): Final score obtained after traversal.
+            move (Move): Best move obtained after traversal.
+        """
         if self._verbose is False:
             return
 
         self._stats['time_taken'] = round(1000 * (time.time() - self._stats['time_taken']), 3)
         self._stats['ms_per_node'] = round(self._stats['time_taken'] / self._stats['nodes'], 3)
 
+        # Prints stats across multiple lines
         if self._verbose is True:
             logger.info(f'{self.__str__()} Search Results:')
             logger.info(printer.pformat(self._stats))
             logger.info(f'Best score:  {score}   Best move: {move}')
         
+        # Prints stats in a compacted format
         elif self._verbose.lower() == 'compact':
             logger.info(self._stats)
             logger.info(f'Best score: {score}   Best move: {move}')

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  23 FEB 2025 15:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  24 FEB 2025 19:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -967,7 +967,16 @@ Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
 \c@etoc@tocid=\count511
 \etoc@framed@titlebox=\box134
 \etoc@framed@contentsbox=\box135
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/import\import.sty
 Package: import 2020/04/01  v 6.2
@@ -978,28 +987,28 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 \@quotelevel=\count512
 \@quotereset=\count513
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 68.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 69.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1080,23 +1089,30 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.bbl)
-Package biblatex Info: Reference section=0 on input line 68.
-Package biblatex Info: Reference segment=0 on input line 68.
+Package biblatex Info: Reference section=0 on input line 69.
+Package biblatex Info: Reference segment=0 on input line 69.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 68.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 69.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 \c@lstlisting=\count520
-Package hyperref Info: Link coloring OFF on input line 68.
+Package hyperref Info: Link coloring OFF on input line 69.
 (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 \Etoc@tf=\read4
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 [1
 
@@ -1110,7 +1126,7 @@ Package hyperref Info: Link coloring OFF on input line 68.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.80 
+l.81 
       [1] (../analysis/../analysis/analysis.tex
 
 
@@ -1125,7 +1141,7 @@ Chapter 1.
 [2
 
 ]
-<../analysis/../analysis/assets/laser_chess_com.png, id=420, 210.0648pt x 226.9278pt>
+<../analysis/../analysis/assets/laser_chess_com.png, id=485, 210.0648pt x 226.9278pt>
 File: ../analysis/../analysis/assets/laser_chess_com.png Graphic file (type png)
 <use ../analysis/../analysis/assets/laser_chess_com.png>
 Package pdftex.def Info: ../analysis/../analysis/assets/laser_chess_com.png  used on input line 51.
@@ -1172,7 +1188,7 @@ Overfull \hbox (24.00002pt too wide) in alignment at lines 260--283
 [10]
 
 [11]
-<../analysis/../analysis/assets/critical_path_diagram.pdf, id=489, 312.20638pt x 370.5042pt>
+<../analysis/../analysis/assets/critical_path_diagram.pdf, id=554, 312.20638pt x 370.5042pt>
 File: ../analysis/../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/../analysis/assets/critical_path_diagram.pdf>
 Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pdf  used on input line 319.
@@ -1183,12 +1199,12 @@ Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pd
 
 [13 <../analysis/../analysis/assets/critical_path_diagram.pdf>]
 Chapter 2.
-<../design/../design/assets/top_level_overview_flowchart.pdf, id=508, 435.54718pt x 189.8292pt>
+<../design/../design/assets/top_level_overview_flowchart.pdf, id=573, 435.54718pt x 189.8292pt>
 File: ../design/../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/top_level_overview_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
-<../design/../design/assets/menu_gui.png, id=509, 454.8192pt x 256.3176pt>
+<../design/../design/assets/menu_gui.png, id=574, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/menu_gui.png Graphic file (type png)
 <use ../design/../design/assets/menu_gui.png>
 Package pdftex.def Info: ../design/../design/assets/menu_gui.png  used on input line 25.
@@ -1198,7 +1214,7 @@ Package pdftex.def Info: ../design/../design/assets/menu_gui.png  used on input 
 [14
 
  <../design/../design/assets/top_level_overview_flowchart.pdf>]
-<../design/../design/assets/settings_gui.png, id=524, 454.8192pt x 256.3176pt>
+<../design/../design/assets/settings_gui.png, id=589, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/settings_gui.png Graphic file (type png)
 <use ../design/../design/assets/settings_gui.png>
 Package pdftex.def Info: ../design/../design/assets/settings_gui.png  used on input line 35.
@@ -1206,12 +1222,12 @@ Package pdftex.def Info: ../design/../design/assets/settings_gui.png  used on in
 
 
 [15 <../design/../design/assets/menu_gui.png> <../design/../design/assets/settings_gui.png>]
-<../design/../design/assets/settings_flowchart.pdf, id=533, 551.1792pt x 212.69463pt>
+<../design/../design/assets/settings_flowchart.pdf, id=598, 551.1792pt x 212.69463pt>
 File: ../design/../design/assets/settings_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/settings_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/settings_flowchart.pdf  used on input line 55.
 (pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
-<../design/../design/assets/browser_gui.png, id=534, 454.8192pt x 256.3176pt>
+<../design/../design/assets/browser_gui.png, id=599, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/browser_gui.png Graphic file (type png)
 <use ../design/../design/assets/browser_gui.png>
 Package pdftex.def Info: ../design/../design/assets/browser_gui.png  used on input line 63.
@@ -1219,7 +1235,7 @@ Package pdftex.def Info: ../design/../design/assets/browser_gui.png  used on inp
 
 
 [16 <../design/../design/assets/settings_flowchart.pdf>]
-<../design/../design/assets/browser_flowchart.pdf, id=549, 448.5558pt x 216.81pt>
+<../design/../design/assets/browser_flowchart.pdf, id=614, 448.5558pt x 216.81pt>
 File: ../design/../design/assets/browser_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/browser_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/browser_flowchart.pdf  used on input line 75.
@@ -1227,12 +1243,12 @@ Package pdftex.def Info: ../design/../design/assets/browser_flowchart.pdf  used 
 
 
 [17 <../design/../design/assets/browser_gui.png>]
-<../design/../design/assets/config_gui.png, id=557, 453.3738pt x 254.3904pt>
+<../design/../design/assets/config_gui.png, id=622, 453.3738pt x 254.3904pt>
 File: ../design/../design/assets/config_gui.png Graphic file (type png)
 <use ../design/../design/assets/config_gui.png>
 Package pdftex.def Info: ../design/../design/assets/config_gui.png  used on input line 83.
 (pdftex.def)             Requested size: 334.60422pt x 187.75685pt.
-<../design/../design/assets/config_flowchart.pdf, id=558, 666.57025pt x 151.5261pt>
+<../design/../design/assets/config_flowchart.pdf, id=623, 666.57025pt x 151.5261pt>
 File: ../design/../design/assets/config_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/config_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/config_flowchart.pdf  used on input line 94.
@@ -1240,12 +1256,12 @@ Package pdftex.def Info: ../design/../design/assets/config_flowchart.pdf  used o
 
 
 [18 <../design/../design/assets/browser_flowchart.pdf> <../design/../design/assets/config_gui.png>]
-<../design/../design/assets/game_gui.png, id=575, 454.8192pt x 256.3176pt>
+<../design/../design/assets/game_gui.png, id=640, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/game_gui.png Graphic file (type png)
 <use ../design/../design/assets/game_gui.png>
 Package pdftex.def Info: ../design/../design/assets/game_gui.png  used on input line 102.
 (pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
-<../design/../design/assets/game_flowchart.pdf, id=576, 551.1792pt x 262.0992pt>
+<../design/../design/assets/game_flowchart.pdf, id=641, 551.1792pt x 262.0992pt>
 File: ../design/../design/assets/game_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/game_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on input line 123.
@@ -1253,12 +1269,12 @@ Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on 
 
 
 [19 <../design/../design/assets/config_flowchart.pdf> <../design/../design/assets/game_gui.png>]
-<../design/../design/assets/editor_gui.png, id=593, 963.6pt x 542.025pt>
+<../design/../design/assets/editor_gui.png, id=658, 963.6pt x 542.025pt>
 File: ../design/../design/assets/editor_gui.png Graphic file (type png)
 <use ../design/../design/assets/editor_gui.png>
 Package pdftex.def Info: ../design/../design/assets/editor_gui.png  used on input line 131.
 (pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
-<../design/../design/assets/editor_flowchart.pdf, id=594, 435.54718pt x 204.765pt>
+<../design/../design/assets/editor_flowchart.pdf, id=659, 435.54718pt x 204.765pt>
 File: ../design/../design/assets/editor_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/editor_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used on input line 142.
@@ -1266,7 +1282,7 @@ Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used o
 
 
 [20 <../design/../design/assets/game_flowchart.pdf> <../design/../design/assets/editor_gui.png>]
-<../design/../design/assets/minimax.pdf, id=610, 688.49219pt x 307.1475pt>
+<../design/../design/assets/minimax.pdf, id=675, 688.49219pt x 307.1475pt>
 File: ../design/../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/../design/assets/minimax.pdf>
 Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input line 153.
@@ -1275,7 +1291,7 @@ Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input l
 
 [21 <../design/../design/assets/editor_flowchart.pdf> <../design/../design/assets/minimax.pdf>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 163.
-<../design/../design/assets/alpha_beta_pruning.pdf, id=641, 713.7867pt x 307.1475pt>
+<../design/../design/assets/alpha_beta_pruning.pdf, id=706, 713.7867pt x 307.1475pt>
 File: ../design/../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/../design/assets/alpha_beta_pruning.pdf>
 Package pdftex.def Info: ../design/../design/assets/alpha_beta_pruning.pdf  used on input line 198.
@@ -1298,12 +1314,12 @@ Overfull \hbox (2.31029pt too wide) in paragraph at lines 349--350
 [26]
 
 [27]
-<../design/../design/assets/bitboard_indexes.pdf, id=700, 324.82352pt x 263.91599pt>
+<../design/../design/assets/bitboard_indexes.pdf, id=765, 324.82352pt x 263.91599pt>
 File: ../design/../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_indexes.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used on input line 418.
 (pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
-<../design/../design/assets/bitboard_shifted.pdf, id=702, 145.50359pt x 145.50359pt>
+<../design/../design/assets/bitboard_shifted.pdf, id=767, 145.50359pt x 145.50359pt>
 File: ../design/../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_shifted.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_shifted.pdf  used on input line 435.
@@ -1311,7 +1327,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_shifted.pdf  used o
 
 
 [28 <../design/../design/assets/bitboard_indexes.pdf>]
-<../design/../design/assets/bitboard_masked.pdf, id=722, 551.1792pt x 167.6664pt>
+<../design/../design/assets/bitboard_masked.pdf, id=787, 551.1792pt x 167.6664pt>
 File: ../design/../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_masked.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_masked.pdf  used on input line 450.
@@ -1321,7 +1337,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_masked.pdf  used on
 [29 <../design/../design/assets/bitboard_shifted.pdf> <../design/../design/assets/bitboard_masked.pdf>]
 
 [30]
-<../design/../design/assets/psqt.pdf, id=757, 352.43669pt x 167.6664pt>
+<../design/../design/assets/psqt.pdf, id=822, 352.43669pt x 167.6664pt>
 File: ../design/../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/../design/assets/psqt.pdf>
 Package pdftex.def Info: ../design/../design/assets/psqt.pdf  used on input line 536.
@@ -1336,7 +1352,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used o
 
 
 [32]
-<../design/../design/assets/shadow_mapping.pdf, id=782, 340.3917pt x 321.11969pt>
+<../design/../design/assets/shadow_mapping.pdf, id=847, 340.3917pt x 321.11969pt>
 File: ../design/../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/../design/assets/shadow_mapping.pdf>
 Package pdftex.def Info: ../design/../design/assets/shadow_mapping.pdf  used on input line 615.
@@ -1346,7 +1362,7 @@ Package pdftex.def Info: ../design/../design/assets/shadow_mapping.pdf  used on 
 [33]
 
 [34 <../design/../design/assets/shadow_mapping.pdf>]
-<../design/../design/assets/soft_shadows.pdf, id=822, 264.99pt x 164.5347pt>
+<../design/../design/assets/soft_shadows.pdf, id=887, 264.99pt x 164.5347pt>
 File: ../design/../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/../design/assets/soft_shadows.pdf>
 Package pdftex.def Info: ../design/../design/assets/soft_shadows.pdf  used on input line 655.
@@ -1354,7 +1370,7 @@ Package pdftex.def Info: ../design/../design/assets/soft_shadows.pdf  used on in
 
 
 [35 <../design/../design/assets/soft_shadows.pdf>]
-<../design/../design/assets/multi_threading.pdf, id=849, 352.43669pt x 158.51219pt>
+<../design/../design/assets/multi_threading.pdf, id=914, 352.43669pt x 158.51219pt>
 File: ../design/../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/../design/assets/multi_threading.pdf>
 Package pdftex.def Info: ../design/../design/assets/multi_threading.pdf  used on input line 667.
@@ -1366,7 +1382,7 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 [37]
 
 [38]
-<../design/../design/assets/stack.pdf, id=922, 204.765pt x 174.6525pt>
+<../design/../design/assets/stack.pdf, id=987, 204.765pt x 174.6525pt>
 File: ../design/../design/assets/stack.pdf Graphic file (type pdf)
 <use ../design/../design/assets/stack.pdf>
 Package pdftex.def Info: ../design/../design/assets/stack.pdf  used on input line 838.
@@ -1404,7 +1420,7 @@ Overfull \hbox (16.34079pt too wide) in alignment at lines 957--969
  []
 
 [42]
-<../design/../design/assets/class_relation_diagram.pdf, id=963, 435.54718pt x 478.66827pt>
+<../design/../design/assets/class_relation_diagram.pdf, id=1028, 435.54718pt x 478.66827pt>
 File: ../design/../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
 <use ../design/../design/assets/class_relation_diagram.pdf>
 Package pdftex.def Info: ../design/../design/assets/class_relation_diagram.pdf  used on input line 998.
@@ -1420,7 +1436,7 @@ Chapter 3.
 [45
 
 ]
-<../technical_solution/../technical_solution/assets/file_tree_diagram.pdf, id=1039, 412.4208pt x 448.5558pt>
+<../technical_solution/../technical_solution/assets/file_tree_diagram.pdf, id=1104, 412.4208pt x 448.5558pt>
 File: ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf  used on input line 15.
@@ -1561,15 +1577,15 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [111]) (../technical_solution/../../data/states/game/cpu/engines/minimax.py
 
-[112])
+[112]
 
-[113] (../technical_solution/../../data/states/game/cpu/engines/alpha_beta.py
+[113]) (../technical_solution/../../data/states/game/cpu/engines/alpha_beta.py
 
 [114]) (../technical_solution/../../data/states/game/cpu/engines/transposition_table.py
 
-[115]) (../technical_solution/../../data/states/game/cpu/evaluator.py
+[115])
 
-[116]
+[116] (../technical_solution/../../data/states/game/cpu/evaluator.py
 
 [117]
 
@@ -1591,9 +1607,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [126]
 
-[127]) (../technical_solution/../../data/database/migrations/create_games_table_19112024.py
+[127])
 
-[128]) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py
+[128] (../technical_solution/../../data/database/migrations/create_games_table_19112024.py) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py
 
 [129]) (../technical_solution/../../data/utils/database_helpers.py
 
@@ -1613,43 +1629,69 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [137] (../technical_solution/../../data/shaders/fragments/highlight_brightness.frag) (../technical_solution/../../data/shaders/classes/blur.py
 
-[138]) (../technical_solution/../../data/shaders/fragments/blur.frag) (../technical_solution/../../data/shaders/classes/bloom.py
+[138]) (../technical_solution/../../data/shaders/fragments/blur.frag
 
-[139]
+[139]) (../technical_solution/../../data/shaders/classes/bloom.py
 
-[140]) (../technical_solution/../../data/shaders/fragments/occlusion.frag) (../technical_solution/../../data/shaders/fragments/shadowmap.frag
+[140]) (../technical_solution/../../data/shaders/fragments/occlusion.frag)
 
-[141]) (../technical_solution/../../data/shaders/fragments/lightmap.frag
+[141] (../technical_solution/../../data/shaders/fragments/shadowmap.frag) (../technical_solution/../../data/shaders/fragments/lightmap.frag
 
-[142]) (../technical_solution/../../data/shaders/classes/rays.py
+[142]
 
-[143]
+[143]) (../technical_solution/../../data/shaders/classes/rays.py
 
-[144])) (../testing/../testing/testing.tex)
+[144])) (../testing/../testing/testing.tex
 
-[145] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
+[145]
+Chapter 4.
+(../testing/../../data/states/game/cpu/base.py)
+
+[146
+
+]
+
+[147]
+<../testing/../testing/assets/rays_example_1.png, id=6899, 444.15938pt x 444.15938pt>
+File: ../testing/../testing/assets/rays_example_1.png Graphic file (type png)
+<use ../testing/../testing/assets/rays_example_1.png>
+Package pdftex.def Info: ../testing/../testing/assets/rays_example_1.png  used on input line 88.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+<../testing/../testing/assets/rays_example_2.png, id=6900, 444.15938pt x 444.15938pt>
+File: ../testing/../testing/assets/rays_example_2.png Graphic file (type png)
+<use ../testing/../testing/assets/rays_example_2.png>
+Package pdftex.def Info: ../testing/../testing/assets/rays_example_2.png  used on input line 91.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+<../testing/../testing/assets/rays_example_3.png, id=6901, 444.15938pt x 444.15938pt>
+File: ../testing/../testing/assets/rays_example_3.png Graphic file (type png)
+<use ../testing/../testing/assets/rays_example_3.png>
+Package pdftex.def Info: ../testing/../testing/assets/rays_example_3.png  used on input line 94.
+(pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
+)
+
+[148 <../testing/../testing/assets/rays_example_1.png> <../testing/../testing/assets/rays_example_2.png> <../testing/../testing/assets/rays_example_3.png>] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CEB9F055710EACA54D6D50BCB5B230C4;9023.
+(rerunfilecheck)             Checksum: 51F3CE0A2A011B975EDDD816D0D1557D;10472.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 55634 strings out of 473530
- 1245037 string characters out of 5714311
- 2517418 words of memory out of 5000000
- 72349 multiletter control sequences out of 15000+600000
- 581383 words of font info for 78 fonts, out of 8000000 for 9000
+ 56300 strings out of 473530
+ 1254161 string characters out of 5714311
+ 2519228 words of memory out of 5000000
+ 72931 multiletter control sequences out of 15000+600000
+ 583863 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,11n,119p,1932b,2887s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (147 pages, 6156896 bytes).
+ 114i,11n,119p,1932b,2836s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (150 pages, 6436707 bytes).
 PDF statistics:
- 8558 PDF objects out of 8907 (max. 8388607)
- 5658 named destinations out of 6186 (max. 500000)
- 759 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 8720 PDF objects out of 8907 (max. 8388607)
+ 5715 named destinations out of 6186 (max. 500000)
+ 878 words of extra memory for PDF output out of 10000 (max. 10000000)
 

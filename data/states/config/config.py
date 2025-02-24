@@ -30,7 +30,7 @@ class Config(_State):
     
     def startup(self, persist=None):
         super().startup(CONFIG_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
-        window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
+        window.set_apply_arguments(ShaderType.BLOOM, highlight_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
 
         CONFIG_WIDGETS['invalid_fen_string'].kill()
         CONFIG_WIDGETS['help'].kill()

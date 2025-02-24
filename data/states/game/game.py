@@ -40,7 +40,7 @@ class Game(_State):
         super().startup(music=music)
 
         window.set_apply_arguments(ShaderType.BASE, background_type=ShaderType.BACKGROUND_LASERS)
-        window.set_apply_arguments(ShaderType.BLOOM, occlusion_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
+        window.set_apply_arguments(ShaderType.BLOOM, highlight_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.8)
         binded_startup = partial(self.startup, persist)
         
         self.model = GameModel(persist)

@@ -1,4 +1,4 @@
-PWD c:\Users\Python\Documents\Repositories\NEA\documentation\main
+PWD c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution
 INPUT C:\Users\Python\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\technical_solution.tex
 OUTPUT c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.log
@@ -368,9 +368,9 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\etoc\etoc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\etoc\etoc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.sty
-INPUT .\assets\listings-glsl.prf
-INPUT .\assets\listings-glsl.prf
-INPUT assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
