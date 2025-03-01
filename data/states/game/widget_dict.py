@@ -242,7 +242,7 @@ PAUSE_WIDGETS = {
 
 win_container = Rectangle(
     relative_position=(0, 0),
-    relative_size=(0.6, 0.6),
+    relative_size=(0.4, 0.8),
     scale_mode='height',
     anchor_x='center',
     anchor_y='center',
@@ -255,57 +255,108 @@ WIN_WIDGETS = {
         win_container,      
         TextButton(
             parent=win_container,
-            relative_position=(0.45, 0.05),
-            relative_size=(0.5, 0.3),
+            relative_position=(0, 0.5),
+            relative_size=(0.8, 0.15),
             text='GO TO MENU',
+            anchor_x='center',
             fit_vertical=False,
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
             parent=win_container,
-            relative_position=(0.45, 0.35),
-            relative_size=(0.5, 0.3),
+            relative_position=(0, 0.65),
+            relative_size=(0.8, 0.15),
             text='REVIEW GAME',
+            anchor_x='center',
             fit_vertical=False,
             event=CustomEvent(GameEventType.REVIEW_CLICK)
         ),
         TextButton(
             parent=win_container,
-            relative_position=(0.45, 0.65),
-            relative_size=(0.5, 0.3),
+            relative_position=(0, 0.8),
+            relative_size=(0.8, 0.15),
             text='NEW GAME',
+            anchor_x='center',
             fit_vertical=False,
             event=CustomEvent(GameEventType.GAME_CLICK)
         ),
     ],
-    'blue_trophy':
+    'blue_won':
     Icon(
         parent=win_container,
-        relative_position=(0.05, 0.05),
-        relative_size=(0.4, 0.9),
+        relative_position=(0, 0.05),
+        relative_size=(0.8, 0.3),
+        anchor_x='center',
         border_width=0,
         margin=0,
-        icon=GRAPHICS['blue_trophy'],
+        icon=GRAPHICS['blue_won'],
         fill_colour=(0, 0, 0, 0),
     ),
-    'red_trophy':
+    'red_won':
     Icon(
         parent=win_container,
-        relative_position=(0.05, 0.05),
-        relative_size=(0.4, 0.9),
+        relative_position=(0, 0.05),
+        relative_size=(0.8, 0.3),
+        anchor_x='center',
         border_width=0,
         margin=0,
-        icon=GRAPHICS['red_trophy'],
+        icon=GRAPHICS['red_won'],
+        fill_colour=(0, 0, 0, 0),
+        fit_icon=True,
+    ),
+    'draw_won':
+    Icon(
+        parent=win_container,
+        relative_position=(0, 0.05),
+        relative_size=(0.8, 0.3),
+        anchor_x='center',
+        border_width=0,
+        margin=0,
+        icon=GRAPHICS['draw_won'],
         fill_colour=(0, 0, 0, 0),
     ),
-    'draw_trophy':
+    'by_checkmate':
     Icon(
         parent=win_container,
-        relative_position=(0.05, 0.05),
-        relative_size=(0.4, 0.9),
+        relative_position=(0, 0.35),
+        relative_size=(0.8, 0.1),
+        anchor_x='center',
         border_width=0,
         margin=0,
-        icon=GRAPHICS['hug'],
+        icon=GRAPHICS['by_checkmate'],
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'by_resignation':
+    Icon(
+        parent=win_container,
+        relative_position=(0, 0.375),
+        relative_size=(0.8, 0.1),
+        anchor_x='center',
+        border_width=0,
+        margin=0,
+        icon=GRAPHICS['by_resignation'],
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'by_draw':
+    Icon(
+        parent=win_container,
+        relative_position=(0, 0.375),
+        relative_size=(0.8, 0.1),
+        anchor_x='center',
+        border_width=0,
+        margin=0,
+        icon=GRAPHICS['by_draw'],
+        fill_colour=(0, 0, 0, 0),
+    ),
+    'by_timeout':
+    Icon(
+        parent=win_container,
+        relative_position=(0, 0.375),
+        relative_size=(0.8, 0.1),
+        anchor_x='center',
+        border_width=0,
+        margin=0,
+        icon=GRAPHICS['by_timeout'],
         fill_colour=(0, 0, 0, 0),
     )
 }

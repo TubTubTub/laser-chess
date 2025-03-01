@@ -1,7 +1,7 @@
 import pygame
-from data.components.widget_group import WidgetGroup
-from data.constants import GameEventType, PAUSE_COLOUR
 from data.states.game.widget_dict import PAUSE_WIDGETS
+from data.constants import GameEventType, PAUSE_COLOUR
+from data.components.widget_group import WidgetGroup
 from data.managers.window import window
 from data.managers.audio import audio
 

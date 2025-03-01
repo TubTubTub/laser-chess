@@ -1,14 +1,11 @@
-import pygame
-from data.constants import Colour, Miscellaneous
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
+from data.constants import Colour, Miscellaneous
 from data.managers.window import window
 
 class WinView:
     def __init__(self, model):
         self._model = model
-
-        # self._model.register_listener(self.process_model_event, 'win')
 
         self._widget_group = WidgetGroup(WIN_WIDGETS)
         self._widget_group.handle_resize(window.size)
@@ -19,22 +16,32 @@ class WinView:
     def draw(self):
         if self._model.states['WINNER'] is not None:
             if self._model.states['WINNER'] == Colour.BLUE:
-                WIN_WIDGETS['red_trophy'].kill()
-                WIN_WIDGETS['draw_trophy'].kill()
+                WIN_WIDGETS['red_won'].kill()
+                WIN_WIDGETS['draw_won'].kill()
             elif self._model.states['WINNER'] == Colour.RED:
-                WIN_WIDGETS['blue_trophy'].kill()
-                WIN_WIDGETS['draw_trophy'].kill()
+                WIN_WIDGETS['blue_won'].kill()
+                WIN_WIDGETS['draw_won'].kill()
             elif self._model.states['WINNER'] == Miscellaneous.DRAW:
-                WIN_WIDGETS['red_trophy'].kill()
-                WIN_WIDGETS['blue_trophy'].kill()
+                WIN_WIDGETS['red_won'].kill()
+                WIN_WIDGETS['blue_won'].kill()
         
             self._widget_group.draw()
     
-    # def process_model_event(self, event):
-    #     try:
-    #         self._event_to_func_map.get(event.type)(event)
-    #     except:
-    #         raise KeyError('Event type not recognized in Win View (WinView.process_model_event)', event)
+    def set_win_type(self, win_type):
+        WIN_WIDGETS['by_draw'].kill()
+        WIN_WIDGETS['by_timeout'].kill()
+        WIN_WIDGETS['by_resignation'].kill()
+        WIN_WIDGETS['by_checkmate'].kill()
+
+        match win_type:
+            case 'CAPTURE':
+                self._widget_group.add(WIN_WIDGETS['by_checkmate'])
+            case 'DRAW':
+                self._widget_group.add(WIN_WIDGETS['by_draw'])
+            case 'RESIGN':
+                self._widget_group.add(WIN_WIDGETS['by_resignation'])
+            case 'TIME':
+                self._widget_group.add(WIN_WIDGETS['by_timeout'])
     
     def convert_mouse_pos(self, event):
         return self._widget_group.process_event(event)

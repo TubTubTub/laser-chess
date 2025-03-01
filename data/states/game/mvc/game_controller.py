@@ -18,6 +18,7 @@ class GameController:
         self._to_new_game = to_new_game
 
         self._view.initialise_timers()
+        self._win_view.set_win_type('CAPTURE')
     
     def cleanup(self, next):
         """
@@ -135,14 +136,17 @@ class GameController:
             case GameEventType.RESIGN_CLICK:
                 self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
                 self._view.set_status_text(StatusText.WIN)
+                self._win_view.set_win_type('RESIGN')
                 
             case GameEventType.DRAW_CLICK:
                 self._model.set_winner(Miscellaneous.DRAW)
                 self._view.set_status_text(StatusText.DRAW)
+                self._win_view.set_win_type('DRAW')
                 
             case GameEventType.TIMER_END:
                 if self._model.states['TIME_ENABLED']:
                     self._model.set_winner(widget_event.active_colour.get_flipped_colour())
+                    self._win_view.set_win_type('TIME')
             
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
