@@ -4,7 +4,7 @@
     "laserColourBlue": "0x0000ff",
     "laserColourRed": "0xff0000",
     "displayMode": "windowed",
-    "musicVolume": 0.279,
+    "musicVolume": 0.085,
     "sfxVolume": 0.336,
     "particles": true,
     "opengl": true,

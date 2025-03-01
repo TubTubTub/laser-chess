@@ -131,44 +131,47 @@ The following objectives should be met to satisfy my clients’ requirements:
 \begin{enumerate}
 \item All laser chess game logic should be properly implemented
     \begin{itemize}
-    \item All pieces should be display correct behaviour (e.g. reflecting the laser in the correct direction)
+    \item All pieces should be display correct behaviour (i.e reflect the laser correctly)
     \item Option to rotate laser chess pieces should be implemented
-    \item Pieces should be automatically detected and eliminated when hit by the laser
+    \item Option to move laser chess pieces should be implemented
     \item Game should allocate alternating player’s turns
-    \item Players should be able to move to an available square when it is their turn
+    \item Travel path of laser should be correctly implemented
+    \item Pieces should be automatically detected and eliminated when hit by the laser
     \item Game should automatically detect when a player has lost or won
     \item Three-fold repetition should be automatically detected
-    \item Travel path of laser should be correctly implemented
     \end{itemize}
-\item Save or load game options should be implemented \label{itm:save-games}
+\item Save or load game options should be implemented
+\label{itm:save-games}
     \begin{itemize}
-    \item Games will be encoded into FEN string format
-    \item Games can be saved locally into the program files
-    \item NOT IMPLEMENTED Players can load positions of previous games and continue playing
-    \item Players should be able to scroll through previous moves
+    \item Games should be encoded into FEN string format
+    \item Games can be saved locally into external files
+    \item User should be able to scroll through previous games
+    \item User should be able to scroll through previous moves
+    \item Game should display information relevant to each game, and display moves correctly
     \end{itemize}
 \item Other board game requirements should be implemented
     \begin{itemize}
+    \item Draws should be made an option
+    \item Resigning should be made an option
     \item Timer displaying time left for each player should be displayed
     \item Time logic should be implemented, pausing when it is the opponent’s turn, forfeiting players who run out of time
-    \item Forfeiting should be made available
-    \item Draws should be made available
     \end{itemize}
 \item Game settings and config should be customisable
     \begin{itemize}
-    \item Piece and board colour should be customisable
-    \item Option to play CPU or another player should be implemented
-    \item Starting player turn and board layout should be customisable
-    \item Timer and duration should be customisable
+    \item User should be able to select board colours
+    \item User should be able to play against another player or CPU
+    \item User should be able to customise timer and duration
+    \item User should be able to customise starting board layout and colour
     \end{itemize}
-\item CPU player
-    \begin{itemize}
-    \item CPU player should be functional and display an adequate level of play
-    \item CPU should be within an adequate timeframe (e.g. 5 seconds)
-    \item CPU should be functional regardless of starting board position
-    \end{itemize}
+% \item CPU player
+%     \begin{itemize}
+%     \item CPU player should be functional and display an adequate level of play
+%     \item CPU should calculate a move within an adequate timeframe (e.g. 5 seconds)
+%     \item CPU should be functional regardless of starting board position
+%     \end{itemize}
 \item Game UI should improve player experience
     \begin{itemize}
+    \item Drag and drop should be implemented
     \item Selected pieces should be clearly marked with an indicator
     \item Indicator showing available squares to move to when clicking on a piece
     \item Destroying a piece should display a visual and audio cue
@@ -180,6 +183,7 @@ The following objectives should be met to satisfy my clients’ requirements:
     \item \label{itm:responsive-objective} GUI should always remain responsive throughout the running of the program
     \item Application should be divided into separate sections with their own menus and functionality (e.g. title page, settings)
     \item Navigation buttons (e.g. return to menu) should concisely display their functionality
+    \item UI should contain exit and help buttons
     \item UI should be designed for clarity in mind and visually pleasing
     \item Application should be responsive, draggable and resizable
     \end{itemize}

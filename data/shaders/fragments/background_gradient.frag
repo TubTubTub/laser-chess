@@ -1,4 +1,4 @@
-// https://www.shadertoy.com/view/wdyczG
+// Modified from https://www.shadertoy.com/view/wdyczG
 
 #version 330 core
 

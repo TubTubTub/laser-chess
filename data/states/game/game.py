@@ -27,12 +27,16 @@ class Game(_State):
         window.clear_effect(ShaderType.RAYS)
 
         game_entry = GameEntry(self.model.states, final_fen_string=self.model.get_fen_string())
-        insert_into_games(game_entry.convert_to_row())
+        inserted_game = insert_into_games(game_entry.convert_to_row())
 
-        return None
+        return inserted_game
     
     def switch_to_menu(self):
         self.next = 'menu'
+        self.done = True
+    
+    def switch_to_review(self):
+        self.next = 'review'
         self.done = True
     
     def startup(self, persist):
@@ -47,7 +51,7 @@ class Game(_State):
         self.view = GameView(self.model)
         self.pause_view = PauseView(self.model)
         self.win_view = WinView(self.model)
-        self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, binded_startup)
+        self.controller = GameController(self.model, self.view, self.win_view, self.pause_view, self.switch_to_menu, self.switch_to_review, binded_startup)
 
         self.view.draw()
 

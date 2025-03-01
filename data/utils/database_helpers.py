@@ -12,6 +12,7 @@ def insert_into_games(game_entry):
         game_entry (GameEntry): GameEntry object containing game information.
     """
     connection = sqlite3.connect(database_path, detect_types=sqlite3.PARSE_DECLTYPES)
+    connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
     # Datetime added for created_dt column
@@ -23,7 +24,16 @@ def insert_into_games(game_entry):
     ''', game_entry)
 
     connection.commit()
+    
+    # Return inserted row
+    cursor.execute('''
+        SELECT * FROM games WHERE id = LAST_INSERT_ROWID()
+    ''')
+    inserted_row = cursor.fetchone()
+
     connection.close()
+
+    return dict(inserted_row)
 
 def get_all_games():
     """

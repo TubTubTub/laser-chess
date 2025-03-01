@@ -45,15 +45,24 @@ class MinimaxCPU(BaseCPU):
             
             for move in board.generate_all_moves(Colour.BLUE):
                 laser_result = board.apply_move(move)
+
                 
                 new_score = self.search(board, depth - 1, stop_event)[0]
+
+                # if depth < self._max_depth:
+                #     print('DEPTH', depth, new_score, move)
 
                 if new_score > max_score:
                     max_score = new_score
                     best_move = move
+
+                    if new_score == (Score.CHECKMATE + self._max_depth):
+                        board.undo_move(move, laser_result)
+                        return max_score, best_move
+        
                 elif new_score == max_score:
                     # If evaluated scores are equal, pick a random move
-                    choice([best_move, move])
+                    best_move = choice([best_move, move])
 
                 board.undo_move(move, laser_result)
                 
@@ -64,13 +73,20 @@ class MinimaxCPU(BaseCPU):
             
             for move in board.generate_all_moves(Colour.RED):
                 laser_result = board.apply_move(move)
+                # print('DEPTH', depth, move)
                 new_score = self.search(board, depth - 1, stop_event)[0]
 
                 if new_score < min_score:
+                    # print('setting new', new_score, move)
                     min_score = new_score
                     best_move = move
+
+                    if new_score == (-Score.CHECKMATE - self._max_depth):
+                        board.undo_move(move, laser_result)
+                        return min_score, best_move
+                    
                 elif new_score == min_score:
-                    choice([best_move, move])
+                    best_move = choice([best_move, move])
                 
                 board.undo_move(move, laser_result)
                 

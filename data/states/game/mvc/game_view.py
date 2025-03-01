@@ -128,6 +128,10 @@ class GameView:
             self.set_status_text(StatusText.PLAYER_MOVE)
         else:
             self.set_status_text(StatusText.CPU_MOVE)
+        
+        if self._model.states['TIME_ENABLED']:
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
+            self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 
         if self._model.states['WINNER'] is not None:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)

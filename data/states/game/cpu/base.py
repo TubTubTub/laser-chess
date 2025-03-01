@@ -60,24 +60,24 @@ class BaseCPU:
 
         if (winner := board.check_win()) is not None:
             self._stats['leaf_nodes'] += 1
-            return self.process_win(winner)
+            return self.process_win(winner, depth, absolute)
 
         if depth == 0:
             self._stats['leaf_nodes'] += 1
             return self._evaluator.evaluate(board, absolute), None
     
-    def process_win(self, winner):
+    def process_win(self, winner, depth, absolute):
         self._stats['leaf_nodes'] += 1
 
         if winner == Miscellaneous.DRAW:
             self._stats['draws'] += 1
             return 0, None
-        elif winner == Colour.BLUE:
+        elif winner == Colour.BLUE or absolute:
             self._stats['mates'] += 1
-            return Score.CHECKMATE, None
+            return Score.CHECKMATE + depth, None
         elif winner == Colour.RED:
             self._stats['mates'] += 1
-            return -Score.CHECKMATE, None
+            return -Score.CHECKMATE - depth, None
     
     def __str__(self):
         return self.__class__.__name__

@@ -7,13 +7,14 @@ from data.managers.logs import initialise_logger
 logger = initialise_logger(__name__)
 
 class GameController:
-    def __init__(self, model, view, win_view, pause_view, to_menu, to_new_game):
+    def __init__(self, model, view, win_view, pause_view, to_menu, to_review, to_new_game):
         self._model = model
         self._view = view
         self._win_view = win_view
         self._pause_view = pause_view
 
         self._to_menu = to_menu
+        self._to_review = to_review
         self._to_new_game = to_new_game
 
         self._view.initialise_timers()
@@ -31,6 +32,8 @@ class GameController:
             self._to_menu()
         elif next == 'game':
             self._to_new_game()
+        elif next == 'review':
+            self._to_review()
 
     def make_move(self, move):
         """
@@ -93,6 +96,9 @@ class GameController:
             case GameEventType.GAME_CLICK:
                 self.cleanup('game')
                 return
+
+            case GameEventType.REVIEW_CLICK:
+                self.cleanup('review')
 
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')

@@ -151,12 +151,13 @@ class GameEventType(StrEnum):
     GAME_CLICK = auto()
     HELP_CLICK = auto()
     TUTORIAL_CLICK = auto()
+    RESIGN_CLICK = auto()
+    DRAW_CLICK = auto()
+    REVIEW_CLICK = auto()
     PIECE_DROP = auto()
     UPDATE_PIECES = auto()
     ROTATE_PIECE = auto()
     SET_LASER = auto()
-    RESIGN_CLICK = auto()
-    DRAW_CLICK = auto()
     TIMER_END = auto()
 
 class MenuEventType(StrEnum):
@@ -224,7 +225,7 @@ class Score(IntEnum):
     
     MOVE = 4
     POSITION = 11
-    PHAROAH_SAFETY = 3
+    PHAROAH_SAFETY = 31
     CHECKMATE = 100000
     INFINITE = 6969696969
 

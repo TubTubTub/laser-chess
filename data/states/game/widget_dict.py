@@ -256,19 +256,25 @@ WIN_WIDGETS = {
         TextButton(
             parent=win_container,
             relative_position=(0.45, 0.05),
-            relative_size=(0.5, 0.4),
+            relative_size=(0.5, 0.3),
             text='GO TO MENU',
             fit_vertical=False,
-            text_colour=(255, 0, 0),
             event=CustomEvent(GameEventType.MENU_CLICK)
         ),
         TextButton(
             parent=win_container,
-            relative_position=(0.45, 0.55),
-            relative_size=(0.5, 0.4),
+            relative_position=(0.45, 0.35),
+            relative_size=(0.5, 0.3),
+            text='REVIEW GAME',
+            fit_vertical=False,
+            event=CustomEvent(GameEventType.REVIEW_CLICK)
+        ),
+        TextButton(
+            parent=win_container,
+            relative_position=(0.45, 0.65),
+            relative_size=(0.5, 0.3),
             text='NEW GAME',
             fit_vertical=False,
-            text_colour=(255, 0, 0),
             event=CustomEvent(GameEventType.GAME_CLICK)
         ),
     ],

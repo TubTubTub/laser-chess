@@ -218,13 +218,18 @@ class TextInput(_Box, _Pressable, Text):
                 # Handling Ctrl-C and Ctrl-V shortcuts
                 if event.mod & (pygame.KMOD_CTRL):
                     if event.key == pygame.K_c:
-                        logger.info('COPIED')
-                    
+                        pyperclip.copy(self.text)
+                        logger.info(f'COPIED {self.text}')
+                
                     elif event.key == pygame.K_v:
                         pasted_text = pyperclip.paste()
                         pasted_text = ''.join(char for char in pasted_text if 32 <= ord(char) <= 127)
                         self._text = self._text[:self._cursor_index] + pasted_text + self._text[self._cursor_index:]
                         self._cursor_index += len(pasted_text)
+                    
+                    elif event.key == pygame.K_BACKSPACE or event.key == pygame.K_DELETE:
+                        self._text = ''
+                        self._cursor_index = 0
 
                     self.resize_text()
                     self.set_image()

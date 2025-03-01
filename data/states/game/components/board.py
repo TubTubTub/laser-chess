@@ -18,11 +18,11 @@ class Board:
         Returns:
             str: Board formatted as string.
         """
-        characters = ''
+        characters = '8  '
         pieces = defaultdict(int)
 
-        for rank in reversed(Rank):
-            for file in File:
+        for rank_idx, rank in enumerate(reversed(Rank)):
+            for file_idx, file in enumerate(File):
                 mask = 1 << (rank * 10 + file)
                 blue_piece = self.bitboards.get_piece_on(mask, Colour.BLUE)
                 red_piece = self.bitboards.get_piece_on(mask, Colour.RED)
@@ -36,8 +36,8 @@ class Board:
                 else:
                     characters += '.  '
 
-            characters += '\n\n'
-        
+            characters += f'\n\n{7 - rank_idx}  '
+        characters += 'A  B  C  D  E  F  G  H  I  J\n\n'
         characters += str(dict(pieces))
         characters += f'\nCURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}\n'
         return characters
@@ -225,7 +225,7 @@ class Board:
 
         return possible_moves
 
-    def get_all_active_pieces(self, colour):
+    def get_all_active_pieces(self, colour=None):
         """
         Gets all active pieces for the current player.
 

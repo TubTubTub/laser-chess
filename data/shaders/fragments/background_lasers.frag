@@ -1,4 +1,4 @@
-// https://www.shadertoy.com/view/7tBSR1
+// Modified from https://www.shadertoy.com/view/7tBSR1
 // rand [0,1] https://www.shadertoy.com/view/4djSRW
 
 #version 330 core
