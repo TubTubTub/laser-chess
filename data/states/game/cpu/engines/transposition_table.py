@@ -31,7 +31,6 @@ class TranspositionTableMixin:
         if score is not None:
             self._stats['cache_hits'] += 1
             self._stats['nodes'] += 1
-            print(board)
 
             return score, move
         else:

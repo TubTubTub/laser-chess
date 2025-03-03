@@ -1,8 +1,9 @@
+
+from data.states.game.cpu.move_orderer import MoveOrderer
 from data.states.game.cpu.base import BaseCPU
 from data.constants import Score, Colour
 from random import choice
-from data.states.game.cpu.move_orderer import MoveOrderer
-
+from data.utils.bitboard_helpers import print_bitboard
 orderer = MoveOrderer()
 
 class ABMinimaxCPU(BaseCPU):

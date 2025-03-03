@@ -10,7 +10,6 @@ from data.utils.board_helpers import screen_pos_to_coords
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.custom_event import CustomEvent
 from data.components.widget_group import WidgetGroup
-from data.components.cursor import Cursor
 from data.managers.window import window
 from data.managers.audio import audio
 from data.assets import SFX
@@ -34,7 +33,6 @@ class GameView:
         self._widget_group.handle_resize(window.size)
         self.initialise_widgets()
 
-        self._cursor = Cursor()
         self._laser_draw = LaserDraw(self.board_position, self.board_size)
         self._overlay_draw = OverlayDraw(self.board_position, self.board_size)
         self._drag_and_drop = DragAndDrop(self.board_position, self.board_size)
@@ -134,11 +132,18 @@ class GameView:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 
         if self._model.states['WINNER'] is not None:
-            self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
-            self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
+            self.handle_game_end()
+    
+    def handle_game_end(self, play_sfx=True):
+        self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
+        self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 
+        if self._model.states['WINNER'] == Miscellaneous.DRAW:
+            self.set_status_text(StatusText.DRAW)
+        else:
             self.set_status_text(StatusText.WIN)
-
+        
+        if play_sfx:
             audio.play_sfx(SFX['sphinx_destroy_1'])
             audio.play_sfx(SFX['sphinx_destroy_2'])
             audio.play_sfx(SFX['sphinx_destroy_3'])

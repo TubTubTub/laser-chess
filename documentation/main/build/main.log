@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  27 FEB 2025 17:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  3 MAR 2025 22:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -976,7 +976,24 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip93
+\f@nch@offset@elh=\skip94
+\f@nch@offset@erh=\skip95
+\f@nch@offset@olh=\skip96
+\f@nch@offset@orh=\skip97
+\f@nch@offset@elf=\skip98
+\f@nch@offset@erf=\skip99
+\f@nch@offset@olf=\skip100
+\f@nch@offset@orf=\skip101
+\f@nch@height=\skip102
+\f@nch@footalignment=\skip103
+\f@nch@widthL=\skip104
+\f@nch@widthC=\skip105
+\f@nch@widthR=\skip106
+\@temptokenb=\toks52
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/import\import.sty
 Package: import 2020/04/01  v 6.2
@@ -987,28 +1004,28 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 \@quotelevel=\count512
 \@quotereset=\count513
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 69.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 112.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1051,12 +1068,12 @@ LaTeX Font Info:    ... okay on input line 69.
 \scratchbox=\box136
 \nofMPsegments=\count515
 \nofMParguments=\count516
-\everyMPshowfont=\toks52
+\everyMPshowfont=\toks53
 \MPscratchCnt=\count517
 \MPscratchDim=\dimen330
 \MPnumerator=\count518
 \makeMPintoPDFobject=\count519
-\everyMPtoPDFconversion=\toks53
+\everyMPtoPDFconversion=\toks54
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1089,27 +1106,27 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.bbl)
-Package biblatex Info: Reference section=0 on input line 69.
-Package biblatex Info: Reference segment=0 on input line 69.
+Package biblatex Info: Reference section=0 on input line 112.
+Package biblatex Info: Reference segment=0 on input line 112.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 69.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 112.
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 \c@lstlisting=\count520
-Package hyperref Info: Link coloring OFF on input line 69.
+Package hyperref Info: Link coloring OFF on input line 112.
 (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 \Etoc@tf=\read4
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 131.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 131.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
@@ -1126,8 +1143,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.81 
-      [1]
+l.134 
+       [1]
 
 [2] (../analysis/../analysis/analysis.tex
 
@@ -1560,9 +1577,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [99]
 
-[100]) (../technical_solution/../../data/states/game/components/board.py
+[100])
 
-[101]
+[101] (../technical_solution/../../data/states/game/components/board.py
 
 [102]
 
@@ -1570,9 +1587,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [104]
 
-[105]) (../technical_solution/../../data/states/game/components/bitboard_collection.py
+[105]
 
-[106]
+[106]) (../technical_solution/../../data/states/game/components/bitboard_collection.py
 
 [107]
 
@@ -1582,31 +1599,31 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [110]
 
-[111]) (../technical_solution/../../data/states/game/cpu/engines/minimax.py
+[111])
 
-[112]
+[112] (../technical_solution/../../data/states/game/cpu/engines/minimax.py
 
 [113]) (../technical_solution/../../data/states/game/cpu/engines/alpha_beta.py
 
-[114]) (../technical_solution/../../data/states/game/cpu/engines/transposition_table.py
+[114]
 
-[115])
+[115]) (../technical_solution/../../data/states/game/cpu/engines/transposition_table.py
 
-[116] (../technical_solution/../../data/states/game/cpu/evaluator.py
+[116]) (../technical_solution/../../data/states/game/cpu/evaluator.py
 
 [117]
 
-[118]) (../technical_solution/../../data/states/game/cpu/cpu_thread.py
+[118])
 
-[119]) (../technical_solution/../../data/states/game/cpu/zobrist_hasher.py
+[119] (../technical_solution/../../data/states/game/cpu/cpu_thread.py)
 
-[120]) (../technical_solution/../../data/states/game/cpu/transposition_table.py
+[120] (../technical_solution/../../data/states/game/cpu/zobrist_hasher.py
 
-[121]
+[121]) (../technical_solution/../../data/states/game/cpu/transposition_table.py
 
-[122]) (../technical_solution/../../data/states/review/review.py
+[122]
 
-[123]
+[123]) (../technical_solution/../../data/states/review/review.py
 
 [124]
 
@@ -1614,152 +1631,157 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [126]
 
-[127])
+[127]
 
-[128] (../technical_solution/../../data/database/migrations/create_games_table_19112024.py) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py
+[128]) (../technical_solution/../../data/database/migrations/create_games_table_19112024.py
 
-[129]) (../technical_solution/../../data/utils/database_helpers.py
+[129]) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py
 
-[130]
+[130]) (../technical_solution/../../data/utils/database_helpers.py
 
-[131])
+[131]
 
-[132] (../technical_solution/../../data/managers/shader.py
+[132])
 
-[133]
+[133] (../technical_solution/../../data/managers/shader.py
 
 [134]
 
 [135]
 
-[136])
+[136]
 
-[137] (../technical_solution/../../data/shaders/fragments/highlight_brightness.frag) (../technical_solution/../../data/shaders/classes/blur.py
+[137])
 
-[138]) (../technical_solution/../../data/shaders/fragments/blur.frag
+[138] (../technical_solution/../../data/shaders/fragments/highlight_brightness.frag) (../technical_solution/../../data/shaders/classes/blur.py
 
-[139]) (../technical_solution/../../data/shaders/classes/bloom.py
+[139]) (../technical_solution/../../data/shaders/fragments/blur.frag)
 
-[140]) (../technical_solution/../../data/shaders/fragments/occlusion.frag)
+[140] (../technical_solution/../../data/shaders/classes/bloom.py
 
-[141] (../technical_solution/../../data/shaders/fragments/shadowmap.frag) (../technical_solution/../../data/shaders/fragments/lightmap.frag
+[141]) (../technical_solution/../../data/shaders/fragments/occlusion.frag) (../technical_solution/../../data/shaders/fragments/shadowmap.frag
 
-[142]
+[142]) (../technical_solution/../../data/shaders/fragments/lightmap.frag
 
-[143]) (../technical_solution/../../data/shaders/classes/rays.py
+[143])
 
-[144])) (../testing/../testing/testing.tex
+[144] (../technical_solution/../../data/shaders/classes/rays.py
 
-[145]
+[145])) (../testing/../testing/testing.tex
+
+[146]
 Chapter 4.
 (../testing/../../data/states/game/cpu/base.py)
 
-[146
+[147
 
 ]
-Overfull \hbox (9.85661pt too wide) in alignment at lines 46--50
+Overfull \hbox (104.33354pt too wide) in alignment at lines 46--50
  [] [] [] [] 
  []
 
 
-Overfull \hbox (9.85661pt too wide) in alignment at lines 50--63
+Overfull \hbox (104.33354pt too wide) in alignment at lines 50--63
  [] [] [] [] 
  []
 
-
-
-[147]
-<../testing/../testing/assets/rays_example_1.png, id=6967, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_1.png, id=7016, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_1.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_1.png  used on input line 102.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_2.png, id=6968, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_2.png, id=7017, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_2.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_2.png  used on input line 105.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_3.png, id=6969, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_3.png, id=7018, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_3.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_3.png  used on input line 108.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 
+
+[148]
 Underfull \hbox (badness 3492) in paragraph at lines 126--126
 []|\T1/cmr/m/n/10 Select piece and press ro-tate
  []
 
-[148 <../testing/../testing/assets/rays_example_1.png> <../testing/../testing/assets/rays_example_2.png> <../testing/../testing/assets/rays_example_3.png>]
+
 Underfull \hbox (badness 3000) in paragraph at lines 150--150
 []|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
-
+[149 <../testing/../testing/assets/rays_example_1.png> <../testing/../testing/assets/rays_example_2.png> <../testing/../testing/assets/rays_example_3.png>]
 Underfull \hbox (badness 1009) in paragraph at lines 185--185
 []|\T1/cmr/m/n/10 Input timer du-ra-tion in con-fig
  []
 
+[150]) (../evaluation/../evaluation/evaluation.tex
 
-
-[149]) (../evaluation/../evaluation/evaluation.tex
-
-[150]
+[151]
 Chapter 5.
 
 
-[151
+[152
 
 ]
 
-[152]
-
 [153]
-<../evaluation/../evaluation/assets/menu.png, id=7022, 895.84688pt x 448.67625pt>
+
+[154]
+<../evaluation/../evaluation/assets/menu.png, id=7081, 895.84688pt x 448.67625pt>
 File: ../evaluation/../evaluation/assets/menu.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/menu.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/menu.png  used on input line 94.
 (pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../evaluation/../evaluation/assets/settings.png, id=7023, 896.59969pt x 447.92343pt>
+<../evaluation/../evaluation/assets/settings.png, id=7082, 896.59969pt x 447.92343pt>
 File: ../evaluation/../evaluation/assets/settings.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/settings.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/settings.png  used on input line 101.
 (pdftex.def)             Requested size: 418.25368pt x 208.95204pt.
-<../evaluation/../evaluation/assets/config.png, id=7024, 898.10532pt x 447.17062pt>
+<../evaluation/../evaluation/assets/config.png, id=7083, 898.10532pt x 447.17062pt>
 File: ../evaluation/../evaluation/assets/config.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/config.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/config.png  used on input line 108.
 (pdftex.def)             Requested size: 418.25368pt x 208.24605pt.
 
 
-[154 <../evaluation/../evaluation/assets/menu.png> <../evaluation/../evaluation/assets/settings.png>]
-<../evaluation/../evaluation/assets/game.png, id=7032, 895.84688pt x 449.42906pt>
+[155 <../evaluation/../evaluation/assets/menu.png> <../evaluation/../evaluation/assets/settings.png>]
+<../evaluation/../evaluation/assets/game.png, id=7090, 895.84688pt x 449.42906pt>
 File: ../evaluation/../evaluation/assets/game.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/game.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/game.png  used on input line 115.
 (pdftex.def)             Requested size: 418.25368pt x 209.82584pt.
-<../evaluation/../evaluation/assets/editor.png, id=7033, 898.85812pt x 447.92343pt>
+<../evaluation/../evaluation/assets/editor.png, id=7091, 898.85812pt x 447.92343pt>
 File: ../evaluation/../evaluation/assets/editor.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/editor.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/editor.png  used on input line 122.
 (pdftex.def)             Requested size: 418.25368pt x 208.42577pt.
 
 
-[155 <../evaluation/../evaluation/assets/config.png> <../evaluation/../evaluation/assets/game.png>]
-<../evaluation/../evaluation/assets/browser.png, id=7040, 895.84688pt x 448.67625pt>
+[156 <../evaluation/../evaluation/assets/config.png> <../evaluation/../evaluation/assets/game.png>]
+<../evaluation/../evaluation/assets/browser.png, id=7098, 895.84688pt x 448.67625pt>
 File: ../evaluation/../evaluation/assets/browser.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/browser.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/browser.png  used on input line 129.
 (pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../evaluation/../evaluation/assets/review.png, id=7041, 897.3525pt x 447.17062pt>
+<../evaluation/../evaluation/assets/review.png, id=7099, 897.3525pt x 447.17062pt>
 File: ../evaluation/../evaluation/assets/review.png Graphic file (type png)
 <use ../evaluation/../evaluation/assets/review.png>
 Package pdftex.def Info: ../evaluation/../evaluation/assets/review.png  used on input line 136.
 (pdftex.def)             Requested size: 418.25368pt x 208.42346pt.
 
 
-[156 <../evaluation/../evaluation/assets/editor.png> <../evaluation/../evaluation/assets/browser.png>])
+[157 <../evaluation/../evaluation/assets/editor.png> <../evaluation/../evaluation/assets/browser.png>])
+runsystem(ls ./*.tex | xargs cat >> ./main.tmp)...disabled (restricted).
 
-[157 <../evaluation/../evaluation/assets/review.png>] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
+
+
+[158 <../evaluation/../evaluation/assets/review.png>]
+runsystem(rm -f ./main.tmp)...disabled (restricted).
+
+ (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1771,17 +1793,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 56439 strings out of 473530
- 1257815 string characters out of 5714311
- 2520730 words of memory out of 5000000
- 73023 multiletter control sequences out of 15000+600000
+ 56859 strings out of 473530
+ 1265344 string characters out of 5714311
+ 2555527 words of memory out of 5000000
+ 73385 multiletter control sequences out of 15000+600000
  583863 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 114i,11n,119p,1932b,2836s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (160 pages, 8732288 bytes).
+ 114i,12n,119p,1932b,2842s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (161 pages, 8771694 bytes).
 PDF statistics:
- 8882 PDF objects out of 8907 (max. 8388607)
- 5750 named destinations out of 6186 (max. 500000)
+ 8954 PDF objects out of 10688 (max. 8388607)
+ 5804 named destinations out of 6186 (max. 500000)
  1017 words of extra memory for PDF output out of 10000 (max. 10000000)
 

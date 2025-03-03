@@ -318,7 +318,7 @@ WIN_WIDGETS = {
     'by_checkmate':
     Icon(
         parent=win_container,
-        relative_position=(0, 0.35),
+        relative_position=(0, 0.375),
         relative_size=(0.8, 0.1),
         anchor_x='center',
         border_width=0,

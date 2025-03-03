@@ -21,30 +21,30 @@ class Evaluator:
             int: Score representing advantage/disadvantage for the player.
         """
         blue_score = (
-            self.evaluate_material(board, Colour.BLUE) +
-            self.evaluate_position(board, Colour.BLUE) +
-            self.evaluate_mobility(board, Colour.BLUE) +
+            self.evaluate_material(board, Colour.BLUE),
+            self.evaluate_position(board, Colour.BLUE),
+            self.evaluate_mobility(board, Colour.BLUE),
             self.evaluate_pharoah_safety(board, Colour.BLUE)
         )
 
         red_score = (
-            self.evaluate_material(board, Colour.RED) +
-            self.evaluate_position(board, Colour.RED) +
-            self.evaluate_mobility(board, Colour.RED) +
+            self.evaluate_material(board, Colour.RED),
+            self.evaluate_position(board, Colour.RED),
+            self.evaluate_mobility(board, Colour.RED),
             self.evaluate_pharoah_safety(board, Colour.RED)
         )
 
         if self._verbose:
-            logger.info(f'Material: {self.evaluate_material(board, Colour.BLUE)} | {self.evaluate_material(board, Colour.RED)}')
-            logger.info(f'Position: {self.evaluate_position(board, Colour.BLUE)} | {self.evaluate_position(board, Colour.RED)}')
-            logger.info(f'Mobility: {self.evaluate_mobility(board, Colour.BLUE)} | {self.evaluate_mobility(board, Colour.RED)}')
-            logger.info(f'Safety: {self.evaluate_pharoah_safety(board, Colour.BLUE)} | {self.evaluate_pharoah_safety(board, Colour.RED)}')
-            logger.info(f'Overall score: {blue_score - red_score}')
+            logger.info(f'Material: {blue_score[0]} | {red_score[0]}')
+            logger.info(f'Position: {blue_score[1]} | {red_score[1]}')
+            logger.info(f'Mobility: {blue_score[2]} | {red_score[2]}')
+            logger.info(f'Safety: {blue_score[3]} | {red_score[3]}')
+            logger.info(f'Overall score: {sum(blue_score) - sum(red_score)}')
 
         if absolute and board.get_active_colour() == Colour.RED:
-            return red_score - blue_score
+            return sum(red_score) - sum(blue_score)
         else:
-            return blue_score - red_score
+            return sum(blue_score) - sum(red_score)
     
     def evaluate_material(self, board, colour):
         """

@@ -363,6 +363,8 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amssymb.s
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amssymb.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\import\import.sty
@@ -1034,10 +1036,10 @@ INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ec
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk
-INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
-INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk
+INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
+INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk
 INPUT C:\Users\Python\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk

@@ -1,7 +1,8 @@
+from data.constants import Colour, Miscellaneous, CursorMode
 from data.components.widget_group import WidgetGroup
 from data.states.game.widget_dict import WIN_WIDGETS
-from data.constants import Colour, Miscellaneous
 from data.managers.window import window
+from data.managers.cursor import cursor
 
 class WinView:
     def __init__(self, model):
@@ -15,6 +16,9 @@ class WinView:
     
     def draw(self):
         if self._model.states['WINNER'] is not None:
+            if cursor.get_mode() != CursorMode.ARROW:
+                cursor.set_mode(CursorMode.ARROW)
+
             if self._model.states['WINNER'] == Colour.BLUE:
                 WIN_WIDGETS['red_won'].kill()
                 WIN_WIDGETS['draw_won'].kill()

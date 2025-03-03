@@ -40,9 +40,11 @@ class BaseCPU:
 
         # Prints stats across multiple lines
         if self._verbose is True:
-            logger.info(f'{self.__str__()} Search Results:')
-            logger.info(printer.pformat(self._stats))
-            logger.info(f'Best score:  {score}   Best move: {move}')
+            logger.info(f'\n\n'
+                        f'{self.__str__()} Search Results:\n'
+                        f'{printer.pformat(self._stats)}\n'
+                        f'Best score:  {score}   Best move: {move}\n'
+                        )
         
         # Prints stats in a compacted format
         elif self._verbose.lower() == 'compact':

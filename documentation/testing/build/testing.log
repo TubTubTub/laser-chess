@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  28 FEB 2025 18:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  3 MAR 2025 19:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -981,7 +981,24 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip93
+\f@nch@offset@elh=\skip94
+\f@nch@offset@erh=\skip95
+\f@nch@offset@olh=\skip96
+\f@nch@offset@orh=\skip97
+\f@nch@offset@elf=\skip98
+\f@nch@offset@erf=\skip99
+\f@nch@offset@olf=\skip100
+\f@nch@offset@orf=\skip101
+\f@nch@height=\skip102
+\f@nch@footalignment=\skip103
+\f@nch@widthL=\skip104
+\f@nch@widthC=\skip105
+\f@nch@widthR=\skip106
+\@temptokenb=\toks52
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
@@ -1054,12 +1071,12 @@ LaTeX Font Info:    ... okay on input line 3.
 \scratchbox=\box136
 \nofMPsegments=\count515
 \nofMParguments=\count516
-\everyMPshowfont=\toks52
+\everyMPshowfont=\toks53
 \MPscratchCnt=\count517
 \MPscratchDim=\dimen330
 \MPnumerator=\count518
 \makeMPintoPDFobject=\count519
-\everyMPtoPDFconversion=\toks53
+\everyMPtoPDFconversion=\toks54
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1138,40 +1155,37 @@ Overfull \hbox (104.33354pt too wide) in alignment at lines 50--63
  [] [] [] [] 
  []
 
-
-
-[2]
-<../testing/assets/rays_example_1.png, id=124, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_1.png, id=109, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/assets/rays_example_1.png>
 Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 102.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_2.png, id=126, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_2.png, id=111, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/assets/rays_example_2.png>
 Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 105.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_3.png, id=127, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_3.png, id=112, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/assets/rays_example_3.png>
 Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 108.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 
+
+[2]
 Underfull \hbox (badness 3492) in paragraph at lines 126--126
 []|\T1/cmr/m/n/10 Select piece and press ro-tate
  []
 
-[3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
+
 Underfull \hbox (badness 3000) in paragraph at lines 150--150
 []|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
-
+[3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
 Underfull \hbox (badness 1009) in paragraph at lines 185--185
 []|\T1/cmr/m/n/10 Input timer du-ra-tion in con-fig
  []
-
-
 
 [4]
 
@@ -1191,17 +1205,17 @@ Package logreq Info: Writing requests to 'testing.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47968 strings out of 473530
- 1106245 string characters out of 5714311
- 2208184 words of memory out of 5000000
- 70467 multiletter control sequences out of 15000+600000
+ 48288 strings out of 473530
+ 1112015 string characters out of 5714311
+ 2213102 words of memory out of 5000000
+ 70785 multiletter control sequences out of 15000+600000
  574569 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  134i,11n,136p,1962b,1324s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (5 pages, 377549 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (5 pages, 375773 bytes).
 PDF statistics:
- 506 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 58 named destinations out of 1000 (max. 500000)
  148 words of extra memory for PDF output out of 10000 (max. 10000000)
 

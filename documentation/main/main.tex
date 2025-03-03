@@ -64,10 +64,54 @@
     morecomment=[s]{"""}{"""}
 }
 
+\lstdefinelanguage{json}{
+    basicstyle=\ttfamily\footnotesize,
+    numbers=left,
+    numberstyle=\tiny\color{codegray},
+    numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    string=[db]{"},
+    stringstyle=\color{codepurple},
+    morestring=[s][\color{black}]{\ \ "}{":},
+    keywordstyle=\color{magenta},
+    keywords={true,false,null},
+    literate=
+     *{0}{{{\color{magenta}0}}}{1}
+      {1}{{{\color{magenta}1}}}{1}
+      {2}{{{\color{magenta}2}}}{1}
+      {3}{{{\color{magenta}3}}}{1}
+      {4}{{{\color{magenta}4}}}{1}
+      {5}{{{\color{magenta}5}}}{1}
+      {6}{{{\color{magenta}6}}}{1}
+      {7}{{{\color{magenta}7}}}{1}
+      {8}{{{\color{magenta}8}}}{1}
+      {9}{{{\color{magenta}9}}}{1}
+      {.}{{{\color{magenta}.}}}{1}
+      {:}{{{\color{gray}{:}}}}{1}
+      {,}{{{\color{gray}{,}}}}{1}
+      {\{}{{{\color{gray}{\{}}}}{1}
+      {\}}{{{\color{gray}{\}}}}}{1}
+      {[}{{{\color{gray}{[}}}}{1}
+      {]}{{{\color{gray}{]}}}}{1},
+}
+
 \lstset{
     style=pythonstyle,
     escapeinside={(*@}{@*)}
 }
+
+\makeatletter
+\def\app@exe{\immediate\write18}
+\def\inputAllFiles#1{%
+  \app@exe{ls #1/*.tex | xargs cat >> #1/\jobname.tmp}%
+  \InputIfFileExists{#1/\jobname.tmp}{}{}
+  \AtEndDocument{\app@exe{rm -f #1/\jobname.tmp}}}
+\makeatother
+
+\begin{document}
+
+\pagestyle{fancy}
 
 \fancyhead[L]{Candidate Number: XXXX}
 \fancyhead[C]{Toby Mok}
@@ -76,8 +120,6 @@
 \fancyfoot[L]{\leftmark}
 \fancyfoot[C]{\thepage}
 \fancyfoot[R]{\rightmark}
-
-\begin{document}
 
 \begin{titlepage}
 \title{NEA}
@@ -100,6 +142,6 @@
 
 \appendix
 
-\subfile{}
+\inputAllFiles{.}
 
 \end{document}
