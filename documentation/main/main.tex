@@ -23,6 +23,7 @@
 \usepackage{multicol}
 \usepackage{etoc}
 \usepackage{amssymb}
+\usepackage{fancyhdr}
 
 \usepackage{subfiles}
 
@@ -66,6 +67,14 @@
     escapeinside={(*@}{@*)}
 }
 
+\fancyhead[L]{Candidate Number: XXXX}
+\fancyhead[C]{Toby Mok}
+\fancyhead[R]{Centre Number: 61679}
+
+\fancyfoot[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\rightmark}
+
 \begin{document}
 
 \begin{titlepage}
@@ -86,5 +95,9 @@
 \subfile{../technical_solution/technical_solution}
 \subfile{../testing/testing}
 \subfile{../evaluation/evaluation}
+
+\appendix
+
+\subfile{}
 
 \end{document}
