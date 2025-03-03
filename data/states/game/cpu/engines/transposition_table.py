@@ -6,7 +6,11 @@ class TranspositionTableMixin:
         super().__init__(*args, **kwargs)
         self._table = TranspositionTable()
     
-    def search(self, board, depth, alpha, beta, stop_event):
+    def find_move(self, *args, **kwargs):
+        self._table = TranspositionTable()
+        super().find_move(*args, **kwargs)
+    
+    def search(self, board, depth, alpha, beta, stop_event, hint=None):
         """
         Searches transposition table for a cached move before running a full search if necessary.
         Caches the searched result.
@@ -27,11 +31,12 @@ class TranspositionTableMixin:
         if score is not None:
             self._stats['cache_hits'] += 1
             self._stats['nodes'] += 1
+            print(board)
 
             return score, move
         else:
             # If board hash entry not found in cache, run a full search
-            score, move = super().search(board, depth, alpha, beta, stop_event)
+            score, move = super().search(board, depth, alpha, beta, stop_event, hint)
             self._table.insert_entry(score, move, hash, depth, alpha, beta)
 
             return score, move

@@ -4,10 +4,10 @@ from data.states.config.default_config import default_config
 from data.states.config.widget_dict import CONFIG_WIDGETS
 from data.managers.logs import initialise_logger
 from data.managers.animation import animation
-from data.assets import MUSIC, SFX
 from data.managers.window import window
 from data.managers.audio import audio
 from data.managers.theme import theme
+from data.assets import MUSIC, SFX
 from data.control import _State
 from random import randint
 

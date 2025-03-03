@@ -9,7 +9,7 @@ class TranspositionEntry:
         self.depth = depth
 
 class TranspositionTable:
-    def __init__(self, max_entries=50000):
+    def __init__(self, max_entries=100000):
         self._max_entries = max_entries
         self._table = dict()
     
@@ -21,10 +21,10 @@ class TranspositionTable:
             hash_key (int): A Zobrist hash.
 
         Returns:
-            str: Key for the given hash.
+            int: Key for the given hash.
         """
         # return hash_key % self._max_entries
-        return str(hash_key)
+        return hash_key
     
     def insert_entry(self, score, move, hash_key, depth, alpha, beta):
         """

@@ -1,6 +1,9 @@
-from data.constants import Score, Colour
 from data.states.game.cpu.base import BaseCPU
+from data.constants import Score, Colour
 from random import choice
+from data.states.game.cpu.move_orderer import MoveOrderer
+
+orderer = MoveOrderer()
 
 class ABMinimaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=True):
@@ -31,7 +34,7 @@ class ABMinimaxCPU(BaseCPU):
             
         self._callback(best_move)
 
-    def search(self, board, depth, alpha, beta, stop_event):
+    def search(self, board, depth, alpha, beta, stop_event, hint=None):
         """
         Recursively DFS through minimax tree while pruning branches using the alpha and beta bounds.
 
@@ -54,9 +57,9 @@ class ABMinimaxCPU(BaseCPU):
         if board.get_active_colour() == Colour.BLUE:
             max_score = -Score.INFINITE
             
-            for move in board.generate_all_moves(Colour.BLUE):
+            for move in orderer.get_moves(board, hint):
                 laser_result = board.apply_move(move)
-                new_score = self.search(board, depth - 1, alpha, beta, stop_event)[0]
+                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_result.pieces_on_trajectory)[0]
 
                 if new_score > max_score:
                     max_score = new_score
@@ -75,9 +78,9 @@ class ABMinimaxCPU(BaseCPU):
         else:
             min_score = Score.INFINITE
             
-            for move in board.generate_all_moves(Colour.RED):
+            for move in orderer.get_moves(board, hint):
                 laser_result = board.apply_move(move)
-                new_score = self.search(board, depth - 1, alpha, beta, stop_event)[0]
+                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_result.pieces_on_trajectory)[0]
 
                 if new_score < min_score:
                     min_score = new_score
