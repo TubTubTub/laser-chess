@@ -1,113 +1,6 @@
 \documentclass{report}
-\usepackage[a4paper]{geometry}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{setspace}
-\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
-\usepackage{siunitx}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{rotating}
-\usepackage{pgfplotstable}
-\usepackage{listings}
-\usepackage{color}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{hyphenat}
-\usepackage{float}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage[T1]{fontenc}
-\usepackage{multicol}
-\usepackage{etoc}
-\usepackage{amssymb}
 
-
-\usepackage{fancyhdr}
-
-\usepackage{subfiles}
-
-\input{assets/listings-glsl.prf}
-
-\MakeRobust{\Call}
-\pgfplotsset{compat=1.18}
-\pdfminorversion=7
-
-\etocsettocstyle{}{}
-
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-% \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{pythonstyle}{
-    % backgroundcolor=\color{backcolour},
-    language=Python,
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    upquote=true,
-    morecomment=[s]{"""}{"""}
-}
-
-\lstdefinelanguage{json}{
-    basicstyle=\ttfamily\footnotesize,
-    numbers=left,
-    numberstyle=\tiny\color{codegray},
-    numbersep=5pt,
-    showstringspaces=false,
-    breaklines=true,
-    string=[db]{"},
-    stringstyle=\color{codepurple},
-    morestring=[s][\color{black}]{\ \ "}{":},
-    keywordstyle=\color{magenta},
-    keywords={true,false,null},
-    literate=
-     *{0}{{{\color{magenta}0}}}{1}
-      {1}{{{\color{magenta}1}}}{1}
-      {2}{{{\color{magenta}2}}}{1}
-      {3}{{{\color{magenta}3}}}{1}
-      {4}{{{\color{magenta}4}}}{1}
-      {5}{{{\color{magenta}5}}}{1}
-      {6}{{{\color{magenta}6}}}{1}
-      {7}{{{\color{magenta}7}}}{1}
-      {8}{{{\color{magenta}8}}}{1}
-      {9}{{{\color{magenta}9}}}{1}
-      {.}{{{\color{magenta}.}}}{1}
-      {:}{{{\color{gray}{:}}}}{1}
-      {,}{{{\color{gray}{,}}}}{1}
-      {\{}{{{\color{gray}{\{}}}}{1}
-      {\}}{{{\color{gray}{\}}}}}{1}
-      {[}{{{\color{gray}{[}}}}{1}
-      {]}{{{\color{gray}{]}}}}{1},
-}
-
-\lstset{
-    style=pythonstyle,
-    escapeinside={(*@}{@*)}
-}
-
-\makeatletter
-\def\app@exe{\immediate\write18}
-\def\inputAllFiles#1{%
-  \app@exe{ls #1/*.tex | xargs cat >> #1/\jobname.tmp}%
-  \InputIfFileExists{#1/\jobname.tmp}{}{}
-  \AtEndDocument{\app@exe{rm -f #1/\jobname.tmp}}}
-\makeatother
+\input{config.tex}
 
 \begin{document}
 
@@ -141,7 +34,6 @@
 \subfile{../evaluation/evaluation}
 
 \appendix
-
-\inputAllFiles{.}
+% \subfile{../source/source}
 
 \end{document}
