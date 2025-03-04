@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  27 FEB 2025 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  4 MAR 2025 17:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -29,7 +29,7 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -981,15 +981,37 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip93
+\f@nch@offset@elh=\skip94
+\f@nch@offset@erh=\skip95
+\f@nch@offset@olh=\skip96
+\f@nch@offset@orh=\skip97
+\f@nch@offset@elf=\skip98
+\f@nch@offset@erf=\skip99
+\f@nch@offset@olf=\skip100
+\f@nch@offset@orf=\skip101
+\f@nch@height=\skip102
+\f@nch@footalignment=\skip103
+\f@nch@widthL=\skip104
+\f@nch@widthC=\skip105
+\f@nch@widthR=\skip106
+\@temptokenb=\toks52
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count512
+\c@@ppsavesec=\count513
+\c@@ppsaveapp=\count514
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
-)))
-\@quotelevel=\count512
-\@quotereset=\count513
+))))
+\@quotelevel=\count515
+\@quotereset=\count516
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
 \openout1 = `evaluation.aux'.
@@ -1049,20 +1071,26 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count514
+\scratchcounter=\count517
 \scratchdimen=\dimen329
 \scratchbox=\box136
-\nofMPsegments=\count515
-\nofMParguments=\count516
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count517
+\nofMPsegments=\count518
+\nofMParguments=\count519
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count520
 \MPscratchDim=\dimen330
-\MPnumerator=\count518
-\makeMPintoPDFobject=\count519
-\everyMPtoPDFconversion=\toks53
+\MPnumerator=\count521
+\makeMPintoPDFobject=\count522
+\everyMPtoPDFconversion=\toks54
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1101,7 +1129,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count520
+\c@lstlisting=\count523
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.out)
 \@outlinefile=\write5
@@ -1111,83 +1139,69 @@ Package hyperref Info: Link coloring OFF on input line 3.
 No file evaluation.toc.
 Chapter 1.
 
+LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 9.
+
+
+LaTeX Warning: Reference `fig:screenshots-browser' on page 1 undefined on input line 16.
+
+
+LaTeX Warning: Reference `fig:screenshots-review' on page 1 undefined on input line 16.
+
+
+LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 23.
+
+
 
 [1
 
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
+LaTeX Warning: Reference `fig:screenshots-settings' on page 2 undefined on input line 30.
+
+
+LaTeX Warning: Reference `fig:screenshots-config' on page 2 undefined on input line 30.
+
+
+LaTeX Warning: Reference `fig:screenshots-editor' on page 2 undefined on input line 30.
+
+
+LaTeX Warning: Reference `fig:screenshots-game' on page 2 undefined on input line 37.
+
+
+LaTeX Warning: Reference `fig:screenshots-menu' on page 2 undefined on input line 44.
+
+
+
 [2]
 
-[3]
-<../evaluation/assets/menu.png, id=86, 895.84688pt x 448.67625pt>
-File: ../evaluation/assets/menu.png Graphic file (type png)
-<use ../evaluation/assets/menu.png>
-Package pdftex.def Info: ../evaluation/assets/menu.png  used on input line 94.
-(pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../evaluation/assets/settings.png, id=88, 896.59969pt x 447.92343pt>
-File: ../evaluation/assets/settings.png Graphic file (type png)
-<use ../evaluation/assets/settings.png>
-Package pdftex.def Info: ../evaluation/assets/settings.png  used on input line 101.
-(pdftex.def)             Requested size: 418.25368pt x 208.95204pt.
-<../evaluation/assets/config.png, id=89, 898.10532pt x 447.17062pt>
-File: ../evaluation/assets/config.png Graphic file (type png)
-<use ../evaluation/assets/config.png>
-Package pdftex.def Info: ../evaluation/assets/config.png  used on input line 108.
-(pdftex.def)             Requested size: 418.25368pt x 208.24605pt.
-
-
-[4 <../evaluation/assets/menu.png> <../evaluation/assets/settings.png>]
-<../evaluation/assets/game.png, id=96, 895.84688pt x 449.42906pt>
-File: ../evaluation/assets/game.png Graphic file (type png)
-<use ../evaluation/assets/game.png>
-Package pdftex.def Info: ../evaluation/assets/game.png  used on input line 115.
-(pdftex.def)             Requested size: 418.25368pt x 209.82584pt.
-<../evaluation/assets/editor.png, id=97, 898.85812pt x 447.92343pt>
-File: ../evaluation/assets/editor.png Graphic file (type png)
-<use ../evaluation/assets/editor.png>
-Package pdftex.def Info: ../evaluation/assets/editor.png  used on input line 122.
-(pdftex.def)             Requested size: 418.25368pt x 208.42577pt.
-
-
-[5 <../evaluation/assets/config.png> <../evaluation/assets/game.png>]
-<../evaluation/assets/browser.png, id=104, 895.84688pt x 448.67625pt>
-File: ../evaluation/assets/browser.png Graphic file (type png)
-<use ../evaluation/assets/browser.png>
-Package pdftex.def Info: ../evaluation/assets/browser.png  used on input line 129.
-(pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../evaluation/assets/review.png, id=105, 897.3525pt x 447.17062pt>
-File: ../evaluation/assets/review.png Graphic file (type png)
-<use ../evaluation/assets/review.png>
-Package pdftex.def Info: ../evaluation/assets/review.png  used on input line 136.
-(pdftex.def)             Requested size: 418.25368pt x 208.42346pt.
-
-
-[6 <../evaluation/assets/editor.png> <../evaluation/assets/browser.png>]
-
-[7 <../evaluation/assets/review.png>] (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
+[3] (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `evaluation.out' has not changed.
-(rerunfilecheck)             Checksum: E2E41F901585BF34E06A345F055A2906;1258.
+(rerunfilecheck)             Checksum: 69177DB81D72C6AFB0916065CC5AC3BA;1148.
 Package logreq Info: Writing requests to 'evaluation.run.xml'.
 \openout1 = `evaluation.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 47452 strings out of 473530
- 1101739 string characters out of 5714311
- 1879196 words of memory out of 5000000
- 70017 multiletter control sequences out of 15000+600000
+ 47859 strings out of 473530
+ 1108308 string characters out of 5714311
+ 1886403 words of memory out of 5000000
+ 70422 multiletter control sequences out of 15000+600000
  566096 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,6n,136p,1968b,1025s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 139i,5n,139p,1987b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (7 pages, 2331283 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (3 pages, 62093 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 136 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 225 PDF objects out of 1000 (max. 8388607)
+ 14 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

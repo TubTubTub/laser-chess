@@ -22,7 +22,7 @@ To help navigate through the source code, I have included the following director
 \item Alpha-beta pruning and transposition table improvements for Minimax (\ref{sec:alpha-beta} and \ref{sec:transposition-table})
 \item Shadow mapping and coordinate transformations (\ref{sec:shader-rays})
 \item Recursive Depth-First Search tree traversal (\ref{sec:theme} and \ref{sec:minimax})
-\item Circular doubly-linked list and stack (\ref{sec:linked-list} and \ref{sec:stack})
+\item Circular doubly-linked list and stack (\ref{sec:linked-list} and \ref{sec:review})
 \item Multipass shaders and gaussian blur (\ref{sec:shader-bloom})
 \item Aggregate and Window SQL functions (\ref{sec:dml})
 \item OOP techniques (\ref{sec:widget-bases} and \ref{sec:widgets})
@@ -39,50 +39,50 @@ To help navigate through the source code, I have included the following director
 The file \lstinline{main.py} is run by the root file \lstinline{run.py}. Here resources-intensive classes such as the state and asset files are initialised, while the program displays a loading screen to hide the loading process. The main game loop is then executed.
 
 \noindent\verb|main.py|
-\lstinputlisting{../../data/main.py}
+\lstinputlisting[label=src:../../data/main.py]{../../data/main.py}
 
 \subsection{Loading Screen}
 \label{sec:loading-screen}
 Multithreading is used to separate the loading screen GUI from the resources intensive actions in \lstinline{main.py}, to keep the GUI responsive. The easing function \lstinline{easeOutBack} is also used to animate the logo.
 
 \noindent\verb|loading_screen.py|
-\lstinputlisting{../../data/loading_screen.py}
+\lstinputlisting[label=src:../../data/loading_screen.py]{../../data/loading_screen.py}
 
 \subsection{Helper functions}
 These files provide useful functions for different classes.
 
 \label{sec:asset-helpers}
 \noindent\verb|asset_helpers.py (Functions used for assets and pygame Surfaces)|
-\lstinputlisting{../../data/utils/asset_helpers.py}
+\lstinputlisting[label=src:../../data/utils/asset_helpers.py]{../../data/utils/asset_helpers.py}
 
 \bigskip
 \label{sec:data-helpers}
 \noindent\verb|data_helpers.py (Functions used for file handling and JSON parsing)|
-\lstinputlisting{../../data/utils/data_helpers.py}
+\lstinputlisting[label=src:../../data/utils/data_helpers.py]{../../data/utils/data_helpers.py}
 
 \bigskip
 \noindent\verb|widget_helpers.py (Files used for creating widgets)|
-\lstinputlisting{../../data/utils/widget_helpers.py}
+\lstinputlisting[label=src:../../data/utils/widget_helpers.py]{../../data/utils/widget_helpers.py}
 
 \subsection{Theme}
 \label{sec:theme}
 The theme manager file is responsible for providing an instance where the colour palette and dimensions for the GUI can be accessed.
 
 \noindent\verb|theme.py|
-\lstinputlisting{../../data/managers/theme.py}
+\lstinputlisting[label=src:../../data/managers/theme.py]{../../data/managers/theme.py}
 
 \section{GUI}
 \subsection{Laser}
 The \lstinline{LaserDraw} class draws the laser in both the game and review screens.
 
 \noindent\verb|laser_draw.py|
-\lstinputlisting{../../data/states/game/components/laser_draw.py}
+\lstinputlisting[label=src:../../data/states/game/components/laser_draw.py]{../../data/states/game/components/laser_draw.py}
 
 \subsection{Particles}
 The \lstinline{ParticlesDraw} class draws particles in both the game and review screens. The particles are either fragmented pieces when destroyed, or laser particles emitted from the Sphinx. Particles are given custom velocity, rotation, opacity and size parameters.
 
 \noindent\verb|particles_draw.py|
-\lstinputlisting{../../data/states/game/components/particles_draw.py}
+\lstinputlisting[label=src:../../data/states/game/components/particles_draw.py]{../../data/states/game/components/particles_draw.py}
 
 \subsection{Widget Bases}
 \label{sec:widget-bases}
@@ -92,24 +92,24 @@ Widget bases are the base classes for for my widgets system. They contain both a
 \noindent All widgets are a subclass of the \lstinline{Widget} class.
 
 \noindent\verb|widget.py|
-\lstinputlisting{../../data/widgets/bases/widget.py}
+\lstinputlisting[label=src:../../data/widgets/bases/widget.py]{../../data/widgets/bases/widget.py}
 
 \subsubsection*{Circular}
 \noindent The \lstinline{Circular} class provides functionality to support widgets which rotate between text/icons.
 \noindent\verb|circular.py|
-\lstinputlisting{../../data/widgets/bases/circular.py}
+\lstinputlisting[label=src:../../data/widgets/bases/circular.py]{../../data/widgets/bases/circular.py}
 
 \subsubsection*{Circular Linked List}
 \label{sec:linked-list}
 The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
 
 \noindent\verb|circular_linked_list.py|
-\lstinputlisting{../../data/components/circular_linked_list.py}
+\lstinputlisting[label=src:../../data/components/circular_linked_list.py]{../../data/components/circular_linked_list.py}
 
 \subsection{Widgets}
 \label{sec:widgets}
 Each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
-Below is a list of all the widgets I have implemented:
+Below is a list of all the widgets I have implemented (See Section \ref{src:widgets}):
 
 \begin{multicols}{3}
 \begin{itemize}
@@ -149,57 +149,57 @@ Below is a list of all the widgets I have implemented:
 The \lstinline{CustomEvent} class is used to pass data between states and widgets. An event argument is passed into interactive widgets; When a widget wants to pass data back to the state, it returns the event, and adds any attributes that is required. The state then receives and handles these returned events accordingly.
 
 \noindent\verb|custom_event.py|
-\lstinputlisting{../../data/components/custom_event.py}
+\lstinputlisting[label=src:../../data/components/custom_event.py]{../../data/components/custom_event.py}
 
 \subsubsection*{ReactiveIconButton}
 \noindent The \lstinline{ReactiveIconButton} widget is a pressable button that changes the icon displayed when it is hovered or pressed.
 
 \noindent\verb|reactive_icon_button.py|
-\lstinputlisting{../../data/widgets/reactive_icon_button.py}
+\lstinputlisting[label=src:../../data/widgets/reactive_icon_button.py]{../../data/widgets/reactive_icon_button.py}
 
 \subsubsection*{ReactiveButton}
 \noindent The \lstinline{ReactiveButton} widget is the parent class for \lstinline{ReactiveIconButton}. It provides the methods for clicking, rotating between widget states, positioning etc.
 
 \noindent\verb|reactive_button.py|
-\lstinputlisting{../../data/widgets/reactive_button.py}
+\lstinputlisting[label=src:../../data/widgets/reactive_button.py]{../../data/widgets/reactive_button.py}
 
 \subsubsection*{ColourSlider}
 \noindent The \lstinline{ColourSlider} widget is instanced in the \lstinline{ColourPicker} class. It provides a slider for changing between hues for the colour picker, using the functionality of the \lstinline{SliderThumb} class.
 
 \noindent\verb|colour_slider.py|
-\lstinputlisting{../../data/widgets/colour_slider.py}
+\lstinputlisting[label=src:../../data/widgets/colour_slider.py]{../../data/widgets/colour_slider.py}
 
 \subsubsection*{TextInput}
 \noindent The \lstinline{TextInput} widget is used for inputting fen strings and time controls.
 
 \noindent\verb|text_input.py|
-\lstinputlisting{../../data/widgets/text_input.py}
+\lstinputlisting[label=src:../../data/widgets/text_input.py]{../../data/widgets/text_input.py}
 
 \section{Game}
 \subsection{Model}
 \noindent\verb|game_model.py|
-\lstinputlisting{../../data/states/game/mvc/game_model.py}
+\lstinputlisting[label=src:../../data/states/game/mvc/game_model.py]{../../data/states/game/mvc/game_model.py}
 
 \subsection{View}
 \noindent\verb|game_view.py|
-\lstinputlisting{../../data/states/game/mvc/game_view.py}
+\lstinputlisting[label=src:../../data/states/game/mvc/game_view.py]{../../data/states/game/mvc/game_view.py}
 
 \subsection{Controller}
 \noindent\verb|game_controller.py|
-\lstinputlisting{../../data/states/game/mvc/game_controller.py}
+\lstinputlisting[label=src:../../data/states/game/mvc/game_controller.py]{../../data/states/game/mvc/game_controller.py}
 
 \subsection{Board}
 The \lstinline{Board} class implements the Laser Chess board, and is responsible for handling moves, captures, and win conditions.
 
 \noindent\verb|board.py|
-\lstinputlisting{../../data/states/game/components/board.py}
+\lstinputlisting[label=src:../../data/states/game/components/board.py]{../../data/states/game/components/board.py}
 
 \subsection{Bitboards}
 \label{sec:bitboards}
 The \lstinline{BitboardCollection} class uses helper functions found in \lstinline{bitboard_helpers.py} such as \lstinline{pop_count}, to initialise and manage bitboard transformations.
 
 \noindent\verb|bitboard_collection.py|
-\lstinputlisting{../../data/states/game/components/bitboard_collection.py}
+\lstinputlisting[label=src:../../data/states/game/components/bitboard_collection.py]{../../data/states/game/components/bitboard_collection.py}
 
 \section{CPU}
 This section includes my implementation for the CPU engine run on minimax, including its various improvements and accessory classes.
@@ -211,48 +211,49 @@ The method \lstinline{find_move} is called by the CPU thread. \lstinline{search}
 \subsection{Minimax}
 \label{sec:minimax}
 \noindent\verb|minimax.py|
-\lstinputlisting{../../data/states/game/cpu/engines/minimax.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/engines/minimax.py]{../../data/states/game/cpu/engines/minimax.py}
 
 \subsection{Alpha-beta Pruning}
 \label{sec:alpha-beta}
 \noindent\verb|alpha_beta.py|
-\lstinputlisting[lastline=94]{../../data/states/game/cpu/engines/alpha_beta.py}
+\lstinputlisting[lastline=94, label=src:../../data/states/game/cpu/engines/alpha_beta.py]{../../data/states/game/cpu/engines/alpha_beta.py}
 
 \subsection{Transposition Table}
 \label{sec:transposition-table}
 For adding transposition table functionality to my other engine classes, I have decided to use a mixin design architecture. This allows me to reuse code by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
 
 \noindent\verb|transposition_table.py|
-\lstinputlisting[lastline=59]{../../data/states/game/cpu/engines/transposition_table.py}
+\lstinputlisting[lastline=59, label=src:../../data/states/game/cpu/engines/transposition_table.py]{../../data/states/game/cpu/engines/transposition_table.py}
 
 \subsection{Evaluator}
 \noindent\verb|evaluator.py|
-\lstinputlisting{../../data/states/game/cpu/evaluator.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/evaluator.py]{../../data/states/game/cpu/evaluator.py}
 
 \subsection{Multithreading}
 A \lstinline{CPUThread} is initialised with a CPU engine at the start of the game state, and run whenever it is the CPU's turn to move.
 
 \noindent\verb|cpu_thread.py|
 \label{sec:cpu-thread}
-\lstinputlisting{../../data/states/game/cpu/cpu_thread.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/cpu_thread.py]{../../data/states/game/cpu/cpu_thread.py}
 
 \subsection{Zobrist Hashing}
 \label{sec:zobrist-hashing}
 \noindent\verb|zobrist_hasher.py|
-\lstinputlisting{../../data/states/game/cpu/zobrist_hasher.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/zobrist_hasher.py]{../../data/states/game/cpu/zobrist_hasher.py}
 
 \subsection{Cache}
 \noindent\verb|transposition_table.py|
-\lstinputlisting{../../data/states/game/cpu/transposition_table.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/transposition_table.py]{../../data/states/game/cpu/transposition_table.py}
 
 \section{States}
 Every state class calls their \lstinline{startup} method when switched to, and \lstinline{cleanup} when exited. Within the \lstinline{startup} function, the state widgets dictionary is passed into a \lstinline{WidgetGroup} object. The \lstinline{process_event} method is called on the \lstinline{WidgetGroup} every frame to process user input, and handle the returned events accordingly. The \lstinline{WidgetGroup} object can therefore be thought of as a controller, and the state as the model, and the widgets as the view.
 
 \subsection{Review}
+\label{sec:review}
 The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games.
 
 \noindent\verb|review.py|
-\lstinputlisting{../../data/states/review/review.py}
+\lstinputlisting[label=src:../../data/states/review/review.py]{../../data/states/review/review.py}
 
 \section{Database}
 This section outlines my database implementation using Python sqlite3.
@@ -262,17 +263,17 @@ This section outlines my database implementation using Python sqlite3.
 As mentioned in Section \ref{sec:design-ddl}, the \lstinline{migrations} directory contains a collection of Python scripts that edit the game table schema. The files are named with their changes and datetime labelled for organisational purposes.
 
 \noindent\verb|create_games_table_19112024.py|
-\lstinputlisting{../../data/database/migrations/create_games_table_19112024.py}
+\lstinputlisting[label=src:../../data/database/migrations/create_games_table_19112024.py]{../../data/database/migrations/create_games_table_19112024.py}
 Using the \lstinline{ALTER} command allows me to rename table columns.
 
 \bigskip
 \noindent\verb|change_fen_string_column_name_23122024.py|
-\lstinputlisting{../../data/database/migrations/change_fen_string_column_name_23122024.py}
+\lstinputlisting[label=src:../../data/database/migrations/change_fen_string_column_name_23122024.py]{../../data/database/migrations/change_fen_string_column_name_23122024.py}
 
 \subsection{DML}
 \label{sec:dml}
 \noindent\verb|database_helpers.py|
-\lstinputlisting{../../data/utils/database_helpers.py}
+\lstinputlisting[label=src:../../data/utils/database_helpers.py]{../../data/utils/database_helpers.py}
 
 \section{Shaders}
 \subsection{Shader Manager}
@@ -281,7 +282,7 @@ The \lstinline{ShaderManager} class is responsible for handling all shader passe
 Fragment shaders such as \lstinline{Bloom} are applied by default, and others such as \lstinline{Ray} are applied during runtime through calling methods on \lstinline{ShaderManager}, and adding the appropiate fragment shader class to the internal shader pass list.
 
 \noindent\verb|shader.py|
-\lstinputlisting{../../data/managers/shader.py}
+\lstinputlisting[label=src:../../data/managers/shader.py]{../../data/managers/shader.py}
 
 \subsection{Bloom}
 \label{sec:shader-bloom}
@@ -293,23 +294,23 @@ My \lstinline{ShaderManager} class works with this multi-pass shader approach by
 The \lstinline{highlight_brightness} fragment shader extracts all colours that are bright enough to exert the bloom effect.
 
 \noindent\verb|highlight_brightness.frag|
-\lstinputlisting[language=GLSL]{../../data/shaders/fragments/highlight_brightness.frag}
+\lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/highlight_brightness.frag]{../../data/shaders/fragments/highlight_brightness.frag}
 
 \subsubsection*{Blur}
 The \lstinline{Blur} class implements a two-pass Gaussian blur. This is preferably over a one-pass blur, as the complexity is $O(2n)$, sampling $n$ pixels twice, as opposed to $O(n^2)$. I have implemented this using the ping-pong technique, with the first pass for blurring the image horizontally, and the second pass for blurring vertically, and the resultant textures being passed repeatedly between two framebuffers.
 
 \noindent\verb|blur.py|
-\lstinputlisting{../../data/shaders/classes/blur.py}
+\lstinputlisting[label=src:../../data/shaders/classes/blur.py]{../../data/shaders/classes/blur.py}
 
 \bigskip
 \noindent\verb|blur.frag|
-\lstinputlisting[language=GLSL]{../../data/shaders/fragments/blur.frag}
+\lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/blur.frag]{../../data/shaders/fragments/blur.frag}
 
 \subsubsection*{Combining}
 The \lstinline{Bloom} class combines the two operations, taking the highlighted areas, blurs them, and adds the RGB values for the final result onto the original texture to simulate bloom.
 
 \noindent\verb|bloom.py|
-\lstinputlisting{../../data/shaders/classes/bloom.py}
+\lstinputlisting[label=src:../../data/shaders/classes/bloom.py]{../../data/shaders/classes/bloom.py}
 
 \subsection{Rays}
 \label{sec:shader-rays}
@@ -319,28 +320,24 @@ The \lstinline{Ray} shader is applied whenever the sphinx shoots a laser. It sim
 The occlusion fragment shader processes all pixels with a given colour value as being occluding.
 
 \noindent\verb|occlusion.frag|
-\lstinputlisting[language=GLSL]{../../data/shaders/fragments/occlusion.frag}
+\lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/occlusion.frag]{../../data/shaders/fragments/occlusion.frag}
 
 \subsubsection*{Shadowmap}
 The shadowmap fragment shader takes the occluding texture and creates a 1D shadow map.
 
 \noindent\verb|shadowmap.frag|
-\lstinputlisting[language=GLSL]{../../data/shaders/fragments/shadowmap.frag}
+\lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/shadowmap.frag]{../../data/shaders/fragments/shadowmap.frag}
 
 \subsubsection*{Lightmap}
 The lightmap shader checks if a pixel is in shadow, blurs the result, and applies the radial light source.
 
 \noindent\verb|lightmap.frag|
-\lstinputlisting[language=GLSL]{../../data/shaders/fragments/lightmap.frag}
+\lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/lightmap.frag]{../../data/shaders/fragments/lightmap.frag}
 
 \subsubsection*{Class}
 The \lstinline{Rays} class takes in a texture and array of light information, applies the aforementioned shaders, and blends the final result with the original texture.
 
 \noindent\verb|rays.py|
-\lstinputlisting{../../data/shaders/classes/rays.py}
-
-\subsection{Stack}
-\label{sec:stack}
-
+\lstinputlisting[label=src:../../data/shaders/classes/rays.py]{../../data/shaders/classes/rays.py}
 
 \end{document}

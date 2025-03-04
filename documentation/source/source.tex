@@ -1,147 +1,654 @@
 \documentclass[../main/main.tex]{subfiles}
 
 \begin{document}
-
 \newpage
+
+\chapter{Source Code}
+\addtocontents{toc}{\setcounter{tocdepth}{-1}}
+
+\section{data}
+\subsection{assets.py}
 \lstinputlisting{../../data/assets.py}
+\label{src:data/assets.py}
+
+\subsection{constants.py}
 \lstinputlisting{../../data/constants.py}
+\label{src:data/constants.py}
+
+\subsection{control.py}
 \lstinputlisting{../../data/control.py}
-\lstinputlisting{../../data/loading_screen.py}
-\lstinputlisting{../../data/main.py}
+\label{src:data/control.py}
+
+\subsection{loading\_screen.py}
+See Section \ref{src:../../data/loading_screen.py}.
+
+\subsection{main.py}
+See Section \ref{src:../../data/main.py}.
+
+\subsection{setup.py}
 \lstinputlisting{../../data/setup.py}
+\label{src:data/setup.py}
+
+\subsection{windows\_setup.py}
 \lstinputlisting{../../data/windows_setup.py}
+\label{src:data/windows_setup.py}
+
+\subsection{\_\_init\_\_.py}
 \lstinputlisting{../../data/__init__.py}
+\label{src:data/__init__.py}
+
+\section{data\textbackslash app\_data}
+\subsection{default\_settings.json}
 \lstinputlisting[language=json]{../../data/app_data/default_settings.json}
+\label{src:data/app_data/default_settings.json}
+
+\subsection{logs\_config.json}
 \lstinputlisting[language=json]{../../data/app_data/logs_config.json}
+\label{src:data/app_data/logs_config.json}
+
+\subsection{logs\_config\_prod.json}
 \lstinputlisting[language=json]{../../data/app_data/logs_config_prod.json}
+\label{src:data/app_data/logs_config_prod.json}
+
+\subsection{themes.json}
 \lstinputlisting[language=json]{../../data/app_data/themes.json}
+\label{src:data/app_data/themes.json}
+
+\subsection{user\_settings.json}
 \lstinputlisting[language=json]{../../data/app_data/user_settings.json}
-\lstinputlisting{../../data/components/circular_linked_list.py}
+\label{src:data/app_data/user_settings.json}
+
+\section{data\textbackslash components}
+\subsection{circular\_linked\_list.py}
+See Section \ref{src:../../data/components/circular_linked_list.py}.
+
+\subsection{cursor.py}
 \lstinputlisting{../../data/components/cursor.py}
-\lstinputlisting{../../data/components/custom_event.py}
+\label{src:data/components/cursor.py}
+
+\subsection{custom\_event.py}
+See Section \ref{src:../../data/components/custom_event.py}.
+
+\subsection{game\_entry.py}
 \lstinputlisting{../../data/components/game_entry.py}
+\label{src:data/components/game_entry.py}
+
+\subsection{widget\_group.py}
 \lstinputlisting{../../data/components/widget_group.py}
+\label{src:data/components/widget_group.py}
+
+\section{data\textbackslash database}
+\section{data\textbackslash database\textbackslash migrations}
+\subsection{add\_created\_dt\_column27112024.py}
 \lstinputlisting{../../data/database/migrations/add_created_dt_column27112024.py}
+\label{src:data/database/migrations/add_created_dt_column27112024.py}
+
+\subsection{add\_fen\_string\_column\_22112024.py}
 \lstinputlisting{../../data/database/migrations/add_fen_string_column_22112024.py}
+\label{src:data/database/migrations/add_fen_string_column_22112024.py}
+
+\subsection{add\_start\_fen\_string\_column\_23122024.py}
 \lstinputlisting{../../data/database/migrations/add_start_fen_string_column_23122024.py}
-\lstinputlisting{../../data/database/migrations/change_fen_string_column_name_23122024.py}
-\lstinputlisting{../../data/database/migrations/create_games_table_19112024.py}
+\label{src:data/database/migrations/add_start_fen_string_column_23122024.py}
+
+\subsection{change\_fen\_string\_column\_name\_23122024.py}
+See Section \ref{src:../../data/database/migrations/change_fen_string_column_name_23122024.py}.
+
+\subsection{create\_games\_table\_19112024.py}
+See Section \ref{src:../../data/database/migrations/create_games_table_19112024.py}.
+
+\section{data\textbackslash managers}
+\subsection{animation.py}
 \lstinputlisting{../../data/managers/animation.py}
+\label{src:data/managers/animation.py}
+
+\subsection{audio.py}
 \lstinputlisting{../../data/managers/audio.py}
+\label{src:data/managers/audio.py}
+
+\subsection{cursor.py}
 \lstinputlisting{../../data/managers/cursor.py}
+\label{src:data/managers/cursor.py}
+
+\subsection{logs.py}
 \lstinputlisting{../../data/managers/logs.py}
-\lstinputlisting{../../data/managers/shader.py}
-\lstinputlisting{../../data/managers/theme.py}
+\label{src:data/managers/logs.py}
+
+\subsection{shader.py}
+See Section \ref{src:../../data/managers/shader.py}.
+
+\subsection{theme.py}
+See Section \ref{src:../../data/managers/theme.py}.
+
+\subsection{window.py}
 \lstinputlisting{../../data/managers/window.py}
+\label{src:data/managers/window.py}
+
+\section{data\textbackslash shaders}
+\subsection{protocol.py}
 \lstinputlisting{../../data/shaders/protocol.py}
+\label{src:data/shaders/protocol.py}
+
+\section{data\textbackslash shaders\textbackslash classes}
+\subsection{base.py}
 \lstinputlisting{../../data/shaders/classes/base.py}
+\label{src:data/shaders/classes/base.py}
+
+\subsection{blend.py}
 \lstinputlisting{../../data/shaders/classes/blend.py}
-\lstinputlisting{../../data/shaders/classes/bloom.py}
-\lstinputlisting{../../data/shaders/classes/blur.py}
+\label{src:data/shaders/classes/blend.py}
+
+\subsection{bloom.py}
+See Section \ref{src:../../data/shaders/classes/bloom.py}.
+
+\subsection{blur.py}
+See Section \ref{src:../../data/shaders/classes/blur.py}.
+
+\subsection{chromatic\_abbreviation.py}
 \lstinputlisting{../../data/shaders/classes/chromatic_abbreviation.py}
+\label{src:data/shaders/classes/chromatic_abbreviation.py}
+
+\subsection{crop.py}
 \lstinputlisting{../../data/shaders/classes/crop.py}
+\label{src:data/shaders/classes/crop.py}
+
+\subsection{crt.py}
 \lstinputlisting{../../data/shaders/classes/crt.py}
+\label{src:data/shaders/classes/crt.py}
+
+\subsection{grayscale.py}
 \lstinputlisting{../../data/shaders/classes/grayscale.py}
+\label{src:data/shaders/classes/grayscale.py}
+
+\subsection{highlight\_brightness.py}
 \lstinputlisting{../../data/shaders/classes/highlight_brightness.py}
+\label{src:data/shaders/classes/highlight_brightness.py}
+
+\subsection{highlight\_colour.py}
 \lstinputlisting{../../data/shaders/classes/highlight_colour.py}
+\label{src:data/shaders/classes/highlight_colour.py}
+
+\subsection{lightmap.py}
 \lstinputlisting{../../data/shaders/classes/lightmap.py}
+\label{src:data/shaders/classes/lightmap.py}
+
+\subsection{occlusion.py}
 \lstinputlisting{../../data/shaders/classes/occlusion.py}
-\lstinputlisting{../../data/shaders/classes/rays.py}
+\label{src:data/shaders/classes/occlusion.py}
+
+\subsection{rays.py}
+See Section \ref{src:../../data/shaders/classes/rays.py}.
+
+\subsection{shadowmap.py}
 \lstinputlisting{../../data/shaders/classes/shadowmap.py}
+\label{src:data/shaders/classes/shadowmap.py}
+
+\subsection{shake.py}
 \lstinputlisting{../../data/shaders/classes/shake.py}
+\label{src:data/shaders/classes/shake.py}
+
+\subsection{\_\_init\_\_.py}
 \lstinputlisting{../../data/shaders/classes/__init__.py}
+\label{src:data/shaders/classes/__init__.py}
+
+\section{data\textbackslash shaders\textbackslash fragments}
+\subsection{background\_balatro.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/background_balatro.frag}
+\label{src:data/shaders/fragments/background_balatro.frag}
+
+\subsection{background\_gradient.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/background_gradient.frag}
+\label{src:data/shaders/fragments/background_gradient.frag}
+
+\subsection{background\_lasers.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/background_lasers.frag}
+\label{src:data/shaders/fragments/background_lasers.frag}
+
+\subsection{background\_none.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/background_none.frag}
+\label{src:data/shaders/fragments/background_none.frag}
+
+\subsection{background\_waves.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/background_waves.frag}
+\label{src:data/shaders/fragments/background_waves.frag}
+
+\subsection{base.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/base.frag}
+\label{src:data/shaders/fragments/base.frag}
+
+\subsection{blend.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/blend.frag}
+\label{src:data/shaders/fragments/blend.frag}
+
+\subsection{bloom.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/bloom.frag}
+\label{src:data/shaders/fragments/bloom.frag}
+
+\subsection{bloom\_old.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/bloom_old.frag}
+\label{src:data/shaders/fragments/bloom_old.frag}
+
+\subsection{blur.frag}
+See Section \ref{src:../../data/shaders/fragments/blur.frag}.
+
+\subsection{box\_blur.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/box_blur.frag}
+\label{src:data/shaders/fragments/box_blur.frag}
+
+\subsection{calibrate.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/calibrate.frag}
+\label{src:data/shaders/fragments/calibrate.frag}
+
+\subsection{chromatic\_abbreviation.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/chromatic_abbreviation.frag}
+\label{src:data/shaders/fragments/chromatic_abbreviation.frag}
+
+\subsection{crop.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/crop.frag}
+\label{src:data/shaders/fragments/crop.frag}
+
+\subsection{crt.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/crt.frag}
+\label{src:data/shaders/fragments/crt.frag}
+
+\subsection{flashlight.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/flashlight.frag}
+\label{src:data/shaders/fragments/flashlight.frag}
+
+\subsection{grayscale.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/grayscale.frag}
+\label{src:data/shaders/fragments/grayscale.frag}
+
+\subsection{highlight\_brightness.frag}
+See Section \ref{src:../../data/shaders/fragments/highlight_brightness.frag}.
+
+\subsection{highlight\_colour.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/highlight_colour.frag}
+\label{src:data/shaders/fragments/highlight_colour.frag}
+
+\subsection{lightmap.frag}
+See Section \ref{src:../../data/shaders/fragments/lightmap.frag}.
+
+\subsection{occlusion.frag}
+See Section \ref{src:../../data/shaders/fragments/occlusion.frag}.
+
+\subsection{rays.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/rays.frag}
+\label{src:data/shaders/fragments/rays.frag}
+
+\subsection{shadowmap.frag}
+See Section \ref{src:../../data/shaders/fragments/shadowmap.frag}.
+
+\subsection{shake.frag}
+\lstinputlisting[language=GLSL]{../../data/shaders/fragments/shake.frag}
+\label{src:data/shaders/fragments/shake.frag}
+
+\section{data\textbackslash shaders\textbackslash vertex}
+\subsection{base.vert}
+\lstinputlisting[language=GLSL]{../../data/shaders/vertex/base.vert}
+\label{src:data/shaders/vertex/base.vert}
+
+\section{data\textbackslash states}
+\subsection{\_\_init\_\_.py}
 \lstinputlisting{../../data/states/__init__.py}
+\label{src:data/states/__init__.py}
+
+\section{data\textbackslash states\textbackslash browser}
+\subsection{browser.py}
 \lstinputlisting{../../data/states/browser/browser.py}
+\label{src:data/states/browser/browser.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/browser/widget_dict.py}
+\label{src:data/states/browser/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash config}
+\subsection{config.py}
 \lstinputlisting{../../data/states/config/config.py}
+\label{src:data/states/config/config.py}
+
+\subsection{default\_config.py}
 \lstinputlisting{../../data/states/config/default_config.py}
+\label{src:data/states/config/default_config.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/config/widget_dict.py}
+\label{src:data/states/config/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash editor}
+\subsection{editor.py}
 \lstinputlisting{../../data/states/editor/editor.py}
+\label{src:data/states/editor/editor.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/editor/widget_dict.py}
+\label{src:data/states/editor/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash game}
+\subsection{game.py}
 \lstinputlisting{../../data/states/game/game.py}
+\label{src:data/states/game/game.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/game/widget_dict.py}
-\lstinputlisting{../../data/states/game/components/bitboard_collection.py}
-\lstinputlisting{../../data/states/game/components/board.py}
+\label{src:data/states/game/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash game\textbackslash components}
+\subsection{bitboard\_collection.py}
+See Section \ref{src:../../data/states/game/components/bitboard_collection.py}.
+
+\subsection{board.py}
+See Section \ref{src:../../data/states/game/components/board.py}.
+
+\subsection{capture\_draw.py}
 \lstinputlisting{../../data/states/game/components/capture_draw.py}
+\label{src:data/states/game/components/capture_draw.py}
+
+\subsection{father.py}
 \lstinputlisting{../../data/states/game/components/father.py}
+\label{src:data/states/game/components/father.py}
+
+\subsection{fen\_parser.py}
 \lstinputlisting{../../data/states/game/components/fen_parser.py}
+\label{src:data/states/game/components/fen_parser.py}
+
+\subsection{laser.py}
 \lstinputlisting{../../data/states/game/components/laser.py}
-\lstinputlisting{../../data/states/game/components/laser_draw.py}
+\label{src:data/states/game/components/laser.py}
+
+\subsection{laser\_draw.py}
+See Section \ref{src:../../data/states/game/components/laser_draw.py}.
+
+\subsection{move.py}
 \lstinputlisting{../../data/states/game/components/move.py}
+\label{src:data/states/game/components/move.py}
+
+\subsection{overlay\_draw.py}
 \lstinputlisting{../../data/states/game/components/overlay_draw.py}
-\lstinputlisting{../../data/states/game/components/particles_draw.py}
+\label{src:data/states/game/components/overlay_draw.py}
+
+\subsection{particles\_draw.py}
+See Section \ref{src:../../data/states/game/components/particles_draw.py}.
+
+\subsection{piece\_group.py}
 \lstinputlisting{../../data/states/game/components/piece_group.py}
+\label{src:data/states/game/components/piece_group.py}
+
+\subsection{piece\_sprite.py}
 \lstinputlisting{../../data/states/game/components/piece_sprite.py}
+\label{src:data/states/game/components/piece_sprite.py}
+
+\subsection{psqt.py}
 \lstinputlisting{../../data/states/game/components/psqt.py}
+\label{src:data/states/game/components/psqt.py}
+
+\section{data\textbackslash states\textbackslash game\textbackslash cpu}
+\subsection{arena.py}
 \lstinputlisting{../../data/states/game/cpu/arena.py}
+\label{src:data/states/game/cpu/arena.py}
+
+\subsection{base.py}
 \lstinputlisting{../../data/states/game/cpu/base.py}
-\lstinputlisting{../../data/states/game/cpu/cpu_thread.py}
-\lstinputlisting{../../data/states/game/cpu/evaluator.py}
+\label{src:data/states/game/cpu/base.py}
+
+\subsection{cpu\_thread.py}
+See Section \ref{src:../../data/states/game/cpu/cpu_thread.py}.
+
+\subsection{evaluator.py}
+See Section \ref{src:../../data/states/game/cpu/evaluator.py}.
+
+\subsection{move\_orderer.py}
 \lstinputlisting{../../data/states/game/cpu/move_orderer.py}
+\label{src:data/states/game/cpu/move_orderer.py}
+
+\subsection{temp.py}
 \lstinputlisting{../../data/states/game/cpu/temp.py}
-\lstinputlisting{../../data/states/game/cpu/transposition_table.py}
-\lstinputlisting{../../data/states/game/cpu/zobrist_hasher.py}
-\lstinputlisting{../../data/states/game/cpu/engines/alpha_beta.py}
+\label{src:data/states/game/cpu/temp.py}
+
+\subsection{transposition\_table.py}
+See Section \ref{src:../../data/states/game/cpu/transposition_table.py}.
+
+\subsection{zobrist\_hasher.py}
+See Section \ref{src:../../data/states/game/cpu/zobrist_hasher.py}.
+
+\section{data\textbackslash states\textbackslash game\textbackslash cpu\textbackslash engines}
+\subsection{alpha\_beta.py}
+See Section \ref{src:../../data/states/game/cpu/engines/alpha_beta.py}.
+
+\subsection{iterative\_deepening.py}
 \lstinputlisting{../../data/states/game/cpu/engines/iterative_deepening.py}
-\lstinputlisting{../../data/states/game/cpu/engines/minimax.py}
+\label{src:data/states/game/cpu/engines/iterative_deepening.py}
+
+\subsection{minimax.py}
+See Section \ref{src:../../data/states/game/cpu/engines/minimax.py}.
+
+\subsection{negamax.py}
 \lstinputlisting{../../data/states/game/cpu/engines/negamax.py}
+\label{src:data/states/game/cpu/engines/negamax.py}
+
+\subsection{simple.py}
 \lstinputlisting{../../data/states/game/cpu/engines/simple.py}
-\lstinputlisting{../../data/states/game/cpu/engines/transposition_table.py}
+\label{src:data/states/game/cpu/engines/simple.py}
+
+\subsection{transposition\_table.py}
+See Section \ref{src:../../data/states/game/cpu/engines/transposition_table.py}.
+
+\subsection{\_\_init\_\_.py}
 \lstinputlisting{../../data/states/game/cpu/engines/__init__.py}
-\lstinputlisting{../../data/states/game/mvc/game_controller.py}
-\lstinputlisting{../../data/states/game/mvc/game_model.py}
-\lstinputlisting{../../data/states/game/mvc/game_view.py}
+\label{src:data/states/game/cpu/engines/__init__.py}
+
+\section{data\textbackslash states\textbackslash game\textbackslash mvc}
+\subsection{game\_controller.py}
+See Section \ref{src:../../data/states/game/mvc/game_controller.py}.
+
+\subsection{game\_model.py}
+See Section \ref{src:../../data/states/game/mvc/game_model.py}.
+
+\subsection{game\_view.py}
+See Section \ref{src:../../data/states/game/mvc/game_view.py}.
+
+\subsection{pause\_view.py}
 \lstinputlisting{../../data/states/game/mvc/pause_view.py}
+\label{src:data/states/game/mvc/pause_view.py}
+
+\subsection{win\_view.py}
 \lstinputlisting{../../data/states/game/mvc/win_view.py}
+\label{src:data/states/game/mvc/win_view.py}
+
+\section{data\textbackslash states\textbackslash menu}
+\subsection{menu.py}
 \lstinputlisting{../../data/states/menu/menu.py}
+\label{src:data/states/menu/menu.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/menu/widget_dict.py}
-\lstinputlisting{../../data/states/review/review.py}
+\label{src:data/states/menu/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash review}
+\subsection{review.py}
+See Section \ref{src:../../data/states/review/review.py}.
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/review/widget_dict.py}
+\label{src:data/states/review/widget_dict.py}
+
+\section{data\textbackslash states\textbackslash settings}
+\subsection{settings.py}
 \lstinputlisting{../../data/states/settings/settings.py}
+\label{src:data/states/settings/settings.py}
+
+\subsection{widget\_dict.py}
 \lstinputlisting{../../data/states/settings/widget_dict.py}
-\lstinputlisting{../../data/utils/asset_helpers.py}
+\label{src:data/states/settings/widget_dict.py}
+
+\section{data\textbackslash utils}
+\subsection{asset\_helpers.py}
+See Section \ref{src:../../data/utils/asset_helpers.py}.
+
+\subsection{bitboard\_helpers.py}
 \lstinputlisting{../../data/utils/bitboard_helpers.py}
+\label{src:data/utils/bitboard_helpers.py}
+
+\subsection{board\_helpers.py}
 \lstinputlisting{../../data/utils/board_helpers.py}
+\label{src:data/utils/board_helpers.py}
+
+\subsection{browser\_helpers.py}
 \lstinputlisting{../../data/utils/browser_helpers.py}
-\lstinputlisting{../../data/utils/database_helpers.py}
-\lstinputlisting{../../data/utils/data_helpers.py}
+\label{src:data/utils/browser_helpers.py}
+
+\subsection{database\_helpers.py}
+See Section \ref{src:../../data/utils/database_helpers.py}.
+
+\subsection{data\_helpers.py}
+See Section \ref{src:../../data/utils/data_helpers.py}.
+
+\subsection{font\_helpers.py}
 \lstinputlisting{../../data/utils/font_helpers.py}
+\label{src:data/utils/font_helpers.py}
+
+\subsection{input\_helpers.py}
 \lstinputlisting{../../data/utils/input_helpers.py}
+\label{src:data/utils/input_helpers.py}
+
+\subsection{load\_helpers.py}
 \lstinputlisting{../../data/utils/load_helpers.py}
-\lstinputlisting{../../data/utils/widget_helpers.py}
+\label{src:data/utils/load_helpers.py}
+
+\subsection{widget\_helpers.py}
+See Section \ref{src:../../data/utils/widget_helpers.py}.
+
+\section{data\textbackslash widgets}
+\label{src:widgets}
+\subsection{board\_thumbnail.py}
 \lstinputlisting{../../data/widgets/board_thumbnail.py}
+\label{src:data/widgets/board_thumbnail.py}
+
+\subsection{board\_thumbnail\_button.py}
 \lstinputlisting{../../data/widgets/board_thumbnail_button.py}
+\label{src:data/widgets/board_thumbnail_button.py}
+
+\subsection{browser\_item.py}
 \lstinputlisting{../../data/widgets/browser_item.py}
+\label{src:data/widgets/browser_item.py}
+
+\subsection{browser\_strip.py}
 \lstinputlisting{../../data/widgets/browser_strip.py}
+\label{src:data/widgets/browser_strip.py}
+
+\subsection{carousel.py}
 \lstinputlisting{../../data/widgets/carousel.py}
+\label{src:data/widgets/carousel.py}
+
+\subsection{chessboard.py}
 \lstinputlisting{../../data/widgets/chessboard.py}
+\label{src:data/widgets/chessboard.py}
+
+\subsection{colour\_button.py}
 \lstinputlisting{../../data/widgets/colour_button.py}
+\label{src:data/widgets/colour_button.py}
+
+\subsection{colour\_display.py}
 \lstinputlisting{../../data/widgets/colour_display.py}
+\label{src:data/widgets/colour_display.py}
+
+\subsection{colour\_picker.py}
 \lstinputlisting{../../data/widgets/colour_picker.py}
-\lstinputlisting{../../data/widgets/colour_slider.py}
+\label{src:data/widgets/colour_picker.py}
+
+\subsection{colour\_slider.py}
+See Section \ref{src:../../data/widgets/colour_slider.py}.
+
+\subsection{colour\_square.py}
 \lstinputlisting{../../data/widgets/colour_square.py}
+\label{src:data/widgets/colour_square.py}
+
+\subsection{dropdown.py}
 \lstinputlisting{../../data/widgets/dropdown.py}
+\label{src:data/widgets/dropdown.py}
+
+\subsection{icon.py}
 \lstinputlisting{../../data/widgets/icon.py}
+\label{src:data/widgets/icon.py}
+
+\subsection{icon\_button.py}
 \lstinputlisting{../../data/widgets/icon_button.py}
+\label{src:data/widgets/icon_button.py}
+
+\subsection{move\_list.py}
 \lstinputlisting{../../data/widgets/move_list.py}
+\label{src:data/widgets/move_list.py}
+
+\subsection{multiple\_icon\_button.py}
 \lstinputlisting{../../data/widgets/multiple_icon_button.py}
+\label{src:data/widgets/multiple_icon_button.py}
+
+\subsection{piece\_display.py}
 \lstinputlisting{../../data/widgets/piece_display.py}
-\lstinputlisting{../../data/widgets/reactive_button.py}
-\lstinputlisting{../../data/widgets/reactive_icon_button.py}
+\label{src:data/widgets/piece_display.py}
+
+\subsection{reactive\_button.py}
+See Section \ref{src:../../data/widgets/reactive_button.py}.
+
+\subsection{reactive\_icon\_button.py}
+See Section \ref{src:../../data/widgets/reactive_icon_button.py}.
+
+\subsection{rectangle.py}
 \lstinputlisting{../../data/widgets/rectangle.py}
+\label{src:data/widgets/rectangle.py}
+
+\subsection{scrollbar.py}
 \lstinputlisting{../../data/widgets/scrollbar.py}
+\label{src:data/widgets/scrollbar.py}
+
+\subsection{scroll\_area.py}
 \lstinputlisting{../../data/widgets/scroll_area.py}
+\label{src:data/widgets/scroll_area.py}
+
+\subsection{slider\_thumb.py}
 \lstinputlisting{../../data/widgets/slider_thumb.py}
+\label{src:data/widgets/slider_thumb.py}
+
+\subsection{switch.py}
 \lstinputlisting{../../data/widgets/switch.py}
+\label{src:data/widgets/switch.py}
+
+\subsection{text.py}
 \lstinputlisting{../../data/widgets/text.py}
+\label{src:data/widgets/text.py}
+
+\subsection{text\_button.py}
 \lstinputlisting{../../data/widgets/text_button.py}
-\lstinputlisting{../../data/widgets/text_input.py}
+\label{src:data/widgets/text_button.py}
+
+\subsection{text\_input.py}
+See Section \ref{src:../../data/widgets/text_input.py}.
+
+\subsection{timer.py}
 \lstinputlisting{../../data/widgets/timer.py}
+\label{src:data/widgets/timer.py}
+
+\subsection{volume\_slider.py}
 \lstinputlisting{../../data/widgets/volume_slider.py}
+\label{src:data/widgets/volume_slider.py}
+
+\subsection{\_\_init\_\_.py}
 \lstinputlisting{../../data/widgets/__init__.py}
+\label{src:data/widgets/__init__.py}
+
+\section{data\textbackslash widgets\textbackslash bases}
+\subsection{box.py}
 \lstinputlisting{../../data/widgets/bases/box.py}
-\lstinputlisting{../../data/widgets/bases/circular.py}
+\label{src:data/widgets/bases/box.py}
+
+\subsection{circular.py}
+See Section \ref{src:../../data/widgets/bases/circular.py}.
+
+\subsection{pressable.py}
 \lstinputlisting{../../data/widgets/bases/pressable.py}
-\lstinputlisting{../../data/widgets/bases/widget.py}
+\label{src:data/widgets/bases/pressable.py}
+
+\subsection{widget.py}
+See Section \ref{src:../../data/widgets/bases/widget.py}.
 
 \end{document}

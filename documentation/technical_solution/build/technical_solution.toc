@@ -17,23 +17,22 @@
 \contentsline {subsection}{\numberline {1.5.1}Model}{42}{subsection.1.5.1}%
 \contentsline {subsection}{\numberline {1.5.2}View}{46}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Controller}{52}{subsection.1.5.3}%
-\contentsline {subsection}{\numberline {1.5.4}Board}{57}{subsection.1.5.4}%
-\contentsline {subsection}{\numberline {1.5.5}Bitboards}{62}{subsection.1.5.5}%
-\contentsline {section}{\numberline {1.6}CPU}{68}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Minimax}{68}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.5.4}Board}{58}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Bitboards}{63}{subsection.1.5.5}%
+\contentsline {section}{\numberline {1.6}CPU}{69}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Minimax}{69}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}Alpha-beta Pruning}{70}{subsection.1.6.2}%
-\contentsline {subsection}{\numberline {1.6.3}Transposition Table}{71}{subsection.1.6.3}%
-\contentsline {subsection}{\numberline {1.6.4}Evaluator}{72}{subsection.1.6.4}%
-\contentsline {subsection}{\numberline {1.6.5}Multithreading}{75}{subsection.1.6.5}%
-\contentsline {subsection}{\numberline {1.6.6}Zobrist Hashing}{76}{subsection.1.6.6}%
-\contentsline {subsection}{\numberline {1.6.7}Cache}{77}{subsection.1.6.7}%
-\contentsline {section}{\numberline {1.7}States}{79}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}Review}{79}{subsection.1.7.1}%
-\contentsline {section}{\numberline {1.8}Database}{84}{section.1.8}%
-\contentsline {subsection}{\numberline {1.8.1}DDL}{84}{subsection.1.8.1}%
-\contentsline {subsection}{\numberline {1.8.2}DML}{86}{subsection.1.8.2}%
-\contentsline {section}{\numberline {1.9}Shaders}{88}{section.1.9}%
-\contentsline {subsection}{\numberline {1.9.1}Shader Manager}{88}{subsection.1.9.1}%
-\contentsline {subsection}{\numberline {1.9.2}Bloom}{93}{subsection.1.9.2}%
-\contentsline {subsection}{\numberline {1.9.3}Rays}{97}{subsection.1.9.3}%
-\contentsline {subsection}{\numberline {1.9.4}Stack}{101}{subsection.1.9.4}%
+\contentsline {subsection}{\numberline {1.6.3}Transposition Table}{72}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Evaluator}{73}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Multithreading}{76}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.6}Zobrist Hashing}{77}{subsection.1.6.6}%
+\contentsline {subsection}{\numberline {1.6.7}Cache}{78}{subsection.1.6.7}%
+\contentsline {section}{\numberline {1.7}States}{80}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Review}{80}{subsection.1.7.1}%
+\contentsline {section}{\numberline {1.8}Database}{85}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}DDL}{85}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}DML}{87}{subsection.1.8.2}%
+\contentsline {section}{\numberline {1.9}Shaders}{90}{section.1.9}%
+\contentsline {subsection}{\numberline {1.9.1}Shader Manager}{90}{subsection.1.9.1}%
+\contentsline {subsection}{\numberline {1.9.2}Bloom}{94}{subsection.1.9.2}%
+\contentsline {subsection}{\numberline {1.9.3}Rays}{98}{subsection.1.9.3}%

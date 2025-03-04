@@ -1,5 +1,6 @@
-# version 330 core
 // Modified from https://godotshaders.com/shader/discrete-ocean/
+
+# version 330 core
 
 uniform float wave_amp=1.0;
 uniform float wave_size=4.0;

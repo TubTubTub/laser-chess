@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  23 FEB 2025 18:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  4 MAR 2025 20:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -29,7 +29,7 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -972,17 +972,48 @@ Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
 \c@etoc@tocid=\count511
 \etoc@framed@titlebox=\box134
 \etoc@framed@contentsbox=\box135
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip93
+\f@nch@offset@elh=\skip94
+\f@nch@offset@erh=\skip95
+\f@nch@offset@olh=\skip96
+\f@nch@offset@orh=\skip97
+\f@nch@offset@elf=\skip98
+\f@nch@offset@erf=\skip99
+\f@nch@offset@olf=\skip100
+\f@nch@offset@orf=\skip101
+\f@nch@height=\skip102
+\f@nch@footalignment=\skip103
+\f@nch@widthL=\skip104
+\f@nch@widthC=\skip105
+\f@nch@widthR=\skip106
+\@temptokenb=\toks52
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
-) (../main/assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count512
+\c@@ppsavesec=\count513
+\c@@ppsaveapp=\count514
+) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
-)))
-\@quotelevel=\count512
-\@quotereset=\count513
+))))
+\@quotelevel=\count515
+\@quotereset=\count516
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
- (c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+ (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
 \openout1 = `technical_solution.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -1040,20 +1071,26 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count514
+\scratchcounter=\count517
 \scratchdimen=\dimen329
 \scratchbox=\box136
-\nofMPsegments=\count515
-\nofMParguments=\count516
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count517
+\nofMPsegments=\count518
+\nofMParguments=\count519
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count520
 \MPscratchDim=\dimen330
-\MPnumerator=\count518
-\makeMPintoPDFobject=\count519
-\everyMPtoPDFconversion=\toks53
+\MPnumerator=\count521
+\makeMPintoPDFobject=\count522
+\everyMPtoPDFconversion=\toks54
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1082,7 +1119,7 @@ Package biblatex Info: Data encoding 'utf8' specified.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'technical_solution.bbl' found.
- (c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.bbl)
+ (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.bbl)
 Package biblatex Info: Reference section=0 on input line 3.
 Package biblatex Info: Reference segment=0 on input line 3.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
@@ -1092,9 +1129,9 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count520
+\c@lstlisting=\count523
 Package hyperref Info: Link coloring OFF on input line 3.
-(c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out)
+(c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.out)
 \@outlinefile=\write5
 \openout5 = `technical_solution.out'.
 
@@ -1104,13 +1141,20 @@ Chapter 1.
 \tf@toc=\write6
 \openout6 = `technical_solution.toc'.
 
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
+(C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 [1
 
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<../technical_solution/assets/file_tree_diagram.pdf, id=199, 412.4208pt x 448.5558pt>
+<../technical_solution/assets/file_tree_diagram.pdf, id=194, 412.4208pt x 448.5558pt>
 File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 15.
@@ -1173,7 +1217,11 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [28]
 
-[29]) (../../data/components/custom_event.py
+[29])
+
+LaTeX Warning: Reference `src:widgets' on page 30 undefined on input line 112.
+
+(../../data/components/custom_event.py
 
 [30])
 
@@ -1185,9 +1233,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [34]
 
-[35]) (../../data/widgets/text_input.py
+[35])
 
-[36]
+[36] (../../data/widgets/text_input.py
 
 [37]
 
@@ -1227,9 +1275,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [55]
 
-[56]) (../../data/states/game/components/board.py
+[56])
 
-[57]
+[57] (../../data/states/game/components/board.py
 
 [58]
 
@@ -1237,9 +1285,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [60]
 
-[61]) (../../data/states/game/components/bitboard_collection.py
+[61]
 
-[62]
+[62]) (../../data/states/game/components/bitboard_collection.py
 
 [63]
 
@@ -1249,31 +1297,31 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [66]
 
-[67]) (../../data/states/game/cpu/engines/minimax.py
+[67])
 
-[68])
+[68] (../../data/states/game/cpu/engines/minimax.py
 
-[69] (../../data/states/game/cpu/engines/alpha_beta.py
+[69]) (../../data/states/game/cpu/engines/alpha_beta.py
 
-[70]) (../../data/states/game/cpu/engines/transposition_table.py
+[70]
 
-[71]) (../../data/states/game/cpu/evaluator.py
+[71]) (../../data/states/game/cpu/engines/transposition_table.py
 
-[72]
+[72]) (../../data/states/game/cpu/evaluator.py
 
 [73]
 
-[74]) (../../data/states/game/cpu/cpu_thread.py
+[74])
 
-[75]) (../../data/states/game/cpu/zobrist_hasher.py
+[75] (../../data/states/game/cpu/cpu_thread.py)
 
-[76]) (../../data/states/game/cpu/transposition_table.py
+[76] (../../data/states/game/cpu/zobrist_hasher.py
 
-[77]
+[77]) (../../data/states/game/cpu/transposition_table.py
 
-[78]) (../../data/states/review/review.py
+[78]
 
-[79]
+[79]) (../../data/states/review/review.py
 
 [80]
 
@@ -1281,51 +1329,53 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [82]
 
-[83])
+[83]
 
-LaTeX Warning: Reference `sec:design-ddl' on page 84 undefined on input line 262.
+[84])
+
+LaTeX Warning: Reference `sec:design-ddl' on page 85 undefined on input line 263.
 
 (../../data/database/migrations/create_games_table_19112024.py
 
-[84]) (../../data/database/migrations/change_fen_string_column_name_23122024.py
+[85]) (../../data/database/migrations/change_fen_string_column_name_23122024.py
 
-[85]) (../../data/utils/database_helpers.py
+[86]) (../../data/utils/database_helpers.py
 
-[86]
+[87]
 
-[87])
+[88])
 
-[88] (../../data/managers/shader.py
-
-[89]
+[89] (../../data/managers/shader.py
 
 [90]
 
 [91]
 
-[92])
+[92]
 
-[93] (../../data/shaders/fragments/highlight_brightness.frag) (../../data/shaders/classes/blur.py
+[93])
 
-[94]) (../../data/shaders/fragments/blur.frag) (../../data/shaders/classes/bloom.py
+[94] (../../data/shaders/fragments/highlight_brightness.frag) (../../data/shaders/classes/blur.py
 
-[95]
+[95]) (../../data/shaders/fragments/blur.frag)
 
-[96])
+[96] (../../data/shaders/classes/bloom.py
 
-LaTeX Warning: Reference `sec:design-shadow' on page 97 undefined on input line 316.
+[97])
+
+LaTeX Warning: Reference `sec:design-shadow' on page 98 undefined on input line 317.
 
 (../../data/shaders/fragments/occlusion.frag) (../../data/shaders/fragments/shadowmap.frag
 
-[97]) (../../data/shaders/fragments/lightmap.frag
+[98]) (../../data/shaders/fragments/lightmap.frag
 
-[98]) (../../data/shaders/classes/rays.py
+[99])
 
-[99]
+[100] (../../data/shaders/classes/rays.py
 
-[100])
+[101])
 
-[101] (c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+[102] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1335,23 +1385,23 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `technical_solution.out' has not changed.
-(rerunfilecheck)             Checksum: FAB5F61D9C1040557BCB161C66EF85F6;3875.
+(rerunfilecheck)             Checksum: C8A61814CAF6D36658CA6A8F8B14860F;3788.
 Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 \openout1 = `technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54750 strings out of 473530
- 1224670 string characters out of 5714311
- 2495619 words of memory out of 5000000
- 71756 multiletter control sequences out of 15000+600000
- 569025 words of font info for 53 fonts, out of 8000000 for 9000
+ 55871 strings out of 473530
+ 1242708 string characters out of 5714311
+ 2517435 words of memory out of 5000000
+ 72781 multiletter control sequences out of 15000+600000
+ 570270 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 134i,6n,136p,1984b,2722s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 139i,6n,139p,2003b,2679s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (101 pages, 1506696 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (102 pages, 1517362 bytes).
 PDF statistics:
- 7445 PDF objects out of 8907 (max. 8388607)
- 5435 named destinations out of 6186 (max. 500000)
- 314 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 7519 PDF objects out of 8907 (max. 8388607)
+ 5498 named destinations out of 6186 (max. 500000)
+ 306 words of extra memory for PDF output out of 10000 (max. 10000000)
 
