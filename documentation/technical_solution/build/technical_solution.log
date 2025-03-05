@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  4 MAR 2025 20:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  5 MAR 2025 20:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1333,7 +1333,7 @@ LaTeX Warning: Reference `src:widgets' on page 30 undefined on input line 112.
 
 [84])
 
-LaTeX Warning: Reference `sec:design-ddl' on page 85 undefined on input line 263.
+LaTeX Warning: Reference `sec:design-ddl' on page 85 undefined on input line 265.
 
 (../../data/database/migrations/create_games_table_19112024.py
 
@@ -1363,7 +1363,7 @@ LaTeX Warning: Reference `sec:design-ddl' on page 85 undefined on input line 263
 
 [97])
 
-LaTeX Warning: Reference `sec:design-shadow' on page 98 undefined on input line 317.
+LaTeX Warning: Reference `sec:design-shadow' on page 98 undefined on input line 319.
 
 (../../data/shaders/fragments/occlusion.frag) (../../data/shaders/fragments/shadowmap.frag
 
@@ -1391,15 +1391,15 @@ Package logreq Info: Writing requests to 'technical_solution.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 55871 strings out of 473530
- 1242708 string characters out of 5714311
- 2517435 words of memory out of 5000000
- 72781 multiletter control sequences out of 15000+600000
+ 55894 strings out of 473530
+ 1242894 string characters out of 5714311
+ 2517490 words of memory out of 5000000
+ 72804 multiletter control sequences out of 15000+600000
  570270 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,6n,139p,2003b,2679s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (102 pages, 1517362 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (102 pages, 1517697 bytes).
 PDF statistics:
  7519 PDF objects out of 8907 (max. 8388607)
  5498 named destinations out of 6186 (max. 500000)

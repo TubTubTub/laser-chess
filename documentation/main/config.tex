@@ -25,6 +25,7 @@
 \usepackage{fancyhdr}
 \usepackage{subfiles}
 \usepackage[toc, page]{appendix}
+\usepackage[backend=bibtex,style=verbose-trad2]{biblatex}
 
 \input{assets/listings-glsl.prf}
 
@@ -56,7 +57,7 @@
     showtabs=false,                  
     tabsize=2,
     upquote=true,
-    morecomment=[s]{"""}{"""}
+    morecomment=[s]{"""}{"""},
 }
 
 \lstdefinelanguage{json}{
@@ -94,10 +95,9 @@
 \lstdefinelanguage{sqlite}{
     language=SQL,
     morekeywords={partition},
-    deletekeywords={time},
 }
 
 \lstset{
     style=pythonstyle,
-    escapeinside={(*@}{@*)}
+    escapeinside={(*@}{@*)},
 }

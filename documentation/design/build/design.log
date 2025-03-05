@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  5 MAR 2025 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  5 MAR 2025 20:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1005,35 +1005,13 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@pps=\count512
 \c@@ppsavesec=\count513
 \c@@ppsaveapp=\count514
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/attachfile\attachfile.sty
-Package: attachfile 2016/09/18 v1.9 PDF 1.3+ file attachment
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifpdf.sty
-Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
-Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count515
-\calc@Bcount=\count516
-\calc@Adimen=\dimen329
-\calc@Bdimen=\dimen330
-\calc@Askip=\skip107
-\calc@Bskip=\skip108
-LaTeX Info: Redefining \setlength on input line 80.
-LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count517
-\calc@Cskip=\skip109
-)
-\c@atfi@tmp=\count518
-\atfi@appearancewidth=\skip110
-\atfi@appearanceheight=\skip111
-\atfi@appearancedepth=\skip112
-\atfi@appearancebox=\box136
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ))))
-\@quotelevel=\count519
-\@quotereset=\count520
+\@quotelevel=\count515
+\@quotereset=\count516
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
 \openout1 = `design.aux'.
@@ -1093,20 +1071,26 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count521
-\scratchdimen=\dimen331
-\scratchbox=\box137
-\nofMPsegments=\count522
-\nofMParguments=\count523
+\scratchcounter=\count517
+\scratchdimen=\dimen329
+\scratchbox=\box136
+\nofMPsegments=\count518
+\nofMParguments=\count519
 \everyMPshowfont=\toks53
-\MPscratchCnt=\count524
-\MPscratchDim=\dimen332
-\MPnumerator=\count525
-\makeMPintoPDFobject=\count526
+\MPscratchCnt=\count520
+\MPscratchDim=\dimen330
+\MPnumerator=\count521
+\makeMPintoPDFobject=\count522
 \everyMPtoPDFconversion=\toks54
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1145,7 +1129,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count527
+\c@lstlisting=\count523
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
 \@outlinefile=\write5
@@ -1403,7 +1387,7 @@ Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on in
 (pdftex.def)             Requested size: 418.25368pt x 459.677pt.
 
 
-[30]<<../design/assets/widgets_class_diagram.pdf>>
+[30]
 
 [31 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
  ***********
@@ -1421,17 +1405,17 @@ Package logreq Info: Writing requests to 'design.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 49198 strings out of 473530
- 1129868 string characters out of 5714311
- 2033862 words of memory out of 5000000
- 71568 multiletter control sequences out of 15000+600000
+ 49017 strings out of 473530
+ 1126750 string characters out of 5714311
+ 2028911 words of memory out of 5000000
+ 71392 multiletter control sequences out of 15000+600000
  581253 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,11n,139p,1979b,2641s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 139i,11n,139p,1979b,2639s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (31 pages, 4512823 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (31 pages, 4490179 bytes).
 PDF statistics:
- 1104 PDF objects out of 1200 (max. 8388607)
+ 1103 PDF objects out of 1200 (max. 8388607)
  164 named destinations out of 1000 (max. 500000)
- 306 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 296 words of extra memory for PDF output out of 10000 (max. 10000000)
 

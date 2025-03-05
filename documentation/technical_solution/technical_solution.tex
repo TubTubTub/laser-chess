@@ -246,7 +246,9 @@ A \lstinline{CPUThread} is initialised with a CPU engine at the start of the gam
 \lstinputlisting[label=src:../../data/states/game/cpu/transposition_table.py]{../../data/states/game/cpu/transposition_table.py}
 
 \section{States}
-Every state class calls their \lstinline{startup} method when switched to, and \lstinline{cleanup} when exited. Within the \lstinline{startup} function, the state widgets dictionary is passed into a \lstinline{WidgetGroup} object. The \lstinline{process_event} method is called on the \lstinline{WidgetGroup} every frame to process user input, and handle the returned events accordingly. The \lstinline{WidgetGroup} object can therefore be thought of as a controller, and the state as the model, and the widgets as the view.
+To switch between different screens, I have decided to use a state machine design pattern. This ensures that there is only one main game loop controlling movement between states, handled with the \lstinline{Control} object. All \lstinline{State} object contain a \lstinline[language=json]{next} and \lstinline{previous} attribute to tell the \lstinline{Control} class which screen to switch to, which also calls all \lstinline{State} methods accordingly.
+
+The \lstinline{startup} method is called when switched to a new state, and \lstinline{cleanup} when exiting. Within the \lstinline{startup} function, the state widgets dictionary is passed into a \lstinline{WidgetGroup} object. The \lstinline{process_event} method is called on the \lstinline{WidgetGroup} every frame to process user input, and handle the returned events accordingly. The \lstinline{WidgetGroup} object can therefore be thought of as a controller, and the state as the model, and the widgets as the view.
 
 \subsection{Review}
 \label{sec:review}

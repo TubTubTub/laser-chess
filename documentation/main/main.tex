@@ -2,6 +2,9 @@
 
 \input{config.tex}
 
+\addbibresource{../main/assets/references.bib}
+\bibliography{Wow}
+
 \begin{document}
 
 \pagestyle{fancy}
@@ -33,8 +36,11 @@
 \subfile{../testing/testing}
 \subfile{../evaluation/evaluation}
 
+\nocite{*}
+\printbibliography
+
 \appendix
-\subfile{../screenshots/screenshots}
-\subfile{../source/source}
+% \subfile{../screenshots/screenshots}
+% \subfile{../source/source}
 
 \end{document}
