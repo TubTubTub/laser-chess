@@ -1430,4 +1430,196 @@ Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on 
 (pdftex.def)             Requested size: 418.25368pt x 198.89749pt.
 
 
-[19 <../design/../design/assets/config_flowchart.pdf> <../
+[19 <../design/../design/assets/config_flowchart.pdf> <../design/../design/assets/game_gui.png>]
+<../design/../design/assets/editor_gui.png, id=1485, 963.6pt x 542.025pt>
+File: ../design/../design/assets/editor_gui.png Graphic file (type png)
+<use ../design/../design/assets/editor_gui.png>
+Package pdftex.def Info: ../design/../design/assets/editor_gui.png  used on input line 131.
+(pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
+<../design/../design/assets/editor_flowchart.pdf, id=1486, 435.54718pt x 204.765pt>
+File: ../design/../design/assets/editor_flowchart.pdf Graphic file (type pdf)
+<use ../design/../design/assets/editor_flowchart.pdf>
+Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used on input line 142.
+(pdftex.def)             Requested size: 418.25368pt x 196.64088pt.
+
+
+[20 <../design/../design/assets/game_flowchart.pdf> <../design/../design/assets/editor_gui.png>]
+<../design/../design/assets/minimax.pdf, id=1502, 688.49219pt x 307.1475pt>
+File: ../design/../design/assets/minimax.pdf Graphic file (type pdf)
+<use ../design/../design/assets/minimax.pdf>
+Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input line 153.
+(pdftex.def)             Requested size: 418.25368pt x 186.59108pt.
+
+
+[21 <../design/../design/assets/editor_flowchart.pdf> <../design/../design/assets/minimax.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 163.
+<../design/../design/assets/alpha_beta_pruning.pdf, id=1533, 713.7867pt x 307.1475pt>
+File: ../design/../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
+<use ../design/../design/assets/alpha_beta_pruning.pdf>
+Package pdftex.def Info: ../design/../design/assets/alpha_beta_pruning.pdf  used on input line 198.
+(pdftex.def)             Requested size: 418.25368pt x 179.97816pt.
+
+
+[22]
+
+[23 <../design/../design/assets/alpha_beta_pruning.pdf>]
+
+[24]
+
+[25]
+Overfull \hbox (2.31029pt too wide) in paragraph at lines 349--350
+ \T1/cmr/m/n/10 sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa 
+ []
+
+
+
+[26]
+
+[27]
+<../design/../design/assets/bitboard_indexes.pdf, id=1592, 324.82352pt x 263.91599pt>
+File: ../design/../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
+<use ../design/../design/assets/bitboard_indexes.pdf>
+Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used on input line 418.
+(pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
+<../design/../design/assets/bitboard_shifted.pdf, id=1594, 145.50359pt x 145.50359pt>
+File: ../design/../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
+<use ../design/../design/assets/bitboard_shifted.pdf>
+Package pdftex.def Info: ../design/../design/assets/bitboard_shifted.pdf  used on input line 435.
+(pdftex.def)             Requested size: 167.2989pt x 167.30116pt.
+
+
+[28 <../design/../design/assets/bitboard_indexes.pdf>]
+<../design/../design/assets/bitboard_masked.pdf, id=1615, 551.1792pt x 167.6664pt>
+File: ../design/../design/assets/bitboard_masked.pdf Graphic file (type pdf)
+<use ../design/../design/assets/bitboard_masked.pdf>
+Package pdftex.def Info: ../design/../design/assets/bitboard_masked.pdf  used on input line 450.
+(pdftex.def)             Requested size: 418.25368pt x 127.23589pt.
+
+
+[29 <../design/../design/assets/bitboard_shifted.pdf> <../design/../design/assets/bitboard_masked.pdf>]
+
+[30]
+<../design/../design/assets/psqt.pdf, id=1649, 352.43669pt x 167.6664pt>
+File: ../design/../design/assets/psqt.pdf Graphic file (type pdf)
+<use ../design/../design/assets/psqt.pdf>
+Package pdftex.def Info: ../design/../design/assets/psqt.pdf  used on input line 536.
+(pdftex.def)             Requested size: 334.60422pt x 159.19516pt.
+
+
+[31 <../design/../design/assets/psqt.pdf>]
+File: ../design/../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
+<use ../design/../design/assets/bitboard_indexes.pdf>
+Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used on input line 547.
+(pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
+
+
+[32]
+<../design/../design/assets/shadow_mapping.pdf, id=1674, 340.3917pt x 321.11969pt>
+File: ../design/../design/assets/shadow_mapping.pdf Graphic file (type pdf)
+<use ../design/../design/assets/shadow_mapping.pdf>
+Package pdftex.def Info: ../design/../design/assets/shadow_mapping.pdf  used on input line 615.
+(pdftex.def)             Requested size: 418.25368pt x 394.58777pt.
+
+
+[33]
+
+[34 <../design/../design/assets/shadow_mapping.pdf>]
+<../design/../design/assets/soft_shadows.pdf, id=1715, 264.99pt x 164.5347pt>
+File: ../design/../design/assets/soft_shadows.pdf Graphic file (type pdf)
+<use ../design/../design/assets/soft_shadows.pdf>
+Package pdftex.def Info: ../design/../design/assets/soft_shadows.pdf  used on input line 655.
+(pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
+
+
+[35 <../design/../design/assets/soft_shadows.pdf>]
+<../design/../design/assets/multi_threading.pdf, id=1741, 352.43669pt x 158.51219pt>
+File: ../design/../design/assets/multi_threading.pdf Graphic file (type pdf)
+<use ../design/../design/assets/multi_threading.pdf>
+Package pdftex.def Info: ../design/../design/assets/multi_threading.pdf  used on input line 667.
+(pdftex.def)             Requested size: 418.25368pt x 188.12874pt.
+ [36 <../design/../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+[37]
+
+[38]
+<../design/../design/assets/stack.pdf, id=1814, 204.765pt x 174.6525pt>
+File: ../design/../design/assets/stack.pdf Graphic file (type pdf)
+<use ../design/../design/assets/stack.pdf>
+Package pdftex.def Info: ../design/../design/assets/stack.pdf  used on input line 838.
+(pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
+
+
+[39] [40 <../design/../design/assets/stack.pdf>] [41]
+Overfull \hbox (11.81412pt too wide) in alignment at lines 933--937
+ [] [] 
+ []
+
+
+Overfull \hbox (11.81412pt too wide) in alignment at lines 937--938
+ [] [] 
+ []
+
+
+Overfull \hbox (11.81412pt too wide) in alignment at lines 938--950
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34079pt too wide) in alignment at lines 952--956
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34079pt too wide) in alignment at lines 956--957
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34079pt too wide) in alignment at lines 957--969
+ [] [] 
+ []
+
+[42]
+<../design/../design/assets/class_relation_diagram.pdf, id=1855, 435.54718pt x 478.66827pt>
+File: ../design/../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
+<use ../design/../design/assets/class_relation_diagram.pdf>
+Package pdftex.def Info: ../design/../design/assets/class_relation_diagram.pdf  used on input line 998.
+(pdftex.def)             Requested size: 418.25368pt x 459.677pt.
+
+
+[43]
+../design/../design/design.tex:1002: Undefined control sequence.
+l.1002 \textattachfile
+                      {../design/assets/widgets_class_diagram.pdf}{Link to a...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+../design/../design/design.tex:1002: Missing $ inserted.
+<inserted text> 
+                $
+l.1002 \textattachfile{../design/assets/widgets_
+                                                class_diagram.pdf}{Link to a...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+../design/../design/design.tex:1002: Extra }, or forgotten $.
+l.1002 ...design/assets/widgets_class_diagram.pdf}
+                                                  {Link to a comprehensive d...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+../design/../design/design.tex:1004: Missing $ inserted.
+<inserted text> 
+                $
+l.1004 
+       
+I've inserted a begin-math/end-math symbol since I think
+y
