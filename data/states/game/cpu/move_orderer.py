@@ -33,18 +33,21 @@ class MoveOrderer:
         
     #     return moves
 
-    def best_move_to_front(self, moves, start_idx, hint):
+    def best_move_to_front(self, moves, start_idx, laser_coords):
         for i in range(start_idx + 1, len(moves)):
-            if moves[i].src in hint:
+            if moves[i].src in laser_coords:
                 moves[i], moves[start_idx] = moves[start_idx], moves[i]
                 return
     
-    def get_moves(self, board, hint=None):
+    def get_moves(self, board, hint=None, laser_coords=None):
+        if hint:
+            yield hint
+
         colour = board.get_active_colour()
         moves = list(board.generate_all_moves(colour))
         
         for i in range(len(moves)):
-            if hint:
-                self.best_move_to_front(moves, i, hint)
+            if laser_coords:
+                self.best_move_to_front(moves, i, laser_coords)
 
             yield moves[i]

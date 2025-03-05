@@ -1,20 +1,22 @@
 from data.states.game.cpu.engines.transposition_table import TranspositionTableMixin
 from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU, ABNegamaxCPU
+from data.states.game.cpu.transposition_table import TranspositionTable
 from data.constants import Score
 
 class IterativeDeepeningMixin:
     def find_move(self, board, stop_event):
+        self._table = TranspositionTable()
+
         best_move = None
 
         for depth in range(1, self._max_depth + 1):
             self.initialise_stats()
+            best_score, best_move = self.search(board, depth, -Score.INFINITE, Score.INFINITE, stop_event, hint=best_move)
             self._stats['ID_depth'] = depth
 
-            best_score, best_move = self.search(board, depth, -Score.INFINITE, Score.INFINITE, stop_event)
-
-            if self._verbose:
-                self.print_stats(best_score, best_move)
-
+        if self._verbose:
+            self.print_stats(best_score, best_move)
+        
         self._callback(best_move)
 
 class IDMinimaxCPU(TranspositionTableMixin, IterativeDeepeningMixin, ABMinimaxCPU):

@@ -10,7 +10,7 @@ class TranspositionTableMixin:
         self._table = TranspositionTable()
         super().find_move(*args, **kwargs)
     
-    def search(self, board, depth, alpha, beta, stop_event, hint=None):
+    def search(self, board, depth, alpha, beta, stop_event, hint=None, laser_coords=None):
         """
         Searches transposition table for a cached move before running a full search if necessary.
         Caches the searched result.

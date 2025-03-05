@@ -3,13 +3,12 @@ from data.states.game.cpu.move_orderer import MoveOrderer
 from data.states.game.cpu.base import BaseCPU
 from data.constants import Score, Colour
 from random import choice
-from data.utils.bitboard_helpers import print_bitboard
-orderer = MoveOrderer()
 
 class ABMinimaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=True):
         super().__init__(callback, verbose)
         self._max_depth = max_depth
+        self._orderer = MoveOrderer()
     
     def initialise_stats(self):
         """
@@ -35,7 +34,7 @@ class ABMinimaxCPU(BaseCPU):
             
         self._callback(best_move)
 
-    def search(self, board, depth, alpha, beta, stop_event, hint=None):
+    def search(self, board, depth, alpha, beta, stop_event, hint=None, laser_coords=None):
         """
         Recursively DFS through minimax tree while pruning branches using the alpha and beta bounds.
 
@@ -58,9 +57,9 @@ class ABMinimaxCPU(BaseCPU):
         if board.get_active_colour() == Colour.BLUE:
             max_score = -Score.INFINITE
             
-            for move in orderer.get_moves(board, hint):
+            for move in self._orderer.get_moves(board, hint=hint, laser_coords=laser_coords):
                 laser_result = board.apply_move(move)
-                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_result.pieces_on_trajectory)[0]
+                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_coords=laser_result.pieces_on_trajectory)[0]
 
                 if new_score > max_score:
                     max_score = new_score
@@ -79,9 +78,9 @@ class ABMinimaxCPU(BaseCPU):
         else:
             min_score = Score.INFINITE
             
-            for move in orderer.get_moves(board, hint):
+            for move in self._orderer.get_moves(board, hint=hint, laser_coords=laser_coords):
                 laser_result = board.apply_move(move)
-                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_result.pieces_on_trajectory)[0]
+                new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_coords=laser_result.pieces_on_trajectory)[0]
 
                 if new_score < min_score:
                     min_score = new_score

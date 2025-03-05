@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  4 MAR 2025 20:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  5 MAR 2025 15:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1479,11 +1479,8 @@ Package pdftex.def Info: ../technical_solution/../technical_solution/assets/file
 
 
 [46 <../technical_solution/../technical_solution/assets/file_tree_diagram.pdf>]
-
-LaTeX Warning: Reference `sec:stack' on page 47 undefined on input line 25.
-
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 42.
-(../technical_solution/../../data/main.py
+ (../technical_solution/../../data/main.py
 
 [47]) (../technical_solution/../../data/loading_screen.py
 
@@ -1549,9 +1546,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [78]
 
-[79]) (../technical_solution/../../data/widgets/text_input.py
+[79])
 
-[80]
+[80] (../technical_solution/../../data/widgets/text_input.py
 
 [81]
 
@@ -1699,17 +1696,17 @@ Overfull \hbox (104.33354pt too wide) in alignment at lines 50--63
  [] [] [] [] 
  []
 
-<../testing/../testing/assets/rays_example_1.png, id=7774, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_1.png, id=7776, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_1.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_1.png  used on input line 102.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_2.png, id=7775, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_2.png, id=7777, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_2.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_2.png  used on input line 105.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_3.png, id=7776, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_3.png, id=7778, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_3.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_3.png  used on input line 108.
@@ -1745,12 +1742,12 @@ Chapter 5.
 
 [154]
 Appendix A.
-<../screenshots/../screenshots/assets/menu.png, id=7839, 895.84688pt x 448.67625pt>
+<../screenshots/../screenshots/assets/menu.png, id=7841, 895.84688pt x 448.67625pt>
 File: ../screenshots/../screenshots/assets/menu.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/menu.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/menu.png  used on input line 10.
 (pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../screenshots/../screenshots/assets/settings.png, id=7840, 896.59969pt x 447.92343pt>
+<../screenshots/../screenshots/assets/settings.png, id=7842, 896.59969pt x 447.92343pt>
 File: ../screenshots/../screenshots/assets/settings.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/settings.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/settings.png  used on input line 17.
@@ -1760,12 +1757,12 @@ Package pdftex.def Info: ../screenshots/../screenshots/assets/settings.png  used
 [155
 
  <../screenshots/../screenshots/assets/menu.png>]
-<../screenshots/../screenshots/assets/config.png, id=7846, 898.10532pt x 447.17062pt>
+<../screenshots/../screenshots/assets/config.png, id=7848, 898.10532pt x 447.17062pt>
 File: ../screenshots/../screenshots/assets/config.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/config.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/config.png  used on input line 24.
 (pdftex.def)             Requested size: 418.25368pt x 208.24605pt.
-<../screenshots/../screenshots/assets/game.png, id=7847, 895.84688pt x 449.42906pt>
+<../screenshots/../screenshots/assets/game.png, id=7849, 895.84688pt x 449.42906pt>
 File: ../screenshots/../screenshots/assets/game.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/game.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/game.png  used on input line 31.
@@ -1773,12 +1770,12 @@ Package pdftex.def Info: ../screenshots/../screenshots/assets/game.png  used on 
 
 
 [156 <../screenshots/../screenshots/assets/settings.png> <../screenshots/../screenshots/assets/config.png>]
-<../screenshots/../screenshots/assets/editor.png, id=7854, 898.85812pt x 447.92343pt>
+<../screenshots/../screenshots/assets/editor.png, id=7856, 898.85812pt x 447.92343pt>
 File: ../screenshots/../screenshots/assets/editor.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/editor.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/editor.png  used on input line 38.
 (pdftex.def)             Requested size: 418.25368pt x 208.42577pt.
-<../screenshots/../screenshots/assets/browser.png, id=7855, 895.84688pt x 448.67625pt>
+<../screenshots/../screenshots/assets/browser.png, id=7857, 895.84688pt x 448.67625pt>
 File: ../screenshots/../screenshots/assets/browser.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/browser.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/browser.png  used on input line 45.
@@ -1786,7 +1783,7 @@ Package pdftex.def Info: ../screenshots/../screenshots/assets/browser.png  used 
 
 
 [157 <../screenshots/../screenshots/assets/game.png> <../screenshots/../screenshots/assets/editor.png>]
-<../screenshots/../screenshots/assets/review.png, id=7862, 897.3525pt x 447.17062pt>
+<../screenshots/../screenshots/assets/review.png, id=7864, 897.3525pt x 447.17062pt>
 File: ../screenshots/../screenshots/assets/review.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/review.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/review.png  used on input line 52.
@@ -2000,9 +1997,9 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [246]) (../source/../../data/states/game/cpu/engines/negamax.py
 
-[247]) (../source/../../data/states/game/cpu/engines/simple.py) (../source/../../data/states/game/cpu/engines/__init__.py
+[247]) (../source/../../data/states/game/cpu/engines/simple.py)
 
-[248]) (../source/../../data/states/game/mvc/pause_view.py
+[248] (../source/../../data/states/game/cpu/engines/__init__.py) (../source/../../data/states/game/mvc/pause_view.py
 
 [249]) (../source/../../data/states/game/mvc/win_view.py
 
@@ -2010,9 +2007,9 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [251]
 
-[252])
+[252]
 
-[253] (../source/../../data/states/menu/widget_dict.py
+[253]) (../source/../../data/states/menu/widget_dict.py
 
 [254]
 
@@ -2022,9 +2019,9 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [257]
 
-[258]) (../source/../../data/states/settings/settings.py
+[258])
 
-[259]
+[259] (../source/../../data/states/settings/settings.py
 
 [260]
 
@@ -2044,31 +2041,31 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [268]) (../source/../../data/utils/browser_helpers.py)
 
-[269] (../source/../../data/utils/font_helpers.py)
+[269] (../source/../../data/utils/font_helpers.py
 
-[270] (../source/../../data/utils/input_helpers.py) (../source/../../data/utils/load_helpers.py
+[270]) (../source/../../data/utils/input_helpers.py) (../source/../../data/utils/load_helpers.py
 
 [271]
 
-[272]) (../source/../../data/widgets/board_thumbnail.py
+[272])
 
-[273]) (../source/../../data/widgets/board_thumbnail_button.py
+[273] (../source/../../data/widgets/board_thumbnail.py)
 
-[274]) (../source/../../data/widgets/browser_item.py
+[274] (../source/../../data/widgets/board_thumbnail_button.py) (../source/../../data/widgets/browser_item.py
 
 [275]) (../source/../../data/widgets/browser_strip.py
 
-[276]) (../source/../../data/widgets/carousel.py
+[276]
 
-[277]
+[277]) (../source/../../data/widgets/carousel.py
 
 [278]
 
 [279]) (../source/../../data/widgets/chessboard.py
 
-[280]) (../source/../../data/widgets/colour_button.py) (../source/../../data/widgets/colour_display.py)
+[280]) (../source/../../data/widgets/colour_button.py) (../source/../../data/widgets/colour_display.py
 
-[281] (../source/../../data/widgets/colour_picker.py
+[281]) (../source/../../data/widgets/colour_picker.py
 
 [282]) (../source/../../data/widgets/colour_square.py
 
@@ -2078,17 +2075,17 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [285]) (../source/../../data/widgets/icon.py
 
-[286])
+[286]
 
-[287] (../source/../../data/widgets/icon_button.py) (../source/../../data/widgets/move_list.py
+[287]) (../source/../../data/widgets/icon_button.py) (../source/../../data/widgets/move_list.py
 
 [288]) (../source/../../data/widgets/multiple_icon_button.py
 
 [289]) (../source/../../data/widgets/piece_display.py
 
-[290]) (../source/../../data/widgets/rectangle.py
+[290])
 
-[291]) (../source/../../data/widgets/scrollbar.py
+[291] (../source/../../data/widgets/rectangle.py) (../source/../../data/widgets/scrollbar.py
 
 [292]) (../source/../../data/widgets/scroll_area.py
 
@@ -2096,19 +2093,19 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 
 [294]
 
-[295]) (../source/../../data/widgets/slider_thumb.py
+[295])
 
-[296]) (../source/../../data/widgets/switch.py
+[296] (../source/../../data/widgets/slider_thumb.py) (../source/../../data/widgets/switch.py
 
-[297]) (../source/../../data/widgets/text.py
+[297]
 
-[298]
+[298]) (../source/../../data/widgets/text.py
 
-[299]) (../source/../../data/widgets/text_button.py) (../source/../../data/widgets/timer.py
+[299]) (../source/../../data/widgets/text_button.py)
 
-[300]) (../source/../../data/widgets/volume_slider.py
+[300] (../source/../../data/widgets/timer.py
 
-[301]
+[301]) (../source/../../data/widgets/volume_slider.py
 
 [302]) (../source/../../data/widgets/__init__.py
 
@@ -2123,10 +2120,6 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 17--18
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 719B17417ED6A85DD5B532085264298B;38277.
 Package logreq Info: Writing requests to 'main.run.xml'.
@@ -2134,17 +2127,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 69195 strings out of 473530
- 1497071 string characters out of 5714311
- 2577050 words of memory out of 5000000
- 76895 multiletter control sequences out of 15000+600000
+ 69204 strings out of 473530
+ 1497220 string characters out of 5714311
+ 2564510 words of memory out of 5000000
+ 76899 multiletter control sequences out of 15000+600000
  583863 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  119i,12n,122p,1951b,2848s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (309 pages, 10484226 bytes).
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (309 pages, 10482886 bytes).
 PDF statistics:
- 20182 PDF objects out of 22161 (max. 8388607)
- 14242 named destinations out of 15390 (max. 500000)
+ 20189 PDF objects out of 22161 (max. 8388607)
+ 14247 named destinations out of 15390 (max. 500000)
  2537 words of extra memory for PDF output out of 10000 (max. 10000000)
 

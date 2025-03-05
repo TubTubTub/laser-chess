@@ -238,7 +238,7 @@
 \contentsline {subsection}{\numberline {B.18.4}negamax.py}{247}{subsection.B.18.4}%
 \contentsline {subsection}{\numberline {B.18.5}simple.py}{248}{subsection.B.18.5}%
 \contentsline {subsection}{\numberline {B.18.6}transposition\_table.py}{248}{subsection.B.18.6}%
-\contentsline {subsection}{\numberline {B.18.7}\_\_init\_\_.py}{248}{subsection.B.18.7}%
+\contentsline {subsection}{\numberline {B.18.7}\_\_init\_\_.py}{249}{subsection.B.18.7}%
 \contentsline {section}{\numberline {B.19}data\textbackslash states\textbackslash game\textbackslash mvc}{249}{section.B.19}%
 \contentsline {subsection}{\numberline {B.19.1}game\_controller.py}{249}{subsection.B.19.1}%
 \contentsline {subsection}{\numberline {B.19.2}game\_model.py}{249}{subsection.B.19.2}%
@@ -247,30 +247,30 @@
 \contentsline {subsection}{\numberline {B.19.5}win\_view.py}{250}{subsection.B.19.5}%
 \contentsline {section}{\numberline {B.20}data\textbackslash states\textbackslash menu}{251}{section.B.20}%
 \contentsline {subsection}{\numberline {B.20.1}menu.py}{251}{subsection.B.20.1}%
-\contentsline {subsection}{\numberline {B.20.2}widget\_dict.py}{253}{subsection.B.20.2}%
+\contentsline {subsection}{\numberline {B.20.2}widget\_dict.py}{254}{subsection.B.20.2}%
 \contentsline {section}{\numberline {B.21}data\textbackslash states\textbackslash review}{256}{section.B.21}%
 \contentsline {subsection}{\numberline {B.21.1}review.py}{256}{subsection.B.21.1}%
 \contentsline {subsection}{\numberline {B.21.2}widget\_dict.py}{256}{subsection.B.21.2}%
-\contentsline {section}{\numberline {B.22}data\textbackslash states\textbackslash settings}{259}{section.B.22}%
-\contentsline {subsection}{\numberline {B.22.1}settings.py}{259}{subsection.B.22.1}%
+\contentsline {section}{\numberline {B.22}data\textbackslash states\textbackslash settings}{260}{section.B.22}%
+\contentsline {subsection}{\numberline {B.22.1}settings.py}{260}{subsection.B.22.1}%
 \contentsline {subsection}{\numberline {B.22.2}widget\_dict.py}{263}{subsection.B.22.2}%
 \contentsline {section}{\numberline {B.23}data\textbackslash utils}{266}{section.B.23}%
 \contentsline {subsection}{\numberline {B.23.1}asset\_helpers.py}{266}{subsection.B.23.1}%
 \contentsline {subsection}{\numberline {B.23.2}bitboard\_helpers.py}{266}{subsection.B.23.2}%
 \contentsline {subsection}{\numberline {B.23.3}board\_helpers.py}{268}{subsection.B.23.3}%
 \contentsline {subsection}{\numberline {B.23.4}browser\_helpers.py}{269}{subsection.B.23.4}%
-\contentsline {subsection}{\numberline {B.23.5}database\_helpers.py}{269}{subsection.B.23.5}%
-\contentsline {subsection}{\numberline {B.23.6}data\_helpers.py}{269}{subsection.B.23.6}%
+\contentsline {subsection}{\numberline {B.23.5}database\_helpers.py}{270}{subsection.B.23.5}%
+\contentsline {subsection}{\numberline {B.23.6}data\_helpers.py}{270}{subsection.B.23.6}%
 \contentsline {subsection}{\numberline {B.23.7}font\_helpers.py}{270}{subsection.B.23.7}%
 \contentsline {subsection}{\numberline {B.23.8}input\_helpers.py}{271}{subsection.B.23.8}%
 \contentsline {subsection}{\numberline {B.23.9}load\_helpers.py}{271}{subsection.B.23.9}%
 \contentsline {subsection}{\numberline {B.23.10}widget\_helpers.py}{273}{subsection.B.23.10}%
-\contentsline {section}{\numberline {B.24}data\textbackslash widgets}{273}{section.B.24}%
-\contentsline {subsection}{\numberline {B.24.1}board\_thumbnail.py}{273}{subsection.B.24.1}%
-\contentsline {subsection}{\numberline {B.24.2}board\_thumbnail\_button.py}{274}{subsection.B.24.2}%
+\contentsline {section}{\numberline {B.24}data\textbackslash widgets}{274}{section.B.24}%
+\contentsline {subsection}{\numberline {B.24.1}board\_thumbnail.py}{274}{subsection.B.24.1}%
+\contentsline {subsection}{\numberline {B.24.2}board\_thumbnail\_button.py}{275}{subsection.B.24.2}%
 \contentsline {subsection}{\numberline {B.24.3}browser\_item.py}{275}{subsection.B.24.3}%
 \contentsline {subsection}{\numberline {B.24.4}browser\_strip.py}{276}{subsection.B.24.4}%
-\contentsline {subsection}{\numberline {B.24.5}carousel.py}{277}{subsection.B.24.5}%
+\contentsline {subsection}{\numberline {B.24.5}carousel.py}{278}{subsection.B.24.5}%
 \contentsline {subsection}{\numberline {B.24.6}chessboard.py}{280}{subsection.B.24.6}%
 \contentsline {subsection}{\numberline {B.24.7}colour\_button.py}{281}{subsection.B.24.7}%
 \contentsline {subsection}{\numberline {B.24.8}colour\_display.py}{281}{subsection.B.24.8}%
@@ -279,22 +279,22 @@
 \contentsline {subsection}{\numberline {B.24.11}colour\_square.py}{283}{subsection.B.24.11}%
 \contentsline {subsection}{\numberline {B.24.12}dropdown.py}{284}{subsection.B.24.12}%
 \contentsline {subsection}{\numberline {B.24.13}icon.py}{286}{subsection.B.24.13}%
-\contentsline {subsection}{\numberline {B.24.14}icon\_button.py}{287}{subsection.B.24.14}%
+\contentsline {subsection}{\numberline {B.24.14}icon\_button.py}{288}{subsection.B.24.14}%
 \contentsline {subsection}{\numberline {B.24.15}move\_list.py}{288}{subsection.B.24.15}%
 \contentsline {subsection}{\numberline {B.24.16}multiple\_icon\_button.py}{289}{subsection.B.24.16}%
 \contentsline {subsection}{\numberline {B.24.17}piece\_display.py}{290}{subsection.B.24.17}%
 \contentsline {subsection}{\numberline {B.24.18}reactive\_button.py}{291}{subsection.B.24.18}%
 \contentsline {subsection}{\numberline {B.24.19}reactive\_icon\_button.py}{291}{subsection.B.24.19}%
-\contentsline {subsection}{\numberline {B.24.20}rectangle.py}{291}{subsection.B.24.20}%
+\contentsline {subsection}{\numberline {B.24.20}rectangle.py}{292}{subsection.B.24.20}%
 \contentsline {subsection}{\numberline {B.24.21}scrollbar.py}{292}{subsection.B.24.21}%
 \contentsline {subsection}{\numberline {B.24.22}scroll\_area.py}{293}{subsection.B.24.22}%
-\contentsline {subsection}{\numberline {B.24.23}slider\_thumb.py}{296}{subsection.B.24.23}%
+\contentsline {subsection}{\numberline {B.24.23}slider\_thumb.py}{297}{subsection.B.24.23}%
 \contentsline {subsection}{\numberline {B.24.24}switch.py}{297}{subsection.B.24.24}%
-\contentsline {subsection}{\numberline {B.24.25}text.py}{298}{subsection.B.24.25}%
+\contentsline {subsection}{\numberline {B.24.25}text.py}{299}{subsection.B.24.25}%
 \contentsline {subsection}{\numberline {B.24.26}text\_button.py}{300}{subsection.B.24.26}%
-\contentsline {subsection}{\numberline {B.24.27}text\_input.py}{300}{subsection.B.24.27}%
-\contentsline {subsection}{\numberline {B.24.28}timer.py}{300}{subsection.B.24.28}%
-\contentsline {subsection}{\numberline {B.24.29}volume\_slider.py}{301}{subsection.B.24.29}%
+\contentsline {subsection}{\numberline {B.24.27}text\_input.py}{301}{subsection.B.24.27}%
+\contentsline {subsection}{\numberline {B.24.28}timer.py}{301}{subsection.B.24.28}%
+\contentsline {subsection}{\numberline {B.24.29}volume\_slider.py}{302}{subsection.B.24.29}%
 \contentsline {subsection}{\numberline {B.24.30}\_\_init\_\_.py}{303}{subsection.B.24.30}%
 \contentsline {section}{\numberline {B.25}data\textbackslash widgets\textbackslash bases}{304}{section.B.25}%
 \contentsline {subsection}{\numberline {B.25.1}box.py}{304}{subsection.B.25.1}%

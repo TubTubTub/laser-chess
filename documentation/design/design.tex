@@ -703,9 +703,9 @@ Only a single entity will be required for my program, a table to store games. Th
 
 All fields are either generated or retrieved from the board class, with the exception of the moves attribute, which will need to be encoded into a suitable data type such as a string. All attributes are also independent of each other\footnote{There is a case to be made for \textit{moves} and \textit{number\_of\_moves}, however I have included \textit{number\_of\_moves} to save the computational effort of parsing the moves for every game just to display it on the browser preview section.}, and so the the table therefore adheres to the third normal form.
 
-To create the entity, a \lstinline[language=SQL]{CREATE} statement like the following can be used:
+To create the entity, a \lstinline[language=sqlite]{CREATE} statement like the following can be used:
 
-\begin{lstlisting}[language=SQL, frame=single]
+\begin{lstlisting}[language=sqlite, frame=lines]
     CREATE TABLE games(
         id INTEGER PRIMARY KEY,
         winner INTEGER,
@@ -721,16 +721,16 @@ To create the entity, a \lstinline[language=SQL]{CREATE} statement like the foll
 
 \noindent Removing an entity can also be done in a similar fashion:
 
-\begin{lstlisting}[language=SQL, frame=single]
+\begin{lstlisting}[language=sqlite, frame=lines]
     DROP TABLE games
 \end{lstlisting} 
 
-Migrations are a version control system to track incremental changes to the schema of a database. Since there is no popular SQL Python-binding libraries that support migrations, I will just be using a manual solution of creating python files that represent a change in my schema, defining functions that make use of SQL \lstinline[language=SQL]{ALTER} statements. This allows me to keep track of any changes, and rollback to a previous schema.
+Migrations are a version control system to track incremental changes to the schema of a database. Since there is no popular SQL Python-binding libraries that support migrations, I will just be using a manual solution of creating python files that represent a change in my schema, defining functions that make use of SQL \lstinline[language=sqlite]{ALTER} statements. This allows me to keep track of any changes, and rollback to a previous schema.
 
 \subsubsection*{DML}
-To insert a new game entry into the table, an \lstinline[language=SQL]{INSERT} statement can be used with the provided array, where the appropiate arguments are binded to the correct attribute via \lstinline[language=Python]{?} placeholders when run.
+To insert a new game entry into the table, an \lstinline[language=sqlite]{INSERT} statement can be used with the provided array, where the appropiate arguments are binded to the correct attribute via \lstinline[language=Python]{?} placeholders when run.
 
-\begin{lstlisting}[language=SQL, frame=single]
+\begin{lstlisting}[language=sqlite, frame=lines]
     INSERT INTO games (
         cpu_enabled,
         cpu_depth,
@@ -744,20 +744,20 @@ To insert a new game entry into the table, an \lstinline[language=SQL]{INSERT} s
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 \end{lstlisting}
 
-Moreover, we will need to fetch the number of total game entries in the table to be displayed to the user. To do this, the aggregate function \lstinline[language=SQL]{COUNT} can be used, which is supported by all SQL databases.
+Moreover, we will need to fetch the number of total game entries in the table to be displayed to the user. To do this, the aggregate function \lstinline[language=sqlite]{COUNT} can be used, which is supported by all SQL databases.
 
-\begin{lstlisting}[language=SQL, frame=single]
+\begin{lstlisting}[language=sqlite, frame=lines]
     SELECT COUNT(*) FROM games
 \end{lstlisting}
 
 \subsubsection*{Pagination}
-When there are a large number of entries in the table, it would be appropiate to display all the games to the user in a paginated form, where they can scroll between different pages and groups of games. There are multiple methods to paginate data, such as using \lstinline[language=SQL]{LIMIT} and \lstinline[language=SQL]{OFFSET} clauses, or cursor-based pagination, but I have opted to use the \lstinline[language=SQL]{ROW_NUMBER()} function.
+When there are a large number of entries in the table, it would be appropiate to display all the games to the user in a paginated form, where they can scroll between different pages and groups of games. There are multiple methods to paginate data, such as using \lstinline[language=sqlite]{LIMIT} and \lstinline[language=sqlite]{OFFSET} clauses, or cursor-based pagination, but I have opted to use the \lstinline[language=sqlite]{ROW_NUMBER()} function.
 
-\lstinline[language=SQL]{ROW_NUMBER()} is a window function that assigns a sequential integer to a query's result set. If I were to query the entire table, each row would be assigned an integer that could be used to check if the row is in the bounds for the current page, and therefore be displayed. Moreover, the use of an \lstinline[language=SQL]{ORDER BY} clause enables sorting of the output rows, allowing the user to choose what order the games are presented in based on an attribute such as number of moves. A \lstinline[language=SQL]{PARTITION BY} clause will also be used to group the results base on an attribute such as winner prior to sorting, if the user wants to search for games based on multiple criteria with greater ease.
+\lstinline[language=sqlite]{ROW_NUMBER()} is a window function that assigns a sequential integer to a query's result set. If I were to query the entire table, each row would be assigned an integer that could be used to check if the row is in the bounds for the current page, and therefore be displayed. Moreover, the use of an \lstinline[language=sqlite]{ORDER BY} clause enables sorting of the output rows, allowing the user to choose what order the games are presented in based on an attribute such as number of moves. A \lstinline[language=sqlite]{PARTITION BY} clause will also be used to group the results base on an attribute such as winner prior to sorting, if the user wants to search for games based on multiple criteria with greater ease.
 
 The start row and end row will be passed as parameters to the placeholders in the SQL statement, calculated by multiplying the page number by the number of games per page.
 
-\begin{lstlisting}[language=SQL, frame=single]
+\begin{lstlisting}[language=sqlite, frame=lines]
     SELECT * FROM
         (SELECT ROW_NUMBER() OVER (
             PARTITION BY (*@\textit{attribute1}@*)
