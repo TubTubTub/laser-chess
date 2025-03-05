@@ -374,6 +374,12 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\import\import.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\import\import.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\attachfile\attachfile.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\attachfile\attachfile.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifpdf.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifpdf.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT .\assets\listings-glsl.prf
 INPUT .\assets\listings-glsl.prf
 INPUT assets\listings-glsl.prf
@@ -392,8 +398,6 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-p
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\grfext\grfext.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
