@@ -1,5 +1,5 @@
-from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU, ABNegamaxCPU
 from data.states.game.cpu.transposition_table import TranspositionTable
+from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU
 
 class TranspositionTableMixin:
     def __init__(self, *args, **kwargs):
@@ -57,25 +57,6 @@ class TTMinimaxCPU(TranspositionTableMixin, ABMinimaxCPU):
             move (Move): The best move found.
         """
         # Calculate number of cached entries retrieved as a percentage of all nodes
-        self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
-        self._stats['cache_entries'] = len(self._table._table)
-        super().print_stats(score, move)
-
-class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
-    """Negamax CPU engine with transposition table support."""
-
-    def initialise_stats(self):
-        """Initialises the statistics for the search."""
-        super().initialise_stats()
-        self._stats['cache_hits'] = 0
-    
-    def print_stats(self, score, move):
-        """Prints the statistics for the search.
-
-        Args:
-            score (int): The best score found.
-            move (Move): The best move found.
-        """
         self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
         self._stats['cache_entries'] = len(self._table._table)
         super().print_stats(score, move)

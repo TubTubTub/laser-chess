@@ -1,3 +1,2 @@
-References
-Add iterative deepening to documentation
+Add docstrings and pylint
 Fix Minimax

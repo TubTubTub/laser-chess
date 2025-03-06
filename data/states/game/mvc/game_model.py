@@ -8,9 +8,13 @@ from data.states.game.components.board import Board
 from data.utils import input_helpers as ip_helpers
 from data.states.game.components.move import Move
 from data.managers.logs import initialise_logger
+from data.managers.animation import animation
+from random import getrandbits
 from data.states.game.cpu.engines import *
 
 logger = initialise_logger(__name__)
+
+CPU_LIMIT_MS = 15000
 
 class GameModel:
     def __init__(self, game_config):
@@ -19,8 +23,6 @@ class GameModel:
             'win': [],
             'pause': [],
         }
-        self._board = Board(fen_string=game_config['FEN_STRING'])
-
         self.states = {
             'CPU_ENABLED': game_config['CPU_ENABLED'],
             'CPU_DEPTH': game_config['CPU_DEPTH'],
@@ -34,7 +36,9 @@ class GameModel:
             'MOVES': [],
             'ZOBRIST_KEYS': []
         }
-        
+
+        self._board = Board(fen_string=game_config['FEN_STRING'])
+    
         self._cpu = IDMinimaxCPU(self.states['CPU_DEPTH'], self.cpu_callback, verbose=False)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
@@ -151,7 +155,14 @@ class GameModel:
         Starts CPU calculations on the separate thread.
         """
         self.states['AWAITING_CPU'] = True
-        self._cpu_thread.start_cpu(self.get_board())
+        
+        # Employ time management system to kill search if using an iterative deepening CPU
+        if isinstance(self._cpu, IDMinimaxCPU):
+            move_id = getrandbits(32)
+            self._cpu_thread.start_cpu(self.get_board(), id=move_id)
+            animation.set_timer(CPU_LIMIT_MS, lambda: self._cpu_thread.stop_cpu(id=move_id))
+        else:
+            self._cpu_thread.start_cpu(self.get_board())
     
     def cpu_callback(self, move):
         """
@@ -161,7 +172,7 @@ class GameModel:
             move (Move): Move that CPU found.
         """
         if self.states['WINNER'] is None:
-            # CPU move passed back to main threadby reassigning variable
+            # CPU move passed back to main thread by reassigning variable
             self._cpu_move = move
             self.states['AWAITING_CPU'] = False
     

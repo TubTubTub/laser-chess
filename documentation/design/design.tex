@@ -339,6 +339,9 @@ The pseudocode implementation for Zobrist hashing is shown below:
 \end{algorithmic}
 \end{algorithm}
 
+\subsubsection*{Iterative Deepening}
+Iterative deepening builds upon the previous alpha-beta and caching improvements. A search is initiated at a depth of one ply, which upon finishing, another starts at depth two, three, and increases until the max depth is reached or time allocated is up. Although this means that more nodes are searched, the improvements come from the fact that the best move (PV-Move) found by a lower depth search, can be used as the first move searched on the next higher depth search. This increases the chance of pruning, reducing the net number of nodes searched, and also provides a 'fallback' move if a higher depth search is interrupted.
+
 \subsection{Board Representation}
 \subsubsection*{FEN string}
 Forsyth-Edwards Notation (FEN) notation provides all information on a particular position in a chess game. I intend to implement methods parsing and generating FEN strings in my program, in order to load desired starting positions and save games for later play. Deviating from the classic 6-part format, a custom FEN string format will be required for our laser chess game, accommodating its different rules from normal chess.

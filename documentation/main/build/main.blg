@@ -1,66 +1,48 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
-The style file: biblatex.bst
-Reallocating 'name_of_file' (item size: 1) to 9 items.
-Reallocating 'glb_str_end' (item size: 4) to 20 items.
-Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
-Reallocating 'global_strs' (item size: 1) to 4000000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'wiz_functions' (item size: 4) to 6000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Database file #1: main-blx.bib
-Biblatex version: 3.20
-Reallocating 'wiz_functions' (item size: 4) to 9000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-You've used 1 entry,
-            6402 wiz_defined-function locations,
-            1202 strings with 8967 characters,
-and the built_in function-call counts, 1534 in all, are:
-= -- 73
-> -- 70
-< -- 1
-+ -- 49
-- -- 28
-* -- 32
-:= -- 370
-add.period$ -- 0
-call.type$ -- 1
-change.case$ -- 0
-chr.to.int$ -- 42
-cite$ -- 0
-duplicate$ -- 11
-empty$ -- 104
-format.name$ -- 0
-if$ -- 325
+Reallocating 'name_of_file' (item size: 1) to 18 items.
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Database file #1: assets/references.bib
+You've used 4 entries,
+            1876 wiz_defined-function locations,
+            496 strings with 3864 characters,
+and the built_in function-call counts, 506 in all, are:
+= -- 40
+> -- 16
+< -- 0
++ -- 8
+- -- 4
+* -- 18
+:= -- 79
+add.period$ -- 4
+call.type$ -- 4
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 16
+empty$ -- 73
+format.name$ -- 4
+if$ -- 125
 int.to.chr$ -- 0
-int.to.str$ -- 0
+int.to.str$ -- 4
 missing$ -- 0
-newline$ -- 20
-num.names$ -- 0
-pop$ -- 47
+newline$ -- 15
+num.names$ -- 4
+pop$ -- 20
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 78
+skip$ -- 24
 stack$ -- 0
-substring$ -- 154
-swap$ -- 1
-text.length$ -- 20
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
 text.prefix$ -- 0
-top$ -- 1
-type$ -- 22
+top$ -- 0
+type$ -- 0
 warning$ -- 0
-while$ -- 64
-width$ -- 0
-write$ -- 20
+while$ -- 4
+width$ -- 5
+write$ -- 30

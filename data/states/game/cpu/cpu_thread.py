@@ -14,30 +14,38 @@ class CPUThread(threading.Thread):
 
         self._board = None
         self._cpu = cpu
+        self._id = None
     
     def kill_thread(self):
         """
         Kills the CPU and terminates the thread by stopping the run loop.
         """
-        self.stop_cpu()
+        self.stop_cpu(force=True)
         self._running = False
     
-    def stop_cpu(self):
+    def stop_cpu(self, id=None, force=False):
         """
         Kills the CPU's move search.
+
+        Args:
+            id (int, optional): Id of search to kill, only kills if matching.
+            force (bool, optional): Forcibly kill search regardless of id.
         """
-        self._stop_event.set()
-        self._board = None
+        if self._id == id or force:
+            self._stop_event.set()
+            self._board = None
     
-    def start_cpu(self, board):
+    def start_cpu(self, board, id=None):
         """
         Starts the CPU's move search.
 
         Args:
             board (Board): The current board state.
+            id (int, optional): Id of current search.
         """
         self._stop_event.clear()
         self._board = board
+        self._id = id
     
     def run(self):
         """

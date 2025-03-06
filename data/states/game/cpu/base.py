@@ -56,7 +56,7 @@ class BaseCPU:
     
     def search(self, board, depth, stop_event, absolute=False, **kwargs):
         if stop_event and stop_event.is_set():
-            raise Exception(f'Thread killed - stopping minimax function ({self.__str__}.search)')
+            raise TimeoutError(f'Thread killed - stopping minimax function ({self.__str__}.search)')
         
         self._stats['nodes'] += 1
 

@@ -100,9 +100,9 @@ class Board:
         piece_symbol = self.bitboards.get_piece_on(move.src, self.bitboards.active_colour)
 
         if piece_symbol is None:
-            raise ValueError('Invalid move - no piece found on source square')
+            raise ValueError(f'Invalid move - no piece found on source square. {move}')
         elif piece_symbol == Piece.SPHINX:
-            raise ValueError('Invalid move - sphinx piece is immovable')
+            raise ValueError(f'Invalid move - sphinx piece is immovable. {move}')
 
         if move.move_type == MoveType.MOVE:
             possible_moves = self.get_valid_squares(move.src)

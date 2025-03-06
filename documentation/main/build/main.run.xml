@@ -85,7 +85,6 @@
     </requires>
     <requires type="editable">
       <file>../main/assets/references.bib</file>
-      <file>Wow.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>

@@ -12,7 +12,7 @@ I have been playtesting the program throughout the development process to find a
 Since minimax is recursive algorithm, debugging it has proven a challenge. I have therefore configured the Python \lstinline{logging} library to help collect information on the minimax tree for every function call.
 
 \noindent\verb|base.py|
-\lstinputlisting[firstline=27, lastline=51, caption=BaseCPU Method for logging minimax statistics]{../../data/states/game/cpu/base.py}
+\lstinputlisting[firstline=27, lastline=52, caption=BaseCPU Method for logging minimax statistics]{../../data/states/game/cpu/base.py}
 
 \subsection{Migrations}
 To correct errors made to the \lstinline{games} table, since recreating it would mean deleting all existing games, I have opted to use migrations to fix bugs by editing the table schema, as shown in Section \ref{sec:migrations}.

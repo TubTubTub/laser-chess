@@ -27,6 +27,7 @@ already_added = [
     '../../data/states/game/cpu/engines/minimax.py',
     '../../data/states/game/cpu/engines/alpha_beta.py',
     '../../data/states/game/cpu/engines/transposition_table.py',
+    '../../data/states/game/cpu/engines/iterative_deepening.py',
     '../../data/states/game/cpu/evaluator.py',
     '../../data/states/game/cpu/cpu_thread.py',
     '../../data/states/game/cpu/zobrist_hasher.py',
