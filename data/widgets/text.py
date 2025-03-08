@@ -1,9 +1,7 @@
 import pygame
 from data.widgets.bases.widget import _Widget
-from data.constants import WidgetState
 from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
 from data.utils.widget_helpers import create_text_box
-from data.assets import GRAPHICS
 
 class Text(_Widget): # Pure text
     def __init__(self, text, center=True, fit_vertical=True, box_colours=None, strength=0.05, font_size=None, **kwargs):

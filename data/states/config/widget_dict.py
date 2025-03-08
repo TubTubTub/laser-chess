@@ -1,4 +1,3 @@
-import pygame
 from data.widgets import *
 from data.states.config.default_config import default_config
 from data.components.custom_event import CustomEvent

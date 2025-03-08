@@ -1,5 +1,5 @@
 from data.constants import Colour, RotationIndex, Rotation, Piece, EMPTY_BB
-from data.utils.bitboard_helpers import occupied_squares, print_bitboard, bitboard_to_index
+from data.utils.bitboard_helpers import occupied_squares, bitboard_to_index
 
 def parse_fen_string(fen_string):
     #sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b

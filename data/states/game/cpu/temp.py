@@ -1,5 +1,4 @@
 from data.constants import Score, Colour
-from data.states.game.cpu.transposition_table import TranspositionTable
 from data.states.game.cpu.base import BaseCPU
 from pprint import pprint
 

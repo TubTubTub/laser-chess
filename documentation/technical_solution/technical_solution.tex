@@ -8,7 +8,7 @@
 \localtableofcontents
 
 \section{File Tree Diagram}
-To help navigate through the source code, I have included the following directory tree diagram, and put appropiate comments to explain the general purpose of code contained within specifc directories and Python files.
+To help navigate through the source code, I have included the following directory tree diagram, along with comments to explain the general purpose of code contained within specifc directories and Python files.
 
 \begin{figure}[H]
     \centering
@@ -19,7 +19,7 @@ To help navigate through the source code, I have included the following director
 
 \section{Summary of Complexity}
 \begin{itemize}
-\item Alpha-beta pruning and transposition table improvements for Minimax (\ref{sec:alpha-beta} and \ref{sec:transposition-table})
+\item Minimax improvements (\ref{sec:alpha-beta} and \ref{sec:transposition-table} and \ref{sec:iterative-deepening})
 \item Shadow mapping and coordinate transformations (\ref{sec:shader-rays})
 \item Recursive Depth-First Search tree traversal (\ref{sec:theme} and \ref{sec:minimax})
 \item Circular doubly-linked list and stack (\ref{sec:linked-list} and \ref{sec:review})
@@ -43,7 +43,7 @@ The file \lstinline{main.py} is run by the root file \lstinline{run.py}. Here re
 
 \subsection{Loading Screen}
 \label{sec:loading-screen}
-Multithreading is used to separate the loading screen GUI from the resources intensive actions in \lstinline{main.py}, to keep the GUI responsive. The easing function \lstinline{easeOutBack} is also used to animate the logo.
+\textbf{Multithreading} is used to separate the loading screen GUI from the resources intensive actions in \lstinline{main.py}, to keep the GUI responsive. The easing function \lstinline{easeOutBack} is also used to animate the logo.
 
 \noindent\verb|loading_screen.py|
 \lstinputlisting[label=src:../../data/loading_screen.py]{../../data/loading_screen.py}
@@ -66,7 +66,7 @@ These files provide useful functions for different classes.
 
 \subsection{Theme}
 \label{sec:theme}
-The theme manager file is responsible for providing an instance where the colour palette and dimensions for the GUI can be accessed.
+The theme manager file is responsible for providing an instance where the colour palette and dimensions for the GUI can be accessed. Values read from a JSON file are \textbf{recursively} flattened, with keys created from the dictionary hierarchy, and stored into the internal dictionary of a \lstinline{ThemeManager} object.
 
 \noindent\verb|theme.py|
 \lstinputlisting[label=src:../../data/managers/theme.py]{../../data/managers/theme.py}
@@ -86,7 +86,7 @@ The \lstinline{ParticlesDraw} class draws particles in both the game and review 
 
 \subsection{Widget Bases}
 \label{sec:widget-bases}
-Widget bases are the base classes for for my widgets system. They contain both attributes and getter methods that provide basic functionality such as size and position, and abstract methods to be overriden. These bases are also designed to be used with multiple inheritance, where multiple bases can be combined to add functionality to the final widget. Encapsulation also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
+Widget bases are used as the base classes for for my widgets system. They contain both attributes and getter methods that provide both basic functionalities such as size and position, and abstract methods to be overriden. These bases are designed to be used with \textbf{multiple inheritance}, where multiple bases can be combined to add functionality to the final widget. \textbf{Encapsulation} also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
 
 \subsubsection*{Widget}
 \noindent All widgets are a subclass of the \lstinline{Widget} class.
@@ -95,13 +95,13 @@ Widget bases are the base classes for for my widgets system. They contain both a
 \lstinputlisting[label=src:../../data/widgets/bases/widget.py]{../../data/widgets/bases/widget.py}
 
 \subsubsection*{Circular}
-\noindent The \lstinline{Circular} class provides functionality to support widgets which rotate between text/icons.
+\noindent The \lstinline{Circular} class provides an internal circular linked list, giving functionality to support widgets which rotate between text/icons.
 \noindent\verb|circular.py|
 \lstinputlisting[label=src:../../data/widgets/bases/circular.py]{../../data/widgets/bases/circular.py}
 
 \subsubsection*{Circular Linked List}
 \label{sec:linked-list}
-The \lstinline{CircuarLinkedList} class implements a circular doubly-linked list. Used for the internal logic of the \lstinline{Circular} class.
+The \lstinline{CircuarLinkedList} class implements a \textbf{circular doubly-linked list}. Used for the internal logic of the \lstinline{Circular} class.
 
 \noindent\verb|circular_linked_list.py|
 \lstinputlisting[label=src:../../data/components/circular_linked_list.py]{../../data/components/circular_linked_list.py}
@@ -177,14 +177,20 @@ The \lstinline{CustomEvent} class is used to pass data between states and widget
 
 \section{Game}
 \subsection{Model}
+This is the model class for my implementation of a \textbf{MVC architecture} for the game screen. It is responsible for processing user inputs through the game controller, processing the board and CPU, and sending information through the view class.
+
 \noindent\verb|game_model.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_model.py]{../../data/states/game/mvc/game_model.py}
 
 \subsection{View}
+The view class is responsible for displaying changes to information regarding the gameplay. The \lstinline{process_model_event} procedure is registered with the model class, which executes it whenever the display needs to be updated (e.g. piece move), and the appropiate handling function within the view class is called by mapping the event type to the corresponding handler function.
+
 \noindent\verb|game_view.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_view.py]{../../data/states/game/mvc/game_view.py}
 
 \subsection{Controller}
+The controller class is responsible for receiving external input through Pygame events, and processing them via the model and view classes.
+
 \noindent\verb|game_controller.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_controller.py]{../../data/states/game/mvc/game_controller.py}
 
@@ -204,12 +210,14 @@ The \lstinline{BitboardCollection} class uses helper functions found in \lstinli
 \section{CPU}
 This section includes my implementation for the CPU engine run on minimax, including its various improvements and accessory classes.
 
-Every CPU engine class is a subclass of a \lstinline{BaseCPU} abstract class, and therefore contains the same attribute and method names. This means polymorphism can be used again to easily to test and vary the difficulty by switching out which CPU engine is used.
+Every CPU engine class is a subclass of a \lstinline{BaseCPU} abstract class, and therefore contains the same attribute and method names. This means \textbf{polymorphism} can be used again to easily to test and vary the difficulty by switching out which CPU engine is used.
 
-The method \lstinline{find_move} is called by the CPU thread. \lstinline{search} is then called recursively to traverse the minimax tree, and find an optimal move. The move is then return to \lstinline{find_move} and passed and run with the callback function.
+The method \lstinline{find_move} is called by the CPU thread. \lstinline{search} is then called recursively to traverse the minimax tree, and find an optimal move. The move is then return to \lstinline{find_move} and passed and run with the callback function. A \lstinline{stats} dictionary is also created in the base class, used to collect information for each search.
 
 \subsection{Minimax}
 \label{sec:minimax}
+The minimax engine uses \textbf{DFS} to traverse the game tree and evaluate node accordingly, by \textbf{recursively} calling the \lstinline{search} function.
+
 \noindent\verb|minimax.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/engines/minimax.py]{../../data/states/game/cpu/engines/minimax.py}
 
@@ -220,21 +228,26 @@ The method \lstinline{find_move} is called by the CPU thread. \lstinline{search}
 
 \subsection{Transposition Table}
 \label{sec:transposition-table}
-For adding transposition table functionality to my other engine classes, I have decided to use a mixin design architecture. This allows me to reuse code by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
+For adding transposition table functionality to my other engine classes, I have decided to use a mixin design architecture. This allows me to \textbf{reuse code} by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
 
 \noindent\verb|transposition_table.py|
 \lstinputlisting[lastline=59, label=src:../../data/states/game/cpu/engines/transposition_table.py]{../../data/states/game/cpu/engines/transposition_table.py}
 
 \subsection{Iterative Deepening}
+\label{sec:iterative-deepening}
+The depth for each search is increased for each iteration through the for loop, with the best move found on one depth being used as the starting move for the following depth.
+
 \noindent\verb|iterative_deepening.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/engines/iterative_deepening.py]{../../data/states/game/cpu/engines/iterative_deepening.py}
 
 \subsection{Evaluator}
+I have opted to separate the evaluation class into separate methods for each aspect of the evaluation, and amalgamating all of them to form one unified \lstinline{evaluate} function, as this allows me to debug each function easily.
+
 \noindent\verb|evaluator.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/evaluator.py]{../../data/states/game/cpu/evaluator.py}
 
 \subsection{Multithreading}
-A \lstinline{CPUThread} is initialised with a CPU engine at the start of the game state, and run whenever it is the CPU's turn to move.
+When the game starts, a \lstinline{CPUThread} object is created with the selected CPU. The \lstinline{start} method is called whenever it is the CPU's turn, passing the board as an argument to work on. Each run is also given a random ID, to ensure that only the right search is able to be forcibly terminated early. Using \textbf{multithreading} allows the game MVC to continue running smoothly while the CPU calculates its moves on a separate thread.
 
 \noindent\verb|cpu_thread.py|
 \label{sec:cpu-thread}
@@ -242,10 +255,14 @@ A \lstinline{CPUThread} is initialised with a CPU engine at the start of the gam
 
 \subsection{Zobrist Hashing}
 \label{sec:zobrist-hashing}
+The \lstinline{ZobristHasher} class provides methods to successivly \textbf{hash} a given board for every move played, with the initial hash being generated in the \lstinline{Board} class.
+
 \noindent\verb|zobrist_hasher.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/zobrist_hasher.py]{../../data/states/game/cpu/zobrist_hasher.py}
 
 \subsection{Cache}
+The \lstinline{TranspositionTable} class maintains an internal hash map to store already evaluated board positions. Since I have chosen to use a dictionary instead of an array, the Zobrist hash for the board can be used as the keys for the dictionary as is, as it doesn't correspond to the index position as will be the case if I use an array.
+
 \noindent\verb|transposition_table.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/transposition_table.py]{../../data/states/game/cpu/transposition_table.py}
 
@@ -262,11 +279,11 @@ The \lstinline{Review} state uses this logic to allow users to scroll through mo
 \lstinputlisting[label=src:../../data/states/review/review.py]{../../data/states/review/review.py}
 
 \section{Database}
-This section outlines my database implementation using Python sqlite3.
+This section outlines my database implementation using the Python module sqlite3.
 
 \subsection{DDL}
 \label{sec:migrations}
-As mentioned in Section \ref{sec:design-ddl}, the \lstinline{migrations} directory contains a collection of Python scripts that edit the game table schema. The files are named with their changes and datetime labelled for organisational purposes.
+As mentioned in Section \ref{sec:design-ddl}, the \lstinline{migrations} directory contains a collection of Python scripts that edit the game table schema. The files are named with a description of their changes and datetime for organisational purposes.
 
 \noindent\verb|create_games_table_19112024.py|
 \lstinputlisting[label=src:../../data/database/migrations/create_games_table_19112024.py]{../../data/database/migrations/create_games_table_19112024.py}
@@ -278,12 +295,13 @@ Using the \lstinline{ALTER} command allows me to rename table columns.
 
 \subsection{DML}
 \label{sec:dml}
+This file provides functions to help modify the database, with \textbf{Aggregate} and \textbf{Window} commands used to retrieve the number of rows and sort them to be returned.
 \noindent\verb|database_helpers.py|
 \lstinputlisting[label=src:../../data/utils/database_helpers.py]{../../data/utils/database_helpers.py}
 
 \section{Shaders}
 \subsection{Shader Manager}
-The \lstinline{ShaderManager} class is responsible for handling all shader passes, handling the Pygame display, and combining both and drawing the result to the window screen. The class also inherits from the \lstinline{SMProtocol} class, an interface class containing all required \lstinline{ShaderManager} methods and attributes to aid with syntax highlighting in the fragment shader classes.
+The \lstinline{ShaderManager} class is responsible for handling all shader passes, handling the Pygame display, and combining both and drawing the result to the window screen. The class also \textbf{inherits} from the \lstinline{SMProtocol} class, an \textbf{interface} class containing all required \lstinline{ShaderManager} methods and attributes to aid with syntax highlighting in the fragment shader classes.
 
 Fragment shaders such as \lstinline{Bloom} are applied by default, and others such as \lstinline{Ray} are applied during runtime through calling methods on \lstinline{ShaderManager}, and adding the appropiate fragment shader class to the internal shader pass list.
 
@@ -303,7 +321,7 @@ The \lstinline{highlight_brightness} fragment shader extracts all colours that a
 \lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/highlight_brightness.frag]{../../data/shaders/fragments/highlight_brightness.frag}
 
 \subsubsection*{Blur}
-The \lstinline{Blur} class implements a two-pass Gaussian blur. This is preferably over a one-pass blur, as the complexity is $O(2n)$, sampling $n$ pixels twice, as opposed to $O(n^2)$. I have implemented this using the ping-pong technique, with the first pass for blurring the image horizontally, and the second pass for blurring vertically, and the resultant textures being passed repeatedly between two framebuffers.
+The \lstinline{Blur} class implements a two-pass \textbf{Gaussian blur}. This is preferably over a one-pass blur, as the complexity is $O(2n)$, sampling $n$ pixels twice, as opposed to $O(n^2)$. I have implemented this using the ping-pong technique, with the first pass for blurring the image horizontally, and the second pass for blurring vertically, and the resultant textures being passed repeatedly between two framebuffers.
 
 \noindent\verb|blur.py|
 \lstinputlisting[label=src:../../data/shaders/classes/blur.py]{../../data/shaders/classes/blur.py}

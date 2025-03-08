@@ -1,6 +1,4 @@
 from data.states.game.cpu.evaluator import Evaluator
-from data.constants import Colour
-from data.utils.bitboard_helpers import print_bitboard, pop_count
 
 class SimpleEvaluator:
     def __init__(self):

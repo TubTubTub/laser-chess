@@ -81,14 +81,14 @@ class GameView:
             case StatusText.PLAYER_MOVE:
                 GAME_WIDGETS['status_text'].set_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
             case StatusText.CPU_MOVE:
-                GAME_WIDGETS['status_text'].set_text(f"CPU calculating a crazy move...")
+                GAME_WIDGETS['status_text'].set_text("CPU calculating a crazy move...")
             case StatusText.WIN:
                 if self._model.states['WINNER'] == Miscellaneous.DRAW:
-                    GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
+                    GAME_WIDGETS['status_text'].set_text("Game is a draw! Boring...")
                 else:
                     GAME_WIDGETS['status_text'].set_text(f"{self._model.states['WINNER'].name} won!")
             case StatusText.DRAW:
-                GAME_WIDGETS['status_text'].set_text(f"Game is a draw! Boring...")
+                GAME_WIDGETS['status_text'].set_text("Game is a draw! Boring...")
     
     def handle_resize(self):
         """

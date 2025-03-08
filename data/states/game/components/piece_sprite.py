@@ -1,6 +1,6 @@
 import pygame
 from data.assets import GRAPHICS
-from data.constants import Colour, Piece
+from data.constants import Piece
 from data.utils.asset_helpers import scale_and_cache
 from data.utils.board_helpers import coords_to_screen_pos
 

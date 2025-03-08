@@ -4,7 +4,7 @@ from data.widgets.bases.pressable import _Pressable
 from data.constants import WidgetState
 from data.utils.data_helpers import get_user_settings
 from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size
-from data.assets import GRAPHICS, FONTS
+from data.assets import GRAPHICS
 
 user_settings = get_user_settings()
 

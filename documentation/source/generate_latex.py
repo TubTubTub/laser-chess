@@ -59,7 +59,7 @@ with open('documentation/source/source.tex', 'w') as f:
         '\n'
     ])
 
-    # ADD \label TO WIDGETS FOLDER
+    # ADD \label{src:widgets} TO WIDGETS FOLDER
 
     for dir_path, dir_names, file_names in root.walk():
         index = str(dir_path).index('data')
@@ -68,7 +68,7 @@ with open('documentation/source/source.tex', 'w') as f:
         if len(file_names) > 0 and dir_path.name != '__pycache__':
             path_name = path_suffix.replace('\\', '\\textbackslash ').replace('_', '\_')
             f.write(f'\section{{{path_name}}}\n')
-        
+
         for file in file_names:
             file_path = f'..\..\{path_suffix}\{file}'.replace('\\', '/')
             extension = file.split('.')[1]
@@ -76,13 +76,17 @@ with open('documentation/source/source.tex', 'w') as f:
 
             if extension not in ['py', 'json', 'vert', 'frag']:
                 continue
-            
+
+            if file == '__init__.py':
+                if Path(file_path).stat().st_size == 0:
+                    continue
+
             f.write(f'\subsection{{{file.replace('_', '\_')}}}\n')
 
             if file_path in already_added:
                 f.write(f'See Section \\ref{{src:{file_path}}}.\n\n')
                 continue
-            
+
             match file.split('.')[1]:
                 case 'py':
                     f.write(f'\lstinputlisting{{{file_path}}}\n')
@@ -92,8 +96,8 @@ with open('documentation/source/source.tex', 'w') as f:
                     f.write(f'\lstinputlisting[language=GLSL]{{{file_path}}}\n')
                 case 'frag':
                     f.write(f'\lstinputlisting[language=GLSL]{{{file_path}}}\n')
-            
+
             label = file_path[6:]
             f.write(f'\label{{src:{label}}}\n\n')
-    
+
     f.write('\end{document}')

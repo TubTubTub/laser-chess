@@ -11,9 +11,9 @@ class MultipleIconButton(_Circular, IconButton):
 		IconButton.__init__(self, icon=self.current_item, **kwargs)
 
 		self._fill_colour_copy = self._fill_colour
-		
+
 		self._locked = None
-	
+
 	def set_locked(self, is_locked):
 		self._locked = is_locked
 		if self._locked:
@@ -36,12 +36,12 @@ class MultipleIconButton(_Circular, IconButton):
 			self.set_state_colour(WidgetState.HOVER)
 		else:
 			self.set_state_colour(WidgetState.BASE)
-	
+
 	def set_next_icon(self):
 		super().set_next_item()
 		self._icon = self.current_item
 		self.set_image()
-		
+
 	def process_event(self, event):
 		widget_event = super().process_event(event)
 

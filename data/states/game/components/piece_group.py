@@ -1,8 +1,6 @@
 import pygame
-from data.constants import EMPTY_BB, Colour, Piece
+from data.constants import Colour, Piece
 from data.states.game.components.piece_sprite import PieceSprite
-from data.utils.board_helpers import coords_to_screen_pos
-from data.utils import bitboard_helpers as bb_helpers
 
 class PieceGroup(pygame.sprite.Group):
     def __init__(self):

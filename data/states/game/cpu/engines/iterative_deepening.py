@@ -36,7 +36,7 @@ class IterativeDeepeningMixin:
                 if best_move is None:
                     # If search is terminated at depth 0, use random move
                     best_move = choice(board_copy.generate_all_moves())
-                    logger.warning(f'CPU terminated before any best move found! Using random move.')
+                    logger.warning('CPU terminated before any best move found! Using random move.')
                 
                 break
 

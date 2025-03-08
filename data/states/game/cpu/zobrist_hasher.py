@@ -44,7 +44,7 @@ class ZobristHasher:
 
     def get_rotation_hash(self, index, rotation):
         """
-        Gets the random value for theon the given square.
+        Gets the random value for the rotation on the given square.
 
         Args:
             index (int): The index of the square.
@@ -56,7 +56,7 @@ class ZobristHasher:
         """
         rotation_index = rotation_lookup[rotation]
         return zobrist_table[index][rotation_index]
-    
+
     def apply_piece_hash(self, bitboard, piece, colour):
         """
         Updates the Zobrist hash with a new piece.
@@ -69,7 +69,7 @@ class ZobristHasher:
         index = bitboard_to_index(bitboard)
         piece_hash = self.get_piece_hash(index, piece, colour)
         self.hash ^= piece_hash
-    
+
     def apply_rotation_hash(self, bitboard, rotation):
         """Updates the Zobrist hash with a new rotation.
 
@@ -80,7 +80,7 @@ class ZobristHasher:
         index = bitboard_to_index(bitboard)
         rotation_hash = self.get_rotation_hash(index, rotation)
         self.hash ^= rotation_hash
-    
+
     def apply_red_move_hash(self):
         """
         Applies the Zobrist hash for the red player's move.

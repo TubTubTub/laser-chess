@@ -38,7 +38,7 @@ class _Widget(pygame.sprite.Sprite):
         for required_kwarg in REQUIRED_KWARGS:
             if required_kwarg not in kwargs:
                 raise KeyError(f'(_Widget.__init__) Required keyword "{required_kwarg}" not in base kwargs')
-            
+
         self._surface = None # Set in WidgetGroup, as needs to be reassigned every frame
         self._raw_surface_size = DEFAULT_SURFACE_SIZE
 
@@ -55,12 +55,12 @@ class _Widget(pygame.sprite.Sprite):
         self._text_colour = pygame.Color(theme['textPrimary'])
         self._fill_colour = pygame.Color(theme['fillPrimary'])
         self._font = DEFAULT_FONT
-        
+
         self._anchor_x = kwargs.get('anchor_x') or 'left'
         self._anchor_y = kwargs.get('anchor_y') or 'top'
         self._fixed_position = kwargs.get('fixed_position')
         scale_mode = kwargs.get('scale_mode') or 'both'
-        
+
         if kwargs.get('relative_size'):
             match scale_mode:
                 case 'height':
@@ -73,31 +73,31 @@ class _Widget(pygame.sprite.Sprite):
                     raise ValueError('(_Widget.__init__) Unknown scale mode:', scale_mode)
         else:
             self._relative_size = (1, 1)
-        
+
         if 'margin' in kwargs:
             self._relative_margin = kwargs.get('margin') / self._raw_surface_size[1]
 
             if (self._relative_margin * 2) > min(self._relative_size[0], self._relative_size[1]):
                 raise ValueError('(_Widget.__init__) Margin larger than specified size!')
-        
+
         if 'border_width' in kwargs:
             self._relative_border_width = kwargs.get('border_width') / self._raw_surface_size[1]
-        
+
         if 'border_radius' in kwargs:
             self._relative_border_radius = kwargs.get('border_radius') / self._raw_surface_size[1]
-        
+
         if 'border_colour' in kwargs:
             self._border_colour = pygame.Color(kwargs.get('border_colour'))
-        
+
         if 'fill_colour' in kwargs:
             self._fill_colour = pygame.Color(kwargs.get('fill_colour'))
-        
+
         if 'text_colour' in kwargs:
             self._text_colour = pygame.Color(kwargs.get('text_colour'))
-        
+
         if 'font' in kwargs:
             self._font = kwargs.get('font')
-    
+
     @property
     def surface_size(self):
         """
@@ -111,7 +111,7 @@ class _Widget(pygame.sprite.Sprite):
             return self._parent.size
         else:
             return self._raw_surface_size
-    
+
     @property
     def position(self):
         """
@@ -147,9 +147,9 @@ class _Widget(pygame.sprite.Sprite):
         # Position widget relative to parent, if exists.
         if self._parent:
             return (x + self._parent.position[0], y + self._parent.position[1])
-        else:
-            return (x, y)
-    
+
+        return (x, y)
+
     @property
     def size(self):
         return (self._relative_size[0] * self.surface_size[1], self._relative_size[1] * self.surface_size[1])
@@ -169,13 +169,13 @@ class _Widget(pygame.sprite.Sprite):
     @property
     def font_size(self):
         return self._relative_font_size * self.surface_size[1]
-    
+
     def set_image(self):
         """
         Abstract method to draw widget.
         """
         raise NotImplementedError
-    
+
     def set_geometry(self):
         """
         Sets the position and size of the widget.
@@ -203,7 +203,7 @@ class _Widget(pygame.sprite.Sprite):
                 self.rect.topleft = self.position
             elif self._anchor_y == 'center':
                 self.rect.topleft = self.position
-    
+
     def set_surface_size(self, new_surface_size):
         """
         Sets the new size of the surface widget is drawn on.
@@ -212,7 +212,7 @@ class _Widget(pygame.sprite.Sprite):
             new_surface_size (tuple[int, int]): The new size of the surface.
         """
         self._raw_surface_size = new_surface_size
-    
+
     def process_event(self, event):
         """
         Abstract method to handle events.

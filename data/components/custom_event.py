@@ -1,5 +1,6 @@
 from data.constants import GameEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
 
+# Required keyword arguments when creating a CustomEvent object with a specific EventType
 required_args = {
     GameEventType.BOARD_CLICK: ['coords'],
     GameEventType.ROTATE_PIECE: ['rotation_direction'],
@@ -56,7 +57,7 @@ class CustomEvent():
             for kwarg in kwargs:
                 if kwarg not in required_args[event_type]:
                     raise ValueError(f"Argument '{kwarg}' not included in required_args dictionary for event '{event_type}'! (GameEvent.create_event)")
-            
+
             return event_cls(event_type, **kwargs)
 
         else:

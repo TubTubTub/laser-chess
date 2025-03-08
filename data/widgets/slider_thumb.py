@@ -1,4 +1,3 @@
-import pygame
 from data.widgets.bases.pressable import _Pressable
 from data.constants import WidgetState
 from data.utils.widget_helpers import create_slider_thumb

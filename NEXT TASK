@@ -1,2 +1,4 @@
+Add more to technical solution (references to design section)
+Separate constants
 Add docstrings and pylint
 Fix Minimax

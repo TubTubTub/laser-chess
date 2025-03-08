@@ -1,3 +1,4 @@
+from random import getrandbits
 from data.states.game.components.fen_parser import encode_fen_string
 from data.constants import Colour, GameEventType, EMPTY_BB
 from data.states.game.widget_dict import GAME_WIDGETS
@@ -9,7 +10,6 @@ from data.utils import input_helpers as ip_helpers
 from data.states.game.components.move import Move
 from data.managers.logs import initialise_logger
 from data.managers.animation import animation
-from random import getrandbits
 from data.states.game.cpu.engines import *
 
 logger = initialise_logger(__name__)
@@ -38,7 +38,7 @@ class GameModel:
         }
 
         self._board = Board(fen_string=game_config['FEN_STRING'])
-    
+
         self._cpu = IDMinimaxCPU(self.states['CPU_DEPTH'], self.cpu_callback, verbose=False)
         self._cpu_thread = CPUThread(self._cpu)
         self._cpu_thread.start()
@@ -55,7 +55,7 @@ class GameModel:
             parent_class (str): Class name.
         """
         self._listeners[parent_class].append(listener)
-    
+
     def alert_listeners(self, event):
         """
         Alerts all registered classes of an event by calling their listener function.
@@ -71,11 +71,11 @@ class GameModel:
                 case GameEventType.UPDATE_PIECES:
                     if parent_class in 'game':
                         for listener in listeners: listener(event)
-                
+
                 case GameEventType.SET_LASER:
                     if parent_class == 'game':
                         for listener in listeners: listener(event)
-                
+
                 case GameEventType.PAUSE_CLICK:
                     if parent_class in ['pause', 'game']:
                         for listener in listeners:
@@ -83,7 +83,7 @@ class GameModel:
 
                 case _:
                     raise Exception('Unhandled event type (GameModel.alert_listeners)')
-    
+
     def set_winner(self, colour=None):
         """
         Sets winner.
@@ -92,7 +92,7 @@ class GameModel:
             colour (Colour, optional): Describes winnner colour, or draw. Defaults to None.
         """
         self.states['WINNER'] = colour
-    
+
     def toggle_paused(self):
         """
         Toggles pause screen, and alerts pause view.
@@ -117,7 +117,7 @@ class GameModel:
                 return Move.instance_from_notation(move_type, src_square, dest_square, rotation)
             except ValueError as error:
                 logger.warning('Input error (Board.get_move): ' + str(error))
-    
+
     def make_move(self, move):
         """
         Takes a Move object and applies it to the board.
@@ -131,7 +131,7 @@ class GameModel:
         laser_result = self._board.apply_move(move, add_hash=True)
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.SET_LASER, laser_result=laser_result))
-        
+
         # Sets new active colour and checks for a win
         self.states['ACTIVE_COLOUR'] = self._board.get_active_colour()
         self.set_winner(self._board.check_win())
@@ -139,7 +139,7 @@ class GameModel:
         move_notation = move.to_notation(colour, piece, laser_result.hit_square_bitboard)
 
         self.alert_listeners(CustomEvent.create_event(GameEventType.UPDATE_PIECES, move_notation=move_notation))
-        
+
         # Adds move to move history list for review screen
         self.states['MOVES'].append({
             'time': {
@@ -149,13 +149,13 @@ class GameModel:
             'move': move_notation,
             'laserResult': laser_result
         })
-    
+
     def make_cpu_move(self):
         """
         Starts CPU calculations on the separate thread.
         """
         self.states['AWAITING_CPU'] = True
-        
+
         # Employ time management system to kill search if using an iterative deepening CPU
         if isinstance(self._cpu, IDMinimaxCPU):
             move_id = getrandbits(32)
@@ -163,7 +163,7 @@ class GameModel:
             animation.set_timer(CPU_LIMIT_MS, lambda: self._cpu_thread.stop_cpu(id=move_id))
         else:
             self._cpu_thread.start_cpu(self.get_board())
-    
+
     def cpu_callback(self, move):
         """
         Callback function passed to CPU thread. Called when CPU stops processing.
@@ -175,7 +175,7 @@ class GameModel:
             # CPU move passed back to main thread by reassigning variable
             self._cpu_move = move
             self.states['AWAITING_CPU'] = False
-    
+
     def check_cpu(self):
         """
         Constantly checks if CPU calculations are finished, so that make_move can be run on the main thread.
@@ -183,14 +183,14 @@ class GameModel:
         if self._cpu_move is not None:
             self.make_move(self._cpu_move)
             self._cpu_move = None
-    
+
     def kill_thread(self):
         """
         Interrupt and kill CPU thread.
         """
         self._cpu_thread.kill_thread()
         self.states['AWAITING_CPU'] = False
-    
+
     def is_selectable(self, bitboard):
         """
         Checks if square is occupied by a piece of the current active colour.
@@ -202,7 +202,7 @@ class GameModel:
             bool: True if square is occupied by a piece of the current active colour. False if not.
         """
         return is_occupied(self._board.bitboards.combined_colour_bitboards[self.states['ACTIVE_COLOUR']], bitboard)
-    
+
     def get_available_moves(self, bitboard):
         """
         Gets all surrounding empty squares. Used for drawing overlay.
@@ -215,7 +215,7 @@ class GameModel:
         """
         if (bitboard & self._board.get_all_active_pieces()) != EMPTY_BB:
             return self._board.get_valid_squares(bitboard)
-        
+
         return EMPTY_BB
 
     def get_piece_list(self):
@@ -240,6 +240,6 @@ class GameModel:
 
     def get_fen_string(self):
         return encode_fen_string(self._board.bitboards)
-    
+
     def get_board(self):
         return self._board

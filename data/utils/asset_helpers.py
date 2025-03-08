@@ -1,7 +1,7 @@
 import pygame
 from PIL import Image
 from functools import cache
-from random import sample, randint
+from random import randint
 import math
 
 @cache

@@ -1,5 +1,5 @@
 from data.constants import MoveType, Colour, RotationDirection
-from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords, bitboard_to_notation, print_bitboard
+from data.utils.bitboard_helpers import notation_to_bitboard, coords_to_bitboard, bitboard_to_coords, bitboard_to_notation
 import re
 from data.managers.logs import initialise_logger
 

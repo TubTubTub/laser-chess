@@ -1,6 +1,5 @@
 from data.utils import bitboard_helpers as bb_helpers
 from data.constants import Piece, Colour, Rotation, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
-from data.utils.bitboard_helpers import print_bitboard
 
 class Laser:
     def __init__(self, bitboards):
