@@ -1,6 +1,6 @@
 import pygame
-from data.constants import CursorMode
 from data.states.game.components.piece_sprite import PieceSprite
+from data.utils.enums import CursorMode
 from data.managers.cursor import cursor
 
 DRAG_THRESHOLD = 500
@@ -13,7 +13,7 @@ class DragAndDrop:
         self._ticks_since_drag = 0
 
         self.dragged_sprite = None
-    
+
     def set_dragged_piece(self, piece, colour, rotation):
         sprite = PieceSprite(piece=piece, colour=colour, rotation=rotation)
         sprite.set_geometry((0, 0), self._board_size[0] / 10)
@@ -24,7 +24,7 @@ class DragAndDrop:
 
         if self._change_cursor:
             cursor.set_mode(CursorMode.CLOSEDHAND)
-    
+
     def remove_dragged_piece(self):
         self.dragged_sprite = None
         time_dragged = pygame.time.get_ticks() - self._ticks_since_drag
@@ -34,17 +34,17 @@ class DragAndDrop:
             cursor.set_mode(CursorMode.OPENHAND)
 
         return time_dragged > DRAG_THRESHOLD
-    
+
     def get_dragged_info(self):
         return self.dragged_sprite.type, self.dragged_sprite.colour, self.dragged_sprite.rotation
-    
+
     def draw(self, screen):
         if self.dragged_sprite is None:
             return
-        
+
         self.dragged_sprite.rect.center = pygame.mouse.get_pos()
         screen.blit(self.dragged_sprite.image, self.dragged_sprite.rect.topleft)
-    
+
     def handle_resize(self, board_position, board_size):
         if self.dragged_sprite:
             self.dragged_sprite.set_geometry(board_position, board_size[0] / 10)

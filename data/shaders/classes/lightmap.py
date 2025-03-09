@@ -1,4 +1,4 @@
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 from data.shaders.protocol import SMProtocol
 from data.shaders.classes.shadowmap import _Shadowmap
 

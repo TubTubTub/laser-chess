@@ -1,13 +1,14 @@
 import pygame
-from data.constants import WidgetState, Colour, BLUE_BUTTON_COLOURS, RED_BUTTON_COLOURS
+from data.utils.constants import WidgetState, BLUE_BUTTON_COLOURS, RED_BUTTON_COLOURS
 from data.components.custom_event import CustomEvent
 from data.managers.animation import animation
+from data.utils.enums import Colour
 from data.widgets.text import Text
 
 class Timer(Text):
     def __init__(self, active_colour, event=None, start_mins=60, **kwargs):
         box_colours = BLUE_BUTTON_COLOURS[WidgetState.BASE] if active_colour == Colour.BLUE else RED_BUTTON_COLOURS[WidgetState.BASE]
-        
+
         self._current_ms = float(start_mins) * 60 * 1000
         self._active_colour = active_colour
         self._active = False
@@ -15,7 +16,7 @@ class Timer(Text):
         self._event = event
 
         super().__init__(text=self.format_to_text(), fit_vertical=False, box_colours=box_colours, **kwargs)
-    
+
     def set_active(self, is_active):
         if self._active == is_active:
             return
@@ -25,16 +26,16 @@ class Timer(Text):
             animation.set_timer(1000, self.decrement_second)
 
         self._active = is_active
-    
+
     def set_time(self, milliseconds):
         self._current_ms = milliseconds
         self._text = self.format_to_text()
         self.set_image()
         self.set_geometry()
-    
+
     def get_time(self):
         return self._current_ms / (1000 * 60)
-    
+
     def decrement_second(self):
         if self._active:
             self.set_time(self._current_ms - 1000)

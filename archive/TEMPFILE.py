@@ -1,7 +1,7 @@
 from data.states.game.components.piece_group import CustomSpriteGroup
 from archive.square import Square
 from data.components.cursor import Cursor
-from data.utils.data_helpers import get_settings_json
+from data.helpers.data_helpers import get_settings_json
 self._cursor = Cursor()
 self.game_settings = get_settings_json()
 self._board_size = self.calculate_board_size(self.screen)
@@ -110,7 +110,7 @@ def process_board_press(self, mouse_position):
     if (clicked_square is None):
         self._selected_square = None
         self._square_group.remove_valid_square_overlays()
-        
+
     elif self._selected_square is None:
         if (clicked_square.piece is None) or not (self.check_valid_src(clicked_square.to_bitboard())):
             return
@@ -154,7 +154,7 @@ def apply_move(self, move):
             raise ValueError('Invalid move - destination square is occupied')
 
         piece_rotation = self.bitboards.get_rotation_on(move.src)
-        
+
         # self._square_group.update_squares_move(src_square.to_list_position(), dest_square.to_list_position(), piece_symbol, self.bitboards.active_colour, rotation)
 
         self.bitboards.update_move(move.src, move.dest)

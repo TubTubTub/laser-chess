@@ -1,5 +1,5 @@
 import pygame
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 from data.shaders.protocol import SMProtocol
 
 class Base:
@@ -12,10 +12,10 @@ class Base:
         self._shader_manager.create_vao(ShaderType.BACKGROUND_LASERS)
         self._shader_manager.create_vao(ShaderType.BACKGROUND_GRADIENT)
         self._shader_manager.create_vao(ShaderType.BACKGROUND_NONE)
-    
+
     def apply(self, texture, background_type=None):
         base_texture = self._shader_manager.get_fbo_texture(ShaderType.BASE)
-        
+
         match background_type:
             case ShaderType.BACKGROUND_WAVES:
                 self._shader_manager.render_to_fbo(

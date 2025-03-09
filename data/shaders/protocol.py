@@ -1,7 +1,7 @@
 import pygame
 import moderngl
 from typing import Protocol, Optional
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 
 class SMProtocol(Protocol):
     def load_shader(self, shader_type: ShaderType, **kwargs) -> None: ...
@@ -18,7 +18,7 @@ class SMProtocol(Protocol):
     def __del__(self) -> None: ...
     def cleanup(self) -> None: ...
     def handle_resize(self, new_screen_size: tuple[int]) -> None: ...
-    
+
     _ctx: moderngl.Context
     _screen_size: tuple[int]
     _opengl_buffer: moderngl.Buffer

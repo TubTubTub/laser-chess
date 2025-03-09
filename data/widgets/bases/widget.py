@@ -1,7 +1,7 @@
 import pygame
-from data.constants import SCREEN_SIZE
+from data.utils.constants import SCREEN_SIZE
 from data.managers.theme import theme
-from data.assets import DEFAULT_FONT
+from data.utils.assets import DEFAULT_FONT
 
 DEFAULT_SURFACE_SIZE = SCREEN_SIZE
 REQUIRED_KWARGS = ['relative_position', 'relative_size']

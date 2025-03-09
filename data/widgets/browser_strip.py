@@ -1,8 +1,8 @@
 import pygame
-from data.widgets.bases.widget import _Widget
-from data.widgets.browser_item import BrowserItem
-from data.constants import BrowserEventType
 from data.components.custom_event import CustomEvent
+from data.utils.event_types import BrowserEventType
+from data.widgets.browser_item import BrowserItem
+from data.widgets.bases.widget import _Widget
 
 WIDTH_FACTOR = 0.3
 
@@ -31,7 +31,7 @@ class BrowserStrip(_Widget):
         width = max(0, len(self._games_list) * (self.item_width + self.margin) + self.margin)
 
         return (width, height)
-    
+
     def register_get_rect(self, get_rect_func):
         self._get_rect = get_rect_func
 
@@ -46,15 +46,15 @@ class BrowserStrip(_Widget):
 
         self.set_image()
         self.set_geometry()
-    
+
     def set_image(self):
         self.image = pygame.Surface(self.size, pygame.SRCALPHA)
         browser_list = []
-        
+
         for index, item in enumerate(self._items_list):
             item.set_image()
             browser_list.append((item.image, (index * (self.item_width + self.margin) + self.margin, self.margin)))
-            
+
         self.image.blits(browser_list)
 
         if self._selected_index is not None:
@@ -72,7 +72,7 @@ class BrowserStrip(_Widget):
 
         for item in self._items_list:
             item.set_surface_size(new_surface_size)
-            
+
     def process_event(self, event, scrolled_pos):
         parent_pos = self._get_rect().topleft
         self.rect.topleft = parent_pos
@@ -81,7 +81,7 @@ class BrowserStrip(_Widget):
             self._selected_index = None
             self.set_image()
             return CustomEvent(BrowserEventType.BROWSER_STRIP_CLICK, selected_index=None)
-        
+
         if event.type == pygame.MOUSEBUTTONDOWN and self.rect.collidepoint(event.pos):
             relative_mouse_pos = (event.pos[0] - parent_pos[0], event.pos[1] - parent_pos[1])
             self._selected_index = int(max(0, (relative_mouse_pos[0] - self.margin) // (self.item_width + self.margin)))

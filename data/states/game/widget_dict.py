@@ -1,7 +1,8 @@
 from data.widgets import *
+from data.utils.enums import RotationDirection, Colour
 from data.components.custom_event import CustomEvent
-from data.constants import GameEventType, RotationDirection, Colour
-from data.assets import GRAPHICS
+from data.utils.event_types import GameEventType
+from data.utils.assets import GRAPHICS
 
 right_container = Rectangle(
     relative_position=(0.05, 0),
@@ -252,7 +253,7 @@ win_container = Rectangle(
 
 WIN_WIDGETS = {
     'default': [
-        win_container,      
+        win_container,
         TextButton(
             parent=win_container,
             relative_position=(0, 0.5),

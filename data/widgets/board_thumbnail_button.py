@@ -1,6 +1,6 @@
 from data.widgets.bases.pressable import _Pressable
 from data.widgets.board_thumbnail import BoardThumbnail
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 from data.components.custom_event import CustomEvent
 
 class BoardThumbnailButton(_Pressable, BoardThumbnail):
@@ -13,6 +13,6 @@ class BoardThumbnailButton(_Pressable, BoardThumbnail):
             up_func=lambda: self.set_state_colour(WidgetState.BASE),
         )
         BoardThumbnail.__init__(self, **kwargs)
-        
+
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)

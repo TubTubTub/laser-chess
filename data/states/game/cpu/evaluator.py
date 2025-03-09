@@ -1,14 +1,14 @@
-from data.utils.bitboard_helpers import pop_count, occupied_squares, bitboard_to_index
+from data.helpers.bitboard_helpers import pop_count, occupied_squares, bitboard_to_index
 from data.states.game.components.psqt import PSQT, FLIP
+from data.utils.enums import Colour, Piece, Score
 from data.managers.logs import initialise_logger
-from data.constants import Colour, Piece, Score
 
 logger = initialise_logger(__name__)
 
 class Evaluator:
     def __init__(self, verbose=True):
         self._verbose = verbose
-    
+
     def evaluate(self, board, absolute=False):
         """
         Evaluates and returns a numerical score for the board state.
@@ -45,7 +45,7 @@ class Evaluator:
             return sum(red_score) - sum(blue_score)
         else:
             return sum(blue_score) - sum(red_score)
-    
+
     def evaluate_material(self, board, colour):
         """
         Evaluates the material score for a given colour.
@@ -82,16 +82,16 @@ class Evaluator:
                 continue
 
             piece_bitboard = board.bitboards.get_piece_bitboard(piece, colour)
-            
+
             for bitboard in occupied_squares(piece_bitboard):
                 index = bitboard_to_index(bitboard)
                 # Flip PSQT if using from blue player's perspective
                 index = FLIP[index] if colour == Colour.BLUE else index
 
                 score += PSQT[piece][index] * Score.POSITION
-        
+
         return score
-    
+
     def evaluate_mobility(self, board, colour):
         """
         Evaluates the mobility score for a given colour.
@@ -117,8 +117,8 @@ class Evaluator:
         Returns:
             int: Score representing mobility of the Pharoah.
         """
-        pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) 
-        
+        pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
+
         if pharoah_bitboard:
             pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
             return (8 - pharoah_available_moves) * Score.PHAROAH_SAFETY

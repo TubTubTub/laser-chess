@@ -1,12 +1,14 @@
 import pygame
 import pyperclip
-from data.constants import BrowserEventType, ShaderType, GAMES_PER_PAGE
-from data.utils.database_helpers import delete_game, get_ordered_games
+from data.helpers.database_helpers import delete_game, get_ordered_games
 from data.states.browser.widget_dict import BROWSER_WIDGETS
+from data.utils.event_types import BrowserEventType
 from data.managers.logs import initialise_logger
+from data.utils.constants import GAMES_PER_PAGE
 from data.managers.window import window
+from data.utils.enums import ShaderType
+from data.utils.assets import MUSIC
 from data.control import _State
-from data.assets import MUSIC
 from random import randint
 
 logger = initialise_logger(__name__)
@@ -14,21 +16,21 @@ logger = initialise_logger(__name__)
 class Browser(_State):
     def __init__(self):
         super().__init__()
-        
+
         self._selected_index = None
         self._filter_column = 'number_of_ply'
         self._filter_ascend = False
         self._games_list = []
         self._page_number = 1
-    
+
     def cleanup(self):
         super().cleanup()
-        
+
         if self._selected_index is not None:
             return self._games_list[self._selected_index]
 
         return None
-    
+
     def startup(self, persist=None):
         self.refresh_games_list() # BEFORE RESIZE TO FILL WIDGET BEFORE RESIZING
         super().startup(BROWSER_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
@@ -42,7 +44,7 @@ class Browser(_State):
         BROWSER_WIDGETS['browser_strip'].kill()
 
         self.draw()
-    
+
     def refresh_games_list(self):
         column_map = {
             'moves': 'number_of_ply',
@@ -63,7 +65,7 @@ class Browser(_State):
         start_row = (self._page_number - 1) * GAMES_PER_PAGE + 1
         end_row = (self._page_number) * GAMES_PER_PAGE
         self._games_list = get_ordered_games(column_map[filter_column], ascend_map[filter_ascend], start_row=start_row, end_row=end_row)
-        
+
         BROWSER_WIDGETS['browser_strip'].initialise_games_list(self._games_list)
         BROWSER_WIDGETS['browser_strip'].set_surface_size(window.size)
         BROWSER_WIDGETS['scroll_area'].set_image()
@@ -96,38 +98,38 @@ class Browser(_State):
                     return
                 delete_game(self._games_list[self._selected_index]['id'])
                 self.refresh_games_list()
-            
+
             case BrowserEventType.REVIEW_CLICK:
                 if self._selected_index is None:
                     return
-                
+
                 self.next = 'review'
                 self.done = True
 
             case BrowserEventType.FILTER_COLUMN_CLICK:
                 selected_word = BROWSER_WIDGETS['filter_column_dropdown'].get_selected_word()
-            
+
                 if selected_word is None:
                     return
-                
+
                 self.refresh_games_list()
 
             case BrowserEventType.FILTER_ASCEND_CLICK:
                 selected_word = BROWSER_WIDGETS['filter_ascend_dropdown'].get_selected_word()
-            
+
                 if selected_word is None:
                     return
-                
+
                 self.refresh_games_list()
-            
+
             case BrowserEventType.PAGE_CLICK:
                 self._page_number = widget_event.data
 
                 self.refresh_games_list()
-            
+
             case BrowserEventType.HELP_CLICK:
                 self._widget_group.add(BROWSER_WIDGETS['help'])
                 self._widget_group.handle_resize(window.size)
-    
+
     def draw(self):
         self._widget_group.draw()

@@ -1,6 +1,6 @@
 import time
 from pprint import PrettyPrinter
-from data.constants import Colour, Score, Miscellaneous
+from data.utils.enums import Colour, Score, Miscellaneous
 from data.states.game.cpu.evaluator import Evaluator
 from data.managers.logs import initialise_logger
 
@@ -13,7 +13,7 @@ class BaseCPU:
         self._verbose = verbose
         self._callback = callback
         self._stats = {}
-    
+
     def initialise_stats(self):
         self._stats = {
             'nodes': 0,
@@ -23,7 +23,7 @@ class BaseCPU:
             'ms_per_node': 0,
             'time_taken': time.time()
         }
-    
+
     def print_stats(self, score, move):
         """
         Prints statistics after traversing tree.
@@ -45,7 +45,7 @@ class BaseCPU:
                         f'{printer.pformat(self._stats)}\n'
                         f'Best score:  {score}   Best move: {move}\n'
                         )
-        
+
         # Prints stats in a compacted format
         elif self._verbose.lower() == 'compact':
             logger.info(self._stats)
@@ -53,11 +53,11 @@ class BaseCPU:
 
     def find_move(self, board, stop_event=None):
         raise NotImplementedError
-    
+
     def search(self, board, depth, stop_event, absolute=False, **kwargs):
         if stop_event and stop_event.is_set():
             raise TimeoutError(f'Thread killed - stopping minimax function ({self.__str__}.search)')
-        
+
         self._stats['nodes'] += 1
 
         if (winner := board.check_win()) is not None:
@@ -67,7 +67,7 @@ class BaseCPU:
         if depth == 0:
             self._stats['leaf_nodes'] += 1
             return self._evaluator.evaluate(board, absolute), None
-    
+
     def process_win(self, winner, depth, absolute):
         self._stats['leaf_nodes'] += 1
 
@@ -80,6 +80,6 @@ class BaseCPU:
         elif winner == Colour.RED:
             self._stats['mates'] += 1
             return -Score.CHECKMATE - depth, None
-    
+
     def __str__(self):
         return self.__class__.__name__

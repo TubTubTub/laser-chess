@@ -1,9 +1,9 @@
 import pygame
-from data.widgets.bases.widget import _Widget
 from data.widgets.bases.pressable import _Pressable
-from data.constants import WidgetState, Miscellaneous
+from data.widgets.bases.widget import _Widget
+from data.utils.constants import WidgetState
+from data.utils.enums import Miscellaneous
 
-# self.set_state_colour(WidgetState.HOVER)
 class _Scrollbar(_Pressable, _Widget):
     def __init__(self, vertical, **kwargs):
         _Pressable.__init__(
@@ -21,13 +21,13 @@ class _Scrollbar(_Pressable, _Widget):
         self._last_mouse_px = None
 
         self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
-        
+
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)
 
         self.set_image()
         self.set_geometry()
-    
+
     def down_func(self):
         if self._vertical:
             self._last_mouse_px = pygame.mouse.get_pos()[1]
@@ -35,15 +35,15 @@ class _Scrollbar(_Pressable, _Widget):
             self._last_mouse_px = pygame.mouse.get_pos()[0]
 
         self.set_state_colour(WidgetState.PRESS)
-    
+
     def up_func(self):
         self._last_mouse_px = None
         self.set_state_colour(WidgetState.BASE)
-    
+
     def set_relative_position(self, relative_position):
         self._relative_position = relative_position
         self.set_geometry()
-    
+
     def set_relative_size(self, new_relative_size):
         self._relative_size = new_relative_size
 
@@ -56,7 +56,7 @@ class _Scrollbar(_Pressable, _Widget):
             rounded_radius = self.size[1] / 2
 
         pygame.draw.rect(self.image, self._fill_colour, (0, 0, self.size[0], self.size[1]), border_radius=int(rounded_radius))
-    
+
     def process_event(self, event):
         before_state = self.get_widget_state()
         widget_event = super().process_event(event)

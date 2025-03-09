@@ -1,4 +1,4 @@
-from data.constants import Score, Colour
+from data.utils.constants import Score, Colour
 from data.states.game.cpu.base import BaseCPU
 from pprint import pprint
 
@@ -16,7 +16,7 @@ class MinimaxCPU(BaseCPU):
                 print('\nCPU Search Results:')
                 pprint(self._stats)
                 print('Best move:', best_move, '\n')
-                
+
                 self._callback(self._best_move)
         except Exception as error:
             print('(MinimaxBase.find_move) Error has occured:')
@@ -36,11 +36,11 @@ class MinimaxCPU(BaseCPU):
         if depth == 0:
             return self.evaluate(board)
 
-        is_maximiser = board.get_active_colour() == Colour.BLUE 
+        is_maximiser = board.get_active_colour() == Colour.BLUE
 
         if is_maximiser:
             score = -Score.INFINITE
-            
+
             for move in board.generate_all_moves(board.get_active_colour()):
                 before, before_score = board.bitboards.get_rotation_string(), self.evaluate(board)
 
@@ -62,16 +62,16 @@ class MinimaxCPU(BaseCPU):
                 else:
                     if beta <= alpha:
                         break
-                
+
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
                 if (before != after or before_score != after_score):
                     print('shit\n\n')
-                
+
             return score
-            
+
         else:
             score = Score.INFINITE
-            
+
             for move in board.generate_all_moves(board.get_active_colour()):
                 bef, before_score = board.bitboards.get_rotation_string(), self.evaluate(board)
 
@@ -82,7 +82,7 @@ class MinimaxCPU(BaseCPU):
                     score = new_score
                     if depth == self._max_depth:
                         self._best_move = move
-                
+
                 board.undo_move(move, laser_result)
 
                 beta = min(beta, score)
@@ -92,10 +92,10 @@ class MinimaxCPU(BaseCPU):
                 else:
                     if beta <= alpha:
                         break
-                
+
                 after, after_score = board.bitboards.get_rotation_string(), self.evaluate(board)
                 if (bef != after or before_score != after_score):
                     print('shit\n\n')
                     raise ValueError
-                
+
             return score

@@ -13,7 +13,7 @@ from data.shaders.classes.crop import _Crop
 from data.shaders.classes.rays import Rays
 from data.shaders.classes.base import Base
 from data.shaders.classes.crt import CRT
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 
 shader_pass_lookup = {
     ShaderType.CHROMATIC_ABBREVIATION: ChromaticAbbreviation,

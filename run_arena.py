@@ -1,5 +1,5 @@
 from data.states.game.components.board import Board
-from data.constants import Colour, Miscellaneous
+from data.utils.constants import Colour, Miscellaneous
 from data.managers.logs import initialise_logger
 from data.states.game.cpu.engines import *
 
@@ -14,7 +14,7 @@ logger = initialise_logger(__name__)
 
 def compare(cls1, cls2, depth, rounds):
     wins = [0, 0]
-    
+
     board = Board()
     def callback(move):
         board.apply_move(move, add_hash=True)
@@ -35,7 +35,7 @@ def compare(cls1, cls2, depth, rounds):
             players[board.get_active_colour()].find_move(board, None)
             ply += 1
             logger.debug('PLY:', ply)
-        
+
         if winner == Miscellaneous.DRAW:
             wins[0] += 0.5
             wins[1] += 0.5
@@ -46,7 +46,7 @@ def compare(cls1, cls2, depth, rounds):
                 wins[1] += 1
 
         logger.debug(f'ROUND {i + 1} | WINNER: {players[winner]} | PLY: {ply}')
-    
+
     logger.debug(f'{cpu1} SCORE: {wins[0]} | {cpu2} SCORE: {wins[1]}')
 
 compare(SimpleCPU, SimpleCPU, 2, 1)

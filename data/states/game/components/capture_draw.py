@@ -1,15 +1,16 @@
 from data.states.game.components.particles_draw import ParticlesDraw
-from data.utils.board_helpers import coords_to_screen_pos
-from data.constants import Colour, ShaderType
-from data.managers.window import window
+from data.helpers.board_helpers import coords_to_screen_pos
 from data.managers.animation import animation
+from data.utils.constants import ShaderType
+from data.managers.window import window
+from data.utils.enums import Colour
 
 class CaptureDraw:
     def __init__(self, board_position, board_size):
         self._board_position = board_position
         self._square_size = board_size[0] / 10
         self._particles_draw = ParticlesDraw()
-    
+
     def add_capture(self, piece, colour, rotation, piece_coords, sphinx_coords, active_colour, particles=True, shake=True):
         if particles:
             self._particles_draw.add_captured_piece(
@@ -28,7 +29,7 @@ class CaptureDraw:
         if shake:
             window.set_effect(ShaderType.SHAKE)
             animation.set_timer(500, lambda: window.clear_effect(ShaderType.SHAKE))
-    
+
     def draw(self, screen):
         self._particles_draw.draw(screen)
 

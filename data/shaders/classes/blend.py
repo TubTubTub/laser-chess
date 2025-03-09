@@ -1,5 +1,5 @@
 import moderngl
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 from data.shaders.protocol import SMProtocol
 
 class _Blend:

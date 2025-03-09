@@ -40,21 +40,26 @@
 \newlabel{fig:editor-flowchart}{{1.12}{8}{Flowchart for board editor}{figure.caption.12}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Algorithms and Techniques}{8}{section.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}Minimax}{8}{subsection.1.2.1}\protected@file@percent }
+\newlabel{sec:design-minimax}{{1.2.1}{8}{Minimax}{subsection.1.2.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Example minimax tree}}{8}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:minimax}{{1.13}{8}{Example minimax tree}{figure.caption.13}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Minimax pseudocode}}{9}{algorithm.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}Minimax improvements}{9}{subsection.1.2.2}\protected@file@percent }
+\newlabel{sec:design-ab}{{1.2.2}{9}{Alpha-beta pruning}{section*.14}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Example minimax tree with alpha-beta pruning}}{10}{figure.caption.15}\protected@file@percent }
 \newlabel{fig:alpha-beta}{{1.14}{10}{Example minimax tree with alpha-beta pruning}{figure.caption.15}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Minimax with alpha-beta pruning pseudocode}}{11}{algorithm.2}\protected@file@percent }
+\newlabel{sec:design-cache}{{1.2.2}{11}{Transposition Tables \& Zobrist Hashing}{section*.16}{}}
 \@writefile{toc}{\contentsline {paragraph}{Exact}{11}{section*.17}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Lower}{11}{section*.18}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Upper}{12}{section*.19}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Minimax with transposition table pseudocode}}{12}{algorithm.3}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Zobrist hashing pseudocode}}{13}{algorithm.4}\protected@file@percent }
+\newlabel{sec:design-deepening}{{1.2.2}{13}{Iterative Deepening}{section*.20}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}Board Representation}{13}{subsection.1.2.3}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces FEN string pseudocode}}{14}{algorithm.5}\protected@file@percent }
 \newlabel{alg:fen-string}{{5}{14}{FEN string pseudocode}{algorithm.5}{}}
+\newlabel{sec:design-bitboards}{{1.2.3}{15}{Bitboards}{section*.22}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.15}{\ignorespaces Square to bit position mapping}}{15}{figure.caption.23}\protected@file@percent }
 \newlabel{fig:bitboard-indexes}{{1.15}{15}{Square to bit position mapping}{figure.caption.23}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.16}{\ignorespaces shifted\_bitboard = piece\_bitboard $>>$ 1}}{16}{figure.caption.24}\protected@file@percent }
@@ -64,6 +69,7 @@
 \@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces Finding valid moves pseudocode}}{17}{algorithm.6}\protected@file@percent }
 \newlabel{alg:valid-moves}{{6}{17}{Finding valid moves pseudocode}{algorithm.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.4}Evaluation Function}{17}{subsection.1.2.4}\protected@file@percent }
+\newlabel{sec:design-evaluation}{{1.2.4}{17}{Evaluation Function}{subsection.1.2.4}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces Popcount pseudocode}}{18}{algorithm.7}\protected@file@percent }
 \newlabel{alg:popcount}{{7}{18}{Popcount pseudocode}{algorithm.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.18}{\ignorespaces PSQT showing the bonus position value gained for the square occupied by a pharoah}}{18}{figure.caption.28}\protected@file@percent }
@@ -87,6 +93,7 @@
     {3}{74.60704pt}\LT@entry 
     {3}{65.32033pt}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.6}Multithreading}{24}{subsection.1.2.6}\protected@file@percent }
+\newlabel{sec:design-multithreading}{{1.2.6}{24}{Multithreading}{subsection.1.2.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.22}{\ignorespaces Multi-threading for minimax}}{24}{figure.caption.38}\protected@file@percent }
 \newlabel{fig:multi-threading}{{1.22}{24}{Multi-threading for minimax}{figure.caption.38}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Data Structures}{24}{section.1.3}\protected@file@percent }
@@ -94,9 +101,12 @@
 \newlabel{sec:design-ddl}{{1.3.1}{24}{DDL}{section*.39}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Data table scheme for \textit  {games} table}}{25}{table.1.1}\protected@file@percent }
 \newlabel{tab:games-schema}{{1.1}{25}{Data table scheme for \textit {games} table}{table.1.1}{}}
+\newlabel{sec:design-dml}{{1.3.1}{25}{DML}{section*.40}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Linked Lists}{26}{subsection.1.3.2}\protected@file@percent }
+\newlabel{sec:linked-lists}{{1.3.2}{26}{Linked Lists}{subsection.1.3.2}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {9}{\ignorespaces Circular doubly linked list pseudocode}}{27}{algorithm.9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Stack}{27}{subsection.1.3.3}\protected@file@percent }
+\newlabel{sec:design-stack}{{1.3.3}{27}{Stack}{subsection.1.3.3}{}}
 \gdef \LT@ii {\LT@entry 
     {1}{85.16696pt}\LT@entry 
     {3}{314.75941pt}}
@@ -111,6 +121,7 @@
     {3}{271.04787pt}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces Methods for State class}}{29}{table.1.2}\protected@file@percent }
 \newlabel{tab:state-methods}{{1.2}{29}{Methods for State class}{table.1.2}{}}
+\newlabel{sec:design-widgets}{{1.4}{29}{Widget}{section*.45}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.3}{\ignorespaces Methods for Widget class}}{29}{table.1.3}\protected@file@percent }
 \newlabel{tab:widget-methods}{{1.3}{29}{Methods for Widget class}{table.1.3}{}}
 \gdef \LT@v {\LT@entry 
@@ -124,6 +135,7 @@
     {1}{325.69025pt}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces Methods for example Pressable class}}{30}{table.1.4}\protected@file@percent }
 \newlabel{tab:pressable-methods}{{1.4}{30}{Methods for example Pressable class}{table.1.4}{}}
+\newlabel{sec:design-mvc}{{1.4}{30}{Game}{section*.46}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.5}{\ignorespaces Methods for Controller class}}{30}{table.1.5}\protected@file@percent }
 \newlabel{tab:controller-methods}{{1.5}{30}{Methods for Controller class}{table.1.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.6}{\ignorespaces Methods for View class}}{30}{table.1.6}\protected@file@percent }
@@ -131,5 +143,5 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1.7}{\ignorespaces Methods for Model class}}{31}{table.1.7}\protected@file@percent }
 \newlabel{tab:model-methods}{{1.7}{31}{Methods for Model class}{table.1.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4.1}Class Diagram}{32}{subsection.1.4.1}\protected@file@percent }
-\newlabel{fig:class-relation-diagram}{{\caption@xref {fig:class-relation-diagram}{ on input line 1002}}{32}{Class Diagram}{figure.caption.48}{}}
+\newlabel{fig:class-relation-diagram}{{\caption@xref {fig:class-relation-diagram}{ on input line 1014}}{32}{Class Diagram}{figure.caption.48}{}}
 \gdef \@abspage@last{32}

@@ -2,17 +2,19 @@ import pygame
 from collections import deque
 from data.states.game.components.capture_draw import CaptureDraw
 from data.states.game.components.piece_group import PieceGroup
-from data.constants import ReviewEventType, Colour, ShaderType
 from data.states.game.components.laser_draw import LaserDraw
-from data.utils.bitboard_helpers import bitboard_to_coords
+from data.helpers.bitboard_helpers import bitboard_to_coords
+from data.helpers.browser_helpers import get_winner_string
 from data.states.review.widget_dict import REVIEW_WIDGETS
-from data.utils.browser_helpers import get_winner_string
 from data.states.game.components.board import Board
+from data.utils.event_types import ReviewEventType
 from data.components.game_entry import GameEntry
 from data.managers.logs import initialise_logger
+from data.utils.constants import ShaderType
 from data.managers.window import window
+from data.utils.assets import MUSIC
+from data.utils.enums import Colour
 from data.control import _State
-from data.assets import MUSIC
 
 logger = initialise_logger(__name__)
 
@@ -28,18 +30,18 @@ class Review(_State):
         self._piece_group = None
         self._laser_draw = None
         self._capture_draw = None
-    
+
     def cleanup(self):
         """
         Cleanup function. Clears shader effects.
         """
         super().cleanup()
-        
+
         window.clear_apply_arguments(ShaderType.BLOOM)
         window.clear_effect(ShaderType.RAYS)
 
         return None
-    
+
     def startup(self, persist):
         """
         Startup function. Initialises all objects, widgets and game data.
@@ -68,11 +70,11 @@ class Review(_State):
         self.refresh_widgets()
 
         self.draw()
-    
+
     @property
     def board_position(self):
         return REVIEW_WIDGETS['chessboard'].position
-    
+
     @property
     def board_size(self):
         return REVIEW_WIDGETS['chessboard'].size
@@ -80,7 +82,7 @@ class Review(_State):
     @property
     def square_size(self):
         return self.board_size[0] / 10
-    
+
     def initialise_widgets(self):
         """
         Initializes the widgets for a new game.
@@ -92,20 +94,20 @@ class Review(_State):
         REVIEW_WIDGETS['winner_text'].set_text(f'WINNER: {get_winner_string(self._game_info["winner"])}')
         REVIEW_WIDGETS['blue_piece_display'].reset_piece_list()
         REVIEW_WIDGETS['red_piece_display'].reset_piece_list()
-    
+
         if self._game_info['time_enabled']:
             REVIEW_WIDGETS['timer_disabled_text'].kill()
         else:
             REVIEW_WIDGETS['blue_timer'].kill()
             REVIEW_WIDGETS['red_timer'].kill()
-    
+
     def refresh_widgets(self):
         """
         Refreshes the widgets after every move.
         """
         REVIEW_WIDGETS['move_number_text'].set_text(f'MOVE NO: {(len(self._moves)) / 2:.1f} / {(len(self._moves) + len(self._popped_moves)) / 2:.1f}')
         REVIEW_WIDGETS['move_colour_text'].set_text(f'{self.calculate_colour().name} TO MOVE')
-        
+
         if self._game_info['time_enabled']:
             if len(self._moves) == 0:
                 REVIEW_WIDGETS['blue_timer'].set_time(float(self._game_info['time']) * 60 * 1000)
@@ -113,15 +115,15 @@ class Review(_State):
             else:
                 REVIEW_WIDGETS['blue_timer'].set_time(float(self._moves[-1]['blue_time']) * 60 * 1000)
                 REVIEW_WIDGETS['red_timer'].set_time(float(self._moves[-1]['red_time']) * 60 * 1000)
-        
+
         REVIEW_WIDGETS['scroll_area'].set_image()
-    
+
     def refresh_pieces(self):
         """
         Refreshes the pieces on the board.
         """
         self._piece_group.initialise_pieces(self._board.get_piece_list(), self.board_position, self.board_size)
-    
+
     def simulate_all_moves(self):
         """
         Simulates all moves at the start of every game to obtain laser results and fill up piece display and move list widgets.
@@ -135,9 +137,9 @@ class Review(_State):
                     REVIEW_WIDGETS['red_piece_display'].add_piece(laser_result.piece_hit)
                 elif laser_result.piece_colour == Colour.RED:
                     REVIEW_WIDGETS['blue_piece_display'].add_piece(laser_result.piece_hit)
-                
+
             REVIEW_WIDGETS['move_list'].append_to_move_list(move_dict['unparsed_move'])
-    
+
     def calculate_colour(self):
         """
         Calculates the current active colour to move.
@@ -154,7 +156,7 @@ class Review(_State):
             return initial_colour
         else:
             return initial_colour.get_flipped_colour()
-    
+
     def handle_move(self, move, add_piece=True):
         """
         Handles applying or undoing a move.
@@ -188,7 +190,7 @@ class Review(_State):
                 active_colour,
                 shake=False
             )
-    
+
     def update_laser_mask(self):
         """
         Updates the laser mask for the light rays effect.
@@ -222,7 +224,7 @@ class Review(_State):
             case ReviewEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
-            
+
             case ReviewEventType.PREVIOUS_CLICK:
                 if len(self._moves) == 0:
                     return
@@ -236,7 +238,7 @@ class Review(_State):
                 self._board.undo_move(move['move'], laser_result=move['laser_result'])
                 self.handle_move(move, add_piece=False)
                 REVIEW_WIDGETS['move_list'].pop_from_move_list()
-                
+
                 self.refresh_pieces()
                 self.refresh_widgets()
                 self.update_laser_mask()
@@ -244,7 +246,7 @@ class Review(_State):
             case ReviewEventType.NEXT_CLICK:
                 if len(self._popped_moves) == 0:
                     return
-                
+
                 # Peek at second stack to get last undone move
                 move = self._popped_moves[-1]
 
@@ -252,20 +254,20 @@ class Review(_State):
                 self._board.apply_move(move['move'])
                 self.handle_move(move, add_piece=True)
                 REVIEW_WIDGETS['move_list'].append_to_move_list(move['unparsed_move'])
-                
+
                 # Pop last undone move from second stack
                 self._popped_moves.pop()
                 # Push onto first stack
                 self._moves.append(move)
-                
+
                 self.refresh_pieces()
                 self.refresh_widgets()
                 self.update_laser_mask()
-            
+
             case ReviewEventType.HELP_CLICK:
                 self._widget_group.add(REVIEW_WIDGETS['help'])
                 self._widget_group.handle_resize(window.size)
-    
+
     def handle_resize(self):
         """
         Handles resizing of the window.

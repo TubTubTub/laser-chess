@@ -11,7 +11,8 @@
     "code-runner.executorMapByGlob": {
         "run_arena.py": "python run_arena.py",
         "run_evaluator.py": "python run_evaluator.py",
-        "run_cpu.py": "python run_cpu.py"
+        "run_cpu.py": "python run_cpu.py",
+        "generate_latex.py": "python -W ignore documentation/source/generate_latex.py"
     },
     "code-runner.enableAppInsights": false,
     "code-runner.saveFileBeforeRun": true,

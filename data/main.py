@@ -1,10 +1,10 @@
 from sys import platform
 # Initialises Pygame
+import data.setup
 
 # Windows OS requires some configuration for Pygame to scale GUI continuously while window is being resized
 if platform == 'win32':
     import data.windows_setup as win_setup
-
 from data.loading_screen import LoadingScreen
 
 states = [None, None]

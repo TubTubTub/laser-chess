@@ -3,10 +3,10 @@ from data.components.widget_group import WidgetGroup
 from data.managers.logs import initialise_logger
 from data.managers.cursor import CursorManager
 from data.managers.animation import animation
+from data.utils.assets import DEFAULT_FONT
 from data.managers.window import window
 from data.managers.audio import audio
 from data.managers.theme import theme
-from data.assets import DEFAULT_FONT
 
 logger = initialise_logger(__file__)
 
@@ -18,14 +18,14 @@ class Control:
     def __init__(self):
         self.done = False
         self._clock = pygame.time.Clock()
-    
+
     def setup_states(self, state_dict, start_state):
         self.state_dict = state_dict
         self.state_name = start_state
 
         self.state = self.state_dict[self.state_name]
         self.state.startup()
-    
+
     def flip_state(self):
         self.state.done = False
         persist = self.state.cleanup()
@@ -35,7 +35,7 @@ class Control:
         self.state = self.state_dict[self.state_name]
         self.state.previous = previous
         self.state.startup(persist)
-    
+
     def update(self):
         if self.state.quit:
             self.done = True
@@ -56,7 +56,7 @@ class Control:
         while not self.done:
             self.event_loop()
             self.update()
-    
+
     def update_window(self, resize=False):
         if resize:
             self.update_native_window_size()
@@ -64,12 +64,12 @@ class Control:
             self.state.handle_resize()
 
         self.update()
-    
+
     def draw_fps(self):
         fps = str(int(self._clock.get_fps()))
         DEFAULT_FONT.strength = 0.1
         DEFAULT_FONT.render_to(window.screen, (0, 0), fps, fgcolor=theme['textError'], size=15)
-    
+
     def update_native_window_size(self):
         x, y = window.size
 
@@ -85,15 +85,15 @@ class Control:
         max_window_size = (max_window_x, max_window_y)
         window.minimum_size = min_window_size
         window.maximum_size = max_window_size
-    
+
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.done = True
-            
+
             if event.type == pygame.MOUSEBUTTONDOWN and event.button != 1: # ONLY PROCESS LEFT CLICKS
                 return
-            
+
             self.state.get_event(event)
 
 class _State:
@@ -103,10 +103,10 @@ class _State:
         self.done = False
         self.quit = False
         self.persist = {}
-        
+
         self._cursor = CursorManager()
         self._widget_group = None
-    
+
     def startup(self, widgets=None, music=None):
         if widgets:
             self._widget_group = WidgetGroup(widgets)
@@ -116,18 +116,18 @@ class _State:
             audio.play_music(music)
 
         logger.info(f'starting {self.__class__.__name__.lower()}.py')
-    
+
     def cleanup(self):
         logger.info(f'cleaning {self.__class__.__name__.lower()}.py')
-    
+
     def draw(self):
         raise NotImplementedError
-    
+
     def get_event(self, event):
         raise NotImplementedError
 
     def handle_resize(self):
         self._widget_group.handle_resize(window.size)
-    
+
     def update(self, **kwargs):
         self.draw()

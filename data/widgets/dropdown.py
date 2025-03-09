@@ -1,10 +1,10 @@
 import pygame
 from data.widgets.bases.widget import _Widget
 from data.widgets.bases.pressable import _Pressable
-from data.constants import WidgetState
-from data.utils.data_helpers import get_user_settings
-from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size
-from data.assets import GRAPHICS
+from data.utils.constants import WidgetState
+from data.helpers.data_helpers import get_user_settings
+from data.helpers.font_helpers import text_width_to_font_size, text_height_to_font_size
+from data.utils.assets import GRAPHICS
 
 user_settings = get_user_settings()
 
@@ -33,7 +33,7 @@ class Dropdown(_Pressable, _Widget):
 
         self._empty_surface = pygame.Surface((0, 0))
         self._background_colour = self._fill_colour
-        
+
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)
 
@@ -50,13 +50,13 @@ class Dropdown(_Pressable, _Widget):
 
     def get_selected_word(self):
         return self._word_list[0].lower()
-    
+
     def toggle_expanded(self):
         if self._expanded:
             self._word_list = [self._word_list_copy[0]]
         else:
             self._word_list = [*self._word_list_copy]
-        
+
         self._expanded = not(self._expanded)
 
     def hover_func(self):
@@ -64,7 +64,7 @@ class Dropdown(_Pressable, _Widget):
         relative_position = (mouse_position[0] - self.position[0], mouse_position[1] - self.position[1])
         self._hovered_index = self.calculate_hovered_index(relative_position)
         self.set_state_colour(WidgetState.HOVER)
-    
+
     def set_selected_word(self, word):
         index = self._word_list_copy.index(word.capitalize())
         selected_word = self._word_list_copy.pop(index)
@@ -75,7 +75,7 @@ class Dropdown(_Pressable, _Widget):
             self._word_list.insert(0, selected_word)
         else:
             self._word_list = [selected_word]
-        
+
         self.set_image()
 
     def up_func(self):
@@ -89,7 +89,7 @@ class Dropdown(_Pressable, _Widget):
 
         self.set_state_colour(WidgetState.BASE)
         self.set_geometry()
-    
+
     def calculate_hovered_index(self, mouse_pos):
         return int(mouse_pos[1] // (self.size[1] / len(self._word_list)))
 
@@ -116,7 +116,7 @@ class Dropdown(_Pressable, _Widget):
         for index, word in enumerate(self._word_list):
             word_position = (self.margin, self.margin + (word_box_height + self.margin) * index)
             self._font.render_to(self.image, word_position, word, fgcolor=self._text_colour, size=self.font_size)
-        
+
         if self._hovered_index is not None:
             overlay_surface = pygame.Surface((self.size[0], word_box_height + 2 * self.margin), pygame.SRCALPHA)
             overlay_surface.fill((*self._fill_colour.rgb, 128))

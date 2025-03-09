@@ -1,7 +1,8 @@
 import pygame
-from data.constants import GameEventType, MoveType, Miscellaneous
-from data.utils import bitboard_helpers as bb_helpers
+from data.helpers import bitboard_helpers as bb_helpers
+from data.utils.enums import MoveType, Miscellaneous
 from data.states.game.components.move import Move
+from data.utils.event_types import GameEventType
 from data.managers.logs import initialise_logger
 
 logger = initialise_logger(__name__)
@@ -19,7 +20,7 @@ class GameController:
 
         self._view.initialise_timers()
         self._win_view.set_win_type('CAPTURE')
-    
+
     def cleanup(self, next):
         """
         Handles game quit, either leaving to main menu or restarting a new game.
@@ -67,13 +68,13 @@ class GameController:
         match game_event.type:
             case GameEventType.PAUSE_CLICK:
                 self._model.toggle_paused()
-            
+
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
 
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
-    
+
     def handle_winner_event(self, event):
         """
         Processes events when game is over.
@@ -93,7 +94,7 @@ class GameController:
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
                 return
-            
+
             case GameEventType.GAME_CLICK:
                 self.cleanup('game')
                 return
@@ -132,37 +133,37 @@ class GameController:
 
                 move = Move.instance_from_coords(MoveType.ROTATE, src_coords, src_coords, rotation_direction=widget_event.rotation_direction)
                 self.make_move(move)
-            
+
             case GameEventType.RESIGN_CLICK:
                 self._model.set_winner(self._model.states['ACTIVE_COLOUR'].get_flipped_colour())
                 self._view.handle_game_end(play_sfx=False)
                 self._win_view.set_win_type('RESIGN')
-                
+
             case GameEventType.DRAW_CLICK:
                 self._model.set_winner(Miscellaneous.DRAW)
                 self._view.handle_game_end(play_sfx=False)
                 self._win_view.set_win_type('DRAW')
-                
+
             case GameEventType.TIMER_END:
                 if self._model.states['TIME_ENABLED']:
                     self._model.set_winner(widget_event.active_colour.get_flipped_colour())
                     self._win_view.set_win_type('TIME')
                     self._view.handle_game_end(play_sfx=False)
-            
+
             case GameEventType.MENU_CLICK:
                 self.cleanup('menu')
-            
+
             case GameEventType.HELP_CLICK:
                 self._view.add_help_screen()
-            
+
             case GameEventType.TUTORIAL_CLICK:
                 self._view.add_tutorial_screen()
-            
+
             case _:
                 raise Exception('Unhandled event type (GameController.handle_event)')
-        
+
         return widget_event.type
-    
+
     def check_cpu(self):
         """
         Checks if CPU calculations are finished every frame.
@@ -182,7 +183,7 @@ class GameController:
         """
         # Pass event for widgets to process
         widget_event = self.handle_game_widget_event(event)
-        
+
         if event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.KEYDOWN]:
             if event.type != pygame.KEYDOWN:
                 game_event = self._view.convert_mouse_pos(event)
@@ -198,7 +199,7 @@ class GameController:
                     if event.type == pygame.MOUSEBUTTONUP:
                         # If user releases mouse click on neither a widget or board
                         self._view.set_overlay_coords(None, None)
-                    
+
                 return
 
             match game_event.type:
@@ -215,7 +216,7 @@ class GameController:
                             # If clicking on an already selected square, start dragging piece on that square
                             self._view.set_dragged_piece(*self._model.get_piece_info(clicked_bitboard))
                             return
-                        
+
                         selected_bitboard = bb_helpers.coords_to_bitboard(selected_coords)
                         available_bitboard = self._model.get_available_moves(selected_bitboard)
 
@@ -226,7 +227,7 @@ class GameController:
                         else:
                             # If the newly clicked square is not the same as the old one, but is an invalid square, unselect the currently selected square
                             self._view.set_overlay_coords(None, None)
-                    
+
                     # Select hovered square if it is same as active colour
                     elif self._model.is_selectable(clicked_bitboard):
                         available_bitboard = self._model.get_available_moves(clicked_bitboard)
@@ -255,7 +256,7 @@ class GameController:
 
                 case _:
                     raise Exception('Unhandled event type (GameController.handle_event)', game_event.type)
-    
+
     def handle_event(self, event):
         """
         Passe a Pygame event to the correct handling function according to the game state.

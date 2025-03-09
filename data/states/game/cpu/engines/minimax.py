@@ -1,6 +1,6 @@
-from data.states.game.cpu.base import BaseCPU
-from data.constants import Score, Colour
 from random import choice
+from data.states.game.cpu.base import BaseCPU
+from data.utils.enums import Score, Colour
 
 class MinimaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=False):
@@ -20,7 +20,7 @@ class MinimaxCPU(BaseCPU):
 
         if self._verbose:
             self.print_stats(best_score, best_move)
-            
+
         self._callback(best_move)
 
     def search(self, board, depth, stop_event):
@@ -38,15 +38,15 @@ class MinimaxCPU(BaseCPU):
             return base_case
 
         best_move = None
-        
+
         # Blue is the maximising player
         if board.get_active_colour() == Colour.BLUE:
             max_score = -Score.INFINITE
-            
+
             for move in board.generate_all_moves(Colour.BLUE):
                 laser_result = board.apply_move(move)
 
-                
+
                 new_score = self.search(board, depth - 1, stop_event)[0]
 
                 # if depth < self._max_depth:
@@ -59,18 +59,18 @@ class MinimaxCPU(BaseCPU):
                     if new_score == (Score.CHECKMATE + self._max_depth):
                         board.undo_move(move, laser_result)
                         return max_score, best_move
-        
+
                 elif new_score == max_score:
                     # If evaluated scores are equal, pick a random move
                     best_move = choice([best_move, move])
 
                 board.undo_move(move, laser_result)
-                
+
             return max_score, best_move
-            
+
         else:
             min_score = Score.INFINITE
-            
+
             for move in board.generate_all_moves(Colour.RED):
                 laser_result = board.apply_move(move)
                 # print('DEPTH', depth, move)
@@ -84,10 +84,10 @@ class MinimaxCPU(BaseCPU):
                     if new_score == (-Score.CHECKMATE - self._max_depth):
                         board.undo_move(move, laser_result)
                         return min_score, best_move
-                    
+
                 elif new_score == min_score:
                     best_move = choice([best_move, move])
-                
+
                 board.undo_move(move, laser_result)
-                
+
             return min_score, best_move

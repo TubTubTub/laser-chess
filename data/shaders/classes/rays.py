@@ -2,7 +2,7 @@ from data.shaders.classes.lightmap import _Lightmap
 from data.shaders.classes.blend import _Blend
 from data.shaders.protocol import SMProtocol
 from data.shaders.classes.crop import _Crop
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 
 class Rays:
     def __init__(self, shader_manager: SMProtocol, lights):
@@ -14,7 +14,7 @@ class Rays:
         shader_manager.load_shader(ShaderType._BLEND)
         shader_manager.load_shader(ShaderType._CROP)
         shader_manager.create_framebuffer(ShaderType.RAYS)
-    
+
     def apply(self, texture, occlusion=None, softShadow=0.3):
         """
         Applies the light rays effect to a given texture.
@@ -47,9 +47,9 @@ class Rays:
             # Apply lightmap shader, shadowmap and occlusion are included within the _Lightmap class
             _Lightmap(self._shader_manager).apply(cropped_texture, colour, softShadow, occlusion_texture, *args)
             light_map = self._shader_manager.get_fbo_texture(ShaderType._LIGHTMAP)
-            
+
             # Blend the final result with the original texture
             _Blend(self._shader_manager).apply(final_texture, light_map, light_topleft)
             final_texture = self._shader_manager.get_fbo_texture(ShaderType._BLEND)
-        
+
         self._shader_manager.render_to_fbo(ShaderType.RAYS, final_texture)

@@ -1,5 +1,5 @@
 import logging.config
-from data.utils.data_helpers import load_json
+from data.helpers.data_helpers import load_json
 from pathlib import Path
 import logging
 

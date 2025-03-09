@@ -1,7 +1,7 @@
 import pygame
 from data.widgets.bases.widget import _Widget
 from data.widgets.bases.pressable import _Pressable
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 
 class ColourButton(_Pressable, _Widget):
     def __init__(self, event, **kwargs):
@@ -16,7 +16,7 @@ class ColourButton(_Pressable, _Widget):
         _Widget.__init__(self, **kwargs)
 
         self._empty_surface = pygame.Surface(self.size)
-        
+
         self.initialise_new_colours(self._fill_colour)
         self.set_state_colour(WidgetState.BASE)
 

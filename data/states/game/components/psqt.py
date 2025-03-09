@@ -1,4 +1,4 @@
-from data.constants import Piece
+from data.utils.enums import Piece
 
 FLIP = [
     70, 71, 72, 73, 74, 75, 76, 77, 78, 79,

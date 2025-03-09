@@ -1,13 +1,13 @@
 from data.states.game.cpu.move_orderer import MoveOrderer
 from data.states.game.cpu.base import BaseCPU
-from data.constants import Score, Colour
+from data.utils.enums import Score, Colour
 
 class ABMinimaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=True):
         super().__init__(callback, verbose)
         self._max_depth = max_depth
         self._orderer = MoveOrderer()
-    
+
     def initialise_stats(self):
         """
         Initialises the number of prunes to the statistics dictionary to be logged.
@@ -29,7 +29,7 @@ class ABMinimaxCPU(BaseCPU):
 
         if self._verbose:
             self.print_stats(best_score, best_move)
-            
+
         self._callback(best_move)
 
     def search(self, board, depth, alpha, beta, stop_event, hint=None, laser_coords=None):
@@ -54,7 +54,7 @@ class ABMinimaxCPU(BaseCPU):
         # Blue is the maximising player
         if board.get_active_colour() == Colour.BLUE:
             max_score = -Score.INFINITE
-            
+
             for move in self._orderer.get_moves(board, hint=hint, laser_coords=laser_coords):
                 laser_result = board.apply_move(move)
                 new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_coords=laser_result.pieces_on_trajectory)[0]
@@ -66,16 +66,16 @@ class ABMinimaxCPU(BaseCPU):
                 board.undo_move(move, laser_result)
 
                 alpha = max(alpha, max_score)
-                
+
                 if beta <= alpha:
                     self._stats['alpha_prunes'] += 1
                     break
-                
+
             return max_score, best_move
-            
+
         else:
             min_score = Score.INFINITE
-            
+
             for move in self._orderer.get_moves(board, hint=hint, laser_coords=laser_coords):
                 laser_result = board.apply_move(move)
                 new_score = self.search(board, depth - 1, alpha, beta, stop_event, laser_coords=laser_result.pieces_on_trajectory)[0]
@@ -83,12 +83,12 @@ class ABMinimaxCPU(BaseCPU):
                 if new_score < min_score:
                     min_score = new_score
                     best_move = move
-                
+
                 board.undo_move(move, laser_result)
 
                 beta = min(beta, min_score)
                 if beta <= alpha:
                     self._stats['beta_prunes'] += 1
                     break
-                
+
             return min_score, best_move

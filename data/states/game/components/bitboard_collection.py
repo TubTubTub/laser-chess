@@ -1,8 +1,9 @@
-from data.constants import Rank, File, Piece, Colour, Rotation, RotationIndex, EMPTY_BB
+from data.utils.enums import Rank, File, Piece, Colour, Rotation, RotationIndex
 from data.states.game.components.fen_parser import parse_fen_string
 from data.states.game.cpu.zobrist_hasher import ZobristHasher
-from data.utils import bitboard_helpers as bb_helpers
+from data.helpers import bitboard_helpers as bb_helpers
 from data.managers.logs import initialise_logger
+from data.utils.constants import EMPTY_BB
 
 logger = initialise_logger(__name__)
 
@@ -22,7 +23,7 @@ class BitboardCollection:
         except ValueError as error:
             logger.error('Please input a valid FEN string:', error)
             raise error
-    
+
     def __str__(self):
         """
         Returns a string representation of the bitboards.
@@ -44,9 +45,9 @@ class BitboardCollection:
                     characters += '.  '
 
             characters += '\n\n'
- 
+
         return characters
-    
+
     def get_rotation_string(self):
         """
         Returns a string representation of the board rotations.
@@ -68,9 +69,9 @@ class BitboardCollection:
                     characters += '.  '
 
             characters += '\n\n'
- 
+
         return characters
-    
+
     def initialise_hash(self):
         """
         Initialises the Zobrist hash for the current board state.
@@ -81,14 +82,14 @@ class BitboardCollection:
 
                 for occupied_bitboard in bb_helpers.occupied_squares(piece_bitboard):
                     self._hasher.apply_piece_hash(occupied_bitboard, piece, colour)
-        
+
         for bitboard in bb_helpers.loop_all_squares():
             rotation = self.get_rotation_on(bitboard)
             self._hasher.apply_rotation_hash(bitboard, rotation)
-                    
+
         if self.active_colour == Colour.RED:
             self._hasher.apply_red_move_hash()
-    
+
     def flip_colour(self):
         """
         Flips the active colour and updates the Zobrist hash.
@@ -97,7 +98,7 @@ class BitboardCollection:
 
         if self.active_colour == Colour.RED:
             self._hasher.apply_red_move_hash()
-    
+
     def update_move(self, src, dest):
         """
         Updates the bitboards for a move.
@@ -114,7 +115,7 @@ class BitboardCollection:
         self.clear_square(dest, Colour.RED)
 
         self.set_square(dest, piece, self.active_colour)
-    
+
     def update_rotation(self, src, dest, new_rotation):
         """
         Updates the rotation bitboards for a move.
@@ -126,7 +127,7 @@ class BitboardCollection:
         """
         self.clear_rotation(src)
         self.set_rotation(dest, new_rotation)
-    
+
     def clear_rotation(self, bitboard):
         """
         Clears the rotation for a given square.
@@ -140,7 +141,7 @@ class BitboardCollection:
         self.rotation_bitboards[RotationIndex.SECONDBIT] = bb_helpers.clear_square(rotation_2, bitboard)
 
         self._hasher.apply_rotation_hash(bitboard, old_rotation)
-    
+
     def clear_square(self, bitboard, colour):
         """
         Clears a square piece and rotation for a given colour.
@@ -153,7 +154,7 @@ class BitboardCollection:
 
         if piece is None:
             return
-        
+
         piece_bitboard = self.get_piece_bitboard(piece, colour)
         colour_bitboard = self.combined_colour_bitboards[colour]
         all_bitboard = self.combined_all_bitboard
@@ -163,7 +164,7 @@ class BitboardCollection:
         self.combined_all_bitboard = bb_helpers.clear_square(all_bitboard, bitboard)
 
         self._hasher.apply_piece_hash(bitboard, piece, colour)
-    
+
     def set_rotation(self, bitboard, rotation):
         """
         Sets the rotation for a given square.
@@ -174,7 +175,7 @@ class BitboardCollection:
         """
         rotation_1, rotation_2 = self.rotation_bitboards
         self._hasher.apply_rotation_hash(bitboard, rotation)
-        
+
         match rotation:
             case Rotation.UP:
                 return
@@ -190,7 +191,7 @@ class BitboardCollection:
                 return
             case _:
                 raise ValueError('Invalid rotation input (bitboard.py):', rotation)
-    
+
     def set_square(self, bitboard, piece, colour):
         """
         Sets a piece on a given square.
@@ -209,7 +210,7 @@ class BitboardCollection:
         self.combined_all_bitboard = bb_helpers.set_square(all_bitboard, bitboard)
 
         self._hasher.apply_piece_hash(bitboard, piece, colour)
-    
+
     def get_piece_bitboard(self, piece, colour):
         """
         Gets the bitboard for a piece type for a given colour.
@@ -222,7 +223,7 @@ class BitboardCollection:
             int: The bitboard representation for all squares occupied by that piece type.
         """
         return self.piece_bitboards[colour][piece]
-    
+
     def get_piece_on(self, target_bitboard, colour):
         """
         Gets the piece on a given square for a given colour.
@@ -236,9 +237,9 @@ class BitboardCollection:
         """
         if not (bb_helpers.is_occupied(self.combined_colour_bitboards[colour], target_bitboard)):
             return None
-    
+
         return next(
-            (piece for piece in Piece if 
+            (piece for piece in Piece if
                 bb_helpers.is_occupied(self.get_piece_bitboard(piece, colour), target_bitboard)),
             None)
 
@@ -263,7 +264,7 @@ class BitboardCollection:
                 return Rotation.DOWN
             case [True, True]:
                 return Rotation.LEFT
-    
+
     def get_colour_on(self, target_bitboard):
         """
         Gets the colour of the piece on a given square.
@@ -292,7 +293,7 @@ class BitboardCollection:
             int: The number of that piece of that colour on the board.
         """
         return bb_helpers.pop_count(self.get_piece_bitboard(piece, colour))
-    
+
     def get_hash(self):
         """
         Gets the Zobrist hash of the current board state.
@@ -301,7 +302,7 @@ class BitboardCollection:
             int: The Zobrist hash.
         """
         return self._hasher.hash
-    
+
     def convert_to_piece_list(self):
         """
         Converts all bitboards to a list of pieces.

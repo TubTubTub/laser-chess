@@ -1,6 +1,6 @@
 from random import randint
-from data.utils.bitboard_helpers import bitboard_to_index
-from data.constants import Piece, Colour, Rotation
+from data.helpers.bitboard_helpers import bitboard_to_index
+from data.utils.enums import Piece, Colour, Rotation
 
 # Initialise random values for each piece type on every square
 # (5 x 2 colours) pieces + 4 rotations, for 80 squares

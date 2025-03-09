@@ -1,6 +1,6 @@
 import pygame
 from data.widgets.bases.widget import _Widget
-from data.utils.widget_helpers import create_text_box
+from data.helpers.widget_helpers import create_text_box
 
 class Icon(_Widget):
     def __init__(self, icon, stretch=False, is_mask=False, smooth=False, fit_icon=False, box_colours=None, **kwargs):
@@ -15,16 +15,16 @@ class Icon(_Widget):
         self._stretch = stretch
         self._smooth = smooth
         self._box_colours = box_colours
-        
+
         self._empty_surface = pygame.Surface((0, 0), pygame.SRCALPHA)
 
         self.set_image()
         self.set_geometry()
-    
+
     def set_icon(self, icon):
         self._icon = icon
         self.set_image()
-    
+
     def set_image(self):
         if self._box_colours:
             self.image = create_text_box(self.size, self.border_width, self._box_colours)
@@ -59,6 +59,6 @@ class Icon(_Widget):
 
         if self._box_colours is None and self.border_width:
             pygame.draw.rect(self.image, self._border_colour, self.image.get_rect(), width=int(self.border_width), border_radius=int(self.border_radius))
-    
+
     def process_event(self, event):
         pass

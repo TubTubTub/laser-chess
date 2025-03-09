@@ -1,7 +1,8 @@
 from data.widgets import *
 from data.components.custom_event import CustomEvent
-from data.constants import ReviewEventType, Colour
-from data.assets import GRAPHICS
+from data.utils.event_types import ReviewEventType
+from data.utils.assets import GRAPHICS
+from data.utils.enums import Colour
 
 MOVE_LIST_WIDTH = 0.2
 

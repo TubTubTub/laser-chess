@@ -1,11 +1,11 @@
 import pygame
-from data.utils.board_helpers import coords_to_screen_pos
-from data.constants import EMPTY_BB, ShaderType, Colour
+from data.helpers.board_helpers import coords_to_screen_pos
+from data.utils.enums import LaserType, Colour, ShaderType
 from data.managers.animation import animation
+from data.utils.assets import GRAPHICS, SFX
+from data.utils.constants import EMPTY_BB
 from data.managers.window import window
 from data.managers.audio import audio
-from data.assets import GRAPHICS, SFX
-from data.constants import LaserType
 
 type_to_image = {
     LaserType.END: ['laser_end_1', 'laser_end_2'],
@@ -20,11 +20,11 @@ class LaserDraw:
         self._board_position = board_position
         self._square_size = board_size[0] / 10
         self._laser_lists = []
-    
+
     @property
     def firing(self):
         return len(self._laser_lists) > 0
-    
+
     def add_laser(self, laser_result, laser_colour):
         """
         Adds a laser to the board.
@@ -38,7 +38,7 @@ class LaserDraw:
         # List of angles in degree to rotate the laser image surface when drawn
         laser_rotation = [laser_path[0][1]]
         laser_lights = []
-        
+
         # Iterates through every square laser passes through
         for i in range(1, len(laser_path)):
             previous_direction = laser_path[i-1][1]
@@ -53,7 +53,7 @@ class LaserDraw:
             elif current_direction == previous_direction.get_anticlockwise():
                 laser_types.append(LaserType.CORNER)
                 laser_rotation.append(current_direction.get_anticlockwise())
-            
+
             # Adds a shader ray effect on the first and last square of the laser trajectory
             if i in [1, len(laser_path) - 1]:
                 abs_position = coords_to_screen_pos(current_coords, self._board_position, self._square_size)
@@ -62,13 +62,13 @@ class LaserDraw:
                     0.35,
                     (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
                 ])
-        
+
         # Sets end laser draw type if laser hits a piece
         if laser_result.hit_square_bitboard != EMPTY_BB:
             laser_types[-1] = LaserType.END
             laser_path[-1] = (laser_path[-1][0], laser_path[-2][1].get_opposite())
             laser_rotation[-1] = laser_path[-2][1].get_opposite()
-            
+
             audio.play_sfx(SFX['piece_destroy'])
 
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
@@ -77,10 +77,10 @@ class LaserDraw:
         window.clear_effect(ShaderType.RAYS)
         window.set_effect(ShaderType.RAYS, lights=laser_lights)
         animation.set_timer(1000, self.remove_laser)
-        
+
         audio.play_sfx(SFX['laser_1'])
         audio.play_sfx(SFX['laser_2'])
-    
+
     def remove_laser(self):
         """
         Removes a laser from the board.
@@ -89,7 +89,7 @@ class LaserDraw:
 
         if len(self._laser_lists) == 0:
             window.clear_effect(ShaderType.RAYS)
-    
+
     def draw_laser(self, screen, laser_list, glow=True):
         """
         Draws every laser on the screen.
@@ -121,7 +121,7 @@ class LaserDraw:
             screen.fblits(glow_list, pygame.BLEND_RGB_ADD)
 
         screen.blits(laser_list)
-    
+
     def draw(self, screen):
         """
         Draws all lasers on the screen.
@@ -131,7 +131,7 @@ class LaserDraw:
         """
         for laser_list in self._laser_lists:
             self.draw_laser(screen, laser_list)
-    
+
     def handle_resize(self, board_position, board_size):
         """
         Handles resizing of the board.

@@ -1,10 +1,11 @@
-from data.states.game.components.move import Move
-from data.states.game.components.laser import Laser
-
-from data.constants import Colour, Piece, Rank, File, MoveType, RotationDirection, Miscellaneous, A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
-from data.states.game.components.bitboard_collection import BitboardCollection
-from data.utils import bitboard_helpers as bb_helpers
 from collections import defaultdict
+from data.utils.constants import A_FILE_MASK, J_FILE_MASK, ONE_RANK_MASK, EIGHT_RANK_MASK, EMPTY_BB
+from data.utils.enums import Colour, Piece, Rank, File, MoveType, RotationDirection, Miscellaneous
+from data.states.game.components.bitboard_collection import BitboardCollection
+from data.helpers import bitboard_helpers as bb_helpers
+from data.states.game.components.laser import Laser
+from data.states.game.components.move import Move
+
 
 class Board:
     def __init__(self, fen_string="sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b"):
@@ -41,7 +42,7 @@ class Board:
         characters += str(dict(pieces))
         characters += f'\nCURRENT PLAYER TO MOVE: {self.bitboards.active_colour.name}\n'
         return characters
-    
+
     def get_piece_list(self):
         """
         Converts the board bitboards to a list of pieces.
@@ -68,7 +69,7 @@ class Board:
             int: A Zobrist hash.
         """
         return self.bitboards.get_hash()
-    
+
     def check_win(self):
         """
         Checks for a Pharoah capture or threefold-repetition.
@@ -84,7 +85,7 @@ class Board:
             return Miscellaneous.DRAW
 
         return None
-    
+
     def apply_move(self, move, fire_laser=True, add_hash=False):
         """
         Applies a move to the board.
@@ -128,14 +129,14 @@ class Board:
         laser = None
         if fire_laser:
             laser = self.fire_laser(add_hash)
-        
+
         if add_hash:
             self.hash_list.append(self.bitboards.get_hash())
 
         self.bitboards.flip_colour()
 
         return laser
-    
+
     def undo_move(self, move, laser_result):
         """
         Undoes a move on the board.
@@ -145,7 +146,7 @@ class Board:
             laser_result (Laser): The laser trajectory result.
         """
         self.bitboards.flip_colour()
-        
+
         if laser_result.hit_square_bitboard:
             # Get info of destroyed piece, and add it to the board again
             src = laser_result.hit_square_bitboard
@@ -156,16 +157,16 @@ class Board:
             self.bitboards.set_square(src, piece, colour)
             self.bitboards.clear_rotation(src)
             self.bitboards.set_rotation(src, rotation)
-        
+
         # Create new Move object that is the inverse of the passed move
         if move.move_type == MoveType.MOVE:
             reversed_move = Move.instance_from_bitboards(MoveType.MOVE, move.dest, move.src)
         elif move.move_type == MoveType.ROTATE:
             reversed_move = Move.instance_from_bitboards(MoveType.ROTATE, move.src, move.src, move.rotation_direction.get_opposite())
-        
+
         self.apply_move(reversed_move, fire_laser=False)
         self.bitboards.flip_colour()
-    
+
     def remove_piece(self, square_bitboard):
         """
         Removes a piece from a given square.
@@ -176,7 +177,7 @@ class Board:
         self.bitboards.clear_square(square_bitboard, Colour.BLUE)
         self.bitboards.clear_square(square_bitboard, Colour.RED)
         self.bitboards.clear_rotation(square_bitboard)
-    
+
     def get_valid_squares(self, src_bitboard, colour=None):
         """
         Gets valid squares for a piece to move to.
@@ -199,14 +200,14 @@ class Board:
         target_middle_left = (src_bitboard & A_FILE_MASK) >> 1
 
         possible_moves = target_top_left | target_top_middle | target_top_right | target_middle_right |	target_bottom_right | target_bottom_middle | target_bottom_left | target_middle_left
-        
+
         if colour is not None:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_colour_bitboards[colour]
         else:
             valid_possible_moves = possible_moves & ~self.bitboards.combined_all_bitboard
 
         return valid_possible_moves
-    
+
     def get_mobility(self, colour):
         """
         Gets all valid squares for a given colour.
@@ -260,7 +261,7 @@ class Board:
             if remove_hash:
                 self.hash_list = [] # Remove all hashes for threefold repetition, as the position is impossible to be repeated after a piece is removed
         return laser
-    
+
     def generate_square_moves(self, src):
         """
         Generates all valid moves for a piece on a given square.
@@ -273,7 +274,7 @@ class Board:
         """
         for dest in bb_helpers.occupied_squares(self.get_valid_squares(src)):
             yield Move(MoveType.MOVE, src, dest)
-    
+
     def generate_all_moves(self, colour):
         """
         Generates all valid moves for a given colour.

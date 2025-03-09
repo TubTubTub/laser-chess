@@ -1,4 +1,4 @@
-from data.constants import TranspositionFlag
+from data.utils.enums import TranspositionFlag
 
 class TranspositionEntry:
     def __init__(self, score, move, flag, hash_key, depth):
@@ -12,7 +12,7 @@ class TranspositionTable:
     def __init__(self, max_entries=100000):
         self._max_entries = max_entries
         self._table = dict()
-    
+
     def calculate_entry_index(self, hash_key):
         """
         Gets the dictionary key for a given Zobrist hash.
@@ -23,9 +23,8 @@ class TranspositionTable:
         Returns:
             int: Key for the given hash.
         """
-        # return hash_key % self._max_entries
         return hash_key
-    
+
     def insert_entry(self, score, move, hash_key, depth, alpha, beta):
         """
         Inserts an entry into the transposition table.
@@ -59,7 +58,7 @@ class TranspositionTable:
             # Removes the longest-existing entry to free up space for more up-to-date entries
             # Expression to remove leftmost item taken from https://docs.python.org/3/library/collections.html#ordereddict-objects
             (k := next(iter(self._table)), self._table.pop(k))
-    
+
     def get_entry(self, hash_key, depth, alpha, beta):
         """
         Gets an entry from the transposition table.
@@ -74,19 +73,19 @@ class TranspositionTable:
             tuple[int, Move] | tuple[None, None]: The evaluation score and the best move found, if entry exists.
         """
         index = self.calculate_entry_index(hash_key)
-        
+
         if index not in self._table:
             return None, None
-        
+
         entry = self._table[index]
-        
+
         if entry.hash_key == hash_key and entry.depth >= depth:
             if entry.flag == TranspositionFlag.EXACT:
                 return entry.score, entry.move
-            
+
             if entry.flag == TranspositionFlag.LOWER and entry.score >= beta:
                 return entry.score, entry.move
-            
+
             if entry.flag == TranspositionFlag.UPPER and entry.score <= alpha:
                 return entry.score, entry.move
 

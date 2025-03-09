@@ -1,10 +1,11 @@
 from data.widgets import *
 from data.states.config.default_config import default_config
+from data.helpers.asset_helpers import get_highlighted_icon
 from data.components.custom_event import CustomEvent
-from data.constants import ConfigEventType, Colour
-from data.assets import GRAPHICS
-from data.utils.asset_helpers import get_highlighted_icon
+from data.utils.event_types import ConfigEventType
+from data.utils.assets import GRAPHICS
 from data.managers.theme import theme
+from data.utils.enums import Colour
 
 def float_validator(num_string):
     try:

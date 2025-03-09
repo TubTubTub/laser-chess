@@ -1,5 +1,5 @@
 import pygame
-from data.utils.asset_helpers import scale_and_cache
+from data.helpers.asset_helpers import scale_and_cache
 
 FPS = 60
 
@@ -7,7 +7,7 @@ class AnimationManager:
     def __init__(self):
         self._current_ms = 0
         self._timers = []
-    
+
     def set_delta_time(self):
         self._current_ms = pygame.time.get_ticks()
 
@@ -29,7 +29,7 @@ class AnimationManager:
     def draw_image(self, screen, image, position, size):
         scaled_background = scale_and_cache(image, size)
         screen.blit(scaled_background, position)
-    
+
     def set_timer(self, target_ms, callback):
         self._timers.append((self._current_ms, target_ms, callback))
 

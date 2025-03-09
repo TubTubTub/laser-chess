@@ -1,4 +1,4 @@
-from data.constants import GameEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
+from data.utils.event_types import GameEventType, SettingsEventType, ConfigEventType, BrowserEventType, EditorEventType
 
 # Required keyword arguments when creating a CustomEvent object with a specific EventType
 required_args = {

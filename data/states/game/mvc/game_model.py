@@ -1,16 +1,18 @@
 from random import getrandbits
 from data.states.game.components.fen_parser import encode_fen_string
-from data.constants import Colour, GameEventType, EMPTY_BB
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.states.game.cpu.cpu_thread import CPUThread
 from data.components.custom_event import CustomEvent
-from data.utils.bitboard_helpers import is_occupied
+from data.helpers.bitboard_helpers import is_occupied
+from data.helpers import input_helpers as ip_helpers
 from data.states.game.components.board import Board
-from data.utils import input_helpers as ip_helpers
 from data.states.game.components.move import Move
+from data.utils.event_types import GameEventType
 from data.managers.logs import initialise_logger
 from data.managers.animation import animation
 from data.states.game.cpu.engines import *
+from data.utils.constants import EMPTY_BB
+from data.utils.enums import Colour
 
 logger = initialise_logger(__name__)
 

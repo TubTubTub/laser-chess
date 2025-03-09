@@ -1,7 +1,7 @@
 from data.components.custom_event import CustomEvent
-from data.constants import MenuEventType
+from data.utils.event_types import MenuEventType
+from data.utils.assets import GRAPHICS
 from data.managers.theme import theme
-from data.assets import GRAPHICS
 from data.widgets import *
 
 top_right_container = Rectangle(

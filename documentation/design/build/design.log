@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  6 MAR 2025 12:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  9 MAR 2025 21:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -973,24 +973,24 @@ Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input li
 <../design/assets/minimax.pdf, id=200, 688.49219pt x 307.1475pt>
 File: ../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/assets/minimax.pdf>
-Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 153.
+Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 154.
 (pdftex.def)             Requested size: 418.25368pt x 186.59108pt.
 
 
 [8 <../design/assets/editor_flowchart.pdf> <../design/assets/minimax.pdf>]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 163.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 166.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 164.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 167.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 166.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 167.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <../design/assets/alpha_beta_pruning.pdf, id=231, 713.7867pt x 307.1475pt>
 File: ../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/assets/alpha_beta_pruning.pdf>
-Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 198.
+Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 200.
 (pdftex.def)             Requested size: 418.25368pt x 179.97816pt.
 
 
@@ -1001,7 +1001,7 @@ Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input 
 [11]
 
 [12]
-Overfull \hbox (2.31029pt too wide) in paragraph at lines 352--353
+Overfull \hbox (2.31029pt too wide) in paragraph at lines 356--357
  \T1/cmr/m/n/10 sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa 
  []
 
@@ -1013,12 +1013,12 @@ Overfull \hbox (2.31029pt too wide) in paragraph at lines 352--353
 <../design/assets/bitboard_indexes.pdf, id=292, 324.82352pt x 263.91599pt>
 File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_indexes.pdf>
-Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 421.
+Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 426.
 (pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
 <../design/assets/bitboard_shifted.pdf, id=294, 145.50359pt x 145.50359pt>
 File: ../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_shifted.pdf>
-Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 438.
+Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 443.
 (pdftex.def)             Requested size: 167.2989pt x 167.30116pt.
 
 
@@ -1026,7 +1026,7 @@ Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input li
 <../design/assets/bitboard_masked.pdf, id=315, 551.1792pt x 167.6664pt>
 File: ../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_masked.pdf>
-Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 453.
+Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 458.
 (pdftex.def)             Requested size: 418.25368pt x 127.23589pt.
 
 
@@ -1036,14 +1036,14 @@ Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input lin
 <../design/assets/psqt.pdf, id=349, 352.43669pt x 167.6664pt>
 File: ../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/assets/psqt.pdf>
-Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 539.
+Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 545.
 (pdftex.def)             Requested size: 334.60422pt x 159.19516pt.
 
 
 [18 <../design/assets/psqt.pdf>]
 File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/assets/bitboard_indexes.pdf>
-Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 550.
+Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 556.
 (pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
 
 
@@ -1053,7 +1053,7 @@ Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input li
 <../design/assets/shadow_mapping.pdf, id=385, 340.3917pt x 321.11969pt>
 File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/assets/shadow_mapping.pdf>
-Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 618.
+Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 624.
 (pdftex.def)             Requested size: 418.25368pt x 394.58777pt.
 
 
@@ -1063,11 +1063,11 @@ Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line
 <../design/assets/soft_shadows.pdf, id=419, 264.99pt x 164.5347pt>
 File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/assets/soft_shadows.pdf>
-Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 658.
+Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 664.
 (pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
 
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on input line 666.
+LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on input line 673.
 
 
 
@@ -1075,11 +1075,11 @@ LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on inpu
 <../design/assets/multi_threading.pdf, id=444, 352.43669pt x 158.51219pt>
 File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/assets/multi_threading.pdf>
-Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 670.
+Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 677.
 (pdftex.def)             Requested size: 418.25368pt x 188.12874pt.
 
 
-LaTeX Warning: Reference `itm:save-games' on page 24 undefined on input line 677.
+LaTeX Warning: Reference `itm:save-games' on page 24 undefined on input line 684.
 
 [24 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -1091,41 +1091,41 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 <../design/assets/stack.pdf, id=518, 204.765pt x 174.6525pt>
 File: ../design/assets/stack.pdf Graphic file (type pdf)
 <use ../design/assets/stack.pdf>
-Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 841.
+Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 851.
 (pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
 
 
 [27] [28 <../design/assets/stack.pdf>]
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 29 undefined on input line 873.
+LaTeX Warning: Reference `itm:responsive-objective' on page 29 undefined on input line 884.
 
 [29]
-Overfull \hbox (11.81412pt too wide) in alignment at lines 936--940
+Overfull \hbox (11.81412pt too wide) in alignment at lines 948--952
  [] [] 
  []
 
 
-Overfull \hbox (11.81412pt too wide) in alignment at lines 940--941
+Overfull \hbox (11.81412pt too wide) in alignment at lines 952--953
  [] [] 
  []
 
 
-Overfull \hbox (11.81412pt too wide) in alignment at lines 941--953
+Overfull \hbox (11.81412pt too wide) in alignment at lines 953--965
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 955--959
+Overfull \hbox (16.34079pt too wide) in alignment at lines 967--971
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 959--960
+Overfull \hbox (16.34079pt too wide) in alignment at lines 971--972
  [] [] 
  []
 
 
-Overfull \hbox (16.34079pt too wide) in alignment at lines 960--972
+Overfull \hbox (16.34079pt too wide) in alignment at lines 972--984
  [] [] 
  []
 
@@ -1133,7 +1133,7 @@ Overfull \hbox (16.34079pt too wide) in alignment at lines 960--972
 <../design/assets/class_relation_diagram.pdf, id=557, 435.54718pt x 478.66827pt>
 File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
 <use ../design/assets/class_relation_diagram.pdf>
-Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 1001.
+Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 1013.
 (pdftex.def)             Requested size: 418.25368pt x 459.677pt.
 
 
@@ -1152,10 +1152,10 @@ Package rerunfilecheck Info: File `design.out' has not changed.
 (rerunfilecheck)             Checksum: 8E8B94FDA64A7A827337A1D3ABAF973C;2594.
  ) 
 Here is how much of TeX's memory you used:
- 41903 strings out of 473530
- 981871 string characters out of 5714311
+ 41915 strings out of 473530
+ 982106 string characters out of 5714311
  1713249 words of memory out of 5000000
- 64335 multiletter control sequences out of 15000+600000
+ 64347 multiletter control sequences out of 15000+600000
  581253 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,11n,139p,1647b,2639s stack positions out of 10000i,1000n,20000p,200000b,200000s

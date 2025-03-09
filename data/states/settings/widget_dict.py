@@ -1,8 +1,9 @@
 from data.widgets import *
+from data.helpers.data_helpers import get_user_settings
 from data.components.custom_event import CustomEvent
-from data.constants import SettingsEventType, SHADER_MAP
-from data.utils.data_helpers import get_user_settings
-from data.assets import GRAPHICS
+from data.utils.event_types import SettingsEventType
+from data.utils.constants import SHADER_MAP
+from data.utils.assets import GRAPHICS
 from data.managers.theme import theme
 
 user_settings = get_user_settings()

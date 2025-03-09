@@ -5,9 +5,9 @@ root = (Path(__file__).parent / '../../data').resolve()
 already_added = [
     '../../data/main.py',
     '../../data/loading_screen.py',
-    '../../data/utils/asset_helpers.py',
-    '../../data/utils/data_helpers.py',
-    '../../data/utils/widget_helpers.py',
+    '../../data/helpers/asset_helpers.py',
+    '../../data/helpers/data_helpers.py',
+    '../../data/helpers/widget_helpers.py',
     '../../data/managers/theme.py',
     '../../data/states/game/components/laser_draw.py',
     '../../data/states/game/components/particles_draw.py',
@@ -35,7 +35,7 @@ already_added = [
     '../../data/states/review/review.py',
     '../../data/database/migrations/create_games_table_19112024.py',
     '../../data/database/migrations/change_fen_string_column_name_23122024.py',
-    '../../data/utils/database_helpers.py',
+    '../../data/helpers/database_helpers.py',
     '../../data/managers/shader.py',
     '../../data/shaders/fragments/highlight_brightness.frag',
     '../../data/shaders/classes/blur.py',
@@ -70,7 +70,8 @@ with open('documentation/source/source.tex', 'w') as f:
             f.write(f'\section{{{path_name}}}\n')
 
         for file in file_names:
-            file_path = f'..\..\{path_suffix}\{file}'.replace('\\', '/')
+            relative_path = f'..\..\{path_suffix}\{file}'.replace('\\', '/')
+            absolute_path = (dir_path / file).resolve()
             extension = file.split('.')[1]
             depth = len(dir_path.parents) - 6
 
@@ -78,26 +79,26 @@ with open('documentation/source/source.tex', 'w') as f:
                 continue
 
             if file == '__init__.py':
-                if Path(file_path).stat().st_size == 0:
+                if absolute_path.stat().st_size == 0:
                     continue
 
             f.write(f'\subsection{{{file.replace('_', '\_')}}}\n')
 
-            if file_path in already_added:
-                f.write(f'See Section \\ref{{src:{file_path}}}.\n\n')
+            if relative_path in already_added:
+                f.write(f'See Section \\ref{{src:{relative_path}}}.\n\n')
                 continue
 
             match file.split('.')[1]:
                 case 'py':
-                    f.write(f'\lstinputlisting{{{file_path}}}\n')
+                    f.write(f'\lstinputlisting{{{relative_path}}}\n')
                 case 'json':
-                    f.write(f'\lstinputlisting[language=json]{{{file_path}}}\n')
+                    f.write(f'\lstinputlisting[language=json]{{{relative_path}}}\n')
                 case 'vert':
-                    f.write(f'\lstinputlisting[language=GLSL]{{{file_path}}}\n')
+                    f.write(f'\lstinputlisting[language=GLSL]{{{relative_path}}}\n')
                 case 'frag':
-                    f.write(f'\lstinputlisting[language=GLSL]{{{file_path}}}\n')
+                    f.write(f'\lstinputlisting[language=GLSL]{{{relative_path}}}\n')
 
-            label = file_path[6:]
+            label = relative_path[6:]
             f.write(f'\label{{src:{label}}}\n\n')
 
     f.write('\end{document}')

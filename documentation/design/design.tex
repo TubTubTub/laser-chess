@@ -146,6 +146,7 @@ For the GUI, the buttons should clearly represent their functionality, through t
 
 \section{Algorithms and Techniques}
 \subsection{Minimax}
+\label{sec:design-minimax}
 Minimax is a backtracking algorithm commonly used in zero-sum games used to determine the score according to an evaluation function, after a certain number of perfect moves. Minimax aims to minimize the maximum advantage possible for the opponent, thereby minimizing a player’s possible loss in a worst-case scenario. It is implemented using a recursive depth-first search, alternating between minimizing and maximising the player’s advantage in each recursive call.
 
 \begin{figure}[H]
@@ -166,7 +167,7 @@ Implementation in the form of pseudocode is shown below:
         \If{$depth = 0$ \textbf{OR} node equals game over}
             \State \Return{\Call{evaluate}{}}
         \EndIf
-        
+
         \bigskip
 
         \If{maximisingPlayer}
@@ -188,10 +189,11 @@ Implementation in the form of pseudocode is shown below:
 
 \subsection{Minimax improvements}
 \subsubsection*{Alpha-beta pruning}
+\label{sec:design-ab}
 Alpha-beta pruning is a search algorithm that aims to decrease the number of nodes evaluated by the minimax algorithm. Alpha-beta pruning stops evaluating a move in the game tree when one refutation is found in its child nodes, proving the node to be worse than previously-examined alternatives. It does this without any potential of pruning away a better move.
 The algorithm maintains two values: alpha and beta. Alpha ($\alpha$), the upper bound, is the highest value that the maximising player is guaranteed of; Beta ($\beta$), the lower bound, is the lowest value that the minimizing player is guaranteed of. If the condition $\alpha\geq\beta$ for a node being evaluated, the evaluation process halts and its remaining children nodes are ‘pruned’.
 \\
-This is shown in the following maximising example:  
+This is shown in the following maximising example:
 
 \begin{figure}[H]
     \centering
@@ -242,13 +244,14 @@ The pseudocode implementation is shown below:
 \end{algorithm}
 
 \subsubsection*{Transposition Tables \& Zobrist Hashing}
+\label{sec:design-cache}
 Transition tables, a  memoisation technique, again greatly reduces the number of moves searched. During a brute-force minimax search with a depth greater than 1, the same positions may be searched multiple times, as the same position can be reached from different sequences of moves. A transposition table caches these same positions (transpositions), along with the its associated evaluations, meaning commonly reached positions are not unnecessarily re-searched.
 
 Flags and depth are also stored alongside the evaluation. Depth is required as if the current search comes across a cached position with an evaluation calculated at a lower depth than the current search, the evaluation may be inaccurate. Flags are required for dealing with the uncertainty involved with alpha-beta pruning, and can be any of the following three.
 
 \paragraph{Exact} flag is used when a node is fully searched without pruning, and the stored and fetched evaluation is accurate.
 \paragraph{Lower} flag is stored when a node receives an evaluation greater than the $\beta$, and is subsequently pruned, meaning that the true evaluation could be higher than the value stored. We are thus storing the $\alpha$ and not an exact value. Thus, when we fetch the cached value, we have to recheck if this value is greater than $\beta$. If so, we return the value and this branch is pruned (fail high); If not, nothing is returned, and the exact evaluation is calculated.
-\paragraph{Upper} flag is stored when a node receives an evaluation smaller than the $\alpha$, and is subsequently pruned, meaning that the true evaluation could be lower than the value stored. Similarly, when we fetch the cached value, we have to recheck if this value is lower than $\alpha$. Again, the current branch is pruned if so (fail low), and an exact evaluation is calculated if not. 
+\paragraph{Upper} flag is stored when a node receives an evaluation smaller than the $\alpha$, and is subsequently pruned, meaning that the true evaluation could be lower than the value stored. Similarly, when we fetch the cached value, we have to recheck if this value is lower than $\alpha$. Again, the current branch is pruned if so (fail low), and an exact evaluation is calculated if not.
 
 \bigskip
 
@@ -309,7 +312,7 @@ The pseudocode implementation for Zobrist hashing is shown below:
 \caption{Zobrist hashing pseudocode}
 \begin{algorithmic}
     \item \textit{RANDOMINTS represents a pre-initialised array of random integers for each piece type for each square}
-    
+
     \bigskip
 
     \Function{hash\_board}{board}
@@ -320,7 +323,7 @@ The pseudocode implementation for Zobrist hashing is shown below:
                 \State $hash \oplus RANDOMINTS[square][$\textit{piece on square}$]$
             \EndIf
         \EndFor
-        
+
         \State \Return $hash$
     \EndFunction
 
@@ -333,13 +336,14 @@ The pseudocode implementation for Zobrist hashing is shown below:
         \If{red to move}
             \State $hash \oplus \textit{hash for red to move}$ \Comment{Hash needed for move colour, as two identical positions are different if the colour to move is different}
         \EndIf
-        
+
         \State \Return $hash$
     \EndFunction
 \end{algorithmic}
 \end{algorithm}
 
 \subsubsection*{Iterative Deepening}
+\label{sec:design-deepening}
 Iterative deepening builds upon the previous alpha-beta and caching improvements. A search is initiated at a depth of one ply, which upon finishing, another starts at depth two, three, and increases until the max depth is reached or time allocated is up. Although this means that more nodes are searched, the improvements come from the fact that the best move (PV-Move) found by a lower depth search, can be used as the first move searched on the next higher depth search. This increases the chance of pruning, reducing the net number of nodes searched, and also provides a 'fallback' move if a higher depth search is interrupted.
 
 \subsection{Board Representation}
@@ -397,7 +401,7 @@ Having inputted the desired FEN string board configuration in the config menu, t
             \Else
                 \State $file \gets file + 1$
             \EndIf
-        
+
         \bigskip
 
         \If{part\_2 is b}
@@ -413,6 +417,7 @@ Having inputted the desired FEN string board configuration in the config menu, t
 The function first processes every piece and corresponding square in the FEN string, modifying each piece bitboard using a bitwise OR operator, with a 1 shifted over to the correctly occupied square using a Left-Shift operator. For the second part, the active colour property of the board class is initialised to the correct player.
 
 \subsubsection*{Bitboards}
+\label{sec:design-bitboards}
 Bitboards are an array of bits representing a position or state of a board game. Multiple bitboards are used with each representing a different property of the game (e.g. scarab position and scarab rotation), and can be masked together or transformed to answer queries about positions. Bitboards offer an efficient board representation, its performance primarily arising from the speed of parallel bitwise operations used to transform bitboards.
 To map each board square to a bit in each number, we will assign each square from left to right, with the least significant bit (LSB) assigned to the bottom-left square (A1), and the most significant bit (MSB) to the top-right square (J8).
 
@@ -471,7 +476,7 @@ Our final function to calculate valid moves combines all the logic above: Shifti
     \bigskip
 
     \State $top\_left \gets masked\_a\_square << 9$
-	
+
 	\State $top\_left \gets masked\_a\_square << 9$
 	\State $top\_middle \gets selected\_square << 10$
 	\State $top\_right \gets masked\_ << 11$
@@ -496,9 +501,10 @@ Our final function to calculate valid moves combines all the logic above: Shifti
 \end{algorithm}
 
 \subsection{Evaluation Function}
+\label{sec:design-evaluation}
 The evaluation function is a heuristic algorithm to determine the relative value of a position. It outputs a real number corresponding to the advantage given to a player if reaching the analysed position, usually at a leaf node in the minimax tree. The evaluation function therefore provides the values on which minimax works on to compute an optimal move.
 
-In the majority of evaluation functions, the most significant factor determining the evaluation is the material balance, or summation of values of the pieces. The hand-crafted evaluation function is then optimised by tuning various other positional weighted terms, such as board control and king safety. 
+In the majority of evaluation functions, the most significant factor determining the evaluation is the material balance, or summation of values of the pieces. The hand-crafted evaluation function is then optimised by tuning various other positional weighted terms, such as board control and king safety.
 
 \subsubsection*{Material Value}
 Since laser chess is not widely documented, I have assigned relative strength values to each piece according to my experience playing the game:
@@ -601,7 +607,7 @@ For typical 3D shadow mapping, the standard approach is as follows:
 \item Extract a depth buffer texture from the render
 \item Compare the distance of a pixel from the light to the value stored in the depth texture
 \item If greater, there must be an obstacle in the way reducing the depth map value, therefore that pixel must be in shadow
-\end{enumerate} 
+\end{enumerate}
 
 \noindent To implement shadow casting for my 2D game, I have modified some steps and arrived on the final following workflow:
 
@@ -663,6 +669,7 @@ To emulate this in our game, we could calculate penumbra values with various met
 This method progressively blurs the shadow as the distance from the main shadow (umbra) increases, which results in a convincing estimation while being less computationally intensive.
 
 \subsection{Multithreading}
+\label{sec:design-multithreading}
 In order to fulfill Objective \ref{itm:responsive-objective} of a responsive GUI, I will have to employ multi-threading. Since python runs on a single thread natively, code is exected serially, meaning that a time consuming function such as minimax will prevent the running of another GUI-drawing function until it is finished, hence freezing the program. To overcome this, multi-threading can execute both functions in parallel on different threads, meaning the GUI-drawing thread can run while minimax is being computed, and stay responsive. To pass data between threads, since memory is shared between threads, arrays and queues can be used to store results from threads. The following flowchart shows my chosen approach to keep the GUI responsive while minimax is being computed:
 
 \begin{figure}[H]
@@ -699,7 +706,7 @@ Only a single entity will be required for my program, a table to store games. Th
     created\_dt &  & TIMESTAMP & NOT NULL\\
 
     \bottomrule
-    
+
 \caption{Data table scheme for \textit{games} table}
 \label{tab:games-schema}
 \end{longtable}
@@ -726,11 +733,12 @@ To create the entity, a \lstinline[language=sqlite]{CREATE} statement like the f
 
 \begin{lstlisting}[language=sqlite, frame=lines]
     DROP TABLE games
-\end{lstlisting} 
+\end{lstlisting}
 
 Migrations are a version control system to track incremental changes to the schema of a database. Since there is no popular SQL Python-binding libraries that support migrations, I will just be using a manual solution of creating python files that represent a change in my schema, defining functions that make use of SQL \lstinline[language=sqlite]{ALTER} statements. This allows me to keep track of any changes, and rollback to a previous schema.
 
 \subsubsection*{DML}
+\label{sec:design-dml}
 To insert a new game entry into the table, an \lstinline[language=sqlite]{INSERT} statement can be used with the provided array, where the appropiate arguments are binded to the correct attribute via \lstinline[language=Python]{?} placeholders when run.
 
 \begin{lstlisting}[language=sqlite, frame=lines]
@@ -773,6 +781,7 @@ The start row and end row will be passed as parameters to the placeholders in th
 Security measures such as database file permissions and encryption are common for a SQL database. However, since SQLite is a serverless database, and my program runs without any need for an internet connection, the risk of vulnerabilities is greatly reduced. Additionally, the game data stored on my database is frankly inconsequential, so going to great lengths to protect it wouldn't be to best use of my time. Nevertheless, my SQL Python-binding does support the user of placeholders for parameteres, thereby addressing the risk of SQL injection attacks.
 
 \subsection{Linked Lists}
+\label{sec:linked-lists}
 Another data structure I intend to implement is linked lists. This will be integrated into widgets such as the carousel or multiple icon button widget, since these will contain a variable number of items, and where $O(1)$ random access is not a priority. Since moving back and forth between nodes is a must for a carousel widget, the linked list will be doubly-linked, with each node containing to its previous and next node. The list will also need to loop, with the next pointer of the last node pointing back to the first node, making it a circular linked list.
 
 The following pseudocode outlines the basic functionality of the linked list:
@@ -834,6 +843,7 @@ The following pseudocode outlines the basic functionality of the linked list:
 \end{algorithm}
 
 \subsection{Stack}
+\label{sec:design-stack}
 Being a data structure with LIFO ordering, a stack is used for handling moves in the review screen. Starting with full stack of moves, every move undone pops an element off the stack to be processed. This move is then pushed onto a second stack. Therefore, cycling between moves requires pushing and popping between the two stacks, as shown in Figure \ref{fig:stack-diagram}. The same functionality can be achieved using a queue, but I have chosen to use two stacks as it is simpler to implement, as being able to quickly check the number of items in each will come in handy.
 
 \begin{figure}[H]
@@ -864,12 +874,13 @@ Since there will be multiple screens in my program as demonstrated in Figure \re
     get\_event & Receive pygame events as argument and process them\\
 
     \bottomrule
-    
+
 \caption{Methods for State class}
 \label{tab:state-methods}
 \end{longtable}
 
 \subsubsection*{Widget}
+\label{sec:design-widgets}
 I will be implementing my own widget system for creating the game GUI. This allows me to fully customise all graphical elements on the screen, and also create a resizing system that adheres to Objective \ref{itm:responsive-objective}. The default pygame rescaling options also simply resize elements without accounting for aspect ratios or resolution, and I could not find a library that suits my needs. Having a bespoke GUI implementation also justifies my use of Pygame over other Python frameworks.
 
 I will be utilising the Pygame sprite system for my GUI. All GUI widgets will be subclasses inheriting from the base Widget class, which itself is a subclass of the Pygame sprite class.
@@ -899,7 +910,7 @@ Since Pygame sprites are drawn via a spritegroup class, I will also have to crea
     \multicolumn{2}{l}{* represents getter method / property}\\
 
     \bottomrule
-    
+
 \caption{Methods for Widget class}
 \label{tab:widget-methods}
 \end{longtable}
@@ -925,13 +936,14 @@ I will also employ multiple inheritance to combine different base class function
     \multicolumn{2}{l}{* represents getter method / property}\\
 
     \bottomrule
-    
+
 \caption{Methods for example Pressable class}
 \label{tab:pressable-methods}
 \end{longtable}
 
 \subsubsection*{Game}
-For my game screen, I will be utilising the Model-View-Controller architectural pattern (MVC). MVC defines three interconnected parts, the model processing information, the view showing the information, and the controlling receiving user inputs and connecting the two. This will allow me to decompose the development process into individual parts for the game logic, graphics and user input, speeding up the development process and making testing easier. It also allows me to implement multiple views, for the pause and win screens as well. For MVC, I will have to implement a game model class, a game controller class, and three classes for each view (game, pause, win). Using aggregation, these will be initially connected and handled by the game state class. For the following methods, I have only showed those pertinent to the MVC pattern: 
+\label{sec:design-mvc}
+For my game screen, I will be utilising the Model-View-Controller architectural pattern (MVC). MVC defines three interconnected parts, the model processing information, the view showing the information, and the controlling receiving user inputs and connecting the two. This will allow me to decompose the development process into individual parts for the game logic, graphics and user input, speeding up the development process and making testing easier. It also allows me to implement multiple views, for the pause and win screens as well. For MVC, I will have to implement a game model class, a game controller class, and three classes for each view (game, pause, win). Using aggregation, these will be initially connected and handled by the game state class. For the following methods, I have only showed those pertinent to the MVC pattern:
 
 \begin{longtable}[c]{l|p{0.75\columnwidth}}
     \toprule
@@ -947,7 +959,7 @@ For my game screen, I will be utilising the Model-View-Controller architectural 
     ... & ...\\
 
     \bottomrule
-    
+
 \caption{Methods for Controller class}
 \label{tab:controller-methods}
 \end{longtable}
@@ -966,7 +978,7 @@ For my game screen, I will be utilising the Model-View-Controller architectural 
     ... & ...\\
 
     \bottomrule
-    
+
 \caption{Methods for View class}
 \label{tab:view-methods}
 \end{longtable}
@@ -987,7 +999,7 @@ For my game screen, I will be utilising the Model-View-Controller architectural 
     ... & ...\\
 
     \bottomrule
-    
+
 \caption{Methods for Model class}
 \label{tab:model-methods}
 \end{longtable}

@@ -3,8 +3,8 @@ from data.widgets.reactive_icon_button import ReactiveIconButton
 from data.components.custom_event import CustomEvent
 from data.widgets.bases.circular import _Circular
 from data.widgets.bases.widget import _Widget
-from data.constants import Miscellaneous
-from data.assets import GRAPHICS, SFX
+from data.utils.assets import GRAPHICS, SFX
+from data.utils.enums import Miscellaneous
 
 class Carousel(_Circular, _Widget):
     def __init__(self, event, widgets_dict, **kwargs):
@@ -18,7 +18,7 @@ class Carousel(_Circular, _Widget):
 
         self._relative_max_widget_size = (max_widget_size[0] / self.surface_size[1], max_widget_size[1] / self.surface_size[1])
         self._relative_size = ((max_widget_size[0] + 2 * (self.margin + self.arrow_size[0])) / self.surface_size[1], (max_widget_size[1]) / self.surface_size[1])
-        
+
         self._left_arrow = ReactiveIconButton(
             relative_position=(0, 0),
             relative_size=(0, self.arrow_size[1] / self.surface_size[1]),
@@ -55,19 +55,19 @@ class Carousel(_Circular, _Widget):
         height = self.max_widget_size[1] * 0.75
         width = (GRAPHICS['left_arrow_base'].width / GRAPHICS['left_arrow_base'].height) * height
         return (width, height)
-    
+
     @property
     def size(self):
         return ((self.arrow_size[0] + self.margin) * 2 + self.max_widget_size[0], self.max_widget_size[1])
-    
+
     @property
     def left_arrow_position(self):
         return (0, (self.size[1] - self.arrow_size[1]) / 2)
-    
+
     @property
     def right_arrow_position(self):
         return (self.size[0] - self.arrow_size[0], (self.size[1] - self.arrow_size[1]) / 2)
-    
+
     def set_image(self):
         self.image = pygame.transform.scale(self._empty_surface, self.size)
         self.image.fill(self._fill_colour)
@@ -83,10 +83,10 @@ class Carousel(_Circular, _Widget):
 
         self._right_arrow.set_image()
         self.image.blit(self._right_arrow.image, self.right_arrow_position)
-    
+
     def set_geometry(self):
         super().set_geometry()
-    
+
         self.current_item.set_geometry()
         self._left_arrow.set_geometry()
         self._right_arrow.set_geometry()
@@ -94,7 +94,7 @@ class Carousel(_Circular, _Widget):
         self.current_item.rect.center = self.rect.center
         self._left_arrow.rect.topleft = (self.position[0] + self.left_arrow_position[0], self.position[1] + self.left_arrow_position[1])
         self._right_arrow.rect.topleft = (self.position[0] + self.right_arrow_position[0], self.position[1] + self.right_arrow_position[1])
-    
+
     def set_surface_size(self, new_surface_size):
         super().set_surface_size(new_surface_size)
         self._left_arrow.set_surface_size(new_surface_size)
@@ -102,12 +102,12 @@ class Carousel(_Circular, _Widget):
 
         for item in self._items_dict.values():
             item.set_surface_size(new_surface_size)
-    
+
     def process_event(self, event):
         self.current_item.process_event(event)
         left_arrow_event = self._left_arrow.process_event(event)
         right_arrow_event = self._right_arrow.process_event(event)
-        
+
         if left_arrow_event:
             self.set_previous_item()
             self.current_item.set_surface_size(self._raw_surface_size)
@@ -121,7 +121,7 @@ class Carousel(_Circular, _Widget):
             self.set_geometry()
 
             return CustomEvent(**vars(self._event), data=self.current_key)
-        
+
         elif event.type in [pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP, pygame.MOUSEMOTION]:
             self.set_image()
             self.set_geometry()

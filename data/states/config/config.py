@@ -1,13 +1,15 @@
 import pygame
-from data.constants import ConfigEventType, Colour, ShaderType
 from data.states.config.default_config import default_config
 from data.states.config.widget_dict import CONFIG_WIDGETS
+from data.utils.event_types import ConfigEventType
 from data.managers.logs import initialise_logger
 from data.managers.animation import animation
+from data.utils.constants import ShaderType
+from data.utils.assets import MUSIC, SFX
 from data.managers.window import window
 from data.managers.audio import audio
 from data.managers.theme import theme
-from data.assets import MUSIC, SFX
+from data.utils.enums import Colour
 from data.control import _State
 from random import randint
 
@@ -16,18 +18,18 @@ logger = initialise_logger(__name__)
 class Config(_State):
     def __init__(self):
         super().__init__()
-        
+
         self._config = None
         self._valid_fen = True
         self._selected_preset = None
-    
+
     def cleanup(self):
         super().cleanup()
-        
+
         window.clear_apply_arguments(ShaderType.BLOOM)
 
         return self._config
-    
+
     def startup(self, persist=None):
         super().startup(CONFIG_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
         window.set_apply_arguments(ShaderType.BLOOM, highlight_colours=[(pygame.Color('0x95e0cc')).rgb, pygame.Color('0xf14e52').rgb], colour_intensity=0.9)
@@ -39,7 +41,7 @@ class Config(_State):
 
         if persist:
             self._config['FEN_STRING'] = persist
-        
+
         self.set_fen_string(self._config['FEN_STRING'])
         self.toggle_pvc(self._config['CPU_ENABLED'])
         self.set_active_colour(self._config['COLOUR'])
@@ -51,7 +53,7 @@ class Config(_State):
             self.remove_depth_picker()
 
         self.draw()
-    
+
     def create_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.8))
         # CONFIG_WIDGETS['start_button'].set_image()
@@ -59,13 +61,13 @@ class Config(_State):
         CONFIG_WIDGETS['cpu_depth_carousel'].set_image()
         CONFIG_WIDGETS['cpu_depth_carousel'].set_geometry()
         self._widget_group.add(CONFIG_WIDGETS['cpu_depth_carousel'])
-    
+
     def remove_depth_picker(self):
         # CONFIG_WIDGETS['start_button'].update_relative_position((0.5, 0.7))
         # CONFIG_WIDGETS['start_button'].set_image()
-        
+
         CONFIG_WIDGETS['cpu_depth_carousel'].kill()
-    
+
     def toggle_pvc(self, pvc_enabled):
         if pvc_enabled:
             CONFIG_WIDGETS['pvc_button'].set_locked(True)
@@ -73,14 +75,14 @@ class Config(_State):
         else:
             CONFIG_WIDGETS['pvp_button'].set_locked(True)
             CONFIG_WIDGETS['pvc_button'].set_locked(False)
-        
+
         self._config['CPU_ENABLED'] = pvc_enabled
-        
+
         if self._config['CPU_ENABLED']:
             self.create_depth_picker()
         else:
             self.remove_depth_picker()
-    
+
     def set_fen_string(self, new_fen_string):
         CONFIG_WIDGETS['fen_string_input'].set_text(new_fen_string)
         self._config['FEN_STRING'] = new_fen_string
@@ -95,7 +97,7 @@ class Config(_State):
                 self.set_active_colour(Colour.RED)
             else:
                 self.set_active_colour(Colour.BLUE)
-            
+
             self._valid_fen = True
         except:
             CONFIG_WIDGETS['board_thumbnail'].initialise_board('')
@@ -106,9 +108,9 @@ class Config(_State):
 
             audio.play_sfx(SFX['error_1'])
             audio.play_sfx(SFX['error_2'])
-            
+
             self._valid_fen = False
-    
+
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
@@ -149,21 +151,21 @@ class Config(_State):
 
             case ConfigEventType.CPU_DEPTH_CLICK:
                 self._config['CPU_DEPTH'] = int(widget_event.data)
-            
+
             case ConfigEventType.PRESET_CLICK:
                 self.set_fen_string(widget_event.fen_string)
-            
+
             case ConfigEventType.SETUP_CLICK:
                 self.next = 'editor'
                 self.done = True
-            
+
             case ConfigEventType.COLOUR_CLICK:
                 self.set_active_colour(widget_event.data.get_flipped_colour())
-            
+
             case ConfigEventType.HELP_CLICK:
                 self._widget_group.add(CONFIG_WIDGETS['help'])
                 self._widget_group.handle_resize(window.size)
-    
+
     def set_preset_overlay(self, fen_string):
         fen_string_widget_map = {
             'sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b': 'preset_1',
@@ -175,28 +177,28 @@ class Config(_State):
             self._selected_preset = CONFIG_WIDGETS[fen_string_widget_map[fen_string]]
         else:
             self._selected_preset = None
-    
+
     def set_active_colour(self, colour):
         if self._config['COLOUR'] != colour:
             CONFIG_WIDGETS['to_move_button'].set_next_icon()
 
         self._config['COLOUR'] = colour
-        
+
         if colour == Colour.BLUE:
             CONFIG_WIDGETS['to_move_text'].set_text('BLUE TO MOVE')
         elif colour == Colour.RED:
             CONFIG_WIDGETS['to_move_text'].set_text('RED TO MOVE')
-        
+
         if self._valid_fen:
             self._config['FEN_STRING'] = self._config['FEN_STRING'][:-1] + colour.name[0].lower()
             CONFIG_WIDGETS['fen_string_input'].set_text(self._config['FEN_STRING'])
-    
+
     def draw(self):
         self._widget_group.draw()
 
         if self._selected_preset:
             pygame.draw.rect(window.screen, theme['borderPrimary'], (*self._selected_preset.position, *self._selected_preset.size), width=int(theme['borderWidth']))
-    
+
     def update(self, **kwargs):
         self._widget_group.update()
         super().update(**kwargs)

@@ -1,0 +1,61 @@
+import pygame
+from data.utils.enums import ShaderType, WidgetState
+
+BG_COLOUR = (0, 0, 0)
+PAUSE_COLOUR = (50, 50, 50, 128)
+OVERLAY_COLOUR_LIGHT = (*pygame.Color('0xf14e52').rgb, 128)
+OVERLAY_COLOUR_DARK = (*pygame.Color('0x9b222b').rgb, 192)
+SCREEN_SIZE = (1200, 600)
+# SCREEN_SIZE = (600, 600)
+SCREEN_FLAGS = pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE | pygame.OPENGL
+STARTING_SQUARE_SIZE = (SCREEN_SIZE[1] * 0.64) / 8 # Board height divded by 8
+EMPTY_BB = 0
+A_FILE_MASK = 0b11111111101111111110111111111011111111101111111110111111111011111111101111111110
+J_FILE_MASK = 0b01111111110111111111011111111101111111110111111111011111111101111111110111111111
+ONE_RANK_MASK = 0b11111111111111111111111111111111111111111111111111111111111111111111110000000000
+EIGHT_RANK_MASK = 0b00000000001111111111111111111111111111111111111111111111111111111111111111111111
+TEST_MASK = 0b00000000100000000010000000000000000000000000000000000000000001000000000100000000
+GAMES_PER_PAGE = 10
+
+SHADER_MAP = {
+    'default': [
+        ShaderType.BLOOM
+    ],
+    'retro': [
+        ShaderType.CRT
+    ],
+    'really_retro': [
+        ShaderType.CRT,
+        ShaderType.GRAYSCALE
+    ],
+}
+
+BLUE_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x1c2638', '0x23495d', '0x39707a', '0x95e0cc'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x23495d', '0x39707a', '0x95e0cc'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x1c2638', '0x23495d', '0x39707a']
+}
+
+INPUT_COLOURS = {
+    WidgetState.BASE: ['0x1c2638', '0x39707a', '0x23495d', '0x95e0cc'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x39707a', '0x23495d', '0x95e0cc'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x23495d', '0x1c2638', '0x39707a']
+}
+
+RED_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x000000', '0x1c2638', '0x9b222b', '0xf14e52'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x1c2638', '0x9b222b', '0xf14e52'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x23495d', '0xf14e52', '0x95e0cc']
+}
+
+LOCKED_RED_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x000000', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x1c2638', '0x23495d', '0xf14e52']
+}
+
+LOCKED_BLUE_BUTTON_COLOURS = {
+    WidgetState.BASE: ['0x000000', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.HOVER: ['0xdaf2e9', '0x000000', '0x1c2638', '0x23495d'],
+    WidgetState.PRESS: ['0xdaf2e9', '0x1c2638', '0x23495d', '0x39707a']
+}

@@ -1,18 +1,19 @@
 import pygame
-from data.constants import GameEventType, Colour, StatusText, Miscellaneous, ShaderType
+from data.utils.enums import Colour, StatusText, Miscellaneous, ShaderType
 from data.states.game.components.overlay_draw import OverlayDraw
 from data.states.game.components.capture_draw import CaptureDraw
 from data.states.game.components.piece_group import PieceGroup
 from data.states.game.components.laser_draw import LaserDraw
 from data.states.game.components.father import DragAndDrop
-from data.utils.bitboard_helpers import bitboard_to_coords
-from data.utils.board_helpers import screen_pos_to_coords
+from data.helpers.bitboard_helpers import bitboard_to_coords
+from data.helpers.board_helpers import screen_pos_to_coords
 from data.states.game.widget_dict import GAME_WIDGETS
 from data.components.custom_event import CustomEvent
 from data.components.widget_group import WidgetGroup
+from data.utils.event_types import GameEventType
 from data.managers.window import window
 from data.managers.audio import audio
-from data.assets import SFX
+from data.utils.assets import SFX
 
 class GameView:
     def __init__(self, model):
@@ -41,11 +42,11 @@ class GameView:
         self.handle_update_pieces()
 
         self.set_status_text(StatusText.PLAYER_MOVE)
-    
+
     @property
     def board_position(self):
         return GAME_WIDGETS['chessboard'].position
-    
+
     @property
     def board_size(self):
         return GAME_WIDGETS['chessboard'].size
@@ -53,7 +54,7 @@ class GameView:
     @property
     def square_size(self):
         return self.board_size[0] / 10
-    
+
     def initialise_widgets(self):
         """
         Run methods on widgets stored in GAME_WIDGETS dictionary to reset them.
@@ -64,12 +65,12 @@ class GameView:
         GAME_WIDGETS['tutorial'].kill()
 
         GAME_WIDGETS['scroll_area'].set_image()
-        
+
         GAME_WIDGETS['chessboard'].refresh_board()
 
         GAME_WIDGETS['blue_piece_display'].reset_piece_list()
         GAME_WIDGETS['red_piece_display'].reset_piece_list()
-    
+
     def set_status_text(self, status):
         """
         Sets text on status text widget.
@@ -89,7 +90,7 @@ class GameView:
                     GAME_WIDGETS['status_text'].set_text(f"{self._model.states['WINNER'].name} won!")
             case StatusText.DRAW:
                 GAME_WIDGETS['status_text'].set_text("Game is a draw! Boring...")
-    
+
     def handle_resize(self):
         """
         Handles resizing of the window.
@@ -103,7 +104,7 @@ class GameView:
 
         if self._laser_draw.firing:
             self.update_laser_mask()
-    
+
     def handle_update_pieces(self, event=None):
         """
         Callback function to update pieces after move.
@@ -126,14 +127,14 @@ class GameView:
             self.set_status_text(StatusText.PLAYER_MOVE)
         else:
             self.set_status_text(StatusText.CPU_MOVE)
-        
+
         if self._model.states['TIME_ENABLED']:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
 
         if self._model.states['WINNER'] is not None:
             self.handle_game_end()
-    
+
     def handle_game_end(self, play_sfx=True):
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
@@ -142,12 +143,12 @@ class GameView:
             self.set_status_text(StatusText.DRAW)
         else:
             self.set_status_text(StatusText.WIN)
-        
+
         if play_sfx:
             audio.play_sfx(SFX['sphinx_destroy_1'])
             audio.play_sfx(SFX['sphinx_destroy_2'])
             audio.play_sfx(SFX['sphinx_destroy_3'])
-    
+
     def handle_set_laser(self, event):
         """
         Callback function to draw laser after move.
@@ -179,7 +180,7 @@ class GameView:
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
         self.update_laser_mask()
-    
+
     def handle_pause(self, event=None):
         """
         Callback function for pausing timer.
@@ -189,7 +190,7 @@ class GameView:
         """
         is_active = not(self._model.states['PAUSED'])
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'], is_active)
-    
+
     def initialise_timers(self):
         """
         Initialises both timers with the correct amount of time and starts the timer for the active colour.
@@ -215,7 +216,7 @@ class GameView:
             GAME_WIDGETS['blue_timer'].set_active(is_active)
         elif colour == Colour.RED:
             GAME_WIDGETS['red_timer'].set_active(is_active)
-    
+
     def update_laser_mask(self):
         """
         Uses pygame.mask to create a mask for the pieces.
@@ -227,7 +228,7 @@ class GameView:
         mask_surface = mask.to_surface(unsetcolor=(0, 0, 0, 255), setcolor=(255, 0, 0, 255))
 
         window.set_apply_arguments(ShaderType.RAYS, occlusion=mask_surface)
-    
+
     def draw(self):
         """
         Draws GUI and pieces onto the screen.
@@ -240,7 +241,7 @@ class GameView:
 
         if self._hide_pieces is False:
             self._piece_group.draw(window.screen)
-            
+
         self._laser_draw.draw(window.screen)
         self._drag_and_drop.draw(window.screen)
         self._capture_draw.draw(window.screen)
@@ -260,7 +261,7 @@ class GameView:
             self._event_to_func_map.get(event.type)(event)
         except:
             raise KeyError('Event type not recognized in Game View (GameView.process_model_event):', event.type)
-    
+
     def set_overlay_coords(self, available_coords_list, selected_coord):
         """
         Set board coordinates for potential moves overlay.
@@ -272,7 +273,7 @@ class GameView:
         self._selected_coords = selected_coord
         self._overlay_draw.set_selected_coords(selected_coord)
         self._overlay_draw.set_available_coords(available_coords_list)
-    
+
     def get_selected_coords(self):
         return self._selected_coords
 
@@ -286,7 +287,7 @@ class GameView:
             rotation (Rotation): Rotation of dragged piece.
         """
         self._drag_and_drop.set_dragged_piece(piece, colour, rotation)
-    
+
     def remove_dragged_piece(self):
         """
         Stops drawing dragged piece when user lets go of piece.
@@ -317,14 +318,14 @@ class GameView:
                 piece, colour, rotation = self._drag_and_drop.get_dragged_info()
                 piece_dragged = self._drag_and_drop.remove_dragged_piece()
                 return CustomEvent.create_event(GameEventType.PIECE_DROP, coords=clicked_coords, piece=piece, colour=colour, rotation=rotation, remove_overlay=piece_dragged)
-    
+
     def add_help_screen(self):
         """
         Draw help overlay when player clicks on the help button.
         """
         self._widget_group.add(GAME_WIDGETS['help'])
         self._widget_group.handle_resize(window.size)
-    
+
     def add_tutorial_screen(self):
         """
         Draw tutorial overlay when player clicks on the tutorial button.
@@ -332,10 +333,10 @@ class GameView:
         self._widget_group.add(GAME_WIDGETS['tutorial'])
         self._widget_group.handle_resize(window.size)
         self._hide_pieces = True
-            
+
     def remove_help_screen(self):
         GAME_WIDGETS['help'].kill()
-            
+
     def remove_tutorial_screen(self):
         GAME_WIDGETS['tutorial'].kill()
         self._hide_pieces = False

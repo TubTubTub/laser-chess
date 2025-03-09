@@ -1,14 +1,15 @@
 import pygame
 from random import randint
-from data.utils.data_helpers import get_default_settings, get_user_settings, update_user_settings
-from data.constants import SettingsEventType, WidgetState, ShaderType, SHADER_MAP
+from data.helpers.data_helpers import get_default_settings, get_user_settings, update_user_settings
+from data.utils.constants import WidgetState, ShaderType, SHADER_MAP
 from data.states.settings.widget_dict import SETTINGS_WIDGETS
+from data.utils.event_types import SettingsEventType
 from data.managers.logs import initialise_logger
 from data.managers.window import window
 from data.managers.audio import audio
 from data.widgets import ColourPicker
+from data.utils.assets import MUSIC
 from data.control import _State
-from data.assets import MUSIC
 
 logger = initialise_logger(__name__)
 
@@ -18,14 +19,14 @@ class Settings(_State):
 
         self._colour_picker = None
         self._settings = None
-    
+
     def cleanup(self):
         super().cleanup()
 
         update_user_settings(self._settings)
 
         return None
-    
+
     def startup(self, persist=None):
         super().startup(SETTINGS_WIDGETS, music=MUSIC[f'menu_{randint(1, 3)}'])
 
@@ -34,7 +35,7 @@ class Settings(_State):
         self.reload_settings()
 
         self.draw()
-    
+
     def create_colour_picker(self, mouse_pos, button_type):
         if button_type == SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK:
             selected_colour = self._settings['primaryBoardColour']
@@ -50,13 +51,13 @@ class Settings(_State):
             event_type=event_type
         )
         self._widget_group.add(self._colour_picker)
-    
+
     def remove_colour_picker(self):
         self._colour_picker.kill()
-    
+
     def reload_display_mode(self):
         relative_mouse_pos = (pygame.mouse.get_pos()[0] / window.size[0], pygame.mouse.get_pos()[1] / window.size[1])
-        
+
         if self._settings['displayMode'] == 'fullscreen':
             window.set_fullscreen(desktop=True)
             window.handle_resize()
@@ -65,18 +66,18 @@ class Settings(_State):
             window.set_windowed()
             window.handle_resize()
             window.restore()
-        
+
         self._widget_group.handle_resize(window.size)
 
         new_mouse_pos = (relative_mouse_pos[0] * window.size[0], relative_mouse_pos[1] * window.size[1])
         pygame.mouse.set_pos(new_mouse_pos)
-    
+
     def reload_shaders(self):
         window.clear_all_effects()
 
         for shader_type in SHADER_MAP[self._settings['shader']]:
             window.set_effect(shader_type)
-    
+
     def reload_settings(self):
         SETTINGS_WIDGETS['primary_colour_button'].initialise_new_colours(self._settings['primaryBoardColour'])
         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(self._settings['secondaryBoardColour'])
@@ -91,7 +92,7 @@ class Settings(_State):
 
         self.reload_shaders()
         self.reload_display_mode()
-    
+
     def get_event(self, event):
         widget_event = self._widget_group.process_event(event)
 
@@ -99,11 +100,11 @@ class Settings(_State):
             if event.type == pygame.MOUSEBUTTONDOWN and self._colour_picker:
                 self.remove_colour_picker()
             return
-            
+
         match widget_event.type:
             case SettingsEventType.VOLUME_SLIDER_SLIDE:
                 return
-            
+
             case SettingsEventType.VOLUME_SLIDER_CLICK:
                 if widget_event.volume_type == 'music':
                     audio.set_music_volume(widget_event.volume)
@@ -114,32 +115,32 @@ class Settings(_State):
 
             case SettingsEventType.DROPDOWN_CLICK:
                 selected_word = SETTINGS_WIDGETS['display_mode_dropdown'].get_selected_word()
-            
+
                 if selected_word is None or selected_word == self._settings['displayMode']:
                     return
-                
+
                 self._settings['displayMode'] = selected_word
-                
+
                 self.reload_display_mode()
 
             case SettingsEventType.MENU_CLICK:
                 self.next = 'menu'
                 self.done = True
-            
+
             case SettingsEventType.RESET_DEFAULT:
                 self._settings = get_default_settings()
                 self.reload_settings()
-            
+
             case SettingsEventType.RESET_USER:
                 self._settings = get_user_settings()
                 self.reload_settings()
-            
+
             case SettingsEventType.PRIMARY_COLOUR_BUTTON_CLICK | SettingsEventType.SECONDARY_COLOUR_BUTTON_CLICK:
                 if self._colour_picker:
                     self.remove_colour_picker()
 
                 self.create_colour_picker(event.pos, widget_event.type)
-            
+
             case SettingsEventType.PRIMARY_COLOUR_PICKER_CLICK | SettingsEventType.SECONDARY_COLOUR_PICKER_CLICK:
                 if widget_event.colour:
                     r, g, b = widget_event.colour.rgb
@@ -153,7 +154,7 @@ class Settings(_State):
                         SETTINGS_WIDGETS['secondary_colour_button'].initialise_new_colours(widget_event.colour)
                         SETTINGS_WIDGETS['secondary_colour_button'].set_state_colour(WidgetState.BASE)
                         self._settings['secondaryBoardColour'] = hex_colour
-            
+
             case SettingsEventType.SHADER_PICKER_CLICK:
                 self._settings['shader'] = widget_event.data
                 self.reload_shaders()
@@ -161,9 +162,9 @@ class Settings(_State):
             case SettingsEventType.OPENGL_CLICK:
                 self._settings['opengl'] = widget_event.toggled
                 self.reload_shaders()
-            
+
             case SettingsEventType.PARTICLES_CLICK:
                 self._settings['particles'] = widget_event.toggled
-    
+
     def draw(self):
         self._widget_group.draw()

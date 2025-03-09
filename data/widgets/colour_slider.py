@@ -1,9 +1,9 @@
 import pygame
-from data.utils.widget_helpers import create_slider_gradient
-from data.utils.asset_helpers import smoothscale_and_cache
+from data.helpers.widget_helpers import create_slider_gradient
+from data.helpers.asset_helpers import smoothscale_and_cache
 from data.widgets.slider_thumb import _SliderThumb
 from data.widgets.bases.widget import _Widget
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 
 class _ColourSlider(_Widget):
     def __init__(self, relative_width, **kwargs):
@@ -17,25 +17,25 @@ class _ColourSlider(_Widget):
 
         self._gradient_surface = create_slider_gradient(self.gradient_size, self.border_width, self._border_colour)
         self._empty_surface = pygame.Surface(self.size, pygame.SRCALPHA)
-    
+
     @property
     def gradient_size(self):
         return (self.size[0] - 2 * (self.size[1] / 2), self.size[1] / 2)
-    
+
     @property
     def gradient_position(self):
         return (self.size[1] / 2, self.size[1] / 4)
-    
+
     @property
     def thumb_position(self):
         return (self.gradient_size[0] * self._selected_percent, 0)
-    
+
     @property
     def selected_colour(self):
         colour = pygame.Color(0)
         colour.hsva = (int(self._selected_percent * 360), 100, 100, 100)
         return colour
-    
+
     def calculate_gradient_percent(self, mouse_pos):
         """
         Calculate what percentage slider thumb is at based on change in mouse position.
@@ -48,7 +48,7 @@ class _ColourSlider(_Widget):
         """
         if self._last_mouse_x is None:
             return
-        
+
         x_change = (mouse_pos[0] - self._last_mouse_x) / (self.gradient_size[0] - 2 * self.border_width)
         return max(0, min(self._selected_percent + x_change, 1))
 
@@ -76,7 +76,7 @@ class _ColourSlider(_Widget):
         hue = colour.hsva[0]
         self._selected_percent = hue / 360
         self.set_image()
-    
+
     def set_image(self):
         """
         Draws colour slider to widget image.
@@ -94,7 +94,7 @@ class _ColourSlider(_Widget):
 
         thumb_surface = self._thumb.get_surface()
         self.image.blit(thumb_surface, self.thumb_position)
-    
+
     def process_event(self, event):
         """
         Processes Pygame events.
@@ -107,7 +107,7 @@ class _ColourSlider(_Widget):
         """
         if event.type not in [pygame.MOUSEMOTION, pygame.MOUSEBUTTONDOWN, pygame.MOUSEBUTTONUP]:
             return
-        
+
         # Gets widget state before and after event is processed by slider thumb
         before_state = self._thumb.state
         self._thumb.process_event(event)

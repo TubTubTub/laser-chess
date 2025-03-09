@@ -1,5 +1,5 @@
 from data.shaders.protocol import SMProtocol
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 
 BLUR_ITERATIONS = 4
 
@@ -11,7 +11,7 @@ class _Blur:
 
         shader_manager.create_framebuffer("blurPing")
         shader_manager.create_framebuffer("blurPong")
-    
+
     def apply(self, texture):
         """
         Applies Gaussian blur to a given texture.

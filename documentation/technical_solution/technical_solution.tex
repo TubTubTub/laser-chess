@@ -53,16 +53,16 @@ These files provide useful functions for different classes.
 
 \label{sec:asset-helpers}
 \noindent\verb|asset_helpers.py (Functions used for assets and pygame Surfaces)|
-\lstinputlisting[label=src:../../data/utils/asset_helpers.py]{../../data/utils/asset_helpers.py}
+\lstinputlisting[label=src:../../data/helpers/asset_helpers.py]{../../data/helpers/asset_helpers.py}
 
 \bigskip
 \label{sec:data-helpers}
 \noindent\verb|data_helpers.py (Functions used for file handling and JSON parsing)|
-\lstinputlisting[label=src:../../data/utils/data_helpers.py]{../../data/utils/data_helpers.py}
+\lstinputlisting[label=src:../../data/helpers/data_helpers.py]{../../data/helpers/data_helpers.py}
 
 \bigskip
 \noindent\verb|widget_helpers.py (Files used for creating widgets)|
-\lstinputlisting[label=src:../../data/utils/widget_helpers.py]{../../data/utils/widget_helpers.py}
+\lstinputlisting[label=src:../../data/helpers/widget_helpers.py]{../../data/helpers/widget_helpers.py}
 
 \subsection{Theme}
 \label{sec:theme}
@@ -101,14 +101,14 @@ Widget bases are used as the base classes for for my widgets system. They contai
 
 \subsubsection*{Circular Linked List}
 \label{sec:linked-list}
-The \lstinline{CircuarLinkedList} class implements a \textbf{circular doubly-linked list}. Used for the internal logic of the \lstinline{Circular} class.
+As described in Section \ref{sec:linked-lists}, the \lstinline{CircuarLinkedList} class implements a \textbf{circular doubly-linked list}. Used for the internal logic of the \lstinline{Circular} class.
 
 \noindent\verb|circular_linked_list.py|
 \lstinputlisting[label=src:../../data/components/circular_linked_list.py]{../../data/components/circular_linked_list.py}
 
 \subsection{Widgets}
 \label{sec:widgets}
-Each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
+As described in Section \ref{sec:design-widgets}, each state contains a \lstinline{WIDGET_DICT} map, which contains and initialises each widget with their own attributes, and provides references to run methods on them in the state code. Each \lstinline{WIDGET_DICT} is passed into a \lstinline{WidgetGroup} object, which is responsible for drawing, resizing and handling all widgets for the current state.
 Below is a list of all the widgets I have implemented (See Section \ref{src:widgets}):
 
 \begin{multicols}{3}
@@ -177,19 +177,19 @@ The \lstinline{CustomEvent} class is used to pass data between states and widget
 
 \section{Game}
 \subsection{Model}
-This is the model class for my implementation of a \textbf{MVC architecture} for the game screen. It is responsible for processing user inputs through the game controller, processing the board and CPU, and sending information through the view class.
+As described in Section \ref{sec:design-mvc}, this is the model class for my implementation of a \textbf{MVC architecture} for the game screen. It is responsible for processing user inputs through the game controller, processing the board and CPU, and sending information through the view class.
 
 \noindent\verb|game_model.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_model.py]{../../data/states/game/mvc/game_model.py}
 
 \subsection{View}
-The view class is responsible for displaying changes to information regarding the gameplay. The \lstinline{process_model_event} procedure is registered with the model class, which executes it whenever the display needs to be updated (e.g. piece move), and the appropiate handling function within the view class is called by mapping the event type to the corresponding handler function.
+As described in Section \ref{sec:design-mvc}, the view class is responsible for displaying changes to information regarding the gameplay. The \lstinline{process_model_event} procedure is registered with the model class, which executes it whenever the display needs to be updated (e.g. piece move), and the appropiate handling function within the view class is called by mapping the event type to the corresponding handler function.
 
 \noindent\verb|game_view.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_view.py]{../../data/states/game/mvc/game_view.py}
 
 \subsection{Controller}
-The controller class is responsible for receiving external input through Pygame events, and processing them via the model and view classes.
+As described in Section \ref{sec:design-mvc}, the controller class is responsible for receiving external input through Pygame events, and processing them via the model and view classes.
 
 \noindent\verb|game_controller.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_controller.py]{../../data/states/game/mvc/game_controller.py}
@@ -202,7 +202,7 @@ The \lstinline{Board} class implements the Laser Chess board, and is responsible
 
 \subsection{Bitboards}
 \label{sec:bitboards}
-The \lstinline{BitboardCollection} class uses helper functions found in \lstinline{bitboard_helpers.py} such as \lstinline{pop_count}, to initialise and manage bitboard transformations.
+As described in Section \ref{sec:design-bitboards}, the \lstinline{BitboardCollection} class uses helper functions found in \lstinline{bitboard_helpers.py} such as \lstinline{pop_count}, to initialise and manage bitboard transformations.
 
 \noindent\verb|bitboard_collection.py|
 \lstinputlisting[label=src:../../data/states/game/components/bitboard_collection.py]{../../data/states/game/components/bitboard_collection.py}
@@ -216,38 +216,40 @@ The method \lstinline{find_move} is called by the CPU thread. \lstinline{search}
 
 \subsection{Minimax}
 \label{sec:minimax}
-The minimax engine uses \textbf{DFS} to traverse the game tree and evaluate node accordingly, by \textbf{recursively} calling the \lstinline{search} function.
+As described in Section \ref{sec:design-minimax}, the minimax engine uses \textbf{DFS} to traverse the game tree and evaluate node accordingly, by \textbf{recursively} calling the \lstinline{search} function.
 
 \noindent\verb|minimax.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/engines/minimax.py]{../../data/states/game/cpu/engines/minimax.py}
 
 \subsection{Alpha-beta Pruning}
 \label{sec:alpha-beta}
+As described in Section \ref{sec:design-ab}, the \lstinline{ABMinimaxCPU} class introduces pruning to reduce the number of nodes evaluated during a minimax search.
+
 \noindent\verb|alpha_beta.py|
-\lstinputlisting[lastline=94, label=src:../../data/states/game/cpu/engines/alpha_beta.py]{../../data/states/game/cpu/engines/alpha_beta.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/engines/alpha_beta.py]{../../data/states/game/cpu/engines/alpha_beta.py}
 
 \subsection{Transposition Table}
 \label{sec:transposition-table}
-For adding transposition table functionality to my other engine classes, I have decided to use a mixin design architecture. This allows me to \textbf{reuse code} by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
+For adding transposition table functionality to my other engine classes, as described in Section \ref{sec:design-cache}, I have decided to use a mixin design architecture. This allows me to \textbf{reuse code} by adding mixins to many different classes, and inject additional transposition table methods and functionality into other engines.
 
 \noindent\verb|transposition_table.py|
-\lstinputlisting[lastline=59, label=src:../../data/states/game/cpu/engines/transposition_table.py]{../../data/states/game/cpu/engines/transposition_table.py}
+\lstinputlisting[label=src:../../data/states/game/cpu/engines/transposition_table.py]{../../data/states/game/cpu/engines/transposition_table.py}
 
 \subsection{Iterative Deepening}
 \label{sec:iterative-deepening}
-The depth for each search is increased for each iteration through the for loop, with the best move found on one depth being used as the starting move for the following depth.
+As described in \ref{sec:design-deepening}, the depth for each search is increased for each iteration through the for loop, with the best move found on one depth being used as the starting move for the following depth.
 
 \noindent\verb|iterative_deepening.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/engines/iterative_deepening.py]{../../data/states/game/cpu/engines/iterative_deepening.py}
 
 \subsection{Evaluator}
-I have opted to separate the evaluation class into separate methods for each aspect of the evaluation, and amalgamating all of them to form one unified \lstinline{evaluate} function, as this allows me to debug each function easily.
+As described in Section \ref{sec:design-evaluation}, I have opted to separate the evaluation class into separate methods for each aspect of the evaluation, and amalgamating all of them to form one unified \lstinline{evaluate} function, as this allows me to debug each function easily.
 
 \noindent\verb|evaluator.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/evaluator.py]{../../data/states/game/cpu/evaluator.py}
 
 \subsection{Multithreading}
-When the game starts, a \lstinline{CPUThread} object is created with the selected CPU. The \lstinline{start} method is called whenever it is the CPU's turn, passing the board as an argument to work on. Each run is also given a random ID, to ensure that only the right search is able to be forcibly terminated early. Using \textbf{multithreading} allows the game MVC to continue running smoothly while the CPU calculates its moves on a separate thread.
+As described in Section \ref{sec:design-multithreading}, when the game starts, a \lstinline{CPUThread} object is created with the selected CPU. The \lstinline{start} method is called whenever it is the CPU's turn, passing the board as an argument to work on. Each run is also given a random ID, to ensure that only the right search is able to be forcibly terminated early. Using \textbf{multithreading} allows the game MVC to continue running smoothly while the CPU calculates its moves on a separate thread.
 
 \noindent\verb|cpu_thread.py|
 \label{sec:cpu-thread}
@@ -255,13 +257,13 @@ When the game starts, a \lstinline{CPUThread} object is created with the selecte
 
 \subsection{Zobrist Hashing}
 \label{sec:zobrist-hashing}
-The \lstinline{ZobristHasher} class provides methods to successivly \textbf{hash} a given board for every move played, with the initial hash being generated in the \lstinline{Board} class.
+As described in Section \ref{sec:design-cache}, the \lstinline{ZobristHasher} class provides methods to successivly \textbf{hash} a given board for every move played, with the initial hash being generated in the \lstinline{Board} class.
 
 \noindent\verb|zobrist_hasher.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/zobrist_hasher.py]{../../data/states/game/cpu/zobrist_hasher.py}
 
 \subsection{Cache}
-The \lstinline{TranspositionTable} class maintains an internal hash map to store already evaluated board positions. Since I have chosen to use a dictionary instead of an array, the Zobrist hash for the board can be used as the keys for the dictionary as is, as it doesn't correspond to the index position as will be the case if I use an array.
+As described in Section \ref{sec:design-cache}, the \lstinline{TranspositionTable} class maintains an internal hash map to store already evaluated board positions. Since I have chosen to use a dictionary instead of an array, the Zobrist hash for the board can be used as the keys for the dictionary as is, as it doesn't correspond to the index position as will be the case if I use an array.
 
 \noindent\verb|transposition_table.py|
 \lstinputlisting[label=src:../../data/states/game/cpu/transposition_table.py]{../../data/states/game/cpu/transposition_table.py}
@@ -273,7 +275,7 @@ The \lstinline{startup} method is called when switched to a new state, and \lsti
 
 \subsection{Review}
 \label{sec:review}
-The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games.
+The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games. All moves are stored in two stacks, as described in Section \ref{sec:design-stack}, and exchanged using \lstinline{pop} and \lstinline{append} (push) methods.
 
 \noindent\verb|review.py|
 \lstinputlisting[label=src:../../data/states/review/review.py]{../../data/states/review/review.py}
@@ -295,9 +297,9 @@ Using the \lstinline{ALTER} command allows me to rename table columns.
 
 \subsection{DML}
 \label{sec:dml}
-This file provides functions to help modify the database, with \textbf{Aggregate} and \textbf{Window} commands used to retrieve the number of rows and sort them to be returned.
+As described in Section \ref{sec:design-dml}, this file provides functions to help modify the database, with \textbf{Aggregate} and \textbf{Window} commands used to retrieve the number of rows and sort them to be returned.
 \noindent\verb|database_helpers.py|
-\lstinputlisting[label=src:../../data/utils/database_helpers.py]{../../data/utils/database_helpers.py}
+\lstinputlisting[label=src:../../data/helpers/database_helpers.py]{../../data/helpers/database_helpers.py}
 
 \section{Shaders}
 \subsection{Shader Manager}
@@ -338,7 +340,7 @@ The \lstinline{Bloom} class combines the two operations, taking the highlighted 
 
 \subsection{Rays}
 \label{sec:shader-rays}
-The \lstinline{Ray} shader is applied whenever the sphinx shoots a laser. It simulates a 2D light source, providing pixel perfect shadows, through the shadow mapping technique outlined in Section \ref{sec:design-shadow}. The laser demo seen on the main menu screen is also achieved using the Ray shader, by clamping the angle at which it emits light to a narrower range.
+As described in Section \ref{sec:design-shadow}, the \lstinline{Ray} shader is applied whenever the sphinx shoots a laser. It simulates a 2D light source, providing pixel perfect shadows, through the shadow mapping technique outlined in Section \ref{sec:design-shadow}. The laser demo seen on the main menu screen is also achieved using the Ray shader, by clamping the angle at which it emits light to a narrower range.
 
 \subsubsection*{Occlusion}
 The occlusion fragment shader processes all pixels with a given colour value as being occluding.

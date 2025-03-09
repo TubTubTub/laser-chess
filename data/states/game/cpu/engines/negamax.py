@@ -2,7 +2,7 @@ from random import choice
 from data.states.game.cpu.engines.transposition_table import TranspositionTableMixin
 from data.states.game.cpu.engines.iterative_deepening import IterativeDeepeningMixin
 from data.states.game.cpu.base import BaseCPU
-from data.constants import Score
+from data.utils.enums import Score
 
 class NegamaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=False):
@@ -15,13 +15,13 @@ class NegamaxCPU(BaseCPU):
 
         if self._verbose:
             self.print_stats(best_score, best_move)
-            
+
         self._callback(best_move)
 
     def search(self, board, depth, stop_event, moves=None):
         if (base_case := super().search(board, depth, stop_event, absolute=True)):
             return base_case
-        
+
         best_move = None
         best_score = -Score.INFINITE
 
@@ -36,7 +36,7 @@ class NegamaxCPU(BaseCPU):
                 best_move = move
             elif new_score == best_score:
                 best_move = choice([best_move, move])
-            
+
             board.undo_move(move, laser_result)
 
         return best_score, best_move
@@ -45,7 +45,7 @@ class ABNegamaxCPU(BaseCPU):
     def __init__(self, max_depth, callback, verbose=True):
         super().__init__(callback, verbose)
         self._max_depth = max_depth
-    
+
     def initialise_stats(self):
         """Initialises the statistics for the search."""
         super().initialise_stats()
@@ -63,7 +63,7 @@ class ABNegamaxCPU(BaseCPU):
 
         if self._verbose:
             self.print_stats(best_score, best_move)
-            
+
         self._callback(best_move)
 
     def search(self, board, depth, alpha, beta, stop_event):
@@ -96,13 +96,13 @@ class ABNegamaxCPU(BaseCPU):
                 best_move = move
             elif new_score == best_score:
                 best_move = choice([best_move, move])
-                
+
             board.undo_move(move, laser_result)
-            
+
             if best_score >= beta:
                 self._stats['beta_prunes'] += 1
                 break
-        
+
         return best_score, best_move
 
 class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
@@ -110,7 +110,7 @@ class TTNegamaxCPU(TranspositionTableMixin, ABNegamaxCPU):
         """Initialises the statistics for the search."""
         super().initialise_stats()
         self._stats['cache_hits'] = 0
-    
+
     def print_stats(self, score, move):
         """Prints the statistics for the search.
 
@@ -127,7 +127,7 @@ class IDNegamaxCPU(TranspositionTableMixin, IterativeDeepeningMixin, ABNegamaxCP
         """Initialises the statistics for the search."""
         super().initialise_stats()
         self._stats['cache_hits'] = 0
-    
+
     def print_stats(self, score, move):
         """Prints the statistics for the search.
 

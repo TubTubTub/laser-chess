@@ -1,5 +1,5 @@
 import pygame
-from data.constants import WidgetState, LOCKED_BLUE_BUTTON_COLOURS, LOCKED_RED_BUTTON_COLOURS, RED_BUTTON_COLOURS, BLUE_BUTTON_COLOURS
+from data.utils.constants import WidgetState, LOCKED_BLUE_BUTTON_COLOURS, LOCKED_RED_BUTTON_COLOURS, RED_BUTTON_COLOURS, BLUE_BUTTON_COLOURS
 from data.components.custom_event import CustomEvent
 from data.widgets.bases.circular import _Circular
 from data.widgets.icon_button import IconButton

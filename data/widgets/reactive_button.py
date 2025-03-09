@@ -2,7 +2,7 @@ from data.components.custom_event import CustomEvent
 from data.widgets.bases.pressable import _Pressable
 from data.widgets.bases.circular import _Circular
 from data.widgets.bases.widget import _Widget
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 
 class ReactiveButton(_Pressable, _Circular, _Widget):
     def __init__(self, widgets_dict, event, center=False, **kwargs):
@@ -20,9 +20,9 @@ class ReactiveButton(_Pressable, _Circular, _Widget):
         _Widget.__init__(self, **kwargs)
 
         self._center = center
-        
+
         self.initialise_new_colours(self._fill_colour)
-    
+
     @property
     def position(self):
         """
@@ -38,14 +38,14 @@ class ReactiveButton(_Pressable, _Circular, _Widget):
             return (position[0] + self._size_diff[0] / 2, position[1] + self._size_diff[1] / 2)
         else:
             return position
-    
+
     def set_image(self):
         """
         Sets current icon to image.
         """
         self.current_item.set_image()
         self.image = self.current_item.image
-    
+
     def set_geometry(self):
         """
         Sets size and position of widget.
@@ -64,7 +64,7 @@ class ReactiveButton(_Pressable, _Circular, _Widget):
         super().set_surface_size(new_surface_size)
         for item in self._items_dict.values():
             item.set_surface_size(new_surface_size)
-        
+
     def process_event(self, event):
         """
         Processes Pygame events.

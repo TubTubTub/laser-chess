@@ -1,22 +1,22 @@
 import pygame
 import pygame.freetype
-from data.utils.data_helpers import get_settings_json
+from data.helpers.data_helpers import get_settings_json
 
 from functools import partial
 
 class _GUIElement:
     def __init__(self):
         pass
-    
+
     def draw(self):
         raise NotImplementedError
-    
+
     def handle_events(self, event):
         raise NotImplementedError
 
     def handle_resize(self):
         raise NotImplementedError
-    
+
 
 class Label(_GUIElement):
     '''Set 0 border width for filled rounded label'''
@@ -38,7 +38,7 @@ class Label(_GUIElement):
         self._height = height
         self._font = pygame.freetype.Font(font_path)
         self._font_size = font_size
-        
+
         screen_width, screen_height = screen.get_size()
         self._relative_position = (position[0] / screen_width, position[1] / screen_height)
         self._relative_font_size = font_size / screen_height
@@ -56,14 +56,14 @@ class Label(_GUIElement):
         elif width and height:
             if label_colour is None: raise ValueError('Label colour required when using size arguments (elements.py)!')
             self._draw_type = 'size'
-        
+
         if border_radius:
             if border_width < 0: raise ValueError('Border width must be greater than 0! (elements.py)')
             if border_radius == 0: raise ValueError('Border radius must be provided when border width is used! (elements.py)')
     @property
     def text(self):
         return self._text
-    
+
     @text.setter
     def text(self, new_text):
         self._screen.fill((0, 0, 0))
@@ -83,16 +83,16 @@ class Label(_GUIElement):
                 self._label_rect = pygame.FRect(self._position[0], self._position[1], text_rect.width + (self._margin * 2), text_rect.height + (self._margin * 2))
             case 'size':
                 self._label_rect = pygame.FRect(self._position[0], self._position[1], self._width, self._height)
-        
+
         text_x = self._position[0] + self._label_rect.width / 2 - text_rect.width / 2
         text_y = self._position[1] + self._label_rect.height / 2 - text_rect.height / 2
-        
+
         pygame.draw.rect(self._screen, self._label_colour, self._label_rect, width=self._border_width, border_radius=self._border_radius)
         self._font.render_to(self._screen, (text_x, text_y), self.text, fgcolor=self._text_colour, size=self._font_size)
-    
+
     def handle_events(self, event):
         pass
-    
+
     def handle_resize(self):
         screen_width, screen_height = self._screen.get_size()
 
@@ -116,13 +116,13 @@ class Button(Label):
             self._draw_type = 'image'
         if self._draw_type is None:
             raise ValueError('Invalid arguments - no valid size argument provided (elements.py)')
-    
+
     def draw(self):
         if self._draw_type == 'image':
             print('NOT IMPLEMENTED YET - DRAWING ICON')
         else:
             super().draw()
-    
+
     def handle_events(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self._label_rect.collidepoint(event.pos):

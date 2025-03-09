@@ -1,7 +1,9 @@
-from data.constants import Piece, Colour, RotationDirection, EditorEventType, BLUE_BUTTON_COLOURS
-from data.utils.asset_helpers import get_highlighted_icon
+from data.utils.enums import Piece, Colour, RotationDirection
+from data.helpers.asset_helpers import get_highlighted_icon
 from data.components.custom_event import CustomEvent
-from data.assets import GRAPHICS
+from data.utils.constants import BLUE_BUTTON_COLOURS
+from data.utils.event_types import EditorEventType
+from data.utils.assets import GRAPHICS
 from data.widgets import *
 
 blue_pieces_container = Rectangle(
@@ -223,7 +225,7 @@ for index, piece in enumerate([piece for piece in Piece if piece != Piece.SPHINX
         icons_dict={True: blue_icon, False: dimmed_blue_icon},
         event=CustomEvent(EditorEventType.PICK_PIECE_CLICK, piece=piece, active_colour=Colour.BLUE)
     )
-    
+
     red_icon = GRAPHICS[f'{piece.name.lower()}_1_a']
 
     dimmed_red_icon = get_highlighted_icon(red_icon)

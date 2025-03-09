@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from data.utils.asset_helpers import get_perimeter_sample, get_vector, get_angle_between_vectors, get_next_corner
+from data.helpers.asset_helpers import get_perimeter_sample, get_vector, get_angle_between_vectors, get_next_corner
 from data.states.game.components.piece_sprite import PieceSprite
 
 class ParticlesDraw:
@@ -12,7 +12,7 @@ class ParticlesDraw:
         self._rotation = rotation
         self._shrink = shrink
         self._opacity = opacity
-    
+
     def fragment_image(self, image, number):
         image_size = image.get_rect().size
         """
@@ -30,7 +30,7 @@ class ParticlesDraw:
         center = image.get_rect().center
         points_list = get_perimeter_sample(image_size, number)
         fragment_list = []
-        
+
         points_list.append(points_list[0])
 
         # Iterate through points_list, using the current point and the next one
@@ -46,19 +46,19 @@ class ParticlesDraw:
             cropped_image.blit(image, (0, 0))
 
             corners_to_draw = None
-            
+
             if vertex_1[0] == vertex_2[0] or vertex_1[1] == vertex_2[1]: # Points on the same side
                 corners_to_draw = 4
-            
+
             elif abs(vertex_1[0] - vertex_2[0]) == image_size[0] or abs(vertex_1[1] - vertex_2[1]) == image_size[1]: # Points on opposite sides
                 corners_to_draw = 2
-                
+
             elif angle < 180: # Points on adjacent sides
                 corners_to_draw = 3
-            
+
             else:
                 corners_to_draw = 1
-            
+
             corners_list = []
             for j in range(corners_to_draw):
                 if len(corners_list) == 0:
@@ -71,7 +71,7 @@ class ParticlesDraw:
             fragment_list.append(cropped_image)
 
         return fragment_list
-    
+
     def add_captured_piece(self, piece, colour, rotation, position, size):
         """
         Adds a captured piece to fragment into particles.
@@ -91,7 +91,7 @@ class ParticlesDraw:
 
         for particle in particles:
             self.add_particle(particle, position)
-    
+
     def add_sparks(self, radius, colour, position):
         """
         Adds laser spark particles.
@@ -105,7 +105,7 @@ class ParticlesDraw:
             velocity = [randint(-15, 15) / 10, randint(-20, 0) / 10]
             random_colour = [min(max(val + randint(-20, 20), 0), 255) for val in colour]
             self._particles.append([None, [radius, random_colour], [*position], velocity, 0])
-    
+
     def add_particle(self, image, position):
         """
         Adds a particle.
@@ -140,17 +140,17 @@ class ParticlesDraw:
             if isinstance(particle[1], pygame.Surface): # Particle is a piece
                 # Update velocity
                 particle[3][1] += self._gravity
-                
+
                 # Update size
                 image_size = particle[1].get_rect().size
                 end_size = ((1 - self._shrink) * image_size[0], (1 - self._shrink) * image_size[1])
                 target_size = (image_size[0] - particle[4] * (image_size[0] - end_size[0]), image_size[1] - particle[4] * (image_size[1] - end_size[1]))
 
                 # Update rotation
-                rotation = (self._rotation if particle[3][0] <= 0 else -self._rotation) * particle[4] 
+                rotation = (self._rotation if particle[3][0] <= 0 else -self._rotation) * particle[4]
 
                 updated_image = pygame.transform.scale(pygame.transform.rotate(particle[1], rotation), target_size)
-            
+
             elif isinstance(particle[1], list): # Particle is a spark
                 # Update size
                 end_radius = (1 - self._shrink) * particle[1][0]
@@ -163,9 +163,9 @@ class ParticlesDraw:
             alpha = 255 - particle[4] * (255 - self._opacity)
 
             updated_image.fill((255, 255, 255, alpha), None, pygame.BLEND_RGBA_MULT)
-            
+
             particle[0] = updated_image
-    
+
     def draw(self, screen):
         """
         Draws the particles, indexing the surface and position attributes for each particle.

@@ -1,5 +1,5 @@
 from data.widgets.reactive_button import ReactiveButton
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 from data.widgets.icon import Icon
 
 class ReactiveIconButton(ReactiveButton):

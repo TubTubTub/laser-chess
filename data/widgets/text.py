@@ -1,7 +1,7 @@
 import pygame
 from data.widgets.bases.widget import _Widget
-from data.utils.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
-from data.utils.widget_helpers import create_text_box
+from data.helpers.font_helpers import text_width_to_font_size, text_height_to_font_size, height_to_font_size
+from data.helpers.widget_helpers import create_text_box
 
 class Text(_Widget): # Pure text
     def __init__(self, text, center=True, fit_vertical=True, box_colours=None, strength=0.05, font_size=None, **kwargs):
@@ -15,10 +15,10 @@ class Text(_Widget): # Pure text
             self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
         else:
             self._relative_font_size = text_width_to_font_size(self._text, self._font, (self.size[0] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
-        
+
         if font_size:
             self._relative_font_size = font_size / self.surface_size[1]
-        
+
         self._center = center
         self.rect = self._font.get_rect(self._text, size=self.font_size)
         self.rect.topleft = self.position
@@ -27,7 +27,7 @@ class Text(_Widget): # Pure text
 
         self.set_image()
         self.set_geometry()
-    
+
     def resize_text(self):
         if self._fit_vertical:
             self._relative_font_size = text_height_to_font_size(self._text, self._font, (self.size[1] - 2 * (self.margin + self.border_width))) / self.surface_size[1]
@@ -45,7 +45,7 @@ class Text(_Widget): # Pure text
 
         self.resize_text()
         self.set_image()
-    
+
     def set_image(self):
         if self._box_colours:
             self.image = create_text_box(self.size, self.border_width, self._box_colours)

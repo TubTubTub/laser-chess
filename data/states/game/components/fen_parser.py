@@ -1,5 +1,6 @@
-from data.constants import Colour, RotationIndex, Rotation, Piece, EMPTY_BB
-from data.utils.bitboard_helpers import occupied_squares, bitboard_to_index
+from data.helpers.bitboard_helpers import occupied_squares, bitboard_to_index
+from data.utils.enums import Colour, RotationIndex, Rotation, Piece
+from data.utils.constants import EMPTY_BB
 
 def parse_fen_string(fen_string):
     #sc3ncfcncpb2/2pc7/3Pd6/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa b
@@ -13,7 +14,7 @@ def parse_fen_string(fen_string):
     file = 0
 
     piece_count = {char.lower(): 0 for char in Piece} | {char.upper(): 0 for char in Piece}
-    
+
     for index, character in enumerate(part_1):
         square = rank * 10 + file
 
@@ -24,7 +25,7 @@ def parse_fen_string(fen_string):
 
             else:
                 piece_bitboards[Colour.RED][character.lower()] |= 1 << square
-                
+
             rotation = part_1[index + 1]
             match rotation:
                 case Rotation.UP:
@@ -38,7 +39,7 @@ def parse_fen_string(fen_string):
                     rotation_bitboards[RotationIndex.FIRSTBIT] |= 1 << square
                 case _:
                     raise ValueError('Invalid FEN String - piece character not followed by rotational character')
-            
+
             file += 1
         elif character in '0123456789':
             if character == '1' and fen_string[index + 1] == '0':
@@ -53,24 +54,24 @@ def parse_fen_string(fen_string):
             continue
         else:
             raise ValueError('Invalid FEN String - invalid character found:', character)
-    
+
     if piece_count['s'] != 1 or piece_count['S'] != 1:
         raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')
     # COMMENTED OUT AS NO PHAROAH PIECES IS OKAY IF PARSING FEN STRING FOR FINISHED GAME BOARD THUMBNAIL
     elif piece_count['f'] > 1 or piece_count['F'] > 1:
         raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
-    
+
     if part_2 == 'b':
         colour = Colour.BLUE
     elif part_2 == 'r':
         colour = Colour.RED
     else:
         raise ValueError('Invalid FEN string - invalid active colour')
-    
+
     for piece in Piece:
         combined_colour_bitboards[Colour.BLUE] |= piece_bitboards[Colour.BLUE][piece]
         combined_colour_bitboards[Colour.RED] |= piece_bitboards[Colour.RED][piece]
-    
+
     combined_all_bitboard = combined_colour_bitboards[Colour.BLUE] | combined_colour_bitboards[Colour.RED]
     return (piece_bitboards, combined_colour_bitboards, combined_all_bitboard, rotation_bitboards, colour)
 
@@ -91,7 +92,7 @@ def encode_fen_string(bitboard_collection):
             index = bitboard_to_index(individual_bitboard)
             rotation = bitboard_collection.get_rotation_on(individual_bitboard)
             fen_string_list[index] = piece.lower() + rotation
-    
+
     fen_string = ''
     row_string = ''
     empty_count = 0
@@ -113,7 +114,7 @@ def encode_fen_string(bitboard_collection):
 
             row_string = ''
             empty_count = 0
-    
+
     fen_string = fen_string[1:]
 
     if bitboard_collection.active_colour == Colour.BLUE:

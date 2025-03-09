@@ -1,7 +1,7 @@
 import pygame
-from data.constants import WidgetState
+from data.utils.constants import WidgetState
 from data.managers.audio import audio
-from data.assets import SFX
+from data.utils.assets import SFX
 
 class _Pressable:
     def __init__(self, event, down_func=None, up_func=None, hover_func=None, prolonged=False, sfx=SFX['button_click'], **kwargs):
@@ -17,12 +17,12 @@ class _Pressable:
         self._widget_state = WidgetState.BASE
 
         self._colours = {}
-    
+
     def set_state_colour(self, state):
         self._fill_colour = self._colours[state]
 
         self.set_image()
-    
+
     def initialise_new_colours(self, colour):
         r, g, b, a = pygame.Color(colour).rgba
 
@@ -31,7 +31,7 @@ class _Pressable:
             WidgetState.HOVER: pygame.Color(min(r + 25, 255), min(g + 25, 255), min(b + 25, 255), a),
             WidgetState.PRESS: pygame.Color(min(r + 50, 255), min(g + 50, 255), min(b + 50, 255), a)
         }
-    
+
     def get_widget_state(self):
         return self._widget_state
 
@@ -41,7 +41,7 @@ class _Pressable:
                 if self.rect.collidepoint(event.pos):
                     self._down_func()
                     self._widget_state = WidgetState.PRESS
-            
+
             case pygame.MOUSEBUTTONUP:
                 if self.rect.collidepoint(event.pos):
                     if self._widget_state == WidgetState.PRESS:

@@ -1,8 +1,8 @@
 import pygame
+from data.helpers.data_helpers import get_user_settings
+from data.helpers.board_helpers import create_board
 from data.widgets.bases.widget import _Widget
-from data.utils.board_helpers import create_board
-from data.utils.data_helpers import get_user_settings
-from data.constants import CursorMode
+from data.utils.enums import CursorMode
 from data.managers.cursor import cursor
 
 class Chessboard(_Widget):
@@ -16,16 +16,16 @@ class Chessboard(_Widget):
         self.refresh_board()
         self.set_image()
         self.set_geometry()
-    
+
     def refresh_board(self):
         user_settings = get_user_settings()
         self._board_surface = create_board(self.size, user_settings['primaryBoardColour'], user_settings['secondaryBoardColour'])
-        
+
         self.set_image()
 
     def set_image(self):
         self.image = pygame.transform.smoothscale(self._board_surface, self.size)
-    
+
     def process_event(self, event):
         if self._change_cursor and event.type in [pygame.MOUSEMOTION, pygame.MOUSEBUTTONUP, pygame.MOUSEBUTTONDOWN]:
             current_cursor = cursor.get_mode()

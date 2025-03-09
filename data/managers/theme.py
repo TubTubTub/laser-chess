@@ -1,4 +1,4 @@
-from data.utils.data_helpers import get_themes, get_user_settings
+from data.helpers.data_helpers import get_themes, get_user_settings
 
 themes = get_themes()
 user_settings = get_user_settings()
@@ -32,7 +32,7 @@ class ThemeManager:
     def __init__(self):
         self.__dict__.update(flatten_dictionary(themes['colours']))
         self.__dict__.update(flatten_dictionary(themes['dimensions']))
-    
+
     def __getitem__(self, arg):
         """
         Override default class's __getitem__ dunder method, to make retrieving an instance attribute nicer with [] notation.
@@ -47,10 +47,10 @@ class ThemeManager:
             str | int: Instance attribute.
         """
         item = self.__dict__.get(arg)
-        
+
         if item is None:
             raise KeyError('(ThemeManager.__getitem__) Requested theme item not found:', arg)
-        
+
         return item
 
 theme = ThemeManager()

@@ -4,7 +4,7 @@ from data.states.game.cpu.engines.transposition_table import TranspositionTableM
 from data.states.game.cpu.transposition_table import TranspositionTable
 from data.states.game.cpu.engines.alpha_beta import ABMinimaxCPU
 from data.managers.logs import initialise_logger
-from data.constants import Score
+from data.utils.enums import Score
 
 logger = initialise_logger(__name__)
 
@@ -37,21 +37,21 @@ class IterativeDeepeningMixin:
                     # If search is terminated at depth 0, use random move
                     best_move = choice(board_copy.generate_all_moves())
                     logger.warning('CPU terminated before any best move found! Using random move.')
-                
+
                 break
 
             self._stats['ID_depth'] = depth
 
         if self._verbose:
             self.print_stats(best_score, best_move)
-        
+
         self._callback(best_move)
 
 class IDMinimaxCPU(TranspositionTableMixin, IterativeDeepeningMixin, ABMinimaxCPU):
     def initialise_stats(self):
         super().initialise_stats()
         self._stats['cache_hits'] = 0
-    
+
     def print_stats(self, score, move):
         self._stats['cache_hits_percentage'] = round(self._stats['cache_hits'] / self._stats['nodes'], 3)
         self._stats['cache_entries'] = len(self._table._table)

@@ -1,5 +1,5 @@
 import pygame
-from data.constants import ShaderType
+from data.utils.constants import ShaderType
 from data.shaders.protocol import SMProtocol
 
 CHROMATIC_ABBREVIATION_INTENSITY = 2.0

@@ -5,6 +5,10 @@ for line in fileinput.input("documentation/technical_solution/technical_solution
     if line.startswith('\\lstinputlisting'):
         path = line.split('{')[1][:-2]
         idx = line.index('{')
-        sys.stdout.write(f'{line[:idx]}[label=src:{path}]{line[idx:]}')
+
+        if '.frag' in line or '.vert' in line:
+            sys.stdout.write(f'\lstinputlisting[language=GLSL, label=src:{path}]{line[idx:]}')
+        else:
+            sys.stdout.write(f'\lstinputlisting[label=src:{path}]{line[idx:]}')
     else:
         sys.stdout.write(line)
