@@ -39,7 +39,7 @@ class Evaluator:
             logger.info(f'Position: {blue_score[1]} | {red_score[1]}')
             logger.info(f'Mobility: {blue_score[2]} | {red_score[2]}')
             logger.info(f'Safety: {blue_score[3]} | {red_score[3]}')
-            logger.info(f'Overall score: {sum(blue_score) - sum(red_score)}')
+            logger.info(f'Overall score: {sum(blue_score) - sum(red_score)}\n')
 
         if absolute and board.get_active_colour() == Colour.RED:
             return sum(red_score) - sum(blue_score)

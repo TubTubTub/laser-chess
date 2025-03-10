@@ -56,6 +56,8 @@ with open('documentation/source/source.tex', 'w') as f:
         '\n',
         '\\chapter{Source Code}\n',
         '\\addtocontents{toc}{\setcounter{tocdepth}{-1}}\n',
+        '\n',
+        'This appendix contains all source code not show in the technical solution chapter.\n',
         '\n'
     ])
 
