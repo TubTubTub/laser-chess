@@ -156,8 +156,9 @@ class Config(_State):
                 self.set_fen_string(widget_event.fen_string)
 
             case ConfigEventType.SETUP_CLICK:
-                self.next = 'editor'
-                self.done = True
+                if self._valid_fen:
+                    self.next = 'editor'
+                    self.done = True
 
             case ConfigEventType.COLOUR_CLICK:
                 self.set_active_colour(widget_event.data.get_flipped_colour())

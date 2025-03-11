@@ -15,5 +15,5 @@ TEST_FEN_STRINGS = [
 
 for fen_string in TEST_FEN_STRINGS:
     board = Board(fen_string)
-    logger.info(f'Evalaluating FEN string - {fen_string}')
+    logger.info(f'Evaluating FEN string - {fen_string}')
     score = evaluator.evaluate(board)

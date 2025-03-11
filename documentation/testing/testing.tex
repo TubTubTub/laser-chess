@@ -34,7 +34,7 @@ To test every aspect of the evaluation function, I have set up some unit tests w
     Combined & See footnote\footnote{scnc1fcncpbpb3/pa9/pb1pc1rbpa3Pd/1Pc2Pd4Pc/2Pd1RaRb4/10/7Pa2/2PdNaFaNa3Sa b} & 437 & \checkmark\\
 
     \bottomrule
-    
+
 \caption{Board evaluator test results}
 \label{tab:testing-evaluator}
 \end{longtable}
@@ -43,21 +43,22 @@ To test every aspect of the evaluation function, I have set up some unit tests w
 \subsection{CPU}
 Similarly, to evaluate the strength of my CPU, I have setup some custom positions that I already know the best continuation of, and run each CPU engine on them to test if they can solve it.
 
-\begin{longtable}[c]{l|l|l|l}
+\begin{longtable}[c]{l|p{0.45\columnwidth}|l|l}
     \toprule
     \textbf{Description} & \textbf{FEN string} & \textbf{Best Move} & \textbf{Passed}\\
     \midrule
     \endhead
 
-    Mate in 1 & \verb|sc9/pafa8/Fa9/10/10/10/10/9Sa b| & Rotate J3 clockwise & \checkmark\\
-    Mate in 1 & \verb|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
-    Mate in 3 & \verb|sc9/10/10/8Ra1/7FaRafa/8RaRa/9Ra/9Sa b| & Move J2 to I1...\footnote{2. \lstinline{Move J4 to J5} 3. \lstinline{Move J3 to I2}} & \checkmark\\
-    Mate in 3 & \verb|sc5fcnc2/4Pa4Pc/3pb6/2Pc2ra1pb2/10/pb9/7Pa2/2PdNaFa4Sa b| & Move E7 to F7...\footnote{2. \lstinline{Rotate anticlockwise H8} 3. \lstinline{Move F7 to G7}} & \checkmark\\
-    Escape Mate & \verb|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
-    Win Material & \verb|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
+    Mate in 1 & \lstinline|sc9/pafa8/Fa9/10/10/10/10/9Sa b| & Rotate J3 clockwise & \checkmark\\
+    Mate in 1 & \lstinline|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
+    Mate in 3 & \lstinline|sc9/10/10/8Ra1/7FaRafa/8RaRa/9Ra/9Sa b| & Move J2 to I1...\footnote{2. \lstinline{Move J4 to J5} 3. \lstinline{Move J3 to I2}} & \checkmark\\
+    Mate in 3 & \lstinline|sc5fcnc2/4Pa4Pc/3pb6/2Pc2ra1pb2/10/pb9/7Pa2/2PdNaFa4Sa b| & Move E7 to F7...\footnote{2. \lstinline{Rotate anticlockwise H8} 3. \lstinline{Move F7 to G7}} & \checkmark\\
+    Mate in 3 & \lstinline|sc2pdfc5/2Ra1ra5/pa3Pc4Rb/pb1rd1Pdra4/7Rd2/3Ra1Pa4/4Fa5/3PdNaPa3Sa b| & Move J6 to J7...\footnote{2. \lstinline{Move E7 to F8} 3. \lstinline{Move E4 to E5}} & \checkmark\\
+    Win Material & \lstinline|sc9/2fa7/5NaPb3/pa2ra1Pd4/3pcnd1pd2Rd/3pc6/10/8FaSa b| & Move F6 to G7...\footnote{2. \lstinline{Move E4 to E3} 3. \lstinline{Move H5 to D4} 4. \lstinline{Move J4 to J3}} & \checkmark\\
 
+    Escape Mate & \lstinline|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
     \bottomrule
-    
+
 \caption{Transposition Table CPU test results}
 \label{tab:testing-cpu}
 \end{longtable}
@@ -73,7 +74,7 @@ Similarly, to evaluate the strength of my CPU, I have setup some custom position
 %     2 & 5\\
 
 %     \bottomrule
-    
+
 % \caption{Score of me vs CPU (I am very bad)}
 % \label{tab:me-cpu}
 % \end{longtable}
@@ -87,7 +88,7 @@ Similarly, to evaluate the strength of my CPU, I have setup some custom position
 %     1 & 6\\
 
 %     \bottomrule
-    
+
 % \caption{Score of Mr Myslov vs CPU (Mr Myslov is even worse)}
 % \label{tab:myslov-cpu}
 % \end{longtable}
@@ -179,7 +180,7 @@ Game settings and config should be customisable.
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
-    
+
     17 & Set primary board colour to blue & Alternating board squares appear blue& \checkmark\\
     18 & Select CPU player & Every other move is played by the CPU & \checkmark\\
     19 & Input timer duration in config screen & Inputted timer duration appears on the left of the game screen & \checkmark\\
@@ -198,7 +199,7 @@ Game UI should improve player experience.
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
-    
+
     27 & Click the play button on the main menu screen & Program switches to the config screen & \checkmark\\
     28 & Click main menu button & Program switches to the menu screen & \checkmark\\
     29 & Click help button & Help overlay appears & \checkmark\\

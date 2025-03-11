@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  6 MAR 2025 20:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  10 MAR 2025 20:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -779,38 +779,7 @@ Package translations Info: No language package found. I am going to use `english
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count388
 \l__pdf_internal_box=\box135
-) (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux
-c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux:5: Undefined control sequence.
-l.5 \abx@aux@refcontext
-                       {nty/global//global/global/global}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux:5: LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5 \abx@aux@refcontext{n
-                         ty/global//global/global/global}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux:70: Undefined control sequence.
-l.70 \abx@aux@read@bbl@mdfivesum
-                                {A94AB01A6908FE46049683B135B529B2}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
+) (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
 \openout1 = `testing.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -867,15 +836,6 @@ LaTeX Font Info:    ... okay on input line 3.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
-Overfull \hbox (1.64745pt too wide) in paragraph at lines 5--13
-[]\T1/cmr/m/n/10 nty/global//global/global/global                                     A94AB01A6908FE46049683B135B529B2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--13
-
- []
-
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count389
 \scratchdimen=\dimen329
@@ -925,20 +885,16 @@ Package hyperref Info: Link coloring OFF on input line 3.
 
 
 No file testing.toc.
-
-
-[1
-
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 Chapter 1.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 15.
 (../../data/states/game/cpu/base.py)
 
-[2
+[1
 
-]
 
-LaTeX Warning: Reference `sec:migrations' on page 3 undefined on input line 18.
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+
+LaTeX Warning: Reference `sec:migrations' on page 2 undefined on input line 18.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -948,51 +904,58 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (104.33354pt too wide) in alignment at lines 46--50
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|[][][][][][][][][][][][][][][][][][][][][]
  []
 
 
-Overfull \hbox (104.33354pt too wide) in alignment at lines 50--63
- [] [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
+[]|[][][][][][][][][][][][][][][][][][][]
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|[][][][][][][][][][][][][][][][][][][][][]
+ []
 
-[3]
-<../testing/assets/rays_example_1.png, id=130, 444.15938pt x 444.15938pt>
+[2]
+<../testing/assets/rays_example_1.png, id=129, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/assets/rays_example_1.png>
-Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 102.
+Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 103.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_2.png, id=132, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_2.png, id=131, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/assets/rays_example_2.png>
-Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 105.
+Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 106.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_3.png, id=133, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_3.png, id=132, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/assets/rays_example_3.png>
-Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 108.
+Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 109.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 
-Underfull \hbox (badness 3492) in paragraph at lines 126--126
+Underfull \hbox (badness 3492) in paragraph at lines 127--127
 []|\T1/cmr/m/n/10 Select piece and press ro-tate
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 150--150
+Underfull \hbox (badness 3000) in paragraph at lines 151--151
 []|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
-[4 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
-Underfull \hbox (badness 1009) in paragraph at lines 185--185
+
+
+[3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
+Underfull \hbox (badness 1009) in paragraph at lines 186--186
 []|\T1/cmr/m/n/10 Input timer du-ra-tion in con-fig
  []
 
-[5]
 
-[6] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
+
+[4]
+
+[5] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1001,24 +964,21 @@ L3 programming layer <2025-01-18>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `testing.out' has not changed.
 (rerunfilecheck)             Checksum: 72B8EDC8712319DE0DCE2437B45B1E52;1680.
  ) 
 Here is how much of TeX's memory you used:
- 41326 strings out of 473530
- 970056 string characters out of 5714311
- 1837250 words of memory out of 5000000
- 63869 multiletter control sequences out of 15000+600000
+ 41366 strings out of 473530
+ 970446 string characters out of 5714311
+ 1951250 words of memory out of 5000000
+ 63908 multiletter control sequences out of 15000+600000
  574569 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,11n,139p,1649b,1367s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (6 pages, 377524 bytes).
+ 139i,11n,139p,1649b,1366s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (5 pages, 378527 bytes).
 PDF statistics:
- 510 PDF objects out of 1000 (max. 8388607)
- 61 named destinations out of 1000 (max. 500000)
+ 512 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
  148 words of extra memory for PDF output out of 10000 (max. 10000000)
 

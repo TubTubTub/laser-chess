@@ -82,7 +82,7 @@ class GameView:
             case StatusText.PLAYER_MOVE:
                 GAME_WIDGETS['status_text'].set_text(f"{self._model.states['ACTIVE_COLOUR'].name}'s turn to move")
             case StatusText.CPU_MOVE:
-                GAME_WIDGETS['status_text'].set_text("CPU calculating a crazy move...")
+                GAME_WIDGETS['status_text'].set_text("CPU thinking...") # CPU calculating a crazy move...
             case StatusText.WIN:
                 if self._model.states['WINNER'] == Miscellaneous.DRAW:
                     GAME_WIDGETS['status_text'].set_text("Game is a draw! Boring...")
@@ -121,9 +121,8 @@ class GameView:
             GAME_WIDGETS['scroll_area'].set_image()
             audio.play_sfx(SFX['piece_move'])
 
-        if self._model.states['ACTIVE_COLOUR'] == Colour.BLUE:
-            self.set_status_text(StatusText.PLAYER_MOVE)
-        elif self._model.states['CPU_ENABLED'] is False:
+        # If active colour is starting colour, as player always moves first
+        if ['b', 'r'][self._model.states['ACTIVE_COLOUR']] == self._model.states['START_FEN_STRING'][-1]:
             self.set_status_text(StatusText.PLAYER_MOVE)
         else:
             self.set_status_text(StatusText.CPU_MOVE)

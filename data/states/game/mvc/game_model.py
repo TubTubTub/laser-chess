@@ -16,7 +16,8 @@ from data.utils.enums import Colour
 
 logger = initialise_logger(__name__)
 
-CPU_LIMIT_MS = 15000
+# TEMP
+CPU_LIMIT_MS = 1500000
 
 class GameModel:
     def __init__(self, game_config):
@@ -159,12 +160,12 @@ class GameModel:
         self.states['AWAITING_CPU'] = True
 
         # Employ time management system to kill search if using an iterative deepening CPU
-        if isinstance(self._cpu, IDMinimaxCPU):
-            move_id = getrandbits(32)
-            self._cpu_thread.start_cpu(self.get_board(), id=move_id)
-            animation.set_timer(CPU_LIMIT_MS, lambda: self._cpu_thread.stop_cpu(id=move_id))
-        else:
-            self._cpu_thread.start_cpu(self.get_board())
+        # if isinstance(self._cpu, IDMinimaxCPU):
+        #     move_id = getrandbits(32)
+        #     self._cpu_thread.start_cpu(self.get_board(), id=move_id)
+        #     animation.set_timer(CPU_LIMIT_MS, lambda: self._cpu_thread.stop_cpu(id=move_id))
+        # else:
+        self._cpu_thread.start_cpu(self.get_board())
 
     def cpu_callback(self, move):
         """
