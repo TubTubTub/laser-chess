@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  10 MAR 2025 17:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 MAR 2025 14:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -918,39 +918,39 @@ Package pdftex.def Info: ../analysis/assets/laser_chess_com.png  used on input l
 [6]
 
 [7]
-Overfull \hbox (24.00002pt too wide) in alignment at lines 240--262
+
+[8]
+Overfull \hbox (24.00002pt too wide) in alignment at lines 259--281
  [] [] 
  []
 
-[8]
-Underfull \hbox (badness 4024) in paragraph at lines 279--279
+
+Underfull \hbox (badness 4024) in paragraph at lines 298--298
 []\T1/cmr/m/n/10 Versatile, easy in-te-gra-tion with both
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 279--279
+Underfull \hbox (badness 1270) in paragraph at lines 298--298
 []\T1/cmr/m/n/10 Also sup-ports object-oriented pro-gram-
  []
 
 
-Underfull \hbox (badness 6032) in paragraph at lines 284--284
+Underfull \hbox (badness 6032) in paragraph at lines 303--303
 []\T1/cmr/m/n/10 Comprehensive knowl-edge of ex-ter-nal
  []
 
 
-Overfull \hbox (24.00002pt too wide) in alignment at lines 264--287
+Overfull \hbox (24.00002pt too wide) in alignment at lines 283--306
  [] [] 
  []
-
-
 
 [9]
 
 [10]
-<../analysis/assets/critical_path_diagram.pdf, id=165, 312.20638pt x 370.5042pt>
+<../analysis/assets/critical_path_diagram.pdf, id=164, 312.20638pt x 370.5042pt>
 File: ../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/assets/critical_path_diagram.pdf>
-Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 323.
+Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 342.
 (pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
 
 
@@ -965,17 +965,17 @@ Package rerunfilecheck Info: File `analysis.out' has not changed.
 (rerunfilecheck)             Checksum: 222B71115E33FC550AE1F32312A8ACB1;2536.
  ) 
 Here is how much of TeX's memory you used:
- 41251 strings out of 473530
- 968857 string characters out of 5714311
- 1593251 words of memory out of 5000000
+ 41252 strings out of 473530
+ 968864 string characters out of 5714311
+ 1592251 words of memory out of 5000000
  63813 multiletter control sequences out of 15000+600000
  569129 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,6n,139p,1651b,1261s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (12 pages, 320396 bytes).
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (12 pages, 329909 bytes).
 PDF statistics:
- 478 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 500000)
+ 484 PDF objects out of 1000 (max. 8388607)
+ 59 named destinations out of 1000 (max. 500000)
  175 words of extra memory for PDF output out of 10000 (max. 10000000)
 

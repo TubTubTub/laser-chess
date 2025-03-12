@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  10 MAR 2025 20:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 MAR 2025 23:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -769,6 +769,11 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@pps=\count385
 \c@@ppsavesec=\count386
 \c@@ppsaveapp=\count387
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+\everycr=\toks53
+\minrowclearance=\skip85
+\rownum=\count388
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -777,7 +782,7 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count388
+\l__color_backend_stack_int=\count389
 \l__pdf_internal_box=\box135
 ) (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
 \openout1 = `testing.aux'.
@@ -837,26 +842,20 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count389
+\scratchcounter=\count390
 \scratchdimen=\dimen329
 \scratchbox=\box136
-\nofMPsegments=\count390
-\nofMParguments=\count391
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count392
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count393
 \MPscratchDim=\dimen330
-\MPnumerator=\count393
-\makeMPintoPDFobject=\count394
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks55
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -877,7 +876,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count395
+\c@lstlisting=\count396
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.out)
 \@outlinefile=\write4
@@ -919,43 +918,75 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--57
  []
 
 [2]
-<../testing/assets/rays_example_1.png, id=129, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_1.png, id=137, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/assets/rays_example_1.png>
 Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 103.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_2.png, id=131, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_2.png, id=139, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/assets/rays_example_2.png>
 Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 106.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/assets/rays_example_3.png, id=132, 444.15938pt x 444.15938pt>
+<../testing/assets/rays_example_3.png, id=140, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/assets/rays_example_3.png>
 Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 109.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 
-Underfull \hbox (badness 3492) in paragraph at lines 127--127
-[]|\T1/cmr/m/n/10 Select piece and press ro-tate
+Underfull \hbox (badness 2644) in paragraph at lines 135--135
+[]|\T1/cmr/m/n/10 Active colour switches to red
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 151--151
-[]|\T1/cmr/m/n/10 Program dis-plays list of past
+Underfull \hbox (badness 3826) in paragraph at lines 155--155
+[]|\T1/cmr/m/n/10 Click piece and click out-side
+ []
+
+
+Underfull \hbox (badness 1648) in paragraph at lines 156--156
+[]|\T1/cmr/m/n/10 Click piece and click ad-ja-cent
  []
 
 
 
 [3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
-Underfull \hbox (badness 1009) in paragraph at lines 186--186
-[]|\T1/cmr/m/n/10 Input timer du-ra-tion in con-fig
+Underfull \hbox (badness 4660) in paragraph at lines 181--181
+[]|\T1/cmr/m/n/10 Game is dis-played in re-view
+ []
+
+
+Underfull \hbox (badness 3000) in paragraph at lines 182--182
+[]|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
 
 
 [4]
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
+[]|\T1/cmr/m/n/10 All pieces dis-s-a-pear (ex-cept
+ []
 
-[5] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
+
+Underfull \hbox (badness 1112) in paragraph at lines 233--233
+[]|\T1/cmr/m/n/10 Switches to con-fig screen with
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 234--234
+[]|\T1/cmr/m/n/10 Switches to con-fig screen with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
+[]|\T1/cmr/m/n/10 Toggle par-ti-cle and shader
+ []
+
+[5]
+
+[6]
+
+[7] (c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -965,20 +996,20 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `testing.out' has not changed.
-(rerunfilecheck)             Checksum: 72B8EDC8712319DE0DCE2437B45B1E52;1680.
+(rerunfilecheck)             Checksum: 1E08E5377881168F2ED9741C73B3A2B9;1920.
  ) 
 Here is how much of TeX's memory you used:
- 41366 strings out of 473530
- 970446 string characters out of 5714311
- 1951250 words of memory out of 5000000
- 63908 multiletter control sequences out of 15000+600000
+ 41426 strings out of 473530
+ 970943 string characters out of 5714311
+ 1953435 words of memory out of 5000000
+ 63962 multiletter control sequences out of 15000+600000
  574569 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,11n,139p,1649b,1366s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (5 pages, 378527 bytes).
+ 139i,12n,139p,1649b,1366s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (7 pages, 396295 bytes).
 PDF statistics:
- 512 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 148 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 543 PDF objects out of 1000 (max. 8388607)
+ 68 named destinations out of 1000 (max. 500000)
+ 164 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -59,7 +59,7 @@ Similarly, to evaluate the strength of my CPU, I have setup some custom position
     Escape Mate & \lstinline|sc9/10/10/10/8faRb/8FaRb/10/9Sa b| & Move J3 to J2 & \checkmark\\
     \bottomrule
 
-\caption{Transposition Table CPU test results}
+\caption{Iterative Deepening CPU test results}
 \label{tab:testing-cpu}
 \end{longtable}
 
@@ -117,99 +117,180 @@ To test the shadow mapping algorithm, I have set up some occluding objects togeh
 \subsection{Objective 1}
 All laser chess game logic should be properly implemented.
 
+\definecolor{light-gray}{HTML}{E9E8E6}
+\rowcolors{1}{light-gray}{white}
+
 \begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
     \toprule
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
+    \showrowcolors
 
-    1 & Laser fires on piece & Piece reflects laser & \checkmark\\
-    2 & Select piece and press rotate clockwise button & Piece rotates clockwise & \checkmark\\
-    3 & Select piece and adjacent empty square & Piece moves to adjacent square & \checkmark\\
-    4 & Blue player makes a move & Next move is made by red player & \checkmark\\
-    5 & Make move & Laser reflects off pieces correctly & \checkmark\\
     6 & Position piece with non-reflecting side facing laser & Piece is destroyed & \checkmark\\
-    7 & Move Pharoah in front of player & Game displays game over screen & \checkmark\\
+    1 & Laser fires on pyramid & Pyramid reflects laser by 90$^{\circ}$ & \checkmark\\
+    2 & Laser fires on scarab & Scarab reflects laser by 90$^{\circ}$ & \checkmark\\
+    3 & Laser fires on anubis & Anubis absorbs laser & \checkmark\\
+    4 & Move piece as blue player & Active colour switches to red player & \checkmark\\
+    5 & Move piece or rotate piece & Laser fires & \checkmark\\
+    6 & Fire laser onto pharoah & Pharoah is destroyed and opposite colour wins & \checkmark\\
     8 & Repeat same position three times & Game displays game over screen & \checkmark\\
 
     \bottomrule
 
 \end{longtable}
-
 \subsection{Objective 2}
-Save or load game options should be implemented.
+Game should process user input correctly.
 
 \begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
     \toprule
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
+    \showrowcolors
 
-    9 & Click on copy FEN string button in editor or browser screen & Position formatted as FEN string copied to clipboard & \checkmark\\
-    10 & Enter browser screen & Program shows list of past games to be scrolled through & \checkmark\\
-    11 & Click on previous or next move button in review screen & Board undoes or applies move & \checkmark\\
-    12 & Enter review screen & Program displays list of past moves, winner and move number& \checkmark\\
+    8 & Click piece & Overlay appears showing selected piece & \checkmark\\
+    9 & Click piece and click outside board & Overlay disappears showing deselected piece & \checkmark\\
+    10 & Click piece and click adjacent square & Piece moves to clicked square & \checkmark\\
+    11 & Click and hold piece and release over adjacent square & Piece moves to adjacent square & \checkmark\\
+    12 & Click piece and press rotate clockwise button & Piece rotates clockwise & \checkmark\\
+    12 & Click piece and press rotate anticlockwise button & Piece rotates anticlockwise & \checkmark\\
 
     \bottomrule
 
 \end{longtable}
 
 \subsection{Objective 3}
-Other board game requirements should be implemented.
+Save or load game options should be implemented.
 
 \begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
     \toprule
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
+    \showrowcolors
 
-    13 & Click on draw button & Game ends and shows draw result & \checkmark\\
-    14 & Click on resign button & Game ends and shows win result for opposite player & \checkmark\\
-    15 & Enable timer & Timer appears on the left and decrements every second & \checkmark\\
-    16 & Pause the game & Timer stops decrementing & \checkmark\\
+    13 & Click on copy FEN string button in editor or browser screen & Position formatted as FEN string copied to clipboard & \checkmark\\
+    14 & Click browser button & Program shows list of past games to be scrolled through & \checkmark\\
+    1 & Select time as sorting criterion & Browser updates to show most recent games played & \checkmark\\
+    1 & Select descending as ordering criterion & Browser updates to show oldest games played & \checkmark\\
+    1 & Click on previous game and click delete button & Selected game is deleted and dissapears & \checkmark\\
+    1 & Click on previous game and click review button & Game is displayed in review screen & \checkmark\\
+    12 & Enter review screen & Program displays list of past moves, winner and move number& \checkmark\\
+    11 & Click on previous button in review screen & Board undoes move & \checkmark\\
+    11 & Click on next move button in review screen & Board applies move & \checkmark\\
 
     \bottomrule
 
 \end{longtable}
 
 \subsection{Objective 4}
-Game settings and config should be customisable.
+Other board game requirements should be implemented.
 
 \begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
     \toprule
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
+    \showrowcolors
 
-    17 & Set primary board colour to blue & Alternating board squares appear blue& \checkmark\\
-    18 & Select CPU player & Every other move is played by the CPU & \checkmark\\
-    19 & Input timer duration in config screen & Inputted timer duration appears on the left of the game screen & \checkmark\\
-    21 & Press starting colour button to set starting colour to red & Starting move is played by red player & \checkmark\\
-    21 & Set up custom board layout in editor screen & Game starts with custom board position & \checkmark\\
+    13 & Click on draw button & Game ends and shows draw result & \checkmark\\
+    14 & Click on resign button & Game ends and shows win result for opponent & \checkmark\\
+    15 & Click on timer button to enable timer & Timers appear on the left and decrement every second & \checkmark\\
+    16 & Pause the game & Timer stops decrementing & \checkmark\\
+    17 & Allow timer to run to zero & Game ends and shows win result for opponent & \checkmark\\
 
     \bottomrule
 
 \end{longtable}
 
 \subsection{Objective 5}
-Game UI should improve player experience.
+Game settings and config should be customisable.
 
 \begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
     \toprule
     \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
     \midrule
     \endhead
+    \showrowcolors
+
+    17 & Click on CPU button & Opponent moves are played by minimax CPU & \checkmark\\
+    17 & Click on timer button to disable timer & Timer is not shown & \checkmark\\ % Have to also show in video that timer does not run out
+    17 & Click on timer duration and input new number & Timer starts with inputted duration & \checkmark\\
+    21 & Press starting colour button to set starting colour to red & Starting move is played by the red player & \checkmark\\
+    22 & Enter valid FEN string into text input & Board preview updates and game starts with inputted board layout & \checkmark\\
+    23 & Enter invalid FEN string into text input & Error message appears & \checkmark\\
+    23 & In editor screen, select piece and click on square & Piece placed on square & \checkmark\\
+    12 & Click piece and press rotate clockwise button & Piece rotates clockwise & \checkmark\\
+    12 & Click piece and press rotate anticlockwise button & Piece rotates anticlockwise & \checkmark\\
+    23 & Click empty button & All pieces dissapear (except sphinxes) & \checkmark\\
+    23 & Click reset button & Board resets to initial layout & \checkmark\\
+    23 & Click confirm button & Switches to config screen with edited FEN string and board preview & \checkmark\\
+    23 & Click return button & Switches to config screen with changes discarded & \checkmark\\
+    17 & In settings screen, change primary board colour to blue & Alternating board squares appear blue & \checkmark\\
+    17 & Change secondary board colour to red & Board squares alternate blue and red & \checkmark\\
+    18 & Change display mode to fullscreen & Application window enlarges to fill entire screen & \checkmark\\
+    18 & Slide volume thumb to right and left of slider & Music increases and dereases in volume & \checkmark\\
+    20 & Toggle particle and shader switches to off position & Particles and shaders are disabled after program restart & \checkmark\\
+
+    \bottomrule
+
+\end{longtable}
+
+\subsection{Objective 6}
+Game UI should improve player experience.
+
+\begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
+    \toprule
+    \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
+    \midrule
+    \endhead
+    \showrowcolors
+
+    18 & Click on piece & Highlight overlay is rendered on selected square & \checkmark\\
+    18 & Click on piece & Circular overlays are rendered on surrounding unoccupied squares & \checkmark\\
+    18 & Fire laser on piece & Audio cue plays and piece is visibly destroyed & \checkmark\\
+    18 & Fire laser on piece & Piece appears on opponent's piece display & \checkmark\\
+    18 & Play a game & Status text updates to display the active player's colour or CPU status & \checkmark\\
+    18 & Hover over board, hold the mouse button, click on text input widget & Mouse cursor switches between arrow, open hand, closed hand and I-beam icons & \checkmark\\
+
+    \bottomrule
+
+\end{longtable}
+
+\subsection{Objective 7}
+GUI design should be functional and display concise information.
+
+\begin{longtable}[c]{l|p{0.35\columnwidth}|p{0.35\columnwidth}|l}
+    \hiderowcolors
+    \toprule
+    \textbf{No.} & \textbf{Input} & \textbf{Output} & \textbf{Passed}\\
+    \midrule
+    \endhead
+    \showrowcolors
 
     27 & Click the play button on the main menu screen & Program switches to the config screen & \checkmark\\
+    27 & Click the browser button on the main menu screen & Program switches to the browser screen & \checkmark\\
+    27 & Click the settings button on the main menu screen & Program switches to the settings screen & \checkmark\\
     28 & Click main menu button & Program switches to the menu screen & \checkmark\\
     29 & Click help button & Help overlay appears & \checkmark\\
+    29 & Click quit button & Program quits & \checkmark\\
+    31 & Drag program window & Program continues running & \checkmark\\
     30 & Resize program window & GUI Widgets resize continuously & \checkmark\\
-    31 & Drag program window & Program continues running& \checkmark\\
 
     \bottomrule
 
 \end{longtable}
 
 \section{Videos}
+Link to video demonstrating final tests: \url{}
+\\
+Link to video demonstrating unit tests: \url{}
 
 \end{document}

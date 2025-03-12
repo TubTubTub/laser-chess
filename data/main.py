@@ -5,6 +5,7 @@ import data.setup
 # Windows OS requires some configuration for Pygame to scale GUI continuously while window is being resized
 if platform == 'win32':
     import data.windows_setup as win_setup
+
 from data.loading_screen import LoadingScreen
 
 states = [None, None]
@@ -22,6 +23,7 @@ def load_states():
     from data.states.review.review import Review
     from data.states.editor.editor import Editor
 
+    # Initialise dictionary containing each screen in the game, referenced in Control class by the current state's 'next' and 'previous' attributes, corresponding to a key in this dictionary
     state_dict = {
         'menu': Menu(),
         'game': Game(),

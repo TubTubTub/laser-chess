@@ -131,23 +131,35 @@ The following objectives should be met to satisfy my clients’ requirements:
 \begin{enumerate}
 \item All laser chess game logic should be properly implemented
     \begin{itemize}
-    \item All pieces should be display correct behaviour (i.e reflect the laser correctly)
-    \item Option to rotate laser chess pieces should be implemented
-    \item Option to move laser chess pieces should be implemented
-    \item Game should allocate alternating player’s turns
+    \item Pieces should be destroyed when laser hits their vulnerable side
+    \item Pyramid should rotate laser by 90$^{\circ}$ from one side
+    \item Scarab should rotate laser by 90$^{\circ}$ from both sides
+    \item Anubis should absorb laser from one side
+    \item Active colour should alternate every move
+    \item Laser should automatically fire from the sphinx after a player move
     \item Travel path of laser should be correctly implemented
-    \item Pieces should be automatically detected and eliminated when hit by the laser
-    \item Game should automatically detect when a player has lost or won
-    \item Three-fold repetition should be automatically detected
+    \item Game should end when a player's pharoah is destroyed
+    \item Game should end in a draw if three-fold repetition is automatically detected
+    \end{itemize}
+\item Game should process user input correctly
+    \begin{itemize}
+    \item Clicking on a piece of the active colour selects it
+    \item Clicking on an invalid square deselects the piece
+    \item Clicking on a piece and an available square should move the piece
+    \item Grabbing a piece and releasing on an available square should move
+    \item Clicking on the clockwise or anticlockwise button should rotate the selected piece accordingly the piece
     \end{itemize}
 \item Save or load game options should be implemented
 \label{itm:save-games}
     \begin{itemize}
     \item Games should be encoded into FEN string format
     \item Games can be saved locally into external files
-    \item User should be able to scroll through previous games
-    \item User should be able to scroll through previous moves
-    \item Game should display information relevant to each game, and display moves correctly
+    \item Entering the browser screen should display all previous games
+    \item Previous games should be sorted according to specific criteria (i.e. winner)
+    \item User should be able to delete previous games
+    \item User should be able to review previous games
+    \item The review screen should display information relevant for each game
+    \item Clicking on the previous or next buttons should scroll through moves
     \end{itemize}
 \item Other board game requirements should be implemented
     \begin{itemize}
@@ -158,10 +170,16 @@ The following objectives should be met to satisfy my clients’ requirements:
     \end{itemize}
 \item Game settings and config should be customisable
     \begin{itemize}
-    \item User should be able to select board colours
     \item User should be able to play against another player or CPU
     \item User should be able to customise timer and duration
-    \item User should be able to customise starting board layout and colour
+    \item User should be able to select starting colours
+    \item User should be able to enter custom FEN string in the config screen
+    \item Config screen should be able to detect invalid FEN strings
+    \item Users should be able to place any pieces in editor screen
+    \item Users should be able to rotate pieces in editor screen
+    \item Clicking on empty or reset buttons should update the board accordingly
+    \item User should be able to change board colours
+    \item User should be able to change program settings (e.g. fullscreen or volume)
     \end{itemize}
 % \item CPU player
 %     \begin{itemize}
@@ -171,21 +189,21 @@ The following objectives should be met to satisfy my clients’ requirements:
 %     \end{itemize}
 \item Game UI should improve player experience
     \begin{itemize}
-    \item Drag and drop should be implemented
-    \item Selected pieces should be clearly marked with an indicator
+    \item Selected pieces should be clearly marked with a visual indicator
     \item Indicator showing available squares to move to when clicking on a piece
     \item Destroying a piece should display a visual and audio cue
     \item Captured pieces should be displayed for each player
     \item Status message should display current status of the game (whose turn it is, move a piece, game won etc.)
+    \item Mouse cursor icon should change depending on context
     \end{itemize}
 \item GUI design should be functional and display concise information
     \begin{itemize}
     \item \label{itm:responsive-objective} GUI should always remain responsive throughout the running of the program
-    \item Application should be divided into separate sections with their own menus and functionality (e.g. title page, settings)
+    \item Program should be divided into separate sections with their own menus and functionality (e.g. title page, settings)
     \item Navigation buttons (e.g. return to menu) should concisely display their functionality
     \item UI should contain exit and help buttons
     \item UI should be designed for clarity in mind and visually pleasing
-    \item Application should be responsive, draggable and resizable
+    \item Application window should be draggable and resizable
     \end{itemize}
 \end{enumerate}
 

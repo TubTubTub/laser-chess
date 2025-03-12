@@ -275,7 +275,7 @@ The \lstinline{startup} method is called when switched to a new state, and \lsti
 
 \subsection{Review}
 \label{sec:review}
-The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games. All moves are stored in two stacks, as described in Section \ref{sec:design-stack}, and exchanged using \lstinline{pop} and \lstinline{append} (push) methods.
+The \lstinline{Review} state uses this logic to allow users to scroll through moves in their past games. All moves are stored in two \textbf{stacks}, as described in Section \ref{sec:design-stack}, and exchanged using \lstinline{pop} and \lstinline{append} (push) methods.
 
 \noindent\verb|review.py|
 \lstinputlisting[label=src:../../data/states/review/review.py]{../../data/states/review/review.py}
@@ -306,6 +306,8 @@ As described in Section \ref{sec:design-dml}, this file provides functions to he
 The \lstinline{ShaderManager} class is responsible for handling all shader passes, handling the Pygame display, and combining both and drawing the result to the window screen. The class also \textbf{inherits} from the \lstinline{SMProtocol} class, an \textbf{interface} class containing all required \lstinline{ShaderManager} methods and attributes to aid with syntax highlighting in the fragment shader classes.
 
 Fragment shaders such as \lstinline{Bloom} are applied by default, and others such as \lstinline{Ray} are applied during runtime through calling methods on \lstinline{ShaderManager}, and adding the appropiate fragment shader class to the internal shader pass list.
+
+Each fragment shader is written in GLSL and stored in a \lstinline{.frag} file, and read into the \lstinline{ShaderManager} class.
 
 \noindent\verb|shader.py|
 \lstinputlisting[label=src:../../data/managers/shader.py]{../../data/managers/shader.py}
