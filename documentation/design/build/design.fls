@@ -337,6 +337,8 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\subfiles\subfiles.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
+INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
 INPUT .\assets\listings-glsl.prf
 INPUT .\assets\listings-glsl.prf
 INPUT assets\listings-glsl.prf
@@ -357,8 +359,6 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-p
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\epstopdf-pkg\epstopdf-base.sty
-INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\grfext\grfext.sty
-INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\grfext\grfext.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
@@ -566,6 +566,12 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt1000.tfm
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0800.tfm
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecit0800.tfm
+INPUT ..\design\assets\linked_list.pdf
+INPUT ..\design\assets\linked_list.pdf
+INPUT ..\design\assets\linked_list.pdf
+INPUT ..\design\assets\linked_list.pdf
+INPUT ..\design\assets\linked_list.pdf
+INPUT ..\design\assets\linked_list.pdf
 INPUT ..\design\assets\stack.pdf
 INPUT ..\design\assets\stack.pdf
 INPUT ..\design\assets\stack.pdf

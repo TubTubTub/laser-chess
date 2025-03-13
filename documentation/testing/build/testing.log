@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  12 MAR 2025 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 MAR 2025 10:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -921,50 +921,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--57
 <../testing/assets/rays_example_1.png, id=137, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/assets/rays_example_1.png>
-Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 103.
+Package pdftex.def Info: ../testing/assets/rays_example_1.png  used on input line 102.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 <../testing/assets/rays_example_2.png, id=139, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/assets/rays_example_2.png>
-Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 106.
+Package pdftex.def Info: ../testing/assets/rays_example_2.png  used on input line 105.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 <../testing/assets/rays_example_3.png, id=140, 444.15938pt x 444.15938pt>
 File: ../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/assets/rays_example_3.png>
-Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 109.
+Package pdftex.def Info: ../testing/assets/rays_example_3.png  used on input line 108.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
 
-Underfull \hbox (badness 2644) in paragraph at lines 135--135
+Underfull \hbox (badness 2644) in paragraph at lines 134--134
 []|\T1/cmr/m/n/10 Active colour switches to red
  []
 
 
-Underfull \hbox (badness 3826) in paragraph at lines 155--155
+Underfull \hbox (badness 3826) in paragraph at lines 154--154
 []|\T1/cmr/m/n/10 Click piece and click out-side
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 156--156
+Underfull \hbox (badness 1648) in paragraph at lines 155--155
 []|\T1/cmr/m/n/10 Click piece and click ad-ja-cent
  []
 
 
 
 [3 <../testing/assets/rays_example_1.png> <../testing/assets/rays_example_2.png> <../testing/assets/rays_example_3.png>]
-Underfull \hbox (badness 4660) in paragraph at lines 181--181
+Underfull \hbox (badness 4660) in paragraph at lines 180--180
 []|\T1/cmr/m/n/10 Game is dis-played in re-view
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 182--182
+Underfull \hbox (badness 3000) in paragraph at lines 181--181
 []|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 231--231
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 []|\T1/cmr/m/n/10 All pieces dis-s-a-pear (ex-cept
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 232--232
+[]|\T1/cmr/m/n/10 Switches to con-fig screen with
  []
 
 
@@ -973,12 +978,7 @@ Underfull \hbox (badness 1112) in paragraph at lines 233--233
  []
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 234--234
-[]|\T1/cmr/m/n/10 Switches to con-fig screen with
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 239--239
+Underfull \hbox (badness 10000) in paragraph at lines 238--238
 []|\T1/cmr/m/n/10 Toggle par-ti-cle and shader
  []
 
@@ -1007,7 +1007,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  139i,12n,139p,1649b,1366s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (7 pages, 396295 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\testing\build\testing.pdf (7 pages, 396215 bytes).
 PDF statistics:
  543 PDF objects out of 1000 (max. 8388607)
  68 named destinations out of 1000 (max. 500000)

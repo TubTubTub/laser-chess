@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  9 MAR 2025 21:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 MAR 2025 22:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -769,6 +769,11 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@pps=\count385
 \c@@ppsavesec=\count386
 \c@@ppsaveapp=\count387
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+\everycr=\toks53
+\minrowclearance=\skip85
+\rownum=\count388
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -777,7 +782,7 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count388
+\l__color_backend_stack_int=\count389
 \l__pdf_internal_box=\box135
 ) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
 \openout1 = `design.aux'.
@@ -837,26 +842,20 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count389
+\scratchcounter=\count390
 \scratchdimen=\dimen329
 \scratchbox=\box136
-\nofMPsegments=\count390
-\nofMParguments=\count391
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count392
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count393
 \MPscratchDim=\dimen330
-\MPnumerator=\count393
-\makeMPintoPDFobject=\count394
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks55
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -877,7 +876,7 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count395
+\c@lstlisting=\count396
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
 \@outlinefile=\write4
@@ -1086,60 +1085,68 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
 [25]
+<../design/assets/linked_list.pdf, id=497, 389.5353pt x 109.3686pt>
+File: ../design/assets/linked_list.pdf Graphic file (type pdf)
+<use ../design/assets/linked_list.pdf>
+Package pdftex.def Info: ../design/assets/linked_list.pdf  used on input line 787.
+(pdftex.def)             Requested size: 418.25368pt x 117.43208pt.
+
 
 [26]
-<../design/assets/stack.pdf, id=518, 204.765pt x 174.6525pt>
+
+[27 <../design/assets/linked_list.pdf>]
+<../design/assets/stack.pdf, id=534, 204.765pt x 174.6525pt>
 File: ../design/assets/stack.pdf Graphic file (type pdf)
 <use ../design/assets/stack.pdf>
-Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 851.
+Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 858.
 (pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
 
 
-[27] [28 <../design/assets/stack.pdf>]
+[28] [29 <../design/assets/stack.pdf>]
 
-LaTeX Warning: Reference `itm:responsive-objective' on page 29 undefined on input line 884.
-
-[29]
-Overfull \hbox (11.81412pt too wide) in alignment at lines 948--952
- [] [] 
- []
-
-
-Overfull \hbox (11.81412pt too wide) in alignment at lines 952--953
- [] [] 
- []
-
-
-Overfull \hbox (11.81412pt too wide) in alignment at lines 953--965
- [] [] 
- []
-
-
-Overfull \hbox (16.34079pt too wide) in alignment at lines 967--971
- [] [] 
- []
-
-
-Overfull \hbox (16.34079pt too wide) in alignment at lines 971--972
- [] [] 
- []
-
-
-Overfull \hbox (16.34079pt too wide) in alignment at lines 972--984
- [] [] 
- []
+LaTeX Warning: Reference `itm:responsive-objective' on page 30 undefined on input line 891.
 
 [30]
-<../design/assets/class_relation_diagram.pdf, id=557, 435.54718pt x 478.66827pt>
+Overfull \hbox (11.8141pt too wide) in alignment at lines 955--959
+ [] [] 
+ []
+
+
+Overfull \hbox (11.8141pt too wide) in alignment at lines 959--960
+ [] [] 
+ []
+
+
+Overfull \hbox (11.8141pt too wide) in alignment at lines 960--972
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 974--978
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 978--979
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 979--991
+ [] [] 
+ []
+
+[31]
+<../design/assets/class_relation_diagram.pdf, id=574, 435.54718pt x 478.66827pt>
 File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
 <use ../design/assets/class_relation_diagram.pdf>
-Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 1013.
+Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 1020.
 (pdftex.def)             Requested size: 418.25368pt x 459.677pt.
 
 
-[31]
+[32]
 
-[32 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+[33 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1152,17 +1159,17 @@ Package rerunfilecheck Info: File `design.out' has not changed.
 (rerunfilecheck)             Checksum: 8E8B94FDA64A7A827337A1D3ABAF973C;2594.
  ) 
 Here is how much of TeX's memory you used:
- 41915 strings out of 473530
- 982106 string characters out of 5714311
- 1713249 words of memory out of 5000000
- 64347 multiletter control sequences out of 15000+600000
+ 41974 strings out of 473530
+ 982813 string characters out of 5714311
+ 1715434 words of memory out of 5000000
+ 64404 multiletter control sequences out of 15000+600000
  581253 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,11n,139p,1647b,2639s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 139i,12n,139p,1647b,2639s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (32 pages, 4491790 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (33 pages, 4569268 bytes).
 PDF statistics:
- 1109 PDF objects out of 1200 (max. 8388607)
- 166 named destinations out of 1000 (max. 500000)
- 296 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1125 PDF objects out of 1200 (max. 8388607)
+ 168 named destinations out of 1000 (max. 500000)
+ 301 words of extra memory for PDF output out of 10000 (max. 10000000)
 

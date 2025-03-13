@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  4 MAR 2025 17:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 MAR 2025 22:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -155,9 +155,28 @@ Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count289
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.sty
-Package: biblatex 2024/03/21 v3.20 programmable bibliographies (PK/MW)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
+Package: siunitx 2025-01-21 v3.4.4 A comprehensive (SI) units package
+\l__siunitx_number_uncert_offset_int=\count290
+\l__siunitx_number_exponent_fixed_int=\count291
+\l__siunitx_number_min_decimal_int=\count292
+\l__siunitx_number_min_integer_int=\count293
+\l__siunitx_number_round_precision_int=\count294
+\l__siunitx_number_lower_threshold_int=\count295
+\l__siunitx_number_upper_threshold_int=\count296
+\l__siunitx_number_group_first_int=\count297
+\l__siunitx_number_group_size_int=\count298
+\l__siunitx_number_group_minimum_int=\count299
+\l__siunitx_angle_tmp_dim=\dimen169
+\l__siunitx_angle_marker_box=\box54
+\l__siunitx_angle_unit_box=\box55
+\l__siunitx_compound_count_int=\count300
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations\translations.sty
+Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count301
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
@@ -167,300 +186,34 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count290
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.sty
-Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count291
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/logreq\logreq.def
-File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
-Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
-\Urlmuskip=\muskip18
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-\c@tabx@nest=\count292
-\c@listtotal=\count293
-\c@listcount=\count294
-\c@liststart=\count295
-\c@liststop=\count296
-\c@citecount=\count297
-\c@citetotal=\count298
-\c@multicitecount=\count299
-\c@multicitetotal=\count300
-\c@instcount=\count301
-\c@maxnames=\count302
-\c@minnames=\count303
-\c@maxitems=\count304
-\c@minitems=\count305
-\c@citecounter=\count306
-\c@maxcitecounter=\count307
-\c@savedcitecounter=\count308
-\c@uniquelist=\count309
-\c@uniquename=\count310
-\c@refsection=\count311
-\c@refsegment=\count312
-\c@maxextratitle=\count313
-\c@maxextratitleyear=\count314
-\c@maxextraname=\count315
-\c@maxextradate=\count316
-\c@maxextraalpha=\count317
-\c@abbrvpenalty=\count318
-\c@highnamepenalty=\count319
-\c@lownamepenalty=\count320
-\c@maxparens=\count321
-\c@parenlevel=\count322
-\blx@tempcnta=\count323
-\blx@tempcntb=\count324
-\blx@tempcntc=\count325
-\c@blx@maxsection=\count326
-\blx@maxsegment@0=\count327
-\blx@notetype=\count328
-\blx@parenlevel@text=\count329
-\blx@parenlevel@foot=\count330
-\blx@sectionciteorder@0=\count331
-\blx@sectionciteorderinternal@0=\count332
-\blx@entrysetcounter=\count333
-\blx@biblioinstance=\count334
-\labelnumberwidth=\skip54
-\labelalphawidth=\skip55
-\biblabelsep=\skip56
-\bibitemsep=\skip57
-\bibnamesep=\skip58
-\bibinitsep=\skip59
-\bibparsep=\skip60
-\bibhang=\skip61
-\blx@bcfin=\read2
-\blx@bcfout=\write3
-\blx@langwohyphens=\language79
-\c@mincomprange=\count335
-\c@maxcomprange=\count336
-\c@mincompwidth=\count337
-Package biblatex Info: Trying to load biblatex default data model...
-Package biblatex Info: ... file 'blx-dm.def' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-dm.def
-File: blx-dm.def 2024/03/21 v3.20 biblatex datamodel (PK/MW)
-)
-Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'verbose-trad2.dbx' not found.
-Package biblatex Info: Trying to load biblatex custom data model...
-Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count338
-\c@savedafterword=\count339
-\c@annotator=\count340
-\c@savedannotator=\count341
-\c@author=\count342
-\c@savedauthor=\count343
-\c@bookauthor=\count344
-\c@savedbookauthor=\count345
-\c@commentator=\count346
-\c@savedcommentator=\count347
-\c@editor=\count348
-\c@savededitor=\count349
-\c@editora=\count350
-\c@savededitora=\count351
-\c@editorb=\count352
-\c@savededitorb=\count353
-\c@editorc=\count354
-\c@savededitorc=\count355
-\c@foreword=\count356
-\c@savedforeword=\count357
-\c@holder=\count358
-\c@savedholder=\count359
-\c@introduction=\count360
-\c@savedintroduction=\count361
-\c@namea=\count362
-\c@savednamea=\count363
-\c@nameb=\count364
-\c@savednameb=\count365
-\c@namec=\count366
-\c@savednamec=\count367
-\c@translator=\count368
-\c@savedtranslator=\count369
-\c@shortauthor=\count370
-\c@savedshortauthor=\count371
-\c@shorteditor=\count372
-\c@savedshorteditor=\count373
-\c@labelname=\count374
-\c@savedlabelname=\count375
-\c@institution=\count376
-\c@savedinstitution=\count377
-\c@lista=\count378
-\c@savedlista=\count379
-\c@listb=\count380
-\c@savedlistb=\count381
-\c@listc=\count382
-\c@savedlistc=\count383
-\c@listd=\count384
-\c@savedlistd=\count385
-\c@liste=\count386
-\c@savedliste=\count387
-\c@listf=\count388
-\c@savedlistf=\count389
-\c@location=\count390
-\c@savedlocation=\count391
-\c@organization=\count392
-\c@savedorganization=\count393
-\c@origlocation=\count394
-\c@savedoriglocation=\count395
-\c@origpublisher=\count396
-\c@savedorigpublisher=\count397
-\c@publisher=\count398
-\c@savedpublisher=\count399
-\c@language=\count400
-\c@savedlanguage=\count401
-\c@origlanguage=\count402
-\c@savedoriglanguage=\count403
-\c@pageref=\count404
-\c@savedpageref=\count405
-\shorthandwidth=\skip62
-\shortjournalwidth=\skip63
-\shortserieswidth=\skip64
-\shorttitlewidth=\skip65
-\shortauthorwidth=\skip66
-\shorteditorwidth=\skip67
-\locallabelnumberwidth=\skip68
-\locallabelalphawidth=\skip69
-\localshorthandwidth=\skip70
-\localshortjournalwidth=\skip71
-\localshortserieswidth=\skip72
-\localshorttitlewidth=\skip73
-\localshortauthorwidth=\skip74
-\localshorteditorwidth=\skip75
-Package biblatex Info: Trying to load compatibility code...
-Package biblatex Info: ... file 'blx-compat.def' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-compat.def
-File: blx-compat.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
-)
-Package biblatex Info: Trying to load BibTeX backend compatibility...
-Package biblatex Info: ... file 'blx-bibtex.def' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-bibtex.def
-File: blx-bibtex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
-
-
-Package biblatex Warning: Using fall-back bibtex backend:
-(biblatex)                functionality may be reduced/unavailable.
-
-)
-Package biblatex Info: Trying to load generic definitions...
-Package biblatex Info: ... file 'biblatex.def' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.def
-File: biblatex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
-\c@textcitecount=\count406
-\c@textcitetotal=\count407
-\c@textcitemaxnames=\count408
-\c@biburlbigbreakpenalty=\count409
-\c@biburlbreakpenalty=\count410
-\c@biburlnumpenalty=\count411
-\c@biburlucpenalty=\count412
-\c@biburllcpenalty=\count413
-\biburlbigskip=\muskip19
-\biburlnumskip=\muskip20
-\biburlucskip=\muskip21
-\biburllcskip=\muskip22
-\c@smartand=\count414
-)
-Package biblatex Info: Trying to load bibliography style 'verbose-trad2'...
-Package biblatex Info: ... file 'verbose-trad2.bbx' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\verbose-trad2.bbx
-File: verbose-trad2.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'authortitle'...
-Package biblatex Info: ... file 'authortitle.bbx' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\authortitle.bbx
-File: authortitle.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'standard'...
-Package biblatex Info: ... file 'standard.bbx' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/bbx\standard.bbx
-File: standard.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count415
-\c@bbx:relatedtotal=\count416
-)))
-Package biblatex Info: Trying to load citation style 'verbose-trad2'...
-Package biblatex Info: ... file 'verbose-trad2.cbx' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/cbx\verbose-trad2.cbx
-File: verbose-trad2.cbx 2024/03/21 v3.20 biblatex citation style (PK/MW)
-Package biblatex Info: Redefining '\cite'.
-Package biblatex Info: Redefining '\parencite'.
-Package biblatex Info: Redefining '\footcite'.
-Package biblatex Info: Redefining '\footcitetext'.
-Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\textcite'.
-Package biblatex Info: Redefining '\textcites'.
-)
-Package biblatex Info: Trying to load configuration file...
-Package biblatex Info: ... file 'biblatex.cfg' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\biblatex.cfg
-File: biblatex.cfg 
-)
-Package biblatex Info: Input encoding 'utf8' detected.
-Package biblatex Info: Document encoding is UTF8 ....
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2025-01-18 L3 programming layer (loader) 
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count417
-\l__pdf_internal_box=\box54
 ))
-Package biblatex Info: ... and expl3
-(biblatex)             2025-01-18 L3 programming layer (loader) 
-(biblatex)             is new enough (at least 2020/04/06),
-(biblatex)             setting 'casechanger=expl3'.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex\blx-case-expl3.sty (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
-Package: xparse 2024-08-16 L3 Experimental document command parser
-)
-Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
-)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
-Package: siunitx 2025-01-21 v3.4.4 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count418
-\l__siunitx_number_exponent_fixed_int=\count419
-\l__siunitx_number_min_decimal_int=\count420
-\l__siunitx_number_min_integer_int=\count421
-\l__siunitx_number_round_precision_int=\count422
-\l__siunitx_number_lower_threshold_int=\count423
-\l__siunitx_number_upper_threshold_int=\count424
-\l__siunitx_number_group_first_int=\count425
-\l__siunitx_number_group_size_int=\count426
-\l__siunitx_number_group_minimum_int=\count427
-\l__siunitx_angle_tmp_dim=\dimen169
-\l__siunitx_angle_marker_box=\box55
-\l__siunitx_angle_unit_box=\box56
-\l__siunitx_compound_count_int=\count428
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations\translations.sty
-Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
-)
-\l__siunitx_table_tmp_box=\box57
+\l__siunitx_table_tmp_box=\box56
 \l__siunitx_table_tmp_dim=\dimen170
 \l__siunitx_table_column_width_dim=\dimen171
-\l__siunitx_table_integer_box=\box58
-\l__siunitx_table_decimal_box=\box59
-\l__siunitx_table_uncert_box=\box60
-\l__siunitx_table_before_box=\box61
-\l__siunitx_table_after_box=\box62
+\l__siunitx_table_integer_box=\box57
+\l__siunitx_table_decimal_box=\box58
+\l__siunitx_table_uncert_box=\box59
+\l__siunitx_table_before_box=\box60
+\l__siunitx_table_after_box=\box61
 \l__siunitx_table_before_dim=\dimen172
 \l__siunitx_table_carry_dim=\dimen173
-\l__siunitx_unit_tmp_int=\count429
-\l__siunitx_unit_position_int=\count430
-\l__siunitx_unit_total_int=\count431
+\l__siunitx_unit_tmp_int=\count302
+\l__siunitx_unit_position_int=\count303
+\l__siunitx_unit_total_int=\count304
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \col@sep=\dimen174
-\ar@mcellbox=\box63
+\ar@mcellbox=\box62
 \extrarowheight=\dimen175
 \NC@list=\toks24
-\extratabsurround=\skip76
-\backup@length=\skip77
-\ar@cellbox=\box64
+\extratabsurround=\skip54
+\backup@length=\skip55
+\ar@cellbox=\box63
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip78
-\multirow@cntb=\count432
-\multirow@dima=\skip79
+\multirow@colwidth=\skip56
+\multirow@cntb=\count305
+\multirow@dima=\skip57
 \bigstrutjot=\dimen176
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -474,37 +227,40 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen184
 \cmidrulekern=\dimen185
 \defaultaddspace=\dimen186
-\@cmidla=\count433
-\@cmidlb=\count434
+\@cmidla=\count306
+\@cmidlb=\count307
 \@aboverulesep=\dimen187
 \@belowrulesep=\dimen188
-\@thisruleclass=\count435
-\@lastruleclass=\count436
+\@thisruleclass=\count308
+\@lastruleclass=\count309
 \@thisrulewidth=\dimen189
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
 Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
-\LTleft=\skip80
-\LTright=\skip81
-\LTpre=\skip82
-\LTpost=\skip83
-\LTchunksize=\count437
+\LTleft=\skip58
+\LTright=\skip59
+\LTpre=\skip60
+\LTpost=\skip61
+\LTchunksize=\count310
 \LTcapwidth=\dimen190
-\LT@head=\box65
-\LT@firsthead=\box66
-\LT@foot=\box67
-\LT@lastfoot=\box68
-\LT@gbox=\box69
-\LT@cols=\count438
-\LT@rows=\count439
-\c@LT@tables=\count440
-\c@LT@chunks=\count441
+\LT@head=\box64
+\LT@firsthead=\box65
+\LT@foot=\box66
+\LT@lastfoot=\box67
+\LT@gbox=\box68
+\LT@cols=\count311
+\LT@rows=\count312
+\c@LT@tables=\count313
+\c@LT@chunks=\count314
 \LT@p@ftn=\toks25
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/graphics\rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
-\c@r@tfl@t=\count442
-\rotFPtop=\skip84
-\rotFPbot=\skip85
-\rot@float@box=\box70
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count315
+\rotFPtop=\skip62
+\rotFPbot=\skip63
+\rot@float@box=\box69
 \rot@mess@toks=\toks26
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplotstable.sty (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.revision.tex)
 Package: pgfplotstable 2021/05/15 v1.18.1 Table typesetting and Pretty-printing (1.18.1)
@@ -515,7 +271,7 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \pgfutil@tempdima=\dimen191
 \pgfutil@tempdimb=\dimen192
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
-\pgfutil@abb=\box71
+\pgfutil@abb=\box70
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
@@ -538,16 +294,16 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yc=\dimen256
 \pgf@xd=\dimen257
 \pgf@yd=\dimen258
-\w@pgf@writea=\write4
-\r@pgf@reada=\read3
-\c@pgf@counta=\count443
-\c@pgf@countb=\count444
-\c@pgf@countc=\count445
-\c@pgf@countd=\count446
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count316
+\c@pgf@countb=\count317
+\c@pgf@countc=\count318
+\c@pgf@countd=\count319
 \t@pgf@toka=\toks31
 \t@pgf@tokb=\toks32
 \t@pgf@tokc=\toks33
-\pgf@sys@id@count=\count447
+\pgf@sys@id@count=\count320
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -558,8 +314,8 @@ File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count448
-\pgfsyssoftpath@bigbuffer@items=\count449
+\pgfsyssoftpath@smallbuffer@items=\count321
+\pgfsyssoftpath@bigbuffer@items=\count322
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
@@ -582,13 +338,13 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
 \pgfmath@dimen=\dimen259
-\pgfmath@count=\count450
-\pgfmath@box=\box72
+\pgfmath@count=\count323
+\pgfmath@box=\box71
 \pgfmath@toks=\toks34
 \pgfmath@stack@operand=\toks35
 \pgfmath@stack@operation=\toks36
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count451
+\c@pgfmathroundto@lastzeros=\count324
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen260
@@ -615,10 +371,10 @@ File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@shorten@start@additional=\dimen277
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box73
-\pgf@hbox=\box74
-\pgf@layerbox@main=\box75
-\pgf@picture@serial@count=\count452
+\pgfpic=\box72
+\pgf@hbox=\box73
+\pgf@layerbox@main=\box74
+\pgf@picture@serial@count=\count325
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen278
@@ -639,13 +395,13 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen283
-\pgf@sys@shading@range@num=\count453
-\pgf@shadingcount=\count454
+\pgf@sys@shading@range@num=\count326
+\pgf@shadingcount=\count327
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box76
+\pgfexternal@startupbox=\box75
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
@@ -656,7 +412,7 @@ File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box77
+\pgfnodeparttextbox=\box76
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
@@ -675,7 +431,7 @@ Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count455
+\pgf@plot@mark@count=\count328
 \pgfplotmarksize=\dimen288
 )
 \tikz@lastx=\dimen289
@@ -686,21 +442,21 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen294
 \tikzleveldistance=\dimen295
 \tikzsiblingdistance=\dimen296
-\tikz@figbox=\box78
-\tikz@figbox@bg=\box79
-\tikz@tempbox=\box80
-\tikz@tempbox@bg=\box81
-\tikztreelevel=\count456
-\tikznumberofchildren=\count457
-\tikznumberofcurrentchild=\count458
-\tikz@fig@count=\count459
+\tikz@figbox=\box77
+\tikz@figbox@bg=\box78
+\tikz@tempbox=\box79
+\tikz@tempbox@bg=\box80
+\tikztreelevel=\count329
+\tikznumberofchildren=\count330
+\tikznumberofcurrentchild=\count331
+\tikz@fig@count=\count332
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count460
-\pgfmatrixcurrentcolumn=\count461
-\pgf@matrix@numberofcolumns=\count462
+\pgfmatrixcurrentrow=\count333
+\pgfmatrixcurrentcolumn=\count334
+\pgf@matrix@numberofcolumns=\count335
 )
-\tikz@expandcount=\count463
+\tikz@expandcount=\count336
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore.code.tex
@@ -708,33 +464,33 @@ File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \t@pgfplots@tokb=\toks40
 \t@pgfplots@tokc=\toks41
 \pgfplots@tmpa=\dimen297
-\c@pgfplots@coordindex=\count464
-\c@pgfplots@scanlineindex=\count465
+\c@pgfplots@coordindex=\count337
+\c@pgfplots@scanlineindex=\count338
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplotssysgeneric.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgfplotslibrary.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks42
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructure.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsliststructureext.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count466
+\c@pgfplotsarray@tmp=\count339
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsmatrix.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count467
+\c@pgfplotstable@counta=\count340
 \t@pgfplotstable@a=\toks45
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsdeque.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.data.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.verb.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count468
+\c@pgfplotslibrarysurf@no=\count341
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolormap.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolor.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstackedplots.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsplothandlers.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplothandler.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplotimage.code.tex))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.scaling.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoordprocessing.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.errorbars.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.markers.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsticks.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.paths.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen298
 \pgfdecoratedremainingdistance=\dimen299
 \pgfdecoratedinputsegmentcompleteddistance=\dimen300
 \pgfdecoratedinputsegmentremainingdistance=\dimen301
 \pgf@decorate@distancetomove=\dimen302
-\pgf@decorate@repeatstate=\count469
+\pgf@decorate@repeatstate=\count342
 \pgfdecorationsegmentamplitude=\dimen303
 \pgfdecorationsegmentlength=\dimen304
 )
-\tikz@lib@dec@box=\box82
+\tikz@lib@dec@box=\box81
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count470
+\pgfplots@numplots=\count343
 \pgfplots@xmin@reg=\dimen305
 \pgfplots@xmax@reg=\dimen306
 \pgfplots@ymin@reg=\dimen307
@@ -746,32 +502,34 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstable.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstable.coltype.code.tex))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count471
-\lst@gtempboxa=\box83
+\lst@mode=\count344
+\lst@gtempboxa=\box82
 \lst@token=\toks46
-\lst@length=\count472
+\lst@length=\count345
 \lst@currlwidth=\dimen311
-\lst@column=\count473
-\lst@pos=\count474
+\lst@column=\count346
+\lst@pos=\count347
 \lst@lostspace=\dimen312
 \lst@width=\dimen313
-\lst@newlines=\count475
-\lst@lineno=\count476
+\lst@newlines=\count348
+\lst@lineno=\count349
 \lst@maxwidth=\dimen314
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count477
-\lst@skipnumbers=\count478
-\lst@framebox=\box84
+\c@lstnumber=\count350
+\lst@skipnumbers=\count351
+\lst@framebox=\box83
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
@@ -783,14 +541,16 @@ Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-)
-\c@section@level=\count479
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count352
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen315
-\Hy@linkcounter=\count480
-\Hy@pagecounter=\count481
+\Hy@linkcounter=\count353
+\Hy@pagecounter=\count354
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -798,7 +558,7 @@ Now handling font encoding PD1 ...
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count482
+\Hy@SavedSpaceFactor=\count355
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -811,7 +571,11 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count483
+\c@Hy@tempcnt=\count356
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
 LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen316
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
@@ -819,7 +583,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count484
+\Fld@menulength=\count357
 \Field@Width=\dimen317
 \Fld@charsize=\dimen318
 Package hyperref Info: Hyper figures OFF on input line 6042.
@@ -833,9 +597,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count485
-\c@Item=\count486
-\c@Hfootnote=\count487
+\Hy@abspage=\count358
+\c@Item=\count359
+\c@Hfootnote=\count360
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -844,8 +608,8 @@ File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count488
-\c@bookmark@seq@number=\count489
+\Fld@listcount=\count361
+\c@bookmark@seq@number=\count362
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty
@@ -853,74 +617,75 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip86
+\Hy@SectionHShift=\skip64
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
-\labelindent=\skip87
+\labelindent=\skip65
 \enit@outerparindent=\dimen319
 \enit@toks=\toks47
-\enit@inbox=\box85
-\enit@count@id=\count490
-\enitdp@description=\count491
+\enit@inbox=\box84
+\enit@count@id=\count363
+\enitdp@description=\count364
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyphenat\hyphenat.sty
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
-\langwohyphens=\language80
+\langwohyphens=\language79
 LaTeX Info: Redefining \_ on input line 43.
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count492
+\c@float@type=\count365
 \float@exts=\toks48
-\float@box=\box86
+\float@box=\box85
 \@float@everytoks=\toks49
-\@floatcapt=\box87
+\@floatcapt=\box86
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
 \@float@every@algorithm=\toks50
-\c@algorithm=\count493
+\c@algorithm=\count366
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
 Package: algpseudocode 
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count494
-\c@ALG@rem=\count495
-\c@ALG@nested=\count496
-\ALG@tlm=\skip88
-\ALG@thistlm=\skip89
-\c@ALG@Lnr=\count497
-\c@ALG@blocknr=\count498
-\c@ALG@storecount=\count499
-\c@ALG@tmpcounter=\count500
-\ALG@tmplength=\skip90
+\c@ALG@line=\count367
+\c@ALG@rem=\count368
+\c@ALG@nested=\count369
+\ALG@tlm=\skip66
+\ALG@thistlm=\skip67
+\c@ALG@Lnr=\count370
+\c@ALG@blocknr=\count371
+\c@ALG@storecount=\count372
+\c@ALG@tmpcounter=\count373
+\ALG@tmplength=\skip68
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
 Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
-\c@tracingmulticols=\count501
-\mult@box=\box88
+\c@tracingmulticols=\count374
+\mult@box=\box87
 \multicol@leftmargin=\dimen320
-\c@unbalance=\count502
-\c@collectmore=\count503
-\doublecol@number=\count504
-\multicoltolerance=\count505
-\multicolpretolerance=\count506
+\c@unbalance=\count375
+\c@collectmore=\count376
+\doublecol@number=\count377
+\multicoltolerance=\count378
+\multicolpretolerance=\count379
 \full@width=\dimen321
 \page@free=\dimen322
 \premulticols=\dimen323
 \postmulticols=\dimen324
-\multicolsep=\skip91
-\multicolbaselineskip=\skip92
-\partial@page=\box89
-\last@line=\box90
-\mc@boxedresult=\box91
+\multicolsep=\skip69
+\multicolbaselineskip=\skip70
+\partial@page=\box88
+\last@line=\box89
+\mc@boxedresult=\box90
 \maxbalancingoverflow=\dimen325
-\mult@rightbox=\box92
-\mult@grightbox=\box93
-\mult@firstbox=\box94
-\mult@gfirstbox=\box95
+\mult@rightbox=\box91
+\mult@grightbox=\box92
+\mult@firstbox=\box93
+\mult@gfirstbox=\box94
+\@tempa=\box95
 \@tempa=\box96
 \@tempa=\box97
 \@tempa=\box98
@@ -956,22 +721,21 @@ Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
 \@tempa=\box128
 \@tempa=\box129
 \@tempa=\box130
-\@tempa=\box131
-\c@minrows=\count507
-\c@columnbadness=\count508
-\c@finalcolumnbadness=\count509
+\c@minrows=\count380
+\c@columnbadness=\count381
+\c@finalcolumnbadness=\count382
 \last@try=\dimen326
 \multicolovershoot=\dimen327
 \multicolundershoot=\dimen328
-\mult@nat@firstbox=\box132
-\colbreak@box=\box133
-\mc@col@check@num=\count510
+\mult@nat@firstbox=\box131
+\colbreak@box=\box132
+\mc@col@check@num=\count383
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/etoc\etoc.sty
 Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
 \Etoc@toctoks=\toks51
-\c@etoc@tocid=\count511
-\etoc@framed@titlebox=\box134
-\etoc@framed@contentsbox=\box135
+\c@etoc@tocid=\count384
+\etoc@framed@titlebox=\box133
+\etoc@framed@contentsbox=\box134
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
@@ -983,37 +747,44 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip93
-\f@nch@offset@elh=\skip94
-\f@nch@offset@erh=\skip95
-\f@nch@offset@olh=\skip96
-\f@nch@offset@orh=\skip97
-\f@nch@offset@elf=\skip98
-\f@nch@offset@erf=\skip99
-\f@nch@offset@olf=\skip100
-\f@nch@offset@orf=\skip101
-\f@nch@height=\skip102
-\f@nch@footalignment=\skip103
-\f@nch@widthL=\skip104
-\f@nch@widthC=\skip105
-\f@nch@widthR=\skip106
+\f@nch@headwidth=\skip71
+\f@nch@offset@elh=\skip72
+\f@nch@offset@erh=\skip73
+\f@nch@offset@olh=\skip74
+\f@nch@offset@orh=\skip75
+\f@nch@offset@elf=\skip76
+\f@nch@offset@erf=\skip77
+\f@nch@offset@olf=\skip78
+\f@nch@offset@orf=\skip79
+\f@nch@height=\skip80
+\f@nch@footalignment=\skip81
+\f@nch@widthL=\skip82
+\f@nch@widthC=\skip83
+\f@nch@widthR=\skip84
 \@temptokenb=\toks52
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
 Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
-\c@@pps=\count512
-\c@@ppsavesec=\count513
-\c@@ppsaveapp=\count514
+\c@@pps=\count385
+\c@@ppsavesec=\count386
+\c@@ppsaveapp=\count387
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+\everycr=\toks53
+\minrowclearance=\skip85
+\rownum=\count388
 ) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ))))
-\@quotelevel=\count515
-\@quotereset=\count516
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
- (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count389
+\l__pdf_internal_box=\box135
+) (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
 \openout1 = `evaluation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -1071,26 +842,20 @@ LaTeX Font Info:    ... okay on input line 3.
 
 (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count517
+\scratchcounter=\count390
 \scratchdimen=\dimen329
 \scratchbox=\box136
-\nofMPsegments=\count518
-\nofMParguments=\count519
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count520
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count393
 \MPscratchDim=\dimen330
-\MPnumerator=\count521
-\makeMPintoPDFobject=\count522
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks55
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1104,24 +869,6 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package biblatex Info: Trying to load language 'english'...
-Package biblatex Info: ... file 'english.lbx' found.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/biblatex/lbx\english.lbx
-File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
-)
-Package biblatex Info: Input encoding 'utf8' detected.
-Package biblatex Info: Automatic encoding selection.
-(biblatex)             Assuming data encoding 'utf8'.
-Package biblatex Info: Input encoding 'utf8' detected.
-Package biblatex Info: Data encoding 'utf8' specified.
-(biblatex)             No need to reencode data.
-\openout3 = `evaluation-blx.bib'.
-
-Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'evaluation.bbl' found.
- (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.bbl)
-Package biblatex Info: Reference section=0 on input line 3.
-Package biblatex Info: Reference segment=0 on input line 3.
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
@@ -1129,26 +876,86 @@ Package translations Info: loading dictionary `translations-basic-dictionary' fo
 
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-\c@lstlisting=\count523
+\c@lstlisting=\count396
 Package hyperref Info: Link coloring OFF on input line 3.
 (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.out)
-\@outlinefile=\write5
-\openout5 = `evaluation.out'.
+\@outlinefile=\write4
+\openout4 = `evaluation.out'.
 
 
 No file evaluation.toc.
 Chapter 1.
 
-LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 9.
+LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 11.
 
 
-LaTeX Warning: Reference `fig:screenshots-browser' on page 1 undefined on input line 16.
+LaTeX Warning: Reference `obj:1f' on page 1 undefined on input line 13.
 
 
-LaTeX Warning: Reference `fig:screenshots-review' on page 1 undefined on input line 16.
+LaTeX Warning: Reference `obj:1g' on page 1 undefined on input line 13.
 
 
-LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 23.
+LaTeX Warning: Reference `obj:1a' on page 1 undefined on input line 13.
+
+
+LaTeX Warning: Reference `obj:1e' on page 1 undefined on input line 13.
+
+
+LaTeX Warning: Reference `obj:1h' on page 1 undefined on input line 13.
+
+
+LaTeX Warning: Reference `obj:1i' on page 1 undefined on input line 13.
+
+
+LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input line 18.
+
+
+LaTeX Warning: Reference `obj:2a' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `obj:2c' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `obj:2d' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `obj:2e' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `obj:2b' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `obj:2d' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Reference `fig:screenshots-browser' on page 1 undefined on input line 25.
+
+
+LaTeX Warning: Reference `fig:screenshots-review' on page 1 undefined on input line 25.
+
+
+LaTeX Warning: Reference `obj:3c' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3e' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3f' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3d' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3a' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3b' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3h' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3g' on page 1 undefined on input line 27.
 
 
 
@@ -1157,25 +964,105 @@ LaTeX Warning: Reference `fig:screenshots-game' on page 1 undefined on input lin
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
-LaTeX Warning: Reference `fig:screenshots-settings' on page 2 undefined on input line 30.
+LaTeX Warning: Reference `fig:screenshots-game' on page 2 undefined on input line 32.
 
 
-LaTeX Warning: Reference `fig:screenshots-config' on page 2 undefined on input line 30.
+LaTeX Warning: Reference `obj:4c' on page 2 undefined on input line 34.
 
 
-LaTeX Warning: Reference `fig:screenshots-editor' on page 2 undefined on input line 30.
+LaTeX Warning: Reference `obj:4d' on page 2 undefined on input line 34.
 
 
-LaTeX Warning: Reference `fig:screenshots-game' on page 2 undefined on input line 37.
+LaTeX Warning: Reference `obj:4a' on page 2 undefined on input line 34.
 
 
-LaTeX Warning: Reference `fig:screenshots-menu' on page 2 undefined on input line 44.
+LaTeX Warning: Reference `obj:4b' on page 2 undefined on input line 34.
+
+
+LaTeX Warning: Reference `fig:screenshots-settings' on page 2 undefined on input line 39.
+
+
+LaTeX Warning: Reference `fig:screenshots-config' on page 2 undefined on input line 39.
+
+
+LaTeX Warning: Reference `fig:screenshots-editor' on page 2 undefined on input line 39.
+
+
+LaTeX Warning: Reference `obj:5i' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5j' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5a' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5c' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5f' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5h' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5d' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `obj:5e' on page 2 undefined on input line 41.
+
+
+LaTeX Warning: Reference `fig:screenshots-game' on page 2 undefined on input line 46.
+
+
+LaTeX Warning: Reference `obj:6a' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6b' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6c' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6g' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6e' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6f' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `obj:6d' on page 2 undefined on input line 48.
+
+
+LaTeX Warning: Reference `fig:screenshots-menu' on page 2 undefined on input line 53.
+
+
+LaTeX Warning: Reference `obj:7c' on page 2 undefined on input line 55.
+
+
+LaTeX Warning: Reference `obj:7b' on page 2 undefined on input line 55.
+
+
+LaTeX Warning: Reference `obj:7d' on page 2 undefined on input line 55.
+
+
+LaTeX Warning: Reference `obj:7e' on page 2 undefined on input line 55.
+
+
+LaTeX Warning: Reference `obj:7a' on page 2 undefined on input line 55.
+
+
+LaTeX Warning: Reference `obj:7f' on page 2 undefined on input line 55.
 
 
 
 [2]
 
-[3] (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
+[3]
+
+[4] (c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1185,23 +1072,20 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `evaluation.out' has not changed.
-(rerunfilecheck)             Checksum: 69177DB81D72C6AFB0916065CC5AC3BA;1148.
-Package logreq Info: Writing requests to 'evaluation.run.xml'.
-\openout1 = `evaluation.run.xml'.
-
+(rerunfilecheck)             Checksum: F2C9417D516BBA1C269CC0556F53DE02;1426.
  ) 
 Here is how much of TeX's memory you used:
- 47859 strings out of 473530
- 1108308 string characters out of 5714311
- 1886403 words of memory out of 5000000
- 70422 multiletter control sequences out of 15000+600000
- 566096 words of font info for 46 fonts, out of 8000000 for 9000
+ 41231 strings out of 473530
+ 967456 string characters out of 5714311
+ 1591438 words of memory out of 5000000
+ 63845 multiletter control sequences out of 15000+600000
+ 566409 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,5n,139p,1987b,1023s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (3 pages, 62093 bytes).
+ 139i,5n,139p,1655b,1204s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (4 pages, 81886 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 291 PDF objects out of 1000 (max. 8388607)
+ 21 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

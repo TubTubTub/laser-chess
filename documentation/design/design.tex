@@ -782,7 +782,14 @@ Security measures such as database file permissions and encryption are common fo
 
 \subsection{Linked Lists}
 \label{sec:linked-lists}
-Another data structure I intend to implement is linked lists. This will be integrated into widgets such as the carousel or multiple icon button widget, since these will contain a variable number of items, and where $O(1)$ random access is not a priority. Since moving back and forth between nodes is a must for a carousel widget, the linked list will be doubly-linked, with each node containing to its previous and next node. The list will also need to loop, with the next pointer of the last node pointing back to the first node, making it a circular linked list.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{../design/assets/linked_list.pdf}
+    \caption{Structure of a circular doubly-linked list}
+    \label{fig:linked-list}
+\end{figure}
+
+Another data structure I intend to implement is linked lists. This will be integrated into widgets such as the carousel or multiple icon button widget, since these will contain a variable number of items, and where $O(1)$ random access is not a priority. Since moving back and forth between nodes is a must for a carousel widget, the linked list will be doubly-linked, with each node containing to its previous and next node. The list will also need to loop, with the next pointer of the last node pointing back to the first node, making it a circular linked list, as demonstrated in Figure \ref{fig:linked-list}.
 
 The following pseudocode outlines the basic functionality of the linked list:
 
