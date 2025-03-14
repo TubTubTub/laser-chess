@@ -1,6 +1,6 @@
 import pygame
-from data.utils.constants import ShaderType
 from data.shaders.protocol import SMProtocol
+from data.utils.constants import ShaderType
 
 class Base:
     def __init__(self, shader_manager: SMProtocol):
@@ -16,6 +16,7 @@ class Base:
     def apply(self, texture, background_type=None):
         base_texture = self._shader_manager.get_fbo_texture(ShaderType.BASE)
 
+        # Draws background to ShaderType.BASE framebuffer
         match background_type:
             case ShaderType.BACKGROUND_WAVES:
                 self._shader_manager.render_to_fbo(
@@ -62,5 +63,6 @@ class Base:
             case _:
                 raise ValueError('(shader.py) Unknown background type:', background_type)
 
+        # Draws background using texture in ShaderType.BASE framebuffer, on pixels in the Pygame texture that have no alpha
         self._shader_manager.get_fbo_texture(ShaderType.BASE).use(1)
         self._shader_manager.render_to_fbo(ShaderType.BASE, texture, background=1)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 MAR 2025 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  14 MAR 2025 10:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -29,7 +29,7 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (../main/config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -774,7 +774,7 @@ Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 \everycr=\toks53
 \minrowclearance=\skip85
 \rownum=\count388
-) (../main/assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -784,7 +784,7 @@ Package translations Info: No language package found. I am going to use `english
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count389
 \l__pdf_internal_box=\box135
-) (c:\Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
+) (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
 \openout1 = `analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -878,7 +878,7 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 
 \c@lstlisting=\count396
 Package hyperref Info: Link coloring OFF on input line 3.
-(c:\Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out)
+(c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.out)
 \@outlinefile=\write4
 \openout4 = `analysis.out'.
 
@@ -924,22 +924,22 @@ Overfull \hbox (23.99998pt too wide) in alignment at lines 261--283
  []
 
 
-Underfull \hbox (badness 4024) in paragraph at lines 300--300
+Underfull \hbox (badness 4024) in paragraph at lines 299--299
 []\T1/cmr/m/n/10 Versatile, easy in-te-gra-tion with both
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 300--300
+Underfull \hbox (badness 1270) in paragraph at lines 299--299
 []\T1/cmr/m/n/10 Also sup-ports object-oriented pro-gram-
  []
 
 
-Underfull \hbox (badness 6032) in paragraph at lines 305--305
+Underfull \hbox (badness 6032) in paragraph at lines 304--304
 []\T1/cmr/m/n/10 Comprehensive knowl-edge of ex-ter-nal
  []
 
 
-Overfull \hbox (23.99998pt too wide) in alignment at lines 285--308
+Overfull \hbox (23.99998pt too wide) in alignment at lines 285--307
  [] [] 
  []
 
@@ -949,13 +949,13 @@ Overfull \hbox (23.99998pt too wide) in alignment at lines 285--308
 <../analysis/assets/critical_path_diagram.pdf, id=213, 312.20638pt x 370.5042pt>
 File: ../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/assets/critical_path_diagram.pdf>
-Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 344.
+Package pdftex.def Info: ../analysis/assets/critical_path_diagram.pdf  used on input line 343.
 (pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
 
 
 [11]
 
-[12 <../analysis/assets/critical_path_diagram.pdf>] (c:\Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
+[12 <../analysis/assets/critical_path_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -964,15 +964,15 @@ Package rerunfilecheck Info: File `analysis.out' has not changed.
 (rerunfilecheck)             Checksum: 222B71115E33FC550AE1F32312A8ACB1;2536.
  ) 
 Here is how much of TeX's memory you used:
- 41402 strings out of 473530
- 970106 string characters out of 5714311
- 1596568 words of memory out of 5000000
- 63914 multiletter control sequences out of 15000+600000
+ 41400 strings out of 473530
+ 969976 string characters out of 5714311
+ 1596436 words of memory out of 5000000
+ 63912 multiletter control sequences out of 15000+600000
  569129 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,7n,139p,1651b,1276s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (12 pages, 335706 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\analysis\build\analysis.pdf (12 pages, 335666 bytes).
 PDF statistics:
  542 PDF objects out of 1000 (max. 8388607)
  108 named destinations out of 1000 (max. 500000)

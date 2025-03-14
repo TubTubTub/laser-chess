@@ -2,6 +2,7 @@ import pygame
 from data.utils.enums import CursorMode
 from data.utils.assets import GRAPHICS
 
+# Manager to change mouse cursor iconss
 class CursorManager:
     def __init__(self):
         self._mode = CursorMode.ARROW

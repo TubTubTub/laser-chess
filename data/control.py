@@ -14,6 +14,7 @@ FPS = 60
 SHOW_FPS = False
 start_ticks = pygame.time.get_ticks()
 
+# Control class for managing state machine
 class Control:
     def __init__(self):
         self.done = False
@@ -26,6 +27,7 @@ class Control:
         self.state = self.state_dict[self.state_name]
         self.state.startup()
 
+    # Method to cleanup previous state and startup new state.
     def flip_state(self):
         self.state.done = False
         persist = self.state.cleanup()
@@ -65,33 +67,35 @@ class Control:
 
         self.update()
 
+    # Debug method to render framerate.
     def draw_fps(self):
         fps = str(int(self._clock.get_fps()))
         DEFAULT_FONT.strength = 0.1
         DEFAULT_FONT.render_to(window.screen, (0, 0), fps, fgcolor=theme['textError'], size=15)
 
+    # Used to limit window dimensions when resizing application window
     def update_native_window_size(self):
         x, y = window.size
 
         max_window_x = 100000
         max_window_y = x / 1.4
         min_window_x = 400
-        min_window_y = min_window_x/1.4
+        min_window_y = min_window_x / 1.4
 
+        # If aspect ratio is less than 1.4, stop allowing width rescaling
         if x / y < 1.4:
             min_window_x = x
 
-        min_window_size = (min_window_x, min_window_y)
-        max_window_size = (max_window_x, max_window_y)
-        window.minimum_size = min_window_size
-        window.maximum_size = max_window_size
+        window.minimum_size = (min_window_x, min_window_y)
+        window.maximum_size = (max_window_x, max_window_y)
 
     def event_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.done = True
 
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button != 1: # ONLY PROCESS LEFT CLICKS
+            # Only allow left-click for mouse presses
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button != 1:
                 return
 
             self.state.get_event(event)

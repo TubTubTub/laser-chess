@@ -1,10 +1,12 @@
 import pygame
 from data.managers.window import window
 
+# Overriding Pygame widget group to handle own widget system
 class WidgetGroup(pygame.sprite.Group):
     def __init__(self, widget_dict):
         super().__init__()
 
+        # Add widgets from WIDGET_DICT
         for value in widget_dict.values():
             if isinstance(value, list):
                 for widget in value:
@@ -14,22 +16,22 @@ class WidgetGroup(pygame.sprite.Group):
                     self.add(widget)
             else:
                 self.add(value)
-    
+
     def handle_resize(self, new_surface_size):
         for sprite in self.sprites():
             sprite.set_surface_size(new_surface_size)
             sprite.set_image()
             sprite.set_geometry()
-    
+
     def process_event(self, event):
         for sprite in self.sprites():
             widget_event = sprite.process_event(event)
 
             if widget_event:
                 return widget_event
-        
+
         return None
-    
+
     def draw(self):
         sprites = self.sprites()
         for spr in sprites:
@@ -39,7 +41,8 @@ class WidgetGroup(pygame.sprite.Group):
         dirty = self.lostsprites
 
         return dirty
-    
+
+    # Returns True if mouse cursor is hovering over a widget
     def on_widget(self, mouse_pos):
         test_sprite = pygame.sprite.Sprite()
         test_sprite.rect = pygame.FRect(*mouse_pos, 1, 1)

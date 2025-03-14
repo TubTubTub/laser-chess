@@ -3,6 +3,7 @@ from pathlib import Path
 
 database_path = (Path(__file__).parent / '../database.db').resolve()
 
+# Upgrade function used to update games table schema
 def upgrade():
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()
@@ -14,6 +15,7 @@ def upgrade():
     connection.commit()
     connection.close()
 
+# Downgrade function used to revert changes
 def downgrade():
     connection = sqlite3.connect(database_path)
     cursor = connection.cursor()

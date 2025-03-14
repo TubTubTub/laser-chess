@@ -4,6 +4,7 @@ from data.utils.enums import Rank, File
 
 logger = initialise_logger(__name__)
 
+# Debug function to return string representation of bitboard
 def print_bitboard(bitboard):
     if (bitboard >= (2 ** 80)):
         raise ValueError('Invalid bitboard: too many bits')
@@ -38,6 +39,7 @@ def coords_to_bitboard(coords):
     index = coords[1] * 10 + coords[0]
     return index_to_bitboard(index)
 
+# Converts bitboard square to algebraic board notation
 def bitboard_to_notation(bitboard):
     index = bitboard_to_index(bitboard)
     x = index // 10
@@ -60,6 +62,7 @@ def bitboard_to_coords(bitboard):
 
     return x, y
 
+# Converts every occupied bit in bitboard to tuple of integers in a list
 def bitboard_to_coords_list(bitboard):
     list_positions = []
 
@@ -68,6 +71,7 @@ def bitboard_to_coords_list(bitboard):
 
     return list_positions
 
+# Yields all individual occupied squares in the form of a bitboard
 def occupied_squares(bitboard):
     while bitboard:
         lsb_square = bitboard & -bitboard
@@ -75,36 +79,17 @@ def occupied_squares(bitboard):
 
         yield lsb_square
 
+# Returns number of occupied squares in bitboard
 def pop_count(bitboard):
     count = 0
     while bitboard:
         count += 1
+        # Find least significant occupied bit
         lsb_square = bitboard & -bitboard
         bitboard = bitboard ^ lsb_square
 
     return count
 
-# def pop_count(bitboard):
-#     count = 0
-#     while bitboard:
-#         count += 1
-#         bitboard &= bitboard - 1
-
-#     return count
-
 def loop_all_squares():
     for i in range(80):
         yield 1 << i
-
-#Solar
-def get_LSB_value(bitboard: int):
-    return bitboard & -bitboard
-
-def pop_count_2(bitboard):
-    count = 0
-    while bitboard > 0:
-        lsb_value = get_LSB_value(bitboard)
-        count += 1
-        bitboard ^= lsb_value
-
-    return count
