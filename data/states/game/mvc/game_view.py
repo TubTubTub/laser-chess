@@ -125,7 +125,10 @@ class GameView:
         if ['b', 'r'][self._model.states['ACTIVE_COLOUR']] == self._model.states['START_FEN_STRING'][-1]:
             self.set_status_text(StatusText.PLAYER_MOVE)
         else:
-            self.set_status_text(StatusText.CPU_MOVE)
+            if self._model.states['CPU_ENABLED']:
+                self.set_status_text(StatusText.CPU_MOVE)
+            else:
+                self.set_status_text(StatusText.PLAYER_MOVE)
 
         if self._model.states['TIME_ENABLED']:
             self.toggle_timer(self._model.states['ACTIVE_COLOUR'], True)

@@ -5,7 +5,7 @@ from data.utils.enums import Piece, Colour, Rotation
 class Laser:
     def __init__(self, bitboards):
         self._bitboards = bitboards
-        self.hit_square_bitboard, self.piece_hit, self.laser_path, self.path_bitboard, self.pieces_on_trajectory = self.calculate_trajectory()
+        self.hit_square_bitboard, self.piece_hit, self.laser_path, self.path_bitboard, self.pieces_on_trajectory, self.end_cap = self.calculate_trajectory()
 
         if (self.hit_square_bitboard != EMPTY_BB):
             self.piece_rotation = self._bitboards.get_rotation_on(self.hit_square_bitboard)
@@ -29,7 +29,7 @@ class Laser:
             trajectory_list.append(bb_helpers.bitboard_to_coords(current_square))
             square_animation_states.append(direction)
 
-            if previous_direction != direction:
+            if previous_direction != direction or (current_piece == Piece.ANUBIS and not piece_hit):
                 pieces_on_trajectory.append(current_square)
 
             if next_square == EMPTY_BB:
@@ -38,7 +38,12 @@ class Laser:
                 if piece_hit:
                     hit_square_bitboard = current_square
 
-                return hit_square_bitboard, piece_hit, list(zip(trajectory_list, square_animation_states)), trajectory_bitboard, pieces_on_trajectory
+                if piece_hit or current_piece == Piece.ANUBIS:
+                    end_cap = True
+                else:
+                    end_cap = False
+
+                return hit_square_bitboard, piece_hit, list(zip(trajectory_list, square_animation_states)), trajectory_bitboard, pieces_on_trajectory, end_cap
 
             current_square = next_square
             previous_direction = direction

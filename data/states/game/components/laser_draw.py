@@ -63,12 +63,14 @@ class LaserDraw:
                     (0, 0, 255) if laser_colour == Colour.BLUE else (255, 0, 0),
                 ])
 
-        # Sets end laser draw type if laser hits a piece
-        if laser_result.hit_square_bitboard != EMPTY_BB:
+        # Sets end laser draw type if laser hits a piece or piece is anubis
+        if laser_result.end_cap:
             laser_types[-1] = LaserType.END
             laser_path[-1] = (laser_path[-1][0], laser_path[-2][1].get_opposite())
             laser_rotation[-1] = laser_path[-2][1].get_opposite()
 
+        # Played audio cue if piece is destroyed
+        if laser_result.hit_square_bitboard != EMPTY_BB:
             audio.play_sfx(SFX['piece_destroy'])
 
         laser_path = [(coords, rotation, type) for (coords, dir), rotation, type in zip(laser_path, laser_rotation, laser_types)]
@@ -105,7 +107,6 @@ class LaserDraw:
 
         for coords, rotation, type in laser_path:
             square_x, square_y = coords_to_screen_pos(coords, self._board_position, self._square_size)
-
             image = GRAPHICS[type_to_image[type][laser_colour]]
             rotated_image = pygame.transform.rotate(image, rotation.to_angle())
             scaled_image = pygame.transform.scale(rotated_image, (self._square_size + 1, self._square_size + 1)) # +1 to prevent rounding creating black lines

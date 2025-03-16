@@ -90,8 +90,8 @@ class Browser(_State):
             case BrowserEventType.COPY_CLICK:
                 if self._selected_index is None:
                     return
-                logger.info('COPYING TO CLIPBOARD:', self._games_list[self._selected_index]['fen_string'])
-                pyperclip.copy(self._games_list[self._selected_index]['fen_string'])
+                logger.info(f'COPYING TO CLIPBOARD: {self._games_list[self._selected_index]['final_fen_string']}')
+                pyperclip.copy(self._games_list[self._selected_index]['final_fen_string'])
 
             case BrowserEventType.DELETE_CLICK:
                 if self._selected_index is None:

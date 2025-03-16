@@ -1,7 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1741945929.80903 "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/evaluation.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.pdf" "evaluation" 1741945933.03808 0
+["pdflatex"] 1741982922.71178 "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/evaluation.tex" "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.pdf" "evaluation" 1741982924.88298 0
+  "../evaluation/assets/myslov_angry.jpeg" 1741979590 3095353 df3e36d12a55122677e0de9d0322993a ""
+  "../evaluation/assets/myslov_playing.jpeg" 1741979591 3523711 d699f1334c3dbaa1b202777eb814f653 ""
   "../main/main.tex" 1741557356 722 31944445a6e4bfcea7a83a284ea29d36 ""
-  "C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1741810442 81184 eb87252437a4785d54a8e9413c57392a ""
+  "C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1741981312 81184 eb87252437a4785d54a8e9413c57392a ""
   "C:/Users/Python/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1739964013 25420 7e5953c1b72c909b1246dbc3c9e6a039 ""
   "C:/Users/Python/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1739964011 31952 a947e500f652ac59a1c4f810cc19cc7a ""
   "C:/Users/Python/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1440.pk" 1739964014 40136 ed821fc4e3c562ce6da9256a73358615 ""
@@ -219,11 +221,11 @@
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "assets/listings-glsl.prf" 1740313813 4883 a85b8760594beede40210100ac3a918d ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.aux" 1741945932 2132 28bf62747a4227b620ae0a71c480a07c "pdflatex"
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.out" 1741945932 1426 f2c9417d516bba1c269cc0556f53de02 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.aux" 1741982924 2599 adad14593975a428a69e59dc902551a2 "pdflatex"
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.out" 1741982924 1426 f2c9417d516bba1c269cc0556f53de02 "pdflatex"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.toc" 0 -1 0 ""
-  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/evaluation.tex" 1741945928 12290 e1f5e8aeb054f887c25d15dab0907a2c ""
-  "config.tex" 1741810436 2660 a29ad069d114998ee500377e09c68f03 ""
+  "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/evaluation.tex" 1741982919 14732 54bb776a2fc1a3a41049fb3fcadb4d50 ""
+  "config.tex" 1741981873 2660 a29ad069d114998ee500377e09c68f03 ""
   "evaluation.toc" 0 -1 0 ""
   (generated)
   "c:/Users/Python/Documents/Repositories/NEA/documentation/evaluation/build/evaluation.aux"

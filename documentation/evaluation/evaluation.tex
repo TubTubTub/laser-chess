@@ -54,43 +54,63 @@ GUI design should be functional and display concise information. Refer to Figure
 
 I have created most of the custom pixel art and icon graphics to improve the game's visual and attempt to make it more engaging (Objective \ref{obj:7c}) There are currently 7 screens in the game: menu, settings, config, editor, game, browser and review, each containing their own eponymous function (Objective \ref{obj:7b}). Most screens also contain both the main menu button and help button. Clicking the menu button switches to the main menu screen, and clicking the help button shows an overlay displaying the functionality of drawn widgets (Objective \ref{obj:7d}). Shaders are also used to improve the game's visuals, such as by giving the laser a light-emitting effect, but is also used to draw all the backgrounds (Objective \ref{obj:7e}). The program runs well, with moments involving heavy calculation being helped by multithreading, and also resizes seamlessly (Objective \ref{obj:7a}, \ref{obj:7f}).
 
-Objective 7 is fulfilled. Although the program runs smoothly on my device, some fragment shaders are computationally expensive, and may therefore affect the performance. I have attempted to resolve this by adding the option to disable shaders, however, a better solution would be to optimise the expensive shader code, for example, by manually calculating masks using widget dimensions instead of the in-built Pygame mask function. Additionally, working on Windows, I did not bundle the program to MacOS or Linux. Although this was not a priority, having access to other OS testing environments would've widened access to the game.
+Objective 7 is fulfilled. Working on Windows, I did not bundle the program to MacOS or Linux. Although this was not a priority, having access to other OS testing environments would've widened access to the game.
 
 \section{Client Feedback}
-The following interview was conducted after Mr Myslov received and played through the program.
+An interview was conducted after Mr Myslov received and played through the program, the following transcription is summarised and paraphrased for clarity.
 
-\bigskip
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}[b]{0.49\columnwidth}
+    \includegraphics[width=\columnwidth]{../evaluation/assets/myslov_playing.jpeg}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\columnwidth}
+    \includegraphics[width=\columnwidth]{../evaluation/assets/myslov_angry.jpeg}
+    \end{subfigure}
+
+\caption{(left) Mr Myslov playing through the game (right) Mr Myslov physically threatens me after failing to beat the bot}
+\label{fig:client-interview}
+\end{figure}
 
 \noindent\textbf{Q:} Did the final product meet your expectations?
 
-\noindent\textbf{A:} Yes, it certainly did. The game plays perfectly, I could move, rotate all the pieces as expected, and the laser works well. All the features I requested for were there, and the visuals were also more than I expected and welcome.
+\noindent\textbf{A:} Yes, it certainly did. The game plays perfectly, I could move, rotate all the pieces as expected, and the laser works well. All the features I requested for were there, and I also like your indie-style graphics.
 
 \noindent\rule{\textwidth}{0.4pt}
 
 \noindent\textbf{Q:} What improvements could be made to the program?
 
-\noindent\textbf{A:} I found that it was difficult for my laptop to run the program without sacrificing some of the visuals. I also found your FEN string implementation confusing, as there was no guidance on what the characters meant, or what the string represented. Figuring out how to play the game was also initially difficult, as I didn't know what the pieces represented through their icons, or how they would deal with the laser.
+\noindent\textbf{A:} There seems to be quite a steep learning curve towards your program. It was hard understanding how the pieces worked with the laser. Playing through the game the CPU was also initially difficult, especially on the easy difficulty, as the moves would be played instantly after I moved, and I wasn't sure what move was made or whether the laser fired before or after my move. The bot was also frustrating to play against as it is very defensive, so I couldn't capture any of its pieces, it needs to be dumber; I don't know if the bot is intended to accept my draw, but I think that's good. I also like that you have made your own FEN string implementation confusing, but I'm not too sure how it works or what the characters mean.
 
 \noindent\rule{\textwidth}{0.4pt}
 
 \noindent\textbf{Q:} What other aspects would you like to have been added?
 
-\noindent\textbf{A:} Being able to somehow easily obtain a digital file for a game would be useful, so I could share it with my students easily. Having a multi-player option instead of people surrounding one laptop would also be a great addition.
+\noindent\textbf{A:} Being able to somehow easily obtain a digital file for a game would be useful, so I could share it with my students easily. To help with learning the game, you could add some puzzles to help with solving tactics and getting used to the pieces, and also a highlight overlay for moves played because it was hard to follow or figure out.
 
-\subsubsection*{Discussion}
+\subsection*{Discussion}
+My client was satisfied with my final program. His perspective revealed some aspects of the program that could've better considered and improved upon. Mr Myslov also helped discover a bug when he tried to offer a draw to the bot, who instantly accepted it despite being in a winning position. He seemed to enjoy this unexpected outcome, so I will consider this a feature.
 
-My client was satisfied with my final program. His perspective revealed some aspects of the program that could've better considered and improved upon.
-
-\paragraph{User-friendliness} was a point raised by Mr Myslov. He highlighted the fact that it would be hard for beginners to understand the rules of laser chess, which I agree on, considering that the rules and pieces are very different from regular chess.  To amend this, I could add more tutorials or help dialogs, for instance, by creating a new tutorial screen containing a miniaturised board, where the user can learn how the pieces interact with the laser; although a help screen is already implemented, an interactive one would perhaps serve the purpose more efficiently. A similar approach could be applied to my custom FEN string and algebraic move notation.
+\paragraph{User-friendliness} was the core discussion point raised by Mr Myslov. He highlighted the fact that it would be hard for beginners to understand the rules of laser chess, which I agree on, considering that the rules and pieces are very different from regular chess.  To amend this, I could add more tutorials or puzzles as per suggested, for instance, by creating a new tutorial or puzzle screen containing a miniaturised board, where the user can learn how the pieces interact with the laser; although a help screen is already implemented, an interactive one would perhaps serve the purpose more efficiently. A similar approach could be applied to my custom FEN string and algebraic move notation.
 
 \paragraph{Sharing games} was a suggestion made by Mr Myslov. Although the FEN string system allows for sharing of board positions, I realise that there is value in also sharing the entire progression of the game. This could be implemented by exporting the game to the equivalent of a chess 'PGN' file, by writing all the game information (e.g. CPU depth) to a .txt file, and then the contents of the move list.
 
-\paragraph{Multiplayer} was another improvement suggested by Mr Myslov. Admittedly, this is a big feature for a digital board game, however, I did not implement this as it was not a requested objective, and would've required restructuring my code for handling moves and the game logic. This could be achieved within Python through a peer-to-peer system, sending and parsing formatted moves either through pickling or JSON objects via HTTP methods using the \lstinline{requests} module, although it would also require an overhaul of the GUI and screens to allow the option for multiplayer.
+\paragraph{CPU} was also another point to consider. Mr Myslov complained that the CPU's thinking time on the easy mode was too short, resulting in his opponent's move being played instantly, confusing the flow of the game and making it hard to see what move was made. To fix this, I could either increase the thinking time artificially by only applying the move after a set timer runs out, or add an overlay similar to the one for selecting pieces, over the squares that a moved piece was on and has moved to. Mr Myslov also complained about the CPU's defensive style and his inability to gain an advantage. Although this can be regarded as a compliment, I agree that the CPU's tendency to defend instead of attack can be annoying. This results from the relative weighing of the evaluation function, which could be updated to contain PSQTs giving higher scores for more aggresive piece positioning, reducing the score allocated for king safety, or adjusting the piece values for a more aggresive playstyle.
 
-Regardless, given the limited time frame, we were both pleased with the final result.
+\bigskip
+
+\noindent Regardless, given the limited time frame, we were both pleased with the final result.s
 
 \section{Further improvements}
+There are some improvements that I have considered that were not brought up in the objectives or in interview.
+
 A point not raised by Mr Myslov was the ease-of-use of the widgets. The one that I found concerning was the text input, as constantly deleting the entire FEN string, and having to manually press arrow keys to edit specific characters was tedious. I have tried to improve this by adding shortcuts such as \verb|Ctrl+Backspace| to delete the entire contents of the text Input. To improve the text input to make it feel more familiar to standard ones, I would have to use two pointers to track the indexes of the start and end characters, for the ability to highlight and delete chunks of text. The text displayed can also be hard to read currently, especially if there are a lot of characters. This could be improved by either fixing the font width, detecting if the text width is greater the widget width and implementing text wrapping, or allowing text scrolling.
+
+Multiplayer was another improvement suggested by Mr Myslov. Admittedly, this is a big feature for a digital board game, however, I did not implement this as it was not a requested objective, and would've required restructuring my code for handling moves and the game logic. This could be achieved within Python through a peer-to-peer system, sending and parsing formatted moves either through pickling or JSON objects via HTTP methods using the \lstinline{requests} module, although it would also require an overhaul of the GUI and screens to allow the option for multiplayer.
+
+Performance issues did not appear throughout Mr Myslov's playthrough. However, even if the program runs smoothly on my device, some fragment shaders are computationally expensive and may affect the performance on other devices. I have attempted to resolve this by adding the option to disable shaders, however, a better solution would be to optimise the expensive shader code, for example, by approximating masks using widget dimensions instead of the in-built pixel perfect Pygame mask function.
 
 \section{Conclusion}
 The final product fulfilled all proposed objectives and more, and has been approved by my client.

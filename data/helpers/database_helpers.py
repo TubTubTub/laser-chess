@@ -24,7 +24,7 @@ def insert_into_games(game_entry):
     ''', game_entry)
 
     connection.commit()
-    
+
     # Return inserted row
     cursor.execute('''
         SELECT * FROM games WHERE id = LAST_INSERT_ROWID()
@@ -108,13 +108,13 @@ def get_ordered_games(column, ascend=True, start_row=1, end_row=10):
     connection = sqlite3.connect(database_path, detect_types=sqlite3.PARSE_DECLTYPES)
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
-    
+
     # Match ascend bool to correct SQL keyword
     if ascend:
         ascend_arg = 'ASC'
     else:
         ascend_arg = 'DESC'
-    
+
     # Partition by winner, then order by time and number_of_ply
     if column == 'winner':
         cursor.execute(f'''

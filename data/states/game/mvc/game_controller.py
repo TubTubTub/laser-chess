@@ -50,6 +50,9 @@ class GameController:
         if self._model.states['CPU_ENABLED']:
             self._model.make_cpu_move()
 
+        if self._model.states['WINNER'] == Miscellaneous.DRAW:
+            self._win_view.set_win_type('DRAW')
+
     def handle_pause_event(self, event):
         """
         Processes events when game is paused.
@@ -259,7 +262,7 @@ class GameController:
 
     def handle_event(self, event):
         """
-        Passe a Pygame event to the correct handling function according to the game state.
+        Passes a Pygame event to the correct handling function according to the game state.
 
         Args:
             event (pygame.Event): Event to process.
@@ -275,6 +278,7 @@ class GameController:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._model.toggle_paused()
+            # Debug shortcut to kill CPU
             elif event.key == pygame.K_l:
                 logger.info('\nSTOPPING CPU')
-                self._model._cpu_thread.stop_cpu() #temp
+                self._model._cpu_thread.stop_cpu()

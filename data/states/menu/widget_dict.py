@@ -24,6 +24,60 @@ MENU_WIDGETS = {
     ),
     'default': [
         top_right_container,
+        Rectangle(
+            relative_position=(0.65, 0.15),
+            relative_size=(0.15, 0.15),
+            scale_mode='height',
+            border_width=0,
+            border_radius=50,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
+        Rectangle(
+            relative_position=(0.8, 0.1),
+            relative_size=(0.10, 0.10),
+            scale_mode='height',
+            border_width=0,
+            border_radius=100,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
+        Rectangle(
+            relative_position=(0.5, 0.1),
+            relative_size=(0.20, 0.20),
+            scale_mode='height',
+            border_width=0,
+            border_radius=10,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
+        Rectangle(
+            relative_position=(0.9, 0.2),
+            relative_size=(0.15, 0.15),
+            scale_mode='height',
+            border_width=0,
+            border_radius=20,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
+        Rectangle(
+            relative_position=(0.85, 0.4),
+            relative_size=(0.20, 0.20),
+            scale_mode='height',
+            border_width=0,
+            border_radius=30,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
+        Rectangle(
+            relative_position=(0.7, 0.4),
+            relative_size=(0.10, 0.10),
+            scale_mode='height',
+            border_width=0,
+            border_radius=50,
+            fill_colour=theme['fillSecondary'],
+            visible=True
+        ),
         ReactiveIconButton(
             parent=top_right_container,
             relative_position=(0, 0),
@@ -72,14 +126,14 @@ MENU_WIDGETS = {
             press_icon=GRAPHICS['settings_text_press'],
             event=CustomEvent(MenuEventType.SETTINGS_CLICK)
         ),
-        Icon(
-            relative_position=(0.0, 0.1),
-            relative_size=(0.3, 0.2),
-            anchor_x='center',
-            fill_colour=theme['fillSecondary'],
-            icon=GRAPHICS['title_screen_art'],
-            stretch=False
-        ),
+        # Icon(
+        #     relative_position=(0.0, 0.1),
+        #     relative_size=(0.3, 0.2),
+        #     anchor_x='center',
+        #     fill_colour=theme['fillSecondary'],
+        #     icon=GRAPHICS['title_screen_art'],
+        #     stretch=False
+        # ),
     ]
 }
 

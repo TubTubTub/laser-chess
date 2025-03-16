@@ -42,270 +42,272 @@
 \contentsline {subsection}{\numberline {2.2.6}Multithreading}{37}{subsection.2.2.6}%
 \contentsline {section}{\numberline {2.3}Data Structures}{37}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Database}{37}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Linked Lists}{39}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Stack}{40}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Classes}{41}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Class Diagram}{45}{subsection.2.4.1}%
-\contentsline {chapter}{\numberline {3}Technical Solution}{46}{chapter.3}%
+\contentsline {subsection}{\numberline {2.3.2}Linked Lists}{40}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Stack}{41}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Classes}{42}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Class Diagram}{46}{subsection.2.4.1}%
+\contentsline {chapter}{\numberline {3}Technical Solution}{47}{chapter.3}%
 \etoc@startlocaltoc {2}
-\contentsline {section}{\numberline {3.1}File Tree Diagram}{47}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Summary of Complexity}{48}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Overview}{48}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Main}{48}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Loading Screen}{49}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Helper functions}{51}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Theme}{59}{subsection.3.3.4}%
-\contentsline {section}{\numberline {3.4}GUI}{60}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Laser}{60}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Particles}{63}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Widget Bases}{66}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Widgets}{75}{subsection.3.4.4}%
-\contentsline {section}{\numberline {3.5}Game}{87}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Model}{87}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}View}{92}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Controller}{98}{subsection.3.5.3}%
-\contentsline {subsection}{\numberline {3.5.4}Board}{103}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}Bitboards}{108}{subsection.3.5.5}%
-\contentsline {section}{\numberline {3.6}CPU}{114}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Minimax}{114}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{116}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Transposition Table}{118}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Iterative Deepening}{119}{subsection.3.6.4}%
-\contentsline {subsection}{\numberline {3.6.5}Evaluator}{120}{subsection.3.6.5}%
-\contentsline {subsection}{\numberline {3.6.6}Multithreading}{123}{subsection.3.6.6}%
-\contentsline {subsection}{\numberline {3.6.7}Zobrist Hashing}{124}{subsection.3.6.7}%
-\contentsline {subsection}{\numberline {3.6.8}Cache}{126}{subsection.3.6.8}%
-\contentsline {section}{\numberline {3.7}States}{127}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Review}{128}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Database}{133}{section.3.8}%
-\contentsline {subsection}{\numberline {3.8.1}DDL}{133}{subsection.3.8.1}%
-\contentsline {subsection}{\numberline {3.8.2}DML}{134}{subsection.3.8.2}%
-\contentsline {section}{\numberline {3.9}Shaders}{137}{section.3.9}%
-\contentsline {subsection}{\numberline {3.9.1}Shader Manager}{137}{subsection.3.9.1}%
-\contentsline {subsection}{\numberline {3.9.2}Bloom}{142}{subsection.3.9.2}%
-\contentsline {subsection}{\numberline {3.9.3}Rays}{146}{subsection.3.9.3}%
-\contentsline {chapter}{\numberline {4}Testing}{150}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Iterative Testing}{150}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Minimax}{150}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Migrations}{151}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Unit Tests}{151}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Board Evaluator}{151}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}CPU}{151}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Shadow Mapping}{152}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Final Tests}{152}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Objective 1}{152}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Objective 2}{153}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Objective 3}{153}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Objective 4}{153}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Objective 5}{154}{subsection.4.3.5}%
-\contentsline {subsection}{\numberline {4.3.6}Objective 6}{155}{subsection.4.3.6}%
-\contentsline {subsection}{\numberline {4.3.7}Objective 7}{155}{subsection.4.3.7}%
-\contentsline {section}{\numberline {4.4}Videos}{156}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Evaluation}{157}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Objectives}{157}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Objective 1}{157}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Objective 2}{157}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Objective 3}{157}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Objective 4}{158}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Objective 5}{158}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Objective 6}{158}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Objective 7}{158}{subsection.5.1.7}%
-\contentsline {section}{\numberline {5.2}Client Feedback}{159}{section.5.2}%
-\contentsline {paragraph}{User-friendliness}{159}{section*.80}%
-\contentsline {paragraph}{Sharing games}{160}{section*.81}%
-\contentsline {paragraph}{Multiplayer}{160}{section*.82}%
-\contentsline {section}{\numberline {5.3}Further improvements}{160}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Conclusion}{160}{section.5.4}%
-\contentsline {chapter}{\numberline {A}Screenshots}{162}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Source Code}{166}{appendix.B}%
+\contentsline {section}{\numberline {3.1}File Tree Diagram}{48}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Summary of Complexity}{49}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Overview}{49}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Main}{49}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Loading Screen}{50}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Helper functions}{52}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Theme}{60}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}GUI}{61}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Laser}{61}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Particles}{64}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Widget Bases}{67}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Widgets}{76}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}Game}{88}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Model}{88}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}View}{93}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Controller}{99}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}Board}{104}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Bitboards}{109}{subsection.3.5.5}%
+\contentsline {section}{\numberline {3.6}CPU}{115}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Minimax}{115}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Alpha-beta Pruning}{117}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Transposition Table}{119}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Iterative Deepening}{120}{subsection.3.6.4}%
+\contentsline {subsection}{\numberline {3.6.5}Evaluator}{121}{subsection.3.6.5}%
+\contentsline {subsection}{\numberline {3.6.6}Multithreading}{124}{subsection.3.6.6}%
+\contentsline {subsection}{\numberline {3.6.7}Zobrist Hashing}{125}{subsection.3.6.7}%
+\contentsline {subsection}{\numberline {3.6.8}Cache}{127}{subsection.3.6.8}%
+\contentsline {section}{\numberline {3.7}States}{128}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Review}{129}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Database}{134}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}DDL}{134}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}DML}{135}{subsection.3.8.2}%
+\contentsline {section}{\numberline {3.9}Shaders}{138}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Shader Manager}{138}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Bloom}{143}{subsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.9.3}Rays}{147}{subsection.3.9.3}%
+\contentsline {chapter}{\numberline {4}Testing}{151}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Iterative Testing}{151}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Minimax}{151}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Migrations}{152}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Unit Tests}{152}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Board Evaluator}{152}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}CPU}{152}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Shadow Mapping}{153}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Final Tests}{153}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Objective 1}{153}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Objective 2}{154}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Objective 3}{154}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Objective 4}{154}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Objective 5}{155}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.6}Objective 6}{156}{subsection.4.3.6}%
+\contentsline {subsection}{\numberline {4.3.7}Objective 7}{156}{subsection.4.3.7}%
+\contentsline {section}{\numberline {4.4}Videos}{157}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Evaluation}{158}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Objectives}{158}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Objective 1}{158}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Objective 2}{158}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Objective 3}{158}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Objective 4}{159}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Objective 5}{159}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Objective 6}{159}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Objective 7}{159}{subsection.5.1.7}%
+\contentsline {section}{\numberline {5.2}Client Feedback}{160}{section.5.2}%
+\contentsline {paragraph}{User-friendliness}{160}{section*.81}%
+\contentsline {paragraph}{Sharing games}{161}{section*.82}%
+\contentsline {paragraph}{CPU}{161}{section*.83}%
+\contentsline {section}{\numberline {5.3}Further improvements}{161}{section.5.3}%
+\contentsline {paragraph}{Multiplayer}{161}{section*.84}%
+\contentsline {paragraph}{Performance}{161}{section*.85}%
+\contentsline {section}{\numberline {5.4}Conclusion}{162}{section.5.4}%
+\contentsline {chapter}{\numberline {A}Screenshots}{164}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Source Code}{168}{appendix.B}%
 \global \c@tocdepth -1\relax 
-\contentsline {section}{\numberline {B.1}data}{166}{section.B.1}%
-\contentsline {subsection}{\numberline {B.1.1}control.py}{166}{subsection.B.1.1}%
-\contentsline {subsection}{\numberline {B.1.2}loading\_screen.py}{168}{subsection.B.1.2}%
-\contentsline {subsection}{\numberline {B.1.3}main.py}{168}{subsection.B.1.3}%
-\contentsline {subsection}{\numberline {B.1.4}setup.py}{168}{subsection.B.1.4}%
-\contentsline {subsection}{\numberline {B.1.5}windows\_setup.py}{168}{subsection.B.1.5}%
-\contentsline {section}{\numberline {B.2}data\textbackslash app\_data}{169}{section.B.2}%
-\contentsline {subsection}{\numberline {B.2.1}default\_settings.json}{169}{subsection.B.2.1}%
-\contentsline {subsection}{\numberline {B.2.2}logs\_config.json}{169}{subsection.B.2.2}%
-\contentsline {subsection}{\numberline {B.2.3}logs\_config\_prod.json}{170}{subsection.B.2.3}%
-\contentsline {subsection}{\numberline {B.2.4}themes.json}{171}{subsection.B.2.4}%
-\contentsline {subsection}{\numberline {B.2.5}user\_settings.json}{171}{subsection.B.2.5}%
-\contentsline {section}{\numberline {B.3}data\textbackslash components}{171}{section.B.3}%
-\contentsline {subsection}{\numberline {B.3.1}circular\_linked\_list.py}{171}{subsection.B.3.1}%
-\contentsline {subsection}{\numberline {B.3.2}cursor.py}{171}{subsection.B.3.2}%
-\contentsline {subsection}{\numberline {B.3.3}custom\_event.py}{172}{subsection.B.3.3}%
-\contentsline {subsection}{\numberline {B.3.4}game\_entry.py}{172}{subsection.B.3.4}%
-\contentsline {subsection}{\numberline {B.3.5}widget\_group.py}{173}{subsection.B.3.5}%
-\contentsline {section}{\numberline {B.4}data\textbackslash database}{174}{section.B.4}%
-\contentsline {section}{\numberline {B.5}data\textbackslash database\textbackslash migrations}{174}{section.B.5}%
-\contentsline {subsection}{\numberline {B.5.1}add\_created\_dt\_column27112024.py}{174}{subsection.B.5.1}%
-\contentsline {subsection}{\numberline {B.5.2}add\_fen\_string\_column\_22112024.py}{174}{subsection.B.5.2}%
-\contentsline {subsection}{\numberline {B.5.3}add\_start\_fen\_string\_column\_23122024.py}{175}{subsection.B.5.3}%
-\contentsline {subsection}{\numberline {B.5.4}change\_fen\_string\_column\_name\_23122024.py}{175}{subsection.B.5.4}%
-\contentsline {subsection}{\numberline {B.5.5}create\_games\_table\_19112024.py}{175}{subsection.B.5.5}%
-\contentsline {section}{\numberline {B.6}data\textbackslash helpers}{175}{section.B.6}%
-\contentsline {subsection}{\numberline {B.6.1}asset\_helpers.py}{175}{subsection.B.6.1}%
-\contentsline {subsection}{\numberline {B.6.2}bitboard\_helpers.py}{175}{subsection.B.6.2}%
-\contentsline {subsection}{\numberline {B.6.3}board\_helpers.py}{177}{subsection.B.6.3}%
-\contentsline {subsection}{\numberline {B.6.4}browser\_helpers.py}{178}{subsection.B.6.4}%
-\contentsline {subsection}{\numberline {B.6.5}database\_helpers.py}{179}{subsection.B.6.5}%
-\contentsline {subsection}{\numberline {B.6.6}data\_helpers.py}{179}{subsection.B.6.6}%
-\contentsline {subsection}{\numberline {B.6.7}font\_helpers.py}{179}{subsection.B.6.7}%
-\contentsline {subsection}{\numberline {B.6.8}input\_helpers.py}{180}{subsection.B.6.8}%
-\contentsline {subsection}{\numberline {B.6.9}load\_helpers.py}{180}{subsection.B.6.9}%
-\contentsline {subsection}{\numberline {B.6.10}widget\_helpers.py}{183}{subsection.B.6.10}%
-\contentsline {section}{\numberline {B.7}data\textbackslash managers}{183}{section.B.7}%
-\contentsline {subsection}{\numberline {B.7.1}animation.py}{183}{subsection.B.7.1}%
-\contentsline {subsection}{\numberline {B.7.2}audio.py}{183}{subsection.B.7.2}%
-\contentsline {subsection}{\numberline {B.7.3}cursor.py}{185}{subsection.B.7.3}%
-\contentsline {subsection}{\numberline {B.7.4}logs.py}{185}{subsection.B.7.4}%
-\contentsline {subsection}{\numberline {B.7.5}shader.py}{186}{subsection.B.7.5}%
-\contentsline {subsection}{\numberline {B.7.6}theme.py}{186}{subsection.B.7.6}%
-\contentsline {subsection}{\numberline {B.7.7}window.py}{186}{subsection.B.7.7}%
-\contentsline {section}{\numberline {B.8}data\textbackslash shaders}{187}{section.B.8}%
-\contentsline {subsection}{\numberline {B.8.1}protocol.py}{187}{subsection.B.8.1}%
-\contentsline {section}{\numberline {B.9}data\textbackslash shaders\textbackslash classes}{188}{section.B.9}%
-\contentsline {subsection}{\numberline {B.9.1}base.py}{188}{subsection.B.9.1}%
-\contentsline {subsection}{\numberline {B.9.2}blend.py}{189}{subsection.B.9.2}%
-\contentsline {subsection}{\numberline {B.9.3}bloom.py}{189}{subsection.B.9.3}%
-\contentsline {subsection}{\numberline {B.9.4}blur.py}{190}{subsection.B.9.4}%
-\contentsline {subsection}{\numberline {B.9.5}chromatic\_abbreviation.py}{190}{subsection.B.9.5}%
-\contentsline {subsection}{\numberline {B.9.6}crop.py}{190}{subsection.B.9.6}%
-\contentsline {subsection}{\numberline {B.9.7}crt.py}{190}{subsection.B.9.7}%
-\contentsline {subsection}{\numberline {B.9.8}grayscale.py}{190}{subsection.B.9.8}%
-\contentsline {subsection}{\numberline {B.9.9}highlight\_brightness.py}{191}{subsection.B.9.9}%
-\contentsline {subsection}{\numberline {B.9.10}highlight\_colour.py}{191}{subsection.B.9.10}%
-\contentsline {subsection}{\numberline {B.9.11}lightmap.py}{191}{subsection.B.9.11}%
-\contentsline {subsection}{\numberline {B.9.12}occlusion.py}{192}{subsection.B.9.12}%
-\contentsline {subsection}{\numberline {B.9.13}rays.py}{192}{subsection.B.9.13}%
-\contentsline {subsection}{\numberline {B.9.14}shadowmap.py}{192}{subsection.B.9.14}%
-\contentsline {subsection}{\numberline {B.9.15}shake.py}{192}{subsection.B.9.15}%
-\contentsline {subsection}{\numberline {B.9.16}\_\_init\_\_.py}{193}{subsection.B.9.16}%
-\contentsline {section}{\numberline {B.10}data\textbackslash shaders\textbackslash fragments}{193}{section.B.10}%
-\contentsline {subsection}{\numberline {B.10.1}background\_balatro.frag}{193}{subsection.B.10.1}%
-\contentsline {subsection}{\numberline {B.10.2}background\_gradient.frag}{195}{subsection.B.10.2}%
-\contentsline {subsection}{\numberline {B.10.3}background\_lasers.frag}{196}{subsection.B.10.3}%
-\contentsline {subsection}{\numberline {B.10.4}background\_none.frag}{197}{subsection.B.10.4}%
-\contentsline {subsection}{\numberline {B.10.5}background\_waves.frag}{197}{subsection.B.10.5}%
-\contentsline {subsection}{\numberline {B.10.6}base.frag}{198}{subsection.B.10.6}%
-\contentsline {subsection}{\numberline {B.10.7}blend.frag}{199}{subsection.B.10.7}%
-\contentsline {subsection}{\numberline {B.10.8}bloom.frag}{199}{subsection.B.10.8}%
-\contentsline {subsection}{\numberline {B.10.9}bloom\_old.frag}{200}{subsection.B.10.9}%
-\contentsline {subsection}{\numberline {B.10.10}blur.frag}{200}{subsection.B.10.10}%
-\contentsline {subsection}{\numberline {B.10.11}box\_blur.frag}{200}{subsection.B.10.11}%
-\contentsline {subsection}{\numberline {B.10.12}calibrate.frag}{201}{subsection.B.10.12}%
-\contentsline {subsection}{\numberline {B.10.13}chromatic\_abbreviation.frag}{201}{subsection.B.10.13}%
-\contentsline {subsection}{\numberline {B.10.14}crop.frag}{202}{subsection.B.10.14}%
-\contentsline {subsection}{\numberline {B.10.15}crt.frag}{202}{subsection.B.10.15}%
-\contentsline {subsection}{\numberline {B.10.16}flashlight.frag}{203}{subsection.B.10.16}%
-\contentsline {subsection}{\numberline {B.10.17}grayscale.frag}{203}{subsection.B.10.17}%
-\contentsline {subsection}{\numberline {B.10.18}highlight\_brightness.frag}{204}{subsection.B.10.18}%
-\contentsline {subsection}{\numberline {B.10.19}highlight\_colour.frag}{204}{subsection.B.10.19}%
-\contentsline {subsection}{\numberline {B.10.20}lightmap.frag}{204}{subsection.B.10.20}%
-\contentsline {subsection}{\numberline {B.10.21}occlusion.frag}{204}{subsection.B.10.21}%
-\contentsline {subsection}{\numberline {B.10.22}rays.frag}{204}{subsection.B.10.22}%
-\contentsline {subsection}{\numberline {B.10.23}shadowmap.frag}{205}{subsection.B.10.23}%
-\contentsline {subsection}{\numberline {B.10.24}shake.frag}{205}{subsection.B.10.24}%
-\contentsline {section}{\numberline {B.11}data\textbackslash shaders\textbackslash vertex}{205}{section.B.11}%
-\contentsline {subsection}{\numberline {B.11.1}base.vert}{205}{subsection.B.11.1}%
-\contentsline {section}{\numberline {B.12}data\textbackslash states}{205}{section.B.12}%
-\contentsline {section}{\numberline {B.13}data\textbackslash states\textbackslash browser}{205}{section.B.13}%
-\contentsline {subsection}{\numberline {B.13.1}browser.py}{205}{subsection.B.13.1}%
-\contentsline {subsection}{\numberline {B.13.2}widget\_dict.py}{208}{subsection.B.13.2}%
-\contentsline {section}{\numberline {B.14}data\textbackslash states\textbackslash config}{210}{section.B.14}%
-\contentsline {subsection}{\numberline {B.14.1}config.py}{210}{subsection.B.14.1}%
-\contentsline {subsection}{\numberline {B.14.2}default\_config.py}{214}{subsection.B.14.2}%
-\contentsline {subsection}{\numberline {B.14.3}widget\_dict.py}{214}{subsection.B.14.3}%
-\contentsline {section}{\numberline {B.15}data\textbackslash states\textbackslash editor}{219}{section.B.15}%
-\contentsline {subsection}{\numberline {B.15.1}editor.py}{219}{subsection.B.15.1}%
-\contentsline {subsection}{\numberline {B.15.2}widget\_dict.py}{225}{subsection.B.15.2}%
-\contentsline {section}{\numberline {B.16}data\textbackslash states\textbackslash game}{229}{section.B.16}%
-\contentsline {subsection}{\numberline {B.16.1}game.py}{229}{subsection.B.16.1}%
-\contentsline {subsection}{\numberline {B.16.2}widget\_dict.py}{230}{subsection.B.16.2}%
-\contentsline {section}{\numberline {B.17}data\textbackslash states\textbackslash game\textbackslash components}{236}{section.B.17}%
-\contentsline {subsection}{\numberline {B.17.1}bitboard\_collection.py}{236}{subsection.B.17.1}%
-\contentsline {subsection}{\numberline {B.17.2}board.py}{236}{subsection.B.17.2}%
-\contentsline {subsection}{\numberline {B.17.3}capture\_draw.py}{236}{subsection.B.17.3}%
-\contentsline {subsection}{\numberline {B.17.4}father.py}{237}{subsection.B.17.4}%
-\contentsline {subsection}{\numberline {B.17.5}fen\_parser.py}{238}{subsection.B.17.5}%
-\contentsline {subsection}{\numberline {B.17.6}laser.py}{240}{subsection.B.17.6}%
-\contentsline {subsection}{\numberline {B.17.7}laser\_draw.py}{242}{subsection.B.17.7}%
-\contentsline {subsection}{\numberline {B.17.8}move.py}{242}{subsection.B.17.8}%
-\contentsline {subsection}{\numberline {B.17.9}overlay\_draw.py}{244}{subsection.B.17.9}%
-\contentsline {subsection}{\numberline {B.17.10}particles\_draw.py}{245}{subsection.B.17.10}%
-\contentsline {subsection}{\numberline {B.17.11}piece\_group.py}{245}{subsection.B.17.11}%
-\contentsline {subsection}{\numberline {B.17.12}piece\_sprite.py}{246}{subsection.B.17.12}%
-\contentsline {subsection}{\numberline {B.17.13}psqt.py}{247}{subsection.B.17.13}%
-\contentsline {section}{\numberline {B.18}data\textbackslash states\textbackslash game\textbackslash cpu}{248}{section.B.18}%
-\contentsline {subsection}{\numberline {B.18.1}base.py}{248}{subsection.B.18.1}%
-\contentsline {subsection}{\numberline {B.18.2}cpu\_thread.py}{249}{subsection.B.18.2}%
-\contentsline {subsection}{\numberline {B.18.3}evaluator.py}{249}{subsection.B.18.3}%
-\contentsline {subsection}{\numberline {B.18.4}move\_orderer.py}{249}{subsection.B.18.4}%
-\contentsline {subsection}{\numberline {B.18.5}temp.py}{250}{subsection.B.18.5}%
-\contentsline {subsection}{\numberline {B.18.6}transposition\_table.py}{252}{subsection.B.18.6}%
-\contentsline {subsection}{\numberline {B.18.7}zobrist\_hasher.py}{252}{subsection.B.18.7}%
-\contentsline {section}{\numberline {B.19}data\textbackslash states\textbackslash game\textbackslash cpu\textbackslash engines}{252}{section.B.19}%
-\contentsline {subsection}{\numberline {B.19.1}alpha\_beta.py}{252}{subsection.B.19.1}%
-\contentsline {subsection}{\numberline {B.19.2}iterative\_deepening.py}{252}{subsection.B.19.2}%
-\contentsline {subsection}{\numberline {B.19.3}minimax.py}{252}{subsection.B.19.3}%
-\contentsline {subsection}{\numberline {B.19.4}negamax.py}{253}{subsection.B.19.4}%
-\contentsline {subsection}{\numberline {B.19.5}simple.py}{255}{subsection.B.19.5}%
-\contentsline {subsection}{\numberline {B.19.6}transposition\_table.py}{256}{subsection.B.19.6}%
-\contentsline {subsection}{\numberline {B.19.7}\_\_init\_\_.py}{256}{subsection.B.19.7}%
-\contentsline {section}{\numberline {B.20}data\textbackslash states\textbackslash game\textbackslash mvc}{256}{section.B.20}%
-\contentsline {subsection}{\numberline {B.20.1}game\_controller.py}{256}{subsection.B.20.1}%
-\contentsline {subsection}{\numberline {B.20.2}game\_model.py}{256}{subsection.B.20.2}%
-\contentsline {subsection}{\numberline {B.20.3}game\_view.py}{256}{subsection.B.20.3}%
-\contentsline {subsection}{\numberline {B.20.4}pause\_view.py}{256}{subsection.B.20.4}%
-\contentsline {subsection}{\numberline {B.20.5}win\_view.py}{257}{subsection.B.20.5}%
-\contentsline {section}{\numberline {B.21}data\textbackslash states\textbackslash menu}{258}{section.B.21}%
-\contentsline {subsection}{\numberline {B.21.1}menu.py}{258}{subsection.B.21.1}%
-\contentsline {subsection}{\numberline {B.21.2}widget\_dict.py}{261}{subsection.B.21.2}%
-\contentsline {section}{\numberline {B.22}data\textbackslash states\textbackslash review}{264}{section.B.22}%
-\contentsline {subsection}{\numberline {B.22.1}review.py}{264}{subsection.B.22.1}%
-\contentsline {subsection}{\numberline {B.22.2}widget\_dict.py}{264}{subsection.B.22.2}%
-\contentsline {section}{\numberline {B.23}data\textbackslash states\textbackslash settings}{267}{section.B.23}%
-\contentsline {subsection}{\numberline {B.23.1}settings.py}{267}{subsection.B.23.1}%
-\contentsline {subsection}{\numberline {B.23.2}widget\_dict.py}{270}{subsection.B.23.2}%
-\contentsline {section}{\numberline {B.24}data\textbackslash utils}{274}{section.B.24}%
-\contentsline {subsection}{\numberline {B.24.1}assets.py}{274}{subsection.B.24.1}%
-\contentsline {subsection}{\numberline {B.24.2}constants.py}{274}{subsection.B.24.2}%
-\contentsline {subsection}{\numberline {B.24.3}enums.py}{275}{subsection.B.24.3}%
-\contentsline {subsection}{\numberline {B.24.4}event\_types.py}{278}{subsection.B.24.4}%
-\contentsline {section}{\numberline {B.25}data\textbackslash widgets}{279}{section.B.25}%
-\contentsline {subsection}{\numberline {B.25.1}board\_thumbnail.py}{279}{subsection.B.25.1}%
-\contentsline {subsection}{\numberline {B.25.2}board\_thumbnail\_button.py}{280}{subsection.B.25.2}%
-\contentsline {subsection}{\numberline {B.25.3}browser\_item.py}{281}{subsection.B.25.3}%
-\contentsline {subsection}{\numberline {B.25.4}browser\_strip.py}{282}{subsection.B.25.4}%
-\contentsline {subsection}{\numberline {B.25.5}carousel.py}{283}{subsection.B.25.5}%
-\contentsline {subsection}{\numberline {B.25.6}chessboard.py}{286}{subsection.B.25.6}%
-\contentsline {subsection}{\numberline {B.25.7}colour\_button.py}{287}{subsection.B.25.7}%
-\contentsline {subsection}{\numberline {B.25.8}colour\_display.py}{287}{subsection.B.25.8}%
-\contentsline {subsection}{\numberline {B.25.9}colour\_picker.py}{287}{subsection.B.25.9}%
-\contentsline {subsection}{\numberline {B.25.10}colour\_slider.py}{289}{subsection.B.25.10}%
-\contentsline {subsection}{\numberline {B.25.11}colour\_square.py}{289}{subsection.B.25.11}%
-\contentsline {subsection}{\numberline {B.25.12}dropdown.py}{290}{subsection.B.25.12}%
-\contentsline {subsection}{\numberline {B.25.13}icon.py}{292}{subsection.B.25.13}%
-\contentsline {subsection}{\numberline {B.25.14}icon\_button.py}{293}{subsection.B.25.14}%
-\contentsline {subsection}{\numberline {B.25.15}move\_list.py}{294}{subsection.B.25.15}%
-\contentsline {subsection}{\numberline {B.25.16}multiple\_icon\_button.py}{295}{subsection.B.25.16}%
-\contentsline {subsection}{\numberline {B.25.17}piece\_display.py}{296}{subsection.B.25.17}%
-\contentsline {subsection}{\numberline {B.25.18}reactive\_button.py}{297}{subsection.B.25.18}%
-\contentsline {subsection}{\numberline {B.25.19}reactive\_icon\_button.py}{297}{subsection.B.25.19}%
-\contentsline {subsection}{\numberline {B.25.20}rectangle.py}{297}{subsection.B.25.20}%
-\contentsline {subsection}{\numberline {B.25.21}scrollbar.py}{298}{subsection.B.25.21}%
-\contentsline {subsection}{\numberline {B.25.22}scroll\_area.py}{299}{subsection.B.25.22}%
-\contentsline {subsection}{\numberline {B.25.23}slider\_thumb.py}{302}{subsection.B.25.23}%
-\contentsline {subsection}{\numberline {B.25.24}switch.py}{303}{subsection.B.25.24}%
-\contentsline {subsection}{\numberline {B.25.25}text.py}{304}{subsection.B.25.25}%
-\contentsline {subsection}{\numberline {B.25.26}text\_button.py}{306}{subsection.B.25.26}%
-\contentsline {subsection}{\numberline {B.25.27}text\_input.py}{306}{subsection.B.25.27}%
-\contentsline {subsection}{\numberline {B.25.28}timer.py}{306}{subsection.B.25.28}%
-\contentsline {subsection}{\numberline {B.25.29}volume\_slider.py}{307}{subsection.B.25.29}%
-\contentsline {subsection}{\numberline {B.25.30}\_\_init\_\_.py}{309}{subsection.B.25.30}%
-\contentsline {section}{\numberline {B.26}data\textbackslash widgets\textbackslash bases}{310}{section.B.26}%
-\contentsline {subsection}{\numberline {B.26.1}box.py}{310}{subsection.B.26.1}%
-\contentsline {subsection}{\numberline {B.26.2}circular.py}{310}{subsection.B.26.2}%
-\contentsline {subsection}{\numberline {B.26.3}pressable.py}{310}{subsection.B.26.3}%
-\contentsline {subsection}{\numberline {B.26.4}widget.py}{312}{subsection.B.26.4}%
+\contentsline {section}{\numberline {B.1}data}{168}{section.B.1}%
+\contentsline {subsection}{\numberline {B.1.1}control.py}{168}{subsection.B.1.1}%
+\contentsline {subsection}{\numberline {B.1.2}loading\_screen.py}{170}{subsection.B.1.2}%
+\contentsline {subsection}{\numberline {B.1.3}main.py}{170}{subsection.B.1.3}%
+\contentsline {subsection}{\numberline {B.1.4}setup.py}{170}{subsection.B.1.4}%
+\contentsline {subsection}{\numberline {B.1.5}windows\_setup.py}{171}{subsection.B.1.5}%
+\contentsline {section}{\numberline {B.2}data\textbackslash app\_data}{171}{section.B.2}%
+\contentsline {subsection}{\numberline {B.2.1}default\_settings.json}{171}{subsection.B.2.1}%
+\contentsline {subsection}{\numberline {B.2.2}logs\_config.json}{171}{subsection.B.2.2}%
+\contentsline {subsection}{\numberline {B.2.3}logs\_config\_prod.json}{172}{subsection.B.2.3}%
+\contentsline {subsection}{\numberline {B.2.4}themes.json}{173}{subsection.B.2.4}%
+\contentsline {subsection}{\numberline {B.2.5}user\_settings.json}{173}{subsection.B.2.5}%
+\contentsline {section}{\numberline {B.3}data\textbackslash components}{173}{section.B.3}%
+\contentsline {subsection}{\numberline {B.3.1}circular\_linked\_list.py}{173}{subsection.B.3.1}%
+\contentsline {subsection}{\numberline {B.3.2}cursor.py}{174}{subsection.B.3.2}%
+\contentsline {subsection}{\numberline {B.3.3}custom\_event.py}{174}{subsection.B.3.3}%
+\contentsline {subsection}{\numberline {B.3.4}game\_entry.py}{174}{subsection.B.3.4}%
+\contentsline {subsection}{\numberline {B.3.5}widget\_group.py}{175}{subsection.B.3.5}%
+\contentsline {section}{\numberline {B.4}data\textbackslash database}{176}{section.B.4}%
+\contentsline {section}{\numberline {B.5}data\textbackslash database\textbackslash migrations}{176}{section.B.5}%
+\contentsline {subsection}{\numberline {B.5.1}add\_created\_dt\_column27112024.py}{176}{subsection.B.5.1}%
+\contentsline {subsection}{\numberline {B.5.2}add\_fen\_string\_column\_22112024.py}{176}{subsection.B.5.2}%
+\contentsline {subsection}{\numberline {B.5.3}add\_start\_fen\_string\_column\_23122024.py}{177}{subsection.B.5.3}%
+\contentsline {subsection}{\numberline {B.5.4}change\_fen\_string\_column\_name\_23122024.py}{177}{subsection.B.5.4}%
+\contentsline {subsection}{\numberline {B.5.5}create\_games\_table\_19112024.py}{177}{subsection.B.5.5}%
+\contentsline {section}{\numberline {B.6}data\textbackslash helpers}{178}{section.B.6}%
+\contentsline {subsection}{\numberline {B.6.1}asset\_helpers.py}{178}{subsection.B.6.1}%
+\contentsline {subsection}{\numberline {B.6.2}bitboard\_helpers.py}{178}{subsection.B.6.2}%
+\contentsline {subsection}{\numberline {B.6.3}board\_helpers.py}{179}{subsection.B.6.3}%
+\contentsline {subsection}{\numberline {B.6.4}browser\_helpers.py}{180}{subsection.B.6.4}%
+\contentsline {subsection}{\numberline {B.6.5}database\_helpers.py}{181}{subsection.B.6.5}%
+\contentsline {subsection}{\numberline {B.6.6}data\_helpers.py}{181}{subsection.B.6.6}%
+\contentsline {subsection}{\numberline {B.6.7}font\_helpers.py}{181}{subsection.B.6.7}%
+\contentsline {subsection}{\numberline {B.6.8}input\_helpers.py}{182}{subsection.B.6.8}%
+\contentsline {subsection}{\numberline {B.6.9}load\_helpers.py}{182}{subsection.B.6.9}%
+\contentsline {subsection}{\numberline {B.6.10}widget\_helpers.py}{184}{subsection.B.6.10}%
+\contentsline {section}{\numberline {B.7}data\textbackslash managers}{185}{section.B.7}%
+\contentsline {subsection}{\numberline {B.7.1}animation.py}{185}{subsection.B.7.1}%
+\contentsline {subsection}{\numberline {B.7.2}audio.py}{185}{subsection.B.7.2}%
+\contentsline {subsection}{\numberline {B.7.3}cursor.py}{187}{subsection.B.7.3}%
+\contentsline {subsection}{\numberline {B.7.4}logs.py}{187}{subsection.B.7.4}%
+\contentsline {subsection}{\numberline {B.7.5}shader.py}{187}{subsection.B.7.5}%
+\contentsline {subsection}{\numberline {B.7.6}theme.py}{188}{subsection.B.7.6}%
+\contentsline {subsection}{\numberline {B.7.7}window.py}{188}{subsection.B.7.7}%
+\contentsline {section}{\numberline {B.8}data\textbackslash shaders}{189}{section.B.8}%
+\contentsline {subsection}{\numberline {B.8.1}protocol.py}{189}{subsection.B.8.1}%
+\contentsline {section}{\numberline {B.9}data\textbackslash shaders\textbackslash classes}{190}{section.B.9}%
+\contentsline {subsection}{\numberline {B.9.1}base.py}{190}{subsection.B.9.1}%
+\contentsline {subsection}{\numberline {B.9.2}blend.py}{191}{subsection.B.9.2}%
+\contentsline {subsection}{\numberline {B.9.3}bloom.py}{191}{subsection.B.9.3}%
+\contentsline {subsection}{\numberline {B.9.4}blur.py}{192}{subsection.B.9.4}%
+\contentsline {subsection}{\numberline {B.9.5}chromatic\_abbreviation.py}{192}{subsection.B.9.5}%
+\contentsline {subsection}{\numberline {B.9.6}crop.py}{192}{subsection.B.9.6}%
+\contentsline {subsection}{\numberline {B.9.7}crt.py}{192}{subsection.B.9.7}%
+\contentsline {subsection}{\numberline {B.9.8}grayscale.py}{192}{subsection.B.9.8}%
+\contentsline {subsection}{\numberline {B.9.9}highlight\_brightness.py}{193}{subsection.B.9.9}%
+\contentsline {subsection}{\numberline {B.9.10}highlight\_colour.py}{193}{subsection.B.9.10}%
+\contentsline {subsection}{\numberline {B.9.11}lightmap.py}{193}{subsection.B.9.11}%
+\contentsline {subsection}{\numberline {B.9.12}occlusion.py}{194}{subsection.B.9.12}%
+\contentsline {subsection}{\numberline {B.9.13}rays.py}{194}{subsection.B.9.13}%
+\contentsline {subsection}{\numberline {B.9.14}shadowmap.py}{194}{subsection.B.9.14}%
+\contentsline {subsection}{\numberline {B.9.15}shake.py}{194}{subsection.B.9.15}%
+\contentsline {subsection}{\numberline {B.9.16}\_\_init\_\_.py}{195}{subsection.B.9.16}%
+\contentsline {section}{\numberline {B.10}data\textbackslash shaders\textbackslash fragments}{196}{section.B.10}%
+\contentsline {subsection}{\numberline {B.10.1}background\_balatro.frag}{196}{subsection.B.10.1}%
+\contentsline {subsection}{\numberline {B.10.2}background\_gradient.frag}{197}{subsection.B.10.2}%
+\contentsline {subsection}{\numberline {B.10.3}background\_lasers.frag}{198}{subsection.B.10.3}%
+\contentsline {subsection}{\numberline {B.10.4}background\_none.frag}{199}{subsection.B.10.4}%
+\contentsline {subsection}{\numberline {B.10.5}background\_waves.frag}{200}{subsection.B.10.5}%
+\contentsline {subsection}{\numberline {B.10.6}base.frag}{200}{subsection.B.10.6}%
+\contentsline {subsection}{\numberline {B.10.7}blend.frag}{201}{subsection.B.10.7}%
+\contentsline {subsection}{\numberline {B.10.8}bloom.frag}{201}{subsection.B.10.8}%
+\contentsline {subsection}{\numberline {B.10.9}bloom\_old.frag}{201}{subsection.B.10.9}%
+\contentsline {subsection}{\numberline {B.10.10}blur.frag}{202}{subsection.B.10.10}%
+\contentsline {subsection}{\numberline {B.10.11}box\_blur.frag}{202}{subsection.B.10.11}%
+\contentsline {subsection}{\numberline {B.10.12}calibrate.frag}{203}{subsection.B.10.12}%
+\contentsline {subsection}{\numberline {B.10.13}chromatic\_abbreviation.frag}{203}{subsection.B.10.13}%
+\contentsline {subsection}{\numberline {B.10.14}crop.frag}{203}{subsection.B.10.14}%
+\contentsline {subsection}{\numberline {B.10.15}crt.frag}{204}{subsection.B.10.15}%
+\contentsline {subsection}{\numberline {B.10.16}flashlight.frag}{205}{subsection.B.10.16}%
+\contentsline {subsection}{\numberline {B.10.17}grayscale.frag}{205}{subsection.B.10.17}%
+\contentsline {subsection}{\numberline {B.10.18}highlight\_brightness.frag}{205}{subsection.B.10.18}%
+\contentsline {subsection}{\numberline {B.10.19}highlight\_colour.frag}{205}{subsection.B.10.19}%
+\contentsline {subsection}{\numberline {B.10.20}lightmap.frag}{206}{subsection.B.10.20}%
+\contentsline {subsection}{\numberline {B.10.21}occlusion.frag}{206}{subsection.B.10.21}%
+\contentsline {subsection}{\numberline {B.10.22}rays.frag}{206}{subsection.B.10.22}%
+\contentsline {subsection}{\numberline {B.10.23}shadowmap.frag}{206}{subsection.B.10.23}%
+\contentsline {subsection}{\numberline {B.10.24}shake.frag}{206}{subsection.B.10.24}%
+\contentsline {section}{\numberline {B.11}data\textbackslash shaders\textbackslash vertex}{207}{section.B.11}%
+\contentsline {subsection}{\numberline {B.11.1}base.vert}{207}{subsection.B.11.1}%
+\contentsline {section}{\numberline {B.12}data\textbackslash states}{207}{section.B.12}%
+\contentsline {section}{\numberline {B.13}data\textbackslash states\textbackslash browser}{207}{section.B.13}%
+\contentsline {subsection}{\numberline {B.13.1}browser.py}{207}{subsection.B.13.1}%
+\contentsline {subsection}{\numberline {B.13.2}widget\_dict.py}{209}{subsection.B.13.2}%
+\contentsline {section}{\numberline {B.14}data\textbackslash states\textbackslash config}{212}{section.B.14}%
+\contentsline {subsection}{\numberline {B.14.1}config.py}{212}{subsection.B.14.1}%
+\contentsline {subsection}{\numberline {B.14.2}default\_config.py}{216}{subsection.B.14.2}%
+\contentsline {subsection}{\numberline {B.14.3}widget\_dict.py}{216}{subsection.B.14.3}%
+\contentsline {section}{\numberline {B.15}data\textbackslash states\textbackslash editor}{221}{section.B.15}%
+\contentsline {subsection}{\numberline {B.15.1}editor.py}{221}{subsection.B.15.1}%
+\contentsline {subsection}{\numberline {B.15.2}widget\_dict.py}{226}{subsection.B.15.2}%
+\contentsline {section}{\numberline {B.16}data\textbackslash states\textbackslash game}{230}{section.B.16}%
+\contentsline {subsection}{\numberline {B.16.1}game.py}{230}{subsection.B.16.1}%
+\contentsline {subsection}{\numberline {B.16.2}widget\_dict.py}{232}{subsection.B.16.2}%
+\contentsline {section}{\numberline {B.17}data\textbackslash states\textbackslash game\textbackslash components}{238}{section.B.17}%
+\contentsline {subsection}{\numberline {B.17.1}bitboard\_collection.py}{238}{subsection.B.17.1}%
+\contentsline {subsection}{\numberline {B.17.2}board.py}{238}{subsection.B.17.2}%
+\contentsline {subsection}{\numberline {B.17.3}capture\_draw.py}{238}{subsection.B.17.3}%
+\contentsline {subsection}{\numberline {B.17.4}father.py}{239}{subsection.B.17.4}%
+\contentsline {subsection}{\numberline {B.17.5}fen\_parser.py}{240}{subsection.B.17.5}%
+\contentsline {subsection}{\numberline {B.17.6}laser.py}{242}{subsection.B.17.6}%
+\contentsline {subsection}{\numberline {B.17.7}laser\_draw.py}{244}{subsection.B.17.7}%
+\contentsline {subsection}{\numberline {B.17.8}move.py}{244}{subsection.B.17.8}%
+\contentsline {subsection}{\numberline {B.17.9}overlay\_draw.py}{246}{subsection.B.17.9}%
+\contentsline {subsection}{\numberline {B.17.10}particles\_draw.py}{247}{subsection.B.17.10}%
+\contentsline {subsection}{\numberline {B.17.11}piece\_group.py}{247}{subsection.B.17.11}%
+\contentsline {subsection}{\numberline {B.17.12}piece\_sprite.py}{248}{subsection.B.17.12}%
+\contentsline {subsection}{\numberline {B.17.13}psqt.py}{248}{subsection.B.17.13}%
+\contentsline {section}{\numberline {B.18}data\textbackslash states\textbackslash game\textbackslash cpu}{249}{section.B.18}%
+\contentsline {subsection}{\numberline {B.18.1}base.py}{249}{subsection.B.18.1}%
+\contentsline {subsection}{\numberline {B.18.2}cpu\_thread.py}{251}{subsection.B.18.2}%
+\contentsline {subsection}{\numberline {B.18.3}evaluator.py}{251}{subsection.B.18.3}%
+\contentsline {subsection}{\numberline {B.18.4}move\_orderer.py}{251}{subsection.B.18.4}%
+\contentsline {subsection}{\numberline {B.18.5}temp.py}{252}{subsection.B.18.5}%
+\contentsline {subsection}{\numberline {B.18.6}transposition\_table.py}{254}{subsection.B.18.6}%
+\contentsline {subsection}{\numberline {B.18.7}zobrist\_hasher.py}{254}{subsection.B.18.7}%
+\contentsline {section}{\numberline {B.19}data\textbackslash states\textbackslash game\textbackslash cpu\textbackslash engines}{254}{section.B.19}%
+\contentsline {subsection}{\numberline {B.19.1}alpha\_beta.py}{254}{subsection.B.19.1}%
+\contentsline {subsection}{\numberline {B.19.2}iterative\_deepening.py}{254}{subsection.B.19.2}%
+\contentsline {subsection}{\numberline {B.19.3}minimax.py}{254}{subsection.B.19.3}%
+\contentsline {subsection}{\numberline {B.19.4}negamax.py}{254}{subsection.B.19.4}%
+\contentsline {subsection}{\numberline {B.19.5}simple.py}{257}{subsection.B.19.5}%
+\contentsline {subsection}{\numberline {B.19.6}transposition\_table.py}{258}{subsection.B.19.6}%
+\contentsline {subsection}{\numberline {B.19.7}\_\_init\_\_.py}{258}{subsection.B.19.7}%
+\contentsline {section}{\numberline {B.20}data\textbackslash states\textbackslash game\textbackslash mvc}{258}{section.B.20}%
+\contentsline {subsection}{\numberline {B.20.1}game\_controller.py}{258}{subsection.B.20.1}%
+\contentsline {subsection}{\numberline {B.20.2}game\_model.py}{258}{subsection.B.20.2}%
+\contentsline {subsection}{\numberline {B.20.3}game\_view.py}{258}{subsection.B.20.3}%
+\contentsline {subsection}{\numberline {B.20.4}pause\_view.py}{258}{subsection.B.20.4}%
+\contentsline {subsection}{\numberline {B.20.5}win\_view.py}{259}{subsection.B.20.5}%
+\contentsline {section}{\numberline {B.21}data\textbackslash states\textbackslash menu}{260}{section.B.21}%
+\contentsline {subsection}{\numberline {B.21.1}menu.py}{260}{subsection.B.21.1}%
+\contentsline {subsection}{\numberline {B.21.2}widget\_dict.py}{263}{subsection.B.21.2}%
+\contentsline {section}{\numberline {B.22}data\textbackslash states\textbackslash review}{265}{section.B.22}%
+\contentsline {subsection}{\numberline {B.22.1}review.py}{265}{subsection.B.22.1}%
+\contentsline {subsection}{\numberline {B.22.2}widget\_dict.py}{265}{subsection.B.22.2}%
+\contentsline {section}{\numberline {B.23}data\textbackslash states\textbackslash settings}{269}{section.B.23}%
+\contentsline {subsection}{\numberline {B.23.1}settings.py}{269}{subsection.B.23.1}%
+\contentsline {subsection}{\numberline {B.23.2}widget\_dict.py}{272}{subsection.B.23.2}%
+\contentsline {section}{\numberline {B.24}data\textbackslash utils}{275}{section.B.24}%
+\contentsline {subsection}{\numberline {B.24.1}assets.py}{275}{subsection.B.24.1}%
+\contentsline {subsection}{\numberline {B.24.2}constants.py}{276}{subsection.B.24.2}%
+\contentsline {subsection}{\numberline {B.24.3}enums.py}{277}{subsection.B.24.3}%
+\contentsline {subsection}{\numberline {B.24.4}event\_types.py}{280}{subsection.B.24.4}%
+\contentsline {section}{\numberline {B.25}data\textbackslash widgets}{281}{section.B.25}%
+\contentsline {subsection}{\numberline {B.25.1}board\_thumbnail.py}{281}{subsection.B.25.1}%
+\contentsline {subsection}{\numberline {B.25.2}board\_thumbnail\_button.py}{282}{subsection.B.25.2}%
+\contentsline {subsection}{\numberline {B.25.3}browser\_item.py}{282}{subsection.B.25.3}%
+\contentsline {subsection}{\numberline {B.25.4}browser\_strip.py}{284}{subsection.B.25.4}%
+\contentsline {subsection}{\numberline {B.25.5}carousel.py}{285}{subsection.B.25.5}%
+\contentsline {subsection}{\numberline {B.25.6}chessboard.py}{288}{subsection.B.25.6}%
+\contentsline {subsection}{\numberline {B.25.7}colour\_button.py}{288}{subsection.B.25.7}%
+\contentsline {subsection}{\numberline {B.25.8}colour\_display.py}{289}{subsection.B.25.8}%
+\contentsline {subsection}{\numberline {B.25.9}colour\_picker.py}{289}{subsection.B.25.9}%
+\contentsline {subsection}{\numberline {B.25.10}colour\_slider.py}{291}{subsection.B.25.10}%
+\contentsline {subsection}{\numberline {B.25.11}colour\_square.py}{291}{subsection.B.25.11}%
+\contentsline {subsection}{\numberline {B.25.12}dropdown.py}{292}{subsection.B.25.12}%
+\contentsline {subsection}{\numberline {B.25.13}icon.py}{294}{subsection.B.25.13}%
+\contentsline {subsection}{\numberline {B.25.14}icon\_button.py}{295}{subsection.B.25.14}%
+\contentsline {subsection}{\numberline {B.25.15}move\_list.py}{296}{subsection.B.25.15}%
+\contentsline {subsection}{\numberline {B.25.16}multiple\_icon\_button.py}{297}{subsection.B.25.16}%
+\contentsline {subsection}{\numberline {B.25.17}piece\_display.py}{298}{subsection.B.25.17}%
+\contentsline {subsection}{\numberline {B.25.18}reactive\_button.py}{299}{subsection.B.25.18}%
+\contentsline {subsection}{\numberline {B.25.19}reactive\_icon\_button.py}{299}{subsection.B.25.19}%
+\contentsline {subsection}{\numberline {B.25.20}rectangle.py}{299}{subsection.B.25.20}%
+\contentsline {subsection}{\numberline {B.25.21}scrollbar.py}{300}{subsection.B.25.21}%
+\contentsline {subsection}{\numberline {B.25.22}scroll\_area.py}{301}{subsection.B.25.22}%
+\contentsline {subsection}{\numberline {B.25.23}slider\_thumb.py}{304}{subsection.B.25.23}%
+\contentsline {subsection}{\numberline {B.25.24}switch.py}{305}{subsection.B.25.24}%
+\contentsline {subsection}{\numberline {B.25.25}text.py}{306}{subsection.B.25.25}%
+\contentsline {subsection}{\numberline {B.25.26}text\_button.py}{308}{subsection.B.25.26}%
+\contentsline {subsection}{\numberline {B.25.27}text\_input.py}{308}{subsection.B.25.27}%
+\contentsline {subsection}{\numberline {B.25.28}timer.py}{308}{subsection.B.25.28}%
+\contentsline {subsection}{\numberline {B.25.29}volume\_slider.py}{309}{subsection.B.25.29}%
+\contentsline {subsection}{\numberline {B.25.30}\_\_init\_\_.py}{311}{subsection.B.25.30}%
+\contentsline {section}{\numberline {B.26}data\textbackslash widgets\textbackslash bases}{312}{section.B.26}%
+\contentsline {subsection}{\numberline {B.26.1}box.py}{312}{subsection.B.26.1}%
+\contentsline {subsection}{\numberline {B.26.2}circular.py}{312}{subsection.B.26.2}%
+\contentsline {subsection}{\numberline {B.26.3}pressable.py}{312}{subsection.B.26.3}%
+\contentsline {subsection}{\numberline {B.26.4}widget.py}{313}{subsection.B.26.4}%
