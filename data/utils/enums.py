@@ -66,10 +66,10 @@ class Piece(StrEnum):
     PYRAMID = 'p'
     ANUBIS = 'n'
     SCARAB = 'r'
-    PHAROAH = 'f'
+    PHARAOH = 'f'
 
 class Score(IntEnum):
-    PHAROAH = 0
+    PHARAOH = 0
     SPHINX = 0
     PYRAMID = 100
     ANUBIS = 110
@@ -77,7 +77,7 @@ class Score(IntEnum):
 
     MOVE = 4
     POSITION = 11
-    PHAROAH_SAFETY = 31
+    PHARAOH_SAFETY = 31
     CHECKMATE = 100000
     INFINITE = 6969696969
 

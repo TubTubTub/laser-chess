@@ -8,7 +8,7 @@
 \localtableofcontents
 
 \section{File Tree Diagram}
-To help navigate through the source code, I have included the following directory tree diagram, along with comments to explain the general purpose of code contained within specifc directories and Python files.
+To help navigate through the source code, I have included the following directory tree diagram, along with comments to explain the general purpose of code contained within specific directories and Python files.
 
 \begin{figure}[H]
     \centering
@@ -23,7 +23,7 @@ To help navigate through the source code, I have included the following director
 \item Shadow mapping and coordinate transformations (\ref{sec:shader-rays})
 \item Recursive Depth-First Search tree traversal (\ref{sec:theme} and \ref{sec:minimax})
 \item Circular doubly-linked list and stack (\ref{sec:linked-list} and \ref{sec:review})
-\item Multipass shaders and gaussian blur (\ref{sec:shader-bloom})
+\item Multipass shaders and Gaussian blur (\ref{sec:shader-bloom})
 \item Aggregate and Window SQL functions (\ref{sec:dml})
 \item OOP techniques (\ref{sec:widget-bases} and \ref{sec:widgets})
 \item Multithreading (\ref{sec:loading-screen} and \ref{sec:cpu-thread})
@@ -86,7 +86,7 @@ The \lstinline{ParticlesDraw} class draws particles in both the game and review 
 
 \subsection{Widget Bases}
 \label{sec:widget-bases}
-Widget bases are used as the base classes for for my widgets system. They contain both attributes and getter methods that provide both basic functionalities such as size and position, and abstract methods to be overriden. These bases are designed to be used with \textbf{multiple inheritance}, where multiple bases can be combined to add functionality to the final widget. \textbf{Encapsulation} also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
+Widget bases are used as the base classes for my widgets system. They contain both attributes and getter methods that provide both basic functionalities such as size and position, and abstract methods to be overridden. These bases are designed to be used with \textbf{multiple inheritance}, where multiple bases can be combined to add functionality to the final widget. \textbf{Encapsulation} also allows me to simplify interactions between widgets, as using getter methods instead of protected attributes allows me to add logic while accessing an attribute, such as in \verb|widget.py|, where the logic to fetch the parent surface instead of the windows screen is hidden within the base class.
 
 \subsubsection*{Widget}
 \noindent All widgets are a subclass of the \lstinline{Widget} class.

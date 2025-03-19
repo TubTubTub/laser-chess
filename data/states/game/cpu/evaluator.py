@@ -24,14 +24,14 @@ class Evaluator:
             self.evaluate_material(board, Colour.BLUE),
             self.evaluate_position(board, Colour.BLUE),
             self.evaluate_mobility(board, Colour.BLUE),
-            self.evaluate_pharoah_safety(board, Colour.BLUE)
+            self.evaluate_pharaoh_safety(board, Colour.BLUE)
         )
 
         red_score = (
             self.evaluate_material(board, Colour.RED),
             self.evaluate_position(board, Colour.RED),
             self.evaluate_mobility(board, Colour.RED),
-            self.evaluate_pharoah_safety(board, Colour.RED)
+            self.evaluate_pharaoh_safety(board, Colour.RED)
         )
 
         if self._verbose:
@@ -106,21 +106,21 @@ class Evaluator:
         number_of_moves = board.get_mobility(colour)
         return number_of_moves * Score.MOVE
 
-    def evaluate_pharoah_safety(self, board, colour):
+    def evaluate_pharaoh_safety(self, board, colour):
         """
-        Evaluates the safety of the Pharoah for a given colour.
+        Evaluates the safety of the Pharaoh for a given colour.
 
         Args:
             board (Board): The current board state.
             colour (Colour): The colour to evaluate.
 
         Returns:
-            int: Score representing mobility of the Pharoah.
+            int: Score representing mobility of the Pharaoh.
         """
-        pharoah_bitboard = board.bitboards.get_piece_bitboard(Piece.PHAROAH, colour)
+        pharaoh_bitboard = board.bitboards.get_piece_bitboard(Piece.PHARAOH, colour)
 
-        if pharoah_bitboard:
-            pharoah_available_moves = pop_count(board.get_valid_squares(pharoah_bitboard, colour))
-            return (8 - pharoah_available_moves) * Score.PHAROAH_SAFETY
+        if pharaoh_bitboard:
+            pharaoh_available_moves = pop_count(board.get_valid_squares(pharaoh_bitboard, colour))
+            return (8 - pharaoh_available_moves) * Score.PHARAOH_SAFETY
         else:
             return 0

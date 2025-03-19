@@ -72,13 +72,13 @@ class Board:
 
     def check_win(self):
         """
-        Checks for a Pharoah capture or threefold-repetition.
+        Checks for a Pharaoh capture or threefold-repetition.
 
         Returns:
             Colour | Miscellaneous: The winning colour, or Miscellaneous.DRAW.
         """
         for colour in Colour:
-            if self.bitboards.get_piece_bitboard(Piece.PHAROAH, colour) == EMPTY_BB:
+            if self.bitboards.get_piece_bitboard(Piece.PHARAOH, colour) == EMPTY_BB:
                 return colour.get_flipped_colour()
 
         if self.hash_list.count(self.hash_list[-1]) >= 3:

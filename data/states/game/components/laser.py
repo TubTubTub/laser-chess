@@ -86,8 +86,8 @@ class Laser:
 
                 return next_square, new_direction, None
 
-            case Piece.PHAROAH:
-                return EMPTY_BB, previous_direction, Piece.PHAROAH
+            case Piece.PHARAOH:
+                return EMPTY_BB, previous_direction, Piece.PHARAOH
 
             case None:
                 next_square = self.next_square_bitboard(square, previous_direction)

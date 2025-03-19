@@ -57,9 +57,9 @@ def parse_fen_string(fen_string):
 
     if piece_count['s'] != 1 or piece_count['S'] != 1:
         raise ValueError('Invalid FEN string - invalid number of Sphinx pieces')
-    # COMMENTED OUT AS NO PHAROAH PIECES IS OKAY IF PARSING FEN STRING FOR FINISHED GAME BOARD THUMBNAIL
+    # COMMENTED OUT AS NO PHARAOH PIECES IS OKAY IF PARSING FEN STRING FOR FINISHED GAME BOARD THUMBNAIL
     elif piece_count['f'] > 1 or piece_count['F'] > 1:
-        raise ValueError('Invalid FEN string - invalid number of Pharoah pieces')
+        raise ValueError('Invalid FEN string - invalid number of Pharaoh pieces')
 
     if part_2 == 'b':
         colour = Colour.BLUE

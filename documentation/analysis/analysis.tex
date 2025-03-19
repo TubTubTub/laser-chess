@@ -9,10 +9,10 @@
 Mr Myslov is a teacher at Tonbridge School, and currently runs the school chess club. Seldomly, a field day event will be held, in which the club convenes together, playing a chess, or another variant, tournament. This year, Mr Myslov has decided to instead, hold a tournament around another board game, namely laser chess, providing a deviation yet retaining the same familiarity of chess. However, multiple physical sets of laser chess have to be purchased for the entire club to play simultaneously, which is difficult due to it no longer being manufactured. Thus, I have proposed a solution by creating a digital version of the game.
 
 \subsection{Game Description}
-Laser Chess is an abstract strategy game played between two opponents. The game differs from regular chess, involving a 10x8 playing board arranged in a predefined condition. The aim of the game is to position your pieces such that your laser beam strikes the opponents Pharoah (the equivalent of a king). Pieces include:
+Laser Chess is an abstract strategy game played between two opponents. The game differs from regular chess, involving a 10x8 playing board arranged in a predefined condition. The aim of the game is to position your pieces such that your laser beam strikes the opponent's pharaoh (the equivalent of a king). Pieces include:
 
 \begin{enumerate}
-\item Pharoah
+\item Pharaoh
     \begin{itemize}[label=\hyp{}]
     \item Equivalent to the king in chess
     \end{itemize}
@@ -26,12 +26,12 @@ Laser Chess is an abstract strategy game played between two opponents. The game 
     \begin{itemize}[label=\hyp{}]
     \item 7 for each colour
     \item Contains a diagonal mirror used to direct the laser
-    \item The other 3 out of 4 sides are vulnerable from being hit
+    \item The other 3 out of 4 sides are vulnerable to being hit
     \end{itemize}
 \item Anubis
     \begin{itemize}[label=\hyp{}]
     \item 2 for each colour
-    \item Large pillar with one mirrored side, vulnerable from the other sides
+    \item Large pillar with one mirrored side, vulnerable to the other sides
     \end{itemize}
 \item Sphinx
     \begin{itemize}[label=\hyp{}]
@@ -53,7 +53,7 @@ Current free implementations of laser chess that are playable online are limited
     \label{fig:laser-chess-com}
 \end{figure}
 
-The game is hosted online and is responsive and visually appealing, with pieces easy to differentiate and displaying their functionality clearly. It also contains a two-player mode for playing between friends, or an option to play against a functional CPU bot. However, the game lacks the following basic functionalities that makes it unsuitable for my client’s requests:
+The game is hosted online and is responsive and visually appealing, with pieces easy to differentiate and displaying their functionality clearly. It also contains a two-player mode for playing between friends, or an option to play against a functional CPU bot. However, the game lacks the following basic functionalities that make it unsuitable for my client’s requests:
 
 \begin{itemize}
 \item No replay options (going through past moves)
@@ -104,7 +104,7 @@ Our design will aim to append the missing feature from this website while learni
 
 \noindent\textbf{Q:} What features are you looking for in the final product?
 
-\noindent\textbf{A:} I’m looking for most features chess websites like Chess.com or Lichess offer, a smooth playing experience with no noticeable bugs. I’m also expecting other features such as having a functional timer, being able to draw and resign, as these are important considerations in our everyday chess games too. Since this will be a digital game, I think having handy features such as a indicators for moves and audio cues will also make it more user-friendly and enjoyable. If not for myself, having the option to play against a computer bot will be appreciated as well, since I’ll be able to play during lesson time, or in the case of odd numbers in the tournament. All in all, I’d be happy with a final product that plays Laser Chess, but emulates the playing experience of any chess website well.
+\noindent\textbf{A:} I’m looking for most features chess websites like Chess.com or Lichess offer, a smooth playing experience with no noticeable bugs. I’m also expecting other features such as having a functional timer, being able to draw and resign, as these are important considerations in our everyday chess games too. Since this will be a digital game, I think having handy features such as indicators for moves and audio cues will also make it more user-friendly and enjoyable. If not for myself, having the option to play against a computer bot will be appreciated as well, since I’ll be able to play during lesson time, or in the case of odd numbers in the tournament. All in all, I’d be happy with a final product that plays Laser Chess, but emulates the playing experience of any chess website well.
 
 \bigskip
 
@@ -116,7 +116,7 @@ Our design will aim to append the missing feature from this website while learni
 
 \noindent\textbf{Q:} Are there any additional features that might be helpful for your tournament use-cases?
 
-\noindent\textbf{A:} Being able to configure the gameplay will be useful for setting custom time-controls for everybody. I also would like to archive games and share everybody’s matches with the team, so having the functionality to save games, and to go through previous ones, will be highly requested too. Being able to quickly setup board starting positions or share them will also be useful, as this will allow more variety into the tournament and give the stronger players some more interesting options.
+\noindent\textbf{A:} Being able to configure the gameplay will be useful for setting custom time-controls for everybody. I also would like to archive games and share everybody’s matches with the team, so having the functionality to save games, and to go through previous ones, will be highly requested too. Being able to quickly set up board starting positions or share them will also be useful, as this will allow more variety into the tournament and give the stronger players some more interesting options.
 
 \bigskip
 
@@ -140,7 +140,7 @@ The following objectives should be met to satisfy my clients’ requirements:
     \objitem Active colour should alternate every move
     \objitem Laser should automatically fire from the sphinx after a player move
     \objitem Travel path of laser should be correctly implemented
-    \objitem Game should end when a player's pharoah is destroyed
+    \objitem Game should end when a player's pharaoh is destroyed
     \objitem Game should end in a draw if three-fold repetition is automatically detected
     \end{enumerate}
 \item Game should process user input correctly
@@ -158,6 +158,7 @@ The following objectives should be met to satisfy my clients’ requirements:
     \objitem Games can be saved locally into external files
     \objitem Entering the browser screen should display all previous games
     \objitem Previous games should be sorted according to specific criteria (i.e. winner)
+    \objitem Previous games should be paginated
     \objitem User should be able to delete previous games
     \objitem User should be able to review previous games
     \objitem The review screen should display information relevant for each game
@@ -242,14 +243,14 @@ Thus, the algorithm \textit{minimizes} the loss involved when the opponent choos
 Several additional techniques can be implemented to improve upon minimax. For example, transposition tables are large hash tables storing information about previously reached positions and their evaluation. If the same position is reached via a different sequence of moves, the cached evaluation can be retrieved from the table instead of evaluating each child node, greatly reducing the search space of the game tree. Another, such as alpha-beta pruning can be stacked and applied, which eliminates the need to search large portions of the game tree, thereby significant reducing the computational time.
 
 \subsubsection*{Monte-Carlo Tree Search}
-Monte-Carlo Tree Search (MCTS) involves playouts, where games are played to its end by selecting random moves. The result of each playout is then backpropagated up the game tree, updating the weight of nodes visited during the playout, meaning the algorithm successively improves at accurately estimating the values of the most promising moves. MCTS periodically evaluates alternatives to the currently perceived optimal move, and could thereby discover a better, otherwise overlooked, path. Another benefit is that it does not require an explicit evaluation function, as it relies on statistical sampling as opposed to developed theory on the game state. Additionally, MCTS is scalable and may be parallelized, making it suitable for distributed computing or multi-core architectures. However, the rate of tree growth is exponential, requiring huge amounts of memory. In addition, MCTS requires many iterations to be able to reliably decide the most efficient path.
+Monte-Carlo Tree Search (MCTS) involves playouts, where games are played to its end by selecting random moves. The result of each playout is then backpropagated up the game tree, updating the weight of nodes visited during the playout, meaning the algorithm successively improves at accurately estimating the values of the most promising moves. MCTS periodically evaluates alternatives to the currently perceived optimal move, and could thereby discover a better, otherwise overlooked, path. Another benefit is that it does not require an explicit evaluation function, as it relies on statistical sampling as opposed to developed theory on the game state. Additionally, MCTS is scalable and may be parallelized, making it suitable for distributed computing or multicore architectures. However, the rate of tree growth is exponential, requiring huge amounts of memory. In addition, MCTS requires many iterations to be able to reliably decide the most efficient path.
 
 \subsection{GUI framework}
 \subsubsection*{Pygame}
-Pygame is an open-source Python module geared for game development. It offers abundant yet simple APIs for drawing sprites and game objects on a screen-canvas, managing user input, audio et cetera. It also has good documentation, an extensive community, and receives regular updates through its community edition. Although it has greater customizability in drawing custom bitmap graphics and control over the mainloop, it lacks built-in support for UI elements such as buttons and sliders, requiring custom implementation. Moreover, it is less efficient, using 2D pixel arrays and the RAM instead of utilising the GPU for batch rendering, being single-threaded, and running on an interpreted language.
+Pygame is an open-source Python module geared for game development. It offers abundant yet simple APIs for drawing sprites and game objects on a screen-canvas, managing user input, audio et cetera. It also has good documentation, an extensive community, and receives regular updates through its community edition. Although it has greater customizability in drawing custom bitmap graphics and control over the main loop, it lacks built-in support for UI elements such as buttons and sliders, requiring custom implementation. Moreover, it is less efficient, using 2D pixel arrays and the RAM instead of utilising the GPU for batch rendering, being single-threaded, and running on an interpreted language.
 
 \subsubsection*{PyQt}
-PyQt is the Python binding for Qt, a cross-platform C++ GUI framework. PyQt contains an extensive set of documentation online, complemented by the documentation and forums for its C++ counterpart. Unliked Pygame, PyQt contains many widgets for common UI elements, and support for concurrency within the framework. Another advantage in using PyQt is its development ecosystem, with peripheral applications such as Qt Designer for layouts, QML for user interfaces, and QSS for styling. Although it is not open-source, containing a commercial licensing plan, I have no plans to commercialize the program, and can therefore utilise the open-source license.
+PyQt is the Python binding for Qt, a cross-platform C++ GUI framework. PyQt contains an extensive set of documentation online, complemented by the documentation and forums for its C++ counterpart. Unliked Pygame, PyQt contains many widgets for common UI elements, and support for concurrency within the framework. Another advantage in using PyQt is its development ecosystem, with peripheral applications such as Qt Designer for layouts, QML for user interfaces, and QSS for styling. Although it is not open-source, containing a commercial licensing plan, I have no plans to commercialize the program, and can therefore utilise the open-source licence.
 
 \subsubsection*{OpenGL}
 Python contains multiple bindings for OpenGL, such as PyOpenGL and ModernGL. Being a widely used standard, OpenGL has the best documentation and support. It also boasts the highest efficiency, designed to be implemented using hardware acceleration through the GPU. However, its main disadvantage is the required complexity compared to the previous frameworks, being primarily a graphical API and not for developing full programs.
@@ -284,7 +285,7 @@ The two main options regarding programming language choice, and their pros and c
 
 \begin{longtable}{ll}
     \toprule
-    \multicolumn{2}{c}{Javascript}\\
+    \multicolumn{2}{c}{JavaScript}\\
     \midrule
     \multicolumn{1}{c}{Pros} & \multicolumn{1}{c}{Cons}\\
     \midrule
@@ -311,7 +312,7 @@ I have chosen Python as the programming language for this project. This is mainl
 Although Python generally has worse performance than JavaScript, speed and memory efficiency are not primary objectives in my project, and should not affect the final program. Therefore, I have prioritised Python’s simpler syntax over JavaScript’s speed. Being familiar with Python will also allow me to divert more time for development instead of researching new concepts or fixing unfamiliar bugs.
 
 \subsection{Development Environment}
-A good development environment improves developer experiences, with features such as auto-indentation and auto-bracket completion for quicker coding. The main development environments under consideration are: Visual Studio Code (VS Code), PyCharm and Sublime Text. I have decided to use VS Code due to its greater library of extensions over Sublime, and its more user-friendly implementation of features such as version control and GitHub integration. Moreover, VS Code contains many handy features that will speed up the development process, such as its built-in debugging features. Although PyCharm is an extensive IDE, its default features can be supplemented by VS Code extensions. Additionally, VS Code is more lightweight and customizable, and contains vast documentation online.
+A good development environment improves developer experiences, with features such as auto-indentation and auto-bracket completion for quicker coding. The main development environments under consideration are: Visual Studio Code (VS Code), PyCharm and Sublime Text. I have decided to use VS Code due to its greater library of extensions over Sublime, and its more user-friendly implementation of features such as version control and GitHub integration. Moreover, VS Code contains many handy features that will speed up the development process, such as its built-in debugging features. Although PyCharm is an extensive IDE, its default features can be supplemented by VS Code extensions. Additionally, VS Code is more lightweight and customisable, and contains vast documentation online.
 
 \subsection{Source Control}
 A Source Control Tool automates the process of tracking and managing changes in source code. A good source control tool will be essential for my project. It provides the benefits of: protecting the code from human errors (i.e. accidental deletion), enabling easy code experimentation on a clone created through branching from the main project, and by tracking changes through the code history, enabling easier debugging and rollbacks. For my project, I have chosen Git as my version control tool, as it is open-source and provides a more user-friendly interface and documentation over alternatives such as Azure DevOps, and contains sufficient functionality for a small project like mines.

@@ -31,9 +31,9 @@ else:
     time_enabled_icons = {False: get_highlighted_icon(GRAPHICS['timer']), True: GRAPHICS['timer']}
 
 if default_config['COLOUR'] == Colour.BLUE:
-    colour_icons = {Colour.BLUE: GRAPHICS['pharoah_0_a'], Colour.RED: GRAPHICS['pharoah_1_a']}
+    colour_icons = {Colour.BLUE: GRAPHICS['pharaoh_0_a'], Colour.RED: GRAPHICS['pharaoh_1_a']}
 else:
-    colour_icons = {Colour.RED: GRAPHICS['pharoah_1_a'], Colour.BLUE: GRAPHICS['pharoah_0_a']}
+    colour_icons = {Colour.RED: GRAPHICS['pharaoh_1_a'], Colour.BLUE: GRAPHICS['pharaoh_0_a']}
 
 preview_container = Rectangle(
     relative_position=(-0.15, 0),

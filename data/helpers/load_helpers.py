@@ -49,7 +49,7 @@ def load_all_gfx(directory, colorkey=(0, 0, 0), accept=(".svg", ".png", ".jpg", 
                 data = load_spritesheet(
                     path,
                     (16, 16),
-                    ['pyramid_1', 'scarab_1', 'anubis_1', 'pharoah_1', 'sphinx_1', 'pyramid_0', 'scarab_0', 'anubis_0', 'pharoah_0', 'sphinx_0'],
+                    ['pyramid_1', 'scarab_1', 'anubis_1', 'pharaoh_1', 'sphinx_1', 'pyramid_0', 'scarab_0', 'anubis_0', 'pharaoh_0', 'sphinx_0'],
                     ['_a', '_b', '_c', '_d'])
 
                 graphics = graphics | data

@@ -66,7 +66,7 @@ class Menu(_State):
             self._fire_laser = True
             audio.play_sfx(SFX['menu_laser_windup'])
             audio.play_sfx(SFX['menu_laser_loop'], loop=True)
-            animation.set_timer(SFX['menu_laser_loop'].get_length() * 1000 / 2, lambda: audio.play_sfx(SFX['menu_laser_loop'], loop=True) if self._fire_laser else ...) # OVERLAP TWO LOOPS TO HIDE TRANSITION
+            animation.set_timer(SFX['menu_laser_loop'].get_length() * 1000 / 2, lambda: audio.play_sfx(SFX['menu_laser_loop'], loop=True) if self._fire_laser else ...) # Overlap two loops of sfx to hide transition
 
         elif event.type == pygame.MOUSEBUTTONUP:
             self._fire_laser = False

@@ -4,13 +4,13 @@
 
 \newpage
 \chapter{Evaluation}
-Overall, I believe that my final program has effectively achieved the requirements set out by my client. It is a step up to current alternatives that I have found online, and seems to be a solid choice for anyone wanting to play laser chess digitally.
+Overall, I believe that my final program has effectively achieved the requirements set out by my client. It is a step-up to current alternatives that I have found online, and seems to be a solid choice for anyone wanting to play laser chess digitally.
 
 \section{Objectives}
 \subsection{Objective 1}
 All laser chess game logic should be properly implemented. Refer to Figure \ref{fig:screenshots-game}.
 
-Both the play and review screens display a 10x8 laser chess board. The laser fires automatically after every move, and follows the trajectory as directed by the pieces, destroying any that are facing the wrong way (Objectives \ref{obj:1f}, \ref{obj:1g}). All the pieces reflect and are destroyed by the laser correcty, with the colour to move alternating between both players (Objectives \ref{obj:1a}-\ref{obj:1e}). The game ends when a player either draws or resigns, has their pharoah destroyed, or reaches three-fold repetition (Objectives \ref{obj:1h}, \ref{obj:1i}).
+Both the play and review screens display a 10x8 laser chess board. The laser fires automatically after every move, and follows the trajectory as directed by the pieces, destroying any that are facing the wrong way (Objectives \ref{obj:1f}, \ref{obj:1g}). All the pieces reflect and are destroyed by the laser correctly, with the colour to move alternating between both players (Objectives \ref{obj:1a}-\ref{obj:1e}). The game ends when a player either draws or resigns, has their pharaoh destroyed, or reaches three-fold repetition (Objectives \ref{obj:1h}, \ref{obj:1i}).
 
 The game logic runs successfully, Objective 1 is fulfilled.
 
@@ -24,14 +24,14 @@ Objective 2 is fulfilled.
 \subsection{Objective 3}
 Save or load game options should be implemented. Refer to Figures \ref{fig:screenshots-browser} and \ref{fig:screenshots-review}.
 
-In the browser screen, users can scroll through all previous games, with the option to delete or review them, or copy their FEN string (Objectives \ref{obj:3c}, \ref{obj:3e}, \ref{obj:3f}). Games can be sorted, and pages of games can be scrolled through (Objective \ref{obj:3d}). The game positions are encoded using a custom FEN string format, and games are saved as rows in a local SQLite database table (Objectives \ref{obj:3a}, \ref{obj:3b}). In the review screen, users can scroll through all the moves of a previous game (Objective \ref{obj:3h}). The right side bar displays information such as the winner and move number, and the timer, pieces and move list updates accordingly (Objective \ref{obj:3g}).
+In the browser screen, users can scroll through all previous games, with the option to delete or review them, or copy their FEN string (Objectives \ref{obj:3c}, \ref{obj:3f}, \ref{obj:3g}). Games can be sorted, and pages of games can be scrolled through (Objectives \ref{obj:3d}, \ref{obj:3e}). The game positions are encoded using a custom FEN string format, and games are saved as rows in a local SQLite database table (Objectives \ref{obj:3a}, \ref{obj:3b}). In the review screen, users can scroll through all the moves of a previous game (Objective \ref{obj:3i}). The right sidebar displays information such as the winner and move number, and the timer, pieces and move list updates accordingly (Objective \ref{obj:3h}).
 
 Objective 3 is fulfilled. A possible improvement would be to add the option of loading up a position to resume playing straight from the review screen. This would be a convenient feature, but is not a priority, as users can currently copy the FEN string from the browser screen to the config screen and load the position there as a current alternative.
 
 \subsection{Objective 4}
 Other board game requirements should be implemented. Refer to Figure \ref{fig:screenshots-game}.
 
-In addition to the core game mechanics, other ancilliary aspects are added as well. Timers can be enabled and disabled, decrement correctly, and end the game when they run out (Objectives \ref{obj:4c}, \ref{obj:4d}). Buttons also exist for drawing and resigning the game (Objectives \ref{obj:4a}, \ref{obj:4b}).
+In addition to the core game mechanics, other ancillary aspects are added as well. Timers can be enabled and disabled, decrement correctly, and end the game when they run out (Objectives \ref{obj:4c}, \ref{obj:4d}). Buttons also exist for drawing and resigning the game (Objectives \ref{obj:4a}, \ref{obj:4b}).
 
 Objective 4 is fulfilled.
 
@@ -45,7 +45,7 @@ Objective 5 is fulfilled.
 \subsection{Objective 6}
 Game UI should improve player experience. Refer to Figure \ref{fig:screenshots-game}.
 
-Indicators are present to highlight the selected square and any adjacent squares that it can be moved to (Objectives \ref{obj:6a}, \ref{obj:6b}). Audio cues also improve the immersiveness of the game, as well as the laser visuals and particle effects (Objective \ref{obj:6c}). THe mouse cursor was also modified to help user-friendliness, by changing its icon depending on the current action being performed, for example, a closed hand icon for grabbing a piece (Objective \ref{obj:6g}). The move list and status message widgets are positioned on the right of the game screen, update accordingly and provide information on the game (Objectives \ref{obj:6e}, \ref{obj:6f}). The piece display also correctly updates to show all destroyed pieces (Objective \ref{obj:6d}).
+Indicators are present to highlight the selected square and any adjacent squares that it can be moved to (Objectives \ref{obj:6a}, \ref{obj:6b}). Audio cues also improve the immersiveness of the game, as well as the laser visuals and particle effects (Objective \ref{obj:6c}). The mouse cursor was also modified to help user-friendliness, by changing its icon depending on the current action being performed, for example, a closed hand icon for grabbing a piece (Objective \ref{obj:6g}). The move list and status message widgets are positioned on the right of the game screen, update accordingly and provide information on the game (Objectives \ref{obj:6e}, \ref{obj:6f}). The piece display also correctly updates to show all destroyed pieces (Objective \ref{obj:6d}).
 
 Objective 6 is fulfilled.
 
@@ -54,7 +54,7 @@ GUI design should be functional and display concise information. Refer to Figure
 
 I have created most of the custom pixel art and icon graphics to improve the game's visual and attempt to make it more engaging (Objective \ref{obj:7c}) There are currently 7 screens in the game: menu, settings, config, editor, game, browser and review, each containing their own eponymous function (Objective \ref{obj:7b}). Most screens also contain both the main menu button and help button. Clicking the menu button switches to the main menu screen, and clicking the help button shows an overlay displaying the functionality of drawn widgets (Objective \ref{obj:7d}). Shaders are also used to improve the game's visuals, such as by giving the laser a light-emitting effect, but is also used to draw all the backgrounds (Objective \ref{obj:7e}). The program runs well, with moments involving heavy calculation being helped by multithreading, and also resizes seamlessly (Objective \ref{obj:7a}, \ref{obj:7f}).
 
-Objective 7 is fulfilled. Working on Windows, I did not bundle the program to MacOS or Linux. Although this was not a priority, having access to other OS testing environments would've widened access to the game.
+Objective 7 is fulfilled. Working on Windows, I did not bundle the program to macOS or Linux. Although this was not a priority, having access to other OS testing environments would've widened access to the game.
 
 \section{Client Feedback}
 An interview was conducted after Mr Myslov received and played through the program, the following transcription is summarised and paraphrased for clarity.
@@ -97,7 +97,7 @@ My client was satisfied with my final program. His perspective revealed some asp
 
 \paragraph{Sharing games} was a suggestion made by Mr Myslov. Although the FEN string system allows for sharing of board positions, I realise that there is value in also sharing the entire progression of the game. This could be implemented by exporting the game to the equivalent of a chess 'PGN' file, by writing all the game information (e.g. CPU depth) to a .txt file, and then the contents of the move list.
 
-\paragraph{CPU} was also another point to consider. Mr Myslov complained that the CPU's thinking time on the easy mode was too short, resulting in his opponent's move being played instantly, confusing the flow of the game and making it hard to see what move was made. To fix this, I could either increase the thinking time artificially by only applying the move after a set timer runs out, or add an overlay similar to the one for selecting pieces, over the squares that a moved piece was on and has moved to. Mr Myslov also complained about the CPU's defensive style and his inability to gain an advantage. Although this can be regarded as a compliment, I agree that the CPU's tendency to defend instead of attack can be annoying. This results from the relative weighing of the evaluation function, which could be updated to contain PSQTs giving higher scores for more aggresive piece positioning, reducing the score allocated for king safety, or adjusting the piece values for a more aggresive playstyle.
+\paragraph{CPU} was also another point to consider. Mr Myslov complained that the CPU's thinking time on the easy mode was too short, resulting in his opponent's move being played instantly, confusing the flow of the game and making it hard to see what move was made. To fix this, I could either increase the thinking time artificially for the easy setting by only applying the move after a set timer runs out, or add an overlay similar to the one for selecting pieces, over the squares that a moved piece was on and has moved to. Mr Myslov also complained about the CPU's defensive style and his inability to gain an advantage. Although this can be regarded as a compliment, I agree that the CPU's tendency to defend instead of attack can be annoying. This results from the relative weighing of the evaluation function, which could be updated to contain PSQTs giving higher scores for more aggressive piece positioning, reducing the score allocated for king safety, or adjusting the piece values for a more aggressive play style.
 
 \bigskip
 
@@ -115,7 +115,7 @@ Performance issues did not appear throughout Mr Myslov's playthrough. However, e
 \section{Conclusion}
 The final product fulfilled all proposed objectives and more, and has been approved by my client.
 
-Throughout 6 months of development, I felt that I improved on many aspects needed to be a proficient developer. Creating bespoke software allowed for conducting research, interviews, and also obtaining continuous feedback. In terms of coding, working on a large project helped in improving file management, documentation, and keeping robust backups through Git. It also gave me the oppurtunity to learn GLSL for my shaders, LibreSprite for pixel art, and LaTeX for my documentation. Having a greater familiarity with Pygame, I also plan to rework my widget system as a library, to be shared for the benefit of all future Pygame users.
+Throughout 6 months of development, I felt that I improved on many aspects needed to be a proficient developer. Creating bespoke software allowed for conducting research, interviews, and also obtaining continuous feedback. In terms of coding, working on a large project helped in improving file management, documentation, and keeping robust backups through Git. It also gave me the opportunity to learn GLSL for my shaders, LibreSprite for pixel art, and LaTeX for my documentation. Having a greater familiarity with Pygame, I also plan to rework my widget system as a library, to be shared for the benefit of all future Pygame users.
 
 Overall, this project was a success.
 

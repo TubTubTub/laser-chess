@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  14 MAR 2025 19:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  19 MAR 2025 14:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -880,28 +880,42 @@ Package hyperref Info: Link coloring OFF on input line 5.
 \openout4 = `main.out'.
 
 \Etoc@tf=\read3
-LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
- (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <40> not available
+(Font)              size <35.83> substituted on input line 25.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <40> not available
+(Font)              size <35.83> substituted on input line 25.
+
+<../main/assets/thumbnail.png, id=1198, 444.15938pt x 444.15938pt>
+File: ../main/assets/thumbnail.png Graphic file (type png)
+<use ../main/assets/thumbnail.png>
+Package pdftex.def Info: ../main/assets/thumbnail.png  used on input line 36.
+(pdftex.def)             Requested size: 209.12683pt x 209.12769pt.
+
 
 [1
 
-{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../main/assets/thumbnail.png>]
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 
+l.52 
       [1]
 
 [2] (../analysis/../analysis/analysis.tex
@@ -923,7 +937,7 @@ l.35     \end{itemize}
                        [2
 
 ]
-<../analysis/../analysis/assets/laser_chess_com.png, id=1338, 210.0648pt x 226.9278pt>
+<../analysis/../analysis/assets/laser_chess_com.png, id=1342, 210.0648pt x 226.9278pt>
 File: ../analysis/../analysis/assets/laser_chess_com.png Graphic file (type png)
 <use ../analysis/../analysis/assets/laser_chess_com.png>
 Package pdftex.def Info: ../analysis/../analysis/assets/laser_chess_com.png  used on input line 51.
@@ -943,37 +957,37 @@ Package pdftex.def Info: ../analysis/../analysis/assets/laser_chess_com.png  use
 [8]
 
 [9]
-Overfull \hbox (23.99998pt too wide) in alignment at lines 261--283
+Overfull \hbox (23.99998pt too wide) in alignment at lines 262--284
  [] [] 
  []
 
 
-Underfull \hbox (badness 4024) in paragraph at lines 299--299
+Underfull \hbox (badness 4024) in paragraph at lines 300--300
 []\T1/cmr/m/n/10 Versatile, easy in-te-gra-tion with both
  []
 
 
-Underfull \hbox (badness 1270) in paragraph at lines 299--299
+Underfull \hbox (badness 1270) in paragraph at lines 300--300
 []\T1/cmr/m/n/10 Also sup-ports object-oriented pro-gram-
  []
 
 
-Underfull \hbox (badness 6032) in paragraph at lines 304--304
+Underfull \hbox (badness 6032) in paragraph at lines 305--305
 []\T1/cmr/m/n/10 Comprehensive knowl-edge of ex-ter-nal
  []
 
 
-Overfull \hbox (23.99998pt too wide) in alignment at lines 285--307
+Overfull \hbox (23.99998pt too wide) in alignment at lines 286--308
  [] [] 
  []
 
 [10]
 
 [11]
-<../analysis/../analysis/assets/critical_path_diagram.pdf, id=1454, 312.20638pt x 370.5042pt>
+<../analysis/../analysis/assets/critical_path_diagram.pdf, id=1458, 312.20638pt x 370.5042pt>
 File: ../analysis/../analysis/assets/critical_path_diagram.pdf Graphic file (type pdf)
 <use ../analysis/../analysis/assets/critical_path_diagram.pdf>
-Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pdf  used on input line 343.
+Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pdf  used on input line 344.
 (pdftex.def)             Requested size: 418.25368pt x 496.37692pt.
 
 
@@ -981,12 +995,12 @@ Package pdftex.def Info: ../analysis/../analysis/assets/critical_path_diagram.pd
 
 [13 <../analysis/../analysis/assets/critical_path_diagram.pdf>]
 Chapter 2.
-<../design/../design/assets/top_level_overview_flowchart.pdf, id=1476, 435.54718pt x 189.8292pt>
+<../design/../design/assets/top_level_overview_flowchart.pdf, id=1480, 435.54718pt x 189.8292pt>
 File: ../design/../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/top_level_overview_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
-<../design/../design/assets/menu_gui.png, id=1477, 454.8192pt x 256.3176pt>
+<../design/../design/assets/menu_gui.png, id=1481, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/menu_gui.png Graphic file (type png)
 <use ../design/../design/assets/menu_gui.png>
 Package pdftex.def Info: ../design/../design/assets/menu_gui.png  used on input line 25.
@@ -996,7 +1010,7 @@ Package pdftex.def Info: ../design/../design/assets/menu_gui.png  used on input 
 [14
 
  <../design/../design/assets/top_level_overview_flowchart.pdf>]
-<../design/../design/assets/settings_gui.png, id=1492, 454.8192pt x 256.3176pt>
+<../design/../design/assets/settings_gui.png, id=1496, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/settings_gui.png Graphic file (type png)
 <use ../design/../design/assets/settings_gui.png>
 Package pdftex.def Info: ../design/../design/assets/settings_gui.png  used on input line 35.
@@ -1004,12 +1018,12 @@ Package pdftex.def Info: ../design/../design/assets/settings_gui.png  used on in
 
 
 [15 <../design/../design/assets/menu_gui.png> <../design/../design/assets/settings_gui.png>]
-<../design/../design/assets/settings_flowchart.pdf, id=1501, 551.1792pt x 212.69463pt>
+<../design/../design/assets/settings_flowchart.pdf, id=1505, 551.1792pt x 212.69463pt>
 File: ../design/../design/assets/settings_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/settings_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/settings_flowchart.pdf  used on input line 55.
 (pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
-<../design/../design/assets/browser_gui.png, id=1502, 454.8192pt x 256.3176pt>
+<../design/../design/assets/browser_gui.png, id=1506, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/browser_gui.png Graphic file (type png)
 <use ../design/../design/assets/browser_gui.png>
 Package pdftex.def Info: ../design/../design/assets/browser_gui.png  used on input line 63.
@@ -1017,7 +1031,7 @@ Package pdftex.def Info: ../design/../design/assets/browser_gui.png  used on inp
 
 
 [16 <../design/../design/assets/settings_flowchart.pdf>]
-<../design/../design/assets/browser_flowchart.pdf, id=1518, 448.5558pt x 216.81pt>
+<../design/../design/assets/browser_flowchart.pdf, id=1522, 448.5558pt x 216.81pt>
 File: ../design/../design/assets/browser_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/browser_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/browser_flowchart.pdf  used on input line 75.
@@ -1025,12 +1039,12 @@ Package pdftex.def Info: ../design/../design/assets/browser_flowchart.pdf  used 
 
 
 [17 <../design/../design/assets/browser_gui.png>]
-<../design/../design/assets/config_gui.png, id=1525, 453.3738pt x 254.3904pt>
+<../design/../design/assets/config_gui.png, id=1529, 453.3738pt x 254.3904pt>
 File: ../design/../design/assets/config_gui.png Graphic file (type png)
 <use ../design/../design/assets/config_gui.png>
 Package pdftex.def Info: ../design/../design/assets/config_gui.png  used on input line 83.
 (pdftex.def)             Requested size: 334.60422pt x 187.75685pt.
-<../design/../design/assets/config_flowchart.pdf, id=1526, 666.57025pt x 151.5261pt>
+<../design/../design/assets/config_flowchart.pdf, id=1530, 666.57025pt x 151.5261pt>
 File: ../design/../design/assets/config_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/config_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/config_flowchart.pdf  used on input line 94.
@@ -1038,12 +1052,12 @@ Package pdftex.def Info: ../design/../design/assets/config_flowchart.pdf  used o
 
 
 [18 <../design/../design/assets/browser_flowchart.pdf> <../design/../design/assets/config_gui.png>]
-<../design/../design/assets/game_gui.png, id=1543, 454.8192pt x 256.3176pt>
+<../design/../design/assets/game_gui.png, id=1547, 454.8192pt x 256.3176pt>
 File: ../design/../design/assets/game_gui.png Graphic file (type png)
 <use ../design/../design/assets/game_gui.png>
 Package pdftex.def Info: ../design/../design/assets/game_gui.png  used on input line 102.
 (pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
-<../design/../design/assets/game_flowchart.pdf, id=1544, 551.1792pt x 262.0992pt>
+<../design/../design/assets/game_flowchart.pdf, id=1548, 551.1792pt x 262.0992pt>
 File: ../design/../design/assets/game_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/game_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on input line 123.
@@ -1051,12 +1065,12 @@ Package pdftex.def Info: ../design/../design/assets/game_flowchart.pdf  used on 
 
 
 [19 <../design/../design/assets/config_flowchart.pdf> <../design/../design/assets/game_gui.png>]
-<../design/../design/assets/editor_gui.png, id=1561, 963.6pt x 542.025pt>
+<../design/../design/assets/editor_gui.png, id=1565, 963.6pt x 542.025pt>
 File: ../design/../design/assets/editor_gui.png Graphic file (type png)
 <use ../design/../design/assets/editor_gui.png>
 Package pdftex.def Info: ../design/../design/assets/editor_gui.png  used on input line 131.
 (pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
-<../design/../design/assets/editor_flowchart.pdf, id=1562, 435.54718pt x 204.765pt>
+<../design/../design/assets/editor_flowchart.pdf, id=1566, 435.54718pt x 204.765pt>
 File: ../design/../design/assets/editor_flowchart.pdf Graphic file (type pdf)
 <use ../design/../design/assets/editor_flowchart.pdf>
 Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used on input line 142.
@@ -1064,7 +1078,7 @@ Package pdftex.def Info: ../design/../design/assets/editor_flowchart.pdf  used o
 
 
 [20 <../design/../design/assets/game_flowchart.pdf> <../design/../design/assets/editor_gui.png>]
-<../design/../design/assets/minimax.pdf, id=1578, 688.49219pt x 307.1475pt>
+<../design/../design/assets/minimax.pdf, id=1582, 688.49219pt x 307.1475pt>
 File: ../design/../design/assets/minimax.pdf Graphic file (type pdf)
 <use ../design/../design/assets/minimax.pdf>
 Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input line 154.
@@ -1073,7 +1087,7 @@ Package pdftex.def Info: ../design/../design/assets/minimax.pdf  used on input l
 
 [21 <../design/../design/assets/editor_flowchart.pdf> <../design/../design/assets/minimax.pdf>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 164.
-<../design/../design/assets/alpha_beta_pruning.pdf, id=1609, 713.7867pt x 307.1475pt>
+<../design/../design/assets/alpha_beta_pruning.pdf, id=1613, 713.7867pt x 307.1475pt>
 File: ../design/../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
 <use ../design/../design/assets/alpha_beta_pruning.pdf>
 Package pdftex.def Info: ../design/../design/assets/alpha_beta_pruning.pdf  used on input line 200.
@@ -1096,12 +1110,12 @@ Overfull \hbox (2.31029pt too wide) in paragraph at lines 356--357
 [26]
 
 [27]
-<../design/../design/assets/bitboard_indexes.pdf, id=1668, 324.82352pt x 263.91599pt>
+<../design/../design/assets/bitboard_indexes.pdf, id=1672, 324.82352pt x 263.91599pt>
 File: ../design/../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_indexes.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used on input line 426.
 (pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
-<../design/../design/assets/bitboard_shifted.pdf, id=1670, 145.50359pt x 145.50359pt>
+<../design/../design/assets/bitboard_shifted.pdf, id=1674, 145.50359pt x 145.50359pt>
 File: ../design/../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_shifted.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_shifted.pdf  used on input line 443.
@@ -1109,7 +1123,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_shifted.pdf  used o
 
 
 [28 <../design/../design/assets/bitboard_indexes.pdf>]
-<../design/../design/assets/bitboard_masked.pdf, id=1692, 551.1792pt x 167.6664pt>
+<../design/../design/assets/bitboard_masked.pdf, id=1696, 551.1792pt x 167.6664pt>
 File: ../design/../design/assets/bitboard_masked.pdf Graphic file (type pdf)
 <use ../design/../design/assets/bitboard_masked.pdf>
 Package pdftex.def Info: ../design/../design/assets/bitboard_masked.pdf  used on input line 458.
@@ -1119,7 +1133,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_masked.pdf  used on
 [29 <../design/../design/assets/bitboard_shifted.pdf> <../design/../design/assets/bitboard_masked.pdf>]
 
 [30]
-<../design/../design/assets/psqt.pdf, id=1726, 352.43669pt x 167.6664pt>
+<../design/../design/assets/psqt.pdf, id=1730, 352.43669pt x 167.6664pt>
 File: ../design/../design/assets/psqt.pdf Graphic file (type pdf)
 <use ../design/../design/assets/psqt.pdf>
 Package pdftex.def Info: ../design/../design/assets/psqt.pdf  used on input line 545.
@@ -1136,7 +1150,7 @@ Package pdftex.def Info: ../design/../design/assets/bitboard_indexes.pdf  used o
 [32]
 
 [33]
-<../design/../design/assets/shadow_mapping.pdf, id=1761, 340.3917pt x 321.11969pt>
+<../design/../design/assets/shadow_mapping.pdf, id=1765, 340.3917pt x 321.11969pt>
 File: ../design/../design/assets/shadow_mapping.pdf Graphic file (type pdf)
 <use ../design/../design/assets/shadow_mapping.pdf>
 Package pdftex.def Info: ../design/../design/assets/shadow_mapping.pdf  used on input line 624.
@@ -1146,7 +1160,7 @@ Package pdftex.def Info: ../design/../design/assets/shadow_mapping.pdf  used on 
 [34]
 
 [35 <../design/../design/assets/shadow_mapping.pdf>]
-<../design/../design/assets/soft_shadows.pdf, id=1796, 264.99pt x 164.5347pt>
+<../design/../design/assets/soft_shadows.pdf, id=1800, 264.99pt x 164.5347pt>
 File: ../design/../design/assets/soft_shadows.pdf Graphic file (type pdf)
 <use ../design/../design/assets/soft_shadows.pdf>
 Package pdftex.def Info: ../design/../design/assets/soft_shadows.pdf  used on input line 664.
@@ -1154,7 +1168,7 @@ Package pdftex.def Info: ../design/../design/assets/soft_shadows.pdf  used on in
 
 
 [36 <../design/../design/assets/soft_shadows.pdf>]
-<../design/../design/assets/multi_threading.pdf, id=1822, 352.43669pt x 158.51219pt>
+<../design/../design/assets/multi_threading.pdf, id=1826, 352.43669pt x 158.51219pt>
 File: ../design/../design/assets/multi_threading.pdf Graphic file (type pdf)
 <use ../design/../design/assets/multi_threading.pdf>
 Package pdftex.def Info: ../design/../design/assets/multi_threading.pdf  used on input line 677.
@@ -1164,7 +1178,7 @@ File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 
 [38]
-<../design/../design/assets/linked_list.pdf, id=1874, 389.5353pt x 109.3686pt>
+<../design/../design/assets/linked_list.pdf, id=1881, 389.5353pt x 109.3686pt>
 File: ../design/../design/assets/linked_list.pdf Graphic file (type pdf)
 <use ../design/../design/assets/linked_list.pdf>
 Package pdftex.def Info: ../design/../design/assets/linked_list.pdf  used on input line 787.
@@ -1174,7 +1188,7 @@ Package pdftex.def Info: ../design/../design/assets/linked_list.pdf  used on inp
 [39]
 
 [40 <../design/../design/assets/linked_list.pdf>]
-<../design/../design/assets/stack.pdf, id=1912, 204.765pt x 174.6525pt>
+<../design/../design/assets/stack.pdf, id=1916, 204.765pt x 174.6525pt>
 File: ../design/../design/assets/stack.pdf Graphic file (type pdf)
 <use ../design/../design/assets/stack.pdf>
 Package pdftex.def Info: ../design/../design/assets/stack.pdf  used on input line 858.
@@ -1212,7 +1226,7 @@ Overfull \hbox (16.34077pt too wide) in alignment at lines 979--991
  []
 
 [44]
-<../design/../design/assets/class_relation_diagram.pdf, id=1952, 435.54718pt x 478.66827pt>
+<../design/../design/assets/class_relation_diagram.pdf, id=1956, 435.54718pt x 478.66827pt>
 File: ../design/../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
 <use ../design/../design/assets/class_relation_diagram.pdf>
 Package pdftex.def Info: ../design/../design/assets/class_relation_diagram.pdf  used on input line 1020.
@@ -1228,86 +1242,86 @@ Chapter 3.
 [47
 
 ]
-<../technical_solution/../technical_solution/assets/file_tree_diagram.pdf, id=2032, 412.4208pt x 448.5558pt>
+<../technical_solution/../technical_solution/assets/file_tree_diagram.pdf, id=2036, 453.61469pt x 536.0025pt>
 File: ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/../technical_solution/assets/file_tree_diagram.pdf  used on input line 15.
-(pdftex.def)             Requested size: 418.25368pt x 454.91313pt.
+(pdftex.def)             Requested size: 418.25368pt x 494.24059pt.
 
 
-[48 <../technical_solution/../technical_solution/assets/file_tree_diagram.pdf>]
+[48]
+
+[49 <../technical_solution/../technical_solution/assets/file_tree_diagram.pdf>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 42.
  (../technical_solution/../../data/main.py
 
-[49]) (../technical_solution/../../data/loading_screen.py
+[50]) (../technical_solution/../../data/loading_screen.py
 
-[50]
+[51]
 
-[51]) (../technical_solution/../../data/helpers/asset_helpers.py
-
-[52]
+[52]) (../technical_solution/../../data/helpers/asset_helpers.py
 
 [53]
 
 [54]
 
-[55]) (../technical_solution/../../data/helpers/data_helpers.py
+[55]
 
-[56]) (../technical_solution/../../data/helpers/widget_helpers.py
+[56]) (../technical_solution/../../data/helpers/data_helpers.py
 
-[57]
+[57]) (../technical_solution/../../data/helpers/widget_helpers.py
 
 [58]
 
-[59]) (../technical_solution/../../data/managers/theme.py
+[59]
 
-[60]) (../technical_solution/../../data/states/game/components/laser_draw.py
+[60]) (../technical_solution/../../data/managers/theme.py
 
-[61]
+[61]) (../technical_solution/../../data/states/game/components/laser_draw.py
 
 [62]
 
-[63]) (../technical_solution/../../data/states/game/components/particles_draw.py
+[63]
 
-[64]
+[64]) (../technical_solution/../../data/states/game/components/particles_draw.py
 
 [65]
 
-[66]) (../technical_solution/../../data/widgets/bases/widget.py
+[66]
 
-[67]
+[67])
 
-[68]
+[68] (../technical_solution/../../data/widgets/bases/widget.py
 
 [69]
 
-[70])
+[70]
 
-[71] (../technical_solution/../../data/widgets/bases/circular.py
+[71]
 
-[72]) (../technical_solution/../../data/components/circular_linked_list.py
+[72]) (../technical_solution/../../data/widgets/bases/circular.py
 
-[73]
+[73]) (../technical_solution/../../data/components/circular_linked_list.py
 
 [74]
 
-[75]) (../technical_solution/../../data/components/custom_event.py
+[75]
 
-[76]
+[76]) (../technical_solution/../../data/components/custom_event.py
 
-[77]) (../technical_solution/../../data/widgets/reactive_icon_button.py)
+[77]
 
-[78] (../technical_solution/../../data/widgets/reactive_button.py
+[78]) (../technical_solution/../../data/widgets/reactive_icon_button.py)
 
-[79]) (../technical_solution/../../data/widgets/colour_slider.py
+[79] (../technical_solution/../../data/widgets/reactive_button.py
 
-[80]
+[80]) (../technical_solution/../../data/widgets/colour_slider.py
 
 [81]
 
-[82]) (../technical_solution/../../data/widgets/text_input.py
+[82]
 
-[83]
+[83]) (../technical_solution/../../data/widgets/text_input.py
 
 [84]
 
@@ -1315,9 +1329,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [86]
 
-[87]) (../technical_solution/../../data/states/game/mvc/game_model.py
+[87]
 
-[88]
+[88]) (../technical_solution/../../data/states/game/mvc/game_model.py
 
 [89]
 
@@ -1325,9 +1339,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [91]
 
-[92]) (../technical_solution/../../data/states/game/mvc/game_view.py
+[92]
 
-[93]
+[93]) (../technical_solution/../../data/states/game/mvc/game_view.py
 
 [94]
 
@@ -1337,9 +1351,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [97]
 
-[98]) (../technical_solution/../../data/states/game/mvc/game_controller.py
+[98]
 
-[99]
+[99]) (../technical_solution/../../data/states/game/mvc/game_controller.py
 
 [100]
 
@@ -1347,9 +1361,9 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [102]
 
-[103]) (../technical_solution/../../data/states/game/components/board.py
+[103]
 
-[104]
+[104]) (../technical_solution/../../data/states/game/components/board.py
 
 [105]
 
@@ -1357,16 +1371,16 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [107]
 
-[108])
+[108]
+
+[109])
+
+[110]
 Overfull \hbox (22.63866pt too wide) in paragraph at lines 205--206
 \T1/cmr/m/n/10 As de-scribed in Sec-tion []2.2.3[], the [][][][] class uses helper func-tions found in []
  []
 
 (../technical_solution/../../data/states/game/components/bitboard_collection.py
-
-[109]
-
-[110]
 
 [111]
 
@@ -1374,37 +1388,37 @@ Overfull \hbox (22.63866pt too wide) in paragraph at lines 205--206
 
 [113]
 
-[114])
+[114]
 
-[115] (../technical_solution/../../data/states/game/cpu/engines/minimax.py
+[115])
 
-[116]) (../technical_solution/../../data/states/game/cpu/engines/alpha_beta.py
+[116] (../technical_solution/../../data/states/game/cpu/engines/minimax.py
 
-[117]
+[117]) (../technical_solution/../../data/states/game/cpu/engines/alpha_beta.py
 
-[118]) (../technical_solution/../../data/states/game/cpu/engines/transposition_table.py
+[118]
 
-[119]) (../technical_solution/../../data/states/game/cpu/engines/iterative_deepening.py
+[119]) (../technical_solution/../../data/states/game/cpu/engines/transposition_table.py
 
 [120])
 
-[121] (../technical_solution/../../data/states/game/cpu/evaluator.py
+[121] (../technical_solution/../../data/states/game/cpu/engines/iterative_deepening.py
 
-[122]
+[122]) (../technical_solution/../../data/states/game/cpu/evaluator.py
 
-[123]) (../technical_solution/../../data/states/game/cpu/cpu_thread.py
+[123]
 
-[124]) (../technical_solution/../../data/states/game/cpu/zobrist_hasher.py
+[124]) (../technical_solution/../../data/states/game/cpu/cpu_thread.py
 
-[125])
+[125]) (../technical_solution/../../data/states/game/cpu/zobrist_hasher.py
 
-[126] (../technical_solution/../../data/states/game/cpu/transposition_table.py
+[126]
 
-[127])
+[127]) (../technical_solution/../../data/states/game/cpu/transposition_table.py
 
-[128] (../technical_solution/../../data/states/review/review.py
+[128])
 
-[129]
+[129] (../technical_solution/../../data/states/review/review.py
 
 [130]
 
@@ -1412,45 +1426,49 @@ Overfull \hbox (22.63866pt too wide) in paragraph at lines 205--206
 
 [132]
 
-[133]) (../technical_solution/../../data/database/migrations/create_games_table_19112024.py
+[133]
 
-[134]) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py) (../technical_solution/../../data/helpers/database_helpers.py
+[134]) (../technical_solution/../../data/database/migrations/create_games_table_19112024.py
 
-[135]
+[135]) (../technical_solution/../../data/database/migrations/change_fen_string_column_name_23122024.py)
 
-[136]
+[136] (../technical_solution/../../data/helpers/database_helpers.py
 
-[137]) (../technical_solution/../../data/managers/shader.py
+[137]
 
-[138]
+[138])
 
-[139]
+[139] (../technical_solution/../../data/managers/shader.py
 
 [140]
 
 [141]
 
-[142]) (../technical_solution/../../data/shaders/fragments/highlight_brightness.frag
+[142]
 
-[143]) (../technical_solution/../../data/shaders/classes/blur.py
+[143])
 
-[144]) (../technical_solution/../../data/shaders/fragments/blur.frag) (../technical_solution/../../data/shaders/classes/bloom.py
+[144] (../technical_solution/../../data/shaders/fragments/highlight_brightness.frag) (../technical_solution/../../data/shaders/classes/blur.py
 
-[145])
+[145]) (../technical_solution/../../data/shaders/fragments/blur.frag)
 
-[146] (../technical_solution/../../data/shaders/fragments/occlusion.frag) (../technical_solution/../../data/shaders/fragments/shadowmap.frag
+[146] (../technical_solution/../../data/shaders/classes/bloom.py
 
-[147]) (../technical_solution/../../data/shaders/fragments/lightmap.frag
+[147]) (../technical_solution/../../data/shaders/fragments/occlusion.frag) (../technical_solution/../../data/shaders/fragments/shadowmap.frag
 
-[148]) (../technical_solution/../../data/shaders/classes/rays.py
+[148]) (../technical_solution/../../data/shaders/fragments/lightmap.frag
 
-[149])) (../testing/../testing/testing.tex
+[149])
 
-[150]
+[150] (../technical_solution/../../data/shaders/classes/rays.py
+
+[151])) (../testing/../testing/testing.tex
+
+[152]
 Chapter 4.
 (../testing/../../data/states/game/cpu/base.py)
 
-[151
+[153
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 55--55
@@ -1467,18 +1485,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--57
 []|[][][][][][][][][][][][][][][][][][][][][]
  []
 
-[152]
-<../testing/../testing/assets/rays_example_1.png, id=8010, 444.15938pt x 444.15938pt>
+[154]
+<../testing/../testing/assets/rays_example_1.png, id=8045, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_1.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_1.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_1.png  used on input line 102.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_2.png, id=8011, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_2.png, id=8046, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_2.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_2.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_2.png  used on input line 105.
 (pdftex.def)             Requested size: 125.47737pt x 125.47525pt.
-<../testing/../testing/assets/rays_example_3.png, id=8012, 444.15938pt x 444.15938pt>
+<../testing/../testing/assets/rays_example_3.png, id=8047, 444.15938pt x 444.15938pt>
 File: ../testing/../testing/assets/rays_example_3.png Graphic file (type png)
 <use ../testing/../testing/assets/rays_example_3.png>
 Package pdftex.def Info: ../testing/../testing/assets/rays_example_3.png  used on input line 108.
@@ -1500,26 +1518,21 @@ Underfull \hbox (badness 1648) in paragraph at lines 155--155
 
 
 
-[153 <../testing/../testing/assets/rays_example_1.png> <../testing/../testing/assets/rays_example_2.png> <../testing/../testing/assets/rays_example_3.png>]
-Underfull \hbox (badness 4660) in paragraph at lines 180--180
+[155 <../testing/../testing/assets/rays_example_1.png> <../testing/../testing/assets/rays_example_2.png> <../testing/../testing/assets/rays_example_3.png>]
+Underfull \hbox (badness 4660) in paragraph at lines 181--181
 []|\T1/cmr/m/n/10 Game is dis-played in re-view
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 181--181
+Underfull \hbox (badness 3000) in paragraph at lines 182--182
 []|\T1/cmr/m/n/10 Program dis-plays list of past
  []
 
 
 
-[154]
-Underfull \hbox (badness 10000) in paragraph at lines 230--230
-[]|\T1/cmr/m/n/10 All pieces dis-s-a-pear (ex-cept
- []
-
-
-Underfull \hbox (badness 1112) in paragraph at lines 232--232
-[]|\T1/cmr/m/n/10 Switches to con-fig screen with
+[156]
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
+[]|\T1/cmr/m/n/10 All pieces dis-ap-pear (ex-cept
  []
 
 
@@ -1528,224 +1541,236 @@ Underfull \hbox (badness 1112) in paragraph at lines 233--233
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--238
+Underfull \hbox (badness 1112) in paragraph at lines 234--234
+[]|\T1/cmr/m/n/10 Switches to con-fig screen with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
 []|\T1/cmr/m/n/10 Toggle par-ti-cle and shader
  []
 
-[155]) (../evaluation/../evaluation/evaluation.tex
+[157]) (../evaluation/../evaluation/evaluation.tex
 
-[156]
+[158]
 
-[157]
+[159]
 Chapter 5.
 
 
-[158
+[160
 
 ]
 
-[159]
+[161]
+<../evaluation/../evaluation/assets/myslov_playing.jpeg, id=8154, 971.3088pt x 728.4816pt>
+File: ../evaluation/../evaluation/assets/myslov_playing.jpeg Graphic file (type jpg)
+<use ../evaluation/../evaluation/assets/myslov_playing.jpeg>
+Package pdftex.def Info: ../evaluation/../evaluation/assets/myslov_playing.jpeg  used on input line 66.
+(pdftex.def)             Requested size: 204.9466pt x 153.70818pt.
+<../evaluation/../evaluation/assets/myslov_angry.jpeg, id=8155, 971.3088pt x 728.4816pt>
+File: ../evaluation/../evaluation/assets/myslov_angry.jpeg Graphic file (type jpg)
+<use ../evaluation/../evaluation/assets/myslov_angry.jpeg>
+Package pdftex.def Info: ../evaluation/../evaluation/assets/myslov_angry.jpeg  used on input line 70.
+(pdftex.def)             Requested size: 204.9466pt x 153.70818pt.
 
-[160]
 
-[161]) (bibliography.tex (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.bbl
+[162 <../evaluation/../evaluation/assets/myslov_playing.jpeg> <../evaluation/../evaluation/assets/myslov_angry.jpeg>]
 
-[162])
+[163]) (bibliography.tex (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.bbl
+
+[164])
 Overfull \hbox (25.3951pt too wide) in paragraph at lines 21--22
 [][]$\T1/cmtt/m/n/10 https : / / www . zapsplat . com / music / game-[]sound-[]warm-[]chime-[]soft-[]mallet-[]start-[]up-[]tone/$[] 
  []
 
 ) (../screenshots/../screenshots/screenshots.tex
 
-[163
+[165
 
 ]
 Appendix A.
-<../screenshots/../screenshots/assets/menu.png, id=8167, 895.84688pt x 448.67625pt>
+<../screenshots/../screenshots/assets/menu.png, id=8203, 895.84688pt x 448.67625pt>
 File: ../screenshots/../screenshots/assets/menu.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/menu.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/menu.png  used on input line 10.
 (pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
-<../screenshots/../screenshots/assets/settings.png, id=8168, 896.59969pt x 447.92343pt>
+<../screenshots/../screenshots/assets/settings.png, id=8204, 896.59969pt x 447.92343pt>
 File: ../screenshots/../screenshots/assets/settings.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/settings.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/settings.png  used on input line 17.
 (pdftex.def)             Requested size: 418.25368pt x 208.95204pt.
 
 
-[164
+[166
 
  <../screenshots/../screenshots/assets/menu.png>]
-<../screenshots/../screenshots/assets/config.png, id=8174, 898.10532pt x 447.17062pt>
+<../screenshots/../screenshots/assets/config.png, id=8211, 898.10532pt x 447.17062pt>
 File: ../screenshots/../screenshots/assets/config.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/config.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/config.png  used on input line 24.
 (pdftex.def)             Requested size: 418.25368pt x 208.24605pt.
-<../screenshots/../screenshots/assets/game.png, id=8175, 895.84688pt x 449.42906pt>
+<../screenshots/../screenshots/assets/game.png, id=8212, 895.84688pt x 449.42906pt>
 File: ../screenshots/../screenshots/assets/game.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/game.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/game.png  used on input line 31.
 (pdftex.def)             Requested size: 418.25368pt x 209.82584pt.
 
 
-[165 <../screenshots/../screenshots/assets/settings.png> <../screenshots/../screenshots/assets/config.png>]
-<../screenshots/../screenshots/assets/editor.png, id=8182, 898.85812pt x 447.92343pt>
+[167 <../screenshots/../screenshots/assets/settings.png> <../screenshots/../screenshots/assets/config.png>]
+<../screenshots/../screenshots/assets/editor.png, id=8219, 898.85812pt x 447.92343pt>
 File: ../screenshots/../screenshots/assets/editor.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/editor.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/editor.png  used on input line 38.
 (pdftex.def)             Requested size: 418.25368pt x 208.42577pt.
-<../screenshots/../screenshots/assets/browser.png, id=8183, 895.84688pt x 448.67625pt>
+<../screenshots/../screenshots/assets/browser.png, id=8220, 895.84688pt x 448.67625pt>
 File: ../screenshots/../screenshots/assets/browser.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/browser.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/browser.png  used on input line 45.
 (pdftex.def)             Requested size: 418.25368pt x 209.47438pt.
 
 
-[166 <../screenshots/../screenshots/assets/game.png> <../screenshots/../screenshots/assets/editor.png>]
-<../screenshots/../screenshots/assets/review.png, id=8191, 897.3525pt x 447.17062pt>
+[168 <../screenshots/../screenshots/assets/game.png> <../screenshots/../screenshots/assets/editor.png>]
+<../screenshots/../screenshots/assets/review.png, id=8227, 897.3525pt x 447.17062pt>
 File: ../screenshots/../screenshots/assets/review.png Graphic file (type png)
 <use ../screenshots/../screenshots/assets/review.png>
 Package pdftex.def Info: ../screenshots/../screenshots/assets/review.png  used on input line 52.
 (pdftex.def)             Requested size: 418.25368pt x 208.42346pt.
 ) (../source/../source/source.tex
 
-[167 <../screenshots/../screenshots/assets/browser.png> <../screenshots/../screenshots/assets/review.png>]
+[169 <../screenshots/../screenshots/assets/browser.png> <../screenshots/../screenshots/assets/review.png>]
 Appendix B.
 (../source/../../data/control.py
 
-[168
+[170
 
 ]
 
-[169]) (../source/../../data/setup.py)
+[171]) (../source/../../data/setup.py)
 
-[170] (../source/../../data/windows_setup.py) (../source/../../data/app_data/default_settings.json) (../source/../../data/app_data/logs_config.json
+[172] (../source/../../data/windows_setup.py) (../source/../../data/app_data/default_settings.json) (../source/../../data/app_data/logs_config.json
 
-[171]) (../source/../../data/app_data/logs_config_prod.json
+[173]) (../source/../../data/app_data/logs_config_prod.json
 
-[172]) (../source/../../data/app_data/themes.json) (../source/../../data/app_data/user_settings.json)
+[174]) (../source/../../data/app_data/themes.json) (../source/../../data/app_data/user_settings.json)
 
-[173] (../source/../../data/components/cursor.py) (../source/../../data/components/game_entry.py
+[175] (../source/../../data/components/cursor.py) (../source/../../data/components/game_entry.py
 
-[174]) (../source/../../data/components/widget_group.py
+[176]) (../source/../../data/components/widget_group.py
 
-[175]) (../source/../../data/database/migrations/add_created_dt_column27112024.py) (../source/../../data/database/migrations/add_fen_string_column_22112024.py
+[177]) (../source/../../data/database/migrations/add_created_dt_column27112024.py) (../source/../../data/database/migrations/add_fen_string_column_22112024.py
 
-[176]) (../source/../../data/database/migrations/add_start_fen_string_column_23122024.py)
+[178]) (../source/../../data/database/migrations/add_start_fen_string_column_23122024.py)
 
-[177] (../source/../../data/helpers/bitboard_helpers.py
+[179] (../source/../../data/helpers/bitboard_helpers.py
 
-[178]) (../source/../../data/helpers/board_helpers.py
+[180]) (../source/../../data/helpers/board_helpers.py
 
-[179]) (../source/../../data/helpers/browser_helpers.py
+[181]) (../source/../../data/helpers/browser_helpers.py
 
-[180]) (../source/../../data/helpers/font_helpers.py
+[182]) (../source/../../data/helpers/font_helpers.py
 
-[181]) (../source/../../data/helpers/input_helpers.py) (../source/../../data/helpers/load_helpers.py
+[183]) (../source/../../data/helpers/input_helpers.py) (../source/../../data/helpers/load_helpers.py
 
-[182]
+[184]
 
-[183])
+[185])
 
-[184] (../source/../../data/managers/animation.py) (../source/../../data/managers/audio.py
+[186] (../source/../../data/managers/animation.py) (../source/../../data/managers/audio.py
 
-[185]
+[187]
 
-[186]) (../source/../../data/managers/cursor.py) (../source/../../data/managers/logs.py)
+[188]) (../source/../../data/managers/cursor.py) (../source/../../data/managers/logs.py)
 
-[187] (../source/../../data/managers/window.py
+[189] (../source/../../data/managers/window.py
 
-[188]) (../source/../../data/shaders/protocol.py
+[190]) (../source/../../data/shaders/protocol.py
 
-[189]) (../source/../../data/shaders/classes/base.py
+[191]) (../source/../../data/shaders/classes/base.py
 
-[190]) (../source/../../data/shaders/classes/blend.py)
+[192]) (../source/../../data/shaders/classes/blend.py)
 
-[191] (../source/../../data/shaders/classes/chromatic_abbreviation.py) (../source/../../data/shaders/classes/crop.py) (../source/../../data/shaders/classes/crt.py) (../source/../../data/shaders/classes/grayscale.py
+[193] (../source/../../data/shaders/classes/chromatic_abbreviation.py) (../source/../../data/shaders/classes/crop.py) (../source/../../data/shaders/classes/crt.py)
 
-[192]) (../source/../../data/shaders/classes/highlight_brightness.py) (../source/../../data/shaders/classes/highlight_colour.py) (../source/../../data/shaders/classes/lightmap.py
+[194] (../source/../../data/shaders/classes/grayscale.py) (../source/../../data/shaders/classes/highlight_brightness.py) (../source/../../data/shaders/classes/highlight_colour.py) (../source/../../data/shaders/classes/lightmap.py
 
-[193]) (../source/../../data/shaders/classes/occlusion.py) (../source/../../data/shaders/classes/shadowmap.py) (../source/../../data/shaders/classes/shake.py
+[195]) (../source/../../data/shaders/classes/occlusion.py) (../source/../../data/shaders/classes/shadowmap.py
 
-[194]) (../source/../../data/shaders/classes/__init__.py)
+[196]) (../source/../../data/shaders/classes/shake.py) (../source/../../data/shaders/classes/__init__.py)
 
-[195] (../source/../../data/shaders/fragments/background_balatro.frag
+[197] (../source/../../data/shaders/fragments/background_balatro.frag
 
-[196]) (../source/../../data/shaders/fragments/background_gradient.frag
+[198]) (../source/../../data/shaders/fragments/background_gradient.frag
 
-[197]) (../source/../../data/shaders/fragments/background_lasers.frag
+[199]) (../source/../../data/shaders/fragments/background_lasers.frag
 
-[198]) (../source/../../data/shaders/fragments/background_none.frag)
+[200]) (../source/../../data/shaders/fragments/background_none.frag
 
-[199] (../source/../../data/shaders/fragments/background_waves.frag) (../source/../../data/shaders/fragments/base.frag
+[201]) (../source/../../data/shaders/fragments/background_waves.frag)
 
-[200]) (../source/../../data/shaders/fragments/blend.frag) (../source/../../data/shaders/fragments/bloom.frag)
+[202] (../source/../../data/shaders/fragments/base.frag) (../source/../../data/shaders/fragments/blend.frag) (../source/../../data/shaders/fragments/bloom.frag)
 
-[201] (../source/../../data/shaders/fragments/bloom_old.frag) (../source/../../data/shaders/fragments/box_blur.frag
+[203] (../source/../../data/shaders/fragments/bloom_old.frag) (../source/../../data/shaders/fragments/box_blur.frag
 
-[202]) (../source/../../data/shaders/fragments/calibrate.frag) (../source/../../data/shaders/fragments/chromatic_abbreviation.frag) (../source/../../data/shaders/fragments/crop.frag
+[204]) (../source/../../data/shaders/fragments/calibrate.frag) (../source/../../data/shaders/fragments/chromatic_abbreviation.frag)
 
-[203]) (../source/../../data/shaders/fragments/crt.frag)
+[205] (../source/../../data/shaders/fragments/crop.frag) (../source/../../data/shaders/fragments/crt.frag)
 
-[204] (../source/../../data/shaders/fragments/flashlight.frag) (../source/../../data/shaders/fragments/grayscale.frag) (../source/../../data/shaders/fragments/highlight_colour.frag
+[206] (../source/../../data/shaders/fragments/flashlight.frag) (../source/../../data/shaders/fragments/grayscale.frag) (../source/../../data/shaders/fragments/highlight_colour.frag
 
-[205]) (../source/../../data/shaders/fragments/rays.frag) (../source/../../data/shaders/fragments/shake.frag
+[207]) (../source/../../data/shaders/fragments/rays.frag) (../source/../../data/shaders/fragments/shake.frag
 
-[206]) (../source/../../data/shaders/vertex/base.vert) (../source/../../data/states/browser/browser.py
-
-[207]
-
-[208]) (../source/../../data/states/browser/widget_dict.py
+[208]) (../source/../../data/shaders/vertex/base.vert) (../source/../../data/states/browser/browser.py
 
 [209]
 
-[210]
+[210]) (../source/../../data/states/browser/widget_dict.py
 
-[211]) (../source/../../data/states/config/config.py
+[211]
 
 [212]
 
-[213]
+[213]) (../source/../../data/states/config/config.py
 
 [214]
 
-[215]) (../source/../../data/states/config/default_config.py) (../source/../../data/states/config/widget_dict.py
+[215]
 
 [216]
 
-[217]
+[217]) (../source/../../data/states/config/default_config.py) (../source/../../data/states/config/widget_dict.py
 
 [218]
 
 [219]
 
-[220]) (../source/../../data/states/editor/editor.py
+[220]
 
 [221]
 
-[222]
+[222]) (../source/../../data/states/editor/editor.py
 
 [223]
 
 [224]
 
-[225]) (../source/../../data/states/editor/widget_dict.py
+[225]
 
 [226]
 
-[227]
+[227]) (../source/../../data/states/editor/widget_dict.py
 
 [228]
 
-[229]) (../source/../../data/states/game/game.py
+[229]
 
 [230]
 
-[231]) (../source/../../data/states/game/widget_dict.py
+[231]) (../source/../../data/states/game/game.py
 
 [232]
 
-[233]
+[233]) (../source/../../data/states/game/widget_dict.py
 
 [234]
 
@@ -1753,83 +1778,89 @@ Appendix B.
 
 [236]
 
-[237]) (../source/../../data/states/game/components/capture_draw.py
+[237]
 
-[238]) (../source/../../data/states/game/components/father.py
+[238]
 
-[239]) (../source/../../data/states/game/components/fen_parser.py
+[239]) (../source/../../data/states/game/components/capture_draw.py
 
-[240]
+[240]) (../source/../../data/states/game/components/father.py
 
-[241]) (../source/../../data/states/game/components/laser.py
+[241]) (../source/../../data/states/game/components/fen_parser.py
 
 [242]
 
-[243]) (../source/../../data/states/game/components/move.py
+[243]) (../source/../../data/states/game/components/laser.py
 
 [244]
 
-[245]) (../source/../../data/states/game/components/overlay_draw.py
+[245]) (../source/../../data/states/game/components/move.py
 
-[246]) (../source/../../data/states/game/components/piece_group.py
+[246]
 
-[247]) (../source/../../data/states/game/components/piece_sprite.py)
+[247]) (../source/../../data/states/game/components/overlay_draw.py
 
-[248] (../source/../../data/states/game/components/psqt.py) (../source/../../data/states/game/cpu/base.py
+[248]) (../source/../../data/states/game/components/piece_group.py
 
-[249]
+[249]) (../source/../../data/states/game/components/piece_sprite.py
 
-[250]) (../source/../../data/states/game/cpu/move_orderer.py
+[250]) (../source/../../data/states/game/components/psqt.py)
 
-[251]) (../source/../../data/states/game/cpu/temp.py
+[251] (../source/../../data/states/game/cpu/base.py
 
-[252]
+[252]) (../source/../../data/states/game/cpu/move_orderer.py
 
-[253]) (../source/../../data/states/game/cpu/engines/negamax.py
+[253]) (../source/../../data/states/game/cpu/temp.py
 
 [254]
 
-[255]
+[255]) (../source/../../data/states/game/cpu/engines/negamax.py
 
-[256]) (../source/../../data/states/game/cpu/engines/simple.py)
+[256]
 
-[257] (../source/../../data/states/game/cpu/engines/__init__.py) (../source/../../data/states/game/mvc/pause_view.py
+[257]
 
-[258]) (../source/../../data/states/game/mvc/win_view.py
+[258]) (../source/../../data/states/game/cpu/engines/simple.py
 
-[259]) (../source/../../data/states/menu/menu.py
+[259]) (../source/../../data/states/game/cpu/engines/__init__.py) (../source/../../data/states/game/mvc/pause_view.py
 
-[260]
+[260]) (../source/../../data/states/game/mvc/win_view.py
 
-[261]
+[261]) (../source/../../data/states/menu/menu.py
 
-[262]) (../source/../../data/states/menu/widget_dict.py
+[262]
 
 [263]
 
-[264]) (../source/../../data/states/review/widget_dict.py
+[264]) (../source/../../data/states/menu/widget_dict.py
 
 [265]
 
 [266]
 
-[267]
+[267]) (../source/../../data/states/review/widget_dict.py
 
-[268]) (../source/../../data/states/settings/settings.py
+[268]
 
 [269]
 
 [270]
 
-[271]) (../source/../../data/states/settings/widget_dict.py
+[271]) (../source/../../data/states/settings/settings.py
 
 [272]
 
 [273]
 
-[274]) (../source/../../data/utils/assets.py
+[274]) (../source/../../data/states/settings/widget_dict.py
 
-[275]) (../source/../../data/utils/constants.py
+[275]
+
+[276]
+
+[277]) (../source/../../data/utils/assets.py
+
+[278]) (../source/../../data/utils/constants.py
 Overfull \hbox (14.74918pt too wide) in paragraph at lines 11--12
 [][] 
  []
@@ -1856,100 +1887,105 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 15--17
 
 
 
-[276]) (../source/../../data/utils/enums.py
+[279]) (../source/../../data/utils/enums.py
 
-[277]
+[280]
 
-[278]
+[281]
 
-[279]) (../source/../../data/utils/event_types.py
+[282]) (../source/../../data/utils/event_types.py
 
-[280]) (../source/../../data/widgets/board_thumbnail.py
+[283]) (../source/../../data/widgets/board_thumbnail.py
 
-[281]) (../source/../../data/widgets/board_thumbnail_button.py) (../source/../../data/widgets/browser_item.py
+[284]) (../source/../../data/widgets/board_thumbnail_button.py) (../source/../../data/widgets/browser_item.py
 
-[282])
+[285])
 
-[283] (../source/../../data/widgets/browser_strip.py
+[286] (../source/../../data/widgets/browser_strip.py
 
-[284]) (../source/../../data/widgets/carousel.py
+[287]) (../source/../../data/widgets/carousel.py
 
-[285]
+[288]
 
-[286])
+[289])
 
-[287] (../source/../../data/widgets/chessboard.py) (../source/../../data/widgets/colour_button.py
+[290] (../source/../../data/widgets/chessboard.py) (../source/../../data/widgets/colour_button.py
 
-[288]) (../source/../../data/widgets/colour_display.py) (../source/../../data/widgets/colour_picker.py
-
-[289]
-
-[290]) (../source/../../data/widgets/colour_square.py
-
-[291]) (../source/../../data/widgets/dropdown.py
+[291]) (../source/../../data/widgets/colour_display.py) (../source/../../data/widgets/colour_picker.py
 
 [292]
 
-[293]) (../source/../../data/widgets/icon.py
+[293]) (../source/../../data/widgets/colour_square.py
 
-[294]) (../source/../../data/widgets/icon_button.py
+[294]) (../source/../../data/widgets/dropdown.py
 
-[295]) (../source/../../data/widgets/move_list.py
+[295]
 
-[296]) (../source/../../data/widgets/multiple_icon_button.py
+[296]) (../source/../../data/widgets/icon.py
 
-[297]) (../source/../../data/widgets/piece_display.py
+[297]) (../source/../../data/widgets/icon_button.py
 
-[298]) (../source/../../data/widgets/rectangle.py)
+[298]) (../source/../../data/widgets/move_list.py
 
-[299] (../source/../../data/widgets/scrollbar.py
+[299]) (../source/../../data/widgets/multiple_icon_button.py
 
-[300]) (../source/../../data/widgets/scroll_area.py
+[300]) (../source/../../data/widgets/piece_display.py
 
-[301]
+[301]) (../source/../../data/widgets/rectangle.py)
 
-[302]
+[302] (../source/../../data/widgets/scrollbar.py
 
-[303]) (../source/../../data/widgets/slider_thumb.py
+[303]) (../source/../../data/widgets/scroll_area.py
 
-[304]) (../source/../../data/widgets/switch.py
+[304]
 
-[305]) (../source/../../data/widgets/text.py
+[305]
 
-[306]
+[306]) (../source/../../data/widgets/slider_thumb.py
 
-[307]) (../source/../../data/widgets/text_button.py) (../source/../../data/widgets/timer.py
+[307]) (../source/../../data/widgets/switch.py
 
-[308]) (../source/../../data/widgets/volume_slider.py
+[308]) (../source/../../data/widgets/text.py
 
 [309]
 
-[310]) (../source/../../data/widgets/__init__.py)
+[310]) (../source/../../data/widgets/text_button.py) (../source/../../data/widgets/timer.py
 
-[311] (../source/../../data/widgets/bases/box.py) (../source/../../data/widgets/bases/pressable.py
+[311]) (../source/../../data/widgets/volume_slider.py
 
-[312]))
+[312]
 
-[313] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
+[313]) (../source/../../data/widgets/__init__.py)
+
+[314] (../source/../../data/widgets/bases/box.py) (../source/../../data/widgets/bases/pressable.py
+
+[315]))
+
+[316] (c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 4.17pt have occurred.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 85DB9E30305CFCC2F341CFBF981164E3;38989.
  ) 
 Here is how much of TeX's memory you used:
- 62359 strings out of 473530
- 1355307 string characters out of 5714311
- 2254601 words of memory out of 5000000
- 70018 multiletter control sequences out of 15000+600000
- 584635 words of font info for 91 fonts, out of 8000000 for 9000
+ 62474 strings out of 473530
+ 1357915 string characters out of 5714311
+ 2275827 words of memory out of 5000000
+ 70041 multiletter control sequences out of 15000+600000
+ 584635 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 119i,12n,122p,1619b,3161s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (316 pages, 10634427 bytes).
+ 119i,12n,122p,1619b,2856s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx3583.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\main\build\main.pdf (319 pages, 17398172 bytes).
 PDF statistics:
- 20460 PDF objects out of 22161 (max. 8388607)
- 14336 named destinations out of 15390 (max. 500000)
- 2582 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 20586 PDF objects out of 22161 (max. 8388607)
+ 14424 named destinations out of 15390 (max. 500000)
+ 2597 words of extra memory for PDF output out of 10000 (max. 10000000)
 

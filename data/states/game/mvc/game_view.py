@@ -137,6 +137,9 @@ class GameView:
         if self._model.states['WINNER'] is not None:
             self.handle_game_end()
 
+        # Update occlusion mask for rays shader with new piece positions
+        self.update_laser_mask()
+
     def handle_game_end(self, play_sfx=True):
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'], False)
         self.toggle_timer(self._model.states['ACTIVE_COLOUR'].get_flipped_colour(), False)
@@ -181,7 +184,6 @@ class GameView:
             )
 
         self._laser_draw.add_laser(laser_result, self._model.states['ACTIVE_COLOUR'])
-        self.update_laser_mask()
 
     def handle_pause(self, event=None):
         """

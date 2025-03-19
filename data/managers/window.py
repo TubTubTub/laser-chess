@@ -19,6 +19,7 @@ class WindowManager(pygame.Window):
             self._ctx = moderngl.create_context()
             self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
 
+            # Each ShaderType contains a dictionary of kwargs, used as arguments when running the apply method on the corresponding shader class
             self.shader_arguments = {
                 ShaderType.BASE: {},
                 ShaderType.SHAKE: {},
@@ -28,10 +29,12 @@ class WindowManager(pygame.Window):
                 ShaderType.RAYS: {}
             }
 
+            # For the secret settings option in the settings menu, apply shaders for the selected option
             if (selected_shader := get_user_settings()['shader']) is not None:
                 for shader_type in SHADER_MAP[selected_shader]:
                     self.set_effect(shader_type)
         else:
+            # If shaders disabled, use temporary image as background
             from data.utils.assets import GRAPHICS
             self._background_image = GRAPHICS['temp_background']
 

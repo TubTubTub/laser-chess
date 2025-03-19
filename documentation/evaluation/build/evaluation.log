@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  14 MAR 2025 20:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  17 MAR 2025 22:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -937,13 +937,16 @@ LaTeX Warning: Reference `fig:screenshots-review' on page 1 undefined on input l
 LaTeX Warning: Reference `obj:3c' on page 1 undefined on input line 27.
 
 
-LaTeX Warning: Reference `obj:3e' on page 1 undefined on input line 27.
-
-
 LaTeX Warning: Reference `obj:3f' on page 1 undefined on input line 27.
 
 
+LaTeX Warning: Reference `obj:3g' on page 1 undefined on input line 27.
+
+
 LaTeX Warning: Reference `obj:3d' on page 1 undefined on input line 27.
+
+
+LaTeX Warning: Reference `obj:3e' on page 1 undefined on input line 27.
 
 
 LaTeX Warning: Reference `obj:3a' on page 1 undefined on input line 27.
@@ -952,10 +955,10 @@ LaTeX Warning: Reference `obj:3a' on page 1 undefined on input line 27.
 LaTeX Warning: Reference `obj:3b' on page 1 undefined on input line 27.
 
 
+LaTeX Warning: Reference `obj:3i' on page 1 undefined on input line 27.
+
+
 LaTeX Warning: Reference `obj:3h' on page 1 undefined on input line 27.
-
-
-LaTeX Warning: Reference `obj:3g' on page 1 undefined on input line 27.
 
 
 
@@ -1088,15 +1091,15 @@ Package rerunfilecheck Info: File `evaluation.out' has not changed.
 (rerunfilecheck)             Checksum: F2C9417D516BBA1C269CC0556F53DE02;1426.
  ) 
 Here is how much of TeX's memory you used:
- 41264 strings out of 473530
- 968487 string characters out of 5714311
+ 41265 strings out of 473530
+ 968495 string characters out of 5714311
  1591438 words of memory out of 5000000
- 63876 multiletter control sequences out of 15000+600000
+ 63877 multiletter control sequences out of 15000+600000
  566409 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,8n,139p,1655b,1201s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (5 pages, 6703836 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\evaluation\build\evaluation.pdf (5 pages, 6703839 bytes).
 PDF statistics:
  297 PDF objects out of 1000 (max. 8388607)
  23 named destinations out of 1000 (max. 500000)

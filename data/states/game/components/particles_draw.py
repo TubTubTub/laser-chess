@@ -2,6 +2,9 @@ import pygame
 from random import randint
 from data.helpers.asset_helpers import get_perimeter_sample, get_vector, get_angle_between_vectors, get_next_corner
 from data.states.game.components.piece_sprite import PieceSprite
+from data.helpers.data_helpers import get_user_settings
+
+particles_disabled = not(get_user_settings()['particles'])
 
 class ParticlesDraw:
     def __init__(self, gravity=0.2, rotation=180, shrink=0.5, opacity=150):
@@ -83,6 +86,9 @@ class ParticlesDraw:
             position (tuple[int, int]): The position where particles originate from.
             size (tuple[int, int]): The size of the piece.
         """
+        if particles_disabled:
+            return
+
         piece_sprite = PieceSprite(piece, colour, rotation)
         piece_sprite.set_geometry((0, 0), size)
         piece_sprite.set_image()
@@ -101,6 +107,9 @@ class ParticlesDraw:
             colour (Colour): The active colour of the sparks.
             position (tuple[int, int]): The position where particles originate from.
         """
+        if particles_disabled:
+            return
+
         for i in range(randint(10, 15)):
             velocity = [randint(-15, 15) / 10, randint(-20, 0) / 10]
             random_colour = [min(max(val + randint(-20, 20), 0), 255) for val in colour]
@@ -114,6 +123,9 @@ class ParticlesDraw:
             image (pygame.Surface): The image of the particle.
             position (tuple): The position of the particle.
         """
+        if particles_disabled:
+            return
+
         velocity = [randint(-15, 15) / 10, randint(-20, 0) / 10]
 
         # Each particle is stored with its attributes: [surface, copy of surface, position, velocity, lifespan]

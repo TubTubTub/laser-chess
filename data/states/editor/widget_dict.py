@@ -198,7 +198,7 @@ EDITOR_WIDGETS = {
         scale_mode='height',
         anchor_x='right',
         box_colours=BLUE_BUTTON_COLOURS,
-        icons_dict={False: get_highlighted_icon(GRAPHICS['pharoah_0_a']), True: GRAPHICS['pharoah_0_a']},
+        icons_dict={False: get_highlighted_icon(GRAPHICS['pharaoh_0_a']), True: GRAPHICS['pharaoh_0_a']},
         event=CustomEvent(EditorEventType.BLUE_START_CLICK)
     ),
     'red_start_button':
@@ -207,7 +207,7 @@ EDITOR_WIDGETS = {
         relative_position=(0, 0),
         relative_size=(1, 1),
         scale_mode='height',
-        icons_dict={True: GRAPHICS['pharoah_1_a'], False: get_highlighted_icon(GRAPHICS['pharoah_1_a'])},
+        icons_dict={True: GRAPHICS['pharaoh_1_a'], False: get_highlighted_icon(GRAPHICS['pharaoh_1_a'])},
         event=CustomEvent(EditorEventType.RED_START_CLICK)
     )
 }
