@@ -2,7 +2,6 @@ __pycache__
 .vscode
 archive
 footage
-.gitignore
 add_init.py
 *.md
 run_arena.py
