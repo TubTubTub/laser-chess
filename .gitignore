@@ -1,7 +1,10 @@
-*.*
-!.venv
-!data
-!documentation
-!resources
-!requirements.txt
-!run.py
+__pycache__
+.vscode
+archive
+footage
+.gitignore
+add_init.py
+*.md
+run_arena.py
+run_cpu.py
+run_evaluator.py
