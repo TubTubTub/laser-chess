@@ -1,4 +1,7 @@
-__pycache__
-*.pyc
-.vscode
-video
+*
+!.venv
+!data
+!documentation
+!resources
+!requirements.txt
+!run.py
