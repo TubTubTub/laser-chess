@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  19 MAR 2025 12:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  20 MAR 2025 17:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -476,4 +476,700 @@ Package pgfplots: loading complementary utilities for your pgf version...
 ) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsmatrix.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstableshared.code.tex
 \c@pgfplotstable@counta=\count340
 \t@pgfplotstable@a=\toks45
-) (C:\User
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructure\pgfplotsdeque.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsbinary.data.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotsutil.verb.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count341
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolormap.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplotscolor.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstackedplots.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsplothandlers.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplothandler.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmeshplotimage.code.tex))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.scaling.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoordprocessing.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.errorbars.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.markers.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsticks.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.paths.code.tex) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen298
+\pgfdecoratedremainingdistance=\dimen299
+\pgfdecoratedinputsegmentcompleteddistance=\dimen300
+\pgfdecoratedinputsegmentremainingdistance=\dimen301
+\pgf@decorate@distancetomove=\dimen302
+\pgf@decorate@repeatstate=\count342
+\pgfdecorationsegmentamplitude=\dimen303
+\pgfdecorationsegmentlength=\dimen304
+)
+\tikz@lib@dec@box=\box81
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphing.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibrarypgfplots.contourlua.code.tex)
+\pgfplots@numplots=\count343
+\pgfplots@xmin@reg=\dimen305
+\pgfplots@xmax@reg=\dimen306
+\pgfplots@ymin@reg=\dimen307
+\pgfplots@ymax@reg=\dimen308
+\pgfplots@zmin@reg=\dimen309
+\pgfplots@zmax@reg=\dimen310
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstable.code.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgfplotstable.coltype.code.tex))) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count344
+\lst@gtempboxa=\box82
+\lst@token=\toks46
+\lst@length=\count345
+\lst@currlwidth=\dimen311
+\lst@column=\count346
+\lst@pos=\count347
+\lst@lostspace=\dimen312
+\lst@width=\dimen313
+\lst@newlines=\count348
+\lst@lineno=\count349
+\lst@maxwidth=\dimen314
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count350
+\lst@skipnumbers=\count351
+\lst@framebox=\box83
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count352
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
+)
+\@linkdim=\dimen315
+\Hy@linkcounter=\count353
+\Hy@pagecounter=\count354
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count355
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count356
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen316
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count357
+\Field@Width=\dimen317
+\Fld@charsize=\dimen318
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count358
+\c@Item=\count359
+\c@Hfootnote=\count360
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count361
+\c@bookmark@seq@number=\count362
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip64
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip65
+\enit@outerparindent=\dimen319
+\enit@toks=\toks47
+\enit@inbox=\box84
+\enit@count@id=\count363
+\enitdp@description=\count364
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/hyphenat\hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language79
+LaTeX Info: Redefining \_ on input line 43.
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count365
+\float@exts=\toks48
+\float@box=\box85
+\@float@everytoks=\toks49
+\@floatcapt=\box86
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+\@float@every@algorithm=\toks50
+\c@algorithm=\count366
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algpseudocode.sty
+Package: algpseudocode 
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/algorithmicx\algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count367
+\c@ALG@rem=\count368
+\c@ALG@nested=\count369
+\ALG@tlm=\skip66
+\ALG@thistlm=\skip67
+\c@ALG@Lnr=\count370
+\c@ALG@blocknr=\count371
+\c@ALG@storecount=\count372
+\c@ALG@tmpcounter=\count373
+\ALG@tmplength=\skip68
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
+Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
+\c@tracingmulticols=\count374
+\mult@box=\box87
+\multicol@leftmargin=\dimen320
+\c@unbalance=\count375
+\c@collectmore=\count376
+\doublecol@number=\count377
+\multicoltolerance=\count378
+\multicolpretolerance=\count379
+\full@width=\dimen321
+\page@free=\dimen322
+\premulticols=\dimen323
+\postmulticols=\dimen324
+\multicolsep=\skip69
+\multicolbaselineskip=\skip70
+\partial@page=\box88
+\last@line=\box89
+\mc@boxedresult=\box90
+\maxbalancingoverflow=\dimen325
+\mult@rightbox=\box91
+\mult@grightbox=\box92
+\mult@firstbox=\box93
+\mult@gfirstbox=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\@tempa=\box128
+\@tempa=\box129
+\@tempa=\box130
+\c@minrows=\count380
+\c@columnbadness=\count381
+\c@finalcolumnbadness=\count382
+\last@try=\dimen326
+\multicolovershoot=\dimen327
+\multicolundershoot=\dimen328
+\mult@nat@firstbox=\box131
+\colbreak@box=\box132
+\mc@col@check@num=\count383
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/etoc\etoc.sty
+Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks51
+\c@etoc@tocid=\count384
+\etoc@framed@titlebox=\box133
+\etoc@framed@contentsbox=\box134
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip71
+\f@nch@offset@elh=\skip72
+\f@nch@offset@erh=\skip73
+\f@nch@offset@olh=\skip74
+\f@nch@offset@orh=\skip75
+\f@nch@offset@elf=\skip76
+\f@nch@offset@erf=\skip77
+\f@nch@offset@olf=\skip78
+\f@nch@offset@orf=\skip79
+\f@nch@height=\skip80
+\f@nch@footalignment=\skip81
+\f@nch@widthL=\skip82
+\f@nch@widthC=\skip83
+\f@nch@widthR=\skip84
+\@temptokenb=\toks52
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/subfiles\subfiles.sty
+Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count385
+\c@@ppsavesec=\count386
+\c@@ppsaveapp=\count387
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+\everycr=\toks53
+\minrowclearance=\skip85
+\rownum=\count388
+) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+)) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+))))
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 3.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count389
+\l__pdf_internal_box=\box135
+) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+\openout1 = `design.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count390
+\scratchdimen=\dimen329
+\scratchbox=\box136
+\nofMPsegments=\count391
+\nofMParguments=\count392
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count393
+\MPscratchDim=\dimen330
+\MPnumerator=\count394
+\makeMPintoPDFobject=\count395
+\everyMPtoPDFconversion=\toks55
+) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
+Package caption Info: rotating package is loaded.
+Package caption Info: End \AtBeginDocument code.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 3.
+
+Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
+
+\c@lstlisting=\count396
+Package hyperref Info: Link coloring OFF on input line 3.
+(c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.out)
+\@outlinefile=\write4
+\openout4 = `design.out'.
+
+
+No file design.toc.
+Chapter 1.
+<../design/assets/top_level_overview_flowchart.pdf, id=90, 435.54718pt x 189.8292pt>
+File: ../design/assets/top_level_overview_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/top_level_overview_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/top_level_overview_flowchart.pdf  used on input line 17.
+(pdftex.def)             Requested size: 418.25368pt x 182.29767pt.
+<../design/assets/menu_gui.png, id=91, 454.8192pt x 256.3176pt>
+File: ../design/assets/menu_gui.png Graphic file (type png)
+<use ../design/assets/menu_gui.png>
+Package pdftex.def Info: ../design/assets/menu_gui.png  used on input line 25.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[1
+
+
+{C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../design/assets/top_level_overview_flowchart.pdf>]
+<../design/assets/settings_gui.png, id=112, 454.8192pt x 256.3176pt>
+File: ../design/assets/settings_gui.png Graphic file (type png)
+<use ../design/assets/settings_gui.png>
+Package pdftex.def Info: ../design/assets/settings_gui.png  used on input line 35.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[2 <../design/assets/menu_gui.png> <../design/assets/settings_gui.png>]
+<../design/assets/settings_flowchart.pdf, id=122, 551.1792pt x 212.69463pt>
+File: ../design/assets/settings_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/settings_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/settings_flowchart.pdf  used on input line 55.
+(pdftex.def)             Requested size: 418.25368pt x 161.40617pt.
+<../design/assets/browser_gui.png, id=123, 454.8192pt x 256.3176pt>
+File: ../design/assets/browser_gui.png Graphic file (type png)
+<use ../design/assets/browser_gui.png>
+Package pdftex.def Info: ../design/assets/browser_gui.png  used on input line 63.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+
+
+[3 <../design/assets/settings_flowchart.pdf>]
+<../design/assets/browser_flowchart.pdf, id=139, 448.5558pt x 216.81pt>
+File: ../design/assets/browser_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/browser_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/browser_flowchart.pdf  used on input line 75.
+(pdftex.def)             Requested size: 418.25368pt x 202.17375pt.
+
+
+[4 <../design/assets/browser_gui.png>]
+<../design/assets/config_gui.png, id=146, 453.3738pt x 254.3904pt>
+File: ../design/assets/config_gui.png Graphic file (type png)
+<use ../design/assets/config_gui.png>
+Package pdftex.def Info: ../design/assets/config_gui.png  used on input line 83.
+(pdftex.def)             Requested size: 334.60422pt x 187.75685pt.
+<../design/assets/config_flowchart.pdf, id=147, 666.57025pt x 151.5261pt>
+File: ../design/assets/config_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/config_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/config_flowchart.pdf  used on input line 94.
+(pdftex.def)             Requested size: 418.25368pt x 95.07813pt.
+
+
+[5 <../design/assets/browser_flowchart.pdf> <../design/assets/config_gui.png>]
+<../design/assets/game_gui.png, id=164, 454.8192pt x 256.3176pt>
+File: ../design/assets/game_gui.png Graphic file (type png)
+<use ../design/assets/game_gui.png>
+Package pdftex.def Info: ../design/assets/game_gui.png  used on input line 102.
+(pdftex.def)             Requested size: 334.60422pt x 188.56912pt.
+<../design/assets/game_flowchart.pdf, id=165, 551.1792pt x 262.0992pt>
+File: ../design/assets/game_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/game_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/game_flowchart.pdf  used on input line 123.
+(pdftex.def)             Requested size: 418.25368pt x 198.89749pt.
+
+
+[6 <../design/assets/config_flowchart.pdf> <../design/assets/game_gui.png>]
+<../design/assets/editor_gui.png, id=182, 963.6pt x 542.025pt>
+File: ../design/assets/editor_gui.png Graphic file (type png)
+<use ../design/assets/editor_gui.png>
+Package pdftex.def Info: ../design/assets/editor_gui.png  used on input line 131.
+(pdftex.def)             Requested size: 334.60422pt x 188.2146pt.
+<../design/assets/editor_flowchart.pdf, id=183, 435.54718pt x 204.765pt>
+File: ../design/assets/editor_flowchart.pdf Graphic file (type pdf)
+<use ../design/assets/editor_flowchart.pdf>
+Package pdftex.def Info: ../design/assets/editor_flowchart.pdf  used on input line 142.
+(pdftex.def)             Requested size: 418.25368pt x 196.64088pt.
+
+
+[7 <../design/assets/game_flowchart.pdf> <../design/assets/editor_gui.png>]
+<../design/assets/minimax.pdf, id=200, 688.49219pt x 307.1475pt>
+File: ../design/assets/minimax.pdf Graphic file (type pdf)
+<use ../design/assets/minimax.pdf>
+Package pdftex.def Info: ../design/assets/minimax.pdf  used on input line 154.
+(pdftex.def)             Requested size: 418.25368pt x 186.59108pt.
+
+
+[8 <../design/assets/editor_flowchart.pdf> <../design/assets/minimax.pdf>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 164.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 167.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 167.
+ (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<../design/assets/alpha_beta_pruning.pdf, id=231, 713.7867pt x 307.1475pt>
+File: ../design/assets/alpha_beta_pruning.pdf Graphic file (type pdf)
+<use ../design/assets/alpha_beta_pruning.pdf>
+Package pdftex.def Info: ../design/assets/alpha_beta_pruning.pdf  used on input line 200.
+(pdftex.def)             Requested size: 418.25368pt x 179.97816pt.
+
+
+[9]
+
+[10 <../design/assets/alpha_beta_pruning.pdf>]
+
+[11]
+
+[12]
+Overfull \hbox (2.31029pt too wide) in paragraph at lines 356--357
+ \T1/cmr/m/n/10 sc3ncfancpb2/2pc7/3Pd7/pa1Pc1rbra1pb1Pd/pb1Pd1RaRb1pa1Pc/6pb3/7Pa2/2PdNaFaNa3Sa 
+ []
+
+
+
+[13]
+
+[14]
+<../design/assets/bitboard_indexes.pdf, id=292, 324.82352pt x 263.91599pt>
+File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
+<use ../design/assets/bitboard_indexes.pdf>
+Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 426.
+(pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
+<../design/assets/bitboard_shifted.pdf, id=294, 145.50359pt x 145.50359pt>
+File: ../design/assets/bitboard_shifted.pdf Graphic file (type pdf)
+<use ../design/assets/bitboard_shifted.pdf>
+Package pdftex.def Info: ../design/assets/bitboard_shifted.pdf  used on input line 443.
+(pdftex.def)             Requested size: 167.2989pt x 167.30116pt.
+
+
+[15 <../design/assets/bitboard_indexes.pdf>]
+<../design/assets/bitboard_masked.pdf, id=315, 551.1792pt x 167.6664pt>
+File: ../design/assets/bitboard_masked.pdf Graphic file (type pdf)
+<use ../design/assets/bitboard_masked.pdf>
+Package pdftex.def Info: ../design/assets/bitboard_masked.pdf  used on input line 458.
+(pdftex.def)             Requested size: 418.25368pt x 127.23589pt.
+
+
+[16 <../design/assets/bitboard_shifted.pdf> <../design/assets/bitboard_masked.pdf>]
+
+[17]
+<../design/assets/psqt.pdf, id=349, 352.43669pt x 167.6664pt>
+File: ../design/assets/psqt.pdf Graphic file (type pdf)
+<use ../design/assets/psqt.pdf>
+Package pdftex.def Info: ../design/assets/psqt.pdf  used on input line 545.
+(pdftex.def)             Requested size: 334.60422pt x 159.19516pt.
+
+
+[18 <../design/assets/psqt.pdf>]
+File: ../design/assets/bitboard_indexes.pdf Graphic file (type pdf)
+<use ../design/assets/bitboard_indexes.pdf>
+Package pdftex.def Info: ../design/assets/bitboard_indexes.pdf  used on input line 556.
+(pdftex.def)             Requested size: 250.95476pt x 203.90454pt.
+
+
+[19]
+
+[20]
+<../design/assets/shadow_mapping.pdf, id=385, 340.3917pt x 321.11969pt>
+File: ../design/assets/shadow_mapping.pdf Graphic file (type pdf)
+<use ../design/assets/shadow_mapping.pdf>
+Package pdftex.def Info: ../design/assets/shadow_mapping.pdf  used on input line 624.
+(pdftex.def)             Requested size: 418.25368pt x 394.58777pt.
+
+
+[21]
+
+[22 <../design/assets/shadow_mapping.pdf>]
+<../design/assets/soft_shadows.pdf, id=419, 264.99pt x 164.5347pt>
+File: ../design/assets/soft_shadows.pdf Graphic file (type pdf)
+<use ../design/assets/soft_shadows.pdf>
+Package pdftex.def Info: ../design/assets/soft_shadows.pdf  used on input line 664.
+(pdftex.def)             Requested size: 334.60422pt x 207.77422pt.
+
+
+LaTeX Warning: Reference `itm:responsive-objective' on page 23 undefined on input line 673.
+
+
+
+[23 <../design/assets/soft_shadows.pdf>]
+<../design/assets/multi_threading.pdf, id=444, 352.43669pt x 158.51219pt>
+File: ../design/assets/multi_threading.pdf Graphic file (type pdf)
+<use ../design/assets/multi_threading.pdf>
+Package pdftex.def Info: ../design/assets/multi_threading.pdf  used on input line 677.
+(pdftex.def)             Requested size: 418.25368pt x 188.12874pt.
+
+
+LaTeX Warning: Reference `itm:save-games' on page 24 undefined on input line 684.
+
+[24 <../design/assets/multi_threading.pdf>] (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+
+[25]
+<../design/assets/linked_list.pdf, id=500, 389.5353pt x 109.3686pt>
+File: ../design/assets/linked_list.pdf Graphic file (type pdf)
+<use ../design/assets/linked_list.pdf>
+Package pdftex.def Info: ../design/assets/linked_list.pdf  used on input line 787.
+(pdftex.def)             Requested size: 418.25368pt x 117.43208pt.
+
+
+[26]
+
+[27 <../design/assets/linked_list.pdf>]
+<../design/assets/stack.pdf, id=534, 204.765pt x 174.6525pt>
+File: ../design/assets/stack.pdf Graphic file (type pdf)
+<use ../design/assets/stack.pdf>
+Package pdftex.def Info: ../design/assets/stack.pdf  used on input line 858.
+(pdftex.def)             Requested size: 250.95476pt x 214.06444pt.
+
+
+[28] [29 <../design/assets/stack.pdf>]
+
+LaTeX Warning: Reference `itm:responsive-objective' on page 30 undefined on input line 891.
+
+[30]
+Overfull \hbox (11.8141pt too wide) in alignment at lines 955--959
+ [] [] 
+ []
+
+
+Overfull \hbox (11.8141pt too wide) in alignment at lines 959--960
+ [] [] 
+ []
+
+
+Overfull \hbox (11.8141pt too wide) in alignment at lines 960--972
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 974--978
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 978--979
+ [] [] 
+ []
+
+
+Overfull \hbox (16.34077pt too wide) in alignment at lines 979--991
+ [] [] 
+ []
+
+[31]
+<../design/assets/class_relation_diagram.pdf, id=574, 435.54718pt x 478.66827pt>
+File: ../design/assets/class_relation_diagram.pdf Graphic file (type pdf)
+<use ../design/assets/class_relation_diagram.pdf>
+Package pdftex.def Info: ../design/assets/class_relation_diagram.pdf  used on input line 1020.
+(pdftex.def)             Requested size: 418.25368pt x 459.677pt.
+
+
+[32]
+
+[33 <../design/assets/class_relation_diagram.pdf>] (c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `design.out' has not changed.
+(rerunfilecheck)             Checksum: 8E8B94FDA64A7A827337A1D3ABAF973C;2594.
+ ) 
+Here is how much of TeX's memory you used:
+ 41977 strings out of 473530
+ 982843 string characters out of 5714311
+ 1726434 words of memory out of 5000000
+ 64407 multiletter control sequences out of 15000+600000
+ 581253 words of font info for 82 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 139i,12n,139p,1647b,1343s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecit0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0700.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\design\build\design.pdf (33 pages, 4569216 bytes).
+PDF statistics:
+ 1125 PDF objects out of 1200 (max. 8388607)
+ 168 named destinations out of 1000 (max. 500000)
+ 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -7,3 +7,5 @@ add_init.py
 run_arena.py
 run_cpu.py
 run_evaluator.py
+documentation/learn
+documentation/footage

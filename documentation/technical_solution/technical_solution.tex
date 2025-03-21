@@ -183,7 +183,7 @@ As described in Section \ref{sec:design-mvc}, this is the model class for my imp
 \lstinputlisting[label=src:../../data/states/game/mvc/game_model.py]{../../data/states/game/mvc/game_model.py}
 
 \subsection{View}
-As described in Section \ref{sec:design-mvc}, the view class is responsible for displaying changes to information regarding the gameplay. The \lstinline{process_model_event} procedure is registered with the model class, which executes it whenever the display needs to be updated (e.g. piece move), and the appropiate handling function within the view class is called by mapping the event type to the corresponding handler function.
+As described in Section \ref{sec:design-mvc}, the view class is responsible for displaying changes to information regarding the gameplay. The \lstinline{process_model_event} procedure is registered with the model class, which executes it whenever the display needs to be updated (e.g. piece move), and the appropriate handling function within the view class is called by mapping the event type to the corresponding handler function.
 
 \noindent\verb|game_view.py|
 \lstinputlisting[label=src:../../data/states/game/mvc/game_view.py]{../../data/states/game/mvc/game_view.py}

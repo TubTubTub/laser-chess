@@ -547,7 +547,7 @@ A piece in normal chess can differ in strength based on what square it is occupy
     \label{fig:psqt}
 \end{figure}
 
-For asymmetrical PSQTs, we would ideally like to label the board identically from both player’s point of views. Although the PSQTs are displayed from the blue player's perspective (blue pharaoh at the bottom of the board), it uses indexes from the red player's perspective, as arrays and lists are defined with index 0 being at the topleft of the board. We would like to flip the PSQTs to be reused with blue indexes, so that a generic algorithm can be used to sum up and calculate the total positional values for both players.
+For asymmetrical PSQTs, we would ideally like to label the board identically from both player’s point of views. Although the PSQTs are displayed from the blue player's perspective (blue pharaoh at the bottom of the board), it uses indexes from the red player's perspective, as arrays and lists are defined with index 0 being at the top left of the board. We would like to flip the PSQTs to be reused with blue indexes, so that a generic algorithm can be used to sum up and calculate the total positional values for both players.
 
 To utilise a PSQT for blue pieces, a special ‘FLIP’ table can be implemented:
 
@@ -609,7 +609,7 @@ For typical 3D shadow mapping, the standard approach is as follows:
 \item If greater, there must be an obstacle in the way reducing the depth map value, therefore that pixel must be in shadow
 \end{enumerate}
 
-\noindent To implement shadow casting for my 2D game, I have modified some steps and arrived on the final following workflow:
+\noindent To implement shadow casting for my 2D game, I have modified some steps and arrived at the final following workflow:
 
 \begin{enumerate}
 \item Render the scene with only occluding objects shown
@@ -1021,11 +1021,11 @@ To use ModernGL with Pygame, I have created classes for each fragment shader, co
     \label{fig:class-relation-diagram}
 \end{figure}
 
-\noindent View complete \href{https://raw.githubusercontent.com/TubTubTub/NEA/main/documentation/design/assets/documentation/design/assets/widgets_class_diagram.pdf}{class diagram for all widgets.}
+\noindent View \href{https://nbviewer.org/github/TubTubTub/laser-chess/blob/main/documentation/design/assets/widgets_class_diagram.pdf}{complete class diagram for all widgets.}
 
-\noindent View complete \href{https://raw.githubusercontent.com/TubTubTub/NEA/main/documentation/design/assets/documentation/design/assets/all_class_diagram_1}{class diagram for entire program.}
+\noindent View \href{https://nbviewer.org/github/TubTubTub/laser-chess/blob/main/documentation/design/assets/all_class_diagram_1.pdf}{complete class diagram for entire program.}
 
-\noindent View \href{https://raw.githubusercontent.com/TubTubTub/NEA/main/documentation/design/assets/documentation/design/assets/all_class_diagram_2.pdf}{alternate class diagram for entire program.}
+\noindent View \href{https://nbviewer.org/github/TubTubTub/laser-chess/blob/main/documentation/design/assets/all_class_diagram_2.pdf}{alternate class diagram for entire program.}
 
 \noindent (Generated with \verb|Pyreverse|)
 
