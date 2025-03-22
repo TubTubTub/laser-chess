@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  20 MAR 2025 22:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  22 MAR 2025 09:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -29,7 +29,7 @@ File: size10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+) (../main/config.tex (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
@@ -774,7 +774,7 @@ Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 \everycr=\toks53
 \minrowclearance=\skip85
 \rownum=\count388
-) (assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
+) (../main/assets/listings-glsl.prf (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )) (C:\Users\Python\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
@@ -784,7 +784,7 @@ Package translations Info: No language package found. I am going to use `english
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count389
 \l__pdf_internal_box=\box135
-) (c:/Users\Python\Documents\Repositories\NEA\documentation\source\build\source.aux)
+) (c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.aux)
 \openout1 = `source.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -878,7 +878,7 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 
 \c@lstlisting=\count396
 Package hyperref Info: Link coloring OFF on input line 3.
-(c:/Users\Python\Documents\Repositories\NEA\documentation\source\build\source.out) (c:/Users\Python\Documents\Repositories\NEA\documentation\source\build\source.out)
+(c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.out) (c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.out)
 \@outlinefile=\write4
 \openout4 = `source.out'.
 
@@ -978,57 +978,56 @@ LaTeX Warning: Reference `src:../../data/managers/theme.py' on page 20 undefined
 
 [22]) (../../data/shaders/classes/base.py
 
-[23]) (../../data/shaders/classes/blend.py)
+[23]) (../../data/shaders/classes/blend.py
 
-LaTeX Warning: Reference `src:../../data/shaders/classes/bloom.py' on page 24 undefined on input line 169.
+[24])
 
+LaTeX Warning: Reference `src:../../data/shaders/classes/bloom.py' on page 25 undefined on input line 169.
 
-
-[24]
 
 LaTeX Warning: Reference `src:../../data/shaders/classes/blur.py' on page 25 undefined on input line 172.
 
-(../../data/shaders/classes/chromatic_abbreviation.py) (../../data/shaders/classes/crop.py) (../../data/shaders/classes/crt.py)
+(../../data/shaders/classes/chromatic_abbreviation.py) (../../data/shaders/classes/crop.py)
 
-[25] (../../data/shaders/classes/grayscale.py) (../../data/shaders/classes/highlight_brightness.py) (../../data/shaders/classes/highlight_colour.py) (../../data/shaders/classes/lightmap.py
+[25] (../../data/shaders/classes/crt.py) (../../data/shaders/classes/grayscale.py) (../../data/shaders/classes/highlight_brightness.py) (../../data/shaders/classes/highlight_colour.py)
 
-[26]) (../../data/shaders/classes/occlusion.py)
+[26] (../../data/shaders/classes/lightmap.py) (../../data/shaders/classes/occlusion.py)
 
 LaTeX Warning: Reference `src:../../data/shaders/classes/rays.py' on page 27 undefined on input line 207.
 
 (../../data/shaders/classes/shadowmap.py
 
-[27]) (../../data/shaders/classes/shake.py) (../../data/shaders/classes/__init__.py)
+[27]) (../../data/shaders/classes/shake.py) (../../data/shaders/classes/__init__.py
 
-[28] (../../data/shaders/fragments/background_balatro.frag
+[28]) (../../data/shaders/fragments/background_balatro.frag
 
 [29]) (../../data/shaders/fragments/background_gradient.frag
 
 [30]) (../../data/shaders/fragments/background_lasers.frag
 
-[31]) (../../data/shaders/fragments/background_none.frag
+[31]
 
-[32]) (../../data/shaders/fragments/background_waves.frag)
+[32]) (../../data/shaders/fragments/background_none.frag) (../../data/shaders/fragments/background_waves.frag
 
-[33] (../../data/shaders/fragments/base.frag) (../../data/shaders/fragments/blend.frag) (../../data/shaders/fragments/bloom.frag)
+[33]) (../../data/shaders/fragments/base.frag) (../../data/shaders/fragments/blend.frag) (../../data/shaders/fragments/bloom.frag
 
-[34] (../../data/shaders/fragments/bloom_old.frag)
+[34]) (../../data/shaders/fragments/bloom_old.frag)
 
 LaTeX Warning: Reference `src:../../data/shaders/fragments/blur.frag' on page 35 undefined on input line 259.
 
 (../../data/shaders/fragments/box_blur.frag
 
-[35]) (../../data/shaders/fragments/calibrate.frag) (../../data/shaders/fragments/chromatic_abbreviation.frag)
+[35]) (../../data/shaders/fragments/calibrate.frag) (../../data/shaders/fragments/chromatic_abbreviation.frag
 
-[36] (../../data/shaders/fragments/crop.frag) (../../data/shaders/fragments/crt.frag)
+[36]) (../../data/shaders/fragments/crop.frag) (../../data/shaders/fragments/crt.frag
 
-[37] (../../data/shaders/fragments/flashlight.frag) (../../data/shaders/fragments/grayscale.frag)
-
-LaTeX Warning: Reference `src:../../data/shaders/fragments/highlight_brightness.frag' on page 38 undefined on input line 290.
-
-(../../data/shaders/fragments/highlight_colour.frag
+[37]) (../../data/shaders/fragments/flashlight.frag) (../../data/shaders/fragments/grayscale.frag
 
 [38])
+
+LaTeX Warning: Reference `src:../../data/shaders/fragments/highlight_brightness.frag' on page 39 undefined on input line 290.
+
+(../../data/shaders/fragments/highlight_colour.frag)
 
 LaTeX Warning: Reference `src:../../data/shaders/fragments/lightmap.frag' on page 39 undefined on input line 297.
 
@@ -1039,15 +1038,15 @@ LaTeX Warning: Reference `src:../../data/shaders/fragments/occlusion.frag' on pa
 
 LaTeX Warning: Reference `src:../../data/shaders/fragments/shadowmap.frag' on page 39 undefined on input line 307.
 
-(../../data/shaders/fragments/shake.frag
 
-[39]) (../../data/shaders/vertex/base.vert) (../../data/states/browser/browser.py
+
+[39] (../../data/shaders/fragments/shake.frag) (../../data/shaders/vertex/base.vert) (../../data/states/browser/browser.py
 
 [40]
 
-[41]) (../../data/states/browser/widget_dict.py
+[41])
 
-[42]
+[42] (../../data/states/browser/widget_dict.py
 
 [43]
 
@@ -1079,17 +1078,17 @@ LaTeX Warning: Reference `src:../../data/shaders/fragments/shadowmap.frag' on pa
 
 [57]
 
-[58]) (../../data/states/editor/widget_dict.py
+[58])
 
-[59]
+[59] (../../data/states/editor/widget_dict.py
 
 [60]
 
 [61]
 
-[62]) (../../data/states/game/game.py
+[62]
 
-[63]
+[63]) (../../data/states/game/game.py
 
 [64]) (../../data/states/game/widget_dict.py
 
@@ -1140,9 +1139,9 @@ LaTeX Warning: Reference `src:../../data/states/game/components/particles_draw.p
 
 [80]) (../../data/states/game/components/piece_sprite.py
 
-[81]) (../../data/states/game/components/psqt.py)
+[81]) (../../data/states/game/components/psqt.py
 
-[82] (../../data/states/game/cpu/base.py
+[82]) (../../data/states/game/cpu/base.py
 
 [83])
 
@@ -1171,11 +1170,12 @@ LaTeX Warning: Reference `src:../../data/states/game/cpu/engines/alpha_beta.py' 
 LaTeX Warning: Reference `src:../../data/states/game/cpu/engines/iterative_deepening.py' on page 87 undefined on input line 438.
 
 
-LaTeX Warning: Reference `src:../../data/states/game/cpu/engines/minimax.py' on page 87 undefined on input line 441.
-
-(../../data/states/game/cpu/engines/negamax.py
 
 [87]
+
+LaTeX Warning: Reference `src:../../data/states/game/cpu/engines/minimax.py' on page 88 undefined on input line 441.
+
+(../../data/states/game/cpu/engines/negamax.py
 
 [88]
 
@@ -1213,11 +1213,11 @@ LaTeX Warning: Reference `src:../../data/states/game/mvc/game_view.py' on page 9
 
 [98])
 
-LaTeX Warning: Reference `src:../../data/states/review/review.py' on page 99 undefined on input line 487.
+[99]
+
+LaTeX Warning: Reference `src:../../data/states/review/review.py' on page 100 undefined on input line 487.
 
 (../../data/states/review/widget_dict.py
-
-[99]
 
 [100]
 
@@ -1235,9 +1235,9 @@ LaTeX Warning: Reference `src:../../data/states/review/review.py' on page 99 und
 
 [107]
 
-[108]) (../../data/utils/assets.py
+[108])
 
-[109]) (../../data/utils/constants.py
+[109] (../../data/utils/assets.py) (../../data/utils/constants.py
 Overfull \hbox (14.74918pt too wide) in paragraph at lines 11--12
 [][] 
  []
@@ -1274,21 +1274,21 @@ Overfull \hbox (14.74918pt too wide) in paragraph at lines 15--17
 
 [114]) (../../data/widgets/board_thumbnail.py
 
-[115]) (../../data/widgets/board_thumbnail_button.py) (../../data/widgets/browser_item.py
+[115]) (../../data/widgets/board_thumbnail_button.py
 
-[116])
+[116]) (../../data/widgets/browser_item.py
 
-[117] (../../data/widgets/browser_strip.py
+[117]) (../../data/widgets/browser_strip.py
 
 [118]) (../../data/widgets/carousel.py
 
 [119]
 
-[120])
+[120]
 
-[121] (../../data/widgets/chessboard.py) (../../data/widgets/colour_button.py
+[121]) (../../data/widgets/chessboard.py)
 
-[122]) (../../data/widgets/colour_display.py) (../../data/widgets/colour_picker.py
+[122] (../../data/widgets/colour_button.py) (../../data/widgets/colour_display.py) (../../data/widgets/colour_picker.py
 
 [123]
 
@@ -1319,9 +1319,9 @@ LaTeX Warning: Reference `src:../../data/widgets/reactive_button.py' on page 133
 
 LaTeX Warning: Reference `src:../../data/widgets/reactive_icon_button.py' on page 133 undefined on input line 592.
 
-(../../data/widgets/rectangle.py)
+(../../data/widgets/rectangle.py
 
-[133] (../../data/widgets/scrollbar.py
+[133]) (../../data/widgets/scrollbar.py
 
 [134]) (../../data/widgets/scroll_area.py
 
@@ -1347,21 +1347,23 @@ LaTeX Warning: Reference `src:../../data/widgets/text_input.py' on page 142 unde
 
 [143]
 
-[144]) (../../data/widgets/__init__.py)
+[144]) (../../data/widgets/__init__.py
 
-[145] (../../data/widgets/bases/box.py)
+[145]) (../../data/widgets/bases/box.py)
 
 LaTeX Warning: Reference `src:../../data/widgets/bases/circular.py' on page 146 undefined on input line 643.
 
 (../../data/widgets/bases/pressable.py
 
-[146])
+[146]
 
-LaTeX Warning: Reference `src:../../data/widgets/bases/widget.py' on page 147 undefined on input line 650.
+[147])
+
+LaTeX Warning: Reference `src:../../data/widgets/bases/widget.py' on page 148 undefined on input line 650.
 
 
 
-[147] (c:/Users\Python\Documents\Repositories\NEA\documentation\source\build\source.aux)
+[148] (c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1374,17 +1376,17 @@ Package rerunfilecheck Info: File `source.out' has not changed.
 (rerunfilecheck)             Checksum: D936248835B9D321DD291D32262633A3;26286.
  ) 
 Here is how much of TeX's memory you used:
- 54157 strings out of 473530
- 1200650 string characters out of 5714311
- 2225434 words of memory out of 5000000
- 67972 multiletter control sequences out of 15000+600000
+ 54170 strings out of 473530
+ 1200942 string characters out of 5714311
+ 2197566 words of memory out of 5000000
+ 67975 multiletter control sequences out of 15000+600000
  568236 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  139i,6n,139p,1647b,3000s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\source\build\source.pdf (147 pages, 1706083 bytes).
+Output written on c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.pdf (148 pages, 1708965 bytes).
 PDF statistics:
- 11421 PDF objects out of 12825 (max. 8388607)
- 8423 named destinations out of 8907 (max. 500000)
+ 11438 PDF objects out of 12825 (max. 8388607)
+ 8433 named destinations out of 8907 (max. 500000)
  1541 words of extra memory for PDF output out of 10000 (max. 10000000)
 

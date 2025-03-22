@@ -1,4 +1,4 @@
-PWD c:\Users\Python\Documents\Repositories\NEA\documentation\main
+PWD c:\Users\Python\Documents\Repositories\NEA\documentation\source
 INPUT C:\Users\Python\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Python\Documents\Repositories\NEA\documentation\source\source.tex
 OUTPUT c:\Users\Python\Documents\Repositories\NEA\documentation\source\build\source.log
@@ -14,9 +14,9 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
-INPUT .\config.tex
-INPUT .\config.tex
-INPUT config.tex
+INPUT ..\main\config.tex
+INPUT ..\main\config.tex
+INPUT ..\main\config.tex
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
@@ -339,9 +339,9 @@ INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\appendix\appendix.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
-INPUT .\assets\listings-glsl.prf
-INPUT .\assets\listings-glsl.prf
-INPUT assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
+INPUT ..\main\assets\listings-glsl.prf
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
 INPUT C:\Users\Python\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc.sty
