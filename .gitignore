@@ -9,3 +9,4 @@ run_cpu.py
 run_evaluator.py
 documentation/learn
 documentation/footage
+*.pfx

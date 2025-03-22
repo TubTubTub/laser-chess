@@ -4,8 +4,8 @@
     "laserColourBlue": "0x0000ff",
     "laserColourRed": "0xff0000",
     "displayMode": "windowed",
-    "musicVolume": 0.03,
-    "sfxVolume": 0.08,
+    "musicVolume": 0.5,
+    "sfxVolume": 0.5,
     "particles": true,
     "opengl": true,
     "shader": "default"

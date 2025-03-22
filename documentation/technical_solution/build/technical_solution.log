@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  13 MAR 2025 09:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.9)  21 MAR 2025 12:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -901,11 +901,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {C:/Users/Python/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<../technical_solution/assets/file_tree_diagram.pdf, id=199, 412.4208pt x 448.5558pt>
+<../technical_solution/assets/file_tree_diagram.pdf, id=199, 453.61469pt x 536.0025pt>
 File: ../technical_solution/assets/file_tree_diagram.pdf Graphic file (type pdf)
 <use ../technical_solution/assets/file_tree_diagram.pdf>
 Package pdftex.def Info: ../technical_solution/assets/file_tree_diagram.pdf  used on input line 15.
-(pdftex.def)             Requested size: 418.25368pt x 454.91313pt.
+(pdftex.def)             Requested size: 376.42575pt x 444.80835pt.
 
 
 [2 <../technical_solution/assets/file_tree_diagram.pdf>]
@@ -946,17 +946,17 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on in
 
 [19]
 
-[20]) (../../data/widgets/bases/widget.py
+[20])
 
-[21]
+[21] (../../data/widgets/bases/widget.py
 
 [22]
 
 [23]
 
-[24])
+[24]
 
-[25] (../../data/widgets/bases/circular.py
+[25]) (../../data/widgets/bases/circular.py
 
 [26])
 
@@ -975,13 +975,13 @@ LaTeX Warning: Reference `sec:design-widgets' on page 30 undefined on input line
 
 LaTeX Warning: Reference `src:widgets' on page 30 undefined on input line 112.
 
-(../../data/components/custom_event.py
 
-[30]
 
-[31]) (../../data/widgets/reactive_icon_button.py)
+[30] (../../data/components/custom_event.py
 
-[32] (../../data/widgets/reactive_button.py
+[31]) (../../data/widgets/reactive_icon_button.py
+
+[32]) (../../data/widgets/reactive_button.py
 
 [33]) (../../data/widgets/colour_slider.py
 
@@ -1003,9 +1003,9 @@ LaTeX Warning: Reference `src:widgets' on page 30 undefined on input line 112.
 
 LaTeX Warning: Reference `sec:design-mvc' on page 42 undefined on input line 180.
 
-(../../data/states/game/mvc/game_model.py
 
-[42]
+
+[42] (../../data/states/game/mvc/game_model.py
 
 [43]
 
@@ -1043,9 +1043,9 @@ LaTeX Warning: Reference `sec:design-mvc' on page 53 undefined on input line 192
 
 [56]
 
-[57]) (../../data/states/game/components/board.py
+[57])
 
-[58]
+[58] (../../data/states/game/components/board.py
 
 [59]
 
@@ -1053,9 +1053,11 @@ LaTeX Warning: Reference `sec:design-mvc' on page 53 undefined on input line 192
 
 [61]
 
-[62])
+[62]
 
-LaTeX Warning: Reference `sec:design-bitboards' on page 63 undefined on input line 205.
+[63])
+
+LaTeX Warning: Reference `sec:design-bitboards' on page 64 undefined on input line 205.
 
 
 Overfull \hbox (12.94658pt too wide) in paragraph at lines 205--206
@@ -1063,8 +1065,6 @@ Overfull \hbox (12.94658pt too wide) in paragraph at lines 205--206
  []
 
 (../../data/states/game/components/bitboard_collection.py
-
-[63]
 
 [64]
 
@@ -1076,19 +1076,19 @@ Overfull \hbox (12.94658pt too wide) in paragraph at lines 205--206
 
 [68])
 
-LaTeX Warning: Reference `sec:design-minimax' on page 69 undefined on input line 219.
+[69]
 
+LaTeX Warning: Reference `sec:design-minimax' on page 70 undefined on input line 219.
 
-
-[69] (../../data/states/game/cpu/engines/minimax.py
+(../../data/states/game/cpu/engines/minimax.py
 
 [70])
 
 LaTeX Warning: Reference `sec:design-ab' on page 71 undefined on input line 226.
 
-(../../data/states/game/cpu/engines/alpha_beta.py
 
-[71]
+
+[71] (../../data/states/game/cpu/engines/alpha_beta.py
 
 [72])
 
@@ -1100,15 +1100,15 @@ LaTeX Warning: Reference `sec:design-cache' on page 73 undefined on input line 2
 
 LaTeX Warning: Reference `sec:design-deepening' on page 74 undefined on input line 240.
 
-(../../data/states/game/cpu/engines/iterative_deepening.py
-
-[74])
-
-LaTeX Warning: Reference `sec:design-evaluation' on page 75 undefined on input line 246.
 
 
+[74] (../../data/states/game/cpu/engines/iterative_deepening.py
 
-[75] (../../data/states/game/cpu/evaluator.py
+[75])
+
+LaTeX Warning: Reference `sec:design-evaluation' on page 76 undefined on input line 246.
+
+(../../data/states/game/cpu/evaluator.py
 
 [76]
 
@@ -1124,21 +1124,21 @@ LaTeX Warning: Reference `sec:design-cache' on page 79 undefined on input line 2
 
 (../../data/states/game/cpu/zobrist_hasher.py
 
-[79])
+[79]
 
-LaTeX Warning: Reference `sec:design-cache' on page 80 undefined on input line 266.
+[80])
 
+LaTeX Warning: Reference `sec:design-cache' on page 81 undefined on input line 266.
 
-
-[80] (../../data/states/game/cpu/transposition_table.py
+(../../data/states/game/cpu/transposition_table.py
 
 [81])
 
-LaTeX Warning: Reference `sec:design-stack' on page 82 undefined on input line 278.
+[82]
 
+LaTeX Warning: Reference `sec:design-stack' on page 83 undefined on input line 278.
 
-
-[82] (../../data/states/review/review.py
+(../../data/states/review/review.py
 
 [83]
 
@@ -1154,19 +1154,19 @@ LaTeX Warning: Reference `sec:design-ddl' on page 88 undefined on input line 288
 
 (../../data/database/migrations/create_games_table_19112024.py
 
-[88]) (../../data/database/migrations/change_fen_string_column_name_23122024.py)
+[88]) (../../data/database/migrations/change_fen_string_column_name_23122024.py
 
-LaTeX Warning: Reference `sec:design-dml' on page 89 undefined on input line 300.
+[89])
+
+LaTeX Warning: Reference `sec:design-dml' on page 90 undefined on input line 300.
 
 (../../data/helpers/database_helpers.py
 
-[89]
-
 [90]
 
-[91]) (../../data/managers/shader.py
+[91])
 
-[92]
+[92] (../../data/managers/shader.py
 
 [93]
 
@@ -1174,15 +1174,15 @@ LaTeX Warning: Reference `sec:design-dml' on page 89 undefined on input line 300
 
 [95]
 
-[96]) (../../data/shaders/fragments/highlight_brightness.frag
+[96])
 
-[97]) (../../data/shaders/classes/blur.py
+[97] (../../data/shaders/fragments/highlight_brightness.frag) (../../data/shaders/classes/blur.py
 
-[98]) (../../data/shaders/fragments/blur.frag) (../../data/shaders/classes/bloom.py
+[98]) (../../data/shaders/fragments/blur.frag)
 
-[99])
+[99] (../../data/shaders/classes/bloom.py
 
-[100]
+[100])
 
 LaTeX Warning: Reference `sec:design-shadow' on page 101 undefined on input line 345.
 
@@ -1193,11 +1193,13 @@ LaTeX Warning: Reference `sec:design-shadow' on page 101 undefined on input line
 
 [101]) (../../data/shaders/fragments/lightmap.frag
 
-[102]) (../../data/shaders/classes/rays.py
+[102])
 
-[103])
+[103] (../../data/shaders/classes/rays.py
 
-[104] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
+[104])
+
+[105] (c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1210,17 +1212,17 @@ Package rerunfilecheck Info: File `technical_solution.out' has not changed.
 (rerunfilecheck)             Checksum: BA15CBE56691256867B568809D7C4A6A;3948.
  ) 
 Here is how much of TeX's memory you used:
- 48955 strings out of 473530
- 1100690 string characters out of 5714311
- 2222446 words of memory out of 5000000
- 65827 multiletter control sequences out of 15000+600000
+ 48980 strings out of 473530
+ 1101094 string characters out of 5714311
+ 2245446 words of memory out of 5000000
+ 65829 multiletter control sequences out of 15000+600000
  570270 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 139i,6n,139p,1671b,2998s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 139i,6n,139p,1671b,2673s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0500.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0800.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Python\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Python/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb>
-Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (104 pages, 1548396 bytes).
+Output written on c:/Users\Python\Documents\Repositories\NEA\documentation\technical_solution\build\technical_solution.pdf (105 pages, 1592464 bytes).
 PDF statistics:
- 7654 PDF objects out of 8907 (max. 8388607)
- 5592 named destinations out of 6186 (max. 500000)
+ 7684 PDF objects out of 8907 (max. 8388607)
+ 5615 named destinations out of 6186 (max. 500000)
  314 words of extra memory for PDF output out of 10000 (max. 10000000)
 

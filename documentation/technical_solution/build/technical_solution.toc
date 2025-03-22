@@ -18,22 +18,22 @@
 \contentsline {subsection}{\numberline {1.5.2}View}{47}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Controller}{53}{subsection.1.5.3}%
 \contentsline {subsection}{\numberline {1.5.4}Board}{58}{subsection.1.5.4}%
-\contentsline {subsection}{\numberline {1.5.5}Bitboards}{63}{subsection.1.5.5}%
-\contentsline {section}{\numberline {1.6}CPU}{69}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Minimax}{69}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.5.5}Bitboards}{64}{subsection.1.5.5}%
+\contentsline {section}{\numberline {1.6}CPU}{70}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Minimax}{70}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}Alpha-beta Pruning}{71}{subsection.1.6.2}%
 \contentsline {subsection}{\numberline {1.6.3}Transposition Table}{73}{subsection.1.6.3}%
-\contentsline {subsection}{\numberline {1.6.4}Iterative Deepening}{74}{subsection.1.6.4}%
-\contentsline {subsection}{\numberline {1.6.5}Evaluator}{75}{subsection.1.6.5}%
+\contentsline {subsection}{\numberline {1.6.4}Iterative Deepening}{75}{subsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.6.5}Evaluator}{76}{subsection.1.6.5}%
 \contentsline {subsection}{\numberline {1.6.6}Multithreading}{78}{subsection.1.6.6}%
 \contentsline {subsection}{\numberline {1.6.7}Zobrist Hashing}{79}{subsection.1.6.7}%
 \contentsline {subsection}{\numberline {1.6.8}Cache}{81}{subsection.1.6.8}%
-\contentsline {section}{\numberline {1.7}States}{82}{section.1.7}%
+\contentsline {section}{\numberline {1.7}States}{83}{section.1.7}%
 \contentsline {subsection}{\numberline {1.7.1}Review}{83}{subsection.1.7.1}%
 \contentsline {section}{\numberline {1.8}Database}{88}{section.1.8}%
 \contentsline {subsection}{\numberline {1.8.1}DDL}{88}{subsection.1.8.1}%
-\contentsline {subsection}{\numberline {1.8.2}DML}{89}{subsection.1.8.2}%
-\contentsline {section}{\numberline {1.9}Shaders}{92}{section.1.9}%
-\contentsline {subsection}{\numberline {1.9.1}Shader Manager}{92}{subsection.1.9.1}%
+\contentsline {subsection}{\numberline {1.8.2}DML}{90}{subsection.1.8.2}%
+\contentsline {section}{\numberline {1.9}Shaders}{93}{section.1.9}%
+\contentsline {subsection}{\numberline {1.9.1}Shader Manager}{93}{subsection.1.9.1}%
 \contentsline {subsection}{\numberline {1.9.2}Bloom}{97}{subsection.1.9.2}%
 \contentsline {subsection}{\numberline {1.9.3}Rays}{101}{subsection.1.9.3}%

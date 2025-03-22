@@ -15,6 +15,10 @@ class WindowManager(pygame.Window):
         self._native_screen = self.get_surface() # Initialise convert format
         self.screen = pygame.Surface(self.size, pygame.SRCALPHA)
 
+        # Can only import and initialise graphics after window convert format is initialised
+        from data.utils.assets import GRAPHICS
+        self.set_icon(GRAPHICS['icon'])
+
         if is_opengl:
             self._ctx = moderngl.create_context()
             self._shader_manager = ShaderManager(self._ctx, screen_size=self.size)
@@ -35,7 +39,6 @@ class WindowManager(pygame.Window):
                     self.set_effect(shader_type)
         else:
             # If shaders disabled, use temporary image as background
-            from data.utils.assets import GRAPHICS
             self._background_image = GRAPHICS['temp_background']
 
     def set_effect(self, effect, **kwargs):
@@ -87,4 +90,10 @@ class WindowManager(pygame.Window):
         else:
             draw_background(self.screen, self._background_image)
 
-window = WindowManager(size=SCREEN_SIZE, resizable=True, opengl=is_opengl, fullscreen_desktop=is_fullscreen)
+window = WindowManager(
+    title='Laser Chess',
+    size=SCREEN_SIZE,
+    resizable=True,
+    opengl=is_opengl,
+    fullscreen_desktop=is_fullscreen
+)
