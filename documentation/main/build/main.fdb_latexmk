@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/main"] 1742635633.87913 "build/main.aux" "build/main.bbl" "build/main" 1742651823.04332 0
+["bibtex build/main"] 1742635633.87913 "build/main.aux" "build/main.bbl" "build/main" 1742836876.55887 0
   "./assets/references.bib" 1741252600 660 478b459f1d4658c9699843caf066ae34 ""
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "build/main.aux" 1742651821 100397 bd7ab137ce6fe4889f711db249b2b9d7 "pdflatex"
+  "build/main.aux" 1742836875 100397 bd7ab137ce6fe4889f711db249b2b9d7 "pdflatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["pdflatex"] 1742651790.98674 "c:/Users/Python/Documents/Repositories/NEA/documentation/main/main.tex" "build/main.pdf" "main" 1742651823.04516 0
+["pdflatex"] 1742836853.78013 "c:/Users/Python/Documents/Repositories/NEA/documentation/main/main.tex" "build/main.pdf" "main" 1742836876.55995 0
   "../../data/app_data/default_settings.json" 1740009267 305 99ca650a3df611e52ea91aca08adf1bb ""
   "../../data/app_data/logs_config.json" 1739098082 520 6ef332d11191f87785556b25040f891a ""
   "../../data/app_data/logs_config_prod.json" 1738456743 1234 f1cb54bb9bda77a0efc11fc187665466 ""
@@ -79,7 +79,7 @@
   "../../data/shaders/fragments/grayscale.frag" 1738587951 261 136416b77b3c7bd4bbe217b579f0c33b ""
   "../../data/shaders/fragments/highlight_brightness.frag" 1740311852 538 c551f58ea77306938ef16dbc6132f517 ""
   "../../data/shaders/fragments/highlight_colour.frag" 1738587951 613 83853b1e7542405a2140815c71e32144 ""
-  "../../data/shaders/fragments/lightmap.frag" 1740401211 2418 84b8b501a63cce52c39069b4b18e750b ""
+  "../../data/shaders/fragments/lightmap.frag" 1742836745 2406 b58fecd6d6795e73b8dcff29d958e521 ""
   "../../data/shaders/fragments/occlusion.frag" 1740311217 406 d1687ecee56770155dfb1ece70981511 ""
   "../../data/shaders/fragments/rays.frag" 1738587951 153 a33e2cc4d24d88742f54f74eced8df43 ""
   "../../data/shaders/fragments/shadowmap.frag" 1740311151 1278 1eaebe8d45c9c1fb7df71db93ddd4773 ""
@@ -392,7 +392,7 @@
   "../technical_solution/../../data/shaders/classes/rays.py" 1741557695 2855 7bad25df0ce838f25b1413af6bc6fa1e ""
   "../technical_solution/../../data/shaders/fragments/blur.frag" 1740312557 969 cba48b8e5f1b53baed95468dc961276a ""
   "../technical_solution/../../data/shaders/fragments/highlight_brightness.frag" 1740311852 538 c551f58ea77306938ef16dbc6132f517 ""
-  "../technical_solution/../../data/shaders/fragments/lightmap.frag" 1740401211 2418 84b8b501a63cce52c39069b4b18e750b ""
+  "../technical_solution/../../data/shaders/fragments/lightmap.frag" 1742836745 2406 b58fecd6d6795e73b8dcff29d958e521 ""
   "../technical_solution/../../data/shaders/fragments/occlusion.frag" 1740311217 406 d1687ecee56770155dfb1ece70981511 ""
   "../technical_solution/../../data/shaders/fragments/shadowmap.frag" 1740311151 1278 1eaebe8d45c9c1fb7df71db93ddd4773 ""
   "../technical_solution/../../data/states/game/components/bitboard_collection.py" 1741558888 12142 d17b5ad0fdd8e0c4c23f5f4125b47351 ""
@@ -418,9 +418,9 @@
   "../technical_solution/../../data/widgets/reactive_icon_button.py" 1741557695 1594 9b7ad855efdc7454e98e8c58325d1017 ""
   "../technical_solution/../../data/widgets/text_input.py" 1741558958 11707 1b1ac1a33a69a09cceaf473a80fde387 ""
   "../technical_solution/../technical_solution/assets/file_tree_diagram.pdf" 1742381857 39857 a9c374e600eb845a2fa5c90f0c52c65c ""
-  "../technical_solution/../technical_solution/technical_solution.tex" 1742558773 23698 7f731a55b912f59052b2f24c312679f7 ""
+  "../technical_solution/../technical_solution/technical_solution.tex" 1742836550 24524 90cef538d6c99c83834bc609a1594ab5 ""
   "../technical_solution/assets/file_tree_diagram.pdf" 1742381857 39857 a9c374e600eb845a2fa5c90f0c52c65c ""
-  "../technical_solution/technical_solution.tex" 1742558773 23698 7f731a55b912f59052b2f24c312679f7 ""
+  "../technical_solution/technical_solution.tex" 1742836550 24524 90cef538d6c99c83834bc609a1594ab5 ""
   "../testing/../../data/states/game/cpu/base.py" 1741559066 3005 4fdc65853533de23d0d0fe4042cca6ab ""
   "../testing/../testing/assets/rays_example_1.png" 1740402110 66507 807d57d4f0ac7a7e89577a45602d2b71 ""
   "../testing/../testing/assets/rays_example_2.png" 1740402134 88732 6c2cf99e4c75a4380f4cdfde4549c12e ""
@@ -704,10 +704,10 @@
   "C:/Users/Python/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "assets/listings-glsl.prf" 1740313813 4883 a85b8760594beede40210100ac3a918d ""
   "bibliography.tex" 1742557420 1352 dd995b3ebf5781ce4044316542710f6b ""
-  "build/main.aux" 1742651821 100397 bd7ab137ce6fe4889f711db249b2b9d7 "pdflatex"
+  "build/main.aux" 1742836875 100397 bd7ab137ce6fe4889f711db249b2b9d7 "pdflatex"
   "build/main.bbl" 1742635634 512 6a6554225580b820ec3efd1ed8cfddb7 "bibtex build/main"
-  "build/main.out" 1742651821 38989 85db9e30305cfcc2f341cfbf981164e3 "pdflatex"
-  "build/main.toc" 1742651821 26602 54983a60af1587d5a559da9201681a04 "pdflatex"
+  "build/main.out" 1742836875 38989 85db9e30305cfcc2f341cfbf981164e3 "pdflatex"
+  "build/main.toc" 1742836875 26602 54983a60af1587d5a559da9201681a04 "pdflatex"
   "c:/Users/Python/Documents/Repositories/NEA/documentation/main/main.tex" 1742558036 951 0d06acd858d97739114cae709771da1e ""
   "config.tex" 1742224473 2660 a29ad069d114998ee500377e09c68f03 ""
   "main.tex" 1742558036 951 0d06acd858d97739114cae709771da1e ""

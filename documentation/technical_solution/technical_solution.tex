@@ -351,7 +351,9 @@ The occlusion fragment shader processes all pixels with a given colour value as 
 \lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/occlusion.frag]{../../data/shaders/fragments/occlusion.frag}
 
 \subsubsection*{Shadowmap}
-The shadowmap fragment shader takes the occluding texture and creates a 1D shadow map.
+The shadowmap fragment shader takes the occluding texture and creates a 1D shadow map. The algorithm begins with assuming that all light rays are not occluded and able to reach the edge of the texture, hence \lstinline{maxDistance}, the furthest distance a light ray can travel from the centre for its angle, is set to 1.
+
+As we sample further from the centre, before the light ray hits an occluding object, \lstinline{maxDistance} does not change. When it first hits an occluding object, the \lstinline[morekeywords={step}]{step} value on line 32 will be valid, and \lstinline{maxDistance} will be set to the distance of the sampled pixel. Past this, \lstinline{maxDistance} will remain the same, since both arguments in the \lstinline{max} function will resolve to the current \lstinline{maxDistance}. Hence, \lstinline{maxDistance} will always be the distance from the centre to the nearest occluding pixel.
 
 \noindent\verb|shadowmap.frag|
 \lstinputlisting[language=GLSL, label=src:../../data/shaders/fragments/shadowmap.frag]{../../data/shaders/fragments/shadowmap.frag}
