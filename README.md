@@ -6,7 +6,7 @@ Laser Chess (Khet) is a chess-like strategic board game where pieces are positio
 </p>
 
 ## Overview
-This implementation of Laser Chess is written from scratch in Python, using the Pygame module. The final display is rendered with ModernGL, applying shaders onto the Pygame output. The bot is implemented using minimax,
+This implementation of Laser Chess is written from scratch in Python, using the Pygame module. The final display is rendered with ModernGL, applying shaders onto the Pygame output.
 
 ## Preview
 <img src="/documentation/screenshots/assets/game.png" width="800">
